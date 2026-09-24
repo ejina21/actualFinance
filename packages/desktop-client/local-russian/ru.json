@@ -2968,5 +2968,8 @@
   "YTD": "С начала года",
   "Yuan Renminbi": "юань ром юань",
   "yyyy": "уууу",
-  "Zero amount": "Нулевая сумма"
+  "Zero amount": "Нулевая сумма",
+  "Collapse {{group}}": "Свернуть {{group}}",
+  "Expand {{group}}": "Развернуть {{group}}",
+  "Redesigned sidebar": "Обновлённая боковая панель"
 }

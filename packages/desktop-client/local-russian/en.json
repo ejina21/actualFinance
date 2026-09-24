@@ -2863,5 +2863,8 @@
   "YTD": "YTD",
   "Yuan Renminbi": "Yuan Renminbi",
   "yyyy": "yyyy",
-  "Zero amount": "Zero amount"
+  "Zero amount": "Zero amount",
+  "Collapse {{group}}": "Collapse {{group}}",
+  "Expand {{group}}": "Expand {{group}}",
+  "Redesigned sidebar": "Redesigned sidebar"
 }
