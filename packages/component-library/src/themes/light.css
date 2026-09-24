@@ -1,13 +1,13 @@
 :root {
-  --color-pageBackground: var(--palette-navy100);
+  --color-pageBackground: #f3f6f7;
   --color-pageBackgroundModalActive: var(--palette-navy200);
   --color-pageBackgroundTopLeft: var(--palette-navy100);
   --color-pageBackgroundBottomRight: var(--palette-blue150);
   --color-pageBackgroundLineTop: var(--palette-white);
   --color-pageBackgroundLineMid: var(--palette-navy100);
   --color-pageBackgroundLineBottom: var(--palette-blue150);
-  --color-pageText: #272630;
-  --color-pageTextLight: var(--palette-navy500);
+  --color-pageText: #172b36;
+  --color-pageTextLight: #607681;
   --color-pageTextSubdued: var(--palette-navy300);
   --color-pageTextDark: var(--palette-navy800);
   --color-pageTextPositive: var(--palette-purple600);
@@ -15,12 +15,12 @@
   --color-pageTextLinkLight: var(--palette-blue300);
 
   --color-cardBackground: var(--palette-white);
-  --color-cardBorder: var(--palette-purple700);
+  --color-cardBorder: #dce5e8;
   --color-cardShadow: var(--palette-navy700);
 
   --color-tableBackground: var(--palette-white);
   --color-tableRowBackgroundAlternate: var(--color-tableBackground);
-  --color-tableRowBackgroundHover: var(--palette-navy50);
+  --color-tableRowBackgroundHover: #edf5f3;
   --color-tableText: var(--color-pageText);
   --color-tableTextItemAdded: var(--color-tableText);
   --color-tableTextLight: var(--palette-navy400);
@@ -30,9 +30,9 @@
   --color-tableTextInactive: var(--palette-navy500);
   --color-tableHeaderText: var(--palette-navy600);
   --color-tableHeaderBackground: var(--palette-white);
-  --color-tableBorder: var(--palette-navy100);
-  --color-tableBorderSelected: var(--palette-purple500);
-  --color-tableBorderHover: var(--palette-purple400);
+  --color-tableBorder: #e3eaec;
+  --color-tableBorderSelected: #087a74;
+  --color-tableBorderHover: #5bb3a8;
   --color-tableBorderSeparator: var(--palette-navy400);
   --color-tableRowBackgroundHighlight: var(--palette-blue150);
   --color-tableRowBackgroundHighlightText: var(--palette-navy700);
@@ -52,23 +52,19 @@
   --color-toBudgetZero: var(--color-numberPositive);
   --color-toBudgetNegative: var(--color-budgetNumberNegative);
 
-  --color-sidebarBackground: var(--palette-navy900);
+  --color-sidebarBackground: #1e3651;
   --color-sidebarItemBackgroundPending: var(--palette-orange200);
   --color-sidebarItemBackgroundPositive: var(--palette-green500);
   --color-sidebarItemBackgroundFailed: var(--palette-red300);
-  --color-sidebarItemBackgroundHover: var(--palette-navy800);
-  --color-sidebarItemAccentSelected: var(--palette-purple200);
-  --color-sidebarItemBackgroundSelected: color-mix(
-    in srgb,
-    var(--color-sidebarItemAccentSelected) 22%,
-    transparent
-  );
-  --color-sidebarItemText: var(--palette-navy150);
+  --color-sidebarItemBackgroundHover: #31506a;
+  --color-sidebarItemAccentSelected: #8dd9d0;
+  --color-sidebarItemBackgroundSelected: #34526d;
+  --color-sidebarItemText: #c8dce5;
   --color-sidebarItemTextUpdated: var(--color-sidebarItemText);
-  --color-sidebarItemTextSelected: var(--palette-purple200);
+  --color-sidebarItemTextSelected: #ffffff;
   --color-sidebarBudgetName: var(--palette-navy150);
   --color-sidebarHeaderText: var(--palette-white);
-  --color-sidebarTextSubdued: var(--palette-navy300);
+  --color-sidebarTextSubdued: #adc4d0;
   --color-sidebarTextMuted: var(--palette-navy500);
   --color-sidebarTextPositive: var(--color-sidebarItemBackgroundPositive);
   --color-sidebarTextFailed: var(--color-sidebarItemBackgroundFailed);
@@ -101,14 +97,14 @@
 
   --color-modalBackground: var(--palette-white);
   --color-modalBorder: var(--palette-white);
-  --color-mobileHeaderBackground: var(--palette-purple400);
+  --color-mobileHeaderBackground: #1e3651;
   --color-mobileHeaderText: var(--palette-navy50);
   --color-mobileHeaderTextSubdued: var(--palette-gray200);
   --color-mobileHeaderTextHover: rgba(200, 200, 200, 0.15);
   --color-mobilePageBackground: var(--palette-navy50);
   --color-mobileNavBackground: var(--palette-white);
   --color-mobileNavItem: var(--palette-gray300);
-  --color-mobileNavItemSelected: var(--palette-purple500);
+  --color-mobileNavItemSelected: #087a74;
   --color-mobileAccountShadow: var(--palette-navy300);
   --color-mobileAccountText: var(--palette-blue800);
   --color-mobileTransactionSelected: var(--palette-purple500);
@@ -133,8 +129,8 @@
 
   --color-buttonPrimaryText: var(--palette-white);
   --color-buttonPrimaryTextHover: var(--color-buttonPrimaryText);
-  --color-buttonPrimaryBackground: var(--palette-purple500);
-  --color-buttonPrimaryBackgroundHover: var(--palette-purple300);
+  --color-buttonPrimaryBackground: #087a74;
+  --color-buttonPrimaryBackgroundHover: #096a65;
   --color-buttonPrimaryBorder: var(--color-buttonPrimaryBackground);
   --color-buttonPrimaryShadow: rgba(0, 0, 0, 0.3);
   --color-buttonPrimaryDisabledText: var(--palette-white);

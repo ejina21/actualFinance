@@ -1,5 +1,5 @@
 :root {
-  --color-pageBackground: var(--palette-gray600);
+  --color-pageBackground: #171f25;
   --color-pageBackgroundModalActive: var(--palette-gray700);
   --color-pageBackgroundTopLeft: var(--palette-gray800);
   --color-pageBackgroundBottomRight: var(--palette-gray700);
@@ -15,7 +15,7 @@
   --color-pageTextLinkLight: var(--palette-purple300);
 
   --color-cardBackground: var(--palette-gray800);
-  --color-cardBorder: var(--palette-purple300);
+  --color-cardBorder: #37464c;
   --color-cardShadow: var(--palette-gray900);
 
   --color-tableBackground: var(--palette-gray800);
@@ -30,9 +30,9 @@
   --color-tableTextInactive: var(--palette-gray400);
   --color-tableHeaderText: var(--palette-gray200);
   --color-tableHeaderBackground: var(--palette-gray900);
-  --color-tableBorder: var(--palette-gray600);
-  --color-tableBorderSelected: var(--palette-purple400);
-  --color-tableBorderHover: var(--palette-purple300);
+  --color-tableBorder: #37464c;
+  --color-tableBorderSelected: #5dc1b2;
+  --color-tableBorderHover: #458f88;
   --color-tableBorderSeparator: var(--palette-gray400);
   --color-tableRowBackgroundHighlight: var(--palette-purple150);
   --color-tableRowBackgroundHighlightText: var(--palette-gray800);
@@ -52,20 +52,16 @@
   --color-toBudgetZero: var(--color-numberPositive);
   --color-toBudgetNegative: var(--color-budgetNumberNegative);
 
-  --color-sidebarBackground: var(--palette-gray900);
+  --color-sidebarBackground: #111d2a;
   --color-sidebarItemBackgroundPending: var(--palette-orange200);
   --color-sidebarItemBackgroundPositive: var(--palette-green400);
   --color-sidebarItemBackgroundFailed: var(--palette-red300);
-  --color-sidebarItemAccentSelected: var(--palette-purple200);
-  --color-sidebarItemBackgroundHover: var(--palette-gray700);
-  --color-sidebarItemBackgroundSelected: color-mix(
-    in srgb,
-    var(--color-sidebarItemAccentSelected) 35%,
-    transparent
-  );
-  --color-sidebarItemText: var(--palette-gray100);
+  --color-sidebarItemAccentSelected: #8dd9d0;
+  --color-sidebarItemBackgroundHover: #294359;
+  --color-sidebarItemBackgroundSelected: #34526d;
+  --color-sidebarItemText: #d2e1e6;
   --color-sidebarItemTextUpdated: var(--color-sidebarItemText);
-  --color-sidebarItemTextSelected: var(--palette-purple200);
+  --color-sidebarItemTextSelected: #ffffff;
   --color-sidebarBudgetName: var(--palette-gray300);
   --color-sidebarHeaderText: var(--palette-gray100);
   --color-sidebarTextSubdued: var(--palette-gray300);
@@ -107,7 +103,7 @@
   --color-mobilePageBackground: var(--palette-gray900);
   --color-mobileNavBackground: var(--palette-gray600);
   --color-mobileNavItem: var(--palette-gray150);
-  --color-mobileNavItemSelected: var(--palette-purple200);
+  --color-mobileNavItemSelected: #5dc1b2;
   --color-mobileAccountShadow: var(--color-cardShadow);
   --color-mobileAccountText: var(--palette-blue800);
   --color-mobileTransactionSelected: var(--palette-purple300);
@@ -132,8 +128,8 @@
 
   --color-buttonPrimaryText: var(--palette-white);
   --color-buttonPrimaryTextHover: var(--color-buttonPrimaryText);
-  --color-buttonPrimaryBackground: var(--palette-purple300);
-  --color-buttonPrimaryBackgroundHover: var(--color-buttonPrimaryBackground);
+  --color-buttonPrimaryBackground: #087a74;
+  --color-buttonPrimaryBackgroundHover: #0a6964;
   --color-buttonPrimaryBorder: var(--color-buttonPrimaryBackground);
   --color-buttonPrimaryShadow: rgba(0, 0, 0, 0.6);
   --color-buttonPrimaryDisabledText: var(--palette-gray400);
