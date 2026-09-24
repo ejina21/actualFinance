@@ -43,7 +43,6 @@ export function AccountsSection() {
       style={{
         flexGrow: 1,
         minHeight: 0,
-        overflowY: 'auto',
         paddingInline: spacing.sm,
       }}
     >
@@ -62,6 +61,8 @@ export function AccountsSection() {
             onClose={onToggleSearch}
           />
         )}
+      </View>
+      <View style={{ flex: 1, minHeight: 0, overflowY: 'auto' }}>
         {tree.onBudget.buckets.length > 0 && (
           <SideGroup
             label={t('On budget')}

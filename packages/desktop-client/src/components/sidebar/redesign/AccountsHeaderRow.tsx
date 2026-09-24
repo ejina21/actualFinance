@@ -43,56 +43,71 @@ export function AccountsHeaderRow({
   return (
     <View
       style={{
-        flexDirection: 'row',
-        alignItems: 'center',
-        gap: spacing.xs,
-        paddingBlock: spacing.xs,
-        paddingInline: spacing.sm,
+        gap: spacing.sm,
+        padding: `${spacing.xs}px ${spacing.sm}px ${spacing.md}px`,
       }}
     >
+      <View
+        style={{ flexDirection: 'row', alignItems: 'center', gap: spacing.xs }}
+      >
+        <Link
+          variant="internal"
+          to="/accounts"
+          isExactPathMatch
+          style={{
+            flex: 1,
+            fontSize: 13,
+            fontWeight: 700,
+            textDecoration: 'none',
+            color: theme.sidebarHeaderText,
+          }}
+          activeStyle={{ color: theme.sidebarItemTextSelected }}
+        >
+          <Trans>Accounts</Trans>
+        </Link>
+        <SidebarIconButton
+          Icon={allOpen ? SvgCheveronDownUp : SvgCheveronUpDown}
+          label={allOpen ? t('Collapse all groups') : t('Expand all groups')}
+          isDisabled={isToggleAllDisabled}
+          onPress={onToggleAll}
+        />
+        <SidebarIconButton
+          Icon={SvgSearchAlternate}
+          label={t('Find account')}
+          isToggledOn={isSearchOpen}
+          onPress={onToggleSearch}
+        />
+        <SidebarIconButton
+          Icon={SvgAdd}
+          label={t('Add account')}
+          onPress={onAddAccount}
+        />
+      </View>
       <Link
         variant="internal"
         to="/accounts"
         isExactPathMatch
+        aria-label={t('All accounts')}
         style={{
-          fontSize: 13,
-          fontWeight: 700,
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'space-between',
+          gap: spacing.sm,
+          padding: spacing.sm,
+          borderRadius: spacing.md,
+          backgroundColor: theme.sidebarControlBackground,
           textDecoration: 'none',
-          color: theme.sidebarHeaderText,
+          color: theme.sidebarItemText,
         }}
         activeStyle={{ color: theme.sidebarItemTextSelected }}
       >
-        <Trans>Accounts</Trans>
-      </Link>
-      <SidebarIconButton
-        Icon={allOpen ? SvgCheveronDownUp : SvgCheveronUpDown}
-        label={allOpen ? t('Collapse all groups') : t('Expand all groups')}
-        isDisabled={isToggleAllDisabled}
-        onPress={onToggleAll}
-      />
-      <SidebarIconButton
-        Icon={SvgSearchAlternate}
-        label={t('Find account')}
-        isToggledOn={isSearchOpen}
-        onPress={onToggleSearch}
-      />
-      <SidebarIconButton
-        Icon={SvgAdd}
-        label={t('Add account')}
-        onPress={onAddAccount}
-      />
-      <View style={{ flex: 1 }} />
-      <Link
-        variant="internal"
-        to="/accounts"
-        isExactPathMatch
-        style={{ textDecoration: 'none', color: theme.sidebarItemText }}
-        activeStyle={{ color: theme.sidebarItemTextSelected }}
-      >
+        <span style={{ fontSize: 12, color: theme.sidebarTextSubdued }}>
+          <Trans>All accounts</Trans>
+        </span>
         <SidebarBalance
           binding={bindings.allAccountBalance()}
           testId="sidebar-all-accounts-balance"
-          style={{ fontSize: 12, fontWeight: 600 }}
+          style={{ fontSize: 14, fontWeight: 700 }}
         />
       </Link>
     </View>
