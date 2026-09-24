@@ -1,68 +1,68 @@
-# Build from Source
+# Сборка из исходного кода {#build-from-source}
 
 :::info
 
-Installing Actual by building it from source is a highly technical process. We recommend this approach primarily for contributors.
+Установка Actual путем его создания из источника является высокотехническим процессом. Мы рекомендуем этот подход в первую очередь для участников.
 
-For most cases, we suggest opting for one of the simpler alternatives:
+В большинстве случаев мы предлагаем выбрать один из самых простых вариантов:
 
-- [Pikapods](./pikapods.md)
-- [Desktop Client](../../../download)
-- [Server CLI](./cli-tool.md)
-- [Docker](./docker.md)
+- [Пикаподы](./pikapods.md)
+- [Клиент рабочего стола](../../../download)
+- [Сервер CLI](./cli-tool.md)
+- [Докер](./docker.md)
 
 :::
 
-Actual server is used for syncing changes across devices. It comes with the latest version of the [Actual web client](https://github.com/actualbudget/actual).
+Сервер Actual используется для синхронизации изменений между устройствами. [Веб-клиент Actual](https://github.com/actualbudget/actual).
 
-## Prerequisites
+## Предпосылки {#prerequisites}
 
-- The Actual server requires Node.js v22 or greater. You can download and install the latest version of Node.js from [Node.js website](https://nodejs.org/en/download) (we recommend downloading the "LTS" version).
-  - If you're on Windows, during installation of Node.js, be sure to select _Automatically install the necessary tools_ from the _Tools for Native Modules_ page. This is required to build better-sqlite3. If you missed this when you installed Node.js, double-click `C:\Program Files\nodejs\install_tools.bat` from the File Explorer or run it in a terminal.
-- Consider using a tool like [nvm](https://github.com/nvm-sh/nvm) or [asdf](https://asdf-vm.com) to install and manage multiple versions of Node.js.
-- You'll also need to have Git installed. For Windows users, you'll also need Git Bash. The Git website has [instructions for downloading and working with Git for all supported operating systems](https://git-scm.com/download).
-- Actual uses yarn packages. You can install [yarn](https://yarnpkg.com/getting-started/install) using the following command:
+- Сервер Actual требует Node.js v22 или выше. Вы можете загрузить и установить последнюю версию Node.js из [Сайт Node.js](https://nodejs.org/en/download) (рекомендуем загрузить версию «LTS»).
+  - Если вы находитесь в Windows, во время установки Node.js обязательно выберите Automatically install the necessary tools from the Tools for Native Modules page. Это необходимо для создания лучше-sqlite3. Если вы пропустили это при установке Node.js, дважды щелкните `C:\Program Files\nodejs\install_tools.bat` От проводника файлов или запустить его в терминале.
+- Используйте такой инструмент, как [нвм](https://github.com/nvm-sh/nvm) или [асдф](https://asdf-vm.com) Установить и управлять несколькими версиями Node.js.
+- Для пользователей Windows вам также понадобится Git Bash. На сайте Git есть [инструкции по загрузке и работе с Git для всех поддерживаемых операционных систем](https://git-scm.com/download).
+- Actual использует пакеты из пряжи. [пряжка](https://yarnpkg.com/getting-started/install) Используя следующую команду:
 
   ```bash
   npm install --global yarn
   ```
 
-## Installing Actual
+## Установка фактического {#installing-actual}
 
-1. After the prerequisites are fulfilled, open bash and clone the [Actual](https://github.com/actualbudget/actual) project in your project root directory where you want to install Actual.
+1. После выполнения предпосылок откройте бэш и клонируйте [Actual](https://github.com/actualbudget/actual) проект в корневом каталоге проекта, где вы хотите установить Actual.
 
 ```bash
 git clone https://github.com/actualbudget/actual.git
 ```
 
-2. Navigate to the Actual in your project root directory.
+2. Перейдите к фактическому в корневом каталоге вашего проекта.
    ```bash
    cd actual
    ```
-3. Install all the required dependencies using yarn.
+3. Установите все необходимые зависимости с помощью пряжи.
    ```bash
    yarn install
    ```
-4. Build the server with
+4. Создайте сервер с
    ```bash
    yarn build:server
    ```
 
-## Running Actual
+## Реальный бег {#running-actual}
 
-After the Actual is installed and built, start the Actual server by running the following command:
+После установки и сборки Actual запустите Actual Server, выполнив следующую команду:
 
 ```bash
 yarn start:server
 ```
 
-Note that if you restart your computer, you'll have to run this command again to start the server.
+Обратите внимание, что если вы перезагрузите компьютер, вам придется снова запустить эту команду, чтобы запустить сервер.
 
-### Linux systemd Setup
+### Система Linux Setup {#linux-systemd-setup}
 
-On Linux systems you can configure a systemd unit file to have Actual run on system startup. This needs to be done as the root user (open a root terminal session or preface each command with sudo to run the commands below)
+В системах Linux вы можете настроить файл системного блока для фактического запуска при запуске системы. Это должно быть сделано в качестве пользователя root (откройте сеанс root-терминала или представьте каждую команду с sudo для запуска команд ниже).
 
-1. Create the file /etc/systemd/service/actual-server.service with the contents below using your text editor of choice (ex. `vi /etc/systemd/service/actual-server.service`). Note the WorkingDirectory= parameter needs to be set to your Actual install folder
+1. Создайте файл /etc/systemd/service/actual-server.service с приведенным ниже содержимым с помощью выбранного вами текстового редактора. `vi /etc/systemd/service/actual-server.service`Обратите внимание, что параметр WorkingDirectory= необходимо установить в папку Actual install.
 
 ```
 [Unit]
@@ -78,9 +78,9 @@ Restart=on-watchdog
 WantedBy=multi-user.target
 ```
 
-2. Have systemd rescan for the unit file you created -> `systemctl daemon-reload`
-3. Install and start the systemd unit file -> `systemctl enable --now /etc/systemd/system/multi-user.target.wants/actual-server.service`
-4. Confirm that the Actual server is running -> `systemctl status actual-server`
+2. Систематизированное сканирование для созданного вами файла блока -> `systemctl daemon-reload`
+3. Установите и запустите файл Systemd Unit `systemctl enable --now /etc/systemd/system/multi-user.target.wants/actual-server.service`
+4. Подтвердите, что фактический сервер работает -> `systemctl status actual-server`
 
 ```
 root@server:/etc/systemd/system# systemctl status actual-server
@@ -97,40 +97,40 @@ root@server:/etc/systemd/system# systemctl status actual-server
              └─842881 /usr/bin/node app
 ```
 
-5. You should see output similar to above. The main thing to check for is the "Active: active (running)" section. From here you can consider [Setting up a Reverse Proxy](https://actualbudget.org/docs/config/reverse-proxies) and [Activating HTTPS](https://actualbudget.org/docs/config/https)
-6. To stop / start / restart the server use the commands
+5. Вы должны увидеть выход, подобный выше. Главное, что нужно проверить - это раздел "Актив: активный (бег)". Отсюда вы можете рассмотреть [Настройка обратного прокси](https://actualbudget.org/docs/config/reverse-proxies) и [Активация HTTPS](https://actualbudget.org/docs/config/https)
+6. Для остановки/запуска/перезапуска сервер использует команды
    - `systemctl stop actual-server`
    - `systemctl start actual-server`
    - `systemctl restart actual-server`
-7. To see the system log showing status or errors use the command from before. This can be helpful for troubleshooting.
+7. Чтобы увидеть системный журнал, показывающий состояние или ошибки, используйте команду из прошлого. Это может быть полезно для устранения неполадок.
    - `systemctl status actual-server`
 
-## Accessing Actual
+## Доступ к реальным {#accessing-actual}
 
-After the server has been started, you can access Actual using your browser at [http://localhost:5006](http://localhost:5006).
+После того, как сервер был запущен, вы можете получить доступ к Actual с помощью своего браузера. [http://localhost:5006](http://localhost:5006).
 
-When accessing Actual for the first time, you may be prompted to provide a URL for the server. For a local installation, click the **Use localhost:5006** button to use the server you've [configured](https://actualbudget.org/docs/config/).
+При первом доступе к Actual вам может быть предложено предоставить URL-адрес сервера. Для локальной установки нажмите кнопку **Использование localhost: 5006** Кнопка для использования сервера, который у вас есть [сконфигурированный](https://actualbudget.org/docs/config/).
 
-## Updating Actual
+## Актуальное обновление {#updating-actual}
 
-1. Stop the server if it's running. You can use the keyboard shortcut <kbd>CTRL-C</kbd> (even on macOS) to stop the server or close the terminal window it's running from.
-2. In Bash, run `git pull` from the directory you cloned the project into. This will download the latest code.
-3. Run `yarn install` from that directory. This will download any updated dependencies.
-4. Run `yarn build:server` to build the server from the latest code.
-5. Restart the server by running `yarn start:server`.
+1. Остановите сервер, если он работает. <kbd>CTRL-C</kbd> (даже на macOS), чтобы остановить сервер или закрыть окно терминала.
+2. В Баше, беги `git pull` из каталога, в который вы клонировали проект. Это загрузит последний код.
+3. Беги. `yarn install` Из этого каталога будут загружаться все обновленные зависимости.
+4. Беги. `yarn build:server` Создание сервера с использованием новейшего кода.
+5. Перезагрузите сервер, запустив `yarn start:server`.
 
-Actual is constantly evolving to include new features and improve the user's experience. It is always recommended that your local installation be updated with our [latest releases](https://actualbudget.org/docs/releases).
+Actual постоянно развивается, чтобы включать новые функции и улучшать пользовательский опыт. Всегда рекомендуется, чтобы ваша локальная установка обновлялась с помощью нашего приложения. [Последние релизы](https://actualbudget.org/docs/releases).
 
-## Translations
+## Переводы {#translations}
 
-If you would like to use Actual in a language other than English, additional setup is needed. Run the following commands in order.
+Если вы хотите использовать Actual на языке, отличном от английского, необходима дополнительная настройка.
 
-1. Navigate to the Actual in your project root directory, and the `packages/desktop-client` directory inside that.
+1. Навигация к фактическому в корневом каталоге проекта и `packages/desktop-client` Внутри этого каталога.
    ```bash
    cd actual  # project root
    cd packages/desktop-client
    ```
-2. Clone the separate translations repository.
+2. Клонировать отдельное хранилище переводов.
    ```bash
    git clone https://github.com/actualbudget/translations locale
    ```

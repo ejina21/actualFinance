@@ -1,34 +1,34 @@
-# Feature Flags (Experimental Features)
+# Флаги функций {#feature-flags-experimental-features}
 
-Feature flags (experimental features) are a way to enable or disable certain features in the application. This is useful when you want to test a feature with a small group of users before rolling it out to everyone. It is also useful when building a larger feature as it allows breaking it up in to smaller releasable chunks.
+Флаги функций (экспериментальные функции) - это способ включить или отключить определенные функции в приложении. Это полезно, когда вы хотите протестировать функцию с небольшой группой пользователей, прежде чем развернуть ее для всех. Это также полезно при создании более крупной функции, поскольку она позволяет разбивать ее на более мелкие съемные фрагменты.
 
-For example: `custom reports` initially was released as a read-only version under a feature flag. Later the saving functionality was added. This allowed us to put the feature in the hands of real users before announcing it as a stable first-party feature.
+Например: `custom reports` Первоначально была выпущена как версия только для чтения под флагом функции. Позже была добавлена функция сохранения. Это позволило нам передать функцию в руки реальных пользователей, прежде чем объявить ее стабильной функцией первой стороны.
 
-In short, feature flags allow:
+Короче говоря, специальные флаги позволяют:
 
-- breaking up a large and complex feature into smaller deliverables
-- releasing the feature to real users to gather their feedback
+- Разбиение большой и сложной функции на более мелкие результаты
+- выпуск функции для реальных пользователей, чтобы собрать их отзывы
 
-However, feature flags also have a downside. They can make the code more complex and harder to understand. They can also lead to technical debt if not managed properly. As such - we impose a strict policy for managing them.
+Однако флажки с функциями также имеют и обратную сторону. Они могут сделать код более сложным и трудным для понимания. Они также могут привести к техническому долгу, если не управлять должным образом. Как таковые - мы навязываем строгую политику управления ими.
 
-**Experimental features that have not had any active development for over 3 months will be removed from the codebase.** This is to ensure the codebase does not become cluttered with unfinished features. If you wish to bring back an experimental feature that was removed - please feel free to bring it back as long as you can commit to helping with finishing it up for a first-party release.
+**Экспериментальные функции, не имевшие активной разработки более 3 месяцев, будут удалены из кодовой базы.** Это делается для того, чтобы кодовая база не была загромождена незавершенными функциями.Если вы хотите вернуть экспериментальную функцию, которая была удалена, пожалуйста, не стесняйтесь возвращать ее, пока вы можете взять на себя обязательство помочь с ее завершением для релиза первой стороны.
 
-Before removing an experimental feature flag - we will try our best to communicate with the original engineer/s who implemented it. However, if we cannot reach them - we will remove the feature flag.
+Прежде чем убрать экспериментальный флаг признаков - мы постараемся изо всех сил пообщаться с оригинальным инженером/с, который его реализовал.Однако, если мы не сможем добраться до них - мы удалим флаг признаков.
 
-The core maintainer team does not have the capacity to maintain a large number of experimental features. We also do not have capacity to finish up features that were abandoned by their original authors. However, we are happy to support you with your feature development if you are actively working on it.
+Основная команда разработчиков не имеет возможности поддерживать большое количество экспериментальных функций. У нас также нет возможности завершать функции, которые были оставлены их оригинальными авторами. Однако мы рады поддержать вас в разработке ваших функций, если вы активно работаете над этим.
 
-## FAQ
+## FAQ {#faq}
 
-### Can I use feature flags as a configuration option (i.e. to change a small visual or functional aspect of the product)?
+### Можно ли использовать флаги функций в качестве опции конфигурации (т.е. изменить небольшой визуальный или функциональный аспект продукта)? {#can-i-use-feature-flags-as-a-configuration-option-ie-to-change-a-small-visual-or-functional-aspect-of-the-product}
 
-No. Actual's design philosophy is: sleek and clutter-free. This includes the configuration page and the feature flags. We do not want to have a configuration option for each little UI quirk.
+Нет. Философия дизайна Actual такова: гладкий и без беспорядка. Это включает в себя страницу конфигурации и флаги функций. Мы не хотим иметь опцию конфигурации для каждой маленькой причуды пользовательского интерфейса.
 
-For example: should category selector include hidden categories or not? We support one use-case and will not support a toggle to switch between the two.
+Например: должен ли селектор категорий включать скрытые категории или нет? Мы поддерживаем один вариант использования и не будем поддерживать переключение между ними.
 
-If you wish to implement such customization - please fork the UI repository and implement it for your own use-case.
+Если вы хотите реализовать такую настройку - пожалуйста, разверните репозиторий пользовательского интерфейса и реализуйте его для своего собственного сценария использования.
 
-### Why was my feature flag removed?
+### Почему был снят флаг? {#why-was-my-feature-flag-removed}
 
-Short answer: it's likely the feature did not have any active development for over 3 months. Feel free to bring this feature back as long as you commit to continuing the work on it to release it as a first-party feature.
+Короткий ответ: скорее всего, функция не имела активной разработки более 3 месяцев. Не стесняйтесь возвращать эту функцию, пока вы обязуетесь продолжить работу над ней, чтобы выпустить ее в качестве функции первой стороны.
 
-Longer answer: please see top of the page.
+Более длинный ответ: пожалуйста, смотрите в верхней части страницы.

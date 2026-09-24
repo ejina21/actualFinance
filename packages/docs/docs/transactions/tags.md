@@ -1,40 +1,40 @@
-# Tags
+# Метки {#tags}
 
-Transactions can be easily flagged and identified in the account register by tagging them in their notes.
-An example would be to tag all transactions for a trip with `#Vacation2025`
+Транзакции могут быть легко помечены и идентифицированы в регистре учетной записи, пометив их в своих заметках.
+Примером может быть пометка всех транзакций для поездки. `#Vacation2025`
 
-## Syntax
+## синтаксис {#syntax}
 
-- A tag is a string of any characters (except `#` and whitespaces) prefixed by the `#` symbol; it can be added anywhere within the _Notes_ field of a transaction.
-- Tags cannot contain whitespaces (spaces, tabs, etc.). Use `#camelText`, `#dashed-entries` or `#underscored_separators` instead.
-- It is possible to have multiple tags for a single transaction.
-- Tags are case-sensitive, meaning that `#tag` and `#TAG` are different.
-- To use the `#` symbol in the _Notes_ field without tagging, you can escape it by inputting it twice: `##do-not-tag-this`.
+- Для них характерны только те, которые `#` и белоснежных пробелов), закрепленных `#` Символ может быть добавлен в любом месте в поле Notes транзакции.
+- Теги не могут содержать белые пространства (пространства, вкладки и т. Д.). `#camelText`, `#dashed-entries` или `#underscored_separators` Вместо этого.
+- Можно иметь несколько тегов для одной транзакции.
+- Тэги чувствительны к случаю, что означает, что `#tag` и `#TAG` Они разные.
+- Чтобы использовать `#` символ в поле Notes без метки можно избежать, введя его дважды: `##do-not-tag-this`.
 
-![Tagging a transaction](/img/tags/input.webp)
+![Пометка транзакции](/img/tags/input.webp)
 
-![Tagged transaction](/img/tags/input-result.webp)
+![Tagged транзакция](/img/tags/input-result.webp)
 
-## Filter Transactions
+## Фильтровые транзакции {#filter-transactions}
 
-To view transactions with a given tag, you can:
+Для просмотра транзакций с заданным тегом вы можете:
 
-- Use the _View Transactions_ button in the Tag management page, in the sidebar.
-- Click on a colored tag in the account register.
-- Use the `has tags` filter on the _Notes_ field:
+- Используйте кнопку View Transactions на странице управления тегами, на боковой панели.
+- Нажмите на цветной тег в регистре учетной записи.
+- Используйте `has tags` Фильтр в поле Notes :
 
-![Tag based filter of transactions](/img/tags/filter.webp)
+![Фильтр транзакций на основе тегов](/img/tags/filter.webp)
 
-## Manage Tags
+## Управлять тегами {#manage-tags}
 
 ![Tag management page](/img/tags/manage.webp)
 
-The Tag management page can be found in the sidebar under _More_. Here you can perform the following actions:
+Страницу управления тегами можно найти на боковой панели под More . Здесь вы можете выполнить следующие действия:
 
-- Change the color. Tags use a default color defined in the theme. Change the color of any tag by clicking on the tag to bring up a color picker.
-- **Add New** tags. Do not include the `#` prefix when adding tags here; it will be added automatically. If the tag already exists, this will update its color.
-- **Find Existing Tags** searches for tags already used within transactions and adds them to the list of managed tags.
-- Add a description by clicking in the description field.
-- **View Transactions** which use a given tag.
-- **Rename** a tag from the context menu (right-click menu), or from the selection menu when exactly one tag is selected. Renaming also rewrites the hashtag in every transaction note that uses it. Tag names cannot contain spaces or `#`, and cannot match an existing tag.
-- Use the context menu (right-click menu) to delete a tag from this page. It will **not** delete the tag from the transaction notes.
+- Измените цвет. Теги используют цвет по умолчанию, определенный в теме. Измените цвет любого тега, нажав на тег, чтобы поднять выборщик цветов.
+- **Добавить новый** Не включайте теги. `#` префикс при добавлении тегов здесь; он будет добавлен автоматически. Если тег уже существует, это обновит его цвет.
+- **Найти существующие теги** Поиск тегов, уже используемых в транзакциях, и добавление их в список управляемых тегов.
+- Добавить описание, нажав в поле описания.
+- **Посмотреть Транзакции** которые используют заданную метку.
+- **переименование** тег из контекстного меню (меню правого клика) или из меню выбора, когда выбран именно один тег. Переименование также переписывает хэштег в каждой заметке транзакции, которая его использует. `#`и не может соответствовать существующему тегу.
+- Используйте контекстное меню (меню правого клика), чтобы удалить тег с этой страницы. **не** Удалите тег из заметок транзакции.

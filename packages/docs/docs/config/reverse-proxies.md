@@ -1,21 +1,21 @@
 ---
-title: Using a Reverse Proxy
+title: Использование обратного прокси
 ---
 
-# Using a Reverse Proxy
+# Использование обратного прокси {#using-a-reverse-proxy}
 
-If you want to expose Actual to the internet, you should hide it behind a reverse proxy with SSL enabled.
-There are a series of tools that can be used for this purpose. This configuration page is dynamic, so that new tools and their configuration can be added continuously.
+Если вы хотите открыть Actual для Интернета, вы должны спрятать его за обратным прокси с включенным SSL.
+Существует ряд инструментов, которые можно использовать для этой цели. Эта страница конфигурации динамична, так что новые инструменты и их конфигурация могут быть добавлены непрерывно.
 
-In our examples, the Actual Server should be published under the domain **budget.example.org**.
+В наших примерах фактический сервер должен быть опубликован под доменом. **budget.example.org**.
 
 :::note
-The **basic configurations** provided here are only suggestions for implementing a reverse proxy configuration. Additional security mechanisms should then be activated/implemented for the tool selected in each case.
+The **Основные конфигурации** В этом случае должны быть активированы/реализованы дополнительные механизмы безопасности для инструмента, выбранного в каждом случае.
 :::
 
-## CADDY
+## КАДДИ {#caddy}
 
-Below is an example `Caddyfile` that you can use to configure Caddy and Actual Server using Docker. Caddy is an easy reverse proxy to use since it automatically obtains and renews SSL certificates for you.
+Ниже приведен пример `Caddyfile` Caddy - это простой обратный прокси-сервер для использования, поскольку он автоматически получает и обновляет SSL-сертификаты для вас.
 
 ```yaml title="docker-compose.yml"
 services:
@@ -39,7 +39,7 @@ services:
       - ./actual-data:/data
 ```
 
-Caddyfile:
+Каддифил:
 
 ```
 budget.example.org {
@@ -48,9 +48,9 @@ budget.example.org {
 }
 ```
 
-## Traefik
+## Траефик {#traefik}
 
-Our example shows a working configuration for Traefik and Actual Server using Docker - as documented in [Install Actual/Docker](../install/docker.md)
+Наш пример показывает рабочую конфигурацию для Traefik и Actual Server с использованием Docker. [Установить Actual/Docker](../install/docker.md)
 
 ```yaml title="docker-compose.yml"
 services:
@@ -105,17 +105,17 @@ certificatesResolvers:
         entryPoint: web
 ```
 
-Please refer to the [official documentation](https://doc.traefik.io/traefik/user-guides/docker-compose/basic-example/) for further details.
+Пожалуйста, обратитесь к [официальная документация](https://doc.traefik.io/traefik/user-guides/docker-compose/basic-example/) Для более подробной информации.
 
-## NGINX
+## NGINX {#nginx}
 
-### Note on Cross-Origin Isolation & Header Collisions
+### Кросс-оригинальная изоляция и столкновения заголовков {#note-on-cross-origin-isolation-header-collisions}
 
-Actual Budget requires a "Secure Context" and specific headers (`COOP/COEP`) to enable `SharedArrayBuffer` for its underlying SQLite engine. While the application attempts to set these headers automatically, implementing a manual Nginx configuration as suggested above can lead to **duplicate headers** (e.g., `require-corp, require-corp`).
+Actual Budget требует «безопасного контекста» и конкретных заголовков.`COOP/COEP`) дать возможность `SharedArrayBuffer` Хотя приложение пытается установить эти заголовки автоматически, реализация ручной конфигурации Nginx, как предложено выше, может привести к **дублирующие заголовки** (e.g., `require-corp, require-corp`).
 
-Modern browsers will invalidate security policies if headers are duplicated, resulting in a `SharedArrayBufferMissing` fatal error.
+Современные браузеры аннулируют политики безопасности, если заголовки дублируются, что приводит к `SharedArrayBufferMissing` фатальная ошибка.
 
-To resolve the "additional security mechanisms" mentioned in the note above, use the `proxy_hide_header` directive to ensure Nginx acts as the single source of truth:
+Для решения «дополнительных механизмов безопасности», упомянутых в примечании выше, используйте `proxy_hide_header` Директива для обеспечения того, чтобы Nginx действовал как единственный источник истины:
 
 ```nginx
 location / {
@@ -135,9 +135,9 @@ location / {
 }
 ```
 
-The SSL certificate is issued by Let's Encrypt. The [Certbot](https://certbot.eff.org/instructions) tool provides options for automatic updating upon expiration.
-At the very least you will need to adapt `server_name` and the `ssl_certificate/ssl_certificate_key` paths to match your setup.
-Please refer to their [official documentation](https://nginx.org/en/docs/) for further details.
+SSL-сертификат выдается Let's Encrypt. [Сертбот](https://certbot.eff.org/instructions) Инструмент предоставляет опции автоматического обновления по истечении срока действия.
+По крайней мере, вам придется адаптироваться. `server_name` и `ssl_certificate/ssl_certificate_key` Пути, чтобы соответствовать вашей установке.
+Пожалуйста, обратитесь к их [официальная документация](https://nginx.org/en/docs/) Для более подробной информации.
 
 ```nginx title="NGINX Example Config"
 server {
@@ -169,9 +169,9 @@ server {
 }
 ```
 
-## Apache httpd
+## Apache httpd {#apache-httpd}
 
-Apache HTTP server can serve as a reverse proxy using [VirtualHosts](https://httpd.apache.org/docs/2.4/vhosts/examples.html). This snippet would be added to the bottom of httpd.conf or in a new site.conf in the sites-available folder. Certbot is supported on httpd but is not used in this example
+HTTP-сервер Apache может служить обратным прокси [Виртуальные хосты](https://httpd.apache.org/docs/2.4/vhosts/examples.html)Этот фрагмент будет добавлен в нижней части httpd.conf или на новом сайте.conf в папке, доступной для сайтов. Certbot поддерживается на httpd, но не используется в этом примере
 
 ```
 <VirtualHost *:443>
@@ -193,28 +193,28 @@ Apache HTTP server can serve as a reverse proxy using [VirtualHosts](https://htt
 </VirtualHost>
 ```
 
-## Ngrok
+## Нгрок {#ngrok}
 
-[Ngrok](https://ngrok.com/) offers a reverse proxy and a static domain for [free](https://ngrok.com/docs/pricing-limits/free-plan-limits/). You'll need to create an account with them and follow the instructions on their [dashboard](https://dashboard.ngrok.com/) getting started section. The instructions will guide you through configuring ngrok.
+[Нгрок](https://ngrok.com/) предлагает обратный прокси и статический домен для [свободный](https://ngrok.com/docs/pricing-limits/free-plan-limits/)Вам нужно будет создать учетную запись с ними и следовать инструкциям на их [приборная панель](https://dashboard.ngrok.com/) Инструкции помогут вам настроить ngrok.
 
-Creating a free Ngrok domain is very simple: just navigate to the Domains section of the site. For more information, check out the [custom domain docs](https://ngrok.com/docs/guides/other-guides/how-to-set-up-a-custom-domain/).
+Создание бесплатного домена Ngrok очень просто: просто перейдите в раздел «Домены» сайта. Для получения дополнительной информации ознакомьтесь с [Пользовательский домен Docs](https://ngrok.com/docs/guides/other-guides/how-to-set-up-a-custom-domain/).
 
-Once that's all done, you can expose Actual to the internet with your custom domain and free SSL with a simple command:
+После того, как все это будет сделано, вы можете открыть Actual в Интернете с помощью своего пользовательского домена и бесплатного SSL с простой командой:
 
 ```
 ngrok http --url=your-custom-domain.ngrok-free.app 5006
 ```
 
-If running Actual on your PC, you may find it helpful to run this command when your computer starts up. There are many ways to do this. The below is not a complete list:
+Если вы используете Actual на своем ПК, вам может быть полезно запустить эту команду при запуске вашего компьютера. Есть много способов сделать это. Ниже приведен не полный список:
 
-- On Windows, you can use the [Task Scheduler](https://www.technipages.com/scheduled-task-windows/)
-  - Create a _Basic Task_, give it a name then set the trigger to _At system startup_
-  - Under _Action_, select the program as ngrok.exe, and add arguments `http --url=your-custom-domain.ngrok-free.app 5006`.
-  - Once complete, you can choose to run this silently in the background by navigating to _properties_, selecting _Run whether user is logged on or not_, and ticking the _Hidden_ box.
+- В Windows вы можете использовать [Расписание задач](https://www.technipages.com/scheduled-task-windows/)
+  - Создайте Basic Task , дайте ему имя, а затем нажмите на At system startup
+  - В разделе Action выберите программу ngrok.exe и добавьте аргументы. `http --url=your-custom-domain.ngrok-free.app 5006`.
+  - После завершения вы можете выбрать бесшумный запуск в фоновом режиме, перейдя к properties , выбрав Run, зарегистрирован ли пользователь или нет , и тикая Hidden box.
 
-- On Linux, you can use [systemd](https://systemd.io/)
-  - Navigate to the directory: `/etc/systemd/system/` and create a service file `expose-actual-server.service`
-  - Add the following content (and change to suit your needs):
+- Linux можно использовать [системный](https://systemd.io/)
+  - Перейдите в каталог: `/etc/systemd/system/` Создать файл сервиса `expose-actual-server.service`
+  - Добавить следующий контент (и изменить в соответствии с вашими потребностями):
 
     ```
     [Unit]
@@ -230,4 +230,4 @@ If running Actual on your PC, you may find it helpful to run this command when y
     WantedBy=multi-user.target
     ```
 
-  - Enable the service with `sudo systemctl enable expose-actual-server.service`
+  - Предоставить услугу с `sudo systemctl enable expose-actual-server.service`

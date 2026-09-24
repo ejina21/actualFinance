@@ -1,22 +1,22 @@
-# Managing Files
+# Управление файлами {#managing-files}
 
-A _file_ is your data that consists of all budgets, transactions, accounts, and everything else. You can create as many files as you want. This lets you create multiple budgets, isolate accounts, and more.
+file - это ваши данные, которые состоят из всех бюджетов, транзакций, учетных записей и всего остального. Вы можете создавать столько файлов, сколько хотите. Это позволяет создавать несколько бюджетов, изолировать учетные записи и многое другое.
 
 :::note
-These instructions relate exclusively to the desktop application
+Эти инструкции относятся исключительно к настольному приложению
 :::
 
-## Creating a New File
+## Создание нового файла {#creating-a-new-file}
 
-### Desktop
+### рабочий стол {#desktop}
 
-- On the desktop app, go to the file management screen from the **File** > **Open file…** menu item, or press <Key mod="cmd" k="o" />.
-- Click **Create new file**.
+- На настольном приложении перейдите на экран управления файлами из **Файл** > **Открытый файл...** пункт меню или нажмите <Key mod="cmd" k="o" />.
+- щелкнуть **Создайте новый файл**.
 
-## Deleting a File
+## Удаление файла {#deleting-a-file}
 
-- On desktop, click the **X** next to the file on the file management screen.
+- На рабочем столе, щелкните **X** рядом с файлом на экране управления файлами.
 
-## Renaming a File
+## Переименовать файл {#renaming-a-file}
 
-Open the file, and click on the name in the top left of the app. You will be able to rename it.
+Откройте файл и нажмите на имя в верхнем левом углу приложения. Вы сможете переименовать его.

@@ -1,20 +1,20 @@
 ---
-title: Testing
+title: Тестирование
 ---
 
-Actual uses a comprehensive testing strategy to ensure code quality and reliability. This guide covers how to run tests, write tests, and debug test failures.
+Actual использует комплексную стратегию тестирования для обеспечения качества и надежности кода. В этом руководстве рассказывается о том, как запускать тесты, писать тесты и отлаживать сбои в тестировании.
 
-## Testing Overview
+## Обзор испытаний {#testing-overview}
 
-The project uses multiple testing frameworks:
+Проект использует несколько рамок тестирования:
 
-- **Vitest** - Unit testing framework
-- **Playwright** - End-to-end (E2E) testing
-- **Lage** - Task runner for running tests across the monorepo efficiently
+- **Самый сильный** - Рамки для испытания блоков
+- **драматург** Сквозное тестирование (E2E)
+- **возраст** - Задание бегуна для выполнения тестов через монорепо эффективно
 
-## Running Tests
+## Запуск тестов {#running-tests}
 
-### Running All Tests
+### Запуск всех тестов {#running-all-tests}
 
 ```bash
 # Run all tests across all packages (recommended)
@@ -24,13 +24,13 @@ yarn test
 yarn test:debug
 ```
 
-The `yarn test` command uses Lage to run tests in parallel across all workspaces. This provides:
+The `yarn test` Команда использует Lage для параллельного выполнения тестов во всех рабочих пространствах.
 
-- **Parallel execution**: Tests run simultaneously across packages for faster feedback
-- **Smart caching**: Test results are cached in `.lage/` directory to skip unchanged packages
-- **Dependency awareness**: Understands workspace dependencies and execution order
+- **Параллельная казнь**Тесты выполняются одновременно в разных пакетах для более быстрой обратной связи
+- **Умное кэширование**Результаты испытаний кэшируются в `.lage/` Каталог для пропуска неизмененных пакетов
+- **Осознание зависимости**Понимание зависимостей рабочего пространства и порядка выполнения
 
-### Running Tests for a Specific Package
+### Запуск тестов для конкретного пакета {#running-tests-for-a-specific-package}
 
 ```bash
 # Run tests for @actual-app/core
@@ -43,22 +43,22 @@ yarn workspace @actual-app/api run test
 yarn workspace @actual-app/web run test
 ```
 
-### Running a Specific Test File
+### Запуск специального тестового файла {#running-a-specific-test-file}
 
 ```bash
 # Run E2E test for a specific file
 yarn workspace @actual-app/web run playwright test accounts.test.ts
 ```
 
-## Unit Tests (Vitest)
+## Единичные тесты (Vitest) {#unit-tests-vitest}
 
-Unit tests are located alongside source files or in `__tests__` directories. Test files use the following naming conventions:
+Единичные тесты расположены рядом с исходными файлами или в `__tests__` В тестовых файлах используются следующие соглашения об именах:
 
-- `.test.ts` - TypeScript test files
-- `.test.tsx` - React component test files
-- `.spec.js` - JavaScript test files (legacy)
+- `.test.ts` Тестовые файлы TypeScript
+- `.test.tsx` - Реагировать на компоненты тестовых файлов
+- `.spec.js` Тестовые файлы JavaScript (наследие)
 
-### Writing Unit Tests
+### Написание Unit Tests {#writing-unit-tests}
 
 ```typescript
 import { describe, it, expect, beforeEach } from 'vitest';
@@ -76,18 +76,18 @@ describe('ComponentName', () => {
 });
 ```
 
-### Testing Best Practices
+### Тестирование лучших практик {#testing-best-practices}
 
-- **Minimize mocking**: Prefer real implementations over mocks when possible
-- **Use descriptive test names**: Test names should clearly describe what is being tested
-- **Vitest globals**: `describe`, `it`, `expect`, `beforeEach`, etc. are available globally
-- **Sync-server tests**: For sync-server tests, globals are explicitly defined in config
+- **Минимизируйте насмешки**Предпочитаете реальные реализации вместо макетов, когда это возможно
+- **Используйте описательные названия тестов**Названия тестов должны четко описывать то, что тестируется
+- **Самые яркие глобалы**: `describe`, `it`, `expect`, `beforeEach`и т.д. доступны по всему миру.
+- **Тесты Sync-сервера**: Для тестов синхронизации глобалы четко определены в конфигурации
 
-## End-to-End Tests (Playwright)
+## Сквозные испытания (Playwright) {#end-to-end-tests-playwright}
 
-E2E tests are located in `packages/desktop-client/e2e/` and use Playwright as the test runner.
+Испытания E2E проводятся в `packages/desktop-client/e2e/` Используйте Playwright в качестве тестового бегуна.
 
-### Running E2E Tests
+### Тестирование E2E {#running-e2e-tests}
 
 ```bash
 # Run E2E tests for web
@@ -103,15 +103,15 @@ yarn workspace @actual-app/web e2e
 yarn workspace @actual-app/web run playwright test --headed --debug accounts.test.ts
 ```
 
-### E2E Test Structure
+### E2E Испытательная структура {#e2e-test-structure}
 
-- Tests are located in `packages/desktop-client/e2e/`
-- Page models are in `e2e/page-models/` for reusable page interactions
-- Mobile tests have `.mobile.test.ts` suffix
+- Испытания проводятся в `packages/desktop-client/e2e/`
+- Модели страниц находятся в `e2e/page-models/` для многоразового взаимодействия страниц
+- Мобильные тесты имеют `.mobile.test.ts` суффикс
 
-## Visual Regression Tests (VRT)
+## Визуальные регрессионные тесты (VRT) {#visual-regression-tests-vrt}
 
-Visual regression tests capture screenshots and compare them to baseline images to detect visual changes.
+Тесты визуальной регрессии захватывают скриншоты и сравнивают их с базовыми изображениями для обнаружения визуальных изменений.
 
 ```bash
 # Run visual regression tests
@@ -121,13 +121,13 @@ yarn vrt
 yarn vrt:docker
 ```
 
-Visual regression snapshots are stored per test file in `*-snapshots/` directories. Use Docker for consistent environments when running VRT. They will be automatically generated and run on pull requests to catch unexpected visual changes.
+Снимки визуальной регрессии хранятся в тестовом файле `*-snapshots/` Каталоги. Используйте Docker для согласованных сред при запуске VRT. Они будут автоматически генерироваться и работать на запросах на вытягивание, чтобы поймать неожиданные визуальные изменения.
 
-## Debugging Test Failures
+## Отладка тестовых сбоев {#debugging-test-failures}
 
-### Lage Cache Issues
+### Lage Cache проблемы {#lage-cache-issues}
 
-If tests behave unexpectedly, the Lage cache might be causing issues:
+Если тесты ведут себя неожиданно, кэш Lage может вызывать проблемы:
 
 ```bash
 # Clear Lage cache
@@ -137,11 +137,11 @@ rm -rf .lage
 yarn test:debug
 ```
 
-### Tests Continue on Error
+### Тесты продолжаются на ошибки {#tests-continue-on-error}
 
-With the `--continue` flag, all packages run even if one fails. This helps identify all test failures across the monorepo in a single run.
+С этим `--continue` Флаг, все пакеты работают, даже если один из них не справляется. Это помогает выявить все сбои в тестировании в монорепо за один раз.
 
-### Debug Mode
+### Режим отладки {#debug-mode}
 
 ```bash
 # Run tests in debug mode (without parallelization)
@@ -151,31 +151,31 @@ yarn test:debug
 yarn workspace @actual-app/web run playwright test --headed --debug accounts.test.ts
 ```
 
-## Test Configuration
+## Конфигурация тестов {#test-configuration}
 
-### Vitest Configuration
+### Самая быстрая конфигурация {#vitest-configuration}
 
-- Root config: `vitest.config.ts` (for node environment)
-- Web config: `vitest.web.config.ts` (for browser environment)
-- Sync-server tests have globals explicitly defined in config
+- Корневая конфигурация: `vitest.config.ts` (для среды узлов)
+- Веб-конфигурация: `vitest.web.config.ts` (для браузерной среды)
+- Тесты Sync-сервера имеют глобали, явно определенные в конфигурации
 
-### Playwright Configuration
+### Конфигурация драматурга {#playwright-configuration}
 
-- Config file: `packages/desktop-client/playwright.config.ts`
-- Test reports: `packages/desktop-client/playwright-report/`
-- Test results: `packages/desktop-client/test-results/`
+- Файл Config: `packages/desktop-client/playwright.config.ts`
+- Отчеты об испытаниях: `packages/desktop-client/playwright-report/`
+- Результаты испытаний: `packages/desktop-client/test-results/`
 
-## Testing Checklist
+## Тестирование Checklist {#testing-checklist}
 
-Before submitting a pull request:
+Перед подачей запроса на вытягивание:
 
-- [ ] All existing tests pass (`yarn test`)
-- [ ] New functionality has appropriate test coverage
-- [ ] Tests follow best practices (minimize mocking, descriptive names)
-- [ ] E2E tests pass if UI changes were made
+- [ ] Все существующие испытания проходят`yarn test`)
+- [ ] Новая функциональность имеет соответствующий тестовый охват
+- [ ] Тесты следуют лучшим практикам (минимизируйте насмешки, описательные имена).
+- [ ] Тесты E2E проходят при внесении изменений в пользовательский интерфейс
 
-## Additional Resources
+## Дополнительные ресурсы {#additional-resources}
 
-- [Vitest Documentation](https://vitest.dev/)
-- [Playwright Documentation](https://playwright.dev/)
-- [Lage Documentation](https://microsoft.github.io/lage/)
+- [Самые яркие документы](https://vitest.dev/)
+- [Документация драматурга](https://playwright.dev/)
+- [Документация по возрасту](https://microsoft.github.io/lage/)

@@ -1,83 +1,83 @@
 ---
-title: 'Server CLI'
+title: 'Сервер из командной строки'
 ---
 
-## Hosting Actual with the Server CLI
+## Хостинг Actual с сервером CLI {#hosting-actual-with-the-server-cli}
 
-The Actual sync-server is available as an NPM package. The package is designed to make running the sync-server as easy as possible and is published to the official NPM registry under [@@actual-app/sync-server](https://www.npmjs.com/package/@actual-app/sync-server).
+Actual синхронный сервер доступен в виде пакета NPM. Пакет предназначен для максимального удобства работы синхронного сервера и публикуется в официальном реестре NPM. [@actual-app/sync-server](https://www.npmjs.com/package/@actual-app/sync-server).
 
-### Installing the Server CLI
+### Установка сервера CLI {#installing-the-server-cli}
 
-Node.js v22 or higher is required for the `@actual-app/sync-server` npm package
+Node.js v22 или выше. `@actual-app/sync-server` пакет pm
 
-**Install globally with npm:**
+**Установите глобально с помощью npm:**
 
 ```bash
 npm install --location=global @actual-app/sync-server
 ```
 
-Once installed, you can execute commands directly from your terminal using `actual-server`.
+После установки вы можете выполнять команды непосредственно с вашего терминала. `actual-server`.
 
-### Usage
+### использование {#usage}
 
-> Before running the tool, navigate to the directory that you wish your files to be located.
+> Перед запуском инструмента перейдите в каталог, который вы хотите, чтобы ваши файлы были расположены.
 
-Run the Server CLI with the following syntax:
+Запустите сервер CLI со следующим синтаксисом:
 
 ```bash
 actual-server [options]
 ```
 
-**Available options**
+**Доступные варианты**
 
-| Command             | Description                  |
-| ------------------- | ---------------------------- |
-| `-h` or `--help`    | Print this list and exit.    |
-| `-v` or `--version` | Print this version and exit. |
-| `--config`          | Path to the config file.     |
-| `--reset-password`  | Reset your password          |
+| Командование         | Описание                            |
+| -------------------- | ----------------------------------- |
+| `-h` или `--help`    | Распечатайте этот список и выйдите. |
+| `-v` или `--version` | Печать этой версии и выход.         |
+| `--config`           | Путь к файлу конфигурирования.      |
+| `--reset-password`   | Сбросьте пароль                     |
 
-**Default values**
+**Значения по умолчанию**
 
-If no `--config` option is set, Actual will search for a `config.json` file in the current directory. If it exists it will be used. If it doesn't exist, Actual will set a [Default Configuration](../config/index.md).
+Если нет `--config` Опция установлена, Actual будет искать `config.json` файл в текущем каталоге. Если он существует, он будет использоваться. Если его нет, Actual установит [Конфигурация по умолчанию](../config/index.md).
 
-### Examples
+### Примеры {#examples}
 
-Run with [Default Configuration](../config/index.md):
+Бежать с [Конфигурация по умолчанию](../config/index.md):
 
 ```bash
 actual-server
 ```
 
-Run with [JSON Configuration](../config/index.md):
+Бежать с [Конфигурация JSON](../config/index.md):
 
 ```bash
 actual-server --config ./custom-config.json
 ```
 
-Run with [Environment Variable Configuration](../config/index.md):
+Бежать с [Переменная конфигурация окружающей среды](../config/index.md):
 
 ```bash
 ACTUAL_DATA_DIR=./custom-directory actual-server --config ./config.json
 ```
 
-Reset your password
+Сбросьте пароль
 
 ```bash
 actual-server --reset-password
 ```
 
-### Updating the Server CLI
+### Обновление сервера CLI {#updating-the-server-cli}
 
-The sync server can be updated with a simple command.
+Сервер синхронизации может быть обновлен простой командой.
 
 ```bash
 npm update -g @actual-app/sync-server
 ```
 
-### Uninstalling the Server CLI
+### Удаление сервера CLI {#uninstalling-the-server-cli}
 
-The sync server can be uninstalled with a simple command.
+Синхронный сервер может быть удален с помощью простой команды.
 
 ```bash
 npm uninstall -g @actual-app/sync-server

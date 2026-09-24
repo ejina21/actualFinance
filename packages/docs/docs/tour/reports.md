@@ -1,25 +1,25 @@
-# Reports
+# Отчёты
 
-This view gives you access both to the built-in reports and also to your own custom reports.
+Здесь находятся встроенные отчёты и созданные вами собственные отчёты.
 
-All reports in this view are shown in their tiled version. Clicking on a tile will take you to a full-screen version of that report.
+На странице они представлены карточками. Нажмите на карточку, чтобы открыть отчёт целиком.
 
-![Reports overview](/img/a-tour-of-actual/tour-reports-overview.webp)
+![Общий вид отчётов](/img/a-tour-of-actual/tour-reports-overview.webp)
 
-**Net worth** represents the overall balance of all your accounts over time. It is calculated by subtracting your debts from the total value of your cash and assets. This includes all investments. Essentially, your net worth is the amount you would have if you sold all of your assets and paid off all of your debts.
+**Чистый капитал** показывает, как со временем меняется суммарная стоимость ваших денег и имущества за вычетом долгов. Учитываются и инвестиции. Это сумма, которая осталась бы после продажи всех активов и погашения всех долгов.
 
-**Cash flow** tracks your spending over time by focusing solely on budget accounts and displaying their balances. It includes separate visualizations for income and expenses, providing a quick overview of how these factors affect your available money over time. By considering your budgeted accounts as "cash on hand," cash flow clearly shows how your available funds fluctuate.
+**Денежный поток** показывает поступления и расходы по счетам, которые участвуют в бюджете. Отдельные графики доходов и расходов помогают понять, как меняются доступные деньги.
 
-See the [Reports Dashboard](../reports/index.md) for more detail on these and the other built-in reports.
+О других встроенных отчётах читайте в разделе [«Панель отчётов»](../reports/index.md).
 
-![Cashflow report](/img/a-tour-of-actual/tour-reports-cashflow.webp)
+![Отчёт о денежном потоке](/img/a-tour-of-actual/tour-reports-cashflow.webp)
 
-## Custom reports
+## Собственные отчёты
 
-Actual's custom reports will allow you to create reports giving in-depth analyses on your spending habits and your income. You can find them thoroughly covered in [Custom Reports](../reports/custom-reports.md).
+В Actual можно создавать отчёты для подробного анализа доходов и расходов. Инструкции есть в разделе [«Собственные отчёты»](../reports/custom-reports.md).
 
-Below are examples of reports covering _Daily Expenses_ over the last six months. One report shows this as a graph, the other as a table. Note that the table version also shows the sum and average (over six months) for the various categories.
+Ниже показаны два отчёта о ежедневных расходах за последние шесть месяцев: график и таблица. В таблице также видны общая и средняя суммы по категориям за этот период.
 
-![Custom report showing daily expenses as graph](/img/a-tour-of-actual/tour-reports-daily-expenses-graph.webp)
+![Ежедневные расходы на графике](/img/a-tour-of-actual/tour-reports-daily-expenses-graph.webp)
 
-![Custom report showing daily expenses as table](/img/a-tour-of-actual/tour-reports-daily-expenses-table.webp)
+![Ежедневные расходы в таблице](/img/a-tour-of-actual/tour-reports-daily-expenses-table.webp)

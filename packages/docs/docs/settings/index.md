@@ -1,101 +1,101 @@
-# Settings
+# Настройки {#settings}
 
-The Settings screen in Actual provides you with a number of options for managing the look and feel of your budget along with some more system specific settings. Most settings are self-explanatory.
+Экран настроек в Actual предоставляет вам ряд вариантов управления внешним видом и ощущением вашего бюджета вместе с некоторыми более конкретными настройками системы.
 
-You can access the Settings screen by clicking the down arrow by your budget name or going to the sidebar and clicking More > Settings.
+Вы можете получить доступ к экрану настроек, нажав стрелку вниз по названию вашего бюджета или перейдя на боковую панель и нажав «Больше»> Настройки.
 
-There is an option to "Display a notification when updates are available" here.
+Здесь есть опция «Отображение уведомления при наличии обновлений».
 
-![Image of Settings top pf page](/img/using-actual/actual-settings.webp)
+![Изображение Settings top pf page](/img/using-actual/actual-settings.webp)
 
-### Notifications
+### Уведомления {#notifications}
 
-The option **Show in-app notifications (release notes and announcements)** controls whether Actual shows you news from the project inside the app: the notification bell in the top bar, the Notifications page, and the message that appears after an update. It is on by default and applies to the device you change it on. See [Notifications](../notifications.md) for the full guide.
+Вариант **Показать уведомления в приложении (заметки о выпуске и объявления)** контролирует, показывает ли Actual вам новости из проекта внутри приложения: звонок уведомления в верхней панели, страницу уведомлений и сообщение, которое появляется после обновления. Он включен по умолчанию и применяется к устройству, на котором вы его меняете. [Уведомления](../notifications.md) Для полного руководства.
 
-### Themes
+### Темы {#themes}
 
-Themes change the user interface colors. Pick from the built-in **Light**, **Dark**, **Midnight**, or **Auto** themes, or install a community-built theme from the catalog. See [Custom Themes](../custom-themes.md) for the full guide.
+Темы меняют цвета пользовательского интерфейса. Выберите из встроенного **Свет**, **темный**, **Полночь**или **Автомат** Темы или установить тему, построенную сообществом из каталога. [Обычные темы](../custom-themes.md) Для полного руководства.
 
-### Formatting
+### форматирование {#formatting}
 
-The formatting options allow you to select the following:
+Варианты форматирования позволяют выбрать следующее:
 
-- Your preferred date format
-- Your preferred number format
-- Your preferred first day of the week
-- The option to "Hide decimal places"
+- Предпочтительный формат даты
+- Предпочтительный формат номера
+- Ваш любимый первый день недели
+- Вариант «Скрыть десятичные места»
 
-![Image of Formatting setting](/img/using-actual/settings-formatting.webp)
+![Изображение Formatting Setting](/img/using-actual/settings-formatting.webp)
 
-### Language
+### Язык языка {#language}
 
-The language choice alters the display language of all text. If you encounter a translation error, feel free to make a suggestion on [Weblate](https://hosted.weblate.org/projects/actualbudget/actual/).
+Выбор языка изменяет язык отображения всего текста. Если вы столкнетесь с ошибкой перевода, не стесняйтесь вносить предложения по [Weblate](https://hosted.weblate.org/projects/actualbudget/actual/).
 
-![Image of language setting](/img/using-actual/actual-languages.webp)
+![Изображение языковой настройки](/img/using-actual/actual-languages.webp)
 
-### Authentication Method
+### Метод аутентификации {#authentication-method}
 
-OpenID can be enabled here. [Learn more](../config/oauth-auth.md)
+Здесь можно включить OpenID. [Узнать больше](../config/oauth-auth.md)
 
-![Image of OpenID setting](/img/using-actual/actual-openid.webp)
+![Изображение OpenID Setting](/img/using-actual/actual-openid.webp)
 
-### Encryption
+### шифрование {#encryption}
 
-End-to-end encryption allows you to encrypt your budget data on the remote server with a password. If you don't trust the server's owners, enable this setting to encrypt your budget data. Note that [bank sync](../advanced/bank-sync.md) tokens are stored separately on the server and are not covered by this encryption. [Learn more](../getting-started/sync.md#end-to-end-encryption)
+Сквозное шифрование позволяет шифровать ваши бюджетные данные на удаленном сервере с помощью пароля. Если вы не доверяете владельцам сервера, включите эту настройку для шифрования ваших бюджетных данных. [банковская синхронизация](../advanced/bank-sync.md) Токены хранятся отдельно на сервере и не охватываются этим шифрованием. [Узнать больше](../getting-started/sync.md#end-to-end-encryption)
 
-![Image of Encryption setting](/img/using-actual/settings-encryption.webp)
+![Изображение Encryption Setting](/img/using-actual/settings-encryption.webp)
 
-### Budgeting Method
+### Метод бюджетирования {#budgeting-method}
 
-Either Envelope or Tracking Budgeting methods are available in Actual. Envelope Budgeting is recommended and most of the documentation refers to this method.
+Методы бюджетирования конвертов или отслеживания доступны в Actual. Рекомендуется бюджетирование конвертов и большая часть документации относится к этому методу.
 
-[Learn more about Envelope Budgeting](../getting-started/envelope-budgeting.md)
+[Узнайте больше о Envelope Budgeting](../getting-started/envelope-budgeting.md)
 <br />
-[Learn more about Tracking Budgeting](../getting-started/tracking-budget.md)
+[Узнайте больше о отслеживании бюджетирования](../getting-started/tracking-budget.md)
 <br />
 <br />
-![Image of budgeting methods setting](/img/using-actual/actual-budget-method.webp)
+![Изображение настроек бюджетных методов](/img/using-actual/actual-budget-method.webp)
 
-### Export
+### экспорт {#export}
 
-This section allows you to download a `.zip` archive of all of your server data for easy backup or migration. [Learn more](../backup-restore/backup.md)
+Этот раздел позволяет вам скачать `.zip` архив всех данных вашего сервера для простого резервного копирования или миграции. [Узнать больше](../backup-restore/backup.md)
 
-![Image of Export setting](/img/using-actual/settings-export.webp)
+![Изображение настроек экспорта](/img/using-actual/settings-export.webp)
 
-## Advanced Settings
+## Расширенные настройки {#advanced-settings}
 
-Click on the `Show advanced settings` link to open the advanced section of the Settings page.
+Нажмите на `Show advanced settings` Ссылка для открытия расширенного раздела страницы Настройки.
 
-### Budget ID
+### Бюджетный идентификатор {#budget-id}
 
-You can have many budgets per install of Actual, each has it's own IDs.
-IDs are the names Actual uses to identify your budget internally. The Budget ID is used to identify your budget file. If you are using a server, the Sync ID is used to access the budget on the server.
+У вас может быть много бюджетов на установку Actual, у каждого есть свои идентификаторы.
+Идентификаторы - это имена, которые используются для идентификации вашего бюджета внутри. Идентификатор бюджета используется для идентификации вашего файла бюджета. Если вы используете сервер, идентификатор Sync используется для доступа к бюджету на сервере.
 
-![Image of BudgetID setting](/img/using-actual/actual-budgetid.webp)
+![Источник: BudgetID Setting](/img/using-actual/actual-budgetid.webp)
 
-### Reset Budget Cache
+### Сброс бюджетного кэша {#reset-budget-cache}
 
-**Reset budget cache** will clear all cached values for the budget and recalculate the entire budget. All values in the budget are cached for performance reasons, and if there is a bug in the cache you won't see correct values. There is no danger in resetting the cache.
+**Сброс бюджетного кэша** Вычислите все кэшированные значения для бюджета и пересчитайте весь бюджет. Все значения в бюджете кэшируются по причинам производительности, и если в кэше есть ошибка, вы не увидите правильных значений. Нет опасности в сбросе кэша.
 
-![Image of Reset Cache setting](/img/using-actual/actual-budget-cache.webp)
+![Изображение Reset Cache Setting](/img/using-actual/actual-budget-cache.webp)
 
-### Reset Sync
+### Скачать Sync {#reset-sync}
 
-Actual's sync function is quite complicated and is covered in detail [here](../getting-started/sync.md#what-does-resetting-sync-mean). Use this if there is a problem with syncing and you want to start fresh.
+Функция синхронизации Actual довольно сложна и подробно описана. [здесь](../getting-started/sync.md#what-does-resetting-sync-mean)Используйте это, если есть проблема с синхронизацией, и вы хотите начать все сначала.
 
-**Note:** Resetting sync will also significantly reduce your budget file size. This is because Actual stores all mutations in the budget file by default, causing it to grow over time. When you reset sync, all those historical changes are compressed into a single file.
+**Примечание:** Синхронизация сброса также значительно уменьшит размер вашего бюджетного файла. Это потому, что Actual хранит все мутации в бюджетном файле по умолчанию, заставляя его расти с течением времени. Когда вы сбрасываете синхронизацию, все эти исторические изменения сжимаются в один файл.
 
-![Image of Reset Sync setting](/img/using-actual/actual-reset-sync.webp)
+![Изображение Reset Sync Setting](/img/using-actual/actual-reset-sync.webp)
 
-### Repair Split Transactions
+### Ремонт разделенных транзакций {#repair-split-transactions}
 
-If you are experiencing bugs relating to split transactions or transfers and the "Reset budget cache" button above does not help, this tool may fix them.
+Если вы испытываете ошибки, связанные с разделенными транзакциями или переводами, и кнопка «Сбросить бюджетный кэш» выше не помогает, этот инструмент может исправить их.
 
-![Image of Repair Splits setting](/img/using-actual/actual-repair.webp)
+![Изображение настройки Repair Splits](/img/using-actual/actual-repair.webp)
 
-### Experimental Features
+### Экспериментальные особенности {#experimental-features}
 
-This section is where you can enable features that are still in development and testing.
-See [Experimental features](../experimental/index.md) for more information.
+В этом разделе вы можете включить функции, которые все еще находятся в разработке и тестировании.
+Видишь? [Экспериментальные особенности](../experimental/index.md) За дополнительной информацией.
 
-![Image of Experimental setting](/img/using-actual/actual-experimental.webp)
+![Изображение экспериментальной установки](/img/using-actual/actual-experimental.webp)

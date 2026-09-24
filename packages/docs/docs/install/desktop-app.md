@@ -1,49 +1,49 @@
 ---
-title: 'Desktop App'
+title: 'Приложение для компьютера'
 ---
 
-The simplest way to get started with Actual is by [downloading the desktop app](../../../download). This app bundles Actual's full budgeting capabilities into a streamlined application that's perfect for users looking for a smooth, hassle-free experience.
+Самый простой способ начать работу с Actual - это [Скачать десктопное приложение](../../../download)Это приложение объединяет все возможности бюджетирования Actual в оптимизированное приложение, которое идеально подходит для пользователей, ищущих плавный, беспроблемный опыт.
 
-## Who should use the desktop app?
+## Кто должен использовать настольное приложение? {#who-should-use-the-desktop-app}
 
-If you prefer not to worry about setting up or configuring a server, the desktop app is designed for you. By combining both the client and server into one package, it eliminates the technical overhead and lets you dive straight into budgeting with Actual.
+Если вы предпочитаете не беспокоиться о настройке или настройке сервера, настольное приложение предназначено для вас.Объединив клиент и сервер в один пакет, оно устраняет технические накладные расходы и позволяет сразу погрузиться в бюджетирование с Actual.
 
-**Benefits include:**
+**Преимущества включают:**
 
-- **All-In-One Package:** No additional configuration needed — everything you need is built right in.
-- **User-Friendly:** Ideal for non-technical users who want to focus on managing their budget rather than managing servers.
-- **Local Control:** Run the server on your own machine, giving you immediate access to features like Bank Sync and more.
+- **Все в одном пакете:** Никакой дополнительной конфигурации не требуется — все, что вам нужно, встроено прямо в систему.
+- **дружественный пользователю:** Идеально подходит для пользователей, которые хотят сосредоточиться на управлении своим бюджетом, а не на управлении серверами.
+- **Местный контроль:** Запустите сервер на своей машине, предоставив вам немедленный доступ к таким функциям, как Bank Sync и многое другое.
 
-## Who shouldn't use the desktop app?
+## Кто не должен использовать настольное приложение? {#who-shouldnt-use-the-desktop-app}
 
-If you're already running your own server, the Web client remains your best option. Running the desktop app alongside an existing server can lead to version mismatches — the server might expect a different release than that provided by the desktop app, potentially causing unexpected issues.
+Если вы уже используете свой собственный сервер, веб-клиент остается лучшим вариантом. Запуск настольного приложения вместе с существующим сервером может привести к несоответствиям версий - сервер может ожидать другого выпуска, чем тот, который предоставляется настольным приложением, что может вызвать неожиданные проблемы.
 
-## Setting up the desktop app local server
+## Настройка локального сервера настольного приложения {#setting-up-the-desktop-app-local-server}
 
-Setting up the desktop app local server is straightforward. Follow these steps:
+Настройка локального сервера настольного приложения проста. Выполните следующие действия:
 
-In the server selection area, click **Change** as shown below:
+В области выбора сервера щелкните **Изменения** Как показано ниже:
 
 ![](/img/install/change-server.webp)
 <br />
 
-The server runs on `localhost` by default and mostly uses the default [server configuration](../config/index.md). You can modify the port if necessary.
+Сервер работает на `localhost` По умолчанию и в основном использует по умолчанию [Конфигурация сервера](../config/index.md)При необходимости вы можете изменить порт.
 
-Click **Start** to run the server.
+щелкнуть **Начинать** Чтобы запустить сервер.
 
 ![](/img/install/configure-server.webp)
 <br />
 
-Upon starting the server, you'll be prompted to create a password (if you haven't already). Sign in to complete the configuration.
+После запуска сервера вам будет предложено создать пароль (если вы еще этого не сделали).
 
-## Exposing your local server to the internet
+## Размещение вашего локального сервера в Интернете {#exposing-your-local-server-to-the-internet}
 
-To access your local server from mobile devices or other networks, you'll need to expose it to the internet. This requires setting up a [Reverse Proxy](../config/reverse-proxies.md) to securely tunnel your local server connection.
+Чтобы получить доступ к локальному серверу с мобильных устройств или других сетей, вам нужно будет открыть его в Интернете. [Обратный прокси](../config/reverse-proxies.md) Чтобы безопасно туннелировать локальное соединение сервера.
 
-For a practical walkthrough, check out the [Ngrok guide](../config/reverse-proxies.md#ngrok). If you plan to use your mobile device regularly while the desktop app is running, consider configuring the reverse proxy to launch automatically with your computer.
+Для практического прохождения, проверьте [Путеводитель по Нгроку](../config/reverse-proxies.md#ngrok)Если вы планируете регулярно использовать свое мобильное устройство во время работы настольного приложения, рассмотрите возможность настройки обратного прокси для автоматического запуска с вашего компьютера.
 
-When using a mobile device with Actual, installing the Web client as a Progressive Web App(PWA) is recommended so that it works when offline.
+При использовании мобильного устройства с Actual рекомендуется установить веб-клиент в качестве прогрессивного веб-приложения (PWA), чтобы он работал в автономном режиме.
 
-## Trying the Nightly Builds
+## Попытка ночных строений {#trying-the-nightly-builds}
 
-If you want to preview upcoming features before they reach an official release, [nightly builds of the desktop app](../contributing/preview-builds.md#nightly-desktop-builds) are also available.
+Если вы хотите просмотреть предстоящие функции, прежде чем они достигнут официального релиза, [Ночные сборки настольного приложения](../contributing/preview-builds.md#nightly-desktop-builds) Они также доступны.

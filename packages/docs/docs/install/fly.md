@@ -2,67 +2,67 @@
 title: 'Fly.io'
 ---
 
-In order to deploy Actual to Fly.io, you'll need to use their command line interface from a terminal program. If you've never used a terminal before, don't worry! We'll walk you through every step of the process.
+Чтобы развернуть Actual на Fly.io, вам нужно будет использовать их интерфейс командной строки из терминальной программы. Если вы никогда раньше не использовали терминал, не волнуйтесь! Мы проведем вас через каждый этап процесса.
 
-## Setup
+## Настройка {#setup}
 
-### Creating a Fly.io Account
+### Создание учетной записи Fly.io {#creating-a-flyio-account}
 
-Fly.io has a "pay as you go" plan for new users with no monthly fee, with actual usage billed monthly. Paid plans start at $5/month and include a limited amount of free compute. See [Pricing Details](https://fly.io/docs/about/pricing/) for more information.
+Fly.io имеет план «оплата, как вы идете» для новых пользователей без ежемесячной платы, с фактическим использованием, оплачиваемым ежемесячно. Платные планы начинаются с 5 долларов в месяц и включают ограниченное количество бесплатных вычислений. [Подробности ценообразования](https://fly.io/docs/about/pricing/) За дополнительной информацией.
 
-To begin, you'll need to sign up for an account. Go to [Fly.io](https://fly.io) and click "Get Started," then fill in
-the form. Note that Fly requires you to provide credit card details for sign up. See [their docs on how they use credit cards](https://fly.io/docs/about/credit-cards/) for more information.
+Для начала вам нужно будет зарегистрироваться для учетной записи. [Fly.io](https://fly.io) Нажмите «Начать», затем заполните
+Обратите внимание, что Fly требует, чтобы вы предоставили данные кредитной карты для регистрации. [Документы о том, как они используют кредитные карты](https://fly.io/docs/about/credit-cards/) За дополнительной информацией.
 
-### Accessing the `fly` command line tool
+### Доступ к `fly` Инструмент командной строки {#accessing-the-fly-command-line-tool}
 
-To install the `fly` command line tool on your local machine, you'll need to start by opening a command line terminal on your computer.
+Чтобы установить `fly` Инструмент командной строки на вашей локальной машине вам нужно начать с открытия терминала командной строки на вашем компьютере.
 
-- **Windows**: Open the Start menu and search for "PowerShell." Click on the "PowerShell" app to open it.
-- **macOS**: Open the "Terminal" app from the Utilities folder in your Applications folder.
-- **Linux**: Open your terminal app of choice.
+- **Windows**Откройте меню Пуск и нажмите на приложение PowerShell, чтобы открыть его.
+- **macOS**: Откройте приложение «Терминал» из папки «Утилиты» в папке «Приложения».
+- **Linux**Откройте приложение терминала по выбору.
 
-Next, follow [the instructions to install the `fly` command line tool](https://fly.io/docs/hands-on/install-flyctl/). When entering the commands, make sure _not_ to include the `$` character at the beginning of each line.
+Далее следуйте [Инструкция по установке `fly` Инструмент командной строки](https://fly.io/docs/hands-on/install-flyctl/)При входе в команды убедитесь, что not включает `$` характер в начале каждой строки.
 
 <details>
-<summary>Detailed instructions with screenshots for Windows</summary>
+<summary>Подробные инструкции со скриншотами для Windows</summary>
 
-Note: the exact commands you'll need to run may have changed, check the website linked above to make sure you have the latest ones.
+Примечание: точные команды, которые вам нужно будет выполнить, возможно, изменились, проверьте веб-сайт, связанный выше, чтобы убедиться, что у вас есть последние.
 
-1. Open up PowerShell on your local machine and paste the following command into the window:
+1. Откройте PowerShell на локальной машине и вставьте в окно следующую команду:
    ```powershell
    iwr https://fly.io/install.ps1 -useb | iex
    ```
    ![](/img/fly/windows-install-1.webp)
-2. Flyctl should start installing
+2. Flyctl должен начать установку
 
    ![](/img/fly/windows-install-2.webp)
 
-3. Once done you should get a message saying `Run flyctl --help to get started`:
+3. После того, как вы сделали, вы должны получить сообщение, говорящее `Run flyctl --help to get started`:
 
    ![](/img/fly/windows-install-3.webp)
 
 </details>
 
 <details>
-<summary>Detailed instructions with screenshots for macOS</summary>
+<summary>Подробные инструкции со скриншотами для macOS</summary>
 
-Note: the exact commands you'll need to run may have changed, check the website linked above to make sure you have the latest ones.
+Примечание: точные команды, которые вам нужно будет выполнить, возможно, изменились, проверьте веб-сайт, связанный выше, чтобы убедиться, что у вас есть последние.
 
-Additionally, you might get an error such as `command not found: fly` when you try to use the `fly` command later. If that happens, you'll need to change the `fly` part of the command to `~/.fly/bin/fly` instead.
+Кроме того, вы можете столкнуться с такой ошибкой, как `command not found: fly` Когда вы пытаетесь использовать `fly` Если это произойдет, вам нужно будет изменить команду. `fly` Часть командного `~/.fly/bin/fly` Вместо этого.
 
-1. In the Finder, choose "Go → Utilities" from the menu bar.
+1. В Finder выберите «Go → Utilities» из меню.
 
    ![](/img/fly/macos-install-1@2x.webp)
 
-2. Scroll down in the list until you find "Terminal." Double-click on it to open it.
+2. Прокрутите вниз в списке, пока не найдете "Терминал". Дважды щелкните по нему, чтобы открыть его.
 
    ![](/img/fly/macos-install-2@2x.webp)
 
-3. A window should pop up that will look a bit like this. Note that some of the text may be different, or you may see the last line ending with a `$` instead of a `%`. Both of those are normal.
+3. Должно появиться окно, которое будет выглядеть примерно так. Обратите внимание, что некоторые тексты могут быть разными, или вы можете увидеть последнюю строку, заканчивающуюся следующей строкой. `$` Вместо а `%`Оба они нормальные.
 
    ![](/img/fly/macos-install-3@2x.webp)
 
-4. Type or paste the following command to start the install. Make sure you press the `Enter` key on your keyboard after you've typed it in.
+4. Введите или вставьте следующую команду, чтобы начать установку. Убедитесь, что вы нажали `Enter` ключ на клавиатуре после ввода.
 
    ```bash
     curl -L https://fly.io/install.sh | sh
@@ -70,100 +70,100 @@ Additionally, you might get an error such as `command not found: fly` when you t
 
    ![](/img/fly/macos-install-4@2x.webp)
 
-5. Once that has finished, you should see something like this:
+5. Как только это закончится, вы должны увидеть что-то вроде этого:
 
    ![](/img/fly/macos-install-5@2x.webp)
 
 </details>
 
-### Logging into Fly.io
+### Скачать Fly.io {#logging-into-flyio}
 
-Type `fly auth login` and press enter to open your browser and log your terminal into Fly.io.
+Тип `fly auth login` и нажмите Enter, чтобы открыть браузер и войти в терминал Fly.io.
 
-## Configuring the app
+## Конфигурация приложения {#configuring-the-app}
 
-Now that you've gotten the CLI set up, you're ready to deploy your app to Fly.io. First, you'll need our template Fly configuration:
+Теперь, когда вы настроили CLI, вы готовы развернуть свое приложение на Fly.io. Во-первых, вам понадобится наша конфигурация шаблона Fly:
 
-### Local terminal
+### Локальный терминал {#local-terminal}
 
-1. Create a new folder somewhere on your computer. You can call it whatever you want.
-2. <a rel="download" target="_top" href="/fly.toml">Download the template <code>fly.toml</code> file by clicking here</a> and move it into the folder you just created.
-3. Switch back to your terminal and navigate to the folder you just created.
-   - On macOS, drag the folder from Finder to Terminal and hold the command key when dropping it into the terminal window.
-   - On Windows, type `cd`, followed by a space, and then enter the full path (e.g. starting with `C:\`) to the folder you created. You can find the path in Explorer.
-   - On Linux, use the `cd` command.
+1. Создайте новую папку где-нибудь на компьютере. Вы можете называть ее как хотите.
+2. <a rel="download" target="_top" href="/fly.toml">Скачать шаблон <code>fly.oml</code> файл, нажав здесь</a> Переместите его в папку, которую вы только что создали.
+3. Переключитесь на терминал и перейдите в папку, которую вы только что создали.
+   - На macOS перетащите папку из Finder в Terminal и удерживайте командный ключ при падении его в окно терминала.
+   - В Windows, тип `cd`, затем следует пространство, а затем входить в полный путь (например, начиная с `C:\`) к папке, которую вы создали. Вы можете найти путь в Explorer.
+   - В Linux используйте `cd` командование.
 
-## Deploying the app
+## Развернуть приложение {#deploying-the-app}
 
-Now that you've got the configuration file set up, you're ready to deploy your app to Fly.io. To do so, run the following commands. Wait for each command to finish before running the next one.
+Теперь, когда у вас настроен файл конфигурации, вы готовы развернуть приложение на Fly.io. Для этого запустите следующие команды. Подождите, пока каждая команда завершится, прежде чем запустить следующую.
 
-First, tell Fly about Actual:
+Во-первых, расскажите Флай о действии:
 
 ```bash
 fly launch --image actualbudget/actual-server:latest
 ```
 
-This command will ask a series of questions:
+Эта команда задаст ряд вопросов:
 
-1. "_An existing fly.toml file was found. Would you like to copy its configuration to the new app? y/N_" Type `y` and press enter to use the config file we've provided.
-2. "_Do you want to tweak these settings before proceeding? y/N_" If you choose `y`, the web configuration UI will open in your browser.
+1. Найден существующий файл fly.toml. Хотите скопировать его конфигурацию в новое приложение? `y` и нажмите Enter, чтобы использовать файл конфигурации, который мы предоставили.
+2. " Вы хотите настроить эти настройки, прежде чем продолжить? y/N " `y`UI веб-конфигурации откроется в вашем браузере.
 
-You can now visit your very own instance of Actual by opening the link on the last line of the output.
+Теперь вы можете посетить свой собственный экземпляр Actual, открыв ссылку на последней строке вывода.
 
-## Configuring Actual
+## Настройка фактического {#configuring-actual}
 
-Now that Actual has been launched, you should be able to navigate to Actual using the URL
-provided by the Fly command above earlier.
+Теперь, когда Actual был запущен, вы можете перейти к Actual, используя URL-адрес.
+Об этом сообщает вышеупомянутое издание.
 
 <details>
-<summary>Forgot the URL? Here's how to find it</summary>
+<summary>Забыли URL? Вот как его найти</summary>
 
-If you forget the URL, you can always find it by opening [https://fly.io/dashboard](https://fly.io/dashboard) in a browser. Click on the application you created:
+Если вы забыли URL, вы всегда можете найти его, открыв [https://fly.io/dashboard](https://fly.io/dashboard) в браузере. Нажмите на приложение, которое вы создали:
 
 ![](/img/fly/fly-dash.webp)
 
-Once you are in there, you should see Hostname section under Application Information - click the
-link
+Как только вы там, вы должны увидеть раздел «Имя хоста» в разделе «Информация о приложении» - нажмите
+ссылка
 
 ![](/img/fly/fly-dash-2.webp)
 
-This will now open Actual so we can start configuring it.
+Теперь это откроется Actual, чтобы мы могли начать настраивать его.
 
 </details>
 
-1. Set a password - remember this, you will need it in the future.
+1. Установите пароль - помните об этом, он вам понадобится в будущем.
 
    ![](/img/fly/actual-config-1@2x.webp)
 
-2. You'll see a welcome screen. Either click "Import my budget" to [import your budget from YNAB or the subscription version of Actual](../migration/index.md), or click "Start fresh" to create a blank budget file.
+2. Либо нажмите "Импортировать мой бюджет" [импортировать бюджет из YNAB или подписной версии](../migration/index.md)Или нажмите «Начать заново», чтобы создать пустой бюджетный файл.
 
    ![](/img/fly/actual-config-2@2x.webp)
 
-3. If everything went well you should then be taken to your very first budget.
+3. Если все прошло хорошо, вы должны быть переведены на свой первый бюджет.
 
    ![](/img/fly/actual-register.webp)
 
-Actual is now up and running. Congratulations! Consider checking out [our tour](../tour/index.md) next.
+Реальный сейчас работает. Поздравляю! Подумайте о том, чтобы проверить [Наш тур](../tour/index.md) Следующий.
 
-## Updating Actual
+## Актуальное обновление {#updating-actual}
 
-When updates to Actual are released, you'll need to re-deploy your app to get the latest version.
+Когда будут выпущены обновления для Actual, вам нужно будет повторно развернуть приложение, чтобы получить последнюю версию.
 
 ```
 fly deploy --image actualbudget/actual-server:latest your-app-name
 ```
 
-### Local terminal
+### Локальный терминал {#local-terminal-1}
 
-Open a terminal window and navigate to the folder where you set up Actual. Run the following command:
+Откройте окно терминала и перейдите в папку, где вы настроили Actual. Запустите следующую команду:
 
 ```bash
 fly deploy
 ```
 
-## Cost Optimizations
+## Оптимизация затрат {#cost-optimizations}
 
-If you're looking to lower your monthly compute costs for Actual Budget and can accept a 5-15 second delay when starting your budgeting session, you can add this feature to your services section and re-deploy.
+Если вы хотите снизить ежемесячные расчетные расходы по фактическому бюджету и можете принять 5-15-секундную задержку при начале бюджетной сессии, вы можете добавить эту функцию в свой раздел услуг и повторно развернуть.
 
 ```toml
 [[services]]
@@ -172,17 +172,17 @@ If you're looking to lower your monthly compute costs for Actual Budget and can 
   min_machines_running = 0
 ```
 
-With these settings, Fly.io will automatically stop your instance after a few minutes of inactivity. When a new request comes in, the instance will start up again, which may take 5-15 seconds.
+С помощью этих настроек Fly.io автоматически остановит ваш экземпляр после нескольких минут бездействия. Когда появится новый запрос, экземпляр снова запустится, что может занять 5-15 секунд.
 
-## Frequent Issues
+## Частые проблемы {#frequent-issues}
 
-- **Q.** _I have deployed actual to Fly.io but I am being charged, why is this?_
+- **Q.** Я уже перешел на Fly.io, но мне предъявлено обвинение._
 
-  **A.** Pay as you go plans are billed for all usage monthly.
+  **A.** Платить, как вы идете планы оплачиваются за все использование ежемесячно.
 
-- **Q.** _How can I try out a beta/unstable version of Actual?_
+- **Q.** Как я могу попробовать бета-версию Actual?_
 
-  **A.** We publish unstable releases of Actual every day. These versions may have known or unknown issues that could corrupt your budget. If you'd like to try them out, re-deploy with the nightly version. For example, if your app is at `https://fly-actual-rushing-waters-9999.fly.dev`:
+  **A.** Мы публикуем нестабильные выпуски Actual каждый день. Эти версии могут иметь известные или неизвестные проблемы, которые могут испортить ваш бюджет. Если вы хотите опробовать их, перезагрузите ночную версию. Например, если ваше приложение находится на `https://fly-actual-rushing-waters-9999.fly.dev`:
 
 ```
 fly deploy --image actualbudget/actual-server:nightly --app fly-actual-rushing-waters-9999 --remote-only --no-cache

@@ -1,0 +1,122 @@
+{
+  "version.label": {
+    "message": "Текущая версия",
+    "description": "The label for version current"
+  },
+  "sidebar.docs.category.Начало работы": {
+    "message": "Начало работы",
+    "description": "The label for category 'Начало работы' in sidebar 'docs'"
+  },
+  "sidebar.docs.category.Установка Actual": {
+    "message": "Установка Actual",
+    "description": "The label for category 'Установка Actual' in sidebar 'docs'"
+  },
+  "sidebar.docs.category.На своём устройстве": {
+    "message": "На своём устройстве",
+    "description": "The label for category 'На своём устройстве' in sidebar 'docs'"
+  },
+  "sidebar.docs.category.В облаке": {
+    "message": "В облаке",
+    "description": "The label for category 'В облаке' in sidebar 'docs'"
+  },
+  "sidebar.docs.category.Переход из другого приложения": {
+    "message": "Переход из другого приложения",
+    "description": "The label for category 'Переход из другого приложения' in sidebar 'docs'"
+  },
+  "sidebar.docs.category.Работа с Actual": {
+    "message": "Работа с Actual",
+    "description": "The label for category 'Работа с Actual' in sidebar 'docs'"
+  },
+  "sidebar.docs.category.Бюджет": {
+    "message": "Бюджет",
+    "description": "The label for category 'Бюджет' in sidebar 'docs'"
+  },
+  "sidebar.docs.category.Кредитные карты": {
+    "message": "Кредитные карты",
+    "description": "The label for category 'Кредитные карты' in sidebar 'docs'"
+  },
+  "sidebar.docs.category.Счета и операции": {
+    "message": "Счета и операции",
+    "description": "The label for category 'Счета и операции' in sidebar 'docs'"
+  },
+  "sidebar.docs.category.Импорт операций": {
+    "message": "Импорт операций",
+    "description": "The label for category 'Импорт операций' in sidebar 'docs'"
+  },
+  "sidebar.docs.category.Подключение банка": {
+    "message": "Подключение банка",
+    "description": "The label for category 'Подключение банка' in sidebar 'docs'"
+  },
+  "sidebar.docs.category.Работа с операциями": {
+    "message": "Работа с операциями",
+    "description": "The label for category 'Работа с операциями' in sidebar 'docs'"
+  },
+  "sidebar.docs.category.Получатели платежей": {
+    "message": "Получатели платежей",
+    "description": "The label for category 'Получатели платежей' in sidebar 'docs'"
+  },
+  "sidebar.docs.category.Правила": {
+    "message": "Правила",
+    "description": "The label for category 'Правила' in sidebar 'docs'"
+  },
+  "sidebar.docs.category.Отчёты": {
+    "message": "Отчёты",
+    "description": "The label for category 'Отчёты' in sidebar 'docs'"
+  },
+  "sidebar.docs.category.Экспериментальные функции": {
+    "message": "Экспериментальные функции",
+    "description": "The label for category 'Экспериментальные функции' in sidebar 'docs'"
+  },
+  "sidebar.docs.category.Синхронизация и защита данных": {
+    "message": "Синхронизация и защита данных",
+    "description": "The label for category 'Синхронизация и защита данных' in sidebar 'docs'"
+  },
+  "sidebar.docs.category.Резервное копирование и восстановление": {
+    "message": "Резервное копирование и восстановление",
+    "description": "The label for category 'Резервное копирование и восстановление' in sidebar 'docs'"
+  },
+  "sidebar.docs.category.Собственный сервер": {
+    "message": "Собственный сервер",
+    "description": "The label for category 'Собственный сервер' in sidebar 'docs'"
+  },
+  "sidebar.docs.category.Настройка сервера": {
+    "message": "Настройка сервера",
+    "description": "The label for category 'Настройка сервера' in sidebar 'docs'"
+  },
+  "sidebar.docs.category.Разработчикам": {
+    "message": "Разработчикам",
+    "description": "The label for category 'Разработчикам' in sidebar 'docs'"
+  },
+  "sidebar.docs.category.API": {
+    "message": "API",
+    "description": "The label for category 'API' in sidebar 'docs'"
+  },
+  "sidebar.docs.category.ActualQL": {
+    "message": "ActualQL",
+    "description": "The label for category 'ActualQL' in sidebar 'docs'"
+  },
+  "sidebar.docs.category.Помощь и поддержка": {
+    "message": "Помощь и поддержка",
+    "description": "The label for category 'Помощь и поддержка' in sidebar 'docs'"
+  },
+  "sidebar.docs.category.Решение проблем": {
+    "message": "Решение проблем",
+    "description": "The label for category 'Решение проблем' in sidebar 'docs'"
+  },
+  "sidebar.communitySidebar.category.Участие в проекте": {
+    "message": "Участие в проекте",
+    "description": "The label for category 'Участие в проекте' in sidebar 'communitySidebar'"
+  },
+  "sidebar.communitySidebar.category.Структура проекта Actual": {
+    "message": "Структура проекта Actual",
+    "description": "The label for category 'Структура проекта Actual' in sidebar 'communitySidebar'"
+  },
+  "sidebar.communitySidebar.category.Документация": {
+    "message": "Документация",
+    "description": "The label for category 'Документация' in sidebar 'communitySidebar'"
+  },
+  "sidebar.communitySidebar.category.Управление проектом": {
+    "message": "Управление проектом",
+    "description": "The label for category 'Управление проектом' in sidebar 'communitySidebar'"
+  }
+}

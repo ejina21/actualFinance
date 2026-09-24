@@ -1,88 +1,88 @@
 ---
-title: Development Setup
+title: Настройка среды разработки
 ---
 
-This guide will help you set up your development environment for contributing to Actual.
+Это руководство поможет вам создать среду для развития, чтобы внести свой вклад в развитие.
 
-## Prerequisites
+## Предпосылки {#prerequisites}
 
 :::tip
-If you prefer not to install Node and Yarn locally, you can use the [Dev Container](#dev-container) or run [Docker Compose](#docker-compose) directly.
+Если вы предпочитаете не устанавливать Node и Yarn локально, вы можете использовать [Контейнер Dev](#dev-container) или бежать [Docker представляет](#docker-compose) напрямую.
 :::
 
-Before you begin, ensure you have the following installed:
+Прежде чем начать, убедитесь, что вы установили следующее:
 
-- **Node.js**: Version 22 or greater. You can download it from the [Node.js website](https://nodejs.org/en/download) (we recommend the LTS version).
-  - Consider using a version manager like [nvm](https://github.com/nvm-sh/nvm) or [asdf](https://asdf-vm.com) to manage multiple Node.js versions.
-  - On Windows, during Node.js installation, be sure to select _Automatically install the necessary tools_ from the _Tools for Native Modules_ page. This is required to build better-sqlite3.
+- **Node.js**Версия 22 или больше. Вы можете скачать его из [Сайт Node.js](https://nodejs.org/en/download) (рекомендуем версию LTS).
+  - Используйте диспетчер версий, как [нвм](https://github.com/nvm-sh/nvm) или [асдф](https://asdf-vm.com) Управление несколькими версиями Node.js.
+  - В Windows во время установки Node.js обязательно выберите Автоматически установить необходимые инструменты со страницы Tools for Native Modules .
 
-- **Yarn**: Version 4.9.1 or greater. Yarn is the package manager used by Actual.
-  - The project uses Yarn 4 workspaces (monorepo structure).
+- **Ярн**Версия 4.9.1 или выше. Yarn - это менеджер пакетов, используемый Actual.
+  - В проекте используются рабочие пространства Yarn 4 (структура монорепо).
 
-- **Git**: Required for cloning the repository and version control.
+- **Гит**Требуется для клонирования хранилища и контроля версий.
 
-## Initial Setup
+## Первоначальная настройка {#initial-setup}
 
-1. Clone the Actual repository:
+1. Клонирование фактического хранилища:
 
    ```bash
    git clone https://github.com/actualbudget/actual.git
    cd actual
    ```
 
-2. Install all dependencies:
+2. Установите все зависимости:
 
    ```bash
    yarn install
    ```
 
-   This will install dependencies for all packages in the monorepo.
+   Это позволит установить зависимости для всех пакетов в монорепо.
 
-3. Verify your setup by running type checking:
+3. Проверьте свою настройку, запустив проверку типа:
    ```bash
    yarn typecheck
    ```
 
-## Dev Container
+## Контейнер Dev {#dev-container}
 
-The repo includes a [`.devcontainer/`](https://github.com/actualbudget/actual/tree/master/.devcontainer) configuration that follows the [Dev Containers spec](https://containers.dev/). Any tool that supports the spec can use it — for example VS Code or Cursor (with the [Dev Containers extension](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-containers)), JetBrains IDEs (via Gateway), GitHub Codespaces, or the [`@devcontainers/cli`](https://github.com/devcontainers/cli).
+Репо включает в себя a [`.devcontainer/`](https://github.com/actualbudget/actual/tree/master/.devcontainer) Конфигурация, которая следует за [Спецификация Dev Containers](https://containers.dev/)Любой инструмент, который поддерживает спецификацию, может использовать его — например, VS Code или Cursor (с помощью специального кода). [Расширение контейнеров Dev](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-containers)), JetBrains IDE (через Gateway), GitHub Codespaces или [`@devcontainers/cli`](https://github.com/devcontainers/cli).
 
-In an editor that supports the spec, open the cloned repo and accept the **Reopen in Container** prompt (or run the equivalent command from your editor's command palette). The container will build, `yarn install` will run automatically via `postCreateCommand`, and you'll be dropped into a shell with the toolchain ready.
+В редакторе, который поддерживает спецификацию, откройте клонированный репо и примите **Открыть в контейнере** Выберите команду (или запустите эквивалентную команду из палитры команд вашего редактора). `yarn install` будет работать автоматически через `postCreateCommand`И вы будете сброшены в оболочку с готовой цепочкой инструментов.
 
-To start the dev server, open a terminal inside the container and run:
+Чтобы запустить сервер, откройте терминал внутри контейнера и запустите:
 
 ```bash
 yarn start
 ```
 
-The dev server will be available at `http://localhost:3001/`. Most editors automatically forward the port from the container to your host.
+Сервер будет доступен в `http://localhost:3001/`Большинство редакторов автоматически пересылают порт из контейнера на ваш хост.
 
-## Docker Compose
+## Docker представляет {#docker-compose}
 
-For other editors, run from the repo root:
+Для других редакторов запустите корень repo:
 
 ```bash
 docker compose up --build
 ```
 
-This starts a container that runs `yarn start:browser` on port 3001. Open `http://localhost:3001/` in your browser.
+Начинается контейнер, который `yarn start:browser` Порт 3001. Открыто. `http://localhost:3001/` в вашем браузере.
 
 :::note
-The container mounts your repo at `/app`. If you've already run `yarn install` on your host, the native modules (`better-sqlite3`, `bcrypt`, `electron`, `sharp`) will be compiled for your host OS and won't work inside the Linux container. Either delete `node_modules/` first and let the container reinstall, or run the dev container path above (which rebuilds them automatically).
+Контейнер монтирует ваш репо на `/app`Если вы уже сбежали `yarn install` на вашем хосте - нативные модули (`better-sqlite3`, `bcrypt`, `electron`, `sharp`) будет компилироваться для вашей ОС хоста и не будет работать внутри контейнера Linux. `node_modules/` Во-первых, позвольте контейнеру переустановить или запустить путь контейнера разработчика выше (который автоматически восстанавливает их).
 :::
 
-## Essential Development Commands
+## Основные команды развития {#essential-development-commands}
 
-All commands should be run from the **root directory** of the repository. Never run yarn commands from child workspace directories.
+Все команды должны выполняться из **root каталог** Никогда не запускайте команды пряжи из детских каталогов рабочего пространства.
 
-### Type Checking
+### Проверка типа {#type-checking}
 
 ```bash
 # Run TypeScript type checking (ALWAYS run before committing)
 yarn typecheck
 ```
 
-### Linting and Formatting
+### Линька и форматирование {#linting-and-formatting}
 
 ```bash
 # Check for linting and formatting issues
@@ -92,7 +92,7 @@ yarn lint
 yarn lint:fix
 ```
 
-### Testing
+### Испытание {#testing}
 
 ```bash
 # Run all tests across all packages
@@ -102,9 +102,9 @@ yarn test
 yarn test:debug
 ```
 
-For more details on testing, see the [Testing Guide](./testing.md).
+Для более подробной информации о тестировании см. [Руководство по испытаниям](./testing.md).
 
-### Starting Development Servers
+### Запуск серверов разработки {#starting-development-servers}
 
 ```bash
 # Start browser development server
@@ -119,7 +119,7 @@ yarn start:server-dev
 yarn start:desktop
 ```
 
-### Building
+### Здание {#building}
 
 ```bash
 # Build browser version
@@ -138,19 +138,19 @@ yarn build:cli
 yarn build:server
 ```
 
-## Workspace Structure
+## Структура рабочего пространства {#workspace-structure}
 
-Actual uses Yarn workspaces to manage a monorepo with multiple packages. For detailed information about each package, see the [Project Structure](./project-details/index.md) documentation.
+Actual использует рабочие пространства Yarn для управления монорепо с несколькими пакетами. Для получения подробной информации о каждом пакете см. [Структура проекта](./project-details/index.md) Документация.
 
-## Running Workspace-Specific Commands
+## Запуск команд Workspace-Specific {#running-workspace-specific-commands}
 
-To run commands for a specific workspace, use:
+Для запуска команд для конкретного рабочего пространства используйте:
 
 ```bash
 yarn workspace <workspace-name> run <command>
 ```
 
-Examples:
+Примеры:
 
 ```bash
 # Run tests for @actual-app/core
@@ -163,13 +163,13 @@ yarn workspace docs start
 yarn workspace @actual-app/api build
 ```
 
-## Common Development Tasks
+## Общие задачи развития {#common-development-tasks}
 
-### Running Specific Tests
+### Проведение специальных тестов {#running-specific-tests}
 
-See [Testing Guide](./testing.md).
+Видишь? [Руководство по испытаниям](./testing.md).
 
-### Debugging
+### Отладка {#debugging}
 
 ```bash
 # Run tests in debug mode (without cache)
@@ -179,11 +179,11 @@ yarn test:debug
 yarn workspace @actual-app/web run playwright test --headed --debug accounts.test.ts
 ```
 
-### Type Checking
+### Проверка типа {#type-checking-1}
 
-TypeScript uses project references. Always run `yarn typecheck` from the root to check all packages.
+TypeScript использует ссылки на проекты. `yarn typecheck` От корня до проверки всех пакетов.
 
-### Building for Production
+### Строительство для производства {#building-for-production}
 
 ```bash
 # Browser build
@@ -202,37 +202,37 @@ yarn build:cli
 yarn build:server
 ```
 
-## Development Workflow
+## Разработка Workflow {#development-workflow}
 
-When making changes:
+При внесении изменений:
 
-1. Read relevant files to understand the current implementation
-2. Make focused, incremental changes
-3. Run type checking: `yarn typecheck`
-4. Run linting: `yarn lint:fix`
-5. Run relevant tests
-6. Fix any linter errors that are introduced
+1. Прочитайте соответствующие файлы, чтобы понять текущую реализацию
+2. Сосредоточьтесь, постепенные изменения
+3. Проверка типа бега: `yarn typecheck`
+4. Пробег подкладки: `yarn lint:fix`
+5. Проведите соответствующие тесты
+6. Исправьте любые ошибки linter, которые вводятся
 
-For more details, see the [Development Workflow](./index.md#development-workflow) section.
+Для более подробной информации смотрите [Разработка Workflow](./index.md#development-workflow) Раздел.
 
-## Troubleshooting
+## устранение неполадок {#troubleshooting}
 
-If you encounter issues:
+Если вы столкнулись с проблемами:
 
-- **Type errors**: Run `yarn typecheck` to see all type errors
-- **Linter errors**: Run `yarn lint:fix` to auto-fix many issues
-- **Test failures**: See the [Testing Guide](./testing.md) for debugging tips
-- **Build failures**: Clean build artifacts and reinstall dependencies:
+- **Типы ошибок**Пробег `yarn typecheck` Увидеть все типы ошибок
+- **Ошибки Linter**Пробег `yarn lint:fix` Автоматизация многих проблем
+- **Неудачи испытаний**Посмотреть [Руководство по испытаниям](./testing.md) для отладки подсказок
+- **Построить неудачи**Чистые артефакты сборки и переустановка зависимостей:
   ```bash
   rm -rf packages/*/dist packages/*/lib-dist packages/*/build
   yarn install
   ```
 
-For more troubleshooting help, see the [Troubleshooting Guide](./troubleshooting.md).
+Для получения дополнительной помощи по устранению неполадок см. [Руководство по устранению неполадок](./troubleshooting.md).
 
-## Next Steps
+## Следующие шаги {#next-steps}
 
-- Read the [Contributing Guide](./index.md) for information about submitting changes
-- Review the [Code Style Guide](./code-style.md) for coding conventions
-- Check out the [Testing Guide](./testing.md) for testing strategies
-- Explore the [Project Structure](./project-details/index.md) to understand the codebase organization
+- Прочитай [Руководство по содействию](./index.md) для получения информации о внесении изменений
+- Обзор [Code Style Руководство](./code-style.md) для кодирующих конвенций
+- Проверь. [Руководство по испытаниям](./testing.md) для тестирования стратегий
+- Исследуйте [Структура проекта](./project-details/index.md) Чтобы понять организацию кодовой базы

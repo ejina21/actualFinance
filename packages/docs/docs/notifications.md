@@ -1,26 +1,26 @@
-# Notifications
+# Уведомления {#notifications}
 
-Actual can show you news from the project without leaving the app: the highlights of each release, and occasional announcements from the team. Everything lives on the Notifications page, and a bell in the top bar tells you when something new has arrived.
+Actual может показывать вам новости из проекта, не выходя из приложения: основные моменты каждого выпуска и случайные объявления от команды. Все живет на странице Уведомлений, а колокол в верхней строке сообщает вам, когда пришло что-то новое.
 
-## The Notification Bell
+## Колокол уведомлений {#the-notification-bell}
 
-The bell sits in the top bar, next to the Help menu. When there are notifications you haven't seen yet, the bell shows a count of them. Click the bell to open the Notifications page. Opening the page marks everything as read, so the count disappears until something new is published.
+Колокол находится в верхней строке, рядом с меню «Справка». Когда есть уведомления, которые вы еще не видели, колокол показывает их количество. Нажмите на колокол, чтобы открыть страницу «Уведомления». Открытие страницы отмечает все как прочитанное, поэтому счет исчезает, пока не будет опубликовано что-то новое.
 
-## The Notifications Page
+## Страница уведомлений {#the-notifications-page}
 
-![Image of Notifications](/img/using-actual/in-app-notifications.webp)
+![Изображение уведомлений](/img/using-actual/in-app-notifications.webp)
 
-Each notification is shown as a card:
+Каждое уведомление отображается в виде карточки:
 
-- **Release** cards summarize what changed in a version of Actual. The card shows the highlights, and you can click **Show all changes** to expand the full list of changes in that release. A link on the card takes you to the same release announcement on the website.
-- **Post** cards are announcements from the team, such as community news or project updates, with a link to the full post on the blog.
+- **Выпуск** Карты суммируют то, что изменилось в версии Actual. Карта показывает основные моменты, и вы можете щелкнуть **Показать все изменения** чтобы расширить полный список изменений в этом выпуске. Ссылка на карте приводит вас к тому же объявлению о выпуске на веб-сайте.
+- **Почта** Карты - это объявления от команды, такие как новости сообщества или обновления проекта, со ссылкой на полный пост в блоге.
 
-At the top of the page you will also find links to the full [release notes](./releases.md), the blog, and the community Discord.
+В верхней части страницы вы также найдете ссылки на полную [примечания к выпуску](./releases.md)Блог и сообщество Раздор.
 
-## Release Messages
+## Освободите сообщения {#release-messages}
 
-After you update Actual, a one-time message appears telling you that you are now running a new version. Click **See what's new** to open the Notifications page and read the highlights of the release you just installed. Closing the message marks that release as read.
+После обновления Actual появляется одноразовое сообщение о том, что вы запускаете новую версию. **Посмотрим, что нового** открыть страницу Уведомлений и прочесть основные моменты выпуска, который вы только что установили.
 
-## Turning Notifications Off
+## Отключение уведомлений {#turning-notifications-off}
 
-If you would rather not see notifications, untick **Show in-app notifications (release notes and announcements)** in [Settings](./settings/index.md). This hides the bell, the Notifications page link, and release messages, and it also stops the app from downloading the notification feed (which is fetched from the Actual project's GitHub repository). The setting applies to the device you change it on.
+Если вы предпочитаете не видеть уведомлений, не тикайте **Показать уведомления в приложении (заметки о выпуске и объявления)** в [Настройки](./settings/index.md)Это скрывает звонок, ссылку на страницу уведомлений и выпуск сообщений, а также останавливает приложение от загрузки ленты уведомлений (которая извлекается из репозитория GitHub Actual Project).

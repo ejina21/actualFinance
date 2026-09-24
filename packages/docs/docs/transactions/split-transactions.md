@@ -1,48 +1,48 @@
-# Split Transactions
+# Разделённые операции {#split-transactions}
 
-Oftentimes a single transaction covers multiple categories. For example, a trip to the grocery store might include food, household supplies, and a gift card. Rather than creating separate transactions, you can split a single transaction into multiple child transactions, each assigned to its own category.
+Часто одна транзакция охватывает несколько категорий. Например, поездка в продуктовый магазин может включать в себя продукты питания, бытовые принадлежности и подарочные карты. Вместо того, чтобы создавать отдельные транзакции, вы можете разделить одну транзакцию на несколько детских транзакций, каждая из которых отнесена к своей собственной категории.
 
-## Creating a Split Transaction
+## Создание разделенной транзакции {#creating-a-split-transaction}
 
-1. Click on the category of a transaction, and select the **Split Transaction** option. A new row will appear below the original transaction alongside a set of buttons for managing your split transaction.
-2. Add more splits of the original transaction as needed by clicking the **Add Split** button.
-3. Assign a category and amount to each split. The sum of the amounts of all child transactions must equal the amount of the parent transaction.
+1. Нажмите на категорию транзакции и выберите **Разделенная транзакция** Под оригинальной транзакцией появится новая строка вместе с набором кнопок для управления вашей разделенной транзакцией.
+2. Добавьте больше разделов оригинальной транзакции по мере необходимости, нажав на кнопку **Добавить Split** Кнопка.
+3. Назначьте категорию и сумму для каждого раздела. Сумма сумм всех детских сделок должна равняться сумме родительской сделки.
 
-![Image of buttons when managing split transactions](/img/split-transactions/split-transactions-buttons.png)
+![Изображение кнопок при управлении разделенными транзакциями](/img/split-transactions/split-transactions-buttons.png)
 
-## Distributing the Remainder
+## Распределение оставшегося {#distributing-the-remainder}
 
-The **Distribute** button works in two different ways depending on the state of the child transactions.
+The **распределять** Кнопка работает двумя различными способами в зависимости от состояния транзакций ребенка.
 
-### Even Distribution
+### Даже распределение {#even-distribution}
 
-If at least one split is empty, clicking **Distribute** divides the remaining amount **evenly** among the empty splits.
+Если хотя бы один раздел пуст, щелчок **распределять** разделить оставшуюся сумму **равномерно** Среди пустых разломов.
 
-For example, if a $50.00 transaction has one split for $20.00 and two empty splits, clicking **Distribute** assigns $15.00 to each empty split.
+Например, если транзакция стоимостью 50 долларов США имеет один сплит за 20 долларов США и два пустых сплита, щелкнув **распределять** Назначает 15 долларов за каждый пустой сплит.
 
-### Proportional Distribution
+### Пропорциональное распределение {#proportional-distribution}
 
-If all splits already have amounts entered in, clicking **Distribute** divides the remaining amount **proportionally** based on the total of the child transactions. This can be useful when dividing taxes among different categories in a single transaction.
+Если все разделы уже имеют введенные суммы, щелкнув **распределять** разделить оставшуюся сумму **пропорционально** Это может быть полезно при разделении налогов между различными категориями в одной сделке.
 
-For example, consider a $40.00 transaction split into two.
+Например, рассмотрим транзакцию в 40 долларов США, разделенную на две части.
 
-| Split     | Before     | Proportion | Added      | After      |
-| --------- | ---------- | ---------- | ---------- | ---------- |
-| A         | $20.00     | 2/3        | $6.66      | $26.66     |
-| B         | $10.00     | 1/3        | $3.34      | $13.34     |
-| **Total** | **$30.00** |            | **$10.00** | **$40.00** |
+| Раскол    | Перед      | Пропорция | Добавлено  | После      |
+| --------- | ---------- | --------- | ---------- | ---------- |
+| A         | $20.00     | 2/3       | $6.66      | $26.66     |
+| B         | $10.00     | 1/3       | $3.34      | $13.34     |
+| **Всего** | **$30.00** |           | **$10.00** | **$40.00** |
 
-Each split receives a share of the remainder proportional to its existing amount relative to the current total of the child transactions ($30.00).
+Каждый сплит получает долю остатка, пропорциональную его существующей сумме по отношению к текущему общему объему операций с детьми (30 долларов США).
 
 :::info
-When the remainder can't be divided evenly, the remaining cents are distributed one-by-one to the child transactions.
+Когда остальная часть не может быть разделена поровну, оставшиеся центы распределяются поодиночке на детские транзакции.
 :::
 
-## Unsplit Transactions
+## Нерасщепленные транзакции {#unsplit-transactions}
 
-Right-click any splits of the parent transaction and click **Unsplit 1 Transaction** to convert it into a regular transaction. You can also select and unsplit multiple rows at the same time. The total amount of the original transaction will be adjusted accordingly.
+Нажмите правой кнопкой мыши на любые разделы родительской транзакции и нажмите **Сделка Unsplit 1** Преобразовать его в обычную транзакцию. Также можно выбрать и разбить несколько строк одновременно. Совокупная сумма первоначальной транзакции будет скорректирована соответствующим образом.
 
 :::tip
-Right-click the original transaction and unsplit it to convert all the splits into regular transactions.
-Alternatively, to convert a split transaction back into a regular transaction, delete all the splits.
+Нажмите правой кнопкой мыши на первоначальную транзакцию и разбейте ее, чтобы конвертировать все расколы в обычные транзакции.
+В качестве альтернативы, чтобы преобразовать разделенную транзакцию обратно в обычную транзакцию, удалите все разделы.
 :::

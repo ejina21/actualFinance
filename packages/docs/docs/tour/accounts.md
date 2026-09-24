@@ -1,45 +1,43 @@
-# The Account Register
+# Счета и операции
 
-This view lets you manage your transactions for an account. Consult [Accounts & Transactions](../accounts/index.md) for detailed information on how to work with this view.
+Здесь вы работаете с операциями выбранного счёта. Подробные инструкции есть в разделе [«Счета и операции»](../accounts/index.md).
 
-![Account register overview](/img/a-tour-of-actual/tour-account-register-overview.webp)
+![Общий вид операций счёта](/img/a-tour-of-actual/tour-account-register-overview.webp)
 
-## The Account Header
+## Заголовок счёта
 
-To rename the account, click on the pencil icon that appears when you hover over the account name. Clicking on the note icon lets you add a note. Actual fully supports Markdown and the note will be rendered according to your Markdown when the cursor is hovering over the note.
+Чтобы переименовать счёт, наведите указатель на его название и нажмите на появившийся карандаш. Значок заметки позволяет добавить пояснение. Actual поддерживает Markdown и показывает отформатированную заметку при наведении указателя.
 
-Below the account name, you'll see the current balance. Green indicates a positive account balance, and red indicates a negative balance. A chevron will appear if you hover over the balance with the cursor. Clicking on this will reveal the values for both cleared and uncleared totals. See [Reconciliation](../accounts/reconciliation.md) for more information.
+Под названием счёта показан текущий баланс. Положительная сумма выделена зелёным, отрицательная — красным. Наведите указатель на баланс и нажмите на появившуюся стрелку, чтобы увидеть суммы подтверждённых и неподтверждённых операций. Подробнее об этом рассказано в разделе [«Сверка»](../accounts/reconciliation.md).
 
-The top section also gives you access to several functions like importing transactions, manually adding new transactions, and filtering what transactions you see. On the right side you'll find the _Search_ field which lets you quickly search all fields.
+Верхняя часть страницы также позволяет импортировать и добавлять операции, а также фильтровать список. Поле _«Поиск»_ справа помогает быстро искать по всем полям.
 
-It is possible to split a transaction into more than one category. By clicking on the expand/contract arrows, seen in the yellow box, you will be able to show or hide split transactions.
+Одну операцию можно распределить между несколькими категориями. Стрелки в жёлтой рамке позволяют развернуть или скрыть такие разделённые операции.
 
-The three horizontal dots, shown in the blue box, will allow you to perform various manipulations on the account. These range from reconciling and exporting your account to closing or [Connecting Your Bank](../advanced/bank-sync.md) for transaction syncing. You can show or hide the account's running balance, previously reconciled transactions and the cleared checkbox column to the far right of the transaction's row.
+Меню с тремя горизонтальными точками (синяя рамка) содержит другие действия со счётом: сверку, экспорт, закрытие и [подключение банка](../advanced/bank-sync.md) для синхронизации операций. Здесь же можно показать или скрыть текущий баланс после каждой операции, ранее сверенные операции и столбец подтверждения справа.
 
-![Account register header](/img/a-tour-of-actual/tour-account-register-header.webp)
+![Заголовок страницы счёта](/img/a-tour-of-actual/tour-account-register-header.webp)
 
-Clicking on **Import** will let you [import transactions](../transactions/importing.md) from CSV, QIF, OFX, QFX or CAMT files.
+Нажмите **«Импорт»**, чтобы [загрузить операции](../transactions/importing.md) из файлов CSV, QIF, OFX, QFX или CAMT.
 
-Manually add transactions by clicking on **Add New**. The Payee and the Category fields will provide a dropdown menu of available options. You can add new payees directly from this view, but if you need to add a new category, you can only do so from the [Budget View](./budget.md).
+Чтобы внести операцию вручную, нажмите **«Добавить»**. Получателя и категорию можно выбрать из списков. Нового получателя можно создать прямо здесь, а новую категорию — только в [бюджете](./budget.md).
 
-![Adding a transaction](/img/a-tour-of-actual/tour-account-register-adding-transaction.webp)
+![Добавление операции](/img/a-tour-of-actual/tour-account-register-adding-transaction.webp)
 
-## Filtering on transactions
+## Фильтрация операций
 
-Clicking on **Filter** lets you filter on all the fields. In the screenshot, we see that we filtered for where the Payee is _Kroger_ and the Category is _Food_.
+Нажмите **«Фильтр»**, чтобы отобрать операции по нужным полям. На изображении показаны операции получателя _Kroger_ в категории _Food_; это названия из примера бюджета.
 
-If you are filtering for the same things over and over, you can save your filter by clicking on the _Unsaved filter_ dropdown on the right side in the header. Provide a name to save the filter for future use.
+Если вы регулярно используете одни и те же условия, сохраните фильтр через меню _«Несохранённый фильтр»_ справа в заголовке. Дайте ему название, чтобы быстро применять его позже.
 
-Consult [Filtering Transactions](../transactions/filters.md) for more information.
+Подробнее читайте в разделе [«Фильтрация операций»](../transactions/filters.md).
 
-![Filtering transactions](/img/a-tour-of-actual/tour-account-register-filter.webp)
+![Операции с применённым фильтром](/img/a-tour-of-actual/tour-account-register-filter.webp)
 
-## Working on selected transactions
+## Действия с несколькими операциями
 
-You can select transactions by clicking on the checkbox - just to the left of the date field. When transactions are selected, you'll see the balance of the selected transactions to the right of the account's balance.
+Чтобы выбрать операцию, установите флажок слева от даты. Справа от баланса счёта появится сумма выбранных операций.
 
-The number of selected transactions is shown in the red box. If you click on this dropdown, you can perform various commands on these transactions.
+Количество выбранных операций показано в красной рамке. Откройте это меню, чтобы применить к ним действие. Подробнее о таких возможностях рассказано в разделе [«Массовое редактирование»](../transactions/bulk-editing.md).
 
-Another powerful feature allows you to perform [Bulk Actions](../transactions/bulk-editing.md).
-
-![Selecting transactions](/img/a-tour-of-actual/tour-account-register-selected-transactions.webp)
+![Выбранные операции](/img/a-tour-of-actual/tour-account-register-selected-transactions.webp)

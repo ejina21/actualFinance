@@ -1,90 +1,90 @@
-# SimpleFIN Setup
+# Настройка SimpleFIN {#simplefin-setup}
 
 :::note
-Client Version 24.10.0 and
-Server Version 24.10.0 or higher are required for this feature.
+Клиентская версия 24.10.0 и
+Для этой функции требуется серверная версия 24.10.0 или выше.
 :::
 
-### Generate Setup Token for Actual
+### Создайте токен настройки для фактического {#generate-setup-token-for-actual}
 
-1. Create an account with SimpleFIN Bridge - https://beta-bridge.simplefin.org/ , by clicking "Get Started" and entering your email address.
+1. Создать аккаунт с помощью SimpleFIN Bridge https://beta-bridge.simplefin.org/ Нажмите «Начать» и введите свой адрес электронной почты.
 
    ![](/img/connecting-your-bank/connecting-your-bank-simplefin-01.webp)
 
-2. You will receive an email with the login link, after a few minutes. Click this link to log into your account dashboard.
+2. Через несколько минут вы получите электронное письмо со ссылкой для входа. Нажмите эту ссылку, чтобы войти в панель инструментов вашей учетной записи.
 
    ![](/img/connecting-your-bank/connecting-your-bank-simplefin-02.webp)
 
-3. Accept the terms, on first login, and then you will be taken to "My Account".
+3. Примите условия, сначала войдите в систему, а затем вы попадете в «Мой аккаунт».
 
-4. Link any banks that you wish.
-   - You will need to add your accounts first, through "Financial Institutions" > New Connection
-   - You will need to subscribe before your first can be added. Current rates are $1.50 / mo, or $15 / year.
+4. Свяжитесь с любыми банками, которые вы хотите.
+   - Сначала вам нужно будет добавить свои учетные записи через «Финансовые учреждения» > Новое соединение
+   - Вам нужно будет подписаться, прежде чем ваш первый может быть добавлен. Текущие ставки составляют $1,50 / мо или $15 / год.
 
-5. From the "My Accounts" page, under "Apps", click on "New Connection". Give your connection a name, and click "Create Setup Token"
+5. На странице «Мои учетные записи» в разделе «Приложения» нажмите «Новое подключение». Дайте вашему соединению имя и нажмите «Создать токен настройки»
 
-   _This is only for you to easily identify it in the SimpleFIN connections overview._
+   Это только для вас, чтобы легко идентифицировать его в обзоре соединений SimpleFIN._
 
    ![](/img/connecting-your-bank/connecting-your-bank-simplefin-03.webp)
 
-6. Save the generated Setup Token someplace safe (one-time use only).
+6. Сохранить сгенерированный токен настройки в безопасном месте (только одноразовое использование).
 
    ![](/img/connecting-your-bank/connecting-your-bank-simplefin-04.webp)
 
-7. Back in Actual, click on "+ Add account" at the bottom of the sidebar.
+7. Назад в Actual, нажмите на «+ Добавить учетную запись» в нижней части боковой панели.
 
    ![](/img/connecting-your-bank/connecting-your-bank-02.webp)
 
-8. Click "Link bank account with SimpleFIN".
+8. Нажмите «Связать банковский счет с SimpleFIN».
 
    ![](/img/connecting-your-bank/connecting-your-bank-simplefin-05.webp)
 
-9. You will be asked to enter your SimpleFIN setup token. The keys from this value will be saved on the server, so you will only need to enter it once.
+9. Вам будет предложено ввести свой токен настройки SimpleFIN. Ключи от этого значения будут сохранены на сервере, поэтому вам нужно будет ввести его только один раз.
 
    ![](/img/connecting-your-bank/connecting-your-bank-simplefin-06.webp)
 
-### Link Accounts with SimpleFIN
+### Ссылки на аккаунты с помощью SimpleFIN {#link-accounts-with-simplefin}
 
-1. Add the link to your accounts in actual (Existing or New).
-   - **_For an existing account, click on that account, select the ... (kebab menu) in the top right, and choose Link Account_**
+1. Добавьте ссылку на ваши учетные записи в реальном (существующем или новом).
+   - **Для существующей учетной записи нажмите на эту учетную запись, выберите ... (кебаб-меню) в правом верхнем углу и выберите учетную запись Link**
 
      ![](/img/connecting-your-bank/connecting-your-bank-01.webp)
 
-   - **_To create a new account with bank syncing click on the '+ Add account' link in the left menu at the bottom_**
+   - **Для создания новой учетной записи с синхронизацией банка нажмите на ссылку «+ Добавить учетную запись» в левом меню внизу**
 
      ![](/img/connecting-your-bank/connecting-your-bank-02.webp)
 
-2. Select the Link bank account with SimpleFIN button.
+2. Выберите банковский счет Link с помощью кнопки SimpleFIN.
 
    ![](/img/connecting-your-bank/connecting-your-bank-simplefin-07.webp)
 
-3. A Link Accounts box will pop up. To link a SimpleFIN account to an Actual account, click the "Setup bank-sync" button in the same row.
-   - The "Bank Account To Sync" column contains the names of the accounts found via SimpleFIN
-   - The "Account in Actual" column contains the name of the Actual account it is linked to.
-   - You can also click in the "Account in Actual" column, instead of clicking the "Setup bank-sync" button.
+3. Чтобы связать учетную запись SimpleFIN с фактической учетной записью, нажмите кнопку «Setup bank-sync» в той же строке.
+   - В графе «Синхронизация банковского счета» содержатся имена счетов, найденных через SimpleFIN.
+   - Столбец «Аккаунт в действии» содержит название фактического счета, с которым он связан.
+   - Вы также можете нажать в столбце «Учетная запись в реальном времени» вместо нажатия кнопки «Синхронизация банка».
 
    ![](/img/connecting-your-bank/connecting-your-bank-simplefin-08.webp)
 
-4. Either select an existing Actual account to link to, or create a new one.
+4. Выберите существующую фактическую учетную запись для ссылки или создайте новую.
 
    ![](/img/connecting-your-bank/connecting-your-bank-simplefin-09.webp)
 
-5. When you've mapped all your accounts that you wish to, click the "Link Account" button.
+5. Когда вы наметили все свои учетные записи, которые вы хотите, нажмите кнопку «Связаться с учетной записью».
 
-### SimpleFIN Considerations
+### Рассмотрение SimpleFIN {#simplefin-considerations}
 
-1. Currently, the sync pulls at most 90 days of data from each linked account. The amount of data SimpleFIN can get from each account may vary, so not all accounts may have 90 days of historical transactions that can be imported.
+1. В настоящее время синхронизация собирает не более 90 дней данных с каждого связанного счета.Количество данных, которые SimpleFIN может получить с каждого счета, может варьироваться, поэтому не все счета могут иметь 90 дней исторических транзакций, которые могут быть импортированы.
 
-2. SimpleFIN's data updates one time / day, roughly every 24 hours, for each linked account. The time of day that each bank updates in SimpleFIN may vary, even from day to day (based on the bank and upstream provider, MX).
+2. Данные SimpleFIN обновляются один раз в день, примерно каждые 24 часа, для каждой связанной учетной записи.Время дня, которое каждый банк обновляет в SimpleFIN, может варьироваться, даже изо дня в день (на основе банка и провайдера, MX).
 
-### Resetting the Setup Token
+### Сброс Token Setup {#resetting-the-setup-token}
 
-To reset your SimpleFIN setup token:
+Чтобы сбросить свой маркер настройки SimpleFIN:
 
-1. Click "Add Account" in the sidebar.
+1. Нажмите «Добавить аккаунт» на боковой панели.
 
-2. Next to "Link bank account with SimpleFIN", click the three-dot menu button.
+2. Рядом с «Связать банковский счет с SimpleFIN» нажмите кнопку меню с тремя точками.
 
-3. Click "Reset SimpleFIN credentials".
+3. Нажмите «Reset SimpleFIN credentials».
 
-You will then need to obtain a new setup token from SimpleFIN and enter it into Actual.
+Затем вам нужно будет получить новый токен настройки от SimpleFIN и ввести его в Actual.

@@ -1,26 +1,26 @@
-# Triaging Issues
+# Разбор сообщений о проблемах {#triaging-issues}
 
-Triaging issues is essential for keeping the project organized and making it easier for contributors to find tasks. Here's how to approach the process:
+Пробные вопросы необходимы для организации проекта и облегчения для участников поиска задач. Вот как подойти к процессу:
 
-## Identifying Issues That Need Triage
+## Выявление проблем, требующих проверки {#identifying-issues-that-need-triage}
 
-Start by looking for issues labeled with `needs triage`. These are the ones that require your attention. Every issue should be reviewed to ensure it is clear, actionable, and properly labeled.
+Начните с поиска проблем, обозначенных `needs triage`Это те, которые требуют вашего внимания. Каждый вопрос должен быть рассмотрен, чтобы он был четким, действенным и правильно обозначенным.
 
-## Labeling Issues
+## Вопросы маркировки {#labeling-issues}
 
-Each issue should have two types of labels:
+Каждый выпуск должен иметь два типа этикеток:
 
-- **Contextual labels** describe the area or feature the issue relates to, such as `responsive (mobile)`, `reports`, `accounts`, or `transactions`. Choose the label that best matches the context of the issue.
-- **Call to action labels** indicate what kind of help or action is needed, like `help wanted`, `good first issue`, or `tech debt`. Select the most appropriate one for the issue.
+- **Контекстные этикетки** описать область или особенность, к которой относится проблема, например: `responsive (mobile)`, `reports`, `accounts`или `transactions`Выберите этикетку, которая наилучшим образом соответствует контексту вопроса.
+- **Призыв к действию этикетки** указать, какая помощь или действие необходимы, например: `help wanted`, `good first issue`или `tech debt`Выберите наиболее подходящий для вопроса.
 
-If an issue is missing information or is unclear, add the `needs info` label. When this label is present, the issue will automatically close in 7 days if the original poster does not reply with the requested information. Regularly review issues with `needs info` to see if they have been updated.
+Если проблема отсутствует или неясна, добавьте `needs info` Когда этот ярлык присутствует, проблема автоматически закрывается через 7 дней, если оригинальный плакат не отвечает запрашиваемой информацией. `needs info` Посмотрим, будут ли они обновлены.
 
-Once you have added the appropriate labels, remove the `needs triage` label. Make sure the issue is clear and actionable before doing so. If it is not, request more information and use the `needs info` label.
+После того, как вы добавили соответствующие ярлыки, удалите `needs triage` Убедитесь, что проблема ясна и действительна, прежде чем делать это. Если это не так, запросите дополнительную информацию и используйте `needs info` этикетка.
 
-## Tech Support and Directing Users to Discord
+## Техническая поддержка и направление пользователей на разлад {#tech-support-and-directing-users-to-discord}
 
-Don't hesitate to close issues that are tech support requests or not actionable for the development team. GitHub issues are not used for tech support. Instead, direct users to the wider community on [Discord](https://discord.gg/8JfAXSgfRf). This is especially important for reports about bank-sync issues, which are most often caused by misconfigured servers or bugs with the bank-sync provider, not the core project. When closing such issues, kindly explain that tech support is handled by the community and provide the Discord link.
+Не стесняйтесь закрывать вопросы, которые являются запросами на техническую поддержку или не могут быть выполнены для команды разработчиков. Проблемы GitHub не используются для технической поддержки. Вместо этого, направляйте пользователей в более широкое сообщество. [раздор](https://discord.gg/8JfAXSgfRf)Это особенно важно для отчетов о проблемах банковской синхронизации, которые чаще всего вызваны неправильно настроенными серверами или ошибками с провайдером банковской синхронизации, а не основным проектом. При закрытии таких проблем любезно объясните, что техподдержка обрабатывается сообществом и предоставьте ссылку Discord.
 
 ---
 
-By following these guidelines, you help keep the issue tracker organized and make it easier for everyone to contribute effectively.
+Следуя этим рекомендациям, вы помогаете организовать отслеживание проблем и облегчаете для всех эффективный вклад.

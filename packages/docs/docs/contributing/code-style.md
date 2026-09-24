@@ -1,41 +1,41 @@
 ---
-title: Code Style and Conventions
+title: Стиль кода и соглашения
 ---
 
-This guide outlines the coding conventions and style guidelines for contributing to Actual Budget. Following these guidelines helps maintain consistency and code quality across the codebase.
+В этом руководстве излагаются соглашения о кодировании и руководящие принципы стиля для содействия фактическому бюджету. Следование этим руководящим принципам помогает поддерживать согласованность и качество кода по всей кодовой базе.
 
-## TypeScript Guidelines
+## Руководство TypeScript {#typescript-guidelines}
 
-### Type Usage
+### Тип использования {#type-usage}
 
-- **Use TypeScript for all code**: All new code should be written in TypeScript
-- **Prefer `type` over `interface`**: Use type aliases instead of interfaces when possible
-- **Avoid `enum`**: Use objects or maps instead of enums
-- **Avoid `any` or `unknown`**: Only use when absolutely necessary
-- **Look for existing types**: Check `packages/loot-core/src/types/` for existing type definitions
-- **Avoid type assertions**: Prefer `satisfies` over `as` or `!` for type narrowing
+- **Используйте TypeScript для всего кода**Новый код должен быть написан в TypeScript
+- **Предпочитать `type` над `interface`**Используйте псевдонимы вместо интерфейсов, когда это возможно
+- **избегать `enum`**Используйте объекты или карты вместо чисел
+- **избегать `any` или `unknown`**Использовать только тогда, когда это абсолютно необходимо
+- **Ищите существующие типы**Проверить `packages/loot-core/src/types/` для существующих определений типов
+- **Избегайте типовых утверждений**Предпочтительнее `satisfies` над `as` или `!` для сужения типа
 
-### Naming Conventions
+### Имена конвенций {#naming-conventions}
 
-- **Descriptive variable names**: Use auxiliary verbs for boolean variables (e.g., `isLoaded`, `hasError`)
-- **Named exports**: Use named exports for components and utilities (avoid default exports except in specific cases)
+- **Описательные переменные имена**Использование вспомогательных глаголов для булевых переменных (например, `isLoaded`, `hasError`)
+- **Назван экспорт**Использование названного экспорта для компонентов и коммунальных услуг (избегать экспорта по умолчанию, за исключением конкретных случаев)
 
-### Code Structure
+### Структура кода {#code-structure}
 
-- **Functional programming**: Prefer functional and declarative programming patterns - avoid classes
-- **Pure functions**: Use the `function` keyword for pure functions
-- **Modularization**: Prefer iteration and modularization over code duplication
-- **File structure**: Structure files as: exported component/page, helpers, static content, types
-- **Component files**: Create new components in their own files
+- **Функциональное программирование**Предпочитает функциональные и декларативные шаблоны программирования - избегайте классов
+- **Чистые функции**Используй `function` Ключевое слово для чистых функций
+- **Модульизация**Предпочтение итерации и модулялизации дублированию кода
+- **Структура файлов**Структурные файлы: экспортируемый компонент / страница, помощники, статический контент, типы
+- **Компонентные файлы**Создание новых компонентов в собственных файлах
 
-## React Patterns
+## Реакционные шаблоны {#react-patterns}
 
-### Component Definition
+### Определение компонентов {#component-definition}
 
-- **Don't use `React.FunctionComponent` or `React.FC`**: Type props directly
-- **Don't use `React.*` patterns**: Use named imports instead (e.g., `import { useState } from 'react'`)
+- **Не используйте `React.FunctionComponent` или `React.FC`**: Тип реквизита непосредственно
+- **Не используйте `React.*` закономерности**Вместо этого используйте названный импорт (например, `import { useState } from 'react'`)
 
-### Component Example
+### Пример компонента {#component-example}
 
 ```typescript
 import { type ComponentType } from 'react';
@@ -54,43 +54,43 @@ export function MyComponent({ prop1, prop2 }: MyComponentProps) {
 }
 ```
 
-### Custom Hooks
+### Обычные крючки {#custom-hooks}
 
-Use custom hooks from `src/hooks` instead of importing directly from react-router or react-redux:
+Используйте пользовательские крючки от `src/hooks` Вместо импорта непосредственно из реактивного маршрутизатора или реактивного редукса:
 
-- `useNavigate()` from `src/hooks` (not react-router)
-- `useDispatch()`, `useSelector()`, `useStore()` from `src/redux` (not react-redux)
+- `useNavigate()` из `src/hooks` (не реактивный маршрут)
+- `useDispatch()`, `useSelector()`, `useStore()` из `src/redux` (не реагирует)
 
-### Other React Guidelines
+### Другие рекомендации React {#other-react-guidelines}
 
-- **Avoid unstable nested components**: Don't define components inside other components
-- **Use `satisfies` for type narrowing**: Prefer `satisfies` over type assertions
-- **Use `<Link>` instead of `<a>` tags**: For internal navigation
+- **Избегайте нестабильных компонентов**Не определяйте компоненты внутри других компонентов.
+- **Использовать `satisfies` для сужения типа**Предпочтительнее `satisfies` Поверх утверждений типа
+- **Использовать `<Link>` вместо того, чтобы `<a>` метки**Для внутренней навигации
 
-### JSX Style
+### Стиль JSX {#jsx-style}
 
-- **Declarative JSX**: Keep JSX minimal and readable
-- **Avoid unnecessary curly braces**: In conditionals when not needed
-- **Concise syntax**: Use concise syntax for simple statements
-- **Explicit expressions**: Prefer explicit expressions (`condition && <Component />`)
+- **Декларативный JSX**Держите JSX минимальным и читаемым
+- **Избегайте ненужных кудрявых брекетов**В условиях, когда не требуется
+- **Краткий синтаксис**Используйте краткий синтаксис для простых утверждений
+- **Явные выражения**Предпочитают явные выражения (`condition && <Component />`)
 
-## Platform-Specific Code
+## Специфический код платформы {#platform-specific-code}
 
-- **Don't directly reference platform-specific imports**: Avoid importing `.api`, `.web`, or `.electron` directly
-- **Use conditional exports**: Use conditional exports in `loot-core` for platform-specific code
-- **Build-time resolution**: Platform resolution happens at build time via package.json exports
+- **Не ссылайтесь напрямую на специфический импорт платформы.**Избегайте импорта `.api`, `.web`или `.electron` непосредственно
+- **Использование условного экспорта**Использование условного экспорта в `loot-core` Для платформенного кода
+- **Разрешение на строительство**Решение платформы происходит во время сборки с помощью экспорта package.json
 
-## Restricted Patterns
+## Ограниченные шаблоны {#restricted-patterns}
 
-### Never Use
+### Никогда не используйте {#never-use}
 
-- **`uuid` without destructuring**: Use `import { v4 as uuidv4 } from 'uuid'`
-- **Direct color imports**: Use theme instead of importing colors directly
-- **`@actual-app/web/*` imports in `loot-core`**: Don't import from web package in core
+- **`uuid` без разрушения**Использование `import { v4 as uuidv4 } from 'uuid'`
+- **Прямой цветной импорт**Использование темы вместо импорта цветов напрямую
+- **`@actual-app/web/*` импорта в `loot-core`**Не импортируйте из веб-пакета в ядре
 
-## File Structure Patterns
+## Паттерны структуры файлов {#file-structure-patterns}
 
-### Component File Structure
+### Компонентная файловая структура {#component-file-structure}
 
 ```typescript
 import { type ComponentType } from 'react';
@@ -108,7 +108,7 @@ export function MyComponent({ prop1, prop2 }: MyComponentProps) {
 }
 ```
 
-### Test File Structure
+### Тестирование файловой структуры {#test-file-structure}
 
 ```typescript
 import { describe, it, expect, beforeEach } from 'vitest';
@@ -122,25 +122,25 @@ describe('ComponentName', () => {
 });
 ```
 
-## Internationalization (i18n)
+## Интернационализация (i18n) {#internationalization-i18n}
 
-- **Use `Trans` component**: Prefer `Trans` component instead of `t()` function when possible
-- **Translate all user-facing strings**: All user-facing strings must be translated
-- **Generate i18n files**: Run `yarn generate:i18n` to generate translation files
-- **ESLint enforcement**: Custom ESLint rules enforce translation usage
+- **Использовать `Trans` компонент**Предпочтительнее `Trans` компонент вместо `t()` Функционировать по возможности
+- **Перевод всех пользовательских строк**Все пользовательские строки должны быть переведены
+- **Создание файлов i18n**Пробег `yarn generate:i18n` генерировать файлы перевода
+- **ESLint правоприменение**Пользовательские правила ESLint обеспечивают использование перевода
 
-## Code Quality Checklist
+## Контрольный список качества {#code-quality-checklist}
 
-Before committing changes, ensure:
+Прежде чем вносить изменения, убедитесь:
 
-- [ ] `yarn typecheck` passes
-- [ ] `yarn lint:fix` has been run
-- [ ] Relevant tests pass
-- [ ] User-facing strings are translated
-- [ ] Prefer `type` over `interface`
+- [ ] `yarn typecheck` проход
+- [ ] `yarn lint:fix` Управлялся
+- [ ] Соответствующие тесты проходят
+- [ ] Пользовательские строки переведены
+- [ ] Предпочитать `type` над `interface`
 
-## Additional Resources
+## Дополнительные ресурсы {#additional-resources}
 
-- [TypeScript Handbook](https://www.typescriptlang.org/docs/)
-- [React Documentation](https://react.dev/)
-- [ESLint Configuration](./project-details/architecture.md) - See project structure for ESLint setup
+- [Справочник TypeScript](https://www.typescriptlang.org/docs/)
+- [Реакционная документация](https://react.dev/)
+- [Конфигурация ESLint](./project-details/architecture.md) - См. структуру проекта для установки ESLint

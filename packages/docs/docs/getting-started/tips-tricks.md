@@ -1,166 +1,166 @@
 ---
 sidebar_position: 1
-title: 'Tips & Tricks'
+title: 'Советы и приёмы'
 ---
 
 ## Undo/Redo {#undo-redo}
 
-If you ever make a mistake, pressing <Key mod="ctrl" k="z" /> will undo, and pressing <Key mod="ctrl shift" k="z" /> will redo. Using the desktop app, this is an undo system that you can always rely on; any change can be undone and the UI will walk back in time. If you're using the web app, this is only good for the current session of the website. If you refresh, or close the browser tab, undo history is lost.
+Если вы когда-нибудь ошибетесь, нажмите <Key mod="ctrl" k="z" /> Уничтожить и нажать <Key mod="ctrl shift" k="z" /> Воспользовавшись настольным приложением, это система отмены, на которую вы всегда можете положиться; любые изменения могут быть отменены, и пользовательский интерфейс вернется во времени. Если вы используете веб-приложение, это хорошо только для текущей сессии веб-сайта. Если вы обновите или закроете вкладку браузера, история отмены потеряна.
 
-## Context Menus
+## Меню контекста {#context-menus}
 
-Context menus (right-click menus) are available throughout Actual. Use the method based on your operating system and/or hardware to access them.
+Контекстные меню (меню правого клика) доступны на протяжении всего Actual. Используйте метод на основе вашей операционной системы и / или оборудования для доступа к ним.
 
-## Keyboard Shortcuts
+## Клавишные ярлыки {#keyboard-shortcuts}
 
-Actual has a number of keyboard shortcuts that can help you navigate and manage the application more efficiently.
+Actual имеет ряд ярлыков клавиатуры, которые могут помочь вам более эффективно перемещаться и управлять приложением.
 
-### The Command Palette
+### Командная палитра {#the-command-palette}
 
-The Command Palette is a powerful tool which allows you to quickly access various features and functions within Actual.
+Command Palette - это мощный инструмент, который позволяет быстро получить доступ к различным функциям и функциям в режиме реального времени.
 
-- Open it by pressing the <Key mod="ctrl" fixed k="k" /> combination.
-- On macOS keyboards, use the <Key mod="cmd" fixed k="k" /> key combination.
+- Откройте его, нажав <Key mod="ctrl" fixed k="k" /> Комбинация.
+- На клавиатурах macOS используйте <Key mod="cmd" fixed k="k" /> Ключевая комбинация.
 
-![Command Palette](/img/tips-tricks/command-palette.webp)
+![Командная палитра](/img/tips-tricks/command-palette.webp)
 
-Once open, you can start typing to search for the functions in the sidebar, or you can use the arrow keys to navigate
-through the list of available commands. You can also quickly move to any of the available accounts by typing their name.
+После открытия вы можете начать набор текста для поиска функций на боковой панели или использовать клавиши стрелки для навигации.
+Вы также можете быстро перейти к любой из доступных учетных записей, набрав их имя.
 
-### General shortcuts
+### Общие ярлыки {#general-shortcuts}
 
-- <Key k="?" /> will open the help menu. The Help Menu contains links to the Documentation, Community support (Discord) and the Keyboard shortcuts.
-- <Key mod="ctrl" k="O" /> (the letter O, not zero) this will close the budget and list other available budgets to open.
-- <Key mod="shift" mod="ctrl" k="P" /> [Toggle the privacy filter.](#scramble-hide)
-- <Key mod="ctrl" fixed k="k" /> Open Command Palette.
-- <Key mod="ctrl" k="z" /> Undo.
-- <Key mod="ctrl shift" k="z" /> Redo.
+- <Key k="?" /> Меню Help содержит ссылки на Документацию, поддержку сообщества (Discord) и ярлыки клавиатуры.
+- <Key mod="ctrl" k="O" /> (буква О, а не ноль) это закроет бюджет и перечислит другие доступные бюджеты для открытия.
+- <Key mod="shift" mod="ctrl" k="P" /> [Переключите фильтр конфиденциальности.](#scramble-hide)
+- <Key mod="ctrl" fixed k="k" /> Открытая командная палитра.
+- <Key mod="ctrl" k="z" /> Отвали.
+- <Key mod="ctrl shift" k="z" /> Редо.
 
-### Budget page shortcuts
+### Ярлыки бюджетной страницы {#budget-page-shortcuts}
 
-- <Key k="enter" /> while editing a budget amount will move to the next category.
-- <Key mod="shift" k="enter" /> Move to the previous budget category.
-- <Key k="0" /> (zero) View the current month.
-- <Key arrow="left" /> View the previous month.
-- <Key arrow="right" /> View the next month.
+- <Key k="enter" /> При редактировании бюджета сумма перейдет в следующую категорию.
+- <Key mod="shift" k="enter" /> Переходим к предыдущей бюджетной категории.
+- <Key k="0" /> (ноль) Просмотр текущего месяца.
+- <Key arrow="left" /> Посмотреть предыдущий месяц.
+- <Key arrow="right" /> Смотреть следующий месяц.
 
-### Account page shortcuts
+### Ярлыки страницы аккаунта {#account-page-shortcuts}
 
-- <Key mod="ctrl" k="B" /> Initiate bank sync.
-- <Key mod="ctrl" k="I" /> ( i ) Import transactions.
-- <Key k="t" /> Add new transaction with date picker open.
-- <Key k="f" /> Show only selected transactions. If no transaction is selected, it brings up the Filter dropdown menu.
+- <Key mod="ctrl" k="B" /> Инициировать синхронизацию банка.
+- <Key mod="ctrl" k="I" /> (i) Импортные операции.
+- <Key k="t" /> Добавьте новую транзакцию с открытым выбором даты.
+- <Key k="f" /> Покажите только выбранные транзакции. Если транзакция не выбрана, она поднимает выпадающее меню фильтра.
 
-#### Selection shortcuts
+#### Выбор ярлыков {#selection-shortcuts}
 
-- <Key mod="ctrl" k="A" /> Toggle selection of all transactions or deselection of all selected transactions.
-- <Key k="space" /> Toggle selection of current transaction.
-- <Key mod="shift" k="space" /> Select all transactions between current transaction and most recently selected transaction.
-- <Key k="J" /> or <Key arrow="down" /> With a transaction selected, move to the next transaction down. Hold to scroll down.
-- <Key k="K" /> or <Key arrow="up" /> With a transaction selected, move to the next transaction up. Hold to scroll up.
+- <Key mod="ctrl" k="A" /> Переключите выбор всех транзакций или отмените выбор всех выбранных транзакций.
+- <Key k="space" /> Переключите выбор текущей транзакции.
+- <Key mod="shift" k="space" /> Выберите все транзакции между текущей и последней транзакциями.
+- <Key k="J" /> или <Key arrow="down" /> Выбрав транзакцию, перейдите к следующей транзакции вниз.
+- <Key k="K" /> или <Key arrow="up" /> Выбрав транзакцию, перейдите к следующей транзакции вверх.
 
-#### Transaction shortcuts
+#### Короткие пути транзакций {#transaction-shortcuts}
 
-- <Key k="enter" /> when editing will move down. In a dropdown, this will save the value and close the dropdown. in either the Payment or Deposit columns this will add the transaction; the form remains open for the next addition.
-- <Key mod="shift" k="enter" /> when editing will move up. In a dropdown, this will save the value and close the dropdown.
-- <Key mod="ctrl" k="enter" /> will add the transaction and close the form regardless of where you are editing.
-- <Key k="tab" /> when editing will move right. This will save the value and close an open dropdown.
-- <Key mod="shift" k="tab" /> when editing will move left. This will save the value and close an open dropdown.
+- <Key k="enter" /> при редактировании будет двигаться вниз. В выпадении это сохранит значение и закроет выпадение. либо в колонках Оплата или Депозит это добавит транзакцию; форма остается открытой для следующего добавления.
+- <Key mod="shift" k="enter" /> при редактировании будет двигаться вверх. В выпадении это сохранит значение и закроет выпадение.
+- <Key mod="ctrl" k="enter" /> Добавьте транзакцию и закройте форму независимо от того, где вы редактируете.
+- <Key k="tab" /> Когда редактирование будет двигаться правильно, это сохранит ценность и закроет открытое выпадение.
+- <Key mod="shift" k="tab" /> при редактировании будет двигаться влево. Это позволит сохранить значение и закрыть открытое выпадение.
 
-#### When Managing Transactions
+#### При управлении транзакциями {#when-managing-transactions}
 
 :::important
-Transaction(s) must be selected for the following shortcuts, or as noted.
+Транзакция (транзакции) должна быть выбрана для следующих ярлыков или, как указано выше.
 
-See [Bulk Actions](../transactions/bulk-editing.md) for guidance on working with multiple transactions.
+Видишь? [Bulk Actions](../transactions/bulk-editing.md) Руководство по работе с несколькими транзакциями.
 :::
 
-- <Key k="e" /> Open date picker and set date for selected transactions.
-- <Key k="p" /> Set payee for selected transactions.
-- <Key k="n" /> Set notes for selected transactions.
-- <Key k="c" /> Set category for selected transactions.
-- <Key k="m" /> Set amount for selected transactions.
-- <Key k="l" /> Toggle cleared status for selected transactions.
-- <Key k="a" /> Set account for selected transactions.
-- <Key k="S" /> Link or view schedule for selected transactions.
-- <Key k="f" /> Show only selected transactions. If no transaction is selected, it brings up the Filter dropdown menu.
-- <Key k="d" /> Delete selected transactions.
-- <Key k="u" /> Duplicate selected transactions.
-- <Key k="g" /> Merge selected transactions. Only _two_ transactions with equal amounts can be selected. [Learn more.](../transactions/merging.md)
-- <Key k="r" /> Make transfer from selected transactions. Only _two_ valid conjugate transactions can be selected. [Learn more.](../transactions/transfers.md)
+- <Key k="e" /> Откройте выбор даты и установите дату для выбранных транзакций.
+- <Key k="p" /> Установите плательщика за выбранные транзакции.
+- <Key k="n" /> Установите примечания для выбранных транзакций.
+- <Key k="c" /> Установите категорию для выбранных транзакций.
+- <Key k="m" /> Установить сумму для выбранных транзакций.
+- <Key k="l" /> Toggle очищенный статус для выбранных транзакций.
+- <Key k="a" /> Установить счет для выбранных транзакций.
+- <Key k="S" /> График ссылок или просмотра для выбранных транзакций.
+- <Key k="f" /> Покажите только выбранные транзакции. Если транзакция не выбрана, она поднимает выпадающее меню фильтра.
+- <Key k="d" /> Удаление выбранных транзакций.
+- <Key k="u" /> Дублировать выбранные транзакции.
+- <Key k="g" /> Объединение выбранных транзакций. Можно выбрать только two транзакции с равными суммами. [Узнай больше.](../transactions/merging.md)
+- <Key k="r" /> Совершайте переводы с выбранных транзакций. Можно выбрать только two действительные сопряженные транзакции. [Узнай больше.](../transactions/transfers.md)
 
-## How to View Multiple Months at Once
+## Как просмотреть несколько месяцев сразу {#how-to-view-multiple-months-at-once}
 
-In the top left of the budget, you will see this control:
+В верхней левой части бюджета вы увидите этот контроль:
 
-![Months selector](/img/tips-tricks/months-selector.webp)
+![Селектор месяцев](/img/tips-tricks/months-selector.webp)
 
-This sets the maximum amount of months to render at once, and defaults to 1. If you want to view multiple months on the same page, click the boxes to increase the number.
+Это устанавливает максимальное количество месяцев для рендеринга сразу и по умолчанию до 1.Если вы хотите просмотреть несколько месяцев на одной странице, нажмите на поля, чтобы увеличить количество.
 
 :::note
-This only controls the _maximum_ number of months. If the app is too small to render all of them it will only render the months that fit on the screen.
+Это контролирует только максимальное количество месяцев. Если приложение слишком мало, чтобы отображать их все, оно будет отображать только месяцы, которые помещаются на экране.
 :::
 
-## Scramble and Hide Data {#scramble-hide}
+## Скремблировать и скрыть данные {#scramble-hide}
 
-Actual Budget includes a privacy filter to help you obfuscate sensitive _amounts_ on screen.
+Actual Budget включает в себя фильтр конфиденциальности, чтобы помочь вам скрыть чувствительные суммы на экране.
 
 :::important
-The privacy filter is visual only: it does not encrypt, delete, or alter your saved data or exports.
+Фильтр конфиденциальности является визуальным: он не шифрует, не удаляет и не изменяет сохраненные данные или экспорт.
 
-Be advised that when you hover over scrambled items, the amounts will be shown. This is a feature to help you see the actual amounts when you need them, but it may not be suitable for sharing screenshots or screen recordings.
+Имейте в виду, что при наведении курсора на скремблированные элементы будут показаны суммы. Это функция, которая поможет вам увидеть фактические суммы, когда они вам нужны, но она может не подходить для обмена скриншотами или записями экрана.
 :::
 
-**Turn it on**: Click the _eye icon_ in the top-right corner of the app or use the shortcut <Key mod="shift" mod="ctrl" k="P" />.
+**Включи его.**: Нажмите значок eye в правом верхнем углу приложения или используйте ярлык <Key mod="shift" mod="ctrl" k="P" />.
 
-![Top right corner](/img/a-tour-of-actual/tour-overview-top-right.webp)
+![Верхний правый угол](/img/a-tour-of-actual/tour-overview-top-right.webp)
 
-When enabled, only currency amounts are scrambled so you can take screenshots or share your screen without exposing real numbers.
+При включении скремблируются только суммы валют, поэтому вы можете делать скриншоты или делиться своим экраном, не обнажая реальные цифры.
 
-![Top right corner](/img/tips-tricks/scrambled-scrambled-view.webp)
+![Верхний правый угол](/img/tips-tricks/scrambled-scrambled-view.webp)
 
-What changes when the filter is on:
+Что меняется при включении фильтра:
 
-- Hidden/Scrambled: account balances, budgeted/available amounts, transaction amounts, totals in reports and widgets.
-- Remain Visible: account names, category group and category names, payee names, transaction dates, notes/memos, flags, cleared status, and the presence of individual transactions (only the amounts are scrambled).
+- Hidden/Scrambled: балансы счетов, бюджетные/доступные суммы, суммы транзакций, суммы в отчетах и виджетах.
+- Оставайтесь видимыми: имена счетов, названия групп и категорий, имена получателей, даты транзакций, примечания / заметки, флаги, очищенный статус и наличие отдельных транзакций (только суммы скремблированы).
 
-**Turn it off**: Click the _eye icon_ or <Key mod="shift" mod="ctrl" k="P" /> again to restore normal viewing. This will show the data in its original form.
+**Выключи его.**Нажмите на eye icon или <Key mod="shift" mod="ctrl" k="P" /> Снова для восстановления нормального просмотра. Это покажет данные в первоначальном виде.
 
-## Show The Running Balance
+## Показать баланс бега {#show-the-running-balance}
 
-A "running balance" is the balance of the account after every transaction over time. This is very useful for reconciling accounts with banks because you can see the balance at a specific date and use it to compare it with your bank. Note that the "Show running balance" option and column is only available when the list of transactions is sorted by date in descending order.
+«Бегущий баланс» — это баланс счета после каждой транзакции с течением времени. Это очень полезно для согласования счетов с банками, потому что вы можете увидеть баланс на определенную дату и использовать его для сравнения с вашим банком. Обратите внимание, что опция «Показать баланс» и столбец доступны только тогда, когда список транзакций отсортирован по дате в порядке убывания.
 
-To enable this:
+Для этого необходимо:
 
-1. Click on an account.
-2. Click on the 3 dots to show the actions menu.
-3. Select "Manage table columns".
-4. Check "Running balance"
+1. Нажмите на аккаунт.
+2. Нажмите на 3 точки, чтобы показать меню действий.
+3. Выберите «Управление столбцами таблицы».
+4. Проверьте «Бегущий баланс»
 
-A new column should appear which shows the balance of the account after each transaction:
+Должна появиться новая колонка, которая показывает баланс счета после каждой транзакции:
 
-![Show running balance](/img/tips-tricks/running-balance.webp)
+![Показать баланс](/img/tips-tricks/running-balance.webp)
 
-## Using Emojis in Actual
+## Использование эмодзи в действии {#using-emojis-in-actual}
 
-Actual supports emojis in many places, including payees, categories, and notes. You can use emojis to add visual
-flair to your budget and make it more fun to use.
+Фактическая поддержка смайликов во многих местах, включая получателей, категории и заметки. Вы можете использовать смайлики для добавления визуальных изображений.
+Соблюдайте свой бюджет и делайте его более увлекательным.
 
-To add an emoji, you can use the emoji picker on your operating system, or you can copy and paste emojis from web sites
-like [Emojipedia](https://emojipedia.org/), [EmojiDB](https://emojidb.org/) or [Get Emoji](https://getemoji.com/).
+Чтобы добавить эмодзи, вы можете использовать пикер эмодзи в своей операционной системе или копировать и вставлять эмодзи с веб-сайтов.
+как [Эмодзипедия](https://emojipedia.org/), [EmojiDB](https://emojidb.org/) или [Найди Эмодзи.](https://getemoji.com/).
 
-![Emojis everywhere](/img/tips-tricks/using-emojis.webp)
+![Эмодзи повсюду](/img/tips-tricks/using-emojis.webp)
 
 :::tip[HINT]
 
-To scrub emojis out of an exported list, use the formula `=REGEXREPLACE(text or cell reference, "[^\x00-\x7F]", "")` in Excel or Google sheets.
+Чтобы удалить эмодзи из экспортного списка, используйте формулу `=REGEXREPLACE(text or cell reference, "[^\x00-\x7F]", "")` в листах Excel или Google.
 
 :::
 
-By using emojis on the accounts, you can have grouping of accounts by type, such as credit cards, expenses, and savings.
+Используя эмодзи на счетах, вы можете группировать счета по типам, таким как кредитные карты, расходы и сбережения.
 
-## Math Operators
+## Операторы математики {#math-operators}
 
-When entering amounts for transactions, math operators can be used to calculate a final value.
+При вводе сумм для транзакций математические операторы могут использоваться для расчета конечной стоимости.
 
-For example when splitting a transaction, you can input `16.99*1.1` in the subcategory's payment field to apply a 10% tax rate to the amount, which would display `$18.69` once entered.
+Например, при разделении транзакции вы можете ввести `16.99*1.1` в области платежей подкатегории применять ставку налога 10% к сумме, которая будет отображаться `$18.69` Однажды вошел.

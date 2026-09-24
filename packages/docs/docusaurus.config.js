@@ -4,7 +4,6 @@
 const { themes } = require('prism-react-renderer');
 
 const defaultOptions = {
-  editUrl: 'https://github.com/actualbudget/actual/tree/master/packages/docs',
   beforeDefaultRemarkPlugins: [
     require('./src/remark/mentions'),
     require('./src/remark/enforce-doc-links'),
@@ -14,7 +13,7 @@ const defaultOptions = {
 /** @type {import('@docusaurus/types').Config} */
 module.exports = {
   title: 'Actual Budget',
-  tagline: 'Your finances - made simple',
+  tagline: 'Личные финансы под вашим контролем',
   url: 'https://actualbudget.org/',
   baseUrl: '/',
   onBrokenLinks: 'throw',
@@ -25,12 +24,9 @@ module.exports = {
   organizationName: 'actualbudget',
   deploymentBranch: 'main',
 
-  // Even if you don't use internalization, you can use this field to set useful
-  // metadata like html lang. For example, if your site is Chinese, you may want
-  // to replace "en" with "zh-Hans".
   i18n: {
-    defaultLocale: 'en',
-    locales: ['en'],
+    defaultLocale: 'ru',
+    locales: ['ru'],
   },
 
   markdown: {
@@ -52,19 +48,7 @@ module.exports = {
           sidebarPath: require.resolve('./docs-sidebar.js'),
           ...defaultOptions,
         },
-        blog: {
-          ...defaultOptions,
-          blogSidebarTitle: 'All posts',
-          blogSidebarCount: 'ALL',
-          feedOptions: {
-            type: 'rss',
-            title: 'Actual Budget Blog',
-            description:
-              'Stay updated with the latest blog posts from Actual Budget',
-            copyright: `Copyright © ${new Date().getFullYear()} Actual Budget. All rights reserved.`,
-          },
-          onUntruncatedBlogPosts: 'ignore',
-        },
+        blog: false,
         theme: {
           customCss: require.resolve('./src/css/custom.css'),
         },
@@ -78,7 +62,7 @@ module.exports = {
       navbar: {
         title: 'Actual Budget',
         logo: {
-          alt: 'Actual Open Source',
+          alt: 'Actual Budget',
           src: 'img/logo.webp',
         },
         items: [
@@ -86,83 +70,22 @@ module.exports = {
             to: '/#features',
             // never render as active
             activeBaseRegex: '^$',
-            label: 'Features',
+            label: 'Возможности',
             position: 'left',
           },
           {
             type: 'docSidebar',
             sidebarId: 'tourSidebar',
-            label: 'Tour',
+            label: 'Обзор',
             position: 'left',
           },
           {
             type: 'doc',
             docId: 'index',
-            label: 'Docs',
+            label: 'Документация',
             position: 'left',
-          },
-          {
-            to: 'blog',
-            label: 'Blog',
-            position: 'left',
-          },
-          {
-            type: 'docSidebar',
-            sidebarId: 'communitySidebar',
-            label: 'Community',
-            position: 'left',
-          },
-          {
-            to: '/download',
-            label: 'Download',
-            position: 'left',
-          },
-          {
-            href: 'https://opencollective.com/actual',
-            label: 'Donate',
-            position: 'left',
-          },
-          {
-            href: 'https://discord.gg/8JfAXSgfRf',
-            label: 'Discord',
-            position: 'right',
-          },
-          {
-            href: 'https://github.com/actualbudget/actual',
-            label: 'GitHub',
-            position: 'right',
           },
         ],
-      },
-      footer: {
-        style: 'dark',
-        links: [
-          {
-            label: 'Discord',
-            href: 'https://discord.gg/8JfAXSgfRf',
-          },
-          {
-            label: 'GitHub',
-            href: 'https://github.com/actualbudget/actual',
-          },
-          {
-            href: 'https://opencollective.com/actual',
-            label: 'Donate',
-          },
-          {
-            label: 'Website Source',
-            href: 'https://github.com/actualbudget/actual/tree/master/packages/docs',
-          },
-          {
-            label: 'Privacy Policy',
-            to: '/docs/privacy-policy',
-          },
-          {
-            label: 'RSS Feed',
-            href: 'https://actualbudget.org/blog/rss.xml',
-          },
-        ],
-        copyright: `Copyright © ${new Date().getFullYear()} Actual Budget. Built with Docusaurus.`,
       },
       prism: {
         theme: themes.github,
@@ -208,10 +131,6 @@ module.exports = {
       {
         redirects: [
           {
-            from: '/contact',
-            to: '/docs/community/',
-          },
-          {
             from: '/docs/actual-server-repo-move',
             to: '/docs/install/',
           },
@@ -235,7 +154,7 @@ module.exports = {
         hashed: true,
         indexDocs: true,
         indexPages: false,
-        language: 'en',
+        language: 'ru',
       }),
     ],
     '@r74tech/docusaurus-plugin-panzoom',

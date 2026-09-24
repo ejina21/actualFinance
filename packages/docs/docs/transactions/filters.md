@@ -1,86 +1,86 @@
-# Filtering Transactions
+# Фильтрация транзакций {#filtering-transactions}
 
-### Introduction
+### Введение {#introduction}
 
-Filtering is a little known tool in Actual but is really quite a powerhouse. Filters go well beyond the simple Search tool and will allow you to create all sorts of useful transaction summaries. This will help you view various aspects of your spending, extract data for tax filing and so on.
+Фильтрация - это малоизвестный инструмент в Actual, но на самом деле довольно мощный. Фильтры выходят далеко за рамки простого инструмента поиска и позволят вам создавать всевозможные полезные сводки транзакций. Это поможет вам просматривать различные аспекты ваших расходов, извлекать данные для подачи налогов и так далее.
 
-### Caveats
+### пещеры {#caveats}
 
-Inevitably, there are some restrictions but these offer a great opportunity for developers to improve Actual in the future:
+Неизбежно, есть некоторые ограничения, но они дают прекрасную возможность для разработчиков улучшить Actual в будущем.
 
-1. The only way to print the filtered results is via a screen shot (unless you save to a spreadsheet as a CSV file first)
-1. The columns of the filtered view cannot yet be sorted. But you can of course export the filtered results to a spreadsheet and play with them to your heart's content.
-1. Split transactions do not behave well in the filtered view. The non-applicable part of the filtered results can end up getting added into the total.
-1. Filters are just one way of searching and viewing your data. There is still great scope for the future development of graphical style reports in Actual.
+1. Единственный способ распечатать отфильтрованные результаты - с помощью скриншота (если вы сначала не сохраните в электронной таблице файл CSV).
+1. Колонки отфильтрованного вида пока не могут быть отсортированы, но вы, конечно, можете экспортировать отфильтрованные результаты в электронную таблицу и играть с ними в свое сердце.
+1. Сплит-транзакции плохо себя ведут в фильтрованном виде. Неприменимая часть отфильтрованных результатов может в конечном итоге быть добавлена в общую сумму.
+1. Фильтры — это всего лишь один из способов поиска и просмотра ваших данных. В Actual по-прежнему есть большие возможности для будущей разработки отчетов по графическому стилю.
 
-### How to use the Filter tool
+### Как использовать инструмент фильтра {#how-to-use-the-filter-tool}
 
-Well, having got that out of the way please don't let any of this put you off. Filters are a great tool – and there is lots more scope for further development.
+Ну, убрав это с дороги, пожалуйста, не позволяйте этому оттолкнуть вас. Фильтры - отличный инструмент - и есть гораздо больше возможностей для дальнейшего развития.
 
-First go to the relevant account screen and select **Filter**. You will see from this drop-down that there are a number of options to choose from:
+Сначала перейдите на соответствующий экран учетной записи и выберите **фильтр**Вы увидите из этого выпадающего списка, что есть несколько вариантов на выбор:
 
 ![](/img/filtering/filter.webp)
 
-The great thing is that you are not limited to just one Filter. You can select multiple filters. In effect stacking one upon another. An example will help illustrate this.
+Самое замечательное в том, что вы не ограничены одним фильтром. Вы можете выбрать несколько фильтров. По сути, складывать один на другой. Пример поможет проиллюстрировать это.
 
-There are further options within each area to narrow the filter further. Here are a couple to illustrate the choices – Dates and Categories:
+В каждой области есть дополнительные варианты для дальнейшего сужения фильтра. Вот пара, чтобы проиллюстрировать выбор - даты и категории:
 
-The `matches` operator uses _[regular expressions](https://regextutorial.org/)_, the other condition types are further explained at [Rules Page](../budgeting/rules/index.md#condition-types).
+The `matches` Оператор использует _[регулярные выражения](https://regextutorial.org/)_Другие типы состояний дополнительно объясняются в [Страница правил](../budgeting/rules/index.md#condition-types).
 
 ![](/img/filtering/conditions-1.webp)
 
 ![](/img/filtering/conditions-2.webp)
 
-**Note**: There are further options available by clicking the down arrow under **Date** and **Amount**.
+**Примечание**: Есть дополнительные варианты доступны, нажав вниз стрелка под **Дата** и **Сумма**.
 
-### Example
+### Пример {#example}
 
-In this example we are finding out how much the Mercedes car cost to run during the 2024 calendar year. To enhance this analysis a tag of each vehicle owned was added to transactions in the "Car" category group. Alternatively, you could just be more granular in your creation of Categories.
+В этом примере мы выясняем, сколько стоит автомобиль Mercedes в течение 2024 календарного года. Для улучшения этого анализа к транзакциям в группе категорий «Автомобиль» была добавлена метка каждого принадлежащего автомобиля. Альтернативно, вы могли бы просто быть более детальными в создании категорий.
 
 ![](/img/filtering/multiple-filters.webp)
 
-Now we want to see the total spent on the Mercedes car in 2024. This is shown at the top center of the page.
+Теперь мы хотим увидеть общую сумму, потраченную на автомобиль Mercedes в 2024 году. Это показано в верхнем центре страницы.
 
 ![](/img/filtering/filtered-total.webp)
 
-But what if we need to drill down further and calculate just the costs were for maintenance of this particular car? By selecting the applicable transactions a revised total appears as shown below. Alternatively just remove the non-applicable category filters.
+Но что, если нам нужно дополнительно просверлить и рассчитать только расходы на техническое обслуживание этого конкретного автомобиля? Выбрав применимые транзакции, пересмотренная общая сумма появляется, как показано ниже. Альтернативно просто удалите неприменимые фильтры категорий.
 
 ![](/img/filtering/selected-total.webp)
 
-In the above Example we used the **Date is greater than** and **Date is less than** filters to illustrate the fine tuning that is possible. However, in this example of a simple calendar year it would have been quicker simply to click on the down arrow below **Date** and select as follows:
+В приведенном выше примере мы использовали **Дата больше, чем** и **Дата меньше, чем** Однако в этом примере простого календарного года было бы быстрее просто нажать на нижнюю стрелку ниже. **Дата** и выбрать следующие:
 
 ![](/img/filtering/year-1.webp)
 
 ![](/img/filtering/year-2.webp)
 
-### Saving Filters
+### Экономия фильтров {#saving-filters}
 
-To save a search, simply click on the **Unsaved filter** dropdown button above the transactions table and click **Save new filter**.
+Чтобы сохранить поиск, просто нажмите на **Неспасенный фильтр** выпадающая кнопка над таблицей транзакций и нажмите **Сохранить новый фильтр**.
 
 ![](/img/filtering/save-filter.webp)
 
-You'll then get a window that asks for you to name the saved filter. Type in whatever you wish the filter to be called and click the **Add** button.
+Затем вы получите окно, которое просит вас назвать сохраненный фильтр. Введите все, что вы хотите, чтобы фильтр был вызван, и нажмите кнопку **Добавить** Кнопка.
 
 ![](/img/filtering/set-filter-name.webp)
 
-When you want to re-visit a previously saved filter, go to the relevant account page, click on **Filter**, and select **Saved** in the dropdown.
+Когда вы хотите повторно посетить ранее сохраненный фильтр, перейдите на соответствующую страницу учетной записи, нажмите на **фильтр**и выбрать **Спасенный** в выпадающем.
 
 ![](/img/filtering/select-saved-1.webp)
 
-A new window should pop-up giving you the ability to select which saved filter you wish to revisit. Simply click on the saved filter or type in the filter's name and click **Apply**.
+Новое окно должно появиться, давая вам возможность выбрать, какой сохраненный фильтр вы хотите посетить.Просто нажмите на сохраненный фильтр или введите имя фильтра и нажмите **Применять**.
 
 ![](/img/filtering/select-saved-2.webp)
 
-The saved filter will then display in the transactions table.
+Затем сохраненный фильтр будет отображаться в таблице транзакций.
 
-#### Modifying and Deleting Saved Filters
+#### Модификация и удаление сохраненных фильтров {#modifying-and-deleting-saved-filters}
 
-You also have the ability to modify or delete any of your existing saved filters.
+Вы также можете изменить или удалить любой из существующих сохраненных фильтров.
 
-First, pull up your saved filter. If you wish to make any changes to the saved filter, you can do that now by adding additional filter conditions.
+Во-первых, вытяните сохраненный фильтр. Если вы хотите внести какие-либо изменения в сохраненный фильтр, вы можете сделать это сейчас, добавив дополнительные условия фильтра.
 
-To modify or delete the filter, click on the top-right dropdown menu. It will present you with a few options based on what actions you've taken. If you've modified the saved filter, you'll have the ability to rename, update, revert, delete, or save a new filter based on the criteria you have established. If no changes to the filter were made, you can rename or delete the saved filter entirely.
+Чтобы изменить или удалить фильтр, нажмите в верхнем правом выпадающем меню. Он предоставит вам несколько вариантов, основанных на том, какие действия вы предприняли. Если вы модифицировали сохраненный фильтр, у вас будет возможность переименовать, обновить, вернуть, удалить или сохранить новый фильтр на основе установленных вами критериев. Если в фильтр не было внесено никаких изменений, вы можете переименовать или полностью удалить сохраненный фильтр.
 
 ![](/img/filtering/modify-saved.webp)
 
-To clear out any filtered transactions, click on the dropdown menu in the top-right corner above your transactions table and click **Clear all conditions**.
+Чтобы очистить любые отфильтрованные транзакции, нажмите на выпадающее меню в правом верхнем углу над таблицей транзакций и нажмите **Очистить все условия**.

@@ -1,59 +1,59 @@
 ---
-title: 'Privacy Policy'
+title: 'Политика конфиденциальности'
 ---
 
-Effective Date: 13 Jan 2024
+Дата вступления в силу: 13 января 2024
 
-Thank you for choosing Actual Budget, a super fast and privacy-focused app for managing your finances. This Privacy Policy is designed to help you understand how your personal information is collected, used, and safeguarded by Actual Budget.
+Спасибо, что выбрали Actual Budget, очень быстрое и ориентированное на конфиденциальность приложение для управления своими финансами. Настоящая Политика конфиденциальности разработана, чтобы помочь вам понять, как ваша личная информация собирается, используется и защищается Actual Budget.
 
-# 1. Information We Collect:
+# 1.Информация, которую мы собираем: {#1-information-we-collect}
 
-## 1.1 User-Provided Information:
+## 1.1 Пользовательская информация: {#11-user-provided-information}
 
-- Actual Budget does not require any personal information for its basic functionality.
-- If you choose to enable optional end-to-end encryption, your encryption key is generated locally on your device, and we do not have access to it.
+- Actual Budget не требует какой-либо личной информации для своей основной функциональности.
+- Если вы решите включить дополнительное сквозное шифрование, ваш ключ шифрования генерируется локально на вашем устройстве, и у нас нет к нему доступа.
 
-## 1.2 Automatically Collected Information:
+## 1.2 Автоматически собираемая информация: {#12-automatically-collected-information}
 
-- Actual Budget does not collect any data automatically, and no tracking mechanisms are employed.
+- Actual Budget не собирает данные автоматически, и не используются механизмы отслеживания.
 
-# 2. How We Use Your Information:
+# 2 Как мы используем вашу информацию: {#2-how-we-use-your-information}
 
-## 2.1 App Functionality:
+## 2.1 Функциональность приложения: {#21-app-functionality}
 
-- Your financial data is stored locally on your device and is not transmitted or stored on our servers.
-- Multi-device sync is facilitated through secure, direct communication between your devices and your server (if you have set-it up) without involving any third-party servers.
+- Ваши финансовые данные хранятся локально на вашем устройстве и не передаются и не хранятся на наших серверах.
+- Синхронизация с несколькими устройствами облегчается посредством безопасной прямой связи между вашими устройствами и вашим сервером (если вы настроили его) без привлечения сторонних серверов.
 
-## 2.2 Optional End-to-End Encryption:
+## 2.2 Необязательное сквозное шифрование: {#22-optional-end-to-end-encryption}
 
-- If you choose to enable end-to-end encryption, your financial data is encrypted on your device before transmission, and only devices with the correct encryption key can decrypt and access the information.
+- Если вы решите включить сквозное шифрование, ваши финансовые данные шифруются на вашем устройстве перед передачей, и только устройства с правильным ключом шифрования могут расшифровать и получить доступ к информации.
 
-# 3. Data Ownership:
+# 3. Владение данными: {#3-data-ownership}
 
-## 3.1 You Own Your Data:
+## 3.1 Вы владеете своими данными: {#31-you-own-your-data}
 
-- We believe in empowering users. You own your financial data, and we do not access, store, or use it for any purpose.
+- Мы верим в расширение прав и возможностей пользователей. Вы владеете своими финансовыми данными, и мы не имеем доступа, не храним и не используем их для каких-либо целей.
 
-## 3.2 Data Portability:
+## 3.2 Переносимость данных: {#32-data-portability}
 
-- You can export your data from Actual Budget at any time, giving you the flexibility to move your information wherever you choose.
+- Вы можете экспортировать свои данные из Actual Budget в любое время, что дает вам возможность перемещать информацию, где бы вы ни находились.
 
-# 4. Security:
+# 4. Безопасность: {#4-security}
 
-## 4.1 Local Storage:
+## 4.1 Местное хранение: {#41-local-storage}
 
-- Your financial data is stored securely on your device. We do not upload or store your data on external servers.
+- Ваши финансовые данные надежно хранятся на вашем устройстве. Мы не загружаем и не храним ваши данные на внешних серверах.
 
-## 4.2 Optional Encryption:
+## 4.2 Дополнительное шифрование: {#42-optional-encryption}
 
-- If you choose to enable end-to-end encryption, your data is further secured with a key known only to you.
+- Если вы решите включить сквозное шифрование, ваши данные будут защищены ключом, известным только вам.
 
-# 5. Changes to Privacy Policy:
+# 5. Изменения в Политике конфиденциальности: {#5-changes-to-privacy-policy}
 
-- Any updates or changes to this Privacy Policy will be communicated through the website.
+- Любые обновления или изменения в настоящей Политике конфиденциальности будут сообщены через веб-сайт.
 
-# 6. Contact Us:
+# 6. Свяжитесь с нами: {#6-contact-us}
 
-- If you have any questions or concerns about this Privacy Policy, please contact us via the community Discord.
+- Если у вас есть какие-либо вопросы или опасения по поводу этой Политики конфиденциальности, пожалуйста, свяжитесь с нами через сообщество Discord.
 
-- By using Actual Budget, you agree to the terms outlined in this Privacy Policy. Please review this policy regularly for any updates. Thank you for choosing Actual Budget for your financial management needs.
+- Используя Actual Budget, вы соглашаетесь с условиями, изложенными в настоящей Политике конфиденциальности. Пожалуйста, регулярно просматривайте эту политику для любых обновлений. Спасибо за выбор Actual Budget для ваших потребностей в финансовом управлении.

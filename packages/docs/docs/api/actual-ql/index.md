@@ -1,10 +1,10 @@
-# ActualQL Overview
+# Обзор ActualQL {#actualql-overview}
 
-## Introduction
+## Введение {#introduction}
 
-ActualQL is a new query language introduced in 0.0.129. This allows you to query data any way you like. For example, previously we provided a `filterTransactions` method that let you search transactions, but its behavior was baked into the backend. You couldn't change how transactions were sorted, search certain fields specifically, or sum the total amount.
+ActualQL - это новый язык запросов, введенный в 0.0.129. Это позволяет запрашивать данные любым способом, который вам нравится. Например, ранее мы предоставили `filterTransactions` метод, который позволял вам искать транзакции, но его поведение было встроено в бэкэнд. Вы не могли изменить способ сортировки транзакций, искать определенные поля конкретно или суммировать общую сумму.
 
-ActualQL provides a lightweight syntax for querying data. It looks like this:
+ActualQL обеспечивает легкий синтаксис для запроса данных.
 
 ```js
 q('transactions')
@@ -15,15 +15,15 @@ q('transactions')
   .select(['id', 'date', 'amount']);
 ```
 
-The above query would return the `id`, `date`, and `amount` of all transactions with the `Food` category on `2021-02-20`.
+Приведенный выше запрос возвращает `id`, `date`и `amount` всех сделок с `Food` категория на `2021-02-20`.
 
-Currently the query language is mostly undocumented, but more docs will come soon. Most of Actual uses ActualQL, so you have access to the same functionality that Actual has.
+В настоящее время язык запросов в основном не документирован, но скоро появится больше документов. Большинство Actual использует ActualQL, поэтому у вас есть доступ к той же функциональности, что и Actual.
 
-Until we have better docs, here are few things you can do with ActualQL.
+Пока у нас нет лучших документов, вот несколько вещей, которые вы можете сделать с ActualQL.
 
-## Running a Query
+## Запуск запроса {#running-a-query}
 
-You construct a query with `q` and run it with `runQuery`. The result is an object with a `data` prop. An example:
+Вы создаете запрос с `q` и управлять им с `runQuery`Результатом является объект с `data` Пример:
 
 ```js
 let { q, runQuery } = require('@actual-app/api');
@@ -31,31 +31,31 @@ let { q, runQuery } = require('@actual-app/api');
 let { data } = await runQuery(q('transactions').select('*'));
 ```
 
-`data` will be an array of all the transactions in the system.
+`data` Это будет массив всех транзакций в системе.
 
-## Specify Split Transaction Behavior
+## Укажите поведение сплит-транзакций {#specify-split-transaction-behavior}
 
-Split transactions complicate things: when you sum transaction amounts, do you sum up all the subtransactions or do you just use the top-level transaction? When selecting transactions, which ones do you want?
+Раздельные транзакции усложняют вещи: когда вы суммируете суммы транзакций, суммируете ли вы все субтранзакции или просто используете транзакцию верхнего уровня?
 
-The `transactions` table provides two different interfaces for transaction data to help with this. You can configure the type of data to return using `options` and passing a `splits` option:
+The `transactions` Таблица предоставляет два разных интерфейса для данных транзакций, чтобы помочь с этим. Вы можете настроить тип данных для возврата с помощью `options` и проходя мимо `splits` вариант:
 
 ```js
 q('transactions').select('*').options({ splits: 'inline' });
 ```
 
-There are two different options for `splits`: `inline` or `grouped`<super>\*</super>. **`inline` is the default**, and will not return the "parent" transaction of a split transaction. It will only show you subtransactions of split transaction, and the result is a flat array of transactions. This lets you sum all the amounts of transactions and by default it will ignore the "parent" transaction.
+Есть два разных варианта для `splits`: `inline` или `grouped`<super>\*</super>. **`inline` является дефолтом**, и не вернет "родительскую" транзакцию сплит-транзакции. Она покажет вам только субтранзакции сплит-транзакции, и в результате получится плоский массив транзакций. Это позволяет суммировать все суммы транзакций и по умолчанию будет игнорировать "родительскую" транзакцию.
 
-`grouped` always returns the full split transaction (parent and subtransaction), no matter which part of it matched a filter. The returned data is also grouped so that transactions have a `subtransactions` property that lists them.
+`grouped` всегда возвращает полную разделенную транзакцию (родительскую и субтранзакцию), независимо от того, какая ее часть соответствовала фильтру. `subtransactions` Имущество, которое их перечисляет.
 
-These two options give you full control over how you want to handle split transactions.
+Эти два варианта дают вам полный контроль над тем, как вы хотите обрабатывать отдельные транзакции.
 
-_\* There is a third option as well, `all`, which returns both transactions and subtransactions in a flat list. You only need this if doing something advanced._
+_\* Есть и третий вариант, `all`, который возвращает как транзакции, так и субтранзакции в плоском списке. Вам это нужно только если вы делаете что-то продвинутое._
 
-## Searching Transactions
+## Поиск транзакций {#searching-transactions}
 
-Calling `filter` applies conditions to the query; only data that matches the given filters will be returned.
+Звонок `filter` Для запроса применяются условия; возвращаются только данные, соответствующие данным фильтрам.
 
-The keys of a filter object are the names of the fields (see [Transaction](../reference.md#transaction)) and the values are the condition. By default, it will perform an "is equal" but you can also provide various operators. An example:
+Ключами объекта фильтра являются названия полей (см. [сделка](../reference.md#transaction)) и значения являются условием. По умолчанию он будет выполнять "равен", но вы также можете предоставить различные операторы. Пример:
 
 ```js
 q('transactions')
@@ -66,9 +66,9 @@ q('transactions')
   .select('*');
 ```
 
-The `$gte` operator on `date` returns transactions on or after `2021-01-01`. Available operators are `$eq`, `$lt`, `$lte`, `$gt`, `$gte`, `$ne`, `$oneof`, `$regex`, `$like`, and `$notlike`.
+The `$gte` оператор на `date` возвращает транзакции или после `2021-01-01`Доступные операторы `$eq`, `$lt`, `$lte`, `$gt`, `$gte`, `$ne`, `$oneof`, `$regex`, `$like`и `$notlike`.
 
-If you pass an array to a field, it will combine the conditions with `$and`:
+Если вы передадите массив в поле, он будет сочетать условия с `$and`:
 
 ```js
 q('transactions')
@@ -78,7 +78,7 @@ q('transactions')
   .select('*');
 ```
 
-This is the same query but restricts it to transactions between `2021-01-01` and `2021-12-31`. This could have been written as:
+Это один и тот же запрос, но он ограничивается транзакциями между `2021-01-01` и `2021-12-31`Это могло быть написано как:
 
 ```js
 q('transactions')
@@ -88,7 +88,7 @@ q('transactions')
   .select('*');
 ```
 
-`$and` and `$or` takes an array and combines multiple conditions. For example, you could get transactions on multiple dates like this:
+`$and` и `$or` Например, вы можете получать транзакции в несколько дат, таких как:
 
 ```js
 q('transactions')
@@ -98,4 +98,4 @@ q('transactions')
   .select('*');
 ```
 
-The above will return transactions on `2021-01-01` **or** `2021-01-02`.
+Вышеперечисленные операции будут возвращать `2021-01-01` **или** `2021-01-02`.

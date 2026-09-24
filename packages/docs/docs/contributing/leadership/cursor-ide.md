@@ -1,71 +1,71 @@
-# Cursor IDE
+# Cursor IDE {#cursor-ide}
 
-[Cursor](http://cursor.com) is an AI-powered code editor that helps you automate code changes, create pull requests, and enforce custom rules in your codebase. This guide will show you how to:
+[Курсор](http://cursor.com) Это редактор кода с искусственным интеллектом, который помогает вам автоматизировать изменения кода, создавать запросы на вытягивание и обеспечивать соблюдение пользовательских правил в вашей кодовой базе.
 
-- Set up the GitHub MCP server for automated pull requests
-- Use Cursor to fix issues and streamline your workflow
-- Create and manage custom rules with the `.cursor/rules` directory
-
----
-
-## Installing the GitHub MCP Server
-
-The GitHub MCP (Model Code Platform) server allows Cursor to connect with your GitHub repositories. With the MCP server, you can automate code changes, manage pull requests, and streamline your development process.
-
-To install the MCP server, use the one-click install option available [here](https://docs.cursor.com/tools).
+- Настройка MCP-сервера GitHub для автоматических запросов на вытягивание
+- Используйте Cursor для устранения проблем и оптимизации рабочего процесса
+- Создание и управление пользовательскими правилами с помощью `.cursor/rules` справочник
 
 ---
 
-## Automating GitHub Workflows with Cursor
+## Установка GitHub MCP Server {#installing-the-github-mcp-server}
 
-Once the MCP server is running and connected to your repository, you can use Cursor's AI to automate code changes and pull requests.
+Сервер GitHub MCP (Model Code Platform) позволяет Cursor подключаться к вашим репозиториям GitHub.С помощью MCP-сервера вы можете автоматизировать изменения кода, управлять запросами на вытягивание и оптимизировать процесс разработки.
 
-### Example: Fixing an Issue and Creating a Pull Request
-
-Follow these steps to fix a GitHub issue using Cursor:
-
-1. **Find the Issue**  
-   Copy the link to the GitHub issue you want to address.
-2. **Ask Cursor to Fix the Issue**  
-   In Cursor, paste the issue link and ask:  
-   _"Fix this issue and create a pull request."_
-3. **Review the Changes**  
-   Cursor will:
-   - Analyze the issue
-   - Suggest code changes
-   - Commit the changes
-   - Create a pull request on GitHub
-4. **Track Progress**  
-   Cursor will keep you updated on the status and provide links to the pull request and related commits.
+Чтобы установить MCP-сервер, используйте опцию установки в один клик [здесь](https://docs.cursor.com/tools).
 
 ---
 
-## Managing Custom Rules with the `.cursor/rules` Directory
+## Автоматизация рабочих процессов GitHub с помощью курсора {#automating-github-workflows-with-cursor}
 
-Cursor supports custom rules to help your team follow code style, workflows, and best practices. You can store these rules in the `.cursor/rules/` directory.
+Как только сервер MCP запускается и подключается к вашему репозиторию, вы можете использовать ИИ Cursor для автоматизации изменений кода и выполнения запросов.
 
-### Directory Structure
+### Пример: исправление проблемы и создание запроса на вытягивание {#example-fixing-an-issue-and-creating-a-pull-request}
 
-Each rule is a Markdown (`.mdc`) file that describes guidelines or steps. These files can contain:
+Следуйте этим шагам, чтобы исправить проблему GitHub с помощью курсора:
 
-- **Code style guidelines** - formatting rules, naming conventions, and best practices
-- **Workflow instructions** - how to handle specific types of changes or features
-- **Testing requirements** - what tests to write and how to structure them
-- **Documentation standards** - how to document code changes and features
-- **Review criteria** - what to look for when reviewing pull requests
-
-Learn more about cursor rules: [documentation](https://docs.cursor.com/context/rules).
-
-### Adding or Editing Rules
-
-1. Create or edit Markdown files in `.cursor/rules/`.
-2. Write clear, actionable instructions.
-3. Cursor will automatically apply these rules when making code changes or reviewing pull requests.
+1. **Найдите проблему**
+   Скопируйте ссылку на проблему GitHub, которую вы хотите решить.
+2. **Попросите Cursor решить проблему**
+   В Cursor вставьте ссылку на проблему и спросите:
+   _Исправьте эту проблему и создайте запрос на вытягивание._
+3. **Обзор изменений**
+   Курсор будет:
+   - Анализировать вопрос
+   - Предложите изменения кода
+   - Соблюдайте изменения
+   - Создайте запрос на GitHub
+4. **Отслеживание прогресса**
+   Курсор будет держать вас в курсе состояния и предоставлять ссылки на запрос на вытягивание и связанные обязательства.
 
 ---
 
-## Tips for Using Cursor
+## Управление таможенными правилами с помощью `.cursor/rules` Директория {#managing-custom-rules-with-the-cursorrules-directory}
 
-- Use rules to enforce team conventions, automate changelog creation, or standardize testing.
-- You can ask Cursor to explain or follow any rule in your `.cursor/rules/` directory.
-- Keep rules concise and focused for the best results.
+Курсор поддерживает пользовательские правила, чтобы помочь вашей команде следовать стилю кода, рабочим процессам и лучшим практикам. `.cursor/rules/` Директория.
+
+### Структура каталога {#directory-structure}
+
+Каждое правило - это разметка (`.mdc`) файл, описывающий руководящие принципы или этапы. Эти файлы могут содержать:
+
+- **Руководящие принципы Code Style** - правила форматирования, соглашения об именах и передовая практика
+- **Инструкция по рабочему процессу** Как обрабатывать конкретные типы изменений или функций
+- **Требования к испытаниям** какие тесты писать и как их структурировать
+- **Стандарты документации** Как документировать изменения и функции кода
+- **Критерии пересмотра** - что искать при рассмотрении запросов на вытягивание
+
+Узнайте больше о правилах курсора: [документация](https://docs.cursor.com/context/rules).
+
+### Добавление или редактирование правил {#adding-or-editing-rules}
+
+1. Создавать или редактировать файлы Markdown в `.cursor/rules/`.
+2. Напишите четкие, действенные инструкции.
+3. Курсор будет автоматически применять эти правила при внесении изменений в код или рассмотрении запросов на вытягивание.
+
+---
+
+## Советы по использованию Cursor {#tips-for-using-cursor}
+
+- Используйте правила для обеспечения соблюдения командных конвенций, автоматизации создания журналов изменений или стандартизации тестирования.
+- Вы можете попросить Cursor объяснить или следовать любому правилу в вашем приложении. `.cursor/rules/` Директория.
+- Держите правила краткими и сосредоточенными на лучших результатах.

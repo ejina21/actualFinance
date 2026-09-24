@@ -70,7 +70,7 @@ export function DashboardSelector({
             textAlign: 'center',
           }}
         >
-          {currentDashboard.name}
+          {currentDashboard.name === 'Main' ? t('Main') : currentDashboard.name}
         </View>
         <SvgExpandArrow
           width={7}
@@ -105,7 +105,7 @@ export function DashboardSelector({
               items={[
                 ...dashboards.map(dashboard => ({
                   name: dashboard.id,
-                  text: dashboard.name,
+                  text: dashboard.name === 'Main' ? t('Main') : dashboard.name,
                 })),
                 Menu.line,
                 {

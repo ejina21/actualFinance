@@ -1,58 +1,48 @@
-# Importing Transactions
+# Импорт операций {#importing-transactions}
 
-There are various ways to get transactions into Actual.
+Операции можно загрузить из банка, импортировать из файла или добавить вручную.
 
-## Linked Bank Import
+## Подключение банка {#linked-bank-import}
 
-Actual Budget supports [linking your bank accounts](../advanced/bank-sync.md) to sync using SimpleFIN, GoCardless or Pluggy.ai.
+Actual поддерживает [синхронизацию банковских счетов](../advanced/bank-sync.md) через SimpleFIN, GoCardless и Pluggy.ai. Есть и [дополнительные проекты сообщества](../community-repos.md).
 
-There are also [community projects](../community-repos.md) that implement bank syncing.
+## Импорт банковского файла {#import-financial-files}
 
-## Import Financial Files
+Скачайте выписку на сайте банка. Actual принимает файлы CSV, QIF, OFX, QFX и CAMT. Если доступны OFX или QFX, начните с них: в таких файлах обычно больше данных для сопоставления операций.
 
-A quick way to import transactions is to login to your bank's website and download a file.
+1. Откройте счёт, в который хотите загрузить операции.
+2. Нажмите **Импорт** и выберите файл.
 
-Actual supports importing CSV, QIF, OFX, QFX and CAMT files. Your bank probably allows you to download one of these formats (OFX/QFX is recommended).
+## Импорт CSV {#import-csv-files}
 
-1. Open the account you want to import transactions into.
-2. Press the **Import** button and select the file.
+Если банк предоставляет только CSV:
 
-## Import CSV Files
+1. Откройте нужный счёт, нажмите **Импорт** и выберите файл.
+2. Выберите формат **CSV**.
+3. Сопоставьте столбцы CSV с полями Actual. Поля, которые не нужны, оставьте без выбора.
+4. Проверьте формат даты. Зелёная дата в окне импорта показывает, как Actual прочитал значение из файла. Если формат не распознан, проверьте выбранный столбец даты.
+5. Если файл не открывается, попробуйте другой разделитель CSV.
+6. При необходимости включите изменение знака сумм, раздельные столбцы поступлений и расходов или множитель для всех сумм. Множитель может пригодиться для приблизительного пересчёта валют.
+7. Проверьте предварительный просмотр и нажмите **Импорт**.
 
-If your bank doesn't support downloading financial files, you can import a CSV file instead.
+![Импорт файла CSV](/img/import/import-csv@2x.webp)
 
-1. Open the account you want to import transactions into.
-2. Press the **Import** button and select the file.
-3. Select the **CSV** option.
-4. Set up the fields to match the CSV file.
-   - For the "CSV Fields" dropdowns, leave them as "Choose field…" to leave the related field blank. Otherwise select the column from your CSV that corresponds to each field.
-   - If the date is not being imported correctly (the green date is how Actual interprets the date), you can change the date format to match your CSV file. If your date format is not shown in the dropdown, check that the date column is correctly selected from your CSV file.
-   - If the file can't be imported at all, try changing the CSV delimiter to match your file. (Let us know if your file uses a different delimiter that isn't listed!)
-   - You can optionally toggle on "Flip amount" if you want to negate all of the amounts in the CSV file.
-   - You can optionally toggle on "Split amount into separate inflow/outflow columns" if your CSV file has separate columns for inflow and outflow amounts (also known as debit and credit.)
-   - You can toggle on "Add Multiplier" to add a multiplier to all of the amounts in the CSV file. This can be useful if you want to make an approximate currency conversion.
-5. Once you're happy with the settings, press **Import**.
+## Добавление вручную {#manually-add-transactions}
 
-![CSV Import](/img/import/import-csv@2x.webp)
+Если автоматическая загрузка не подходит, операции можно вводить вручную:
 
-## Manually Add Transactions
+1. Откройте счёт.
+2. Нажмите **Добавить**.
+3. Заполните поля операции и сохраните её.
 
-If desired, you can manually add transactions. This is the most work but allows you to manage accounts that may not work with any other importing mechanism.
+## Как избежать дублей {#avoiding-duplicate-transactions}
 
-1. Open the account to want to add transactions to.
-2. Press the **Add New** button.
-3. Fill out the transaction and press **Add**.
+Actual старается не создавать одинаковые операции дважды. Надёжнее всего это работает с файлами OFX и QFX: они обычно содержат идентификатор операции. Дополнительно Actual сравнивает дату, сумму и получателя платежа. Поэтому операция, введённая вручную, может совпасть с той же операцией при последующем импорте.
 
-## Avoiding duplicate transactions
+При совпадении Actual отдаёт предпочтение импортированной записи и может обновить дату вручную введённой операции. Это помогает сохранять соответствие выписке банка.
 
-Actual will automatically try to avoid duplicate transactions. This works best with OFX/QFX files since they provide rich data about transactions. They provide an **id** that we can use to avoid importing duplicates.
-
-After checking the **id**, Actual will look for transactions around the same date, with the same amount, and with a similar payee. If it thinks the transaction already exists, it will avoid creating a duplicate. This means you can manually enter a transaction, and later it will be matched when you import it from a file.
-
-It will always favor the imported transaction. If it matches a manually-entered transaction, it will update the date to match the imported transaction. **Keeping dates in sync with your bank is important** as it allows you to compare the balance at any point in time with your bank.
-
-When "Merge with existing transactions" is enabled, a **Reimport deleted transactions** checkbox is also available. When checked (the default for file imports), any transactions that were previously imported and then deleted will be reimported. Disable this option if you do _not_ want deleted transactions to reappear during import.
+Если включено объединение с существующими операциями, доступен параметр **Повторно импортировать удалённые операции**. По умолчанию при импорте файлов он включён. Отключите его, если удалённые операции не должны появляться снова.
 
 :::note
-The [API](../api/reference.md#importtransactions) defaults `reimportDeleted` to `true` for backward compatibility. If you are importing via the API and want to skip deleted transactions, pass `reimportDeleted: false` explicitly.
+В [API](../api/reference.md#importtransactions) параметр `reimportDeleted` по умолчанию равен `true`. Чтобы пропускать удалённые операции при импорте через API, явно передайте `reimportDeleted: false`.
 :::

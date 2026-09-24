@@ -1,66 +1,66 @@
 ---
-title: Actual Budget Vision
+title: Видение проекта Actual
 ---
 
-**Vision statement**: To produce a delightful budgeting tool that meets you wherever you are in your financial journey.
+**Заявление о видении**Создать восхитительный бюджетный инструмент, который встречается с вами, где бы вы ни находились в своем финансовом путешествии.
 
-**Mission statement**: Our mission is to enable everyone to have the opportunity to:
+**Заявление миссии**Наша миссия состоит в том, чтобы дать каждому возможность:
 
-- take charge of their finances
-- find financial peace of mind
-- actively engage in dreaming big and achieving their goals
+- взять на себя ответственность за свои финансы
+- Найдите финансовое спокойствие
+- активно участвовать в больших мечтах и достижении своих целей;
 
-## Primary Objectives
+## Основные цели {#primary-objectives}
 
-- The user has full visibility into their budget
-  - The user has ownership and control of their data now, and in the future
-  - The user can view the current status and trends in their budget
-  - The user can keep track of their priorities and goals, whether they are long-term or short-term.
+- Пользователь имеет полную видимость своего бюджета.
+  - Пользователь имеет право собственности и контроля над своими данными сейчас и в будущем.
+  - Пользователь может ознакомиться с текущим состоянием и тенденциями своего бюджета.
+  - Пользователь может отслеживать свои приоритеты и цели, будь то долгосрочные или краткосрочные.
 
-- The user will enjoy a clean and fast experience
-  - The application is fully usable across all devices, offline and online
-  - The application supports multiple budgets, each one reachable by multiple devices
-  - The application is accessible
+- Пользователь будет наслаждаться чистым и быстрым опытом.
+  - Приложение полностью пригодно для использования на всех устройствах, офлайн и онлайн
+  - Приложение поддерживает несколько бюджетов, каждый из которых доступен для нескольких устройств.
+  - Приложение является доступным
 
-## Design principles
+## Принципы проектирования {#design-principles}
 
-Actual is designed using the following principles:
+Actual разработан с использованием следующих принципов:
 
-- **Local-first**
-- **Open**
-- **Sleek and clutter-free**
-- **Stable**
-- **Reliable**
-- **Secure**
-- **Privacy focused**
-- **Community-driven**
+- **Первый местный**
+- **Открыть**
+- **Гладкий и без беспорядка**
+- **стабильный**
+- **надежный**
+- **безопасный**
+- **Конфиденциальность сосредоточена**
+- **Общественный**
 
-### Local-first
+### Первый местный {#local-first}
 
-Actual is local first; the database that powers Actual Budget, and ultimately your budget, lives on your device. It is not stored on a server. "Actual server" allows you to sync changes to your budget on different devices. To do this, only the changes to the budget are sent to the server. The server stores the messages, and the local client pulls down the change(s).
+Actual — это локальная база данных, которая поддерживает Actual Budget и, в конечном счете, ваш бюджет. Он не хранится на сервере. «Актуальный сервер» позволяет синхронизировать изменения бюджета на разных устройствах. Для этого на сервер отправляются только изменения в бюджете. Сервер хранит сообщения, а локальный клиент удаляет изменения (изменения).
 
-### Open
+### Открыть {#open}
 
-Actual is Open Source utilizing the MIT license. The code is open for anyone to see, view, and contribute. You own your data; you can do whatever you want with it.
+Actual - это Open Source с использованием лицензии MIT. Код открыт для всех, кто может видеть, просматривать и вносить свой вклад. Вы владеете своими данными; вы можете делать с ними все, что хотите.
 
-### User Interface
+### Пользовательский интерфейс {#user-interface}
 
-The sleek and clutter-free user interface is built for beginners and advanced users alike. It comes packed with a robust 'undo' system and progressive discoverability. The responsive interface adapts to the screen size you are using to give you the best experience for that device. A desktop computer will have the full desktop experience designed to be used with a keyboard and mouse, while a tablet and phone will have an experience ideal for using touch screens. A native mobile app, often found in app stores and marketplaces, is not planned.
+Гладкий и беспорядочный пользовательский интерфейс создан как для начинающих, так и для продвинутых пользователей. Он поставляется с надежной системой «undo» и прогрессивной обнаруживаемостью. Адаптивный интерфейс адаптируется к размеру экрана, который вы используете, чтобы дать вам лучший опыт для этого устройства. Настольный компьютер будет иметь полный рабочий стол, предназначенный для использования с клавиатурой и мышью, в то время как планшет и телефон будут иметь опыт, идеальный для использования сенсорных экранов. Нативное мобильное приложение, часто встречающееся в магазинах приложений и на рынках, не планируется.
 
-### Stable, Reliable, Secure.
+### Стабильный, надежный, безопасный. {#stable-reliable-secure}
 
-The contributors to Actual Budget don't just write the program; they USE the program.  We all have a vested interest in maintaining reliability, security, and stability. If issues are found, bug reports are welcomed so that issues can be remedied quickly.
+Вкладчики в Actual Budget не просто пишут программу; они используют программу. Мы все заинтересованы в поддержании надежности, безопасности и стабильности. Если проблемы найдены, сообщения об ошибках приветствуются, чтобы проблемы можно было быстро исправить.
 
-### Privacy Focused
+### Конфиденциальность сфокусирована {#privacy-focused}
 
-Actual has no trackers, and unless explicitly enabled, no third-party access is allowed.
+Actual не имеет трекеров, и если явно не включен, доступ третьих лиц не допускается.
 
-### Community-driven
+### Общественный {#community-driven}
 
-Development is driven by the community and the maintainers.
+Развитие осуществляется сообществом и его сторонниками.
 
-### Third-party use
+### Использование третьей стороной {#third-party-use}
 
-Actual is [MIT licensed](https://github.com/actualbudget/actual/blob/master/LICENSE.txt) which allows for the use of the software without restriction. The Actual Budget project and community appreciate any submissions from third-party contributors to enhance and improve this amazing project. This gratitude extends to single volunteers and company-sponsored participants alike.
+Актуальным является [лицензированный MIT](https://github.com/actualbudget/actual/blob/master/LICENSE.txt) Проект «Актуальный бюджет» и сообщество ценят любые предложения от сторонних участников для улучшения и улучшения этого удивительного проекта. Эта благодарность распространяется как на одиночных добровольцев, так и на участников, спонсируемых компанией.
 
-Let's continue to make Actual Budget the best personal finance tool together!
+Давайте сделаем Actual Budget лучшим инструментом личных финансов вместе!

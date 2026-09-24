@@ -8,82 +8,38 @@ vi.mock('i18next', () => {
     init: vi.fn().mockResolvedValue(undefined),
     changeLanguage: vi.fn(),
   };
-  return {
-    default: i18nMock,
-  };
+  return { default: i18nMock };
 });
 
 vi.mock('./languages', () => ({
   languages: {
-    '/locale/en.json': vi.fn(),
-    '/locale/uk.json': vi.fn(),
-    '/locale/pt-BR.json': vi.fn(),
+    '/locale/ru.json': vi.fn(),
   },
 }));
 
 vi.hoisted(vi.resetModules);
 
-describe('setI18NextLanguage', () => {
-  beforeEach(async () => {
-    vi.clearAllMocks();
-  });
-
+describe('Russian-only language selection', () => {
+  beforeEach(() => vi.clearAllMocks());
   afterEach(vi.unstubAllGlobals);
 
-  test('should set system default language when no language is provided', () => {
-    vi.stubGlobal('navigator', { language: 'uk' });
-
-    setI18NextLanguage('');
-
-    expect(vi.mocked(i18n).changeLanguage).toHaveBeenCalledWith('uk');
+  test('offers only Russian', () => {
+    expect(availableLanguages).toEqual(['ru']);
   });
 
-  test('should set the provided language if it is available', () => {
-    const language = availableLanguages[0];
+  test('uses Russian when the system language is English', () => {
+    vi.stubGlobal('navigator', { language: 'en' });
 
-    setI18NextLanguage(language);
+    setI18NextLanguage(null);
 
-    expect(vi.mocked(i18n).changeLanguage).toHaveBeenCalledWith(language);
+    expect(vi.mocked(i18n).changeLanguage).toHaveBeenCalledWith('ru');
   });
 
-  test('should fallback to English if the provided language is unavailable', () => {
-    vi.spyOn(console, 'info');
+  test('ignores a stored English preference', () => {
+    vi.stubGlobal('navigator', { language: 'en' });
 
-    setI18NextLanguage('unknown');
+    setI18NextLanguage('en');
 
-    expect(console.info).toHaveBeenCalledWith(
-      'Unknown locale unknown, falling back to en',
-    );
-    expect(vi.mocked(i18n).changeLanguage).toHaveBeenCalledWith('en');
-  });
-
-  test('should successfully use a language with a region code if it is known', () => {
-    const language = 'pt-BR';
-
-    setI18NextLanguage(language);
-
-    expect(vi.mocked(i18n).changeLanguage).toHaveBeenCalledWith(language);
-  });
-
-  test('should fallback to base language if the provided language has an unknown region code', () => {
-    vi.spyOn(console, 'info');
-
-    setI18NextLanguage('uk-ZZ');
-
-    expect(console.info).toHaveBeenCalledWith(
-      'Unknown locale uk-ZZ, falling back to uk-zz',
-    );
-    expect(vi.mocked(i18n).changeLanguage).toHaveBeenCalledWith('uk');
-  });
-
-  test('should fallback to lowercase language if the provided language has uppercase letters', () => {
-    vi.spyOn(console, 'info');
-
-    setI18NextLanguage('EN');
-
-    expect(console.info).toHaveBeenCalledWith(
-      'Unknown locale EN, falling back to en',
-    );
-    expect(vi.mocked(i18n).changeLanguage).toHaveBeenCalledWith('en');
+    expect(vi.mocked(i18n).changeLanguage).toHaveBeenCalledWith('ru');
   });
 });

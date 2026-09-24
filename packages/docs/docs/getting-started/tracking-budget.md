@@ -1,84 +1,84 @@
-# Tracking Budget
+# Отслеживание бюджета {#tracking-budget}
 
-## What is the Tracking Budget
+## Что такое бюджет отслеживания {#what-is-the-tracking-budget}
 
-The **Tracking budget** option allows the user to shift from the default **Envelope budget** option to a more traditional style of budgeting.
-The **Tracking budget** won't automatically rollover funds from month to month, and you don't have to account for all on budget funds continually.
-Instead of working with what funds you have _now_, you can forecast expenses and income.
-All transactions do still need to be categorized.
+The **Отслеживание бюджета** Опция позволяет пользователю переходить от по умолчанию **Конвертный бюджет** Вариант более традиционного стиля бюджетирования.
+The **Отслеживание бюджета** Вы не будете автоматически перемещать средства из месяца в месяц, и вам не нужно постоянно учитывать все бюджетные средства.
+Вместо того, чтобы работать с фондами, которые у вас есть, вы можете прогнозировать расходы и доходы.
+Все транзакции должны быть классифицированы.
 
-We, the Actual team, suggest that you try to use the **Envelope Budget** if you haven't already as we believe it to be a more capable style of budgeting than the **Tracking Budget**. However, if you would prefer the more traditional style, then the **Tracking Budget** is for you.
+Мы, настоящая команда, предлагаем вам попробовать использовать **Конвертный бюджет** если у вас еще нет, как мы считаем, более способного стиля составления бюджета, чем **Отслеживание бюджета**Если вы предпочитаете более традиционный стиль, то **Отслеживание бюджета** Это для тебя.
 
-## Enabling the Tracking Budget
+## Включение бюджета отслеживания {#enabling-the-tracking-budget}
 
-The **Tracking Budget** feature can be enabled from the Settings page by clicking on "Switch to tracking budgeting".
+The **Отслеживание бюджета** Функция может быть включена со страницы «Настройки», нажав на кнопку «Переключиться на отслеживание бюджетирования».
 
 ![](/img/tracking-budget-7.webp)
 
-## Creating a Budget
+## Создание бюджета {#creating-a-budget}
 
-Below is a view of what the budget page of a **Tracking Budget** looks like.
+Ниже приведено описание того, что бюджетная страница **Отслеживание бюджета** Похоже на то.
 
 ![](/img/tracking-budget-1.webp)
 
-If you are creating a budget for the first time, here's how it works:
+Если вы создаете бюджет впервые, вот как это работает:
 
-1. Assign the amount of income you expect to receive in the current month to the respective income categories.
-2. Assign the amount of money you need for each of your spending categories.
+1. Назначьте сумму дохода, которую вы ожидаете получить в текущем месяце, соответствующим категориям дохода.
+2. Назначьте сумму денег, необходимую для каждой из ваших категорий расходов.
 
-Upon completion of these two tasks for the month, you will see the budgeted totals in the monthly header in gray.
-The expected savings you will incur for the month will show up in the **Projected Savings** field for the current or future month.
-When you receive new income or spend from your categories, enter those transactions in the account registers.
-Your budget is not static, so there will be times when you do not have enough budgeted for your spending.
-When one of your categories is overdrawn, increase the budgeted amount for that category so it is 0 or greater.
+После выполнения этих двух заданий за месяц вы увидите бюджетные итоговые показатели в ежемесячном заголовке в сером цвете.
+Ожидаемая экономия, которую вы понесете за месяц, будет отображаться в **Прогнозируемые сбережения** поле на текущий или будущий месяц.
+Когда вы получаете новый доход или тратите из своих категорий, введите эти транзакции в реестры счетов.
+Ваш бюджет не статичен, поэтому будут моменты, когда у вас не будет достаточного бюджета для ваших расходов.
+Если одна из ваших категорий переполнена, увеличьте бюджетную сумму для этой категории, чтобы она была 0 или больше.
 
-## The Monthly Summary Explained
+## Ежемесячное резюме объясняется {#the-monthly-summary-explained}
 
-As you can see in the following example, your total budgeted items show in the right hand side of the summary for both your **Income** and **Expenses** and your actual expenses and income are totaled in the left hand side of the summary. The **Projected Savings** field is calculated from your budgeted income minus budgeted expenses, so expect the **Projected Savings** to decrease when covering overspending.
+Как вы можете видеть в следующем примере, ваши общие бюджетные статьи отображаются в правой части резюме для обеих ваших целей. **Доход** и **Расходы** и ваши фактические расходы и доходы суммируются в левой части резюме. **Прогнозируемые сбережения** поле рассчитывается из вашего бюджетного дохода за вычетом бюджетных расходов, поэтому ожидайте, что **Прогнозируемые сбережения** Уменьшить при покрытии перерасхода.
 
 ![](/img/tracking-budget-2.webp)
 
-There are useful pie charts next to **Income** and **Expenses** to track your progress visually.
+Рядом есть полезные пироги **Доход** и **Расходы** Отслеживать свой прогресс визуально.
 
 ![](/img/tracking-budget-5.webp)
 
-- An incomplete green pie means your total expenses or income are less than your total amount budgeted for expenses or income, respectively.
+- Неполный зеленый пирог означает, что ваши общие расходы или доходы меньше, чем общая сумма, заложенная в бюджет для расходов или доходов соответственно.
 
 ![](/img/tracking-budget-4.webp)
 
-- A complete green pie chart means your spending and budget are exactly the same.
+- Полный график зеленого пирога означает, что ваши расходы и бюджет точно такие же.
 
 ![](/img/tracking-budget-6.webp)
 
-- A pie chart that has turned red means you have overspent your total budget.
+- График пирогов, который стал красным, означает, что вы перерасходовали свой общий бюджет.
 
-When a new month begins, your **Projected Savings** changes to **Saved** or **Overspent**, depending on your final transactions. The final savings amount calculated for this field is your actual income minus your actual expenses. If you hover your mouse over the **Saved** or **Overspent** text, you can view the breakdown of projected and actual savings for the month.
+Когда начинается новый месяц, **Прогнозируемые сбережения** изменения в **Спасенный** или **перерасходованный**Окончательная сумма сбережений, рассчитанная для этой области, - это ваш фактический доход за вычетом ваших фактических расходов. **Спасенный** или **перерасходованный** Вы можете просмотреть разбивку прогнозируемых и фактических сбережений за месяц.
 
 ![](/img/tracking-budget-3.webp)
 
-## How Money Rolls Over
+## Как переворачиваются деньги {#how-money-rolls-over}
 
-Money does not automatically carry over from month to month in the **Tracking Budget**. If you have overspending in any category, you may wish to carry this balance forward into the next month. This can be done by clicking on the **Balance** of the category and select **Rollover Overspending**.
+Деньги автоматически не переносятся из месяца в месяц. **Отслеживание бюджета**Если у вас есть перерасход в любой категории, вы можете пожелать перенести этот баланс в следующий месяц. **Баланс** категории и выбрать **Перерасход Ролловера**.
 
 :::note
-If you utilize the **Rollover Overspending** feature on a category that is not over spent, the entire spent amount will be forwarded to the next month and the **Saved** amount will increase for the current month.
-This will affect your spent totals as if the spending didn't happen.
-The spending will only show up in the month that the rollover stops.
+Если вы используете **Перерасход Ролловера** Функция в категории, которая не затрачена, вся потраченная сумма будет перенаправлена на следующий месяц. **Спасенный** Сумма увеличится за текущий месяц.
+Это повлияет на ваши общие расходы, как если бы расходы не происходили.
+Расходы появятся только в том месяце, когда остановится опрокидывание.
 :::
 
-## Copy Until Year End
+## Копировать до конца года {#copy-until-year-end}
 
-The **Copy until year end** option in the per-category budget menu copies the current month's budgeted amount to every later month of the same calendar year, overwriting any existing value for that category in those months.
+The **Копировать до конца года** Опция в бюджетном меню каждой категории копирует бюджетную сумму текущего месяца до каждого последующего месяца того же календарного года, переписывая любое существующее значение для этой категории в эти месяцы.
 
-To use it, click the budget amount for a category to open the budget menu, then select **Copy until year end**. Months in subsequent calendar years are not affected.
+Чтобы использовать его, нажмите сумму бюджета для категории, чтобы открыть бюджетное меню, а затем выберите **Копировать до конца года**Месяцы в последующие календарные годы не затрагиваются.
 
-This is useful when you add or change a recurring expense and want to update all future planned months without clicking through each one individually. For example, if you realise in March that your grocery budget should be $300 for the rest of the year, you can set it once and copy it to April through December in one click.
+Это полезно, когда вы добавляете или меняете повторяющиеся расходы и хотите обновить все будущие запланированные месяцы, не нажимая каждый по отдельности. Например, если вы понимаете в марте, что ваш бюджет на продукты должен составлять 300 долларов США в течение остальной части года, вы можете установить его один раз и скопировать его на апрель-декабрь одним щелчком мыши.
 
-## Working With the Budget
+## Работа с бюджетом {#working-with-the-budget}
 
-All the non-budgeting features of Actual can be used with the **Tracking Budget** the same as the **Envelope Budget**.
-Experimental features may not work with the **Tracking Budget** yet.
-If not please let us know in the feature feedback.
+Все небюджетные функции Actual могут быть использованы в **Отслеживание бюджета** То же самое, что и **Конвертный бюджет**.
+Экспериментальные функции могут не работать с **Отслеживание бюджета** пока.
+Если нет, сообщите нам об этом в обратной связи.
 :::note
-If you find critical functionality missing that you need, please submit a request on [GitHub](https://github.com/actualbudget/actual/issues/new/choose).
+Если вы обнаружили, что критическая функциональность отсутствует, пожалуйста, отправьте запрос на [GitHub](https://github.com/actualbudget/actual/issues/new/choose).
 :::

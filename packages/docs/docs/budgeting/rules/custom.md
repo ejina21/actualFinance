@@ -1,41 +1,41 @@
-# Rules Examples
+# Примеры правил {#rules-examples}
 
-This page has examples of custom rules that some of our users have found useful for their own budgets. If you have any custom rules you're proud of, click the "Edit this page" button below to propose adding them to this page [tell us about them](../../community/index.md)!
+На этой странице есть примеры пользовательских правил, которые некоторые из наших пользователей нашли полезными для своих собственных бюджетов. Если у вас есть какие-либо пользовательские правила, которыми вы гордитесь, нажмите кнопку «Изменить эту страницу» ниже, чтобы предложить добавить их на эту страницу. [Расскажите нам о них](../../community/index.md)!
 
-### Q: How do I set the payee when the payee name changes between transactions
+### Q: Как установить получателя, когда имя получателя изменяется между транзакциями {#q-how-do-i-set-the-payee-when-the-payee-name-changes-between-transactions}
 
-**A:** Sometimes the payee shows up slightly differently from transaction to transaction. To set the same payee every time and not create a new one every time a new transaction is imported, use a **Pre** rule that reads the imported payee field and finds the merchant name using a "contains" condition.
+**A:** Иногда получатель платежа появляется немного иначе от транзакции к транзакции. Чтобы установить один и тот же получатель каждый раз и не создавать новый каждый раз, когда новая транзакция импортируется, используйте **Прекрасно** Правило, которое читает импортное поле получателя и находит торговое имя, используя условие «содержит».
 
 ![](/img/rules-custom/custom-rules-imported-payee.webp)
 
-### Q: How do I set a default account when I add transactions?
+### Q: Как установить учетную запись по умолчанию при добавлении транзакций? {#q-how-do-i-set-a-default-account-when-i-add-transactions}
 
-**A:** Set a **Pre** rule to check for an empty account field. When entering a transaction in the "All Accounts" ledger or from the ledger of a Category listing, your preferred default account will be auto filled.
+**A:** Установить **Прекрасно** Правило проверки для пустого поля учетной записи.При вводе транзакции в реестр «Все счета» или из реестра списка категорий ваша предпочтительная учетная запись по умолчанию будет автоматически заполнена.
 
 ![](/img/rules-custom/custom-rules-1.webp)
 
-### Q: I have accounts (like cash or Venmo) that instantly "clear" at the moment of purchase. How can I automate toggling the "cleared" status?
+### Вопрос: У меня есть счета (например, наличные или Venmo), которые мгновенно «очищаются» в момент покупки. {#q-i-have-accounts-like-cash-or-venmo-that-instantly-clear-at-the-moment-of-purchase-how-can-i-automate-toggling-the-cleared-status}
 
-**A:** Set a **Post** rule to check for your account or accounts where instant transactions can be made, set the action to "cleared", and select the checkbox. Cash or Venmo are typical examples of this type of account. Any time a transaction is added to the accounts listed in this rule, those transactions will automatically get a cleared state from now on.
+**A:** Установить **Почта** Правило проверки для вашей учетной записи или учетных записей, где могут быть совершены мгновенные транзакции, установите действие «очищено» и выберите флажок. Кэш или Venmo являются типичными примерами этого типа учетной записи. Каждый раз, когда транзакция добавляется к учетным записям, перечисленным в этом правиле, эти транзакции автоматически получают очищенное состояние отныне.
 
 ![](/img/rules-custom/custom-rules-2.webp)
 
-### Q: I use bank sync. How do I create transfers and not make duplicates?
+### В: Я использую банковскую синхронизацию. Как мне создавать переводы, а не делать дубликаты? {#q-i-use-bank-sync-how-do-i-create-transfers-and-not-make-duplicates}
 
-**A:** Rules can be used to automatically create transfers.
-Under the hood, Actual creates payees for each of your accounts.
-To create a transfer, simply set the payee to the other account you are transferring between.
-It is recommended to also limit the rule to a specific account.
+**A:** Правила могут использоваться для автоматического создания переводов.
+Под капотом Actual создает получателей за каждый из ваших счетов.
+Чтобы создать перевод, просто установите получателя на другой счет, который вы переводите между.
+Также рекомендуется ограничить правило конкретным счетом.
 
 ![](/img/rules-custom/custom-rules-transfer.webp)
 
-If you are using bank syncing on both accounts in the transfer you will need to create a rule for both accounts.
-This will prevent the creation of duplicate transfers.
-The processes will look like this:
+Если вы используете банковскую синхронизацию на обоих счетах при переводе, вам нужно будет создать правило для обоих счетов.
+Это позволит избежать дублирования переводов.
+Процессы будут выглядеть так:
 
-1. Bank account **A** is imported and has a transfer
-2. Your rule will catch the transaction that should be labeled as a transfer and create the transfer.
-3. The transfer will show up in both accounts.
-4. Bank account **B** is imported and contains a transaction for the same transfer.
-5. Your second rule will catch the transfer transaction and set it as a transfer.
-6. Actual's deduplication will see two transfers of the same amount on the same day with the same payee and delete the duplicate.
+1. Банковский счет **A** импортируется и имеет трансфер
+2. Ваше правило улавливает транзакцию, которая должна быть помечена как передача, и создает передачу.
+3. Трансфер будет отображаться на обоих счетах.
+4. Банковский счет **B** импортируется и содержит транзакцию на ту же передачу.
+5. Второе правило будет фиксировать транзакцию передачи и устанавливать ее как передачу.
+6. Дедупликация Actual приведет к двум переводам одной и той же суммы в один и тот же день с одним и тем же получателем платежа и удалит дубликат.

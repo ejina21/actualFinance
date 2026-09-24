@@ -1,53 +1,53 @@
-# Bulk Actions
+# Массовое изменение операций {#bulk-actions}
 
-It can be extremely useful to be able to bulk edit or duplicate a number of transactions at once.
+Может быть чрезвычайно полезно иметь возможность массово редактировать или дублировать несколько транзакций одновременно.
 
 :::danger
-This guidance is not compatible with split transactions, bulk editing produces some unexpected behaviors when bulk editing split transactions.
+Это руководство не совместимо с разделенными транзакциями, массовое редактирование создает некоторые неожиданные поведения при массовом редактировании разделенных транзакций.
 :::
 
-### Use Cases
+### Случаи использования {#use-cases}
 
-1. Adding categories to imported transactions.
-2. Changing the category for a number of transactions you may wish to recategorize.
-3. Adding a note to certain transactions in order to provide more granular detail for analysis, without having to add still more categories.
-4. Changing the Account for a number of transactions - perhaps due to a manual entry or import error.
-5. Duplicating multiple transactions that may not be appropriate for scheduling.
+1. Добавление категорий к импортным операциям.
+2. Изменение категории для ряда транзакций, которые вы, возможно, захотите перерегистрировать.
+3. Добавление примечания к определенным транзакциям, чтобы обеспечить более детальный анализ, без добавления дополнительных категорий.
+4. Изменение Учетной записи для ряда транзакций - возможно, из-за ошибки ручного ввода или импорта.
+5. Дублирование нескольких транзакций, которые могут не подходить для планирования.
 
-### Editing Transaction Properties
+### Редактирование свойств транзакций {#editing-transaction-properties}
 
-There are various components of a transaction that can be changed through bulk edit. These can be seen here.
+Существуют различные компоненты транзакции, которые могут быть изменены путем массового редактирования.
 
 ![](/img/bulk-edit/1.webp)
 
-To Access this drop down first go to "All accounts" so that you can see all transactions.
+Чтобы получить доступ, сначала перейдите в раздел «Все счета», чтобы вы могли видеть все транзакции.
 
 ![](/img/elements/sidebar/sidebar-all-accounts@2x.webp)
 
-Then Search or Filter to identify the transactions that you wish to change and select the tick box in the left hand column (by the date column).
+Затем выполните поиск или фильтр, чтобы определить транзакции, которые вы хотите изменить, и выберите галочку в левой колонке (по столбцу даты).
 
 ![](/img/bulk-edit/3.webp)
 
 ![](/img/bulk-edit/4.webp)
 
-Now you are ready to alter one or more components of these selected transactions. Go to the drop down top right (in this case the arrow below "30 transactions")
+Теперь вы готовы изменить один или несколько компонентов этих выбранных транзакций. Перейдите в выпадающую верхнюю правую (в этом случае стрелка ниже "30 транзакций")
 
 ![](/img/bulk-edit/5.webp)
 
-Now select the component you wish to change. In this case we are going to add a Note
+Теперь выберите компонент, который вы хотите изменить. В этом случае мы добавим заметку
 
 ![](/img/bulk-edit/6.webp)
 
-Press "Enter" and all the selected transactions are changed.
+Нажмите «Войти», и все выбранные транзакции будут изменены.
 
 ![](/img/bulk-edit/7.webp)
 
-Here is another example. This time to bulk change a Category.
+Вот еще один пример. На этот раз для массового изменения категории.
 
 ![](/img/bulk-edit/8.webp)
 
-### Duplicating Transactions
+### Дублирование транзакций {#duplicating-transactions}
 
-To duplicate transactions (one or more), simply navigate to the Accounts page as described above, and select the tick box in the left hand column. Once selected, go to the drop down menu on the top right of the page, above the table header. Open the menu and select "Duplicate". Your newly duplicated transactions will appear in the transactions table!
+Чтобы дублировать транзакции (одну или несколько), просто перейдите на страницу Учетных записей, как описано выше, и выберите галочку в левой колонке. После выбора перейдите в выпадающее меню в правом верхнем углу страницы, над заголовком таблицы. Откройте меню и выберите «Дублировать». Ваши новые дублированные транзакции появятся в таблице транзакций!
 
 ![](/img/bulk-edit/duplicate-transactions.webp)

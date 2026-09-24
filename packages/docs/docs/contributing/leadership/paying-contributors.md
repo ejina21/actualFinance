@@ -1,69 +1,69 @@
-# Paying Reviewers for Administrative Work
+# Оплата рецензентам за административную работу {#paying-reviewers-for-administrative-work}
 
-As our donation income has become steady, we have implemented a lightweight system to compensate **core contributors** who perform administrative tasks — **specifically reviewing pull requests, triaging, and managing issues**. This work is essential to maintain project momentum and ensure its health.
+Поскольку наш доход от пожертвований стал стабильным, мы внедрили легкую систему компенсации. **основные вкладчики** кто выполняет административные функции - **специально рассматривает запросы на вытягивание, сортировку и управление проблемами**Эта работа необходима для поддержания импульса проекта и обеспечения его здоровья.
 
-A list of the core contributors can be found in [this page](https://github.com/orgs/actualbudget/people).
+Список основных участников можно найти в [Эта страница](https://github.com/orgs/actualbudget/people).
 
-## How the Payment System Works
+## Как работает платежная система {#how-the-payment-system-works}
 
-We allocate a monthly review stipend pool ($2,000 per month) distributed among reviewers based on the **size of PRs they review** — using **lines of code changed (LOC)** as a proxy for effort. In addition to PR reviews, we recognize contributions around **issue triage** and **resolution**, which are essential to keeping the project healthy and user-friendly.
+Мы выделяем ежемесячную стипендию для обзора (2000 долларов в месяц), распределенную среди рецензентов. **Размер PR, которые они рассматривают** - использовать **Измененные строки кода (LOC)** В дополнение к PR-обзорам, мы признаем вклад в работу **сортировка** и **резолюция**, которые необходимы для поддержания проекта здоровым и удобным для пользователя.
 
-Points are automatically calculated for all **public members of the Actual Budget organization** through our [GitHub workflow](https://github.com/actualbudget/actual/blob/master/.github/scripts/count-points.mjs). Refer to the workflow documentation for the current point values assigned to different contributor actions.
+Очки рассчитываются автоматически для всех **Публичные члены организации «Актуальный бюджет»** Через наш [Рабочий процесс GitHub](https://github.com/actualbudget/actual/blob/master/.github/scripts/count-points.mjs)См. документацию рабочего процесса для текущих значений точек, назначенных различным действиям участников.
 
-**Example Calculation:**
+**Пример расчета:**
 
-Jack earned 10 points. Nancy earned 15 points.
+Джек заработал 10 очков, Нэнси - 15 очков.
 
-Total points earned: 25
+Заработанные очки: 25
 
-Value of each point: $2,000 / 25 = $80
+Стоимость каждого пункта: $2000/25 = $80
 
-Jack (Dublin) receives: 10 \* $80 = $800
+Джек (Дублин) получает: 10* $80 = $800
 
-Nancy (Amsterdam) receives: 15 \* $80 = $1,200
+Нэнси (Амстердам) получает: 15* $80 = $1,200
 
-## Questions and Answers
+## Вопросы и ответы {#questions-and-answers}
 
-#### Can earnings be accumulated over a more extended period?
+#### Могут ли доходы накапливаться в течение более длительного периода? {#can-earnings-be-accumulated-over-a-more-extended-period}
 
-Yes, but not indefinitely. Twice a year (1st Jan and 1st of July), any earnings not withdrawn are reset to zero. This reduces the bookkeeping required for tracking reserved payouts versus the available budget.
+Да, но не на неопределенный срок. Дважды в год (1 января и 1 июля) любые не выведенные доходы сбрасываются до нуля. Это сокращает бухгалтерию, необходимую для отслеживания резервных выплат по сравнению с имеющимся бюджетом.
 
-#### Can I forfeit the earnings?
+#### Могу ли я лишиться заработка? {#can-i-forfeit-the-earnings}
 
-Yes. If no payment request is made, earnings are automatically forfeited.
+Если запрос на оплату не сделан, заработок автоматически утрачивается.
 
-#### How can I receive the payout?
+#### Как я могу получить выплату? {#how-can-i-receive-the-payout}
 
-You can receive your payout via OpenCollective by submitting an invoice.
+Вы можете получить свою выплату через OpenCollective, представив счет.
 
-#### Can anyone earn points and receive a payment?
+#### Кто-нибудь может заработать баллы и получить оплату? {#can-anyone-earn-points-and-receive-a-payment}
 
-No, this system is only open to core maintainers. We may extend the system in the future, but currently, only core maintainers are eligible for this privilege.
+Нет, эта система открыта только для тех, кто поддерживает ядро. Мы можем расширить систему в будущем, но в настоящее время только те, кто поддерживает ядро, имеют право на эту привилегию.
 
-#### What about taxes?
+#### А как же налоги? {#what-about-taxes}
 
-You are responsible for handling your taxes. Tax obligations depend on your local laws.
+Вы несете ответственность за обработку ваших налогов. Налоговые обязательства зависят от вашего местного законодательства.
 
-#### Will this system use up the entire budget?
+#### Будет ли эта система расходовать весь бюджет? {#will-this-system-use-up-the-entire-budget}
 
-No. We currently receive between USD 3,000 and USD 3,500 each month on average. The allocation for this system is USD 2,000 per month, resulting in a net positive of USD 1,000–1,500 per month. You can see the details on our [open collective page](https://opencollective.com/actual).
+В настоящее время мы получаем в среднем от 3000 до 3500 долларов США в месяц. Распределение для этой системы составляет 2000 долларов США в месяц, в результате чего чистый положительный результат составляет 1000-1500 долларов США в месяц. [Открытая коллективная страница](https://opencollective.com/actual).
 
-#### What if a month is slow? Do we still pay out USD 2,000?
+#### Что, если месяц будет медленным? Мы все еще выплачиваем 2000 долларов? {#what-if-a-month-is-slow-do-we-still-pay-out-usd-2000}
 
-No. If fewer than 20 points are earned in total by the core maintainers in a month, the total payout drops to USD 500.
+Если менее 20 очков зарабатывают в общей сложности основные обслуживающие компании в месяц, общая выплата падает до 500 долларов США.
 
-#### What if a month is hectic? Does the payout increase?
+#### Что, если месяц будет беспокойным? {#what-if-a-month-is-hectic-does-the-payout-increase}
 
-To keep the system simple, the payout does not automatically increase. We reserve the right to adjust the payout in the future based on participation data.
+Чтобы система была простой, выплата не увеличивается автоматически. Мы оставляем за собой право корректировать выплату в будущем на основе данных об участии.
 
-#### Can I receive the payout as a gift card or crypto?
+#### Могу ли я получить выплату в качестве подарочной карты или криптовалюты? {#can-i-receive-the-payout-as-a-gift-card-or-crypto}
 
-No. All payments are made transparently and openly. We do not use alternative payment methods for any reasons.
+Нет. Все платежи осуществляются прозрачно и открыто. Мы не используем альтернативные способы оплаты по каким-либо причинам.
 
-#### Do we pay for features, bug bounties, or other contributions?
+#### Мы платим за функции, бонусы за ошибки или другие взносы? {#do-we-pay-for-features-bug-bounties-or-other-contributions}
 
-Currently, we do not pay for features, bug bounties, or other contributions. The focus is on compensating the administrative work required to keep the project running smoothly. We may expand the system in the future.
+В настоящее время мы не платим за функции, премии за ошибки или другие взносы. Основное внимание уделяется компенсации административной работы, необходимой для бесперебойной работы проекта. Мы можем расширить систему в будущем.
 
-#### Could someone "farm" points by doing rubber-stamp PRs?
+#### Может ли кто-то «сельскохозяйственные» точки, делая резиновые штампы PR? {#could-someone-farm-points-by-doing-rubber-stamp-prs}
 
-Theoretically, yes. However, we trust the core maintainer team to continue working diligently. Most core maintainers have admin rights and could do significant damage to the repository, but we trust everyone to act responsibly.
+Теоретически, да. Тем не менее, мы доверяем команде разработчиков ядра продолжать усердно работать. Большинство разработчиков ядра имеют права администратора и могут нанести значительный ущерб репозиторию, но мы доверяем всем действовать ответственно.

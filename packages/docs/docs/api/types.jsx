@@ -27,10 +27,10 @@ export const types = {
     type: 'integer',
     description: (
       <span>
-        A currency amount is an integer representing the value without any
-        decimal places. Usually it's <code>value * 100</code>, but it depends on
-        your currency. For example, a USD amount of <code>$120.30</code> would
-        be <code>12030</code>.
+        Сумма хранится как целое число без дробной части. Обычно значение
+        умножается на 100: <code>value * 100</code>. Множитель зависит от
+        валюты. Например, сумма <code>$120.30</code> будет храниться как{' '}
+        <code>12030</code>.
       </span>
     ),
   },
@@ -41,24 +41,28 @@ export const objects = {
     {
       name: 'serverURL',
       type: 'string',
-      description: <span>The URL of your Actual Budget server.</span>,
+      description: <span>Адрес сервера Actual Budget.</span>,
     },
     {
       name: 'password',
       type: 'string',
-      description: <span>The password of your Actual Budget server.</span>,
+      description: <span>Пароль вашего сервера Actual Budget.</span>,
     },
     {
       name: 'dataDir',
       type: 'string',
       description: (
-        <span>The directory to store locally cached budget files.</span>
+        <span>
+          Каталог для хранения локально кэшированных бюджетных файлов.
+        </span>
       ),
     },
     {
       name: 'verbose',
       type: 'boolean',
-      description: <span>Enable/disable logging from actual internals</span>,
+      description: (
+        <span>Включает или отключает внутреннее журналирование Actual.</span>
+      ),
     },
   ],
 
@@ -75,8 +79,8 @@ export const objects = {
       type: types.id,
       description: (
         <span>
-          In a <a href="#types-of-methods">create</a> request, this overrides{' '}
-          <code>payee_name</code>.
+          В запросе <a href="#types-of-methods">create</a> это поле имеет
+          приоритет над <code>payee_name</code>.
         </span>
       ),
     },
@@ -86,10 +90,10 @@ export const objects = {
       description: (
         <div>
           <div className="mb-6">
-            If given, a payee will be created with this name. If this matches an
-            already existing payee, that payee will be used.
+            Если указать имя, будет создан получатель. Если такой получатель уже
+            есть, используется существующий.
           </div>
-          * Only available in a <a href="#types-of-methods">create</a> request
+          * Доступно только в запросе <a href="#types-of-methods">create</a>
         </div>
       ),
     },
@@ -97,7 +101,7 @@ export const objects = {
       name: 'imported_payee',
       type: 'string',
       description:
-        'This can be anything. Meant to represent the raw description when importing, allowing the user to see the original value.',
+        'Это может быть что угодно. Предназначено для представления необработанного описания при импорте, позволяя пользователю увидеть исходное значение.',
     },
     { name: 'category', type: types.id },
     { name: 'notes', type: 'string' },
@@ -105,24 +109,22 @@ export const objects = {
       name: 'imported_id',
       type: 'string',
       description:
-        'A unique id usually given by the bank, if importing. Use this to avoid duplicate transactions.',
+        'Уникальный идентификатор, обычно выдаваемый банком при импорте. Используйте его, чтобы избежать дублирования транзакций.',
     },
     {
       name: 'transfer_id',
       type: 'string',
       description: (
         <span>
-          If a transfer, the <code>id</code> of the corresponding transaction in
-          the other account. See <a href="#transfers">transfers</a>.
+          Для перевода — <code>id</code> связанной операции на другом счёте. См.{' '}
+          <a href="#transfers">переводы</a>.
         </span>
       ),
     },
     {
       name: 'cleared',
       type: 'boolean',
-      description: (
-        <span>A flag indicating if the transaction has cleared or not.</span>
-      ),
+      description: <span>Показывает, подтверждена ли операция.</span>,
     },
     {
       name: 'subtransactions',
@@ -130,11 +132,11 @@ export const objects = {
       description: (
         <div>
           <div className="mb-6">
-            An array of subtransactions for a split transaction. See{' '}
-            <a href="#split-transactions">split transactions</a>.
+            Массив частей разделённой операции. См.{' '}
+            <a href="#split-transactions">разделённые операции</a>.
           </div>
-          * Only available in a <a href="#types-of-methods">get</a> or{' '}
-          <a href="#types-of-methods">create</a> request
+          * Доступно только в запросах <a href="#types-of-methods">get</a> и{' '}
+          <a href="#types-of-methods">create</a>
         </div>
       ),
     },
@@ -148,7 +150,7 @@ export const objects = {
       type: 'bool',
       description: (
         <span>
-          Defaults to <code>false</code>
+          По умолчанию: <code>false</code>
         </span>
       ),
     },
@@ -157,7 +159,7 @@ export const objects = {
       type: 'bool',
       description: (
         <span>
-          Defaults to <code>false</code>
+          По умолчанию: <code>false</code>
         </span>
       ),
     },
@@ -166,8 +168,8 @@ export const objects = {
       type: 'number | null',
       description: (
         <span>
-          The current balance of the account as reported by bank sync. Can also
-          be set manually. Defaults to <code>null</code>
+          Текущий остаток счёта, полученный при синхронизации с банком. Его
+          также можно задать вручную. По умолчанию: <code>null</code>
         </span>
       ),
     },
@@ -176,8 +178,8 @@ export const objects = {
       type: 'id | null',
       description: (
         <span>
-          The <a href="#account-group">account group</a> this account belongs
-          to. Defaults to <code>null</code>
+          <a href="#account-group">Группа счетов</a>, к которой относится этот
+          счёт. По умолчанию: <code>null</code>
         </span>
       ),
     },
@@ -197,7 +199,7 @@ export const objects = {
       type: 'bool',
       description: (
         <span>
-          Defaults to <code>false</code>
+          По умолчанию: <code>false</code>
         </span>
       ),
     },
@@ -211,7 +213,7 @@ export const objects = {
       type: 'bool',
       description: (
         <span>
-          Defaults to <code>false</code>
+          По умолчанию: <code>false</code>
         </span>
       ),
     },
@@ -221,10 +223,10 @@ export const objects = {
       description: (
         <div>
           <div className="mb-6">
-            An array of categories in this group. Not valid when creating or
-            updating a category group
+            Массив категорий группы. Не передавайте его при создании или
+            изменении группы.
           </div>
-          Only available in a <code>get</code>.
+          Доступно только в запросе <code>get</code>.
         </div>
       ),
     },
@@ -239,7 +241,9 @@ export const objects = {
       name: 'name',
       type: 'string',
       description: (
-        <span>Not mandatory but schedule names must be unique.</span>
+        <span>
+          Имя не обязательно, но если оно указано, оно должно быть уникальным.
+        </span>
       ),
     },
     {
@@ -247,10 +251,10 @@ export const objects = {
       type: 'string',
       description: (
         <span>
-          All schedules have an associated underlying rule. Not to be supplied
-          with a new schedule. It will be auto created. Rules can not updated to
-          another rule. You can however edit the rule with the API above for
-          Rule.
+          Все расписания имеют связанное базовое правило. Не должны быть
+          снабжены новым расписанием. Он будет автоматически создан. Правила не
+          могут быть обновлены до другого правила. Однако вы можете
+          отредактировать правило с помощью API выше для Правила.
         </span>
       ),
     },
@@ -259,22 +263,23 @@ export const objects = {
       type: 'string',
       description: (
         <span>
-          Next occurrence of a schedule. Not to be supplied with a new schedule.
+          Следующее появление расписания. Не должно быть снабжено новым
+          расписанием.
         </span>
       ),
     },
     {
       name: 'completed',
       type: 'boolean',
-      description: <span>Not to be supplied with a new schedule.</span>,
+      description: <span>Чтобы не было нового расписания.</span>,
     },
     {
       name: 'posts_transaction',
       type: 'boolean',
       description: (
         <span>
-          Whether the schedule should auto-post transactions on your behalf.
-          Defaults to <code>false</code>.
+          Нужно ли автоматически создавать операции по расписанию. По умолчанию:{' '}
+          <code>false</code>.
         </span>
       ),
     },
@@ -283,7 +288,7 @@ export const objects = {
       type: 'id | null',
       description: (
         <span>
-          Optional; will default to <code>null</code>.
+          Необязательно. По умолчанию: <code>null</code>.
         </span>
       ),
     },
@@ -292,7 +297,7 @@ export const objects = {
       type: 'id | null',
       description: (
         <span>
-          Optional; will default to <code>null</code>.
+          Необязательно. По умолчанию: <code>null</code>.
         </span>
       ),
     },
@@ -301,8 +306,9 @@ export const objects = {
       type: 'number | { num1: number; num2: number }',
       description: (
         <span>
-          Provide only one number, except if the amount uses a isbetween in
-          amountOp, in this case num1 and 2 should be provided.
+          Обычно укажите одно число. Если <code>amountOp</code> равно{' '}
+          <code>isbetween</code>, задайте обе границы: <code>num1</code> и{' '}
+          <code>num2</code>.
         </span>
       ),
     },
@@ -311,7 +317,7 @@ export const objects = {
       type: "'is' | 'isapprox' | 'isbetween'",
       description: (
         <span>
-          Controls how <code>amount</code> is interpreted.
+          Определяет, как <code>amount</code> интерпретируется.
         </span>
       ),
     },
@@ -321,9 +327,8 @@ export const objects = {
       required: true,
       description: (
         <span>
-          Mandatory field when creating a schedule. If the schedule is a single
-          occurrence just supply the date. otherwise refer to RecurConfig
-          details below.
+          Обязательное поле при создании расписания. Для разового события
+          укажите дату. Для повторения используйте параметры RecurConfig ниже.
         </span>
       ),
     },
@@ -334,15 +339,15 @@ export const objects = {
       name: 'frequency',
       type: `'daily' | 'weekly' | 'monthly' | 'yearly'`,
       required: true,
-      description: <span>How often the schedule repeats.</span>,
+      description: <span>Как часто повторяется расписание.</span>,
     },
     {
       name: 'interval',
       type: 'number',
       description: (
         <span>
-          The interval at which the recurrence happens. Defaults to{' '}
-          <code>1</code> if omitted.
+          Интервал повторения. По умолчанию: <code>1</code> если значение не
+          указано.
         </span>
       ),
     },
@@ -351,8 +356,8 @@ export const objects = {
       type: 'RecurPattern[]',
       description: (
         <span>
-          Optional patterns to control specific dates for recurrence (e.g.
-          certain weekdays or month days).
+          Необязательные шаблоны дат повторения, например дни недели или числа
+          месяца.
         </span>
       ),
     },
@@ -360,7 +365,10 @@ export const objects = {
       name: 'skipWeekend',
       type: 'boolean',
       description: (
-        <span>If true, skips weekends when calculating recurrence dates.</span>
+        <span>
+          Если значение <code>true</code>, выходные пропускаются при расчёте дат
+          повторения.
+        </span>
       ),
     },
     {
@@ -368,9 +376,7 @@ export const objects = {
       type: 'string',
       required: true,
       description: (
-        <span>
-          The ISO date string indicating the start date of the recurrence.
-        </span>
+        <span>Строка даты ISO, указывающая дату начала повторения.</span>
       ),
     },
     {
@@ -379,8 +385,8 @@ export const objects = {
       required: true,
       description: (
         <span>
-          Specifies how the recurrence ends: never ends, after a number of
-          occurrences, or on a specific date.
+          Задаёт окончание повторения: без ограничения, после указанного числа
+          событий или в определённую дату.
         </span>
       ),
     },
@@ -389,8 +395,8 @@ export const objects = {
       type: 'number',
       description: (
         <span>
-          Used when <code>endMode</code> is <code>'after_n_occurrences'</code>.
-          Indicates how many times it should repeat.
+          Если <code>endMode</code> равно <code>'after_n_occurrences'</code>,
+          указывает число повторений.
         </span>
       ),
     },
@@ -399,8 +405,8 @@ export const objects = {
       type: 'string',
       description: (
         <span>
-          Used when <code>endMode</code> is <code>'on_date'</code>. The ISO date
-          string indicating when the recurrence should end.
+          Если <code>endMode</code> равно <code>'on_date'</code>, указывает дату
+          окончания повторений в формате ISO.
         </span>
       ),
     },
@@ -409,9 +415,10 @@ export const objects = {
       type: `'before' | 'after'`,
       description: (
         <span>
-          If a calculated date falls on a weekend and <code>skipWeekend</code>{' '}
-          is true, this controls whether the date moves to the{' '}
-          <code>before</code> or <code>after</code> weekday.
+          Если расчётная дата выпадает на выходной и <code>skipWeekend</code>{' '}
+          имеет значение <code>true</code>, параметр <code>before</code> или{' '}
+          <code>after</code> определяет перенос на предыдущий или следующий
+          рабочий день.
         </span>
       ),
     },
@@ -426,8 +433,7 @@ export const objects = {
       type: types.id,
       description: (
         <span>
-          The <code>id</code> of the account this payee transfers to/from, if
-          this is a transfer payee.
+          <code>id</code> счёта, с которым связан получатель для перевода.
         </span>
       ),
     },
@@ -455,7 +461,7 @@ export const objects = {
       required: true,
       description: (
         <span>
-          Must be one of <code>pre</code>, <code>default</code>, or{' '}
+          Допустимые значения: <code>pre</code>, <code>default</code>, or{' '}
           <code>post</code>.
         </span>
       ),
@@ -465,7 +471,7 @@ export const objects = {
       type: 'string',
       description: (
         <span>
-          Must be one of <code>and</code> or <code>or</code>.
+          Допустимые значения: <code>and</code> или <code>or</code>.
         </span>
       ),
     },
@@ -478,46 +484,46 @@ export const objects = {
       name: 'name',
       type: 'string',
       required: true,
-      description: <span>The budget's name.</span>,
+      description: <span>Название бюджета.</span>,
     },
     {
       name: 'cloudFileId',
       type: 'string',
       required: true,
-      description: (
-        <span>
-          The id for the budget on the server. This is usually a UUID.
-        </span>
-      ),
+      description: <span>Ид для бюджета на сервере. Обычно это UUID.</span>,
     },
     {
       name: 'groupId',
       type: 'string',
       required: true,
-      description: <span>The group id for the budget.</span>,
+      description: <span>ИД группы для бюджета.</span>,
     },
     {
       name: 'hasKey',
       type: 'boolean',
       required: true,
-      description: <span>If the file has an encryption key.</span>,
+      description: <span>Если файл имеет ключ шифрования.</span>,
     },
     {
       name: 'encryptKeyId',
       type: 'string',
       description: (
-        <span>The encryption key ID for the file, if it is encrypted.</span>
+        <span>ID ключа шифрования для файла, если он зашифрован.</span>
       ),
     },
     {
       name: 'state',
       type: 'string',
-      description: <span>Remote files have this set to "remote".</span>,
+      description: (
+        <span>
+          Для удалённых файлов значение равно <code>remote</code>.
+        </span>
+      ),
     },
     {
       name: 'id',
       type: 'string',
-      description: <span>The local budget file's local ID.</span>,
+      description: <span>Локальный идентификатор файла бюджета.</span>,
     },
   ],
 };
@@ -541,7 +547,7 @@ function Table({ style, headers, className, children }) {
 
 export function PrimitiveTypeList() {
   return (
-    <Table headers={['Name', 'Type', 'Notes']} style={{ maxWidth: 700 }}>
+    <Table headers={['Имя', 'Тип', 'Примечания']} style={{ maxWidth: 700 }}>
       {Object.keys(types).map(name => {
         return (
           <PrimitiveType
@@ -576,7 +582,7 @@ export function StructType({ fields }) {
       <Table
         className="mb-0"
         showBorder={true}
-        headers={['Field', 'Type', 'Required?', 'Notes']}
+        headers={['Поле', 'Тип', 'Обязательно?', 'Примечания']}
       >
         {fields.map(field => {
           return (
@@ -591,7 +597,7 @@ export function StructType({ fields }) {
                     : field.type.name}
                 </code>
               </td>
-              <td valign="top">{field.required ? 'yes' : 'no'}</td>
+              <td valign="top">{field.required ? 'да' : 'нет'}</td>
               <td>{field.description}</td>
             </tr>
           );

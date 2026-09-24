@@ -1,75 +1,75 @@
 ---
-title: 'Docker'
+title: 'Установка через Docker'
 sidebar_position: 2
 ---
 
-## Hosting Actual on a home server with Docker
+## Хостинг Actual на домашнем сервере с Docker {#hosting-actual-on-a-home-server-with-docker}
 
-Actual is also available as a Docker image ready to be run in your own custom environment. We publish the image both to [Docker Hub](https://hub.docker.com/r/actualbudget/actual-server) (as `actualbudget/actual-server`) and [GitHub's container registry](https://ghcr.io/actualbudget/actual) (as `ghcr.io/actualbudget/actual`). Actual should function the same when pulled from either registry, so you can choose whichever one you prefer.
+Actual также доступен в виде изображения Docker, готового к запуску в вашей собственной пользовательской среде. [Docker Hub](https://hub.docker.com/r/actualbudget/actual-server) (как `actualbudget/actual-server`) и [Контейнерный реестр GitHub](https://ghcr.io/actualbudget/actual) (как `ghcr.io/actualbudget/actual`Фактическое должно функционировать одинаково, когда вынимается из любого реестра, поэтому вы можете выбрать тот, который вы предпочитаете.
 
-## Docker Tags
+## Docker Tags {#docker-tags}
 
-We publish a number of tags to the official repository now so that users who want to get the latest bleeding edge changes can do that without having to wait for the latest image to be updated. Details of the available tags are below.
+Мы публикуем ряд тегов в официальном хранилище, чтобы пользователи, которые хотят получить последние изменения края кровотечения, могли сделать это, не дожидаясь обновления последнего изображения.
 
-### `latest` Tag
+### `latest` Тег {#latest-tag}
 
-The `latest` tag points to the most recent official release of Actual. This is the recommended tag to use for most users.
+The `latest` Тег указывает на последний официальный выпуск Actual. Это рекомендуемый тег для использования большинством пользователей.
 
 - `latest`
-- `latest-alpine` - Based on Alpine Linux, which is tiny so it's great for low powered devices.
+- `latest-alpine` Основан на Alpine Linux, который является крошечным, поэтому он отлично подходит для устройств с низким энергопотреблением.
 
-### `nightly` Tag
+### `nightly` Тег {#nightly-tag}
 
-The `nightly` tag is updated every time a commit is pushed to the `master` branch. While we welcome people to try it out, there may be more bugs than the official release (please report any you find!). If you choose to give this tag a try, make sure you keep backups of your budget in case something goes wrong.
+The `nightly` Тег обновляется каждый раз, когда обязательство нажимается на `master` Хотя мы приветствуем людей, чтобы попробовать это, может быть больше ошибок, чем официальный релиз (пожалуйста, сообщите, что вы нашли!). Если вы решите попробовать этот тег, убедитесь, что вы сохраняете резервные копии своего бюджета на случай, если что-то пойдет не так.
 
 - `nightly`
-- `nightly-alpine` - Based on Alpine Linux, which is tiny so it's great for low-powered devices.
+- `nightly-alpine` - Основан на Alpine Linux, который крошечный, поэтому он отлично подходит для устройств с низким энергопотреблением.
 
-## Launch container using Docker Compose
+## Контейнер для запуска Docker Compose {#launch-container-using-docker-compose}
 
-Pre-requisites: Docker
+Предпосылки: Docker
 
-You can use the [`docker-compose.yml` file included in the `actual` repository](https://github.com/actualbudget/actual/blob/master/packages/sync-server/docker-compose.yml) to run the latest stable version of the server.
+Вы можете использовать [`docker-compose.yml` Файл, включенный в `actual` хранилище](https://github.com/actualbudget/actual/blob/master/packages/sync-server/docker-compose.yml) Запуск последней стабильной версии сервера.
 
-To create and run the container:
+Для создания и запуска контейнера:
 
 ```bash
 $ docker compose up --detach
 ```
 
-You can optionally configure the container using environment variables — see the [configuration section](../config/index.md) for more details.
+Вы можете дополнительно настроить контейнер, используя переменные среды - см. [конфигурационный раздел](../config/index.md) для более подробной информации.
 
-### Update Docker Compose container
+### Обновление Docker Compose Container {#update-docker-compose-container}
 
 ```bash
 $ docker compose pull && docker compose up -d
 ```
 
-## Launch container using docker command
+## Запуск контейнера с помощью команды Docker {#launch-container-using-docker-command}
 
-Pre-requisites: Docker
+Предпосылки: Docker
 
-Alternatively to using docker compose, you may also launch docker using this command. This command, as shown, will launch the latest stable build of Actual.
+В качестве альтернативы использованию Docker Compose вы также можете запустить Docker с помощью этой команды. Эта команда, как показано, запустит последнюю стабильную сборку Actual.
 
 ```bash
 $ docker run --pull=always --restart=unless-stopped -d -p 5006:5006 -v YOUR/PATH/TO/DATA:/data --name my_actual_budget actualbudget/actual-server:latest
 ```
 
-`--pull=always` -- always pulls the latest image
+`--pull=always` Всегда вытаскивает последние изображения
 
-`--restart=unless-stopped` -- sets the restart policy of the container
+`--restart=unless-stopped` - устанавливает политику перезапуска контейнера
 
-`-d` -- starts the container as background application
+`-d` - запускает контейнер в качестве фонового приложения
 
-`-p 5006:5006` -- sets the port to access Actual. (HOST PORT:DOCKER PORT)
+`-p 5006:5006` - устанавливает порт для доступа к Актуальному.
 
-`-v YOUR/PATH/TO/DATA:/data` -- tells the container where to store your budget data. This persists the data on your hard disk so it isn't lost if you remove the container. Change the current value to a folder on your host computer. The server will create `server-files` and `user-files` subfolders at this location.
+`-v YOUR/PATH/TO/DATA:/data` - сообщает контейнеру, где хранить ваши бюджетные данные. Это сохраняет данные на вашем жестком диске, чтобы он не терялся, если вы удалите контейнер. Измените текущее значение на папку на вашем хост-компьютере. Сервер создаст `server-files` и `user-files` Подпапки в этом месте.
 
-`--name my_actual_budget` -- gives your new docker container a name (change this to whatever you want)
+`--name my_actual_budget` Дайте вашему новому контейнеру докера имя (измените это на то, что вы хотите)
 
-`actualbudget/actual-server:latest` -- defines which image you want to pull and launch.
+`actualbudget/actual-server:latest` - определяет, какое изображение вы хотите вытащить и запустить.
 
-### Update Docker container using docker command
+### Обновление контейнера Docker с помощью команды Docker {#update-docker-container-using-docker-command}
 
 ```bash
 $ docker stop my_actual_budget
@@ -83,12 +83,12 @@ $ docker container rm my_actual_budget
 $ docker run --pull=always --restart=unless-stopped -d -p 5006:5006 -v YOUR/PATH/TO/DATA:/data --name my_actual_budget actualbudget/actual-server:latest
 ```
 
-You can place all of these in a batch script for a 1 click or single command update.
+Вы можете разместить все это в пакетном скрипте для 1 клика или одного обновления команды.
 
 ```bash
 $ docker stop my_actual_budget && docker container rm my_actual_budget && docker run --pull=always --restart=unless-stopped -d -p 5006:5006 -v YOUR/PATH/TO/DATA:/data --name my_actual_budget actualbudget/actual-server:latest
 ```
 
-## Test connection within local network
+## Тестовое соединение в локальной сети {#test-connection-within-local-network}
 
-On another PC within the local network connect to http://_serverIP_:_chosenPort_
+На другом ПК в локальной сети подключайтесь http://_serverIP_:_chosenPort_

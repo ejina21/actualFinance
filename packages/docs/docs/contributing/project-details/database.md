@@ -1,9 +1,9 @@
-# Database Details
+# Подробности базы данных {#database-details}
 
-Actual stores your data locally inside a SQLite database. You can see the default db structure by opening `/loot-core/default-db.sqlite`
+Actual хранит ваши данные локально в базе данных SQLite. Вы можете увидеть структуру db по умолчанию, открыв `/loot-core/default-db.sqlite`
 
-However this is not the 'current' structure, as the database is created as a copy from the default template, and then a series of migrations is run to get the database up to the current level. You can see these migrations in `/loot-core/migrations`.
+Однако это не «текущая» структура, так как база данных создается как копия из шаблона по умолчанию, а затем запускается серия миграций, чтобы довести базу данных до текущего уровня. `/loot-core/migrations`.
 
-On the front end, Actual sometimes uses views to display data. All the names with the `v_` prefix are actually views, not tables. The views are recreated every time the app starts and normalize the shape of the data to the internal tables. this makes it easy to change field names etc. without actually touching the tables (especially important in this local-first world where syncing directly references tables and fields).
+На передней панели Actual иногда использует просмотры для отображения данных. `v_` Взгляды воссоздаются каждый раз, когда приложение запускается и нормализует форму данных во внутренних таблицах. это позволяет легко изменять имена полей и т. д., фактически не касаясь таблиц (особенно важно в этом локально-первом мире, где синхронизация непосредственно ссылочных таблиц и полей).
 
-Much of the interesting functionality you might be curious about can be found in `/loot-core/src/server/db`
+Большая часть интересной функциональности, которая может вас заинтересовать, может быть найдена в `/loot-core/src/server/db`

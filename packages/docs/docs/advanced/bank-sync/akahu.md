@@ -1,26 +1,26 @@
-# Akahu Setup
+# Настройка Akahu {#akahu-setup}
 
 <ExperimentalFeatureWarning issueId="8020" />
 
 :::warning
-All functionality described here may not be available in the latest stable release. See [Experimental Features](../../experimental/index.md) for instructions to enable experimental features. Use the `nightly` images for the latest implementation.
+Все функциональные возможности, описанные здесь, могут быть недоступны в последнем стабильном выпуске. [Экспериментальные особенности](../../experimental/index.md) для инструкций по включению экспериментальных функций. `nightly` Изображения для последней реализации.
 :::
 
-### Set up Akahu account
+### Создайте аккаунт Akahu {#set-up-akahu-account}
 
-To set up Akahu Bank Sync, start by creating and signing in to your Akahu account: https://my.akahu.nz/
+Чтобы создать Akahu Bank Sync, начните с создания и входа на свой счет в Akahu: https://my.akahu.nz/
 
-Make sure to link a bank account and then go to the developers page https://my.akahu.nz/developers and get your **APP ID Token** and **User Access Token**
+Обязательно свяжитесь с банковским счетом, а затем перейдите на страницу разработчиков. https://my.akahu.nz/developers И возьми свою **Токен APP ID** и **Пользователь Access Token**
 
 :::note
-If you have not yet created a personal app, you will need to agree to Akahu's Developer Terms and click the button labeled "Continue".  
-You will then need to complete identity verification and set up multi-factor authentication.
+Если вы еще не создали личное приложение, вам нужно будет согласиться с Условиями разработчика Akahu и нажать кнопку «Продолжить».
+Затем вам нужно будет завершить проверку личности и настроить многофакторную аутентификацию.
 
-Once you have completed these steps your app will be created and your User Access Token and App ID Token will be shown to you.
+После того, как вы выполнили эти шаги, ваше приложение будет создано, и вам будет показан токен доступа пользователя и токен идентификатора приложения.
 :::
 
-### Link account with Akahu
+### Ссылка на аккаунт Akahu {#link-account-with-akahu}
 
-In Actual Budget, Go to **More → Bank Sync**, in the **Akahu** card, click **Set up** and paste in the App ID and User Access Tokens.
+В реальном бюджете перейти к **Подробнее о Банк Синхронизация**в **Акаху** карточка, клик **Настройка** и вставить в идентификатор приложения и токены доступа пользователей.
 
-From the same Bank Sync screen, click on **Link bank account** under the **Akahu** card and follow the prompts to link your account.
+С того же экрана Bank Sync нажмите на **Связать банковский счет** под **Акаху** Карта и следуйте подсказкам, чтобы связать свою учетную запись.

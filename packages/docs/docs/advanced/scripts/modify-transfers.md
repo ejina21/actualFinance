@@ -1,32 +1,32 @@
-# Identify and Apply Transfers Historically
+# Поиск и применение переводов за прошлые периоды {#identify-and-apply-transfers-historically}
 
-These SQL scripts modify transactions as to apply [transfers](../../transactions/transfers.md) historically over migrated data without duplicating transactions. This is useful when you have migrated multiple accounts.
+Эти SQL скрипты изменяют транзакции для применения. [переводы](../../transactions/transfers.md) Это полезно, когда вы мигрировали несколько учетных записей.
 
 :::caution
-Before executing any actions, make sure you have a complete [backup](../../backup-restore/backup.md).
+Прежде чем выполнять какие-либо действия, убедитесь, что у вас есть полное [резервный](../../backup-restore/backup.md).
 :::
 
 :::note
-This process will only apply when the below conditions are met
+Этот процесс будет применяться только при соблюдении нижеприведенных условий.
 
-- The two transactions are related to different accounts
-- The amounts are exactly the same but inverted e.g. `-1.00` and `1.00`
-- The transaction dates are within 3 days of each other
+- Эти две операции связаны с разными счетами.
+- Суммы точно такие же, но перевернутые например. `-1.00` и `1.00`
+- Даты транзакций находятся в пределах 3 дней друг от друга.
 
-- The match only occurs once. This means transfers of equal value following the pattern below will not be applied.
+- Совпадение происходит только один раз. Это означает, что передачи равной ценности по приведенной ниже схеме не будут применяться.
 
       `Account A` -> `Account B` -> `Account A/C`
 
-      As we cannot reliably tell the order of the transfers.
+      Как мы не можем достоверно сказать порядок переводов.
 
 :::
 
-## How To
+## Как {#how-to}
 
-1. Create a second copy of the backup
-2. Extract the backup
-3. Open the `db.sqlite` file with your preferred tool [SQLite3 cli](https://www.sqlite.org/cli.html), [heidiSQL](https://www.heidisql.com/), etc.
-4. Run the below query to first view the impacted transactions
+1. Создайте вторую копию резервной копии
+2. Извлеките резервную копию
+3. Открой. `db.sqlite` Файл с вашим предпочтительным инструментом [SQLite3 Cli](https://www.sqlite.org/cli.html), [Хайдиск](https://www.heidisql.com/)и т.д.
+4. Запустите запрос ниже, чтобы сначала просмотреть затронутые транзакции
 
    ```sql
    SELECT t.id,
@@ -104,7 +104,7 @@ This process will only apply when the below conditions are met
    ORDER BY DATE DESC;
    ```
 
-5. Run the below query to update the transactions
+5. Запустите запрос ниже, чтобы обновить транзакции
 
    ```sql
    UPDATE transactions
@@ -170,6 +170,6 @@ This process will only apply when the below conditions are met
        ) = 1;
    ```
 
-6. Zip the `db.sqlite` file with the original `metadata.json` file
-7. Follow the [restore](../../backup-restore/restore.md) process to apply these into your Actual Server instance
-8. Verify your balances are correct and you see the correct transactions marked as transfers!
+6. Зип! `db.sqlite` Файл с оригиналом `metadata.json` файл
+7. Следуй за мной. [восстанавливать](../../backup-restore/restore.md) Процесс их применения в экземпляре Actual Server
+8. Убедитесь, что ваши балансы верны, и вы увидите правильные транзакции, помеченные как переводы.

@@ -29,6 +29,12 @@
       "path": "../plugins-service"
     }
   ],
-  "include": ["**/*.ts", "src/**/*.tsx", "src/**/*.js"],
+  "include": [
+    "**/*.ts",
+    "src/**/*.tsx",
+    "src/**/*.js",
+    "local-russian/en.json",
+    "local-russian/ru.json"
+  ],
   "exclude": ["node_modules", "build", "**/service-worker/**", "e2e"]
 }

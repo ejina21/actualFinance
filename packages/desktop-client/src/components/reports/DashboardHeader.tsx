@@ -105,7 +105,7 @@ export function DashboardHeader({ dashboard }: DashboardHeaderProps) {
               minWidth: 0,
             }}
           >
-            {dashboard.name}
+            {dashboard.name === 'Main' ? t('Main') : dashboard.name}
           </View>
           <Button
             variant="bare"

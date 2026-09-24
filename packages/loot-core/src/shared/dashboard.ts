@@ -9,7 +9,7 @@ export const DEFAULT_DASHBOARD_STATE: NewDashboardWidgetEntity[] = [
     x: 0,
     y: 0,
     meta: {
-      name: 'Total Income (YTD)',
+      name: 'Общий доход с начала года',
       content: JSON.stringify({
         type: 'sum',
         fontSize: 20,
@@ -46,7 +46,7 @@ export const DEFAULT_DASHBOARD_STATE: NewDashboardWidgetEntity[] = [
     x: 3,
     y: 0,
     meta: {
-      name: 'Total Expenses (YTD)',
+      name: 'Общие расходы с начала года',
       content: JSON.stringify({
         type: 'sum',
         fontSize: 20,
@@ -83,7 +83,7 @@ export const DEFAULT_DASHBOARD_STATE: NewDashboardWidgetEntity[] = [
     x: 6,
     y: 0,
     meta: {
-      name: 'Avg Per Month',
+      name: 'В среднем за месяц',
       content: JSON.stringify({
         type: 'avgPerMonth',
         fontSize: 20,
@@ -120,7 +120,7 @@ export const DEFAULT_DASHBOARD_STATE: NewDashboardWidgetEntity[] = [
     x: 9,
     y: 0,
     meta: {
-      name: 'Avg Per Transaction',
+      name: 'В среднем за операцию',
       content: JSON.stringify({
         type: 'avgPerTransact',
         fontSize: 20,
@@ -175,7 +175,7 @@ export const DEFAULT_DASHBOARD_STATE: NewDashboardWidgetEntity[] = [
     x: 0,
     y: 5,
     meta: {
-      name: 'This Month',
+      name: 'Этот месяц',
       mode: 'single-month',
     },
   },
@@ -186,7 +186,7 @@ export const DEFAULT_DASHBOARD_STATE: NewDashboardWidgetEntity[] = [
     x: 4,
     y: 5,
     meta: {
-      name: 'Budget Overview',
+      name: 'Обзор бюджета',
       mode: 'budget',
     },
   },
@@ -197,7 +197,7 @@ export const DEFAULT_DASHBOARD_STATE: NewDashboardWidgetEntity[] = [
     x: 8,
     y: 5,
     meta: {
-      name: '3-Month Average',
+      name: 'Среднее за 3 месяца',
       mode: 'average',
     },
   },
@@ -209,7 +209,7 @@ export const DEFAULT_DASHBOARD_STATE: NewDashboardWidgetEntity[] = [
     x: 0,
     y: 8,
     meta: {
-      name: 'Transaction Calendar',
+      name: 'Календарь операций',
       timeFrame: {
         start: '2024-01-01',
         end: '2024-03-31',
@@ -232,7 +232,7 @@ export const DEFAULT_DASHBOARD_STATE: NewDashboardWidgetEntity[] = [
     x: 8,
     y: 8,
     meta: {
-      name: 'Recent Net Worth Change',
+      name: 'Изменение капитала за последнее время',
       content: JSON.stringify({
         type: 'sum',
         fontSize: 32,
@@ -254,7 +254,7 @@ export const DEFAULT_DASHBOARD_STATE: NewDashboardWidgetEntity[] = [
     y: 10,
     meta: {
       content:
-        '## Dashboard Tips\n\nYou can add new widgets or edit existing widgets by using the buttons at the top of the page. Choose a widget type and customize it to fit your needs.\n\n**Moving cards:** Drag any card by its header to reposition it.\n\n**Deleting cards:** Click the three-dot menu on any card and select "Remove".',
+        '## Подсказки по панели отчётов\n\nДобавляйте виджеты и редактируйте существующие с помощью кнопок в верхней части страницы. Выберите тип виджета и настройте его под себя.\n\n**Перемещение карточек:** Перетащите карточку за заголовок.\n\n**Удаление карточек:** Откройте меню с тремя точками на карточке и выберите «Удалить».',
     },
   },
 ];

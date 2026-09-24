@@ -1,9 +1,9 @@
-# Electron Notes
+# Заметки об Electron {#electron-notes}
 
-- Generally speaking, it is unlikely that features/fixes you contribute to actual will require electron-specific changes. If you think that is likely feel free to discuss on GitHub or in the actual discord.
+- Вообще говоря, маловероятно, что функции / исправления, которые вы вносите в фактические, потребуют изменений, специфичных для электронов. Если вы думаете, что, вероятно, не стесняйтесь обсуждать на GitHub или в фактической раздоре.
 
-- Details of the motivation behind the usage of WebSockets in the electron app can be found in the [Pull Request](https://github.com/actualbudget/actual/pull/1003) where the changes were made.
+- Подробную информацию о мотивации использования WebSockets в электронном приложении можно найти в разделе WEB [Запрос Pull](https://github.com/actualbudget/actual/pull/1003) где были внесены изменения.
 
-- Due to Electron security requirements there are some restrictions on what can be passed from front-end to (local) back-end. Generally limited to strings/ints via the `ipcRenderer`
+- Из-за требований к безопасности Electron существуют некоторые ограничения на то, что может быть передано с переднего конца на (локальный) задний. `ipcRenderer`
 
-- Making changes to the `global.Actual` object MUST happen inside the preload script. Due to electron security requirements this object is siloed and can only pass messages via `ipcRenderer`
+- Внесение изменений в `global.Actual` Объект должен находиться внутри сценария предварительной загрузки. Из-за требований безопасности электронов этот объект изолирован и может передавать сообщения только через `ipcRenderer`

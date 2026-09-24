@@ -1,198 +1,198 @@
-# Schedules
+# Запланированные операции {#schedules}
 
-Schedules in Actual are a versatile tool designed to help you stay on top of your finances by supporting planning and automation.
+Расписание в реальном времени - это универсальный инструмент, который поможет вам оставаться на вершине ваших финансов, поддерживая планирование и автоматизацию.
 
-Schedules are a powerful planning tool that helps you stay ahead of your finances. Many users rely on them to anticipate upcoming expenses, avoid missed payments, and ensure money is available where it's needed. While they also automate recurring transactions to keep your budget accurate and save time, their real strength lies in helping you prepare for what's ahead.
+Расписание - это мощный инструмент планирования, который помогает вам оставаться впереди своих финансов. Многие пользователи полагаются на них, чтобы предвидеть предстоящие расходы, избежать пропущенных платежей и обеспечить доступность денег там, где это необходимо. Хотя они также автоматизируют повторяющиеся транзакции, чтобы сохранить ваш бюджет точным и сэкономить время, их реальная сила заключается в том, чтобы помочь вам подготовиться к тому, что впереди.
 
-You can set schedules to recur on specific dates or frequencies and tailor them to fit your unique budgeting needs. Whether you're creating them from scratch or existing transactions, schedules can also be linked to rules to categorize and annotate entries automatically.
+Вы можете устанавливать расписания для повторения в определенные даты или частоты и адаптировать их в соответствии с вашими уникальными потребностями в бюджетировании. Независимо от того, создаете ли вы их с нуля или существующие транзакции, расписания также могут быть связаны с правилами для автоматической категоризации и аннотации записей.
 
-By combining automation with proactive planning, schedules enable you to maintain control over your budget and avoid unexpected surprises.
+Объединив автоматизацию с проактивным планированием, вы сможете контролировать свой бюджет и избегать неожиданных сюрпризов.
 
-![Schedules overview screen](/img/schedules/schedules-overview.webp)
+![Расписание обзорного экрана](/img/schedules/schedules-overview.webp)
 
-## The Schedules Overview Screen
+## Расписание Обзор экрана {#the-schedules-overview-screen}
 
-Most of the columns in the Schedules overview screen are self-explanatory.
+Большинство столбцов на экране обзора расписаний являются самоочевидными.
 
-However, if there is ~ (tilde) in front of the _Amount_ column, it indicates that the amount is an approximate value.
-This is useful for transactions that may vary slightly each time, such as utility bills or subscriptions that change based on usage.
+Однако, если перед столбцом Amount находится ~(тильда), это означает, что сумма является приблизительным значением.
+Это полезно для транзакций, которые могут немного отличаться каждый раз, таких как счета за коммунальные услуги или подписки, которые меняются в зависимости от использования.
 
-See [Creating a Schedule](#creating-a-schedule) for more information on how to set up approximate amounts.
+Видишь? [Создание расписания](#creating-a-schedule) Для получения дополнительной информации о том, как настроить приблизительные суммы.
 
-## What are Schedules?
+## Что такое расписания? {#what-are-schedules}
 
-Schedules can be used to enter anticipated transactions early. These transactions can be recurring or one-time.
-Schedules allow you to set up a transaction that will be automatically entered into your account register on a specified date or at a specified frequency. This is particularly useful for bills, subscriptions, and other regular expenses that you want to track without having to enter them manually each time.
+Расписание может использоваться для раннего входа в ожидаемые транзакции. Эти транзакции могут быть повторяющимися или разовыми.
+Расписание позволяет настроить транзакцию, которая будет автоматически внесена в реестр вашей учетной записи в указанную дату или на указанной частоте.Это особенно полезно для счетов, подписок и других регулярных расходов, которые вы хотите отслеживать, не вводя их вручную каждый раз.
 
-Schedules can also be used for income, such as paychecks or other regular payments. By scheduling these transactions, you can ensure that your budget accurately reflects your expected income and expenses.
+Расписание также может быть использовано для получения дохода, такого как зарплата или другие регулярные платежи. Планируя эти операции, вы можете убедиться, что ваш бюджет точно отражает ваши ожидаемые доходы и расходы.
 
-Schedules can be set to recur on a specific day of the month, such as the 1st or the 15th, or they can be set to recur every week, every two weeks, or at other intervals. You can also choose to have the schedule automatically enter the transaction into your account register or to approve each entry manually.
+Расписание может быть настроено на повторение в определенный день месяца, такой как 1-й или 15-й, или они могут быть настроены на повторение каждую неделю, каждые две недели или через другие промежутки времени. Вы также можете выбрать, чтобы график автоматически вводил транзакцию в реестр вашей учетной записи или одобрял каждую запись вручную.
 
-Schedules can also be used to link transactions together, making it easy to track related expenses and income. For example, suppose you have a mortgage payment that is automatically deducted from your bank account each month. In that case, you can create a schedule for that payment and link it to the corresponding transaction in your budget.
-Schedules can be created from scratch or existing transactions, and they can be customized to fit your specific
-needs. You can also use rules to automatically categorize and add notes to scheduled transactions, making it easier
-to keep track of your budget.
+Расписание также можно использовать для объединения транзакций, что позволяет легко отслеживать связанные с этим расходы и доходы. Например, предположим, что у вас есть платеж по ипотеке, который автоматически вычитается с вашего банковского счета каждый месяц. В этом случае вы можете создать график для этого платежа и связать его с соответствующей транзакцией в вашем бюджете.
+Расписание может быть создано с нуля или существующих транзакций, и они могут быть настроены в соответствии с вашей конкретной
+Вы также можете использовать правила для автоматической категоризации и добавления примечаний к запланированным транзакциям, что упрощает процесс.
+Следить за своим бюджетом.
 
-## Adjusting the Upcoming Length of Schedules
+## Корректировка предстоящей длины графиков {#adjusting-the-upcoming-length-of-schedules}
 
-You can control how far in advance scheduled transactions _appear_ in the Schedule and Account register views as _upcoming_. This setting determines the number of days before the scheduled date that a transaction will be displayed as upcoming in the account ledger, helping you plan and avoid surprises.
+Вы можете контролировать, насколько заранее запланированные транзакции появляются в реестре расписания и учетной записи, как upcoming . Этот параметр определяет количество дней до запланированной даты, когда транзакция будет отображаться как предстоящая в реестре учетных записей, помогая вам планировать и избегать сюрпризов.
 
-For example, in the image at the top of this page, the upcoming length is set to _End of the current month_.
+Например, на изображении в верхней части этой страницы предстоящая длина устанавливается на конец текущего месяца .
 
-By clicking on the **Change upcoming length** button, you can select how far in advance you want to see forthcoming transactions (e.g., 1 day, 1 week, 2 weeks, 1 month, End of the current month, or Custom length).
+Нажимая на кнопку **Изменение предстоящей длины** Вы можете выбрать, как далеко вы хотите видеть предстоящие транзакции (например, 1 день, 1 неделя, 2 недели, 1 месяц, конец текущего месяца или пользовательская длина).
 
-![Change upcoming length](/img/schedules/schedules-upcoming-length-dialog.webp)
+![Изменение предстоящей длины](/img/schedules/schedules-upcoming-length-dialog.webp)
 
-If you change the upcoming length to _1 week_, only transactions scheduled within the next week will appear as forthcoming.
-The _Monthly movie subscription_, _the Mortgage_, and the _Water melon subscription_ will now show as upcoming transactions.
+Если вы измените предстоящую продолжительность до 1 недели, только транзакции, запланированные на следующую неделю, будут выглядеть как предстоящие.
+Monthly film subscription , the Mortgage и Water melon subscription теперь будут отображаться как предстоящие транзакции.
 
-![Change upcoming length](/img/schedules/schedules-upcoming-new-list.webp)
+![Изменение предстоящей длины](/img/schedules/schedules-upcoming-new-list.webp)
 
-This flexibility allows you to customize your view — whether you want to see all upcoming transactions for the month or just those in the immediate future. Adjusting the upcoming length can help you focus on the most relevant transactions and keep your budget organized.
+Эта гибкость позволяет вам настроить свое мнение — хотите ли вы видеть все предстоящие транзакции за месяц или только те, которые в ближайшем будущем.
 
-Changing the upcoming length only affects how schedules are displayed in your ledger; it does not impact how your budget data is stored or calculated. You can adjust this setting at any time to fit your preferences. If we change the upcoming length to _1 month_ the Account register will also reflect this change:
+Изменение предстоящей длины влияет только на то, как расписания отображаются в вашей книге; это не влияет на то, как хранятся или рассчитываются ваши бюджетные данные. Вы можете в любое время скорректировать эту настройку в соответствии с вашими предпочтениями. Если мы изменим предстоящую длину до 1 мес.
 
-![Account Register View with future schedules](/img/schedules/schedules-account-register.webp)
+![Просмотр учетной записи с будущими графиками](/img/schedules/schedules-account-register.webp)
 
-## Creating a Schedule
+## Создание расписания {#creating-a-schedule}
 
-Clicking on the **Add new schedule** button in the bottom right of the Schedules screen will add a new schedule.
+Щелчок по течению **Добавить новый график** Кнопка в правом нижнем углу экрана Расписание добавит новое расписание.
 
-Some of the available options to tailor schedules to your needs are:
+Некоторые из доступных вариантов для адаптации графиков к вашим потребностям:
 
-1. Set to be recurring or only entered once
-2. Set to be automatically entered into the account register or choose to manually approve entries
-3. Options for recurring entries for multiple specific days of the month.
-   a. A single schedule can be created for a Cell phone plan that has multiple users and different payment cycles for each phone. If you have 3 cell phones that all get paid on different days of the month, each day can be defined in a single schedule for each phone.
-4. Options to determine frequency of payments, such as every month, every 2 months, every 2 years, etc.
-   a. "Last" day of month can be selected by selecting "Add specific days", and selecting "Last" from the day drop-down list.
-   c. If you select 31st, approximately every other month will be skipped.
+1. Установка повторяется или вводится только один раз
+2. Устанавливается для автоматического внесения в реестр учетных записей или выбора ручного утверждения записей
+3. Варианты для повторных записей в течение нескольких конкретных дней месяца.
+   a. Для плана сотового телефона может быть создано единое расписание с несколькими пользователями и различными циклами оплаты для каждого телефона. Если у вас есть 3 сотовых телефона, которые все оплачиваются в разные дни месяца, каждый день может быть определен в одном расписании для каждого телефона.
+4. Варианты определения частоты платежей, например, каждый месяц, каждые 2 месяца, каждые 2 года и т.д.
+   a. "Последний" день месяца можно выбрать, выбрав "Добавить конкретные дни" и выбрав "Последний" из выпадающего списка.
+   Если вы выберете 31-е число, примерно через месяц вы будете пропущены.
 
-![Example of adding a schedule for a mortgage](/img/schedules/schedules-add.webp)
+![Пример добавления графика для ипотеки](/img/schedules/schedules-add.webp)
 
-The example above shows a mortgage payment schedule which is to be executed on the 10th of July.
-Since a mortgage payment is a recurring transaction, the **Repeats** checkbox should be enabled. By enabling _Repeats_ the **Date** field now let you enter a frequency for your transaction.
-You can also enter more than one date by hitting the **+** button next to the date field.
-This is useful for transactions that occur on multiple days of the month, such as a bi-weekly payments.
+Приведенный выше пример показывает график платежей по ипотеке, который должен быть выполнен 10 июля.
+Поскольку ипотечный платеж является повторяющейся транзакцией, **повторять** флажок должен быть включен путем включения Repeats **Дата** Теперь поле позволяет ввести частоту для транзакции.
+Вы также можете ввести более одной даты, нажав **+** Кнопка рядом с полем даты.
+Это полезно для транзакций, которые происходят в несколько дней месяца, таких как двухнедельные платежи.
 
-![Example of changing the frequency of a schedule](/img/schedules/schedules-add-repeat.webp)
+![Пример изменения частоты графика](/img/schedules/schedules-add-repeat.webp)
 
-The **Move schedule** checkbox allows you to move the schedule either before or after a weekend, if the selected date falls on a weekend.
-
-:::note
-Schedules do not account for holidays.
-:::
-
-The **Amount** field allows you to enter the amount of the transaction.
-
-![Example of amount field](/img/schedules/schedules-amount.webp)
-
-Next to the amount field, you can select if the amount is the exact number, an approximate value, or a range between two amounts. This is useful if you want to track a range of expected amounts for a transaction, such as a utility bill that may vary slightly each month.
-
-If you choose _is approximately_, the amount will be treated as an estimate, and Actual will match transactions that are plus/minus 7.5% of the amount entered. This means that if you enter $100, Actual will match transactions that are between $92.50 and $107.50.
-
-Enable the **Automatically add transaction** checkbox if you want the schedule to automatically enter the transaction into your account register.
-This means that the transaction will be automatically entered into the account register on all scheduled dates without requiring manual approval.
-
-It may also be useful to link the schedule to transactions.
-
-![Example of pre-adding a transaction](/img/schedules/schedules-add-with-repeat-and-autoadd.webp)
-
-Once a schedule is started, Actual will search the transaction history for entries that match the schedule. You can then select the matches, and will have the option to link those transactions to the current schedule. You can click on the **Find matching transactions** button to have Actual look for matches.
-
-## Converting Future Transactions to Schedules
-
-When you add a transaction with a future date, Actual can turn it into a single-time schedule instead of posting it to your register right away.
-
-1. Navigate to the account where you want to add the transaction.
-2. Click **Add transaction** and enter a future date along with the other details of the transaction.
-3. A **Schedule** button appears in the new transaction row, next to the **Add** button.
-4. Click **Schedule** to create a single-time schedule for the transaction's date.
-
-If the transaction's date is further away than your **Upcoming length** setting, a confirmation dialog appears before the schedule is created to warn you that the schedule will not be visible in the upcoming view until it gets closer to the date. Click **Create schedule anyway** to proceed, or **Cancel** to go back to the in-progress transaction and return to editing.
-
-The transaction is not posted to your register. Instead, it becomes an upcoming scheduled transaction that posts automatically on its scheduled date. You can find it and adjust its details later in [the Schedules view](#the-schedules-overview-screen).
+The **Переместить расписание** Чекбокс позволяет перенести расписание либо до, либо после выходных, если выбранная дата выпадает на выходные.
 
 :::note
-The **Schedule** button only appears for future-dated transactions. For transactions dated today or earlier, it is hidden. As a shortcut, you can press **Ctrl+Shift+Enter** (**Cmd+Shift+Enter** on macOS) in the new transaction row instead of clicking **Schedule**.
+Расписание не учитывает праздники.
 :::
 
-On mobile, a **Schedule** button also appears in the transaction editor when you add a new future-dated transaction or edit an existing future-dated transaction. Converting an existing transaction creates the schedule and then deletes the original transaction.
+The **Сумма** Поле позволяет ввести сумму транзакции.
 
-## Let Actual Find Scheduled Transactions
+![Пример поля количества](/img/schedules/schedules-amount.webp)
 
-Instead of manually entering each schedule, you can let Actual find and suggest schedules for you.
+Рядом с полем суммы вы можете выбрать, является ли сумма точным числом, приблизительным значением или диапазоном между двумя суммами. Это полезно, если вы хотите отслеживать диапазон ожидаемых сумм для транзакции, таких как счет за коммунальные услуги, который может незначительно варьироваться каждый месяц.
 
-Click the **Find schedules** button in the bottom left corner of the Schedules page to let Actual automatically search for transactions that appear to be recurring.
+Если вы выберете is приблизительно , сумма будет рассматриваться как оценка, и Actual будет соответствовать транзакциям, которые плюс / минус 7,5% от введенной суммы. Это означает, что если вы вводите $100, Actual будет соответствовать транзакциям, которые находятся между $92,50 и $107,50.
 
-![Example of finding schedules](/img/schedules/schedules-find-matches.webp)
+Позволить **Автоматическое добавление транзакции** флажок, если вы хотите, чтобы расписание автоматически вводило транзакцию в реестр вашей учетной записи.
+Это означает, что транзакция будет автоматически внесена в реестр счетов на все запланированные даты без необходимости ручного утверждения.
 
-Select the suggested schedules you want to add, and click the **Create schedule** button. Actual will then create schedules based on the selected transactions. You may need to adjust the dates and other settings for the schedules to fit your needs after they have been created.
+Также может быть полезно связать график с транзакциями.
 
-If a schedule you expect does not appear, it may be because the payees on the transactions do not match. Ensure all transactions for a schedule use the same payee name.
+![Пример предварительного добавления транзакции](/img/schedules/schedules-add-with-repeat-and-autoadd.webp)
 
-## Creating Schedules From Transactions
+После того, как расписание будет начато, Actual будет искать историю транзакций для записей, которые соответствуют расписанию. Затем вы можете выбрать совпадения, и у вас будет возможность связать эти транзакции с текущим расписанием. **Найти соответствующие транзакции** Кнопка для реального поиска матчей.
 
-You can also create a schedule from an existing transaction. This is useful if you have a transaction that you want to turn into a schedule, such as a recurring bill or income.
+## Преобразование будущих транзакций в графики {#converting-future-transactions-to-schedules}
 
-Navigate to the Accounts page, find the transaction you wish to create a schedule from.
+Когда вы добавляете транзакцию с будущей датой, Actual может превратить ее в единовременное расписание, а не сразу публиковать ее в своем реестре.
 
-1. Select the tick box in the left hand column for the transaction you wish to copy.
-2. Once selected, go to the drop-down menu on the top right of the page.
-3. Click on **Link schedule**.
+1. Перейдите на счет, где вы хотите добавить транзакцию.
+2. щелкнуть **Добавить транзакцию** Введите будущую дату вместе с другими деталями транзакции.
+3. A **Расписание** кнопка появляется в новой строке транзакций, рядом с **Добавить** Кнопка.
+4. щелкнуть **Расписание** создать единовременный график даты сделки.
 
-![Example of transaction overview](/img/schedules/schedules-from-transactions.webp)
+Если дата транзакции дальше, чем ваша **Предстоящая длина** Настройка, диалог подтверждения появляется перед созданием расписания, чтобы предупредить вас, что расписание не будет видно в предстоящем виде, пока оно не приблизится к дате. **Расписание в любом случае** продолжать, или **отменить** вернуться к текущей транзакции и вернуться к редактированию.
 
-In the Pop up that appears click "Create New"
+Транзакция не публикуется в вашем реестре. Вместо этого она становится предстоящей запланированной транзакцией, которая автоматически публикуется в запланированную дату. Вы можете найти ее и скорректировать ее детали позже. [Посмотреть расписание](#the-schedules-overview-screen).
 
-![Rule associated with the mortgage schedule](/img/schedules/schedules-from-transactions-link-schedule.webp)
+:::note
+The **Расписание** Кнопка появляется только для будущих транзакций. Для транзакций, датированных сегодня или ранее, она скрыта. В качестве ярлыка можно нажать **Ctrl+Shift+Enter** (**Cmd+Shift+Enter** на macOS) в новой строке транзакций вместо нажатия **Расписание**.
+:::
 
-You are now presented with the same dialog as when creating a new schedule from scratch.
-All fields will populate from the transaction,
-Adjust any additional fields, and then click Add.
+На мобильном телефоне, а **Расписание** Кнопка также появляется в редакторе транзакций, когда вы добавляете новую транзакцию с будущим датированием или редактируете существующую транзакцию с будущим датированием.
 
-![Rule associated with the mortgage schedule](/img/schedules/schedules-from-transaction-add-as-usual.webp)
+## Найдите запланированные транзакции {#let-actual-find-scheduled-transactions}
 
-## Managing Schedules
+Вместо того, чтобы вручную вводить каждое расписание, вы можете позволить Actual найти и предложить расписания для вас.
 
-Once you have created a schedule, you can edit it by clicking on the schedule line in the Schedules view. This will open the Schedule Details dialogue, where you can edit the schedule.
+Кликни **Найти расписания** Кнопка в левом нижнем углу страницы Расписания позволяет Actual автоматически искать транзакции, которые кажутся повторяющимися.
 
-If you click on the ellipsis at the end of the schedule line, you will see various options to manage the schedule.
+![Пример поиска расписаний](/img/schedules/schedules-find-matches.webp)
 
-![Example of managing a schedule](/img/schedules/schedules-manage.webp)
+Выберите предложенные графики, которые вы хотите добавить, и нажмите **Создаем график** Затем Actual создаст расписания на основе выбранных транзакций. Возможно, вам нужно будет скорректировать даты и другие настройки графиков в соответствии с вашими потребностями после их создания.
 
-## How Actual Finds Schedules
+Если график, который вы ожидаете, не отображается, это может быть связано с тем, что получатели по транзакциям не совпадают. Убедитесь, что все транзакции для графика используют одно и то же имя получателя.
 
-In addition to the requirements you have specified when creating a schedule, a transaction must also meet the date requirements to be matched to a schedule. Transactions must be dated within 2 days before or after the scheduled date.
+## Создание графиков из транзакций {#creating-schedules-from-transactions}
 
-For example, you have a schedule set up for your power bill to be paid on the 15th of every month. Today is the 10th of the month, and you can see an upcoming scheduled transaction of your bill in Actual.
-The utility company decided to withdraw the funds on the 10th of this month. Therefore, post the transaction to Actual early and update the transaction date to match your bank statement.
+Вы также можете создать график из существующей транзакции.Это полезно, если у вас есть транзакция, которую вы хотите превратить в график, например, повторяющийся счет или доход.
 
-A problem has occurred because the posted transaction is now outside the 2-day window to match scheduled transactions.
-You'll see your bill posted in the Actual account ledger, but you'll also see an upcoming transaction for the power bill on the 15th, even though you just entered it. This is the expected behaviour when using schedules.
+Перейдите на страницу «Учетные записи», найдите транзакцию, из которой вы хотите создать расписание.
 
-You can resolve this issue in one of two ways.
+1. Выберите галочку в левой колонке для транзакции, которую вы хотите скопировать.
+2. После выбора перейдите в раскрывающееся меню в правом верхнем углу страницы.
+3. Нажмите на **Расписание ссылок**.
 
-1. Skip the next schedule by selecting the upcoming scheduled transaction and choosing the "Skip Scheduled Date" from the menu options.
-2. Accept that the date doesn't match and leave it as is so the schedule doesn't prompt a second transaction.
+![Пример обзора транзакций](/img/schedules/schedules-from-transactions.webp)
 
-## How To Use Rules With Schedules
+В всплывающем окне появляется клик «Создать новое»
 
-Many times it's desired to add notes to the scheduled transactions or to assign categories automatically. This is done with the [Rules](./budgeting/rules/index.md) tool. The tool can be reached directly from the Schedules page by clicking on the **Edit as a rule** button in the edit dialog of a schedule.
+![Правила, связанные с графиком ипотеки](/img/schedules/schedules-from-transactions-link-schedule.webp)
 
-When you edit a schedule, the **Edit as rule** button will appear in the dialog
+Теперь вам представлен тот же диалог, что и при создании нового расписания с нуля.
+Все поля будут заполняться от транзакции,
+Отрегулируйте любые дополнительные поля, а затем нажмите Добавить.
 
-![Example of editing a schedule](/img/schedules/schedules-edit-as-rule.webp)
+![Правила, связанные с графиком ипотеки](/img/schedules/schedules-from-transaction-add-as-usual.webp)
 
-Click on **Edit as Rule** to further customize the automatic entry.
+## Управление графиками {#managing-schedules}
 
-We can see that the rule is already populated with the information from the schedule. The **If these conditions are met** area will have the date and frequency of the schedule, as well as the account it is linked to.
-The only thing you would like to add is the category and notes for the transaction.
+После того, как вы создали расписание, вы можете отредактировать его, нажав на строку расписания в просмотре расписания. Это откроет диалог детали расписания, где вы можете отредактировать расписание.
 
-![Rule associated with the mortgage schedule](/img/schedules/schedules-add-rule.webp)
+Если вы нажмете на эллипсис в конце строки расписания, вы увидите различные варианты управления расписанием.
 
-Next you can select all the matching transactions that you want to apply this rule to. This is done by clicking on the checkbox next to the _Date_ header. Then click on the **Apply actions** button in the dialog.
+![Пример управления расписанием](/img/schedules/schedules-manage.webp)
 
-![Rule associated with the mortgage schedule](/img/schedules/schedules-rule-apply-action.webp)
+## Как реально найти расписание {#how-actual-finds-schedules}
 
-Save the rule and any time this scheduled transaction gets entered into the register it can be automatically categorized with a helpful note.
+В дополнение к требованиям, которые вы указали при создании расписания, транзакция также должна соответствовать требованиям к дате, которая должна соответствовать графику.Сделки должны быть датированы в течение 2 дней до или после запланированной даты.
+
+Например, у вас есть график, установленный для оплаты счета за электроэнергию 15 числа каждого месяца. Сегодня 10 числа месяца, и вы можете увидеть предстоящую запланированную транзакцию вашего счета в действии.
+Коммунальная компания решила вывести средства 10-го числа этого месяца. Поэтому отправьте транзакцию в Актуальное раннее время и обновите дату транзакции в соответствии с вашей банковской выпиской.
+
+Проблема возникла, потому что размещенная транзакция теперь находится за пределами 2-дневного окна, чтобы соответствовать запланированным транзакциям.
+Вы увидите свой счет, размещенный в фактической бухгалтерской книге, но вы также увидите предстоящую транзакцию для счета за электроэнергию 15-го числа, даже если вы только что ввели его.
+
+Вы можете решить эту проблему одним из двух способов.
+
+1. Пропустите следующее расписание, выбрав предстоящую запланированную транзакцию и выбрав «Запланированную дату» из вариантов меню.
+2. Примите, что дата не совпадает, и оставьте ее как есть, чтобы график не вызвал вторую транзакцию.
+
+## Как использовать правила с расписанием {#how-to-use-rules-with-schedules}
+
+Много раз желательно добавлять примечания к запланированным транзакциям или автоматически присваивать категории. [Правила](./budgeting/rules/index.md) Инструмент можно получить непосредственно со страницы Расписание, нажав на **Редактировать как правило** Кнопка в диалоге редактирования расписания.
+
+Когда вы редактируете расписание, **Редактировать как правило** Кнопка появится в диалоге
+
+![Пример редактирования расписания](/img/schedules/schedules-edit-as-rule.webp)
+
+Нажмите на **Редактировать как правило** Для дальнейшей настройки автоматической записи.
+
+Мы видим, что правило уже заполнено информацией из графика. **Если эти условия будут выполнены** Район будет иметь дату и частоту расписания, а также учетную запись, с которой он связан.
+Единственное, что вы хотели бы добавить, это категория и примечания для транзакции.
+
+![Правила, связанные с графиком ипотеки](/img/schedules/schedules-add-rule.webp)
+
+Далее вы можете выбрать все соответствующие транзакции, к которым вы хотите применить это правило. Это делается путем нажатия на флажок рядом с заголовком Date . **Применять действия** Кнопка в диалоге.
+
+![Правила, связанные с графиком ипотеки](/img/schedules/schedules-rule-apply-action.webp)
+
+Сохраните правило, и в любое время, когда эта запланированная транзакция попадает в реестр, ее можно автоматически классифицировать с помощью полезной заметки.

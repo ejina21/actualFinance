@@ -1,35 +1,34 @@
-# Writing Documentation
+# Написание документов {#writing-documentation}
 
-Except for a few sections, most of the documentation is aimed at end users. It is important to keep this in mind when writing documentation. In practice, this means that it is better to be a bit verbose and write out every step in a process than to assume that the reader is on the writer's technical level.
+За исключением нескольких разделов, большая часть документации ориентирована на конечных пользователей. Важно помнить об этом при написании документации. На практике это означает, что лучше быть немного многословным и записывать каждый шаг в процессе, чем предполагать, что читатель находится на техническом уровне писателя.
 
 <details>
-<summary>Read example</summary>
+<summary>Прочитайте пример</summary>
 
-For those with experience, the process is straightforward and familiar: _To update with our latest releases, simply use the `git pull` command from the `master` branch of your local directory of Actual. Once the changes are updated, execute the `yarn install` to download the latest updates from the releases._
+Для тех, у кого есть опыт, процесс прост и знаком: Для обновления с нашими последними релизами просто используйте `git pull` Командование от `master` ветвь локального каталога Actual. После обновления изменений выполните `yarn install` скачать последние обновления из релизов._
 
-A better approach for inexperienced people, as it explains what each step is doing and the expected outcome:
+Лучший подход для неопытных людей, поскольку он объясняет, что делает каждый шаг и ожидаемый результат:
 
-1. Stop the server if it's running. You can use the keyboard shortcut <Key mod= "ctrl" k= "c"/> (even on macOS) to stop the server or close the terminal window it's running from.
-2. Run `git pull` from the directory you cloned the project into. This will download the latest server code.
-3. Run `yarn install` from that same directory. This will download the latest web client code and any updated dependencies for the server.
-4. Restart the server by running `yarn start:docs`
+1. Остановите сервер, если он работает. <Key mod= "ctrl" k= "c"/> (даже на macOS), чтобы остановить сервер или закрыть окно терминала.
+2. Беги. `git pull` Из каталога, в который вы клонировали проект, будет загружен последний код сервера.
+3. Беги. `yarn install` В этом же каталоге будет скачиваться последний код веб-клиента и любые обновленные зависимости для сервера.
+4. Перезагрузите сервер, запустив `yarn start:docs`
 
 </details>
 
-We generate our website using the [Docusaurus](https://docusaurus.io/) system, and our documentation is written in Markdown (+ some Docusaurus specifics).
+Мы создаем наш сайт, используя [Докзавры](https://docusaurus.io/) Система и наша документация написаны в Markdown (+ некоторые особенности Docusaurus).
 
-If you're interested in contributing, you'll need to know about the following two resources:
+Если вы заинтересованы в участии, вам нужно знать о следующих двух ресурсах:
 
-- [Actual documentation repository on GitHub](https://github.com/actualbudget/actual/tree/master/packages/docs)
-- [Actual Budget #documentation channel on Discord](https://discord.com/channels/937901803608096828/1027831463103696928)
+- [Репозиторий фактической документации на GitHub](https://github.com/actualbudget/actual/tree/master/packages/docs)
 
-## Documentation Structure
+## Структура документации {#documentation-structure}
 
-### Document Front Matter
+### Документы Front Matter {#document-front-matter}
 
-Front matter is used to add metadata to the documentation file. The front matter enriches the default metadata inferred from the content or other configuration.
+Передняя материя используется для добавления метаданных в файл документации. Передняя материя обогащает метаданные по умолчанию, выведенные из содержимого или другой конфигурации.
 
-Using front matter is not mandatory.
+Использование фронта не является обязательным.
 
 ```markdown
 ---
@@ -41,23 +40,23 @@ more_data:
 ---
 ```
 
-### Document Headings and Subheadings
+### Заголовки и подзаголовки документов {#document-headings-and-subheadings}
 
-We follow a strict, mandatory, structure in our documents by using Markdown headings.
+Мы следуем строгой, обязательной структуре в наших документах, используя заголовки Markdown.
 
-If the title tag is not provided in the front matter, you must start the document with a level 1 heading.
-If the title tag is provided, you must omit this level 1 heading.
-Each document should have only one level 1 heading.
+Если тег заголовка не указан в передней части, вы должны начать документ с заголовка уровня 1.
+Если тег заголовка предоставлен, вы должны опустить этот заголовок уровня 1.
+Каждый документ должен иметь только один заголовок уровня 1.
 
 `# Level 1 Markdown Heading is used instead as The Document Title if Front Matter title tag is not used`
 
-Many documents are divided into multiple main sections for improved readability and organization, with level 2 headings serving as the method for structuring the content.
+Многие документы разделены на несколько основных разделов для улучшения читаемости и организации, а заголовки уровня 2 служат методом структурирования контента.
 
-Use level 3 headings when a main section becomes complex and requires further breakdown.
+Используйте заголовки уровня 3, когда основной раздел становится сложным и требует дальнейшей разбивки.
 
-Additionally, if necessary, a fourth level of headings is available to provide even more detailed categorization.
+Кроме того, при необходимости имеется четвертый уровень заголовков для обеспечения еще более подробной категоризации.
 
-It is important to note that both level 1 and level 2 headings are prominently displayed in the right sidebar, making it easier for readers to navigate the document and locate specific sections efficiently.
+Важно отметить, что заголовки уровня 1 и уровня 2 заметно отображаются на правой боковой панели, что позволяет читателям эффективно перемещаться по документу и находить определенные разделы.
 
 ```markdown
 ## Level 2 Markdown Heading: Main Section Headings are used to split the document into main sections
@@ -67,13 +66,13 @@ It is important to note that both level 1 and level 2 headings are prominently d
 #### Level 4 Markdown Heading: Use this if you need to split the Subsection further
 ```
 
-### Documentation Folder Structure
+### Структура папок Документация {#documentation-folder-structure}
 
-The documentation folder structure should follow the structure in the left of the screen.
-This means sections with more than one page have their own directories.
+Структура папки документации должна следовать за структурой слева от экрана.
+Это означает, что разделы с более чем одной страницей имеют свои собственные каталоги.
 
 <details>
-<summary>Click here to get an overview of the folder structure</summary>
+<summary>Нажмите здесь, чтобы получить обзор структуры папки</summary>
 
 ```
 website # the root directory of the documentation site
@@ -116,68 +115,68 @@ website # the root directory of the documentation site
 
 </details>
 
-## Document Guidelines
+## Документальные руководящие принципы {#document-guidelines}
 
-Below are some basic guidelines on how the documentation should be formatted. Everyone has their own writing style, but we aim to keep the style of the documentation the same across the site.
+Ниже приведены некоторые основные рекомендации о том, как документация должна быть отформатирована. Каждый имеет свой собственный стиль письма, но мы стремимся сохранить стиль документации одинаковым на всем сайте.
 
-### Language
+### Язык языка {#language}
 
-When writing documentation, please use the English language. At this time, the documentation team doesn't have any translators available to translate documents into other languages, but this is something we would like to do in the future.
+При написании документации, пожалуйста, используйте английский язык. На данный момент у команды по документации нет переводчиков для перевода документов на другие языки, но это то, что мы хотели бы сделать в будущем.
 
-Docusaurus 3 provides translation using [i18n](https://docusaurus.io/docs/i18n/introduction). If this is something you would like to pursue, please feel free to open a PR.
+Docusaurus 3 выполняет перевод с использованием [i18n](https://docusaurus.io/docs/i18n/introduction)Если это то, что вы хотели бы продолжить, пожалуйста, не стесняйтесь открывать PR.
 
-### Tone and Voice
+### Тон и голос {#tone-and-voice}
 
-- **Friendly and Approachable**: Write in a conversational and welcoming tone. The goal is to make users feel comfortable and supported.
+- **Дружелюбный и доступный**Напишите в разговорном и приветливом тоне. Цель состоит в том, чтобы пользователи чувствовали себя комфортно и поддерживались.
 
-- **Active Voice**: Use active voice to make sentences more direct and engaging. Example: _Install Actual Budget on your computer_ instead of _Actual Budget should be installed on your computer_.
+- **Активный голос**Используйте активный голос, чтобы сделать предложения более прямыми и привлекательными.Пример: Установить Actual Budget на компьютере вместо Актуальный бюджет должен быть установлен на компьютере .
 
-- **Time Neutral**: Use present voice, unless documentation is for experimental or unreleased features. Where time references are made, remove them upon release or removal of the feature. Example: _Filters can be used..._ instead of _As of June 2022 update, you can..._.
+- **Время нейтрально**: Используйте голос в настоящем, если документация не предназначена для экспериментальных или неизданных функций. Там, где указаны временные ссылки, удалите их при выпуске или удалении функции. Пример: Filters можно использовать ..._ Вместо обновления на июнь 2022 года вы можете..._.
 
-### A Short Style Guide
+### Краткое руководство по стилю {#a-short-style-guide}
 
-- Prefix monetary values with the $ (dollar) sign.
-- Use the , (comma) sign as the thousands' separator.
-- Calculations should never have the dollar prefix, nor the thousand separator signs.
-- All headings must use [Title Case](https://en.wikipedia.org/wiki/Title_case) using the Chicago Manual of Style rule set.
+- Префиксируйте денежные значения знаком $ (доллар).
+- Используйте знак , (запятая) в качестве разделителя тысяч.
+- В расчетах никогда не должно быть ни приставки к доллару, ни знака тысячи разделителей.
+- Все заголовки должны использовать [Заголовок дела](https://en.wikipedia.org/wiki/Title_case) Чикагское руководство по стилю набор правил.
 
-### Format
+### Формат {#format}
 
-- **Keep paragraphs short and focused**. Each paragraph should convey a single idea or concept.
+- **Держите абзацы короткими и сосредоточенными**Каждый абзац должен содержать одну идею или концепцию.
 
-- **Use bullet points** or numbered lists to break down information into digestible chunks.
+- **Используйте пулевые точки** или пронумерованные списки, чтобы разбить информацию на усвояемые куски.
 
-- **Consistent Terminology**: Use consistent terminology throughout the documentation. Refer to the product as "Actual Budget" or "Actual."
+- **Последовательная терминология**Используйте последовательную терминологию во всей документации. Относитесь к продукту как «Актуальный бюджет» или «Актуальный».
 
-## Formatting Text
+## Форматирование текста {#formatting-text}
 
-All documentation is written in Markdown, with certain additional Markdown syntax provided by Docusaurus.
+Вся документация написана в Markdown, с некоторым дополнительным синтаксисом Markdown, предоставленным Docusaurus.
 
-If you have never used Markdown, please consult [CommonMark](https://commonmark.org/) and the
-[Docusaurus Markdown Features](https://docusaurus.io/docs/markdown-features) guide. You can learn more about Markdown in
-[The Markdown Guide](https://www.markdownguide.org/).
+Если вы никогда не использовали Markdown, пожалуйста, проконсультируйтесь [CommonMark](https://commonmark.org/) и
+[Обсуждение Docusaurus Markdown](https://docusaurus.io/docs/markdown-features) Вы можете узнать больше о Markdown in
+[Оригинальное название: Markdown Guide](https://www.markdownguide.org/).
 
-### Linking Between Pages
+### Связь между страницами {#linking-between-pages}
 
-When linking from one documentation page to another, use a relative file path that includes the `.md` extension, not the page's URL:
+При переходе с одной страницы документации на другую используйте относительный путь файла, который включает в себя `.md` Расширение, а не URL страницы:
 
 ```markdown
 Read our [Starting Fresh](../getting-started/starting-fresh.md) guide.
 ```
 
-instead of
+вместо того, чтобы
 
 ```markdown
 Read our [Starting Fresh](/docs/getting-started/starting-fresh) guide.
 ```
 
-Docusaurus resolves file paths at build time and converts them to the published URLs, so links that point at a missing file or heading fail the build (`onBrokenLinks` and `onBrokenAnchors` are both set to `throw`) instead of silently breaking for readers. When linking to a specific section, place the anchor after the extension: `../api/reference.md#importtransactions`.
+Docusaurus разрешает пути файлов во время сборки и преобразует их в опубликованные URL-адреса, поэтому ссылки, которые указывают на отсутствующий файл или заголовок, не справляются со сборкой.`onBrokenLinks` и `onBrokenAnchors` Оба предназначены для `throw`) вместо бесшумного разрыва для читателей. При привязке к конкретному разделу поместите якорь после расширения: `../api/reference.md#importtransactions`.
 
-Blog posts and the standalone pages in `src/pages/` live outside the `docs/` folder and can't reference documentation by file path. Use relative URLs from those files instead, for example `../../docs/install/` from a blog post.
+Посты в блоге и отдельные страницы в `src/pages/` жить за пределами `docs/` папка и не может ссылаться на документацию по пути файла. Используйте относительные URL-адреса из этих файлов, например `../../docs/install/` Из сообщения в блоге.
 
-### Blog Posts in the App
+### Посты в блоге в приложении {#blog-posts-in-the-app}
 
-Actual has an in-app Notifications page built from the blog. Release posts are included automatically (the release tooling marks them); any other post is only shown there when you opt in by adding `in_app_notification: true` to its front matter:
+Actual имеет страницу уведомлений в приложении, построенную из блога. сообщения о выпуске включаются автоматически (инструмент выпуска отмечает их); любой другой пост отображается там только тогда, когда вы выбираете добавление. `in_app_notification: true` В его передней части вопрос:
 
 ```markdown
 ---
@@ -187,11 +186,11 @@ in_app_notification: true
 ---
 ```
 
-Posts without it stay on the website only, so use it for announcements the whole community should see and leave it off how-to articles and other evergreen content.
+Посты без него остаются только на веб-сайте, поэтому используйте его для объявлений, которые все сообщество должно видеть, и оставьте его в стороне от статей и другого вечнозеленого контента.
 
-The feed itself is the generated file `packages/desktop-client/src/data/news.json`. CI regenerates and commits it on your pull request, so check that the entry for your post looks right there; you can also run `yarn generate:news-feed` locally.
+Сама лента представляет собой сгенерированный файл. `packages/desktop-client/src/data/news.json`CI регенерирует и фиксирует его по вашему запросу на вытягивание, поэтому проверьте, что запись для вашего поста выглядит прямо там; вы также можете запустить `yarn generate:news-feed` Местно.
 
-### Keyboard Shortcuts
+### Клавишные ярлыки {#keyboard-shortcuts}
 
 ```markdown
 <Key k="f" /> shows the f-key.
@@ -200,16 +199,16 @@ The feed itself is the generated file `packages/desktop-client/src/data/news.jso
 <Key mod="cmd" k="enter" /> shows the Command-Enter key combination.
 ```
 
-#### The above will be rendered as follows
+#### Вышеизложенное будет сделано следующим образом: {#the-above-will-be-rendered-as-follows}
 
-- <Key k="f" /> shows the f-key.
-- <Key k="enter" /> shows the Enter-key.
-- <Key mod="shift" k="enter" /> shows the Shift-Enter key combination.
-- <Key mod="cmd" k="enter" /> shows the Command-Enter key combination.
+- <Key k="f" /> Показывает ключ.
+- <Key k="enter" /> Показывает входной ключ.
+- <Key mod="shift" k="enter" /> Показывает комбинацию клавиш Shift-Enter.
+- <Key mod="cmd" k="enter" /> Комбинация клавиш Command-Enter.
 
-### Highlights
+### Основные моменты {#highlights}
 
-If you would like to highlight a section of the document you can use the following:
+Если вы хотите выделить раздел документа, вы можете использовать следующее:
 
 ```markdown
 :::tip
@@ -223,7 +222,7 @@ Your note content
 :::
 ```
 
-If you want to make a reader aware of a cautionary item in the documentation, you can use this:
+Если вы хотите, чтобы читатель знал о предостережении в документации, вы можете использовать это:
 
 ```markdown
 :::caution
@@ -231,7 +230,7 @@ Your cautionary item
 :::
 ```
 
-If you want to make a reader aware of something really important that can mess up their budget, use this:
+Если вы хотите, чтобы читатель знал о чем-то действительно важном, что может испортить его бюджет, используйте это:
 
 ```markdown
 :::warning
@@ -239,28 +238,28 @@ Your warning content
 :::
 ```
 
-#### The above highlights will be rendered as follows
+#### Вышеуказанные основные моменты будут представлены следующим образом: {#the-above-highlights-will-be-rendered-as-follows}
 
 :::tip
-Your tip content
+Ваш контент
 :::
 
 :::note
-Your note content
+Содержание заметки
 :::
 
 :::caution
-Your cautionary item
+Ваш предостережение
 :::
 
 :::warning
-Your warning content
+Ваш предупреждающий контент
 :::
 
-### Hiding and showing information
+### Скрывать и показывать информацию {#hiding-and-showing-information}
 
 <details>
-<summary>This is a summary box, click here to see how it's made</summary>
+<summary>Это сводный ящик, нажмите здесь, чтобы увидеть, как он сделан</summary>
 
 ```
 <details>
@@ -273,152 +272,150 @@ Place the content inside the details-tags.
 
 </details>
 
-## How To Fix Spelling Errors
+## Как исправить ошибки орфографии {#how-to-fix-spelling-errors}
 
-As part of the build process, GitHub Actions runs a spell checker ([typos](https://github.com/crate-ci/typos)) on the documentation. If it finds any spelling error, it will be reported in the build output on GitHub. You must fix this by editing the file and correcting the spelling error.
+В рамках процесса сборки GitHub Actions запускает проверку орфографии ([опечатка](https://github.com/crate-ci/typos)) на документации. Если он обнаружит какую-либо орфографическую ошибку, о ней будет сообщено в выводе сборки на GitHub. Вы должны исправить это путем редактирования файла и исправления орфографической ошибки.
 
-If the checker mistakes a word, you can allow it by adding it to the `[default.extend-words]` section of `/.github/actions/docs-spelling/typos.toml`, mapped to itself (for example `HSA = "HSA"`).
-This will prevent it from being reported as a spelling error in the future.
+Если проверяющий ошибается в слове, вы можете разрешить это, добавив его в `[default.extend-words]` раздел `/.github/actions/docs-spelling/typos.toml`Для себя (например, `HSA = "HSA"`).
+Это предотвратит сообщение об ошибке орфографии в будущем.
 
-## Naming Standards
+## Стандарты именования {#naming-standards}
 
-### For Documents
+### Для документов {#for-documents}
 
-- Filenames should be self-explanatory and reflect the title of the file.
-- A longer, more descriptive filename is preferred over a shorter, less descriptive one.
-- Folder names must reflect the naming in the sidebar.
+- Имена файлов должны быть понятными и отражать название файла.
+- Более длинное, более описательное имя файла предпочтительнее более короткого, менее описательного.
+- Названия папок должны отражать имена в боковой панели.
 
-### For Images
+### Для изображений {#for-images}
 
-- Images must be placed in the `/static/img/` folder.
-- Except for logos and such, all images related to the documentation must be placed in a folder corresponding to the location of the document in which it is used. Let's say you want to add an image to a document in the `/docs/budgeting/` folder - the corresponding images must be stored in the `/static/img/budgeting/` folder.
-- Image names must be prefixed to correspond with the document they primarily belong to. Let's say you are adding an image to the `/docs/budgeting/categories.md` file, then all image names need to be prefixed with `categories-`.
-- For regularly used images, these can be put into `/static/img/elements/`, inside it's own folders. Let's say you want to store images related to the sidebar; then all _sidebar_ images need to be placed in `/static/images/elements/sidebar/`. We have decided to do it this way to minimize the workload when adding and updating images.
+- Изображения должны быть размещены в `/static/img/` папка.
+- За исключением логотипов и таковых, все изображения, связанные с документацией, должны быть размещены в папке, соответствующей местоположению документа, в котором она используется.Скажем, вы хотите добавить изображение к документу в папке `/docs/budgeting/` папка - соответствующие изображения должны храниться в `/static/img/budgeting/` папка.
+- Имена изображений должны быть префиксированы, чтобы соответствовать документу, к которому они в первую очередь принадлежат. Допустим, вы добавляете изображение к `/docs/budgeting/categories.md` файл, то все имена изображений должны быть предварительно зафиксированы `categories-`.
+- Для регулярно используемых изображений они могут быть помещены в `/static/img/elements/`Скажем, вы хотите хранить изображения, связанные с боковой панелью; тогда все изображения sidebar должны быть размещены в `/static/images/elements/sidebar/`Мы решили сделать это таким образом, чтобы минимизировать нагрузку при добавлении и обновлении изображений.
 
-## Using Images
+## Использование изображений {#using-images}
 
-Using images to accompany the description makes the documentation more accessible, thus improving its readability.
+Использование изображений для сопровождения описания делает документацию более доступной, тем самым улучшая ее читаемость.
 
-The way to do this is to take good screenshots. When taking screenshots, there are a few things to keep in mind:
+Способ сделать это - сделать хорошие скриншоты. При съемке скриншотов нужно иметь в виду несколько вещей:
 
-- It is crucial to ensure that the image is crystal clear and directly relevant.
-  Blurry or muddled images can detract from the user's understanding and confidence in the documentation.
-- Striking the right balance on how much a screenshot should include is vital. Too much information can overwhelm the reader,
-  while too little can leave them without the necessary context. Your judgment in
-  this matter is crucial to the effectiveness of the documentation.
-- Avoid taking screenshots on a big screen when the browser is in full-screen mode.
-  Try to take screenshots at most 1100 pixels wide and 700 pixels long. By this, we do not mean the size of the
-  finished images but how much of the screen you are taking a picture of.
-- Images must always be saved in the PNG format.
-- Take images using only the _light_ mode, not _dark_.
-- If you need to address more than one part of the screenshot, annotate the image. See below for more details.
-- We strongly encourage you to always add _alt text_ to the images, as not all image names are self-explanatory.
+- Важно, чтобы изображение было кристально чистым и непосредственно релевантным.
+  Размытые или запутанные изображения могут отвлечь пользователя от понимания и уверенности в документации.
+- Поразить правильный баланс того, сколько скриншот должен включать жизненно важно. Слишком много информации может перегрузить читателя,
+  В то время как слишком мало может оставить их без необходимого контекста.
+  Этот вопрос имеет решающее значение для эффективности документации.
+- Избегайте скриншотов на большом экране, когда браузер находится в полноэкранном режиме.
+  Попробуйте сделать скриншоты шириной не более 1100 пикселей и длиной 700 пикселей. Под этим мы не подразумеваем размер экрана.
+  Готовые изображения, но сколько экрана вы снимаете.
+- Изображения всегда должны быть сохранены в формате PNG.
+- Делайте снимки только в режиме light , а не dark .
+- Если вам нужно адресовать более одной части скриншота, аннотируйте изображение. Подробнее см. ниже.
+- Мы настоятельно рекомендуем вам всегда добавлять alt текст к изображениям, так как не все имена изображений являются самоочевидными.
 
 :::info
-Screenshots taken on a retina screen should be titled as such: image-name@2x.png. This allows Docusaurus
-to rescale the images where appropriate.
+Скриншоты, сделанные на экране сетчатки, должны быть названы так: image-name@2x.png.
+Пересортировать изображения, где это уместно.
 :::
 
-### Annotating Images
+### Аннотирование изображений {#annotating-images}
 
-There are several reasons why you need to annotate screenshots.
-One reason is that you want readers to pay attention to some aspects of the GUI. This is true if you have a screenshot of an area (for context) and you need to highlight one part of that area. Another reason is that you must address more than one element in the GUI, but presenting several variants of the same screenshot is unfavorable.
-We have a few suggestions when annotating screenshots:
+Есть несколько причин, по которым вам нужно аннотировать скриншоты.
+Одна из причин заключается в том, что вы хотите, чтобы читатели обращали внимание на некоторые аспекты графического интерфейса. Это верно, если у вас есть скриншот области (для контекста), и вам нужно выделить одну часть этой области. Другая причина заключается в том, что вы должны обратиться к более чем одному элементу в графическом интерфейсе, но представление нескольких вариантов одного и того же скриншота неблагоприятно.
+У нас есть несколько предложений при аннотировании скриншотов:
 
-#### Do Use Boxes Over Arrows
+#### Используйте коробки над стрелами {#do-use-boxes-over-arrows}
 
-Arrows can inadvertently be misunderstood as pointing _from_ something rather than _to_. As we see in the example below, the reader can not be sure if the arrow means the column, the column header or if _To Budget_ is involved.
+Стрелы могут быть непреднамеренно неправильно поняты как указывающие from что-то, а не to . Как мы видим в примере ниже, читатель не может быть уверен, что стрелка означает колонку, заголовок колонки или To Budget .
 
-![Image of the budget view annotated by a box and an arrow](/img/repo/annotation-boxes-over-arrows.webp)
+![Изображение бюджетного вида, аннотированного коробкой и стрелкой](/img/repo/annotation-boxes-over-arrows.webp)
 
-#### Use "Steps" When Referring to Several Elements
+#### Используйте «шаги» при упоминании нескольких элементов {#use-steps-when-referring-to-several-elements}
 
-Use running numbers or letters inside circles, also known as "steps", when addressing more than one element in the screenshot. If there is a sequence to what a user is going to click on, use step numbers; if you want to address various elements, letters are preferred.
+Используйте запущенные числа или буквы внутри кругов, также известные как «шаги», при адресации более чем одного элемента на скриншоте.Если есть последовательность того, на что пользователь собирается нажать, используйте номера шагов; если вы хотите адресовать различные элементы, предпочтительны буквы.
 
-![Image with 3 annotation steps](/img/repo/annotation-steps.webp)
+![Изображение с 3 шагами аннотации](/img/repo/annotation-steps.webp)
 
-If the annotation tool doesn't support 'steps ', use boxes in different colors and incorporate these colors into the explanation. This will help guide the reader's attention effectively.
+Если инструмент аннотации не поддерживает «шаги», используйте поля в разных цветах и включите эти цвета в объяснение. Это поможет эффективно направлять внимание читателя.
 
-![Image with 3 different colored boxes](/img/repo/annotation-colour-boxes.webp)
+![Изображение с 3 разными цветными коробками](/img/repo/annotation-colour-boxes.webp)
 
 <details>
-<summary>Read example description of this way of annotating</summary>
+<summary>Прочитайте пример описания этого способа аннотирования</summary>
 
-**Using _steps_**
+**Использование steps**
 
-a. Formatting numbers. We support most commonly used formats.
+а. Форматирование чисел. Мы поддерживаем наиболее часто используемые форматы.
 
-b. Choose the date format that you are most comfortable with.
+Выберите формат даты, который вам наиболее удобен.
 
-c. The first day of the week controls grouping on reports.
+Первый день недели контролирует группировку отчетов.
 
 ---
 
-**Using colored boxes**:
+**Использование цветных коробок**:
 
-- Formatting numbers (indicated by the red box). We support most formats that are commonly used.
-- If you want to change the date format you are most comfortable with, you can use the dropdown in the green box.
-- The first day of the week controls grouping on reports. You will find this control indicated in the yellow box.
+- Форматирование чисел (указывается красным ящиком). Мы поддерживаем большинство форматов, которые обычно используются.
+- Если вы хотите изменить формат даты, который вам наиболее удобен, вы можете использовать раскрывающееся окно в зеленой коробке.
+- Первый день недели контролирует группировку по отчетам. Вы найдете этот контроль, указанный в желтой коробке.
 
 </details>
 
-#### Do not Draw Annotations Using "Free Hand"
+#### Не рисуйте аннотации с помощью «свободной руки» {#do-not-draw-annotations-using-free-hand}
 
-Do not use free hand "marker pens", boxes or arrows, as these kind of annotations just look sloppy. Ask for help on the
-[Actual Budget #documentation Discord channel](https://discord.com/channels/937901803608096828/1027831463103696928)
-if you need to annotate images but are not able to do it yourself.
+Не рисуйте подписи, рамки и стрелки от руки: такие пометки трудно читать. Если нужно разметить изображение, используйте редактор с аккуратными фигурами и подписями.
 
-![Image with ugly free-hand annotations](/img/repo/annotation-free-hand.webp)
+![Изображение с уродливыми аннотациями от руки](/img/repo/annotation-free-hand.webp)
 
-#### Annotation Colors
+#### Цвета аннотации {#annotation-colors}
 
-Use strong, clear, and crisp colors to create good contrasts. Do not use pure white or pure black. Even if we want
-all screenshots taken using the light theme, there are dark elements like the sidebar and particular dropdowns in the
-GUI. Avoid annotating these elements using dark colors.
+Используйте сильные, четкие и четкие цвета, чтобы создать хорошие контрасты. Не используйте чистый белый или чистый черный.
+все скриншоты, сделанные с использованием светлой темы, есть темные элементы, такие как боковая панель и отдельные выпадения в
+Избегайте аннотирования этих элементов с использованием темных цветов.
 
-Remember that colors are tricky for color blind people.
+Помните, что цвета являются сложными для слепых людей.
 
-We suggest using the following colors (RGB values):
+Мы предлагаем использовать следующие цвета (значения RGB):
 
-| Color name | Decimal       | Hex       |
-| ---------- | ------------- | --------- |
-| Red        | 255, 89, 75   | FF 59 4B  |
-| Yellow     | 251, 186, 0   | FB BA 00  |
-| Purple     | 119, 64, 154  |  77 40 9A |
-| Blue       | 112, 175, 253 | 70 AF FD  |
-| Green      | 0, 187, 161   | 00 BB A1  |
+| Цветное имя | десятичный    | Шеф       |
+| ----------- | ------------- | --------- |
+| красный     | 255, 89, 75   | FF 59 4B  |
+| желтый      | 251, 186, 0   | FB BA 00  |
+| фиолетовый  | 119, 64, 154  |  77 40 9A |
+| голубой     | 112, 175, 253 | 70 AF FD  |
+| зеленый     | 0, 187, 161   | 00 BB A1  |
 
-![Annotation colors as seen in the table](/img/repo/annotation-colours.webp)
+![Цвета аннотации, как видно на столе](/img/repo/annotation-colours.webp)
 
-For accessibility reasons (color blindness), avoid using red and green annotation colors on the same image.
+По причинам доступности (цветовая слепота) избегайте использования красных и зеленых цветов аннотации на одном изображении.
 
-#### Avoid Using _Transparency_ or _Spotlight_ Annotations
+#### Избегайте использования аннотаций Transparency или Spotlight {#avoid-using-transparency-or-spotlight-annotations}
 
-Different annotation tools handle this in various ways, which means we will get inconsistent screenshots. Secondly, unless you can control the opacity and color of the highlight, using highlighting could easily confuse more than enlighten the reader. Can you quickly find the highlighted number in the screenshot below?
+Различные инструменты аннотации обрабатывают это различными способами, что означает, что мы получим непоследовательные скриншоты. Во-вторых, если вы не можете контролировать непрозрачность и цвет подсветки, использование подсветки может легко сбить с толку больше, чем просветить читателя. Можете ли вы быстро найти выделенное число на скриншоте ниже?
 
-![Image of the budget view using the dark theme showing how highlights or spotlight annotations make the image hard to read](/img/repo/annotation-highlights-are-bad.webp)
+![Изображение бюджетного вида с использованием темной темы, показывающее, как выделения или аннотации прожектора затрудняют чтение изображения.](/img/repo/annotation-highlights-are-bad.webp)
 
 <details>
-<summary>It might work when using the light theme</summary>
+<summary>Это может работать при использовании светлой темы.</summary>
 
-However, because we dim down the rest of the image, this breaks over the notion that images should be clear and crisp.
+Однако, поскольку мы затемняем остальную часть изображения, это нарушает представление о том, что изображения должны быть четкими и четкими.
 
-![Image of the budget view using the light theme showing that highlights may work](/img/repo/annotation-highlights-ligth-theme.webp)
+![Изображение бюджетного вида с использованием световой темы, показывающей, что основные моменты могут работать](/img/repo/annotation-highlights-ligth-theme.webp)
 
 </details>
 
-### Software For Taking and Annotating Screenshots
+### Программное обеспечение для получения и аннотирования скриншотов {#software-for-taking-and-annotating-screenshots}
 
-There are many software packages available to help you take screenshots. Both Windows and Mac systems come with some rudimentary tools for this (like [Windows Snipping Tool](https://support.microsoft.com/en-us/windows/use-snipping-tool-to-capture-screenshots-00246869-1843-655f-f220-97299b865f6b) or in [macOS](https://support.apple.com/en-us/102646)). For various Linuxes, [this Fosspost.com article](https://fosspost.org/take-screenshot-linux) can be consulted.
+Существует множество программных пакетов, которые помогут вам сделать скриншоты. Системы Windows и Mac поставляются с некоторыми рудиментарными инструментами для этого (например, [Windows Snipping Tool](https://support.microsoft.com/en-us/windows/use-snipping-tool-to-capture-screenshots-00246869-1843-655f-f220-97299b865f6b) или в [macOS](https://support.apple.com/en-us/102646)Для различных Linux, [Эта статья Fosspost.com](https://fosspost.org/take-screenshot-linux) Можно проконсультироваться.
 
-Some of the mentioned tools will let you annotate screenshots, others will not.
+Некоторые из упомянутых инструментов позволят вам аннотировать скриншоты, другие — нет.
 
-If you are serious about your screenshots (and also helping out with the Actual documentation), you might want to consider tools created explicitly for taking screenshots and having good annotation support. This list is not an endorsement from the Actual Budget project team but is meant as a starting point for such tools.
+Если вы серьезно относитесь к своим скриншотам (а также помогаете с фактической документацией), вы можете рассмотреть инструменты, созданные специально для скриншотов и имеющие хорошую поддержку аннотации. Этот список не является одобрением от команды проекта Actual Budget, но предназначен в качестве отправной точки для таких инструментов.
 
-**For Windows and Mac**:
+**Для Windows и Mac**:
 
-- [Greenshot](https://getgreenshot.org/) is a simple and effective open-source solution.
-- [Flameshot](https://flameshot.org/) is a complete open-source package for taking and annotating screenshots. This program is more complex than Greenshot.
-- Many consider [SnagIt](https://www.techsmith.com/screen-capture.html) the best tool in this category, but it comes at a cost.
+- [Гриншот](https://getgreenshot.org/) Простое и эффективное решение с открытым исходным кодом.
+- [огнестрел](https://flameshot.org/) Это полный пакет с открытым исходным кодом для съемки и аннотирования скриншотов. Эта программа сложнее, чем Greenshot.
+- Многие считают [Снежный](https://www.techsmith.com/screen-capture.html) Лучший инструмент в этой категории, но он стоит дорого.
 
-**For Linux**, please see this [Fosspost.com article](https://fosspost.org/take-screenshot-linux).
+**Для Linux**Пожалуйста, посмотрите это [Статья на Fosspost.com](https://fosspost.org/take-screenshot-linux).

@@ -1,65 +1,57 @@
-# The Budget
+# Бюджет
 
-This view lets you manage your budget. You'll find more information about envelope budgeting with Actual in [Budgeting](../budgeting/index.md).
+В этом разделе вы составляете и ведёте бюджет. Подробнее о распределении денег по конвертам читайте в разделе [«Бюджетирование»](../budgeting/index.md).
 
-![Budget overview](/img/a-tour-of-actual/tour-budget-overview.webp)
+![Общий вид бюджета](/img/a-tour-of-actual/tour-budget-overview.webp)
 
-The maximum number of months you can see at any one time is defined by the width of your screen.
+Число месяцев, которые одновременно помещаются на экране, зависит от его ширины.
 
-You can choose how many months to display by clicking on the corresponding number of calendar icons in the top left corner.
+Чтобы выбрать количество отображаемых месяцев, нажмите на соответствующее число значков календаря слева вверху.
 
-![Budget calendar icons](/img/a-tour-of-actual/tour-budget-calendar.webp)
+![Значки выбора количества месяцев](/img/a-tour-of-actual/tour-budget-calendar.webp)
 
-Based on this, you can then choose which months to show:
+Затем выберите, какие именно месяцы показывать:
 
-![Budget months to show](/img/a-tour-of-actual/tour-budget-calendar-choose.webp)
+![Выбор месяцев бюджета](/img/a-tour-of-actual/tour-budget-calendar-choose.webp)
 
-## The Month header
+## Заголовок месяца
 
-At the top of each month, you have a couple of choices in the user interface.
+В верхней части каждого месяца доступны несколько действий:
 
-- Clicking on the note icon lets you add a note. Actual fully supports Markdown and the note will be rendered according to your Markdown when the cursor is hovering over the note.
-- You can minimize the header by clicking on the chevrons (seen in the yellow box).
-- Clicking on the three vertical dots lets you execute the following functions on that month's budget categories:
-  - Copy last month's budget.
-  - Set budgets to zero.
-  - Set budgets to 3 month average.
-  - Set budgets to 6 month average.
-  - Set budgets to 12 month average.
+- Нажмите на значок заметки, чтобы добавить пояснение. Actual поддерживает Markdown и показывает отформатированную заметку при наведении указателя.
+- Нажмите на стрелки (жёлтая рамка), чтобы свернуть заголовок.
+- Откройте меню с тремя вертикальными точками, чтобы скопировать бюджет предыдущего месяца, обнулить суммы или заполнить их средними значениями за 3, 6 либо 12 месяцев.
 
-![Budget header expanded](/img/a-tour-of-actual/tour-budget-top-expanded.webp)
+![Развёрнутый заголовок месяца](/img/a-tour-of-actual/tour-budget-top-expanded.webp)
 
-When the top is minimized, you can still access the same functionality as when the top section is expanded.
+После сворачивания заголовка те же действия остаются доступны.
 
-![Budget header minimized](/img/a-tour-of-actual/tour-budget-top-minimized.webp)
+![Свёрнутый заголовок месяца](/img/a-tour-of-actual/tour-budget-top-minimized.webp)
 
-Here's the rendered Markdown when you hover over the note.
+Вот как выглядит заметка с форматированием Markdown при наведении указателя:
 
-![Budget header note with Markdown](/img/a-tour-of-actual/tour-budget-top-note-hover.webp)
+![Заметка в заголовке месяца](/img/a-tour-of-actual/tour-budget-top-note-hover.webp)
 
-## The Budget Table
+## Таблица бюджета
 
-### Left side - category section
+### Категории слева
 
-The budget detail section lists all your categories and their grouping. The image below shows two expense category groups, _Usual Expenses_ and _Bills_, along with the income categories.
+Слева перечислены категории и их группы. На изображении ниже видны две группы расходов — _Usual Expenses_ и _Bills_ — и категории доходов. Эти названия относятся к примеру бюджета; в своём бюджете вы можете назвать группы по-русски.
 
-Clicking on the three vertical dots (in the yellow box) allows you to toggle hidden categories, expand all or collapse all category groups.
+Меню с тремя вертикальными точками (жёлтая рамка) позволяет показать скрытые категории, развернуть все группы или свернуть их.
 
-When you hover over a category group (outlined by the green box), you can add a new category to the group by clicking the + icon or add a note by clicking the note icon. All notes on the Budget page support full Markdown. The dropdown will allow you to toggle between hide or show the _category group_, rename or delete the group.
+Наведите указатель на группу категорий (зелёная рамка). Значок «+» добавляет категорию в группу, а значок заметки — пояснение. В меню группы можно скрыть или показать её, переименовать либо удалить. Заметки на странице бюджета поддерживают Markdown.
 
-Categories (as seen in the purple box) have the same functionality as groups: hide, rename and delete. You can also add a note here, with information specific to the category.
+Для отдельной категории (фиолетовая рамка) доступны скрытие, переименование, удаление и собственная заметка.
 
-![Budget table detail](/img/a-tour-of-actual/tour-budget-details.webp)
+![Категории в таблице бюджета](/img/a-tour-of-actual/tour-budget-details.webp)
 
-### The middle - the budget section
+### Суммы в центре
 
-This is the juicy part of the user interface; this is where you work with your budgeted numbers.
+В этой части таблицы вы планируете деньги. Для каждого месяца показаны три столбца: _«Выделено в бюджет»_, _«Потрачено»_ и _«Баланс»_.
 
-We have three columns under a month heading: _Budgeted_, _Spent_, and _Balance_.
+- _«Выделено в бюджет»_ — сумма, которую вы направили в категорию в этом месяце.
+- _«Потрачено»_ — расходы по категории за месяц.
+- _«Баланс»_ — оставшиеся средства с учётом поступлений, расходов и остатка предыдущего месяца.
 
-- _Budgeted_ is how much money we allocated to this category that month.
-- The _Spent_ column displays how much we spent in a month.
-- The _Balance_ is the difference between the _Budgeted_ and the _Spent_ columns + what was left over from the previous month (as a rule of thumb).
-
-You work with the _Budgeted_ column to manipulate your budget: You can enter a number or use a dropdown which will populate the entry based on a
-_copy of last month's budget_, or the previous 3-month, 6-month or yearly average. Notes can be added to each budget entry, also.
+Чтобы изменить бюджет категории, введите сумму в столбце _«Выделено в бюджет»_. Также можно выбрать в меню бюджет предыдущего месяца или среднее значение за 3, 6 либо 12 месяцев. К сумме можно добавить заметку.

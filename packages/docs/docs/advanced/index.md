@@ -1,5 +1,5 @@
-# Advanced Overview
+# Дополнительные возможности {#advanced-overview}
 
 :::caution
-Pages in this area contain non-standard actions. Ensure backups and recovery are possible before taking any actions.
+Страницы в этой области содержат нестандартные действия. Убедитесь, что резервное копирование и восстановление возможны, прежде чем предпринимать какие-либо действия.
 :::

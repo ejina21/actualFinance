@@ -1,49 +1,49 @@
-# Balance Forecast Report
+# Прогноз баланса {#balance-forecast-report}
 
 <ExperimentalFeatureWarning issueId="7669" />
 
-## What it is
+## Что это такое {#what-it-is}
 
-The Balance Forecast report projects future balances from posted transaction history, upcoming scheduled transactions, or Tracking Budget plans. Use it to spot possible shortfalls, compare date ranges, and see how planned income and expenses may affect your balances over time.
+В отчете Balance Forecast прогнозируются будущие остатки от опубликованной истории транзакций, предстоящих запланированных транзакций или планов отслеживания бюджета. Используйте его, чтобы определить возможные недостатки, сравнить диапазоны дат и посмотреть, как запланированные доходы и расходы могут повлиять на ваши балансы с течением времени.
 
-![Balance Forecast report showing projected balances over time](/img/experimental/balance-forecast-report/balance-forecast-report-overview.png)
+![Прогноз баланса, показывающий прогнозируемый баланс с течением времени](/img/experimental/balance-forecast-report/balance-forecast-report-overview.png)
 
-## How balances are predicted
+## Как прогнозируются балансы {#how-balances-are-predicted}
 
-The report starts by resolving the selected accounts, filters, and forecast date range. It then calculates a starting balance from posted transactions before the forecast begins.
+Отчет начинается с разрешения выбранных учетных записей, фильтров и диапазона дат прогноза. Затем он вычисляет стартовый баланс из размещенных транзакций до начала прогноза.
 
-By default, Actual expands scheduled transactions into simulated occurrences up to the forecast end date. Schedule rules are applied to those simulated transactions, and transfer schedules generate matching transfer legs when both sides can be assigned to accounts.
+По умолчанию Actual расширяет запланированные транзакции в смоделированные события до прогнозируемой даты окончания. Правила расписания применяются к этим смоделированным транзакциям, а графики передачи генерируют соответствующие этапы передачи, когда обе стороны могут быть назначены для учетных записей.
 
-For each forecast day, Actual updates the running balance with posted transactions on that day plus simulated scheduled transactions on that day. Monthly granularity shows the same running balance grouped by month.
+Для каждого прогнозируемого дня Actual обновляет текущий баланс с размещенными транзакциями в этот день плюс смоделированные запланированные транзакции в этот день. Ежемесячная гранулярность показывает одинаковый текущий баланс, сгруппированный по месяцам.
 
-Tracking Budget files can also use **Tracking budget** as the forecast source. This mode starts from the current on-budget balance and projects each month by adding budgeted income and subtracting budgeted expenses. It does not use schedules, account filters, or report filters, and it always uses monthly granularity.
+Отслеживание бюджетных файлов также может **Отслеживание бюджета** Этот режим начинается с текущего бюджетного баланса и проектирует каждый месяц, добавляя бюджетные доходы и вычитая бюджетные расходы. Он не использует графики, фильтры счетов или фильтры отчетов и всегда использует ежемесячную гранулярность.
 
-## Important information
+## Важная информация {#important-information}
 
-- The forecast is only as accurate as your schedules and the assumptions they represent.
-- Account filters limit the forecast to the selected accounts.
-- Report filters affect which posted transactions and scheduled transactions are included.
-- Tracking Budget forecasts are on-budget and non-account-specific.
-- Planning beyond 12 months in Tracking Budget mode is future product scope.
-- Schedules without an account can be included when forecasting the total budget balance without an explicit account filter. They cannot be assigned to a specific real account.
-- Transfers are included when the forecast can resolve the relevant account information.
+- Прогноз такой же точный, как и ваши графики и предположения.
+- Фильтры учетных записей ограничивают прогноз для выбранных учетных записей.
+- Фильтры отчетов влияют на то, какие размещенные транзакции и запланированные транзакции включены.
+- Прогнозы бюджета отслеживаются как по бюджету, так и не по счету.
+- Планирование более 12 месяцев в режиме отслеживания бюджета - это будущий объем продукта.
+- Расписание без счета может быть включено при прогнозировании общего остатка бюджета без явного фильтра счета.
+- Переводы включаются, когда прогноз может решить соответствующую информацию об учетной записи.
 
-## Display options
+## Варианты отображения {#display-options}
 
-- **Start / End**: pick the forecast date range.
-- **Quick ranges**: choose future presets from the report header.
-- **Granularity**: switch between monthly and daily views.
-- **Forecast source**: choose scheduled transactions, or choose Tracking Budget in Tracking Budget files.
-- **Filters**: use the Filter button to narrow the transactions and schedules included in scheduled transaction forecasts. Filters are ignored when the forecast source is Tracking Budget.
-- **Save widget**: save the current report settings back to the dashboard widget.
+- **Начало/конец**Выберите диапазон прогнозируемой даты.
+- **Быстрые диапазоны**Выберите будущие предустановки из заголовка отчета.
+- **Гранулярность**Переключайтесь между ежемесячными и ежедневными просмотрами.
+- **Источник прогноза**Выберите запланированные транзакции или выберите бюджет отслеживания в файлах бюджета отслеживания.
+- **Фильтры**: используйте кнопку фильтра, чтобы сузить транзакции и графики, включенные в запланированные прогнозы транзакций.
+- **Сохранить виджет**: сохранить текущие настройки отчета обратно в виджет панели инструментов.
 
-## Quick troubleshooting
+## Быстрое устранение неполадок {#quick-troubleshooting}
 
-- **Forecast looks flat**: check whether the selected range is too long or whether the balance changes are small relative to the overall account balance.
-- **Schedules are missing**: verify that the schedules are active and have enough account information for the selected account scope.
-- **Balance looks wrong**: check account filters, report filters, transfer schedules, and whether the relevant future transactions are scheduled.
+- **Прогноз выглядит плоским**Проверьте, является ли выбранный диапазон слишком длинным или изменения баланса незначительны по отношению к общему балансу счета.
+- **Расписание отсутствует**Убедитесь, что расписания активны и имеют достаточно информации об учетной записи для выбранного объема учетной записи.
+- **Баланс выглядит неправильно**Проверяйте фильтры учетных записей, фильтры отчетов, графики переводов и запланированы ли соответствующие будущие транзакции.
 
-## Related
+## связанный {#related}
 
-- [Reports index](../reports/index.md) — other report types and tips.
-- [Schedules](../schedules.md) — manage the scheduled transactions used by the forecast.
+- [Индекс отчетов](../reports/index.md) - другие типы отчетов и советы.
+- [Расписание](../schedules.md) - управлять запланированными операциями, используемыми в прогнозе.

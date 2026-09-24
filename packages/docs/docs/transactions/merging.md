@@ -1,13 +1,13 @@
-# Merging Duplicate Transactions
+# Объединение повторяющихся операций {#merging-duplicate-transactions}
 
-To merge two duplicate transactions, select two transactions with the same amount (e.g. two payments of 2 USD), then either use the shortcut key "G" or select the transaction menu dropdown in the top right and click merge. This option will only appear when exactly two matching transactions are selected.
+Чтобы объединить две дубликаты транзакций, выберите две транзакции с одинаковой суммой (например, два платежа в размере 2 долларов США), затем либо используйте ярлык «G», либо выберите раскрывающееся меню транзакции в правом верхнем углу и щелкните слияние.
 
-![Merge Transactions](/img/merge-transactions/merge-g.webp)
+![Слияние сделок](/img/merge-transactions/merge-g.webp)
 
-When two transactions are merged, one is determined to be the 'kept' transaction and the other is the 'dropped' transaction. Any empty fields in the 'kept' transactions are copied over from the 'dropped' transaction and the 'dropped' transaction will be deleted. So, if the 'kept' transaction is uncategorized or has no payee, the payee and/or category will be copied over from the 'dropped' transaction before it is deleted.
+Когда две транзакции объединяются, одна определяется как «сохраненная» транзакция, а другая — «сброшенная» транзакция. Любые пустые поля в «сохраненных» транзакциях копируются с «сброшенной» транзакции, и «сброшенная» транзакция будет удалена. Таким образом, если «сохраненная» транзакция не категоризирована или не имеет получателя, получатель и/или категория будут скопированы с «сброшенной» транзакции до ее удаления.
 
-The following logic is used to determine which transaction is kept:
+Для определения того, какая транзакция хранится, используется следующая логика:
 
-1. If one transaction is imported through [bank sync](../advanced/bank-sync.md) and the other is not, the synced transaction is kept. Otherwise, continue to the next step.
-2. If one transaction is imported through a [file import](./importing.md) and the other is not, the imported transaction is kept. Otherwise, continue to the final step.
-3. The transaction with the earlier date is kept.
+1. Если одна сделка импортируется через [банковская синхронизация](../advanced/bank-sync.md) а другой нет, синхронизированная транзакция сохраняется. В противном случае продолжайте следующий шаг.
+2. Если одна сделка импортируется через [Файловый импорт](./importing.md) а другой нет, ввозимая сделка сохраняется. В противном случае продолжайте до последнего шага.
+3. Сделка с более ранней датой сохраняется.

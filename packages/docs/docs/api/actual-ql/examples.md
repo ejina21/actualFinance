@@ -1,10 +1,10 @@
-# ActualQL Examples
+# Примеры ActualQL {#actualql-examples}
 
-## Searching by Month or Year
+## Поиск по месяцам или годам {#searching-by-month-or-year}
 
-ActualQL supports various functions to convert data, as well as the ability to convert field data. For example, saying `{ $month: '2021-01-01' }` would come back with the month of `2021-01`. But we need a way to apply that to the `date` field, and we use `$transform` for that.
+ActualQL поддерживает различные функции преобразования данных, а также возможность преобразования полевых данных. `{ $month: '2021-01-01' }` Возвращается с месяца `2021-01`Но нам нужен способ применить это к `date` поле, и мы используем `$transform` За это.
 
-This part deserves better docs, but here's a reference example you can use to search by month or year:
+Эта часть заслуживает лучших документов, но вот пример, который вы можете использовать для поиска по месяцам или годам:
 
 ```js
 q('transactions')
@@ -12,11 +12,11 @@ q('transactions')
   .select('*');
 ```
 
-This would return all transactions in the month of `2021-01`. We've applied the `$month` function to the `date` field and applied the condition of equaling `2021-01`.
+Это позволит вернуть все транзакции в течение месяца. `2021-01`Мы применили `$month` функция для `date` поле и применяемое условие равенства `2021-01`.
 
-You can substitute `$year` to do the same thing for year.
+Вы можете заменить `$year` Делать то же самое в течение года.
 
-## Total Amount per Payee Between 6 Apr 2020 and 5 Apr 2021
+## Общая сумма на одного плательщика с 6 апреля 2020 года по 5 апреля 2021 года {#total-amount-per-payee-between-6-apr-2020-and-5-apr-2021}
 
 ```js
 (
@@ -37,7 +37,7 @@ You can substitute `$year` to do the same thing for year.
 });
 ```
 
-## Total Amount of all Transactions With Note Containing #interest (P) Between 6 Apr 2020 and 5 Apr 2021
+## Общая сумма всех транзакций с примечанием, содержащим проценты (P) между 6 апреля 2020 года и 5 апреля 2021 года {#total-amount-of-all-transactions-with-note-containing-interest-p-between-6-apr-2020-and-5-apr-2021}
 
 ```js
 (
@@ -55,7 +55,7 @@ You can substitute `$year` to do the same thing for year.
 ).data / 100;
 ```
 
-or
+или
 
 ```js
 (
@@ -73,7 +73,7 @@ or
 ).data[0].total / 100;
 ```
 
-## Total Amount per Category Between 6 Apr 2020 and 5 Apr 2021
+## Общая сумма по категориям между 6 апреля 2020 года и 5 апреля 2021 года {#total-amount-per-category-between-6-apr-2020-and-5-apr-2021}
 
 ```js
 (
@@ -102,9 +102,9 @@ or
 });
 ```
 
-## CLI Usage
+## Использование CLI {#cli-usage}
 
-The examples above are shown in JavaScript. If you're using the [CLI tool](../cli.md), you can express many of the same queries with command-line flags. Here's how the JS patterns translate:
+Приведенные выше примеры приведены в JavaScript. [Инструмент CLI](../cli.md)Вы можете выразить многие из тех же запросов с помощью флагов командной строки. Вот как переводятся шаблоны JS:
 
 ```bash
 # Select specific fields (JS: .select(['date', 'amount', 'payee.name']))

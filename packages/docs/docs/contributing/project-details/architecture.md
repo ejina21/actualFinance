@@ -1,43 +1,43 @@
-# Architecture Notes
+# Архитектурные заметки {#architecture-notes}
 
-If you wish to contribute to Actual, these details are not essential but can be useful for navigating the structure of the code.
+Если вы хотите внести свой вклад в Actual, эти детали не являются существенными, но могут быть полезны для навигации по структуре кода.
 
-## Overview
+## Обзор {#overview}
 
-When Actual runs, it runs the front-end React-based web app, as well as a local in-browser database server. You may see these informally referred to as 'frontend' and 'backend' - not to be confused with the sync-server or some other type of remote 'backend' (which doesn't exist).
+Когда Actual работает, он запускает веб-приложение на основе интерфейса React, а также локальный сервер базы данных в браузере. Вы можете увидеть эти неформально называемые «frontend» и «backend» - не путать с синхронным сервером или каким-либо другим типом удаленного «backend» (который не существует).
 
-## Runtime Architecture
+## Архитектура Runtime {#runtime-architecture}
 
-### Web App
+### Веб-приложение {#web-app}
 
-In the web app, the background server runs in a [web worker](https://developer.mozilla.org/en-US/docs/Web/API/Web_Workers_API/Using_web_workers). This allows the database operations to run in a separate thread, keeping the UI responsive.
+В веб-приложении фоновый сервер работает в [Веб-работник](https://developer.mozilla.org/en-US/docs/Web/API/Web_Workers_API/Using_web_workers)Это позволяет операциям базы данных работать в отдельном потоке, сохраняя пользовательский интерфейс отзывчивым.
 
-### Electron App
+### Электронное приложение {#electron-app}
 
-In the Electron app, the background server runs as a [Node.js child process](https://nodejs.org/api/child_process.html) which communicates with the frontend over [WebSockets](https://developer.mozilla.org/en-US/docs/Web/API/WebSockets_API). This allows the desktop app to use full Node.js capabilities while maintaining security through process isolation.
+В приложении Electron фоновый сервер работает как [Детский процесс Node.js](https://nodejs.org/api/child_process.html) который общается с фронтендом через [WebSockets](https://developer.mozilla.org/en-US/docs/Web/API/WebSockets_API)Это позволяет настольному приложению использовать все возможности Node.js, сохраняя при этом безопасность за счет изоляции процесса.
 
-Details of the motivation behind the usage of WebSockets in the Electron app can be found in [Pull Request #1003](https://github.com/actualbudget/actual/pull/1003).
+Подробную информацию о мотивации использования WebSockets в приложении Electron можно найти в [Скачать запрос #1003](https://github.com/actualbudget/actual/pull/1003).
 
-## Core Package Structure
+## Структура основного пакета {#core-package-structure}
 
-The code which is used by this background server, as well as code which is shared across the web app and desktop versions of Actual typically lives inside the `loot-core` package.
+Код, который используется этим фоновым сервером, а также код, который совместно используется в веб-приложении и настольных версиях Actual, обычно живет внутри сервера. `loot-core` пакет.
 
-### Platform-Specific Exports
+### Платформенный экспорт {#platform-specific-exports}
 
-The `loot-core` package uses conditional exports to provide platform-specific code:
+The `loot-core` Пакет использует условный экспорт для обеспечения платформенного кода:
 
-- **Browser exports**: Code that runs in the web worker or browser environment
-- **Node exports**: Code that runs in the Electron background process or Node.js API
-- **Shared code**: Code that works in both environments
+- **Экспорт браузера**Код, который работает в среде веб-работника или браузера
+- **Экспорт узлов**Код, который работает в фоновом процессе Electron или API Node.js
+- **Общий код**Код, который работает в обеих средах
 
-Platform resolution happens at build time via `package.json` exports. Don't directly reference platform-specific imports (`.api`, `.web`, `.electron`) - use the conditional exports instead.
+Разрешение платформы происходит во время сборки `package.json` Не указывайте напрямую на конкретные платформы импорта (`.api`, `.web`, `.electron`) - использовать вместо этого условный экспорт.
 
-## Build System
+## Строить систему {#build-system}
 
-- **Vite**: Used for bundling the web app and desktop client
-- **TypeScript**: All code is written in TypeScript with strict type checking
-- **Yarn Workspaces**: Monorepo structure managed with Yarn 4
+- **Вкусно**: Используется для объединения веб-приложения и настольного клиента
+- **TypeScript**Весь код написан в TypeScript со строгой проверкой типа
+- **Рабочие пространства Yarn**Структура Monorepo, управляемая Yarn 4
 
-## Data Storage
+## Хранение данных {#data-storage}
 
-Actual uses SQLite for local data storage. The database is created from a default template and then migrations are applied to bring it to the current schema version. See the [Database Details](./database.md) documentation for more information.
+Actual использует SQLite для локального хранения данных. База данных создается из шаблона по умолчанию, а затем применяются миграции, чтобы довести ее до текущей версии схемы. [Подробности базы данных](./database.md) Документация для получения дополнительной информации.

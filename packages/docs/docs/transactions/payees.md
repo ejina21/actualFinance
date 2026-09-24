@@ -1,64 +1,64 @@
-# Payees
+# Получатели платежей {#payees}
 
-A payee is a description of the source of a transaction. Actual provides a powerful way of managing payees.
+Плательщик - это описание источника транзакции. Actual обеспечивает мощный способ управления получателями.
 
-When importing transactions, by default Actual will create new payees based on the imported name. Often this ends up with some ugly names like `Target Debit Crd Ach Tran Co Id:Xxxxx15170`. With payee management, you can clean these names up, set rules for how payees are resolved, and even set a default category to use.
+При импорте транзакций Actual по умолчанию будет создавать новых получателей на основе импортируемого имени. `Target Debit Crd Ach Tran Co Id:Xxxxx15170`С помощью управления получателем вы можете очистить эти имена, установить правила решения получателя и даже установить категорию по умолчанию для использования.
 
 :::info[Payee Management]
 
-To manage payees, either select the **More > Payees** from the sidebar or click the **Manage Payees** button when editing a transaction's payee.
+Чтобы управлять плательщиками, выберите **Больше > Payees** с боковой панели или щелкните **Управление выплатами** кнопка при редактировании получателя транзакции.
 
 :::
 
-## How Payees Work
+## Как работают зарплаты {#how-payees-work}
 
-When importing transactions from a file, Actual tries to automatically match the imported names to existing payees. It does this by running through **rules** that you can edit. If no existing payee is found, it will create one.
+При импорте транзакций из файла Actual пытается автоматически сопоставить импортируемые имена с существующими получателями. **правила** Если не будет найден существующий получатель, он его создаст.
 
-If a payee is found with an exact match as the imported name, it will always use that payee. Otherwise, it will look for payees with rules that match. These rules specify whether it should match a string exactly, or if it should contain a string. For example, a **Target** payee might have a rule that says "if a name contains 'Target', use this payee", and the ugly payee above would be resolved to the **Target** payee.
+Если получатель платежа найден с точным совпадением в качестве импортного имени, он всегда будет использовать этот получатель. В противном случае он будет искать получателей с правилами, которые соответствуют. Эти правила определяют, должен ли он точно соответствовать строке или должен содержать строку. Например, **Цель** У получателя платежа может быть правило, которое говорит, что «если имя содержит «Цель», используйте этого получателя», и уродливый получатель платежа выше будет разрешен для получателя платежа. **Цель** плательщик.
 
-When a payee is matched, if it has a **default category** the transaction will automatically be assigned to it.
+Если у вас есть получатель, то он **категория по умолчанию** Сделка будет автоматически передана ему.
 
 :::tip[Category Learning]
 
-Actual defaults with Category Learning enabled. You can find this setting in the bottom left corner of the Payees page. A more in depth discussion of Payee Rules and Category Learning can be found in the [Rules](../budgeting/rules/index.md) documentation. You can turn this off for one, several or all Payees. [Learn more](../budgeting/rules/index.md#managing-rules)
+Actual дефолты с включенным обучением по категориям. Вы можете найти эту настройку в нижнем левом углу страницы Payees. Более подробное обсуждение правил Payee и обучения по категориям можно найти в разделе WEB [Правила](../budgeting/rules/index.md) Вы можете выключить это для одного, нескольких или всех получателей. [Узнать больше](../budgeting/rules/index.md#managing-rules)
 
 :::
 
-## Editing a Payee
+## Редактирование Payee {#editing-a-payee}
 
-1. Open the **Payees** page
-2. To **rename** a payee, click the name and type in a new one.
-3. To **delete** a payee, select it and press the **1 payee** button at the top-left, just under "Payees" and select **Delete**.
-4. To mark a payee as a **favorite**, select it and press the **1 payee** button in the top-left and select **Favorite**. This will make it appear at the top of the suggestions box when entering a payee in the account ledger.
-5. Edit the rules by clicking on the "associated rules" button and a box will appear with the list of rules to match this payee with.
-6. Create a new rule by clicking on the "Create rule" button and the [Rule](../budgeting/rules/index.md) creation box will appear.
+1. Открой. **Платежи** страница
+2. To **переименование** плательщик, нажмите имя и введите новое.
+3. To **удалять** Плательщик, выберите его и нажмите **1 зарплата** кнопка в верхнем левом углу, чуть ниже «Payees» и выберите **Исключить**.
+4. Чтобы отметить плательщика как **любимый**Выберите его и нажмите **1 зарплата** Кнопка в верхнем левом углу и выберите **Любимый**Это заставит его появиться в верхней части ящика предложений при вводе получателя в бухгалтерскую книгу.
+5. Редактируйте правила, нажав на кнопку «Связанные правила», и появится окно со списком правил, чтобы соответствовать этому получателю.
+6. Создайте новое правило, нажав на кнопку «Создать правило» и [Правило](../budgeting/rules/index.md) Появится ящик для творчества.
 
-## Merging Payees
+## Слияние зарплат {#merging-payees}
 
-A powerful feature is merging payees. You may already have months worth of data and a lot of ugly **Morrisons** payees that all vary slightly. You may want to merge all of these together into one payee.
+Мощной особенностью является слияние получателей. Возможно, у вас уже есть много месяцев данных и много уродливых. **Моррисон** Возможно, вы захотите объединить все это вместе в одного получателя.
 
-1. Open the **Payees** page
+1. Открой. **Платежи** страница
 
-2. Type "Morrisons" into the filter to only show those payees.
+2. Введите «Моррисоны» в фильтр, чтобы показать только те получатели.
 
-![Image searching for a Payee](/img/payees/MergePayeesSearch.webp)
+![Изображение в поисках Payee](/img/payees/MergePayeesSearch.webp)
 
-3. Click the checkbox in the table header next to the **Name** column to select all of the different variations of "Morrisons"
+3. Нажмите флажок в заголовке таблицы рядом с **Имя** Колонка для выбора всех вариаций «Моррисонов»
 
-![Image selecting Payees](/img/payees/PayeesSelected.webp)
+![Выбор изображения Payees](/img/payees/PayeesSelected.webp)
 
-4. Click the button in the top-left to open the menu, and select **Merge**
+4. Нажмите кнопку в верхнем левом углу, чтобы открыть меню, и выберите **слияние**
 
-![Image merging payees](/img/payees/MergePayeesOption.webp)
+![Изображение: Merging Payees](/img/payees/MergePayeesOption.webp)
 
-5. All of the payees will merge into one. Actual will choose one of the payee names to retain but you can edit the payee name by clicking it and typing in the desired name for the final payee.
+5. Actual выберите одно из имен получателя, чтобы сохранить, но вы можете отредактировать имя получателя, нажав на него и введя желаемое имя для конечного получателя.
 
-![Image of merged Payee](/img/payees/PayeesMerged.webp)
+![Изображение объединенной Payee](/img/payees/PayeesMerged.webp)
 
-You can individually select payees and merge them if you like, but filtering & merging is a powerful way to quickly clean up your payees.
+Вы можете индивидуально выбирать получателей и объединять их, если хотите, но фильтрация и слияние - это мощный способ быстро очистить получателей.
 
-## Transfer Payees
+## Трансферные платежи {#transfer-payees}
 
-[Transfers](./transfers.md) are just special payees that indicate which account to transfer to/from. Since they are payees, you can create rules like normal which will automatically create transfers. You will find them at the bottom of the **Payees** page if you want to create custom rules.
+[Переводы](./transfers.md) Поскольку они являются плательщиками, вы можете создать такие правила, как обычно, которые автоматически создают переводы. Вы найдете их в нижней части **Платежи** Страница, если вы хотите создать пользовательские правила.
 
-![Image of Payee Page with transfers](/img/payees/payee-transfers.webp)
+![Изображение страницы Payee с переводами](/img/payees/payee-transfers.webp)

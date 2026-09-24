@@ -1,32 +1,30 @@
-# User Interface Overview
+# Интерфейс Actual
 
-The user interface is divided into three parts:
+Интерфейс состоит из трёх основных частей:
 
-Standard on most screens:
+- Боковая панель слева позволяет переключаться между бюджетом, отчётами и счетами.
+- Состояние сервера синхронизации, если он используется, показано справа вверху (красная рамка на изображении).
+- Остальная часть экрана зависит от выбранного раздела. На примере ниже открыт бюджет.
 
-- The left sidebar lets you easily switch between the various views, such as Budget, Reports, and Accounts.
-- The server status (if used) is shown in the upper right corner (red box in the screenshot).
-- The content of the rest of the interface depends on the view you have chosen in the sidebar. This screenshot shows an example of a Budget view.
+![Интерфейс Actual с выделенным правым верхним углом](/img/a-tour-of-actual/tour-overview-of-user-interface.webp)
 
-![Full user interface with top right corner highlighted](/img/a-tour-of-actual/tour-overview-of-user-interface.webp)
+## Правый верхний угол
 
-## Top Right Corner
+- Значок глаза скрывает настоящие суммы, заменяя их случайными. Это удобно, когда нужно показать экран команде Actual для сообщения об ошибке, не раскрывая свои данные. У функции есть ограничения; прочитайте раздел [«Скрытие данных»](../getting-started/tips-tricks.md#scramble-hide).
+- Значок обновления принудительно синхронизирует локальный файл с сервером. Он **не** запускает синхронизацию с банком.
+- Надпись о состоянии сервера показывает, подключён ли сервер: «Сервер доступен», «Сервер недоступен» или «Нет сервера». Нажмите на неё, чтобы открыть меню сервера.
+- Крайний пункт справа открывает меню помощи.
 
-- The eye icon will scramble the numbers on the screen. This is useful if you need to report a bug to the Actual team but want to keep your numbers private. There are some caveats to this, so please read [Scramble and Hide Data](../getting-started/tips-tricks.md#scramble-hide) in the Tips & Tricks guide.
-- Clicking on the refresh icon will force a sync of your local file to the server. Note: it does **not** perform a bank sync.
-- Server status: _Server online_ shows the server is connected, _Server offline_ shows the server is disconnected, and _No server_ shows if you are not using a server. If you click on this text a server menu pops up.
-- The farthest right item is a Help menu.
+![Элементы в правом верхнем углу](/img/a-tour-of-actual/tour-overview-top-right.webp)
 
-![Top right corner](/img/a-tour-of-actual/tour-overview-top-right.webp)
+## Боковая панель
 
-## The Sidebar
+Через боковую панель можно перейти ко всем основным функциям Actual:
 
-From the sidebar, you have easy access to all Actual functions.
+- Бюджету, отчётам и расписаниям.
+- Меню «Дополнительно», где находятся получатели, правила и настройки.
+- Счетам, которые участвуют в бюджете или ведутся отдельно от него. Они сгруппированы под соответствующими заголовками.
 
-- Access to your Budget, Reports and Schedules.
-- Less used functions are found under _More_, like managing Payees and Rules; this is where you find the software settings.
-- The sidebar also holds all of your accounts, both on budget and off budget; these will display in a list under their respective heading.
+Подробнее об этих разделах рассказывают следующие страницы обзора.
 
-Most of these will we cover later in the tour.
-
-![The Actual Budget Sidebar](/img/a-tour-of-actual/tour-overview-sidebar.webp)
+![Боковая панель Actual](/img/a-tour-of-actual/tour-overview-sidebar.webp)

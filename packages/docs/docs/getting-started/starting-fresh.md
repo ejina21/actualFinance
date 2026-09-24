@@ -1,284 +1,280 @@
 ---
-title: 'Starting Fresh'
+title: 'Начало с чистого бюджета'
 ---
 
-For most users it's best to start fresh with a blank file.
-This guide will walk through setting up a budget file fresh without migrating from a previous budget software export.
-Before continuing, it might be a good idea to read about the [envelope method](./envelope-budgeting.md), or zero-sum
-budgeting as it's also called.
+Большинству пользователей удобнее начать с нового файла бюджета. В этом руководстве показано, как его настроить, если вы не переносите данные из другого приложения. Перед началом прочитайте о [методе конвертов](./envelope-budgeting.md).
 
-If you want to restart an existing budget while keeping your categories, payees, rules, and schedules, you can follow the guide on [Restarting Your Budget](../advanced/restart.md).
+Если у вас уже есть бюджет и вы хотите начать планирование заново, сохранив категории, получателей платежей, правила и расписания, воспользуйтесь [инструкцией по перезапуску бюджета](../advanced/restart.md).
 
-## 1. Setting up Accounts
+## 1. Создание счетов {#1-setting-up-accounts}
 
-It is recommended to add all accounts you have to Actual.
-This includes all savings, checking, and investment accounts.
-These accounts should match what shows up in your Bank or Credit Union.
-For example, if you have a savings, checking, and credit card account with Bank of America, add each as a separate account in Actual.
+Рекомендуется добавлять все учетные записи, которые у вас есть, к реальным.
+Это включает в себя все сберегательные, чековые и инвестиционные счета.
+Эти счета должны соответствовать тому, что отображается в вашем банке или кредитном союзе.
+Например, если у вас есть сберегательный, чековый и счет кредитной карты в Bank of America, добавьте каждый отдельный счет в Actual.
 
-### On Budget or Off Budget
+### Бюджет или вне бюджета {#on-budget-or-off-budget}
 
-In Actual, you have the option of on budget accounts and off budget accounts.
-On budget accounts are included towards the funds available in your budget, while off budget accounts are only for tracking.
-Off budget accounts are included in the net worth report.
-It is usually best to err towards putting accounts on budget versus off budget.
-The most common off budget accounts would be investment type accounts such as a 401(k), IRA, HSA, brokerage account, loans, and asset tracking such as your home equity.
+Actual, у вас есть возможность на бюджетных счетах и вне бюджетных счетов.
+На бюджетные счета включены средства, имеющиеся в вашем бюджете, в то время как внебюджетные счета предназначены только для отслеживания.
+Небюджетные счета включены в отчет о чистой стоимости.
+Как правило, лучше всего ошибаться в направлении размещения счетов в бюджете по сравнению с вне бюджета.
+Наиболее распространенными внебюджетными счетами будут счета инвестиционного типа, такие как 401 (k), IRA, HSA, брокерский счет, кредиты и отслеживание активов, такие как ваш собственный капитал.
 
-Savings accounts can be either on budget or off budget.
-It is usually easier, and more flexible, to place them on budget.
+Сберегательные счета могут быть как в бюджете, так и вне бюджета.
+Обычно проще и гибче расположить их по бюджету.
 
-#### Considerations for On Budget Savings
+#### Рассмотрение вопроса о бюджетных сбережениях {#considerations-for-on-budget-savings}
 
-- No need to categorize transfers between other on budget accounts, simplifying the transfer
-- You can leverage the budget categories to manage what you plan to use your savings for and save for specific goals
+- Нет необходимости классифицировать переводы между другими на бюджетные счета, упрощая переводы.
+- Вы можете использовать бюджетные категории, чтобы управлять тем, для чего вы планируете использовать свои сбережения, и экономить на конкретных целях.
 
-#### Considerations for Off Budget Savings
+#### Соображения для внебюджетных сбережений {#considerations-for-off-budget-savings}
 
-- Your savings is less tempting to borrow from since it is not visible in your budget
-- Any time you transfer to/from your savings, you need to categorize that transaction. This sometimes causes confusion since the money wasn't spent
+- Ваши сбережения менее заманчивы, так как они не видны в вашем бюджете.
+- Каждый раз, когда вы переводите свои сбережения, вы должны классифицировать эту транзакцию. Это иногда вызывает путаницу, поскольку деньги не были потрачены.
 
-In some situations it may make sense to put a credit card account off budget.
-This is generally not recommended unless you are not using that card for any spending and are exclusively paying it off.
+В некоторых ситуациях имеет смысл отложить кредитную карту из бюджета.
+Обычно это не рекомендуется, если вы не используете эту карту для каких-либо расходов и не оплачиваете ее исключительно.
 
-### How to Setup Accounts
+### Как настроить аккаунты {#how-to-setup-accounts}
 
-The process of adding an account is detailed in [the adding a new account page](../accounts/index.md#adding-a-new-account).
+Процесс создания учетной записи подробно описан в [Добавление новой страницы аккаунта](../accounts/index.md#adding-a-new-account).
 
-It is recommended to not pull in transactions from more than a month or two prior to your start date.
-The reason for this is that those old transactions will need to be budgeted or your budget will be out of wack.
-Usually the most effective time frame is to start at the beginning of the month you are currently in.
+Рекомендуется не совершать транзакции более чем за месяц или два до даты начала.
+Причина этого заключается в том, что эти старые транзакции должны быть заложены в бюджет или ваш бюджет будет не в порядке.
+Как правило, наиболее эффективным временным интервалом является начало месяца, в котором вы находитесь.
 
-Start your account by finding the balance in each account at the date you want to start.
-Set that amount as the balance when creating the account.
-If your starting date is before the current date, edit the date on the starting balance transaction to the preferred date.
+Начните свою учетную запись, найдя баланс в каждой учетной записи на дату, которую вы хотите начать.
+Установите эту сумму в качестве баланса при создании счета.
+Если ваша начальная дата находится до текущей даты, отредактируйте дату транзакции стартового баланса до предпочтительной даты.
 
-Once your account has the proper starting balance, add all the transactions between your start date and today.
-You can enter transactions [manually](../transactions/importing.md#manually-add-transactions), via [file import](../transactions/importing.md#import-financial-files), or via bank syncing to pull in transactions.
-For bank syncing, Actual has built-in support for [GoCardless](../advanced/bank-sync.md) which works for most EU/UK banks, and SimpleFIN for US/Canadian banks. Note: GoCardless has stopped accepting accounts for this service.
-For other bank syncing options see the [community projects page](../community-repos.md).
+После того, как ваша учетная запись имеет правильный стартовый баланс, добавьте все транзакции между датой начала и сегодняшним днем.
+Вы можете заключать сделки [вручную](../transactions/importing.md#manually-add-transactions)через [Файловый импорт](../transactions/importing.md#import-financial-files)или через синхронизацию банков для проведения транзакций.
+Для синхронизации банков Actual имеет встроенную поддержку [GoCardless](../advanced/bank-sync.md) Для большинства банков ЕС/Великобритании и для американских/канадских банков SimpleFIN. Примечание: GoCardless перестала принимать счета за эту услугу.
+Другие варианты синхронизации банков см. [Страница проектов сообщества](../community-repos.md).
 
-An optional step after you have created your accounts and added your transactions is to reconcile the account.
-Reconciling your accounts is something you should get in the habit of doing regularly.
-This confirms that your accounts are accurate compared to what your bank says happened in your account.
-If you manually add transactions this is especially important.
-The process of reconciling your account can be found on [the reconciliation page](../accounts/reconciliation.md)
+Дополнительным шагом после того, как вы создали свои учетные записи и добавили свои транзакции, является согласование учетной записи.
+Согласование ваших учетных записей - это то, что вы должны иметь привычку делать регулярно.
+Это подтверждает, что ваши счета точны по сравнению с тем, что говорит ваш банк.
+Если вы вручную добавляете транзакции, это особенно важно.
+Процесс согласования вашей учетной записи можно найти на [Страница примирения](../accounts/reconciliation.md)
 
-## 2. Handling cash
+## 2. Обработка наличных. {#2-handling-cash}
 
-Suppose you do not exclusively use debit and credit cards but also need to keep some cash around. In that case,
-you manage this by creating an account called Cash, which you treat as any other bank account.
+Предположим, что вы не только используете дебетовые и кредитные карты, но и должны хранить наличные деньги.
+Вы управляете этим, создавая учетную запись под названием Cash, которую вы рассматриваете как любой другой банковский счет.
 
-## 3. Setting up your Budget Categories
+## 3.Установка бюджетных категорий {#3-setting-up-your-budget-categories}
 
-Now that your accounts are set up and your current balance is accurate, you can start adding budget categories.
-While making these categories, remember that all money entering or leaving your budget needs a category.
+Теперь, когда ваши счета настроены и ваш текущий баланс точен, вы можете начать добавлять бюджетные категории.
+При создании этих категорий помните, что все деньги, поступающие или выходящие из вашего бюджета, нуждаются в категории.
 
-By default, Actual will start you off with a few basic expense categories.
-If you aren't sure what categories you need, Actual will start you with a few basic ones.
+По умолчанию Actual начнет вас с нескольких основных категорий расходов.
+Если вы не уверены, какие категории вам нужны, Actual начнет вас с нескольких основных.
 
-- **Food**: all grocery and restaurant spending
-- **Bills**: all bills that charge the same amount each month
-- **Bills (Flexible)**: All bills that vary month to month
-- **Savings**: Funds you have saved, or are going to transfer to an off budget savings account
-- **General**: Everything else
+- **Еда**Все расходы на продукты и рестораны
+- **Биллс**Все счета, которые взимают одну и ту же сумму каждый месяц
+- **Билли (гибкие)**Все счета, которые варьируются от месяца к месяцу
+- **Экономия**Средства, которые вы сэкономили или собираетесь перевести на сберегательный счет вне бюджета
+- **Генерал**Все остальное
 
-Some other common categories you could add would be rent/mortgage, taxes, eating out, specific utilities,
-subscription services, charitable donations, child care, gifts, fun money, or debt payment.
+Некоторые другие общие категории, которые вы могли бы добавить, это аренда / ипотека, налоги, питание, конкретные коммунальные услуги.
+Услуги по подписке, благотворительные пожертвования, уход за детьми, подарки, веселые деньги или выплата долга.
 
 :::tip
 
-Refrain from spending too much time deciding which categories you want from the start, your situation is
-different from other people. Add the categories that make sense for you as your budget evolves.
+Не тратьте слишком много времени, решая, какие категории вы хотите с самого начала.
+Добавьте категории, которые имеют смысл для вас по мере развития вашего бюджета.
 
 :::
 
-When creating your categories don't just think of your bills, think of your goals too.
-The categories aren't just a name of an expense, it is a bucket that will hold your money.
-That bucket can be assigned to both normal expenses, like bills and groceries, and to savings goals like a down payment on a house or a vacation to Bali.
-If you have an investment account that you contribute to, make a category for that.
+При создании категорий не просто думайте о своих счетах, думайте и о своих целях.
+Категории - это не просто название расхода, это ведро, которое будет держать ваши деньги.
+Это ведро может быть назначено как для обычных расходов, таких как счета и продукты, так и для целей экономии, таких как первоначальный взнос на дом или отпуск на Бали.
+Если у вас есть инвестиционный счет, в который вы вносите свой вклад, создайте для этого категорию.
 
-You also have the ability to make multiple income categories.
-Maybe you have multiple income streams, make a category for each one.
-You may also want a category for interest and dividends.
+Вы также можете получить несколько категорий дохода.
+Возможно, у вас есть несколько потоков дохода, сделайте категорию для каждого из них.
+Вы также можете выбрать категорию для процентов и дивидендов.
 
-### Group your expense categories
+### Группируйте категории расходов {#group-your-expense-categories}
 
-Actual has a nifty and useful feature where you can organize your expense categories into groups.
-This not only provides more visibility and control over your spending but also empowers you
-to make informed financial decisions.
-When using the [envelope method](./envelope-budgeting.md), one will move available funds between categories when
-needed. However, there are some categories that you should be very wary about moving funds away
-from. By grouping, you'll get an extra visual indication that moving funds from the Electricity 
-category, for instance, may not be the wisest choice. Another reason is to have a more convenient
-way of reporting your spending habits.
+Actual имеет изящную и полезную функцию, где вы можете организовать свои категории расходов в группы.
+Это не только обеспечивает большую видимость и контроль над вашими расходами, но и дает вам больше возможностей.
+принимать обоснованные финансовые решения.
+При использовании [метод конвертирования](./envelope-budgeting.md)Вы будете перемещать имеющиеся средства между категориями, когда
+Тем не менее, есть некоторые категории, которые вы должны быть очень осторожны при переводе средств.
+Сгруппировавшись, вы получите дополнительное визуальное указание на то, что перемещение средств от электричества 
+Категория, например, может быть не самым мудрым выбором. Другая причина - иметь более удобный выбор.
+Способ сообщить о своих привычках расходования средств.
 
-1. **Crucial or really important**. As the name suggests, these expenses are
-   difficult or impossible to reduce or remove from your daily life. Most of these are reoccurring
-   bills, either monthly, quarterly or yearly. Many of the categories in this group have fixed amounts,
-   or the amount does not fluctuate too much over the course of a year. Example of spending categories
-   in this group are Rent, Mortgage, Insurance, Internet, Electricity, Property tax, etc. You can not
-   stop paying your rent, mortgage or property taxes - because you'll be out of a place to live.
-   Stopping paying insurance is dumb. It is near impossible to live without electricity, or Internet.
+1. **Решающий или действительно важный**Как следует из названия, эти расходы
+   Трудно или невозможно уменьшить или удалить из вашей повседневной жизни.
+   счета, как ежемесячные, так и ежеквартальные или годовые. Многие категории в этой группе имеют фиксированные суммы,
+   или сумма не колеблется слишком сильно в течение года. Пример категорий расходов
+   в эту группу входят Аренда, Ипотека, Страхование, Интернет, Электричество, Налог на имущество и т.д.
+   Прекратите платить арендную плату, ипотеку или налоги на недвижимость, потому что вам негде жить.
+   Прекратить платить страховку глупо. Практически невозможно жить без электричества или интернета.
 
-2. **Debt**. Create a separate category group if you have more than one kind of debt. Typical
-   categories in this group are Mortgage, Car Payments, Student Loans, Short Term Credit.
-   Should you put your credit card debts in this category?
-   The answer is _it depends_. For some input on this, please read our article on 
-   [Carrying Debt](../budgeting/credit-cards/carrying-debt.md).
+2. **Долг**Создайте отдельную категорию группы, если у вас более одного вида долга.
+   Категории в этой группе - Ипотека, Автомобильные платежи, Студенческие кредиты, Краткосрочный кредит.
+   Стоит ли вкладывать долги по кредитной карте в эту категорию?
+   Ответ это зависит . Для некоторых входных данных по этому, пожалуйста, прочитайте нашу статью на 
+   [нести долг](../budgeting/credit-cards/carrying-debt.md).
 
-3. **Daily expenses**. Group your everyday expenses for a more organized and convenient way
-   of tracking. This makes it easy to report on expenditures that fluctuate from month to month.
-   Examples of spending categories in this group are Groceries, Household Items, Fuel, Eating Out, Clothing,
-   Personal Care, Gifts, Entertainment, Streaming services, News (paper) subscriptions, and Charities.
+3. **Ежедневные расходы**Группируйте свои ежедневные расходы для более организованного и удобного способа
+   Это позволяет легко сообщать о расходах, которые колеблются от месяца к месяцу.
+   Примерами категорий расходов в этой группе являются продукты питания, предметы домашнего обихода, топливо, питание, одежда,
+   Персональный уход, подарки, развлечения, потоковые услуги, подписки на новости (бумагу) и благотворительность.
 
-4. **For a rainy day**. Certain expenses you know will happen in the future, but you don't know when.
-   You should have at least one category named _Emergency Fund_. Other examples may be Car Maintenance,
-   Replacing Stove, and Replacing Washing Machine.
+4. **В дождливый день**Определенные расходы, как вы знаете, произойдут в будущем, но вы не знаете, когда.
+   Вы должны иметь по крайней мере одну категорию под названием Emergency Fund .
+   Замена плиты и замена стиральной машины.
 
-5. **Savings goals**. This is where you keep your savings goals categorized _on budget_. What we
-   mean by on budget is that if you need to reallocate money, you may settle for a cheaper Vacation or
-   postpone the Car Replacement or the Bathroom Renovation for a few months. If you are saving for a
-   long view, like your retirement, we suggest you create an _off budget_ account for those kind of
-   savings. Money allocated in off budget accounts takes more effort to reallocate as you need to
-   move the actual funds from your savings account or sell your stocks or global
-   index funds (a few examples of long term saving methods).
+5. **Сберегательные цели**Вот где вы держите свои цели экономии, классифицированные по бюджету.
+   Под бюджетом подразумевается, что если вам нужно перераспределить деньги, вы можете согласиться на более дешевый отпуск.
+   Отложите замену автомобиля или ремонт ванной комнаты на несколько месяцев.
+   В долгосрочной перспективе, как и при выходе на пенсию, мы предлагаем вам создать учетную запись off budget для такого рода
+   Деньги, выделенные на внебюджетные счета, требуют больше усилий для перераспределения, поскольку вам нужно
+   перемещать фактические средства со своего сберегательного счета или продавать свои акции или глобальные
+   индексные фонды (несколько примеров долгосрочных методов сбережения).
 
-The main difference between For a Rainy Day and Savings goals is that rainy day categories are _a must_.
-In contrast, savings categories are _nice to have or wants_.
-Of course, your own experiences and approach to saving for a rainy day or longer-term savings may vary.
+Основное различие между целями «Дождливый день» и «Сбережения» заключается в том, что категории «дождливый день» являются обязательными.
+В противоположность этому, категории сбережений nice to have или want .
+Конечно, ваш собственный опыт и подход к экономии на черный день или долгосрочные сбережения могут варьироваться.
 
-### How to Setup Categories
+### Как настроить категории {#how-to-setup-categories}
 
-The process for adding and working with categories is found in [the category guide](../budgeting/categories.md#add-a-category).
-When making categories remember that it is easier to merge categories later than it is to manually move transactions to a new category.
+Процесс добавления и работы с категориями находится в [Руководство по категориям](../budgeting/categories.md#add-a-category).
+При создании категорий помните, что легче объединить категории позже, чем вручную перенести транзакции в новую категорию.
 
-## 4. Assigning Available Funds
+## 4. Назначение имеющихся средств {#4-assigning-available-funds}
 
-The big question everybody struggles with when using the envelope budgeting method for the first
-time is _how much money to assign to each category_. Fear not; this part of our Starting Fresh
-guide will help you with this.
+Большой вопрос, с которым все борются при использовании метода бюджетирования конвертов для первого.
+Время - это сколько денег присвоить каждой категории.Не бойтесь; эта часть нашего Стартового Свежий
+Руководство поможет вам в этом.
 
-The best way of bootstrapping your budget is to rely on how you have spent your money and what
-income you have had in the last three months. It's even better if you can do this for the last six
-or twelve months.
+Лучший способ загрузки вашего бюджета — полагаться на то, как вы потратили свои деньги и на что.
+Доход, который у вас был за последние три месяца, даже лучше, если вы сможете сделать это за последние шесть месяцев.
+Или двенадцать месяцев.
 
-If you use cash for your daily spending, the available funds in those categories will be
-challenging to assess. You can get some ideas on how much by looking at cash withdrawals on your
-bank statements.
+Если вы используете наличные деньги для своих ежедневных расходов, доступные средства в этих категориях
+Вы можете получить некоторые идеи о том, сколько, глядя на снятие наличных на вашем
+банковские выписки.
 
-For bills, your bank or credit card statements are good sources to establish your budget numbers.
+Для счетов выписки из вашего банка или кредитной карты являются хорошими источниками для определения номеров вашего бюджета.
 
-### Use a spreadsheet to find your initial budget numbers
+### Используйте электронную таблицу, чтобы найти свои первоначальные номера бюджета {#use-a-spreadsheet-to-find-your-initial-budget-numbers}
 
-You enter all your expenses in a spreadsheet, summarize them per month, and then calculate the average.
-Now, you know what you need to budget per
-month. Having the budgeted numbers somewhat higher than the calculated average might be a good idea.
+Вы вводите все свои расходы в электронную таблицу, суммируете их в месяц, а затем рассчитываете среднее значение.
+Теперь вы знаете, что вам нужно для бюджета
+Иметь бюджетные цифры несколько выше расчетного среднего может быть хорошей идеей.
 
-This way, you add small buffers in each category as prices rise; the same goes for your rent and mortgage.
-Adding some extra, albeit small, paddings along the way means you are better suited when this happens.
-The only certainty we have in this day and age is that price increases will occur.
+Таким образом, вы добавляете небольшие буферы в каждую категорию по мере роста цен; то же самое касается аренды и ипотеки.
+Добавление некоторых дополнительных, хотя и небольших, прокладок по пути означает, что вы лучше подходите, когда это происходит.
+Единственная уверенность, которую мы имеем в наши дни, заключается в том, что рост цен произойдет.
 
 ![](/img/getting-started/spreadsheet.webp)
 
-We can now see the budget numbers to be used for the month of August in the Average column
+Теперь мы можем видеть цифры бюджета, которые будут использоваться для месяца августа в колонке «Средний»
 
-### Using Actual to find your initial budget numbers
+### Используя Actual, чтобы найти ваши первоначальные номера бюджета {#using-actual-to-find-your-initial-budget-numbers}
 
-It's important to note that this method only works correctly if you use a debit or credit card for all your purchases.
-As a result, your actual _start date_ for your budget is in the past. We will reiterate our warning on
-[how to set up accounts](#how-to-setup-accounts): going too far back might make your budget completely
-out of wack. It's crucial to avoid this, as you can easily spend more time trying to find out what's
-wrong with your budget and spent numbers because "nothing adds up" anymore.
+Важно отметить, что этот метод работает правильно, только если вы используете дебетовую или кредитную карту для всех ваших покупок.
+В результате, ваша фактическая дата начала вашего бюджета в прошлом. Мы повторим наше предупреждение о том, что
+[Как настроить аккаунты](#how-to-setup-accounts)Слишком далеко назад может сделать ваш бюджет полностью
+Очень важно избегать этого, так как вы можете легко потратить больше времени, пытаясь выяснить, что это такое.
+Неправильно с вашим бюджетом и потраченными цифрами, потому что «ничего не складывается».
 
 :::info
 
-If you have a lot of cash withdrawals during a month, you will be better off using the spreadsheet method.
+Если у вас много снятия наличных в течение месяца, вам будет лучше использовать метод электронных таблиц.
 
 :::
 
-1. You start the budget by entering or importing your transactions.
-2. In the Budget view, you enter the same amount in the _Budgeted_ columns as found in the _Spent_ columns
-   for all the months you have entered or imported your data.
+1. Вы начинаете бюджет, вводя или импортируя свои транзакции.
+2. С точки зрения бюджета, вы вводите ту же сумму в колонках Budgeted , что и в колонках Spent .
+   В течение всех месяцев, которые вы ввели или импортировали свои данные.
 
 ![](/img/getting-started/actual-intro-with-budget-numbers.webp)
 
-You have two easy ways to populate the various budget values when this is done.
-You can apply the last three months' average on all budget categories:
+У вас есть два простых способа заполнить различные бюджетные значения, когда это будет сделано.
+Вы можете применять среднее значение за последние три месяца по всем категориям бюджета:
 
 ![](/img/getting-started/actual-intro-set-budget-to-3-months-average.webp)
 
-You can also set specific categories to various averages:
+Вы также можете установить определенные категории для различных средних значений:
 
 ![](/img/getting-started/actual-intro-set-budget-category-average.webp)
 
-### What to do if you do not want to, or can't, use historical data
+### Что делать, если вы не хотите или не можете использовать исторические данные {#what-to-do-if-you-do-not-want-to-or-cant-use-historical-data}
 
-Budgeting, even without historical data, can help you gain control over your
-finances, reduce stress, and achieve your financial goals. It just takes a
-little bit of effort to get going.
+Бюджетирование, даже без исторических данных, может помочь вам получить контроль над вашим бизнесом.
+финансы, уменьшить стресс и достичь своих финансовых целей.
+Немного усилий, чтобы идти.
 
-You can start using Actual without actually assigning your available funds before you start
-budgeting.
+Вы можете начать использовать Actual, не назначая свои доступные средства, прежде чем начать.
+бюджетирование.
 
-1. Record every transaction you make daily. If you do it weekly, the chances are that you will have
-   forgotten some cash transactions. One way to avoid forgetting transactions is, of course,
-   to keep all receipts.
+1. Записывайте каждую транзакцию, которую вы совершаете ежедневно. Если вы делаете это еженедельно, есть вероятность, что у вас будет
+   Один из способов избежать забвения транзакций - это, конечно,
+   хранить все квитанции.
 
-2. Take special notice of when you use cash. Petty cash transactions are easy to overlook,
-   but all those daily chocolates for "only" 0.50 and all those coffees for "only" 10 add up
-   over a month. If you repeatedly make cash withdrawals and do not know what you are spending
-   your money on, then no expense and budget tracking tools in the world will be able to help you.
+2. Обратите особое внимание, когда вы используете наличные.
+   Но все эти ежедневные шоколадные конфеты для «всего» 0,50 и все эти кофе для «всего» 10 складываются вместе.
+   Если вы неоднократно делаете снятие наличных и не знаете, что вы тратите
+   Тогда никакие средства и инструменты отслеживания бюджета в мире не смогут вам помочь.
 
-3. At the end of each week, set the _Budgeted_ column in the Budget view to the same value
-   as what you see in the _Spent_ column. If done correctly, the sum under _To Budget_ should
-   correctly tell you how much money you have left.
+3. В конце каждой недели установите столбец Budgeted в бюджете с тем же значением.
+   как вы видите в столбце Spent . Если все сделано правильно, сумма по To Budget должна быть
+   Правильно расскажите, сколько денег у вас осталось.
 
-4. Set aside time to analyze your spending and income at the end of the month. Based on this,
-   you can add values to the upcoming months' Budgeted column.
+4. Выделите время для анализа ваших расходов и доходов в конце месяца.
+   Вы можете добавить значения в бюджетную колонку на ближайшие месяцы.
 
-Remember, this process is challenging, and it's okay if you don't get everything right
-in the first few months. The key is to keep going, keep learning, and keep adjusting.
-With persistence, you will reach your budgeting goals.
+Помните, что этот процесс сложный, и это нормально, если вы не получаете все правильно.
+Ключ в том, чтобы продолжать идти, учиться и приспосабливаться.
+С упорством вы достигнете своих бюджетных целей.
 
-## 5. Keep Budgeting
+## 5.Сохранить бюджет {#5-keep-budgeting}
 
-Now that you've set your accounts, categories, and budget values, it's time for the fun part of budgeting!
+Теперь, когда вы установили свои учетные записи, категории и бюджетные значения, пришло время для веселой части бюджетирования!
 
-Actual uses a style of budgeting called Zero-Sum Budgeting, or the more common name
-_envelope budgeting_.
+Actual использует стиль бюджетирования, называемый бюджетированием с нулевой суммой, или более распространенное название.
+envelope бюджетирование .
 
-Shortly this method goes like this:
+Вкратце этот метод выглядит так:
 
-1. Allocate all available funds (income) into your categories whenever you get income.
-2. Track your spending in each category. Every time a new transaction is entered into Actual
-   (either manually or by importing from your bank statements), your process should
-   look something like this:
-   1. Give that transaction a category.
-   2. If you have enough money budgeted for that category, you're done!
-   3. If you didn't have enough you need to decide what to do
-      - Move money from a different category
-      - Change the category of the transaction
-3. Analyze spending habits.
-4. Adjust and adapt your budget as time goes by.
+1. Выделите все доступные средства (доход) в свои категории, когда вы получаете доход.
+2. Отслеживайте свои расходы в каждой категории. Каждый раз, когда вводится новая транзакция
+   (либо вручную, либо путем импорта из ваших банковских выписок), ваш процесс должен
+   Посмотрите что-то вроде этого:
+   1. Дайте этой сделке категорию.
+   2. Если у вас достаточно денег для этой категории, вы закончили!
+   3. Если у вас не было достаточно, вы должны решить, что делать.
+      - Переместить деньги из другой категории
+      - Изменить категорию сделки
+3. Анализ привычек расходования.
+4. Регулируйте и адаптируйте свой бюджет с течением времени.
 
 :::info
 
-This topic is so important on how to actually use Actual, that we have devoted a separate page on **[envelope budgeting](./envelope-budgeting.md)**.
+Эта тема настолько важна в том, как на самом деле использовать Actual, что мы посвятили ей отдельную страницу. **[Бюджетирование конвертов](./envelope-budgeting.md)**.
 
 :::
 
-## The next step in your budgeting journey
+## Следующий шаг в вашем бюджете {#the-next-step-in-your-budgeting-journey}
 
-A good next step is to read through the "Using Actual" section of the documentation. This section has detailed explanations on the
-features of Actual and how to use them. Some of the most useful features are [Rules](../budgeting/rules/index.md),
-[Schedules](../schedules.md), [Reconciliation](../accounts/reconciliation.md),
-and [Reports](../reports/index.md).
+Хороший следующий шаг - прочесть раздел документации "Использование Актуально". В этом разделе есть подробные пояснения по этому вопросу.
+Особенности Actual и способы их использования.Некоторые из наиболее полезных особенностей [Правила](../budgeting/rules/index.md),
+[Расписание](../schedules.md), [Примирение](../accounts/reconciliation.md),
+и [Доклады](../reports/index.md).
 
-If you feel a bit overwhelmed, don't worry.
+Если вы чувствуете себя немного подавленным, не волнуйтесь.
 
-Getting started with budgeting is confusing, especially if you are new to zero-sum budgeting.
+Начать работу с бюджетированием сложно, особенно если вы новичок в бюджетировании с нулевой суммой.
 
-It is a strict, but powerful, way to handle personal finance.
+Это строгий, но мощный способ управления личными финансами.
 
-If you have questions feel free to ask on our [Discord](https://discord.gg/8JfAXSgfRf).
-There are many people that have gone through the same confusion and will be happy to help you out!
+Если возникнут вопросы, начните с [частых вопросов](../faq.md) и [раздела помощи](../community/index.md).

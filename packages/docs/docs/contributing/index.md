@@ -1,31 +1,31 @@
 ---
-title: Contributing to Actual Budget
+title: Участие в разработке Actual
 ---
 
-So, you want to get stuck in and help out with existing issues in Actual Budget or develop a feature of your own. That's great and we really appreciate it!
-We have created this document to signpost you to some of the key areas that will be of interest when developing for Actual Budget.
+Итак, вы хотите застрять и помочь с существующими проблемами в реальном бюджете или разработать свою собственную функцию.
+Мы создали этот документ, чтобы указать вам некоторые из ключевых областей, которые будут интересны при разработке для Actual Budget.
 
-As always, if you need any help or want something clarified, jump into the Discord and we will try our best to help you out.
+Как всегда, если вам нужна какая-либо помощь или вы хотите что-то уточнить, прыгайте в Раздор, и мы постараемся помочь вам.
 
-### Expectations
+### Ожидания {#expectations}
 
-For smaller improvements or features - feel free to submit a PR or an issue if you don't have the necessary skills to build it yourself. For larger features we would recommend first opening an issue to discuss it with the team.
+Для небольших улучшений или функций - не стесняйтесь подавать PR или вопрос, если у вас нет необходимых навыков, чтобы построить его самостоятельно. Для более крупных функций мы рекомендуем сначала открыть вопрос, чтобы обсудить его с командой.
 
-We aren't going to take every single little change. Don't be offended if we close your PR. In order for the project to stay healthy, we need to guard our bandwidth and also only take changes that align with Actual.
+Не обижайтесь, если мы закроем ваш пиар. Для того, чтобы проект оставался здоровым, нам нужно защитить нашу пропускную способность, а также принимать только изменения, которые согласуются с Actual.
 
-Here are some initial guidelines for how contributions will be treated:
+Вот некоторые первоначальные рекомендации о том, как будут обрабатываться взносы:
 
-- The mental health of the maintainers will be prioritized above all else. If this means some things get lost and PRs are unreviewed because maintainers are spending time with family or on themselves, we celebrate that.
+- Если это означает, что некоторые вещи теряются, а PR не пересматриваются, потому что они проводят время с семьей или на себе, мы празднуем это.
 
-- Multiple maintainers are key to this being a healthy project. Currently a few people have maintainer rights (see list below). We are actively looking for more people to come on as maintainers. If nobody steps up, expect less activity on this project.
+- В настоящее время несколько человек имеют права на поддержку (см. список ниже). Мы активно ищем больше людей, чтобы прийти в качестве тех, кто поддерживает. Если никто не поднимается, ожидайте меньше активности в этом проекте.
 
-- An open PR does not automatically deserve time for a full review and acceptance. It's up to the PR author to convince the maintainers that the change is good and worth reviewing. This involves a clear description for why the change is being made, detailing the tradeoffs.
+- Открытый PR автоматически не заслуживает времени для полного обзора и принятия. Автор PR должен убедить сторонников в том, что изменения хороши и заслуживают рассмотрения. Это включает в себя четкое описание того, почему происходят изменения, с подробным описанием компромиссов.
 
-- We especially welcome improvements in automation: creating GitHub actions to automatically generate builds, making the release process easier, etc.
+- Мы особенно приветствуем улучшения в автоматизации: создание действий GitHub для автоматического создания сборок, облегчение процесса выпуска и т. д.
 
-### Main Contributors
+### Основные вкладчики {#main-contributors}
 
-(sorted alphabetically)
+(сортирован по алфавиту)
 
 - @jfdoming
 - @joel-jeremy
@@ -35,9 +35,9 @@ Here are some initial guidelines for how contributions will be treated:
 - @tim-smart
 - @youngcw
 
-### Alumni
+### Выпускники {#alumni}
 
-(sorted alphabetically)
+(сортирован по алфавиту)
 
 - @albertogasparin
 - @alecbakholdin
@@ -55,69 +55,69 @@ Here are some initial guidelines for how contributions will be treated:
 - @twk3
 - @UnderKoen
 
-### Getting Started
+### Начало работы {#getting-started}
 
-Before you begin contributing, make sure you have your development environment set up:
+Прежде чем начать вносить свой вклад, убедитесь, что у вас создана среда разработки:
 
-1. **Set up your development environment**: Follow the [Development Setup Guide](./development-setup.md) to install prerequisites and get started.
-2. **Understand the codebase**: Review the [Project Structure](./project-details/index.md) to understand how the codebase is organized.
-3. **Learn the coding conventions**: Read the [Code Style Guide](./code-style.md) to understand our coding standards.
-4. **Familiarize yourself with testing**: Check out the [Testing Guide](./testing.md) to learn how to write and run tests.
+1. **Создайте свою среду развития**Следуй за мной [Руководство по разработке](./development-setup.md) Установить предпосылки и начать.
+2. **Понять кодовую базу**: Обзор [Структура проекта](./project-details/index.md) Чтобы понять, как организована кодовая база.
+3. **Изучите конвенции кодирования**Читать далее [Code Style Руководство](./code-style.md) Чтобы понять наши стандарты кодирования.
+4. **Ознакомьтесь с тестированием**: Проверьте это [Руководство по испытаниям](./testing.md) Научиться писать и проводить тесты.
 
-### Development Workflow
+### Разработка Workflow {#development-workflow}
 
-When making changes to Actual, follow this workflow:
+При внесении изменений в Actual следуйте этому рабочему процессу:
 
-1. **Read relevant files**: Understand the current implementation before making changes.
-2. **Make focused, incremental changes**: Keep changes small and focused on a single feature or bugfix.
-3. **Run type checking**: Always run `yarn typecheck` before committing to catch type errors.
-4. **Run linting**: Run `yarn lint:fix` to ensure code follows style guidelines.
-5. **Run relevant tests**: Run tests for the code you've changed (`yarn test` for all tests, or workspace-specific commands).
-6. **Fix any issues**: Address any type errors, linter errors, or test failures before submitting your PR.
+1. **Читайте соответствующие файлы**Понять текущую реализацию, прежде чем вносить изменения.
+2. **Сосредоточьтесь, постепенные изменения**Сохраняйте небольшие изменения и сосредоточьтесь на одной функции или исправлении ошибок.
+3. **Проверка типа бега**Всегда бегать `yarn typecheck` перед тем, как совершать ошибки типа.
+4. **Подкладка**Пробег `yarn lint:fix` Чтобы код следовал правилам стиля.
+5. **Проведите соответствующие тесты**Запустите тесты для кода, который вы изменили`yarn test` для всех тестов или команд, специфичных для рабочего пространства.
+6. **Исправить любые проблемы**Устраните ошибки любого типа, ошибки linter или сбои в тестировании перед отправкой вашего PR.
 
-For more details, see the [Development Setup Guide](./development-setup.md) and [Testing Guide](./testing.md).
+Для более подробной информации смотрите [Руководство по разработке](./development-setup.md) и [Руководство по испытаниям](./testing.md).
 
-### The Project Layout
+### Планировка проекта {#the-project-layout}
 
-The layout of the codebase in Actual Budget takes a bit of getting used to and finding things at first can be a little tricky. We have put together a help [document](./project-details/index.md) that shows the structure of the project. While this isn't 100% complete it will give you a good starting point for your development.
+Планировка кодовой базы в Actual Budget требует немного привыкнуть и найти вещи поначалу может быть немного сложно. [документ](./project-details/index.md) Пока это не 100% завершено, это даст вам хорошую отправную точку для вашего развития.
 
-### Working on Existing Issues
+### Работа над существующими вопросами {#working-on-existing-issues}
 
-Existing issues are a good place to start, especially if you want to contribute to Actual Budget but don't know where to start, some of the things to be aware of are:
+Существующие проблемы являются хорошим местом для начала, особенно если вы хотите внести свой вклад в Actual Budget, но не знаете, с чего начать, некоторые вещи, о которых следует знать:
 
-1. All issues are open to be worked on by anyone.
-2. Working on the highest rated [feature requests](https://github.com/actualbudget/actual/issues?q=label%3A%22needs+votes%22+sort%3Areactions-%2B1-desc+) would also be appreciated.
-3. We do not assign issues to specific people.
+1. Все вопросы открыты для любой работы.
+2. Работа над самым высоким рейтингом [Функциональные запросы](https://github.com/actualbudget/actual/issues?q=label%3A%22needs+votes%22+sort%3Areactions-%2B1-desc+) Буду также признателен.
+3. Мы не отдаем вопросы конкретным людям.
 
-### Submitting an Idea for Something you Want to Work On
+### Подайте идею для чего-то, над чем вы хотите работать {#submitting-an-idea-for-something-you-want-to-work-on}
 
-Okay, so you have an idea for something that you think would be great in Actual Budget, but how do you pitch it to the community so that all your hard work is not wasted?
+Итак, у вас есть идея для чего-то, что, по вашему мнению, было бы здорово в реальном бюджете, но как вы можете предложить это сообществу, чтобы вся ваша тяжелая работа не была потрачена впустую?
 
-If the feature is relatively small, feel free to start the discussion by opening a PR. However, if you want to work on a larger change/feature, please open an issue or comment on an existing issue for the feature first. This lets the maintainers make sure your approach fits well both with the technical and ideological architecture of the project.
+Если функция относительно небольшая, не стесняйтесь начинать обсуждение, открывая PR. Однако, если вы хотите работать над более крупным изменением / функцией, пожалуйста, сначала откройте вопрос или прокомментируйте существующую проблему для функции. Это позволяет разработчикам убедиться, что ваш подход хорошо соответствует как технической, так и идеологической архитектуре проекта.
 
-### Submitting a Pull Request
+### Отправить запрос Pull {#submitting-a-pull-request}
 
-If you have started implementing a new feature or bugfix please open a PR so others know that you are working on that task. This helps to not have duplicate work.
+Если вы начали внедрять новую функцию или исправление ошибок, пожалуйста, откройте PR, чтобы другие знали, что вы работаете над этой задачей.
 
-When you open a PR please remember to do the following:
+Когда вы открываете PR, пожалуйста, не забудьте сделать следующее:
 
-- If applicable, please link the issue or feature request ticket. The easiest way to do this is by adding the text `Fixes #<ticket_number>` in the PR description.
-- Add a release note. These notes get used when generating the full release note at the next release.
-- Once your PR is ready for maintainers to review, remove the `[WIP]` label from the PR title.
-- Sometimes it can take some time for the maintainers to review your PR for approval. Please keep your PR up to date with the current master branch by merging or rebasing until your PR gets merged.
+- Если применимо, пожалуйста, свяжитесь с вопросом или запросом функции. Самый простой способ сделать это - добавить текст. `Fixes #<ticket_number>` в описании PR.
+- Добавить заметку о выпуске. Эти заметки используются при создании полной заметки о выпуске в следующем выпуске.
+- Как только ваш PR готов к просмотру, удалите `[WIP]` Ярлык из названия PR.
+- Иногда это может занять некоторое время для тех, кто поддерживает ваш PR для утверждения. Пожалуйста, держите свой PR в курсе текущей основной ветви, сливаясь или перебазируя, пока ваш PR не объединится.
 
-### Writing Good Release Notes
+### Написание хороших выпускных заметок {#writing-good-release-notes}
 
-Before creating your pull request, run the command `yarn generate:release-notes`. This will guide you through the steps necessary for creating a release note for your change. You will be asked the following questions:
+Прежде чем создать запрос на вытягивание, запустите команду `yarn generate:release-notes`Это проведет вас через шаги, необходимые для создания заметки об освобождении для вашего изменения. Вам будут заданы следующие вопросы:
 
-1. Comma-separated GitHub username(s) - your GitHub username, or if multiple people are involved, you can specify them all (e.g. `username1, username2`)
-2. Filename slug - a short descriptive slug used as `upcoming-release-notes/<slug>.md`. Auto-filled from your branch name (or PR title if one is detected).
-3. Release Note Type - this will give you a select field with 4 options from the "Valid categories" section below
-4. Brief Summary - this is a short summary of your changes.
+1. Имя (имена) пользователя GitHub с раздельной запятой - ваше имя пользователя GitHub или, если в нем участвуют несколько человек, вы можете указать их все (например, ). `username1, username2`)
+2. Filename slug — короткий описательный слизень, используемый как `upcoming-release-notes/<slug>.md`Автозаполненный от имени вашего филиала (или PR-заголовка, если он обнаружен).
+3. Тип примечания к выпуску - это даст вам выбранное поле с 4 вариантами из раздела «Действительные категории» ниже
+4. Краткое резюме - это краткое изложение ваших изменений.
 
-For a better experience with the release note generation script, consider installing [the official GitHub CLI](https://github.com/cli/cli) and running `gh auth login`. This will allow the script to automatically fill in some information like your GitHub username and current PR information if you've already opened one from a fork you created.
+Для лучшего опыта работы со сценарием генерации заметок релиза рассмотрите возможность установки [Официальный сайт GitHub CLI](https://github.com/cli/cli) и бегать `gh auth login`Это позволит скрипту автоматически заполнять некоторую информацию, такую как имя пользователя GitHub и текущую информацию о PR, если вы уже открыли одну из созданных вами вилок.
 
-Create a Markdown file in the upcoming-release-notes directory of the repository you're contributing to. Pick a short, descriptive filename (e.g. `add-payee-autocomplete.md`); the PR link in the published changelog is resolved automatically when the release is generated, so you don't need to know the PR number. Numeric filenames like `1234.md` also remain valid. The file should contain front matter with a category key (defining which header to put the entry under) and an authors key (defining the author of the entry). The body of the file should contain the changelog entry. Keep it short and clear — ideally one sentence, and also non-technical (unless the category is "Maintenance"). Copy-paste the template below to get started!
+Создайте файл Markdown в каталоге предстоящих выпусков репозитория, в который вы вносите свой вклад. Выберите короткое описательное имя файла (например). `add-payee-autocomplete.md`); PR-ссылка в опубликованном блоге изменений решается автоматически при генерации релиза, поэтому вам не нужно знать PR-номер. `1234.md` Также остаются действительными. Файл должен содержать переднее вещество с ключом категории (определяя, под какой заголовок поместить запись) и ключ автора (определяя автора записи). Тело файла должно содержать запись changelog. Держите его коротким и ясным — в идеале одно предложение, а также нетехническое (если категория не «Поддержание»). Копируйте шаблон ниже, чтобы начать!
 
 ```markdown
 ---
@@ -128,28 +128,28 @@ authors: [YourGitHubUsername]
 Add option to include exchange rate multiplier during import
 ```
 
-Valid categories:
+Действительные категории:
 
-- `Features`: New features
-- `Enhancements`: Improvements to existing features
-- `Bugfix`: Bug fixes
-- `Maintenance`: Internal changes that don't directly affect users
+- `Features`: Новые особенности
+- `Enhancements`Улучшения существующих функций
+- `Bugfix`: Баг фиксирует
+- `Maintenance`Внутренние изменения, которые напрямую не влияют на пользователей
 
-The `authors` key should be an array with the GitHub usernames of the people who contributed to the PR. In most cases, this should just be you but you can add multiple people if needed.
+The `authors` Ключ должен быть массивом с именами пользователей GitHub людей, которые внесли свой вклад в PR. В большинстве случаев это должны быть только вы, но при необходимости вы можете добавить несколько человек.
 
-Try to phrase your message as a command, e.g. "Add option to include exchange rate multiplier during import" rather than "Added option to include exchange rate multiplier during import" or "Adds option to include exchange rate multiplier during import." Generally your message should match the PR title, but you can change it if you think it's more clear.
+Попробуйте сформулировать свое сообщение как команду, например. "Добавить опцию для включения мультипликатора обменного курса во время импорта", а не "Добавить опцию для включения мультипликатора обменного курса во время импорта" или "Добавить опцию для включения мультипликатора обменного курса во время импорта". Как правило, ваше сообщение должно соответствовать названию PR, но вы можете изменить его, если считаете, что это более ясно.
 
-### The Design Strategy Of Actual
+### Стратегия дизайна реального {#the-design-strategy-of-actual}
 
-The goal of the UI is to be minimalistic, but expose more advanced features progressively as the user interacts with the product (for example: the notes button is not visible by default if an account has no notes, but it becomes persistent visible if there are notes). We advocate for a similar approach in other places too. We are against adding a button/user setting for every little piece of UI (sizes, paddings, margins, etc.) as that goes against this simple design philosophy.
+Цель пользовательского интерфейса - быть минималистским, но постепенно раскрывать более продвинутые функции по мере взаимодействия пользователя с продуктом (например: кнопка заметок не видна по умолчанию, если учетная запись не имеет заметок, но она становится постоянной видимой, если есть заметки). Мы выступаем за аналогичный подход и в других местах. Мы против добавления кнопки / настройки пользователя для каждого небольшого фрагмента пользовательского интерфейса (размеры, накладки, поля и т. д.), поскольку это противоречит этой простой философии дизайна.
 
-The settings screen needs to also remain a place where core settings lives, we don't really want to have a myriad of options in here for each and every setting within the UI, doing that makes the code un-manageable for future contributors and clutters up and confuses things for the users of Actual Budget.
+Экран настроек также должен оставаться местом, где живут основные настройки, мы не хотим иметь здесь множество опций для каждой настройки в пользовательском интерфейсе, что делает код неуправляемым для будущих участников и захламляет и путает вещи для пользователей Actual Budget.
 
-## Additional Resources
+## Дополнительные ресурсы {#additional-resources}
 
-- [AI Usage Policy](./ai-usage-policy.md) - What we expect when you use AI tools to contribute
-- [Development Setup](./development-setup.md) - Set up your development environment
-- [Testing Guide](./testing.md) - Learn about testing strategies and how to run tests
-- [Code Style Guide](./code-style.md) - Coding conventions and style guidelines
-- [Troubleshooting](./troubleshooting.md) - Common issues and solutions
-- [Project Structure](./project-details/index.md) - Understanding the codebase organization
+- [Политика использования AI](./ai-usage-policy.md) Что мы ожидаем, когда вы используете инструменты ИИ, чтобы внести свой вклад
+- [Настройка](./development-setup.md) Создайте свою среду развития
+- [Руководство по испытаниям](./testing.md) Узнайте о стратегиях тестирования и о том, как проводить тесты
+- [Code Style Руководство](./code-style.md) - Кодирующие конвенции и руководящие принципы стиля
+- [устранение неполадок](./troubleshooting.md) - Общие вопросы и решения
+- [Структура проекта](./project-details/index.md) Понимание организации кодовой базы

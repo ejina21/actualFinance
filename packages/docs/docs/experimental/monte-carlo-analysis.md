@@ -1,224 +1,224 @@
-# Monte Carlo Analysis
+# Анализ Монте-Карло {#monte-carlo-analysis}
 
 <ExperimentalFeatureWarning />
 
-## What Does This Report Do?
+## Что делает этот доклад? {#what-does-this-report-do}
 
-The Monte Carlo Analysis report helps you answer one of the biggest money questions there is: **"If I stop working and start living off my savings, will the money last?"**
+Отчет Monte Carlo Analysis поможет вам ответить на один из самых важных вопросов: **Если я перестану работать и начну жить за счет своих сбережений, останутся ли деньги?**
 
-Nobody knows what the stock market will do next year, let alone over the next 30 years. So instead of guessing once, this report guesses thousands of times. It replays your retirement over and over - 5,000 times by default - and in each replay the market has different luck: some replays hit a crash early on, some enjoy a long boom, most land somewhere in between.
+Никто не знает, что будет делать фондовый рынок в следующем году, не говоря уже о следующих 30 годах. Таким образом, вместо того, чтобы угадать один раз, этот отчет угадывает тысячи раз. Он повторяет ваш выход на пенсию снова и снова - 5000 раз по умолчанию - и в каждом повторе рынок имеет разную удачу: некоторые повторы потерпели крах на ранней стадии, некоторые наслаждаются долгим бумом, большинство приземляется где-то между ними.
 
-At the end it tells you a simple, powerful number: **in what percentage of those replays did your money last as long as you needed it to?** If your plan survives in 85% of the replays, that's a much more honest answer than any single prediction could give you.
+В конце он говорит вам простое, мощное число: **В каком проценте этих повторов ваши деньги длились столько, сколько вам нужно?** Если ваш план выживет в 85% повторов, это гораздо более честный ответ, чем любой другой прогноз.
 
 :::note
-This report is a planning aid, not financial advice, and not a prediction. It can't know the future - it can only show you how your plan holds up across many possible futures.
+Этот отчет - помощь в планировании, а не финансовый совет и не прогноз. Он не может знать будущее - он может только показать вам, как ваш план держится на многих возможных фьючерсах.
 :::
 
-![The Monte Carlo Analysis report](/img/experimental/monte-carlo-analysis/monte-carlo-overview.png)
+![Отчет об анализе Монте-Карло](/img/experimental/monte-carlo-analysis/monte-carlo-overview.png)
 
-## Turning the Report On
+## Перевернуть отчет на {#turning-the-report-on}
 
-Monte Carlo Analysis is an experimental feature, so it's switched off until you enable it:
+Анализ Монте-Карло является экспериментальной функцией, поэтому он выключен, пока вы не включите его:
 
-1. Open **Settings** from the sidebar.
-2. Click **Show advanced settings**.
-3. Open **Experimental features** and acknowledge the warning.
-4. Tick **Monte Carlo Analysis Report**.
+1. Открыть **Настройки** с боковой панели.
+2. щелкнуть **Показать расширенные настройки**.
+3. Открыть **Экспериментальные особенности** Признать предостережение.
+4. галочка **Анализ Монте-Карло**.
 
-## Adding the Report to Your Dashboard
+## Добавление отчета в вашу панель инструментов {#adding-the-report-to-your-dashboard}
 
-1. Go to **Reports** in the sidebar.
-2. Click **Add new widget** and choose **Monte Carlo analysis**.
-3. A card appears on your dashboard showing your success rate and a small chart. Click the card to open the full report.
-4. After changing any settings in the full report, click **Save widget** so your setup is remembered next time.
+1. Пойти **Доклады** На боковой панели.
+2. щелкнуть **Добавить новый виджет** и выбрать **Анализ Монте-Карло**.
+3. На приборной панели появляется карта, показывающая ваш уровень успеха и небольшой график. Нажмите на карту, чтобы открыть полный отчет.
+4. После изменения любых настроек в полном отчете нажмите **Сохранить виджет** В следующий раз запомнится ваша установка.
 
-The report works immediately with sensible example numbers filled in, so you can explore how it behaves before entering your own figures.
+Отчет работает сразу с разумными примерами чисел, поэтому вы можете изучить, как он ведет себя, прежде чем вводить свои собственные цифры.
 
-## Setting Up Your Plan
+## Настройка вашего плана {#setting-up-your-plan}
 
-The configuration area at the top of the report is organized into five tabs.
+Область конфигурации в верхней части отчета организована в пять вкладок.
 
-### Plan Details
+### Подробности плана {#plan-details}
 
-![The Plan Details tab](/img/experimental/monte-carlo-analysis/monte-carlo-plan-details.png)
+![План детали вкладка](/img/experimental/monte-carlo-analysis/monte-carlo-plan-details.png)
 
-The tab is organized into three small groups - **Your plan**, **Simulation** and **Inflation**:
+Закладка организована в три небольшие группы - **Твой план**, **моделирование** и **инфляция**:
 
-- **Your current age** and **Pot must last until age** - these two numbers define the period being tested. If you're 40 and want the money to last until you're 95, the report simulates 55 years.
-- **Return model** - how the simulation invents each year's investment returns:
-  - **Random (normal distribution)**: each year's return is drawn randomly around the expected return and volatility you set on each pot. Think of it as a weighted coin flip, year after year. Every pot lives through the same simulated market year - a good year is good for all your pots, scaled by each pot's volatility - so two pots holding the same investments earn the same return.
-  - **Historical returns, shuffled**: instead of invented numbers, each simulated year is a real year from US market history (1928 onwards), picked in random order. Real crashes like 1931 and 2008 are in the deck, and each sampled year brings its own actual US inflation with it, so high-inflation years keep their high-inflation markets.
-  - **Historical sequences (replay)**: each replay is actual history, played in order from a different starting year - "what if you retired in 1929?", "what if you retired in 1972?", and so on. Each replayed year brings its own actual US inflation with it. This is the strictest test of bad timing, because real crashes and recoveries happen in their true order.
+- **Ваш нынешний возраст** и **Горшок должен длиться до возраста** Если вам 40 лет, и вы хотите, чтобы деньги длились до 95 лет, отчет симулирует 55 лет.
+- **Возвратная модель** Как симуляция изобретает годовую доходность инвестиций:
+  - **Случайное (нормальное распределение)**Каждый год доход нарисован случайным образом вокруг ожидаемой доходности и волатильности, которую вы устанавливаете на каждый горшок. Думайте об этом как о взвешенном сальто монеты, год за годом. Каждый горшок живет через один и тот же смоделированный рыночный год - хороший год хорош для всех ваших горшков, масштабируемый волатильностью каждого горшка - поэтому два горшка, держащие одни и те же инвестиции, получают один и тот же доход.
+  - **Исторические возвращения, перетасованные**Вместо выдуманных цифр каждый смоделированный год - это реальный год из истории рынка США (1928 и далее), выбранный в случайном порядке. Реальные крахи, такие как 1931 и 2008, находятся в колоде, и каждый отобранный год приносит с собой собственную фактическую инфляцию в США, поэтому годы высокой инфляции сохраняют свои рынки с высокой инфляцией.
+  - **Исторические последовательности (повтор)**Каждый повтор - это реальная история, сыгранная в порядке с разных стартовых лет - "что, если вы вышли на пенсию в 1929 году?", "что, если вы вышли на пенсию в 1972 году?" и так далее. Каждый повторный год приносит с собой свою собственную фактическую инфляцию в США. Это самый строгий тест плохого времени, потому что реальные аварии и восстановления происходят в их истинном порядке.
 
-  Both historical models only take real returns for pots with an asset mix - an allocation preset, or a complete custom mix. A **Custom** pot always draws random returns around its own expected return and volatility, which is useful for assets history can't stand in for, such as an annuity or property. If every pot is Custom, a historical model's returns behave just like the random model's - though spending still follows each historical year's real inflation.
+  Обе исторические модели берут только реальную отдачу для горшков с набором активов - предварительно установленным распределением или полным пользовательским набором. **обычай** Горшок всегда получает случайную доходность вокруг своей ожидаемой доходности и волатильности, что полезно для истории активов, таких как аннуитет или собственность.Если каждый горшок является пользовательским, доходность исторической модели ведет себя так же, как и доходность случайной модели - хотя расходы по-прежнему следуют за реальной инфляцией каждого исторического года.
 
-- **Simulations** - how many replays to run (1,000 to 10,000). More replays give steadier numbers but take slightly longer. When using historical sequences, this field is disabled because there is exactly one replay per historical starting year.
-- **Inflation - Mean (%)** - the average yearly rise in prices. When set, your planned spending grows with it so your spending power keeps up. Leave it blank to take exactly the same amount every year. With a historical return model, the two inflation inputs are replaced by an **Adjust spending with inflation** checkbox: each simulated year then uses that year's actual US inflation, keeping inflation and market returns paired the way they really were.
-- **Inflation - Std dev (%)** - real-world inflation bounces around from year to year rather than staying fixed. When set, each simulated year draws its own inflation rate around the mean, separately in every replay. The default of 2% is roughly how much US inflation has varied in recent decades; set it to 0 to use the fixed mean rate every year. Only used by the random return model.
+- **Симуляция** - сколько повторов запускать (от 1000 до 10000). Больше повторов дают более устойчивые числа, но занимают немного больше времени. При использовании исторических последовательностей это поле отключено, потому что за исторический стартовый год происходит ровно одно повторение.
+- **Инфляция - средний (%)** - среднегодовой рост цен. При установлении, ваши запланированные расходы растут вместе с ним, так что ваша покупательная способность не отстает. Оставьте его пустым, чтобы брать точно такую же сумму каждый год. С исторической моделью возврата, два входа инфляции заменяются **Скорректировать расходы с инфляцией** Каждый смоделированный год затем использует фактическую инфляцию в США в этом году, сохраняя инфляцию и рыночную доходность в паре так, как они были на самом деле.
+- **Инфляция - Std dev (%)** Реальная инфляция растет из года в год, а не остается фиксированной. При установке каждый смоделированный год рисует свой собственный уровень инфляции вокруг среднего значения, отдельно в каждом повторе. Дефолт в 2% — это примерно то, насколько сильно изменилась инфляция в США за последние десятилетия; установите его на 0, чтобы использовать фиксированную среднюю ставку каждый год. Используется только модель случайного возврата.
 
-### Investment Pots
+### Инвестиционные котлы {#investment-pots}
 
-![The Investment Pots tab](/img/experimental/monte-carlo-analysis/monte-carlo-pots.png)
+![Закладка «Инвестиционные котлы»](/img/experimental/monte-carlo-analysis/monte-carlo-pots.png)
 
-A _pot_ is a chunk of invested money - a pension or retirement account, an investment account, a savings account. You can model one pot or several, each with its own settings:
+pot - это кусок вложенных денег - пенсионный или пенсионный счет, инвестиционный счет, сберегательный счет. Можно смоделировать один горшок или несколько, каждый со своими настройками:
 
-- **Pot name** - anything you like, such as "Pension".
-- **Starting balance** - how much is in the pot today. Enter it by hand, or use **Linked account** below to keep it up to date automatically.
-- **Linked account** - link the pot to one of your accounts and its starting balance becomes that account's live balance, so the plan tracks reality without re-typing numbers. Typing a starting balance manually unlinks the pot and keeps your typed value - useful for what-if questions like "how big would this pot need to be?" - and you can re-link it any time with the picker.
-- **Portfolio allocation** - a one-click preset that fills in a typical expected return and volatility for a given mix of stocks and bonds. A pot that's 100% stocks tends to grow faster but swings harder; a cash pot barely moves in either direction. You can always override the numbers, which switches the pot to **Custom**. If none of the presets match your portfolio, pick **Custom mix** and enter your own stock, bond and cash percentages in the pot's expanded settings - the allocation must total 100%, and until it does the pot falls back to the expected return and volatility you enter. With a historical return model, the mix (a preset's or a custom one) is also the pot's real asset mix - its stock, bond and cash shares take each sampled year's actual S&P 500, 10-year Treasury and T-bill returns, and the return and volatility cells show the mix's measured history instead of editable assumptions (only Custom pots, and a custom mix under the random model, keep using their typed values, via random draws).
-- **Expected return (%)** - the average yearly growth you expect from this pot, before inflation.
-- **Volatility (std dev %)** - how much the returns swing from year to year. Two pots can have the same average return, but the one with higher volatility is riskier: bad early years can do damage that a smooth ride would avoid.
-  Click the arrow at the start of a pot's row to expand its additional settings, organized into groups:
+- **Имя кота** - все, что угодно, например, "Пенсия".
+- **Начало баланса** - сколько в банке сегодня. Введите его вручную или используйте **Связанный счет** Ниже, чтобы держать его в курсе автоматически.
+- **Связанный счет** Свяжите банк с одним из ваших счетов, и его стартовый баланс станет живым балансом этого счета, поэтому план отслеживает реальность без повторного ввода номеров. Настройка стартового баланса вручную отсоединяет горшок и сохраняет его типизированное значение - полезное для вопросов типа «насколько большим должен быть этот горшок?» - и вы можете повторно связать его в любое время с пикером.
+- **Распределение портфеля** - предустановка в один клик, которая заполняет типичную ожидаемую доходность и волатильность для данного сочетания акций и облигаций. Горшок, который на 100% состоит из акций, имеет тенденцию расти быстрее, но колеблется сильнее; денежный горшок едва движется в любом направлении. Вы всегда можете переопределить числа, которые переключают горшок на **обычай**Если ни одна из предустановок не соответствует вашему портфолио, выберите **Обычная смесь** и введите свои собственные акции, облигации и денежные проценты в расширенных настройках банка - распределение должно составлять 100%, и пока это не произойдет, банк вернется к ожидаемой доходности и волатильности, которую вы вводите. С исторической моделью возврата, смесь (предустановленная или пользовательская) также является реальной смесью активов банка - его акции, облигации и денежные акции берут фактическую прибыль S & P 500 за каждый отобранный год, 10-летнее казначейство и доходность T-bill, а ячейки возврата и волатильности показывают измеренную историю смеси вместо редактируемых предположений (только кастомные кастрюли и кастомная смесь под случайной моделью продолжают использовать свои типизированные значения через случайные ничьи).
+- **Ожидаемая доходность (%)** - среднегодовой рост, который вы ожидаете от этого котла, до инфляции.
+- **Волатильность (std dev %)** Два горшка могут иметь одинаковую среднюю доходность, но один с более высокой волатильностью является более рискованным: плохие ранние годы могут нанести ущерб, которого бы избежать плавная поездка.
+  Нажмите на стрелку в начале строки горшка, чтобы расширить ее дополнительные настройки, организованные в группы:
 
-- **Allocation - Stocks / Bonds / Cash (%)** - only shown for **Custom mix** pots: the pot's own asset shares, as described under Portfolio allocation above. Picking Custom mix in the allocation dropdown expands the row automatically, seeded with the shares of the preset you were on. The allocation must total 100% - a warning appears until it does, and in the meantime the pot uses its typed return and volatility.
-- **Access - Accessible from age** - some pots can't be touched until a certain age; retirement accounts in many countries work this way. Leave this blank if the pot is available now. A locked pot stays invested and keeps growing - it just can't pay your bills until you reach the access age.
-- **Tax - Tax (%)** (or **Taxable portion (%)** with the bands model) - how withdrawals from this pot are taxed; see [Tax](#tax) below. Leave at 0 for tax-free pots.
-- **Fees** - what this pot costs you each year, charged at the end of every simulated year:
-  - **Fixed yearly fee** - the sum of fixed costs like adviser or platform fees, as an amount. Tick **Adjust by inflation** if the fee will rise with prices over time (untick it for a contractually flat fee, which shrinks in real terms).
-  - **Fee (% of balance)** - percentage charges like fund management fees, taken from the pot's end-of-year balance - e.g. 0.22 for a typical index fund platform.
+- **Распределение - Акции / Облигации / Наличные (%)** - показан только для **Обычная смесь** кастрюли: акции собственного актива банка, как описано в разделе «Портфолио» выше. Выбор пользовательского сочетания в выпадении распределения автоматически расширяет ряд, засеянный акциями предустановленного вами набора. Распределение должно составлять 100% - предупреждение появляется до тех пор, пока оно не появится, и в то же время кастрюля использует свою типизированную доходность и волатильность.
+- **Доступность - Доступность с возрастом** - некоторые горшки нельзя трогать до определенного возраста; пенсионные счета во многих странах работают таким образом. Оставьте это пустым, если горшок доступен сейчас. Запертый горшок остается инвестированным и продолжает расти - он просто не может оплатить ваши счета, пока вы не достигнете возраста доступа.
+- **Налог - Налог (%)** или **Налогооблагаемая часть (%)** с моделью полос) - как облагаются налогом изъятия из этого горшка; см. [Налог](#tax) Оставьте на 0 для безналоговых горшков.
+- **Плата** - что этот горшок стоит вам каждый год, взимается в конце каждого смоделированного года:
+  - **Фиксированная годовая плата** - сумма фиксированных расходов, таких как плата за консультанта или платформу, в виде суммы. **Скорректировать инфляцию** если плата будет расти с ценами с течением времени (принимайте ее за фиксированную плату по контракту, которая уменьшается в реальном выражении).
+  - **Плата (% от баланса)** - процентные платежи, такие как сборы за управление фондом, взятые из баланса банка на конец года - например, 0,22 для типичной платформы индексного фонда.
 
-Drag a pot's row to reorder the list - the order matters if you choose to drain pots one at a time (see [Spending](#spending) below).
+Перетащите ряд горшка, чтобы переупорядочить список - порядок имеет значение, если вы решите слить горшки по одному за раз (см. [расходы](#spending) ниже).
 
 :::tip
-The access age setting is what lets the report model the classic "bridge gap": retiring at 48 with a big pension you can't open until 57, and a smaller pot that has to carry you across those nine years. If the bridge pot runs dry too soon, the plan fails - even though the pension money exists.
+Установление возраста доступа - это то, что позволяет отчету моделировать классический "мостовой разрыв": выход на пенсию в 48 лет с большой пенсией, которую вы не можете открыть до 57 лет, и меньший горшок, который должен переносить вас через эти девять лет. Если горшок для мостов высохнет слишком рано, план провалится - даже если пенсионные деньги существуют.
 :::
 
-### Contributions
+### Вклад {#contributions}
 
-![The Contributions tab](/img/experimental/monte-carlo-analysis/monte-carlo-contributions.png)
+![Закладка вкладов](/img/experimental/monte-carlo-analysis/monte-carlo-contributions.png)
 
-If you're still earning, you can model the money you add to your pots each year - pension deposits or brokerage savings, anything that tops up a pot on a regular basis. Each contribution has:
+Если вы все еще зарабатываете, вы можете смоделировать деньги, которые вы добавляете в свои банки каждый год - пенсионные депозиты или брокерские сбережения, все, что регулярно пополняет банк.
 
-- **Contribution name** - anything you like, such as "Pension contributions".
-- **Into pot** - the pot the money is paid into. A pot can receive any number of contributions, and contributions can go into a pot that is still locked for withdrawals - the access age only controls when money can come _out_.
-- **From age** and **To age** - the years the contribution runs, inclusive at both ends. Leave **From age** blank to start now, and **To age** blank to keep contributing until the end of the plan.
-- **Amount (per year)** - how much is added each year, in today's money. The money is paid in at the start of each year, so it earns that year's investment return.
-- **Adjust by inflation** - tick this if the contribution will grow with prices over time (for example, a percentage of a salary that keeps pace with inflation). Untick it for a fixed amount, which buys a little less each year as prices rise.
+- **Название вклада** - все, что вам нравится, например, "Пенсионные взносы".
+- **В горшок** Горшок может получить любое количество взносов, а взносы могут пойти в горшок, который все еще заблокирован для снятия средств - возраст доступа контролирует только тогда, когда деньги могут прийти.
+- **С возрастом** и **С возрастом** - годы, когда взнос идет, включительно на обоих концах. **С возрастом** пустой, чтобы начать сейчас, и **С возрастом** Вкладывайте деньги до конца плана.
+- **Сумма (в год)** - сколько добавляется каждый год, в сегодняшние деньги. Деньги выплачиваются в начале каждого года, поэтому они зарабатывают инвестиционный доход в этом году.
+- **Скорректировать инфляцию** - отметьте это, если вклад будет расти с ценами с течением времени (например, процент от зарплаты, который идет в ногу с инфляцией). Отметьте его на фиксированную сумму, которая покупает немного меньше каждый год по мере роста цен.
 
-Contributions pair naturally with a spending phase set to 0: while you're working, salary covers your costs and the plan only accumulates; from your retirement age, contributions stop and spending begins.
+Взносы, естественно, соединяются с фазой расходов, установленной на 0: во время работы зарплата покрывает ваши расходы, а план только накапливается; с вашего пенсионного возраста взносы прекращаются и расходы начинаются.
 
-### Spending
+### расходы {#spending}
 
-![The Spending tab](/img/experimental/monte-carlo-analysis/monte-carlo-withdrawals.png)
+![Закладка расходов](/img/experimental/monte-carlo-analysis/monte-carlo-withdrawals.png)
 
-- **Spending phases** - how much you take out each year to live on. You can keep it simple with a single phase, or split your plan into phases with different amounts - for example, $30,000 a year for your first 10 years of retirement while you're travelling, then $20,000 a year onwards. Each phase sets a yearly amount from a chosen age until the next phase begins; the first phase always starts now. Amounts are in today's money - the inflation settings on the Plan Details tab are applied on top, so "$20,000 from age 65" always means $20,000 of today's spending power.
-- **Withdrawal order** - only matters if you have more than one pot:
-  - **Split proportionally across pots**: each year's withdrawal is taken from all pots in proportion to their size, so they shrink together.
-  - **Drain pots in order**: empty the first pot in your list before touching the next - for example, spend your taxable account first and let the pension keep compounding. Pots that haven't reached their access age are skipped until they unlock.
-  - **Spend from the best performer first**: each year, the withdrawal comes from the pot that earned the highest return _last_ year. This is the classic "bucket strategy" instinct: after a stock crash, live off your cash and give the crashed pot time to recover; in a boom year, spend from stocks and leave the cash reserve alone. The first year (when there's no track record yet) uses your listed order, and locked pots are skipped here too.
-  - **Keep pots at their target mix**: each pot's share of your starting balances becomes its target weight, and withdrawals come from whichever pots have grown above their target - most overweight first - pulling the portfolio back toward the mix you chose. This behaves like the best-performer option in booms and crashes (trim stocks after a good run, spend cash and bonds after a crash) but without slowly drifting your money into low-growth pots, because it always steers back to your chosen mix. If you want a permanent cash buffer, give the cash pot the share you want to maintain and this order will keep it topped up in spirit - by spending it only when it's above its target share.
-- **Withdrawal rule** and **Minimum withdrawal** - see the next section.
+- **Фазы расходов** - сколько вы берете каждый год, чтобы жить дальше. Вы можете сохранить его простым с помощью одной фазы или разделить свой план на фазы с различными суммами - например, 30 000 долларов в год за первые 10 лет выхода на пенсию во время путешествия, а затем 20 000 долларов в год. Каждая фаза устанавливает годовую сумму от выбранного возраста до начала следующей фазы; первая фаза всегда начинается сейчас. Суммы находятся в сегодняшних деньгах - настройки инфляции на вкладке «Детальные планы» применяются сверху, поэтому «20 000 долларов с 65 лет» всегда означает 20 000 долларов сегодняшней покупательной способности.
+- **Приказ о выходе** - имеет значение только в том случае, если у вас более одного горшка:
+  - **Расщепление пропорционально по горшкам**Каждый год изъятие берется из всех горшков пропорционально их размеру, поэтому они сжимаются вместе.
+  - **Сливные горшки по порядку**Опорожните первый горшок в вашем списке, прежде чем прикоснуться к следующему - например, сначала потратьте свой налогооблагаемый счет и позвольте пенсии продолжать расти. Горшки, которые не достигли своего возраста доступа, пропускаются, пока они не разблокируются.
+  - **Провести от лучшего исполнителя первым**Каждый год вывод средств происходит из банка, который получил самую высокую отдачу за последний год. Это классический инстинкт «стратегии ведра»: после краха акций живите за счет своих денег и дайте разбившемуся банку время на восстановление; в год бума тратьте на акции и оставляйте денежный резерв в покое. Первый год (когда еще нет послужного списка) использует ваш заказ, и закрытые горшки также пропускаются здесь.
+  - **Держите горшки в их целевой смеси**Доля каждого горшка в ваших стартовых балансах становится его целевым весом, и вывод средств происходит из тех горшков, которые выросли выше своей цели - сначала с избыточным весом - возвращая портфель к выбранной вами смеси. Это ведет себя как наиболее эффективный вариант во время бумов и обвалов (обрезайте акции после хорошей пробежки, тратьте деньги и облигации после обвала), но без медленного дрейфа ваших денег в котлы с низким ростом, потому что он всегда возвращается к выбранной вами смеси. Если вы хотите постоянный денежный буфер, дайте наличному банку долю, которую вы хотите сохранить, и этот порядок будет поддерживать его в духе - тратя его только тогда, когда он выше своей целевой доли.
+- **Правило вывода** и **Минимальный вывод** - смотрите следующий раздел.
 
-The inflation settings that grow your spending over time live on the [Plan Details](#plan-details) tab.
+Инфляционные настройки, которые увеличивают ваши расходы с течением времени, живут на уровне инфляции. [Подробности плана](#plan-details) вкладка.
 
-### Tax
+### Налог {#tax}
 
-![The Tax tab](/img/experimental/monte-carlo-analysis/monte-carlo-tax.png)
+![Налоговая вкладка](/img/experimental/monte-carlo-analysis/monte-carlo-tax.png)
 
-Withdrawing money from a pension or a taxable account usually costs more than the amount you get to spend. The Tax tab lets the simulation account for that: **your yearly spending is always what you keep after tax**, and the simulation withdraws extra to cover the tax bill. Two models are available:
+Вывод денег с пенсии или налогооблагаемого счета обычно стоит больше, чем сумма, которую вы тратите. Налоговая вкладка позволяет симулятору учитывать это: **Ваши ежегодные расходы всегда то, что вы держите после уплаты налогов.**, и симуляция снимает дополнительные расходы для покрытия налогового счета.
 
-- **Flat rate per pot** (the default) - each pot gets one effective tax rate on its withdrawals, set in the pots table. A tax-free account is 0%. For a pension with a tax-free portion, blend it with your expected income tax rate - for example, 25% tax-free plus 20% tax on the rest works out around 15%. For a taxable investment account, estimate the effective rate on your typical withdrawal. This is deliberately simple and works for any country - you own the number.
-- **Tax bands (progressive)** - enter your own tax brackets: yearly income thresholds and the rate above each one (your tax-free allowance is simply the first band at 0%). Each pot then declares its **Taxable portion (%)** - how much of a withdrawal counts as taxable income: a pension with a 25% tax-free lump portion is 75, a tax-free account is 0, and a taxable account is roughly the share of each withdrawal that is gains. The bands apply to each year's combined taxable withdrawals across all pots, and the thresholds are in today's money - they rise with inflation in the simulation.
+- **Плоская ставка за горшок** (дефолт) - каждый горшок получает одну эффективную ставку налога на его снятие, установленную в таблице горшков. Безналоговый счет составляет 0%. Для пенсии с не облагаемой налогом частью, смешайте ее с ожидаемой ставкой подоходного налога - например, 25% без налогов плюс 20% налог на остальное составляет около 15%. Для налогооблагаемого инвестиционного счета оцените эффективную ставку на ваш типичный вывод средств. Это нарочно просто и работает для любой страны - вам принадлежит номер.
+- **Налоговые группы (прогрессивные)** - введите свои собственные налоговые скобки: годовые пороги дохода и ставка выше каждого (ваше безналоговое пособие - это просто первая полоса при 0%). **Налогооблагаемая часть (%)** - сколько вывод средств считается налогооблагаемым доходом: пенсия с 25% безналоговой частью составляет 75, безналоговый счет равен 0, а налогооблагаемый счет составляет примерно долю каждого вывода, который является прибылью. Полосы применяются к совокупным налогооблагаемым изъятиям каждого года во всех банках, и пороги находятся в сегодняшних деньгах - они растут с инфляцией в симуляции.
 
-With either model, the run drill-in shows each year's gross withdrawal with the tax paid underneath, so you can see exactly what your spending actually costs.
+С любой моделью, запуск бурения показывает каждый год валовой вывод с налога, уплаченного ниже, так что вы можете точно увидеть, что ваши расходы на самом деле стоит.
 
 :::note
-This is a deliberate approximation, not a tax calculator. It doesn't track capital-gains cost basis, model frozen thresholds, or know any country's actual rules - and tax law changes every year. Treat the rates and bands as your own honest estimates.
+Это преднамеренное приближение, а не налоговый калькулятор. Он не отслеживает стоимость прироста капитала, не моделирует замороженные пороги или не знает фактических правил любой страны - и налоговое законодательство меняется каждый год. Относитесь к ставкам и диапазонам как к своим собственным честным оценкам.
 :::
 
-## Withdrawal Rules Explained
+## Объяснены правила вывода {#withdrawal-rules-explained}
 
-By default, the simulation withdraws the same (inflation-adjusted) amount every year, no matter what the market does. Real retirees usually don't behave that way - in a bad stretch they tighten their belts, and in a good stretch they allow themselves a bit more. Withdrawal rules teach the simulation to do the same.
+По умолчанию симуляция снимает одну и ту же (с поправкой на инфляцию) сумму каждый год, независимо от того, что делает рынок. Настоящие пенсионеры обычно не ведут себя таким образом - в плохом растяжении они затягивают пояса, а в хорошем растяжении позволяют себе немного больше. Правила вывода учат симуляцию делать то же самое.
 
-All the rules share a few ideas:
+Все правила разделяют несколько идей:
 
-- Your **spending phases** set the planned amounts. The rules wake up in your first year of planned spending: that year takes the planned amount (only a **Minimum withdrawal** set higher than it can override that), and from the next year onward the rule adjusts what's actually taken - independently in every replay, reacting to how that replay is going. Zero-spend years (for example, working years before retirement) neither trigger nor move the rules. A cut or raise carries across phase boundaries: if the rule cut your spending by 10% during a rough patch, the next phase's amount starts 10% lower too.
-- Rules usually improve your **success rate** by cutting spending in bad times, but that safety isn't free - you get it by living on less. Keep an eye on the **Median total withdrawn** stat to see what a rule costs you in income.
-- Rules only see the wealth you can actually spend. If a pension is locked until its access age, it doesn't earn you spending raises while a bridge pot pays the bills - the rules watch the accessible pots, and the pension starts counting the moment it unlocks.
+- Твой **Фазы расходов** Правила просыпаются в ваш первый год запланированных расходов: тот год принимает запланированную сумму (только один год). **Минимальный вывод** Настройка выше, чем она может переопределить это, и со следующего года правило корректирует то, что на самом деле взято - независимо в каждом повторении, реагируя на то, как это повторение происходит. Нулевые годы (например, рабочие годы до выхода на пенсию) не запускают и не меняют правила. Сокращение или повышение несёт через фазовые границы: если правило сокращает ваши расходы на 10% во время грубого патча, сумма следующего этапа также начинается на 10% ниже.
+- Правила обычно улучшают **показатель успешности** сокращая расходы в плохие времена, но эта безопасность не бесплатна - вы получаете это, живя меньше. **Средняя сумма изъята** Узнайте, сколько стоит правило в доходах.
+- Правила видят только богатство, которое вы можете потратить. Если пенсия заблокирована до ее возраста доступа, она не зарабатывает вам повышение расходов, в то время как бридж горшок оплачивает счета - правила наблюдают за доступными горшками, и пенсия начинает считать момент, когда она открывается.
 
-If you set a **Minimum withdrawal**, your yearly spending never drops below that amount, no matter what the rule says. It only applies in years you actually plan to spend - a spending phase set to 0 (for example, years before retirement while your salary covers your costs) takes nothing. Like your spending phases, it's an amount in today's money - it rises with inflation so its spending power holds steady.
+Если вы установите **Минимальный вывод**Ваши ежегодные расходы никогда не опускаются ниже этой суммы, независимо от того, что говорит правило. Это относится только к годам, которые вы на самом деле планируете потратить - этап расходов, установленный до 0 (например, за годы до выхода на пенсию, пока ваша зарплата покрывает ваши расходы), ничего не требует. Как и ваши фазы расходов, это сумма в сегодняшних деньгах - она растет с инфляцией, поэтому ее покупательная способность остается стабильной.
 
-### Guardrails (Guyton-Klinger)
+### Guardrails (Гайтон-Клингер) {#guardrails-guyton-klinger}
 
-Think of this as pay cuts and pay rises. The rule watches what percentage of your remaining money you're withdrawing each year. If your pots shrink so much that the percentage drifts well above where your plan says it should be, you take a pay cut (for example, 10% less). If your pots race ahead and the percentage falls well below it, you get a pay rise. You set how far the percentage must drift before the rule reacts, and how big the adjustment is. The drift is measured against your planned spending path, so moving into a deliberately higher or lower spending phase doesn't count as drift by itself - only market-driven changes do.
+Думайте об этом как о сокращении заработной платы и повышении заработной платы. Правило следит за тем, какой процент оставшихся денег вы снимаете каждый год. Если ваши горшки уменьшаются настолько, что процент дрейфует намного выше, чем должен быть, вы берете сокращение заработной платы (например, на 10% меньше). Если ваши горшки гонятся вперед, а процент падает значительно ниже, вы получаете повышение заработной платы. Вы устанавливаете, как далеко должен дрейфовать процент, прежде чем правило отреагирует, и насколько велика корректировка. Дрифт измеряется по отношению к запланированному пути расходов, поэтому переход к сознательно более высокой или более низкой фазе расходов не считается дрейфом сам по себе - только рыночные изменения делают.
 
-### Ratcheting (Kitces)
+### Китче (Kitces) {#ratcheting-kitces}
 
-The optimist's rule: withdrawals only ever go **up**, never down. If your balance stays above a threshold (for example, 1.5 times what you started with) for several years in a row, you give yourself a raise. If markets fall, your spending simply stays where it is - the rule never cuts.
+Правило оптимиста: снятие средств только когда-либо **вверх**Если ваш баланс остается выше порога (например, в 1,5 раза больше, чем вы начали) в течение нескольких лет подряд, вы даете себе повышение. Если рынки падают, ваши расходы просто остаются там, где они есть - правило никогда не сокращается.
 
-### Floor & Ceiling (Bengen)
+### Пол и потолок (Бенген) {#floor-ceiling-bengen}
 
-Instead of a fixed amount, each year you withdraw a fixed **percentage of whatever the pots are currently worth** - so spending naturally falls in bad years and rises in good ones. The percentage is set in your first year of planned spending (your planned amount divided by your accessible wealth at that point), and the withdrawal is then kept within a floor and a ceiling around your planned (inflation-adjusted) amount so it can't swing too wildly.
+Вместо фиксированной суммы каждый год вы снимаете фиксированную сумму. **Процент от того, что в настоящее время стоит** Процент устанавливается в первый год запланированных расходов (ваша запланированная сумма делится на ваше доступное богатство в этот момент), а вывод затем хранится в пределах пола и потолка вокруг запланированной (с поправкой на инфляцию) суммы, так что она не может слишком сильно колебаться.
 
-### Boundaries
+### Границы {#boundaries}
 
-A simpler version of Guardrails: you set an upper and lower limit on the withdrawal percentage directly. Above the upper limit, spending is cut; below the lower limit, it's increased.
+Более простая версия Guardrails: вы устанавливаете верхний и нижний предел на процент снятия непосредственно. Выше верхнего предела сокращаются расходы; ниже нижнего предела он увеличивается.
 
-## Reading the Results
+## Читать результаты {#reading-the-results}
 
-By default, every money figure in the results is shown in **today's money** - what the amounts would actually be worth in terms of today's prices, discounted by each replay's own inflation path. Untick **Show values in today's money** to see the raw future amounts instead; they'll look much bigger over long horizons, but most of that is inflation rather than real growth. The success rate and failure ages are the same either way.
+По умолчанию каждая денежная цифра в результатах показана в **сегодняшние деньги** - какие суммы на самом деле будут стоить с точки зрения сегодняшних цен, дисконтированных по собственному пути инфляции каждого повтора. **Показать ценности в сегодняшних деньгах** Вместо этого, они будут выглядеть намного больше в течение долгих горизонтов, но большая часть этого - инфляция, а не реальный рост. Скорость успеха и возраст неудач одинаковы в любом случае.
 
-### The Headline Numbers
+### Номера заголовков {#the-headline-numbers}
 
-![The results summary](/img/experimental/monte-carlo-analysis/monte-carlo-results.png)
+![Резюме результатов](/img/experimental/monte-carlo-analysis/monte-carlo-results.png)
 
-- **Success rate** - the big number: the percentage of replays in which your money lasted the full time. There's no single "right" target, but many planners aim for 80–90%.
-- **Median ending balance** - in the middle-of-the-road replay, how much was left at the end.
-- **Median total withdrawn** - how much income the middle replay actually paid you over the whole period. Especially useful when comparing withdrawal rules.
-- **Chance of running out of money** - the flip side of the success rate.
-- **Typical failure runs out at** - among the replays that failed, the typical age the money ran out.
+- **Успешность** - большое число: процент повторов, в которых ваши деньги продержались полный рабочий день. Единой "правильной" цели нет, но многие планировщики нацелены на 80-90%.
+- **Средний конечный баланс** - в середине дорожной переигровки, сколько осталось в конце.
+- **Средняя сумма изъята** - сколько дохода на самом деле заплатила средняя игра за весь период. Особенно полезно при сравнении правил вывода средств.
+- **Шанс исчерпать деньги** - обратная сторона показателя успеха.
+- **Типичный провал заканчивается на** - среди неудачных повторов, типичный возраст, когда деньги закончились.
 
-### The Portfolio Performance Chart
+### Портфолио Performance Chart {#the-portfolio-performance-chart}
 
-![The portfolio performance chart](/img/experimental/monte-carlo-analysis/monte-carlo-chart.png)
+![Диаграмма эффективности портфеля](/img/experimental/monte-carlo-analysis/monte-carlo-chart.png)
 
-The chart shows your total balance from your current age to your target age - but instead of one line, it shows the whole range of futures at once:
+График показывает ваш общий баланс от вашего текущего возраста до вашего целевого возраста, но вместо одной строки он показывает весь диапазон фьючерсов сразу:
 
-- The **lighter band** covers 80% of all replays - at any age, 8 out of 10 replays landed inside it.
-- The **darker band** covers the middle half of replays.
-- The **line** is the median: half the replays did better, half did worse.
+- The **более светлая полоса** Покрывает 80% всех повторов — в любом возрасте 8 из 10 повторов приземлились внутри него.
+- The **Темная группа** Покрывает среднюю половину повторов.
+- The **линия** Это медиана: половина повторов была лучше, половина — хуже.
 
-The dropdown above the chart switches views. **Single worst run** shows the one unluckiest replay in full. The **Worst-case**, **Pessimistic**, **Median** and **Optimistic** views each trace a single percentile - for example, the pessimistic line is the level that 70% of replays stayed above.
+Выпадающий выше графика переключает просмотры. **Одиночный худший бег** Показывает один несчастливый повтор в полном объеме. **Худший случай**, **пессимистичный**, **медиана** и **оптимистичный** Просмотр каждого следа один процентиль — например, пессимистическая линия — это уровень, на котором 70% повторов остались выше.
 
-### The Cashflow Chart
+### График денежных потоков {#the-cashflow-chart}
 
-![The cashflow chart](/img/experimental/monte-carlo-analysis/monte-carlo-cashflow-chart.png)
+![График денежных потоков](/img/experimental/monte-carlo-analysis/monte-carlo-cashflow-chart.png)
 
-Switch the results view from **Chart** to **Cashflow** to see the money moving in and out of your pots each year, for one simulated run at a time:
+Переключите вид результатов с **Чарт** то **Денежный поток** Чтобы увидеть деньги, перемещающиеся в и из ваших горшков каждый год, для одного смоделированного запуска за раз:
 
-- **Above zero**: money coming in - each pot's withdrawal for the year (one color per pot), plus each contribution being paid in (one color per contribution).
-- **Below zero**: money going out - the year's planned spending, colored by the spending phase it belongs to, plus the tax paid on withdrawals.
+- **Выше нуля**Деньги поступают - каждый вывод горшка за год (один цвет на горшок), плюс каждый взнос выплачивается (один цвет на вклад).
+- **ниже нуля**Деньги уходят - запланированные расходы года, окрашенные фазой расходов, к которой они принадлежат, плюс налог, уплаченный при снятии средств.
 
-Management fees don't appear here - they are charged inside the pots and never pass through your hands, and the run detail table lists them.
+Плата за управление здесь не отображается - они взимаются внутри горшков и никогда не проходят через ваши руки, и таблица деталей пробега перечисляет их.
 
-On a run that fails, the chart doesn't stop at the failure year: the remaining years keep showing the spending the plan still called for, dimmed, with nothing coming in to fund it - so the size of the gap is visible at a glance. Those dimmed bars are held at the failure year's level - its price level, since a dead run no longer experiences inflation, and any cut or raise a withdrawal rule had in force at the time.
+На пробеге, который терпит неудачу, график не останавливается на годе неудачи: оставшиеся годы продолжают показывать расходы, которые все еще требуются, затемнены, и ничего не поступает для их финансирования, поэтому размер разрыва виден с первого взгляда. Эти затемненные слитки удерживаются на уровне неудачного года - его ценовом уровне, поскольку мертвый пробег больше не испытывает инфляции, и любое сокращение или повышение правила вывода было в силе в то время.
 
-The spending bars show the _plan_ - the phase amount, adjusted for inflation and any withdrawal rule - rather than the money actually delivered. That's what makes trouble visible: in a shortfall year the withdrawal bars fall visibly short of the spending bar, and when a minimum withdrawal forces out more than the plan asked for, the bars overshoot it.
+Слитки расходов показывают план - сумму фазы, скорректированную с учетом инфляции и любого правила вывода средств, - а не фактически доставленные деньги. Вот что делает проблему видимой: в год дефицита планки вывода заметно отстают от планки расходов, и когда минимальный вывод вытесняет больше, чем запрашивал план, планки перекрывают его.
 
-Use the dropdown above the chart to pick which run to look at: the worst run, a typically-bad or typically-good outcome (the 25th and 75th percentiles), the median, or the best run. These are the same runs the **Jump to** dropdown in the runs view lands on. The chart also appears above the year-by-year table when you click into any individual run, so you can see that specific run's flows at a glance.
+Используйте выпадающее выше графика, чтобы выбрать, какой бег смотреть: худший бег, типично плохой или типично хороший результат (25-й и 75-й процентили), средний или лучший бег. **прыгать** График также появляется над таблицей по годам, когда вы нажимаете на любой отдельный пробег, чтобы вы могли увидеть потоки этого конкретного пробега с первого взгляда.
 
-### When Did the Pot Run Out?
+### Когда закончился котел? {#when-did-the-pot-run-out}
 
-![The depletion histogram](/img/experimental/monte-carlo-analysis/monte-carlo-histogram.png)
+![Гистограмма истощения](/img/experimental/monte-carlo-analysis/monte-carlo-histogram.png)
 
-This bar chart only counts the replays that failed, showing at which age they ran out. If 900 of 5,000 replays failed, these bars add up to 900 - the other 4,100 kept a positive balance the whole way and don't appear here.
+Этот бар-чарт только подсчитывает неудачные повторы, показывая, в каком возрасте они закончились.Если 900 из 5000 повторов провалились, эти бары складываются в 900 — остальные 4100 сохраняли положительный баланс весь путь и не появляются здесь.
 
-### Exploring Individual Runs
+### Изучение индивидуальных бегов {#exploring-individual-runs}
 
-![The simulation runs table](/img/experimental/monte-carlo-analysis/monte-carlo-runs.png)
+![Моделирование запускает стол](/img/experimental/monte-carlo-analysis/monte-carlo-runs.png)
 
-Switch the results view from **Chart** to **Runs** to see every replay listed from worst outcome to best. Rather than paging through thousands of runs, use the **Jump to** dropdown to go straight to the worst, median or best run - or the 25th/75th percentile for a typically-bad or typically-good outcome - with the run highlighted so you can click into it. Click any run to walk through it year by year: the balance at the start of each year, the contributions paid in (when your plan has any), the withdrawal taken, the investment growth in that year (as money and as a percentage), the year's inflation rate (when inflation is enabled), and the balance at the end. Expand a year with the arrow at the start of its row (or use **Expand all years**) for the fully labeled breakdown: the withdrawal split into gross, tax and money to spend; when a withdrawal rule is active, a sentence showing how the rule arrived at that year's amount (and whether the minimum withdrawal stepped in); the contributions added; the fees paid; and a small table showing each pot's balance at the start of the year, what was contributed into it, what it contributed to the withdrawal, how much of that counted as taxable income, the tax paid on its share, the fee it was charged that year, its return that year, and its ending balance - so you can watch, for example, the cash pot covering spending after a crash while the stock pots are left alone. With the tax-bands model, the per-pot tax is the year's tax bill shared out in proportion to each pot's taxable income.
+Переключите вид результатов с **Чарт** то **Бежит** Чтобы увидеть каждую переигровку, перечисленную от худшего исхода к лучшему. Вместо того, чтобы проходить через тысячи прогонов, используйте **прыгать** Выпадение, чтобы перейти прямо к худшему, среднему или лучшему пробегу - или 25-й / 75-й процентиль для типично плохого или типично хорошего результата - с выделенным пробегом, чтобы вы могли нажать на него. Нажмите на любой пробег, чтобы пройти через него год за годом: баланс в начале каждого года, взносы, уплаченные (когда у вашего плана есть), снятие, рост инвестиций в этом году (как деньги и в процентах), уровень инфляции в году (когда инфляция включена), и баланс в конце. Расширить год со стрелкой в начале ее ряда (или использовать) **Расширять все годы**) для полностью маркированной разбивки: вывод делится на валовые, налоговые и денежные расходы; когда действует правило изъятия, предложение, показывающее, как правило достигло суммы этого года (и наступил ли минимальный вывод); добавленные взносы; оплаченные сборы; и небольшую таблицу, показывающую баланс каждого горшка в начале года, что было внесено в него, что оно способствовало выводу, сколько из этого учитывалось как налогооблагаемый доход, налог, уплаченный на его долю, сбор, который он взимался в том году, его доход в том году и его конечный баланс - так что вы можете посмотреть, например, денежный горшок, покрывающий расходы после краха, в то время как запасы горшков оставлены в покое. С моделью налоговых диапазонов налог на один кошелек - это налоговый счет года, распределяемый пропорционально налогооблагаемому доходу каждого горшка.
 
-![The simulation run table](/img/experimental/monte-carlo-analysis/monte-carlo-run.png)
+![Моделирование Run Table](/img/experimental/monte-carlo-analysis/monte-carlo-run.png)
 
-Above the year-by-year table, a summary line totals the run: how much was withdrawn over the whole replay, how much of that went to tax, and how much was paid in fees on top.
+Выше годовой таблицы сводная строка суммирует пробег: сколько было снято за всю переигровку, сколько из этого пошло на налог и сколько было выплачено в виде сборов сверху.
 
-If a run failed while money was still locked in an inaccessible pot, the table says so explicitly, so you can tell the difference between "the market ate my savings" and "the money existed but I couldn't reach it yet."
+Если пробежка не удалась, пока деньги были по-прежнему заперты в недоступной корзине, таблица говорит так явно, что вы можете сказать разницу между «рынок съел мои сбережения» и «деньги существовали, но я еще не мог их достичь».
 
-## Things to Keep in Mind
+## Вещи, которые нужно помнить {#things-to-keep-in-mind}
 
-- **This is a model, not a prophecy.** A 90% success rate does not mean success is guaranteed - 1 in 10 of the simulated futures still failed.
-- **The random model is simplified.** It draws each year independently, which ignores the way real crashes cluster together and the occasional extreme year. It also moves all pots in step - there's no independent luck per pot, so a bond-heavy pot dips a little in the same year a stock-heavy pot crashes. The historical models partly address the first point.
-- **The historical data is US market data** (S&P 500 shares, US government bonds and bills, from 1928 onwards). US markets had an unusually good century, so results may be optimistic if your money is invested elsewhere.
-- **Fees and taxes are approximations you control.** Each pot's fee settings model yearly costs explicitly - so enter expected returns _gross_ of those fees to avoid double-counting - and the [Tax](#tax) settings are effective-rate estimates, not a tax calculator.
-- **Garbage in, garbage out.** The results are only as good as your estimates for returns, volatility, spending and inflation. Try a few variations - small changes to the withdrawal often move the success rate a lot.
+- **Это модель, а не пророчество.** 90% успеха не означает, что успех гарантирован - 1 из 10 смоделированных фьючерсов все еще не удалось.
+- **Случайная модель упрощается.** Он рисует каждый год независимо, что игнорирует то, как реальные аварии группируются вместе и случайный экстремальный год. Он также перемещает все горшки в шаге - нет никакой независимой удачи на горшок, так что горшок с тяжелыми облигациями немного падает в том же году. Исторические модели частично касаются первого пункта.
+- **Исторические данные — это данные рынка США.** (S&P 500 акции, государственные облигации и векселя США, с 1928 года и далее.) На рынках США был необычайно хороший век, поэтому результаты могут быть оптимистичными, если ваши деньги инвестируются в другом месте.
+- **Сборы и налоги - это приближения, которые вы контролируете.** Настройки платы каждого горшка модели годовых затрат явно - так введите ожидаемую прибыль gross этих сборов, чтобы избежать двойного учета - и [Налог](#tax) Настройки являются оценками эффективной ставки, а не налоговым калькулятором.
+- **Мусор, мусор.** Результаты так же хороши, как и ваши оценки доходности, волатильности, расходов и инфляции. Попробуйте несколько вариантов - небольшие изменения в выводе часто сильно перемещают показатель успеха.

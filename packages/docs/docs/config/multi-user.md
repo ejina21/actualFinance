@@ -1,44 +1,44 @@
-# Managing Multi-User Support
+# Несколько пользователей {#managing-multi-user-support}
 
 :::caution
 
-This feature requires you to have set up an [OpenID Provider](./oauth-auth.md). The usernames which people will log into your Actual instance will be fetched from the provider.
+Эта функция требует, чтобы вы создали [OpenID провайдер](./oauth-auth.md)Имена пользователей, которые люди войдут в ваш реальный экземпляр, будут получены от поставщика.
 
 :::
 
-## User Directory
+## Пользовательский каталог {#user-directory}
 
-Use this page to manage users who have access to the Actual Budget instance.
+Используйте эту страницу для управления пользователями, имеющими доступ к экземпляру Actual Budget.
 
-To access the **User Directory** page, access the menu from the server:
+Чтобы получить доступ **Пользовательский каталог** Страница, доступ к меню с сервера:
 
 ![](/img/multiuser/user-directory.webp)
 
-Users can be added, disabled, enabled, removed from this page:
+Пользователи могут быть добавлены, отключены, включены, удалены с этой страницы:
 
 ![](/img/multiuser/user-directory-overview.webp)
 
-There are two user roles _Basic_ or _Admin_.
+Есть две роли пользователя: Basic или Admin .
 
-- The Basic role:
-  Users with the Basic role can create new budgets and collaborate on budgets made by others.
-  This role is ideal for users who primarily need to manage and participate in shared budget activities.
+- Основная роль:
+  Пользователи с Основной ролью могут создавать новые бюджеты и сотрудничать с бюджетами, составленными другими.
+  Эта роль идеально подходит для пользователей, которым в первую очередь необходимо управлять и участвовать в совместной бюджетной деятельности.
 
-- The Admin role:
-  This role can do everything the Basic user role can. It can also add new users to the user directory and allow all users to access budget files.
-  The role can assign ownership of a budget to another person, ensuring efficient budget management.
+- Роль администратора:
+  Эта роль может делать все, что может Основная роль пользователя. Она также может добавлять новых пользователей в каталог пользователя и позволять всем пользователям получать доступ к бюджетным файлам.
+  Роль может отводить право собственности на бюджет другому лицу, обеспечивая эффективное управление бюджетом.
 
-## User Access Management
+## Управление доступом пользователей {#user-access-management}
 
-Use this page to manage user access to the current open budget file.
+Используйте эту страницу для управления доступом пользователей к текущему файлу открытого бюджета.
 
 :::info
-The **User Access Management** menu is only visible from within an open budget:
+The **Управление доступом пользователей** Меню видно только из открытого бюджета:
 
 ![](/img/multiuser/user-access.webp)
 
 :::
 
-This screen is where you assign, give and revoke budget access and transfer ownership:
+На этом экране вы присваиваете, отдаете и отзываете доступ к бюджету и передаете право собственности:
 
 ![](/img/multiuser/user-access-overview.webp)

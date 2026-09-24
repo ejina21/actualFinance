@@ -1,59 +1,59 @@
-# New Core Contributors Guide
+# Руководство для новых участников команды {#new-core-contributors-guide}
 
-So you've been invited to join the core contributor team. What next? What is expected of you? How can you contribute?
+Итак, вас пригласили присоединиться к основной команде. Что дальше? Что от вас ожидается? Как вы можете внести свой вклад?
 
-The level of your involvement is up to yourself. We do not assign specific roles or responsibilities but instead allow people to choose what they want to work on. For example:
+Мы не назначаем конкретные роли или обязанности, а вместо этого позволяем людям выбирать, над чем они хотят работать. Например:
 
-- Trevor is leading the responsive mobile app efforts.
-- Jed helped set up the new donation systems and the new website (among a lot of other things).
-- Matiss is mostly reviewing PRs and fixing issues here and there.
-- Rich created and maintained the documentation.
-- Paul is helping with the product direction.
+- Тревор возглавляет адаптивные усилия мобильных приложений.
+- Джед помог создать новые системы пожертвований и новый сайт (среди прочего).
+- Матисс в основном рассматривает PR и решает проблемы здесь и там.
+- Рич создал и сохранил документацию.
+- Пол помогает с направлением продукта.
 
-Your specific contribution is up to yourself.
+Ваш конкретный вклад зависит от вас самих.
 
-However, one thing we do value very highly is: **reviewing the work of other community members**. This comes in two forms: it could be code reviews or it could be a product review (how does the proposed feature fit into the overall product?). To have a healthy community, we all chip in with the reviews.
+Однако одна вещь, которую мы очень ценим, это: **Обзор работы других членов сообщества**Это бывает в двух формах: это могут быть обзоры кода или обзор продукта (как предлагаемая функция вписывается в общий продукт?).
 
-Overall: try to enjoy your time here. We value you and the effort you are putting into Actual.
+В целом: постарайтесь наслаждаться своим временем здесь. Мы ценим вас и усилия, которые вы вкладываете в Actual.
 
-## Expectations
+## Ожидания {#expectations}
 
-If we boil it down to a simple list:
+Если свести его к простому списку:
 
-- Find an area where you would like to contribute.
-- Review the work of other contributors.
-- Share your thoughts and opinions.
-- Be open and humble.
+- Найдите область, где вы хотели бы внести свой вклад.
+- Обзор работы других участников.
+- Поделитесь своими мыслями и мнениями.
+- Будьте открытыми и скромными.
 
-## PR Review Guidelines
+## Рекомендации по PR обзору {#pr-review-guidelines}
 
-- Remember that the PRs coming in are from **unpaid volunteers**, so be respectful of that.
-- However, this does NOT mean we review and approve everything: our time is valuable too, so it is OK to ask clarification questions or push back if the proposed change is too large or just doesn't fit well in the product.
-- Be polite and helpful - many of the changes come from first-time contributors or newcomers to the React tech stack.
-- If a seemingly controversial change is being proposed, but you are OK with it - feel free to approve it, but give it a few more days for others to review it too before merging.
-- For non-controversial changes (for example: adding TypeScript types) - feel free to approve and merge straight away.
+- Помните, что PR, поступающие от **Неоплачиваемые добровольцы**Так что уважайте это.
+- Однако это не означает, что мы все проверяем и одобряем: наше время тоже ценно, поэтому вполне нормально задавать уточняющие вопросы или отодвигать, если предлагаемое изменение слишком велико или просто плохо вписывается в продукт.
+- Будьте вежливы и полезны - многие изменения происходят от начинающих участников или новичков в стеке технологий React.
+- Если предложено, казалось бы, спорное изменение, но вы согласны с ним - не стесняйтесь одобрить его, но дайте ему еще несколько дней, чтобы другие тоже рассмотрели его, прежде чем сливаться.
+- Для бесспорных изменений (например, добавление типов шрифтов) - не стесняйтесь утверждать и сразу же сливаться.
 
-## Disagreements
+## Разногласия {#disagreements}
 
-We're all passionate about Actual. Sometimes this leads to differences in opinion.
+Мы все увлечены Актуальностью. Иногда это приводит к разногласиям во мнениях.
 
-When this happens we usually follow this framework:
+Когда это происходит, мы обычно следуем этой схеме:
 
-1. The two people having a disagreement try to come to an agreement first.
-2. If they cannot come to an agreement - they bring it to the contributor team for discussion.
-3. If the bigger contributor team cannot agree - we bring it to a public vote.
+1. Два человека, имеющие разногласия, пытаются сначала прийти к соглашению.
+2. Если они не могут прийти к соглашению, они приносят его в группу участников для обсуждения.
+3. Если большая команда участников не может согласиться - мы привносим его на общественное голосование.
 
-## Extras
+## Дополнительные {#extras}
 
-### Cursor Subscription
+### Подписка Cursor {#cursor-subscription}
 
-As a core contributor, you are eligible for a sponsored [Cursor] subscription. The process is simple: purchase your [Cursor] subscription, and then submit the expense to OpenCollective for reimbursement. To minimize administrative overhead, we encourage you to submit expenses quarterly rather than monthly. This benefit has been pre-approved for all core contributors, so there's no need to request permission - simply follow the reimbursement process through OpenCollective.
+Как основной вкладчик, вы имеете право на спонсора [Курсор] Процесс прост: купите свою [Курсор] подписку, а затем отправить расходы в OpenCollective для возмещения. Чтобы минимизировать административные накладные расходы, мы рекомендуем вам представлять расходы ежеквартально, а не ежемесячно. Эта льгота была предварительно одобрена для всех основных участников, поэтому нет необходимости запрашивать разрешение - просто следуйте процессу возмещения через OpenCollective.
 
-Some helpful Cursor usage tips can be found [here](./cursor-ide.md).
+Некоторые полезные советы по использованию курсора можно найти [здесь](./cursor-ide.md).
 
-### Claude Code Subscription
+### Подписка на Claude Code {#claude-code-subscription}
 
-As a core contributor, you are also eligible for a sponsored [Claude Code] Pro plan subscription. The process is the same as Cursor: purchase your [Claude Code] Pro subscription, and then submit the expense to OpenCollective for reimbursement. To minimize administrative overhead, we encourage you to submit expenses quarterly rather than monthly. This benefit has been pre-approved for all core contributors, so there's no need to request permission - simply follow the reimbursement process through OpenCollective.
+Как основной вкладчик, вы также имеете право на спонсорскую поддержку. [Код Клода] Подписка на Pro-план. Процесс такой же, как у Cursor: купите свой [Код Клода] Про подписку, а затем отправить расходы в OpenCollective для возмещения. Чтобы минимизировать административные накладные расходы, мы рекомендуем вам представлять расходы ежеквартально, а не ежемесячно. Эта льгота была предварительно одобрена для всех основных участников, поэтому нет необходимости запрашивать разрешение - просто следуйте процессу возмещения через OpenCollective.
 
-[Cursor]: https://www.cursor.com
-[Claude Code]: https://claude.ai/code
+[Курсор]: https://www.cursor.com
+[Код Клода]: https://claude.ai/code

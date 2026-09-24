@@ -1,17 +1,17 @@
-# Payees Management
+# Управление получателями
 
-This view lets you manage your Payees. See [Payees](../transactions/payees.md) for more details.
+Здесь можно управлять получателями платежей. Подробнее о них рассказано в разделе [«Получатели»](../transactions/payees.md).
 
-In the overview, you can see which Payees you have used in your system and if they have any associated [rules](./rules.md).
+На странице видны все получатели, которые вы использовали, а также связанные с ними [правила](./rules.md).
 
-If you have any unused payees, they are readily available by clicking on the _Show n unused payee_.
+Чтобы увидеть получателей, которые не используются, нажмите _«Показать неиспользуемых получателей»_.
 
-![Payees overview](/img/a-tour-of-actual/tour-payees-overview.webp)
+![Список получателей](/img/a-tour-of-actual/tour-payees-overview.webp)
 
-## Deleting or merging payees
+## Удаление и объединение
 
-Select the payees you want to merge or delete and choose the corresponding function in the dropdown box.
+Выберите получателей, которых хотите удалить или объединить, затем выберите нужное действие в меню.
 
-If you need to undo a merge or a delete operation, you can press <Key mod="ctrl" fixed k="Z" /> on a Windows machine, or <Key mod="cmd" fixed k="Z" /> on a Mac.
+Если нужно отменить действие, нажмите <Key mod="ctrl" fixed k="Z" /> в Windows или <Key mod="cmd" fixed k="Z" /> на Mac.
 
-![Payee management](/img/a-tour-of-actual/tour-payees-delete-merge.webp)
+![Управление выбранными получателями](/img/a-tour-of-actual/tour-payees-delete-merge.webp)

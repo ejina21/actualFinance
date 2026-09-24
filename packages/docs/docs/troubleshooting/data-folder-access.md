@@ -1,46 +1,46 @@
-# Data Folder Access
+# Доступ к папке данных {#data-folder-access}
 
-The desktop app keeps your budget files in a folder on your computer. By default this is a folder named `Actual` inside your Documents folder. If Actual is not allowed to create, read, or write to that folder, it cannot start.
+Десктопное приложение сохраняет ваши бюджетные файлы в папке на вашем компьютере. По умолчанию это папка с именем `Actual` Если Actual не разрешено создавать, читать или писать в эту папку, она не может начаться.
 
-When this happens, the app shows a **Data folder unavailable** message instead of loading forever. The message includes the exact folder that could not be used, so you know where to look.
+Когда это происходит, приложение показывает **Папка данных недоступна** Сообщение вместо того, чтобы загружаться вечно. Сообщение включает в себя точную папку, которую нельзя было использовать, так что вы знаете, где искать.
 
-## Common Causes
+## Общие причины {#common-causes}
 
-### Windows Controlled Folder Access
+### Windows Controlled Folder Access {#windows-controlled-folder-access}
 
-Windows includes a ransomware protection feature called **Controlled Folder Access**. When it is turned on, it blocks apps it does not recognize from writing to protected folders such as Documents. Actual is blocked silently, so the only sign is the error message.
+Windows включает функцию защиты вымогателей под названием **Контролируемый доступ к папке**Когда он включен, он блокирует приложения, которые он не распознает, от записи до защищенных папок, таких как Документы. Actual блокируется молча, поэтому единственным признаком является сообщение об ошибке.
 
-To allow Actual through Controlled Folder Access:
+Для обеспечения реального доступа через контролируемые папки:
 
-1. Open **Windows Security** from the Start menu.
-2. Select **Virus & threat protection**.
-3. Under **Ransomware protection**, select **Manage ransomware protection**.
-4. Select **Allow an app through Controlled folder access**.
-5. Select **Add an allowed app**, then **Recently blocked apps**, and choose Actual. If it is not listed, select **Browse all apps** and pick the Actual program file instead.
-6. Restart Actual.
+1. Открыть **Безопасность Windows** Из меню «Пуск».
+2. Выбрать **Защита от вирусов и угроз**.
+3. Под **Защита Ransomware**Выберите **Управление защитой ransomware**.
+4. Выбрать **Разрешить приложение через контролируемый доступ к папке**.
+5. Выбрать **Добавить разрешенное приложение**Тогда **Недавно заблокированные приложения**И выберите Актуальный. Если он не указан, выберите **Просмотреть все приложения** Вместо этого выберите файл программы.
+6. Перезагрузить фактически.
 
 :::tip
-If you prefer to keep Actual out of the protected folders, you can choose a different data folder instead. See [Choosing a Different Folder](#choosing-a-different-folder) below.
+Если вы предпочитаете держать Actual вне защищенных папок, вы можете выбрать другую папку данных. [Выбираем другую папку](#choosing-a-different-folder) ниже.
 :::
 
-### Antivirus Software
+### Антивирусное программное обеспечение {#antivirus-software}
 
-Some antivirus programs also block apps from creating folders and files. If you use one, check its settings for a list of blocked apps or protected folders and add Actual as an exception. Then restart Actual.
+Некоторые антивирусные программы также блокируют приложения от создания папок и файлов. Если вы используете один, проверьте его настройки на список заблокированных приложений или защищенных папок и добавьте Actual в качестве исключения. Затем перезапустите Actual.
 
-### Folder Permissions or a Missing Location
+### Разрешение на хранение или недостающее место {#folder-permissions-or-a-missing-location}
 
-If the message shows an error code other than a permission error, the folder location itself may be the problem. For example, the Documents folder may have been moved or removed, or it may be on a network drive or cloud storage service that is not connected.
+Если сообщение показывает код ошибки, отличный от ошибки разрешения, само местоположение папки может быть проблемой. Например, папка Документы может быть перемещена или удалена, или она может быть на сетевом диске или службе облачного хранения, которая не подключена.
 
-Check that the parent folder shown in the message exists and that your user account can create files in it. If you cannot fix the location, choose a different folder as described below.
+Проверьте, что родительская папка, показанная в сообщении, существует и что ваша учетная запись пользователя может создавать в ней файлы.Если вы не можете исправить местоположение, выберите другую папку, как описано ниже.
 
-## Choosing a Different Folder
+## Выбираем другую папку {#choosing-a-different-folder}
 
-You do not have to fix the blocked folder to keep using Actual. From the error message, select **Choose a different folder** and pick any folder your user account can write to. Actual checks that it can create files there, saves the choice, and restarts.
+Вам не нужно исправлять заблокированную папку, чтобы продолжать использовать Actual. Из сообщения об ошибке выберите **Выберите другую папку** и выберите любую папку, в которую может написать ваша учетная запись пользователя. Actual проверяет, что она может создавать там файлы, сохраняет выбор и перезагружает.
 
-If you already have budget files in the old folder, copy them into the new folder after the app restarts, or use the **Move files to new directory** option when changing the folder from within the app.
+Если у вас уже есть бюджетные файлы в старой папке, скопируйте их в новую папку после перезагрузки приложения или используйте **Переместить файлы в новый каталог** опция при изменении папки изнутри приложения.
 
-Once the app is running you can change the folder again at any time: open **Settings** from the budget list and select the pencil button next to **Actual's data directory**.
+После запуска приложения вы можете снова изменить папку в любое время: откройте **Настройки** из списка бюджета и выберите кнопку карандаша рядом **Каталог данных Actual**.
 
-## Still Stuck?
+## Все еще застрял? {#still-stuck}
 
-Open the developer tools with <Key mod="ctrl shift" k="i" /> and look at the **Console** tab. Any errors from the backend are printed there. Share them on the [Actual Budget Discord](https://discord.gg/pRYNYr4W5A) and someone will help you out.
+Откройте инструменты разработчика сочетанием <Key mod="ctrl shift" k="i" /> и перейдите на вкладку **Консоль**. Сообщения об ошибках помогут определить, какая папка недоступна приложению.

@@ -1,87 +1,68 @@
-# Installing Actual
+# Установка Actual {#installing-actual}
 
-The Actual Budget project is made up of two parts: the client and the server. A server is not required for Actual to function but it is strongly recommended as it provides increased functionality. Below is a table of features of Actual and if those features work with just a client or if a server is needed.
+Actual Budget состоит из приложения и сервера. Для работы на одном устройстве сервер не обязателен, но он нужен для синхронизации и некоторых дополнительных возможностей.
 
-| Feature                                                   | Without Server | Needs Server |
-| :-------------------------------------------------------- | :------------: | :----------: |
-| Import transactions from files                            |       X        |              |
-| All budgeting features (budgets, reports, schedules, etc) |       X        |              |
-| Import or Export budget files                             |       X        |              |
-| Use Actual on a mobile device                             |                |    X[^1]     |
-| Use Actual in a web browser                               |                |    X[^1]     |
-| Sync budget between devices                               |                |      X       |
-| Use bank syncing (GoCardless or SimpleFIN)                |                |      X       |
-| Use the Actual API                                        |                |      X       |
+| Возможность                                            | Без сервера | Нужен сервер |
+| :----------------------------------------------------- | :---------: | :----------: |
+| Импорт операций из файлов                              |      ✓      |              |
+| Бюджет, отчёты и расписания                            |      ✓      |              |
+| Импорт и экспорт файлов бюджета                        |      ✓      |              |
+| Работа на мобильном устройстве                         |             |    ✓[^1]     |
+| Работа в веб-браузере                                  |             |    ✓[^1]     |
+| Синхронизация бюджета между устройствами               |             |      ✓       |
+| Синхронизация с банками через GoCardless или SimpleFIN |             |      ✓       |
+| Использование Actual API                               |             |      ✓       |
 
-The standard way of using Actual is to set up a personal server and use a web browser for the application. For quick testing or getting to know Actual before setting up a server, the [demo](https://demo.actualbudget.org) or a [desktop application](https://github.com/actualbudget/actual/releases) are a good place to start.
+Обычно Actual используют через личный сервер и браузер. Для знакомства с приложением подойдут [демоверсия](https://demo.actualbudget.org) или [настольное приложение](https://github.com/actualbudget/actual/releases).
 
-## Using Actual locally in the browser
+## Работа без сервера в браузере {#using-actual-locally-in-the-browser}
 
-If you are okay with not having sync, auto-save, or backups then the easiest and fastest way to get started is by using the Actual [web app](https://app.actualbudget.org). This solution requires less setup but more maintenance.
+Быстро попробовать Actual можно в [веб-приложении](https://app.actualbudget.org). Данные сохраняются только в вашем браузере. Синхронизация и автоматические резервные копии при таком использовании недоступны.
 
-All data is saved to your local browser. The Actual web app never has access to any of your personal data. It is recommended that you save your data (from the [settings](../backup-restore/backup.md) menu) after every session. If your browser memory is cleared, your data will be lost, so a backup is crucial.
+После каждого сеанса [сохраняйте резервную копию](../backup-restore/backup.md) через настройки. Если данные браузера будут очищены, без копии бюджет восстановить не получится.
 
-Using a new device or browser requires you to [restore](../backup-restore/restore.md) the saved file for each new device or browser. Remember that these new devices and browsers will not sync without a server set up, so anything you modify on one browser will not appear on others.
-
-:::caution
-
-This solution is not recommended for long-term use due to the maintenance required and the high probability of data loss. It's intended as a quick start. If you'd like to continue using Actual long-term, please use one of the server options [below](#running-a-server).
-
-:::
-
-## Server-Optional Client Options
-
-Desktop applications are available for Windows, Mac, and Linux. These can be [downloaded from GitHub](https://github.com/actualbudget/actual/releases). The desktop apps have the following benefits:
-
-- Can connect to a server (this gives them the ability to use the server-based features)
-- Automated backups
-- Offline use is ready out of the box
-
-If you want to preview upcoming features before they reach an official release, [nightly builds of the desktop app](../contributing/preview-builds.md#nightly-desktop-builds) are also available.
-
-## Server-Based Client Options
-
-The server provides a web-based version of Actual. This web app can be used in a browser as a standard web page to view and edit your budget. The web page can also be installed on your device. For mobile devices, an installed web page will work offline.
-
-## Running a Server
-
-While running a server can be a complicated endeavor, we've tried to make it fairly easy to set up and hands-off to maintain. Choose one of the following options to get started:
-
-- If you're not comfortable with the command line and are willing to pay a small amount of money to have your version of Actual hosted on the cloud for you, we recommend [PikaPods](./pikapods.md).[^2]
-- If you're willing to run a few commands in the terminal:
-  - You can run the server with a simple command using the [Server CLI](./cli-tool.md)
-  - [Fly.io](./fly.md) also offers cloud hosting for a similar amount of money.
-  - If you want to use Docker, we have instructions for [using our provided Docker containers](./docker.md).
-  - You could [build Actual from source](./build-from-source.md) on macOS, Windows, or Linux if you don't want to use a tool like Docker. (This method is the best option if you want to contribute to Actual's development!)
-
-Once you've set up your server, you can [configure it](../config/index.md) to change a few of the ways it works.
-
-If you're coming from the original, managed Actual subscription service, you may want to [migrate your data](../migration/index.md).
-
-## Additional Installation Options
-
-In addition to our officially supported options listed above, some community members have written guides for using other platforms or tools:
+Чтобы открыть бюджет в другом браузере или на другом устройстве, [восстановите](../backup-restore/restore.md) сохранённый файл. Изменения между браузерами без сервера не синхронизируются.
 
 :::caution
 
-Content contained on external links is not managed or maintained by the Actual Budget team, if you run into issues with instructions on a third party site, please contact the author in the first instance or ask in discord where a member of the community may be able to help.
+Для постоянного использования рекомендуем настроить сервер: ручное копирование требует внимания, а потерять данные браузера легко.
 
 :::
 
-- [Google Cloud always free tier](https://github.com/eatonc/actual-gcp)
-- [Google Cloud Run (serverless)](https://github.com/daniefdz/actual-run)
+## Настольное приложение {#server-optional-client-options}
+
+Настольная версия доступна для Windows, macOS и Linux. Её можно [скачать на странице выпусков](https://github.com/actualbudget/actual/releases). Она работает без подключения к интернету, создаёт автоматические резервные копии и при необходимости подключается к серверу.
+
+Если хотите испытать будущие возможности до официального выпуска, доступны [ночные сборки](../contributing/preview-builds.md#nightly-desktop-builds).
+
+## Приложение через сервер {#server-based-client-options}
+
+Сервер предоставляет веб-версию Actual. Бюджет можно открывать и редактировать в браузере, а страницу приложения — установить на устройство. На мобильном устройстве установленное приложение может работать без сети.
+
+## Запуск сервера {#running-a-server}
+
+Выберите подходящий способ установки:
+
+- [PikaPods](./pikapods.md) — платный облачный хостинг без работы с командной строкой.[^2]
+- [Серверная утилита командной строки](./cli-tool.md) — запуск несколькими командами.
+- [Fly.io](./fly.md) — облачный хостинг.
+- [Docker](./docker.md) — запуск готового контейнера.
+- [Сборка из исходного кода](./build-from-source.md) — установка на macOS, Windows или Linux, в том числе для участия в разработке.
+
+После установки можно [настроить сервер](../config/index.md). Если вы использовали прежнюю подписную версию Actual, прочитайте инструкцию по [переносу данных](../migration/index.md).
+
+## Другие варианты установки {#additional-installation-options}
+
+Участники сообщества также подготовили инструкции для других платформ. Эти материалы размещены на сторонних сайтах и не поддерживаются командой Actual Budget. Если инструкция перестала работать, обратитесь к её автору.
+
+- [Google Cloud: бесплатный тариф](https://github.com/eatonc/actual-gcp)
+- [Google Cloud Run](https://github.com/daniefdz/actual-run)
 - [Home Assistant](https://github.com/sztupy/hassio-actualbudget/blob/main/README.md)
-- [Hostim](https://hostim.dev/docs/templates/actual) - one-click managed Docker hosting with a persistent volume and free SSL.
+- [Hostim](https://hostim.dev/docs/templates/actual) — управляемый хостинг Docker.
 - [Proxmox VE Helper-Scripts](https://community-scripts.github.io/ProxmoxVE/scripts?id=actualbudget)
-- Synology NAS
-  - [Marius Bogdan Lixandru's guide](https://mariushosting.com/how-to-install-actual-on-your-synology-nas/)
-  - [Adam Millerchip's guide](https://adamu.jp/blog/actual_budget_nas)
-- [UnRAID SSL Setup](https://discord.com/channels/937901803608096828/1158941114603155477) - this guide is found at our Discord
-- Arch Linux AUR packages:
-  - [actual-appimage](https://aur.archlinux.org/packages/actual-appimage) - Desktop App, based on GitHub AppImage release.
-  - [actual-bin](https://aur.archlinux.org/packages/actual-bin) - Desktop App, based on GitHub AppImage release but run with a system-wide electron install (v30) instead of the bundled version.
-  - [actual-server](https://aur.archlinux.org/packages/actual-server) - Server and Web Client, based on `@actual-app/sync-server` NPM package, provides a systemd unit file to run the server.
+- Synology NAS: [инструкция Мариуса Богдана Ликсандру](https://mariushosting.com/how-to-install-actual-on-your-synology-nas/) и [инструкция Адама Миллерчипа](https://adamu.jp/blog/actual_budget_nas)
+- Пакеты Arch Linux AUR: [actual-appimage](https://aur.archlinux.org/packages/actual-appimage), [actual-bin](https://aur.archlinux.org/packages/actual-bin), [actual-server](https://aur.archlinux.org/packages/actual-server)
 
-[^1]: You technically don't need a server instance for this. You need to run either a web-based client or a server, but a server is the same effort.
+[^1]: Технически достаточно самостоятельно запустить веб-клиент, но это требует примерно столько же усилий, сколько настройка сервера.
 
-[^2]: A portion of the cost to host on PikaPods is donated to the Actual Budget Project. With that said, PikaPods is a very simple, and cost-effective way to host your server.
+[^2]: Часть платы за размещение на PikaPods направляется проекту Actual Budget.

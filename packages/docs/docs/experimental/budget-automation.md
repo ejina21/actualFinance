@@ -1,514 +1,513 @@
-# Budget Automation
+# Бюджетная автоматизация {#budget-automation}
 
 <ExperimentalFeatureWarning issueId="7692" />
 
 :::warning
-All functionality described here may not be available in the latest stable release. See [Experimental Features](./index.md) for instructions to enable experimental features. Use the `nightly` images for the latest implementation.
+Все функциональные возможности, описанные здесь, могут быть недоступны в последнем стабильном выпуске. [Экспериментальные особенности](./index.md) для инструкций по включению экспериментальных функций. `nightly` Изображения для последней реализации.
 :::
 
-Budget automations allow you to automate your budgeting step every month.
-With budget automations, there is no need to manually fill in each category each month.
-With one click you can fill in your entire budget based on the automations you have added. At the end of the month, another click can clean up what’s leftover!
+Автоматизация бюджета позволяет автоматизировать ваш бюджетный шаг каждый месяц.
+При автоматизации бюджета нет необходимости вручную заполнять каждую категорию каждый месяц.
+С помощью одного клика вы можете заполнить весь свой бюджет, основываясь на добавленной вами автоматизации. В конце месяца другой клик может очистить оставшееся!
 
-Here are a few examples of what you can do, all with a single click!
+Вот несколько примеров того, что вы можете сделать, и все это одним щелчком мыши!
 
-- Budget $ 100 every month
-- Budget $ 50 every other week
-- Refill a category to $ 300 at the start of a month
-- Add all leftover funds to a savings category
-- Budget 10% of your income for savings or charity
-- Budget the average you spend over the last 6 months
-- Save up for a big purchase many months or years in the future, and let Actual dynamically figure out how much to budget every month
-- And much more! Check out this [blog entry from 2023!](../../blog/2023-12-15-automate-your-budget-with-goal-templates) Although it was written in the early days of note templates, it's still pertinent today!
-
----
-
-## Notes Templates & UI Migration
-
-For any given category, there is one source of truth for Budget automations, either the UI or the notes, not both.
-
-If you have a notes template, the first time you open the UI (pie chart icon) you will be presented with migration automation(s). Click to show the original notes templates at the top of the form for comparison.
-
-![goal migration form](/img/goal-template/migration.webp)
-
-Make any changes you feel are needed, then _Save_ the form to complete the migration. The notes can now be deleted. Once you have migrated to UI based automations, adding new ones to the notes will no longer work. To revert back to using notes, you'll need to "Unmigrate" from the bottom left of the UI modal.
+- Бюджет 100 долларов в месяц
+- 50 долларов США каждую неделю
+- Заполните категорию до 300 долларов в начале месяца
+- Добавьте все оставшиеся средства в категорию экономии
+- Бюджет 10% от вашего дохода на сбережения или благотворительность
+- Бюджет, который вы тратите в среднем за последние 6 месяцев
+- Сэкономьте на крупной покупке много месяцев или лет в будущем, и пусть Actual динамически выяснит, сколько стоит бюджет каждый месяц.
+- И намного больше!
 
 ---
 
-## Creating Automations {#create-automations}
+## Обсуждение Templates & UI Migration {#notes-templates-ui-migration}
 
-Click on the pie chart icon that appears when you hover over a category name.
+Для любой данной категории существует один источник истины для автоматизации бюджета, как для пользовательского интерфейса, так и для примечаний.
 
-![pie chart icon to open automation form](/img/goal-template/automation-icon.webp)
+Если у вас есть шаблон заметок, при первом открытии пользовательского интерфейса (иконки диаграммы) вам будет представлена автоматизация миграции. Нажмите, чтобы показать исходные шаблоны заметок в верхней части формы для сравнения.
 
-From the opening view, you can
+![целевая миграция](/img/goal-template/migration.webp)
 
-A. Add a new budget automation<br />
-B. Add a long-term goal<br />
-C. Add month-end cleanup to the category
+Внесите любые изменения, которые, по вашему мнению, необходимы, затем Сохраните форму для завершения миграции. Заметки теперь могут быть удалены. После того, как вы перешли на автоматизацию на основе пользовательского интерфейса, добавление новых в заметки больше не будет работать. Чтобы вернуться к использованию заметок, вам нужно будет «Unmigrate» снизу слева от модуля пользовательского интерфейса.
+
+---
+
+## Создание автоматики {#create-automations}
+
+Нажмите на значок диаграммы пирога, который появляется, когда вы парите над названием категории.
+
+![Pie chart icon для открытия формы автоматизации](/img/goal-template/automation-icon.webp)
+
+С первого взгляда, вы можете
+
+A. Добавить новую автоматизацию бюджета<br />
+В. Добавить долгосрочную цель<br />
+С. Добавить в категорию уборку в конце месяца
 
 :::info
-Balance caps only take effect once another automation is contributing funds to the category.
+Ограничения баланса вступают в силу только после того, как другая автоматизация вносит средства в эту категорию.
 :::
 
-![new automation form](/img/goal-template/new-automation.webp)
+![Новая форма автоматизации](/img/goal-template/new-automation.webp)
 
-You can have multiple automations!
+У вас может быть несколько автоматов!
 
 :::tip
-The projected amount to be budgeted will be shown in the top right of the automation form. This will update with the category’s automations.
+Прогнозируемая сумма будет показана в правом верхнем углу формы автоматизации. Это будет обновлено с автоматизацией категории.
 :::
 
-![multiple automations](/img/goal-template/multiple-automations.webp)
+![множественная автоматизация](/img/goal-template/multiple-automations.webp)
 
 :::tip
 
-Don't forget to **Save** your work when you are finished adding and editing automations.
+Не забывайте **Спасти** Когда вы закончите добавлять и редактировать автоматизацию.
 
 :::
 
-### Priorities {#priorities}
+### Приоритеты {#priorities}
 
-Most of the budget automations will have a priority field that you can use to set the order in which the automations are run, from lowest to highest.
+Большая часть бюджетных автоматик будет иметь приоритетное поле, которое вы можете использовать, чтобы установить порядок, в котором работают автоматики.
 
-- Negative priorities are not allowed.
-- All priority 0 are run first, then 1, 2, 30, 36, etc. So the automation that has the highest priority in importance actually has the lowest priority **number**.
-- All priorities with the same number will run in database order. To ensure the budget fills in the exact order you wish, give each automation a different priority number.
+- Негативные приоритеты не допускаются.
+- Все приоритеты 0 выполняются сначала, затем 1, 2, 30, 36 и т. д. Таким образом, автоматизация, которая имеет самый высокий приоритет по важности, на самом деле имеет самый низкий приоритет. **номер**.
+- Все приоритеты с одинаковым номером будут работать в порядке базы данных. Чтобы бюджет заполнился в нужном вам порядке, дайте каждой автоматизации отдельный номер приоритета.
 
 :::warning
 
-- Priority 0 automations will budget funds even if they are not available in **To Budget**, this can lead to a negative **To Budget**.
-- Priorities other than 0 will **not** budget more funds than are available.
-- If you have multiple _Cover schedule_ or _Save by date_ automations in a single category, their priorities **must** match.
+- Автоматизация приоритета 0 будет финансироваться за счет бюджетных средств, даже если они недоступны. **В бюджет**Это может привести к отрицательному **В бюджет**.
+- Приоритеты, отличные от 0 **не** Бюджет больше, чем доступно.
+- Если у вас есть несколько автоматов Cover schedule или Save by date в одной категории, их приоритеты **должен** совпадение.
   :::
 
 :::tip
-When you first start using priorities, space them 10 numbers apart so you have room to insert additional priorities later.
+Когда вы впервые начинаете использовать приоритеты, разместите их на 10 чисел, чтобы у вас было место для добавления дополнительных приоритетов позже.
 :::
 
-### Automation Notes {#automation-notes}
+### Заметки об автоматизации {#automation-notes}
 
-Every automation can have their own note. This is handy; you can jot down what you are trying to accomplish with the automation. For example, with a long-term goal, you could note when you are hoping to reach it and what you are hoping to purchase.
+Каждая автоматизация может иметь свою собственную ноту. Это удобно; вы можете записывать то, что вы пытаетесь достичь с автоматизацией. Например, с долгосрочной целью вы можете отметить, когда вы надеетесь достичь ее и что вы надеетесь купить.
 
-![automation with note](/img/goal-template/automation-note.webp)
+![Автоматизация с примечанием](/img/goal-template/automation-note.webp)
 
-When you hover over a category automation icon (pie chart), you will see all of the automations present and the notes associated with them.
+Когда вы зависнете над значком автоматизации категории (пироговая диаграмма), вы увидите все присутствующие автоматики и связанные с ними заметки.
 
-Here are two examples:
+Вот два примера:
 
-General budget automations:
+Автоматизация общего бюджета:
 
-![general budget tooltip](/img/goal-template/automation-tooltip-1.webp)
+![Общий инструментарий бюджета](/img/goal-template/automation-tooltip-1.webp)
 
-Dining out budget automations:
+Осуществление бюджетной автоматизации:
 
-![restaurant budget tooltip](/img/goal-template/automation-tooltip-2.webp)
+![Ресторан бюджетный инструментарий](/img/goal-template/automation-tooltip-2.webp)
 
-### Fixed Amount {#fixed-amount}
+### Фиксированная сумма {#fixed-amount}
 
-This is the simplest type of automation. The amount (A) will be budgeted at the cadence you choose (B & C) with the starting date you set (D).
+Это самый простой тип автоматизации. Сумма (A) будет заложена в выбранном вами каденции (B & C) с установленной вами датой начала (D).
 
-![fixed amount automation](/img/goal-template/fixed-amount-automation.webp)
+![Фиксированная автоматизация](/img/goal-template/fixed-amount-automation.webp)
 
 :::info
-For weeks or days, the entire month will be budgeted based on the number of weeks/days in that month.
+В течение недель или дней весь месяц будет заложен в бюджет на основе количества недель / дней в этом месяце.
 
-For weeks, the number of weeks in a month is based on the weekday of your start date. Our start date above is on a Saturday. There are 5 Saturdays in May 2026, so the automation projects a budget of 250.00.
+В течение нескольких недель количество недель в месяце зависит от будня вашей даты начала. Наша дата начала выше - суббота. В мае 2026 года 5 суббот, поэтому автоматизация проектирует бюджет в 250.00.
 :::
 
 :::tip
-You can give different priorities to multiple _Fixed amount_ automations in the same category and they will be respected when the budget fills.
+Вы можете отдавать различные приоритеты нескольким автоматам с фиксированной суммой в одной категории, и они будут соблюдаться при заполнении бюджета.
 
-This [blog post using note templates](../../blog/2024-03-25-goal-templates-with-a-twist) from 2024 goes into this in more detail.
 :::
 
-### Save by Date {#save-by-date}
+### Сохранить дату {#save-by-date}
 
-Use this automation to save up the desired amount (A) by a specific month (B).
+Используйте эту автоматизацию, чтобы сэкономить желаемую сумму (A) на определенный месяц (B).
 
-The automation determines how much to budget each month to meet your savings goal. If you add or remove funds along the way, it recalculates the remaining monthly amounts so you still reach your target on time.
+Автоматизация определяет, сколько бюджетировать каждый месяц для достижения вашей цели экономии. Если вы добавляете или удаляете средства по пути, она пересчитывает оставшиеся ежемесячные суммы, чтобы вы все равно достигли своей цели вовремя.
 
-![save by date automation](/img/goal-template/save-by-date-automation.webp)
+![Сохранить дату автоматизации](/img/goal-template/save-by-date-automation.webp)
 
-**Options:**
+**Варианты:**
 
-- **Repeat** (C). You can repeat the automation if your target is cyclical, such as bills due quarterly or yearly. If you need to repeat based on a number of days or weeks, use the _Fixed amount_ automation.
-- **Allow early spending** (D). This option allows you to spend funds along the way. Starting in the month you choose, you can spend from the category without the automation recalculating the remaining monthly amounts. By the target date, the remaining balance will be the amount you did not spend earlier. This option is handy for times when spending happens months before the event, like travel savings, wedding plans or the birthday gifts in our example.
+- **повторять** (C). Вы можете повторить автоматизацию, если ваша цель циклична, например, счета, подлежащие ежеквартальному или годовому платежу. Если вам нужно повторить на основе ряда дней или недель, используйте автоматизацию Fixed amount .
+- **Разрешить ранние расходы** (D). Этот вариант позволяет тратить средства по пути. Начиная с месяца, который вы выберете, вы можете потратить из категории без автоматического пересчета оставшихся ежемесячных сумм. К целевому сроку оставшаяся сумма будет той суммой, которую вы не потратили ранее. Этот вариант удобен для тех случаев, когда расходы происходят за несколько месяцев до события, например, экономия на поездках, свадебные планы или подарки на день рождения.
 
 :::warning
-All _Save by date_ automations in the same category must have the same priority.
+Все автоматики Save by date в одной и той же категории должны иметь одинаковый приоритет.
 :::
 
-### Cover Schedule {#cover-schedule}
+### Расписание покрытия {#cover-schedule}
 
-This automation budgets based on a schedule previously added to actual.<br />
-Pick a schedule (A) and a mode (B). See below for a discussion on [adjustments (C)](#adjustments).
+Эти бюджеты автоматизации основаны на графике, ранее добавленном к фактическому.<br />
+Выберите расписание (А) и режим (В). См. ниже для обсуждения [Корректировки (С)](#adjustments).
 
-![cover schedule automation](/img/goal-template/schedule-automation.webp)
+![Покрытие графика автоматизации](/img/goal-template/schedule-automation.webp)
 
-**There are two modes:**
+**Существует два режима:**
 
-For schedules repeating monthly or more often the modes are equivalent.
+Для графиков, повторяющихся ежемесячно или чаще, режимы эквивалентны.
 
-- **Save for the next occurrence.** The automation budgets a portion of the scheduled amount each month so the full amount is ready when needed.
-- **Cover each occurrence when it occurs.** The automation budgets for the schedule only in the month it occurs. It will budget the full scheduled amount.
+- **За исключением следующего случая.** Автоматизация бюджетирует часть запланированной суммы каждый месяц, поэтому полная сумма готова, когда это необходимо.
+- **Охватывайте каждое событие, когда оно происходит.** Бюджеты на автоматизацию графика только в том месяце, когда это произойдет. Он будет бюджетировать полную запланированную сумму.
 
-You can edit the schedule in the schedule editor and the automation will stay up to date automatically.
+Вы можете отредактировать расписание в редакторе расписания, и автоматизация будет обновляться автоматически.
 
 :::warning
-All _Cover schedule_ automations in the same category must have the same priority.
+Все автоматики в одной категории должны иметь одинаковый приоритет.
 :::
 
-### From History {#from-history}
+### Из истории {#from-history}
 
-With this automation, you can budget based on historical data.<br />
-Choose a mode (A) and the number of months back (B). This is another automation that allows for [adjustments (C)](#adjustments).
+С помощью этой автоматизации вы можете составлять бюджет на основе исторических данных.<br />
+Выберите режим (A) и количество месяцев назад (B). [Корректировки (С)](#adjustments).
 
-![historical automation](/img/goal-template/historical-automation.webp)
+![Историческая автоматизация](/img/goal-template/historical-automation.webp)
 
-**Modes:**
+**Режимы:**
 
-- **Copy a previous month.** This will copy the **budget** from a previous month.
-- **Average of previous months.** This will average the **spending** from the previous number of months you choose. The average is calculated from completed months only, to ensure the amount accurately reflects actual spending behavior.
+- **Копия предыдущего месяца.** Это будет копировать **бюджет** с предыдущего месяца.
+- **Средний показатель за предыдущие месяцы.** Это будет в среднем **расходы** Среднее значение рассчитывается только из завершенных месяцев, чтобы гарантировать, что сумма точно отражает фактическое поведение расходов.
 
-### % of Income {#percentage}
+### % от дохода {#percentage}
 
-This automation budgets a percentage of income from this month or last month, or a percentage of available funds from this month.
+Эта автоматизация выделяет процент дохода от этого месяца или прошлого месяца или процент доступных средств от этого месяца.
 
-![percentage automation](/img/goal-template/percentage-automation.webp)
+![Процентная автоматизация](/img/goal-template/percentage-automation.webp)
 
-When you click in the Category field, you will be presented with current choices to base the percentage on.
+Когда вы нажмете в поле «Категория», вам будут представлены текущие варианты, на которых основан процент.
 
-![percentage automation category](/img/goal-template/percentage-category.webp)
+![Процентная автоматизация](/img/goal-template/percentage-category.webp)
 
-- **Total of all income.** This month or Last month. The sum of all income categories in the budget will be used.
-- **Available funds to budget.** This month only. The available amount after Priority 0 and other automations with lower or equal priorities have run will be used.
-- **Specific income categories.** This month or Last month. The percentage will be based on the single income category you choose.
+- **Общая сумма всех доходов.** В этом месяце или в прошлом месяце будет использоваться сумма всех категорий доходов в бюджете.
+- **Доступные средства в бюджет.** Будет использовано доступное количество после запуска Приоритет 0 и других автоматизаций с более низкими или равными приоритетами.
+- **Конкретные категории доходов.** В этом или прошлом месяце процент будет зависеть от выбранной вами категории дохода.
 
-### Refill to Cap {#refill}
+### Скачать Cap {#refill}
 
-This automation requires a [Balance cap](#balance-cap) and will refill the category to the cap.
+Такая автоматизация требует [Кэп баланса](#balance-cap) и пополнит категорию до кепки.
 
-![refill automation](/img/goal-template/refill-automation.webp)
+![автоматизация заправки](/img/goal-template/refill-automation.webp)
 
-Click on _Add balance limit_ and you will be taken to the Balance cap automation. After you add a balance cap, the refill automation will be active.
+Нажмите на Add balance limit и вы перейдете на автоматизацию Balance cap. После добавления балансовой крышки автоматизация пополнения будет активна.
 
-![active refill automation](/img/goal-template/refill-active.webp)
+![Активная автоматизация заправки](/img/goal-template/refill-active.webp)
 
-### Whatever is Left {#remainder}
+### Что бы ни осталось {#remainder}
 
-After all of the other automations have run, the leftover of **To Budget** will be doled out by these remainder automations based on the weights you choose.
+После того, как все остальные автоматы запущены, остатки **В бюджет** Эти оставшиеся автоматики будут предоставлены в зависимости от веса, который вы выберете.
 
-![remainder automation](/img/goal-template/remainder-automation.webp)
+![Оставшаяся автоматизация](/img/goal-template/remainder-automation.webp)
 
-- You can have as many remainder automations as you like.
-- Remainder automations will respect any balance caps in place.
+- У вас может быть столько автоматизации, сколько вам нравится.
+- Оставшаяся автоматизация будет соблюдать любые ограничения баланса.
 
-#### Weights {#remainder-weights}
+#### Вес {#remainder-weights}
 
-The sum of the weights of all remainder automations is used to determine the split amounts:<br />
+Сумма весов всех оставшихся автоматов используется для определения разбивки сумм:<br />
 `budgeted_amount = available_funds / sum_of_weights * category_weight`<br />
-If a category has a balance cap, the automation will fill to the cap, subtract that amount from the available funds, then make another pass.
+Если категория имеет лимит баланса, автоматизация заполнит лимит, вычтет эту сумму из имеющихся средств, затем сделает еще один пропуск.
 
-#### Examples
+#### Примеры {#examples}
 
-Starting with $100 leftover in **To Budget** and 0.00 in all of our three categories below.<br />
-**Snack Fund** has a balance cap of 40.00.
+Начните со 100 долларов, оставшихся в **В бюджет** 0,00 во всех трех категориях ниже.<br />
+**Фонд Snack** Имеет лимит баланса 40.00.
 
-Pass 1:<br />
-Snacks, 100 / 6 \* 3 = 50 (exceeds the cap, so Snack Fund receives 40.00, To Budget is now 60)
+Пропуск 1:<br />
+Закуски, 100 / 6* 3 = 50 (превышает лимит, поэтому Snack Fund получает 40.00, To Budget сейчас 60)
 
-Pass 2:<br />
-Vacation, 60 / 3 \* 1 = 20 (Vacation Fund receives 20.00)<br />
-Investment, 60 / 3 \* 2 = 40 (Investment Fund receives 40.00)
+Пропуск 2:<br />
+Отпуск, 60 / 3* 1 = 20 (отпускной фонд получает 20.00)<br />
+Инвестиции, 60/3* 2 = 40 (инвестиционный фонд получает 40.00)
 
-| Category        | Weight | Balance cap? | Amount applied |
-| --------------- | :----: | :----------: | :------------: |
-| Snack Fund      |   3    |  Yes, 40.00  |     40.00      |
-| Vacation Fund   |   1    |      No      |     20.00      |
-| Investment Fund |   2    |      No      |     40.00      |
-
----
-
-## Adjustments {#adjustments}
-
-Scheduled expenses (e.g. insurance, property rates, etc.) often increase year on year. Often the amount is unknown until close to the due date. This creates a budget crunch - if your $ 1,000 insurance jumps 20% ($ 1,200), you need to make up that extra $ 200 in just a month or two. Even for day-to-day costs, inflationary pressures can put a dent in your budget plan if not accounted for. Or, perhaps you'd like to slowly bring down a category you spend too much on, a historical automation with a decrease adjustment can help you do just that.
-
-This feature adds adjustments to either [_Cover schedule_](#cover-schedule) or [_From history_](#from-history) automations.
-
-You can adjust your automation by either a _Fixed amount_ or by _Percentage_.
-
-![adjustment types](/img/goal-template/adjustment-type.webp)
-
-The _Fixed amount_ type can either increase or decrease the amount budgeted. The default is to increase the amount. Click the **+** to switch.
-
-![fixed amount adjustment](/img/goal-template/adjustment-fixed.webp)
-
-The _Percentage_ type can also either increase or decrease the budgeted amount by a percentage.
-
-![percentage adjustment](/img/goal-template/adjustment-percentage.webp)
+| Категория           | вес | Кепка баланса? | Применяемая сумма |
+| ------------------- | :-: | :------------: | :---------------: |
+| Фонд Snack          |  3  |   Да, 40.00    |       40.00       |
+| Фонд отпусков       |  1  |      Нет.      |       20.00       |
+| Инвестиционный фонд |  2  |      Нет.      |       40.00       |
 
 ---
 
-## Balance cap {#balance-cap}
+## Корректировки {#adjustments}
 
-Set a maximum amount over which the budget automations will not add funds.
+Запланированные расходы (например, Страхование, цены на недвижимость и т.д. часто растут из года в год. Часто сумма неизвестна до наступления установленной даты. Это создает бюджетный кризис - если ваша страховка в 1000 долларов подскочит на 20% (1200 долларов), вам нужно восполнить дополнительные 200 долларов всего за месяц или два. Даже при ежедневных расходах инфляционное давление может повлиять на ваш бюджетный план, если его не учитывать. Или, возможно, вы хотите медленно снизить категорию, на которую вы тратите слишком много, историческая автоматизация с корректировкой на уменьшение может помочь вам сделать это.
 
-![balance cap](/img/goal-template/balance-cap.webp)
+Эта функция добавляет корректировки в любой из [Расписание покрытия](#cover-schedule) или [Из истории](#from-history) Автоматизация.
 
-- If the category balance exceeds the cap, the next time you run the budgeting automations the excess will be removed.
-- To keep any extra funds in the category, enable _Retain existing funds over the cap_. When this option is turned on, the next budgeting pass will leave the excess in place.
+Вы можете настроить автоматизацию с помощью Fixed amount или Percentage .
 
-All automations in the category will be subject to the cap.
+![Типы корректировки](/img/goal-template/adjustment-type.webp)
 
-### Examples
+Тип Fixed amount может либо увеличивать, либо уменьшать бюджетную сумму. Дефолт заключается в увеличении суммы. **+** Переключаться.
 
-Here’s an interesting example of budgeting money for a meal out every Saturday night and weekday work lunches in the same category.
+![корректировка фиксированной суммы](/img/goal-template/adjustment-fixed.webp)
 
-- The Saturday night meals are budgeted at 50.00/week starting on a Saturday.
-- The weekday lunches are budgeted at 35.00/week starting on a Monday.
-- The Balance cap is set at 85.00/week based on Mondays.
+Тип Percentage также может увеличивать или уменьшать бюджетную сумму на процент.
 
-June has 4 Saturdays and 5 Mondays. The projected budget is 375:
-
-![balance cap example showing June](/img/goal-template/june-restaurants.webp)
-
-July has 4 Saturdays and 4 Mondays. The projected budget is 340:
-
-![balance cap example showing July](/img/goal-template/july-restaurants.webp)
-
-August has 5 Saturdays and 5 Mondays. The projected budget is 425:
-
-![balance cap example showing August](/img/goal-template/august-restaurants.webp)
-
-October has 5 Saturdays and 4 Mondays. Our budget looks different as the Balance cap is based on the 4 Mondays! <br />
-So, the budget covers 4 Saturday meals and 4 work weeks. The projected budget is 340.
-
-![balance cap example showing October](/img/goal-template/october-restaurants.webp)
-
-Here’s another example. We want to budget 300 every 2 weeks, but not in months with 3 Fridays. We place a 600 balance cap on our category and start a _Fixed amount_ automation at 300 every 2 weeks on a Friday.
-
-There are 3 Fridays in July, but the Balance cap holds our grocery budget at 600.00:
-
-![balance cap example showing July](/img/goal-template/july-food.webp)
+![процентная корректировка](/img/goal-template/adjustment-percentage.webp)
 
 ---
 
-## Long-term Goals and Budget Indicators {#indicators}
+## Кэп баланса {#balance-cap}
 
-### Budget Indicator {#budget-indicator}
+Установите максимальную сумму, на которую бюджетная автоматизация не добавит средств.
 
-After automations run, each category’s budget indicator appears as the color of its balance text. Hover over a balance to see the matching tooltip.
+![баланс](/img/goal-template/balance-cap.webp)
 
-The example below shows these states: normal (no automation), empty (no automation), projected budget met (green), projected budget not met (orange), and negative balance (red).
+- Если баланс категории превышает лимит, в следующий раз, когда вы запустите автоматизацию бюджетирования, избыток будет удален.
+- Чтобы сохранить какие-либо дополнительные средства в категории, включите Сохранить существующие средства поверх колпачка . Когда этот вариант включен, следующий бюджетный пропуск оставит избыток на месте.
 
-![budget indicators](/img/goal-template/budget-indicators.webp)
+Вся автоматизация в категории будет зависеть от ограничения.
 
-The tooltip will give you more information about your budget and balance:
+### Примеры {#examples-1}
 
-![budget balance tooltip fully funded](/img/goal-template/fully-funded-automation.webp)
+Вот интересный пример бюджетирования денег на питание каждую субботу вечером и будние рабочие обеды в одной категории.
 
-![budget balance tooltip underfunded](/img/goal-template/underfunded-automation.webp)
+- Субботний ужин запланирован на 50.00 / неделю, начиная с субботы.
+- Обед в будние дни запланирован на 35.00 / неделю, начиная с понедельника.
+- Коэффициент баланса установлен в 85.00 / неделю по понедельникам.
 
-### Long-term Goal {#long-term-goal}
+Июнь имеет 4 субботы и 5 понедельников. Прогнозируемый бюджет составляет 375:
 
-Long-term goals change how the budget indicator works. Instead of being based on the budgeted amount, the balance coloring will indicate how much progress you have made toward a desired target. Importantly, if you have met your projected budget for the month but are shy of your long-term goal the balance will remain orange.
+![Пример с балансом в июне](/img/goal-template/june-restaurants.webp)
 
-Once you hit your goal, the balance will turn green. Note that if you remove funds and fall short, it will turn orange again.
+Июль имеет 4 субботы и 4 понедельника. Прогнозируемый бюджет составляет 340:
 
-![long-term goal automation](/img/goal-template/long-term-automation.webp)
+![Пример с балансом в июле](/img/goal-template/july-restaurants.webp)
+
+В августе 5 суббот и 5 понедельников. Прогнозируемый бюджет - 425:
+
+![Пример с балансом в августе](/img/goal-template/august-restaurants.webp)
+
+У Октября 5 суббот и 4 понедельника. Наш бюджет выглядит иначе, так как лимит баланса основан на 4 понедельниках! <br />
+Так, бюджет охватывает 4 субботних приема пищи и 4 рабочих недели. Прогнозный бюджет - 340.
+
+![Пример с балансом в октябре](/img/goal-template/october-restaurants.webp)
+
+Вот еще один пример. Мы хотим бюджетировать 300 каждые 2 недели, но не в месяцах с 3 пятницами. Мы помещаем ограничение на баланс 600 в нашей категории и начинаем автоматизацию с фиксированной суммой в 300 каждые 2 недели в пятницу.
+
+В июле 3 пятницы, но лимит баланса держит наш бюджет на 600.00:
+
+![Пример с балансом в июле](/img/goal-template/july-food.webp)
+
+---
+
+## Долгосрочные цели и бюджетные показатели {#indicators}
+
+### Бюджетный показатель {#budget-indicator}
+
+После запуска автоматизации бюджетный индикатор каждой категории отображается как цвет текста баланса. Наведите баланс, чтобы увидеть соответствующий инструментарий.
+
+Пример ниже показывает эти состояния: нормальное (без автоматизации), пустое (без автоматизации), прогнозируемый бюджет выполнен (зеленый), прогнозируемый бюджет не выполнен (оранжевый) и отрицательный баланс (красный).
+
+![Бюджетные показатели](/img/goal-template/budget-indicators.webp)
+
+Инструмент даст вам больше информации о вашем бюджете и балансе:
+
+![Бюджетный баланс полностью профинансирован](/img/goal-template/fully-funded-automation.webp)
+
+![Недофинансированный инструмент бюджетного баланса](/img/goal-template/underfunded-automation.webp)
+
+### Долгосрочная цель {#long-term-goal}
+
+Долгосрочные цели меняют то, как работает бюджетный показатель. Вместо того, чтобы основываться на бюджетной сумме, окраска баланса будет указывать на то, насколько вы продвинулись к желаемой цели. Важно отметить, что если вы выполнили свой прогнозируемый бюджет на месяц, но стесняетесь своей долгосрочной цели, баланс останется оранжевым.
+
+Как только вы достигнете своей цели, баланс станет зеленым. Обратите внимание, что если вы удалите средства и не оправитесь, он снова станет оранжевым.
+
+![Долгосрочная автоматизация целей](/img/goal-template/long-term-automation.webp)
 
 :::tip
 
-- The long-term goal does not automatically add funds or stop funds from being added after the goal has been hit. To stop automated funds from being added after you reach the goal, add a _Balance cap_ to the category.
-- You can have a long-term goal without any other automations and budget manually toward your goal. You will still need to run the automations on the category to see the indicator and tooltip.
+- Долгосрочная цель не автоматически добавляет средства или не останавливает добавление средств после достижения цели. Чтобы остановить автоматическое добавление средств после достижения цели, добавьте Balance cap в категорию.
+- У вас может быть долгосрочная цель без какой-либо другой автоматизации и бюджет вручную к вашей цели. Вам все равно нужно будет запустить автоматизацию в категории, чтобы увидеть индикатор и подсказку.
   :::
 
-The tooltip will give you information regarding your progress:
+Инструмент даст вам информацию о вашем прогрессе:
 
-![long-term goal tooltip underfunded](/img/goal-template/long-term-underfunded.webp)
+![Долгосрочный инструментарий недофинансирования](/img/goal-template/long-term-underfunded.webp)
 
-![long-term goal tooltip fully funded](/img/goal-template/long-term-fully-funded.webp)
+![Долгосрочный инструментарий, полностью финансируемый](/img/goal-template/long-term-fully-funded.webp)
 
-![long-term goal tooltip overfunded](/img/goal-template/long-term-overfunded.webp)
-
----
-
-## Running automations {#run-automations}
-
-### How to apply the automations {#applying-automations}
-
-#### Apply all automations {#apply-all-automations}
-
-In the budget header menu you will see the following options:
-
-![Apply options on month level](/img/goal-template/goal-template-2.webp)
-
-- **Check templates** will test all automations.
-
-- **Apply budget template** will run all automations in categories that currently have 0.00 budgeted. This will leave any existing budget amounts intact.
-
-- **Overwrite with budget template** will fill in all budget cells using automations and overwrite any already existing budget amounts. This is the recommended method if you are using priorities greater than 0.
-
-#### Apply automations selectively {#apply-selective-automations}
-
-- **Single Category**: Use the "Overwrite with template" option shown below from the budget field drop-down menu to apply automations to just that category. This will overwrite any existing budgeted amount.
-
-![Apply templates to single category](/img/goal-template/apply-template-category.png)
-
-- **Apply automations to a single category group**: Use the "Overwrite with templates" option shown below from the category group drop-down menu to apply all automations to categories in a specific group. If you are viewing multiple months, it will apply them to the month furthest to the left in your budget view. This will overwrite any existing budgets in the categories in the group.
-
-![Apply templates to a group of categories](/img/goal-template/apply-template-group.png)
+![Долгосрочный инструментарий с избыточным финансированием](/img/goal-template/long-term-overfunded.webp)
 
 ---
 
-## End of Month Cleanup {#month-end-cleanup}
+## Запуск автоматизации {#run-automations}
 
-At month end, you can use cleanup automations to sweep up the surplus from categories that you overfunded and automatically cover any overspent categories and then distribute any leftovers to other categories, such as savings, vacation, or debt payoff.
+### Как применять автоматизацию {#applying-automations}
 
-[Examples](#cleanup-examples) below will help demonstrate the power of _End of month cleanup_.
+#### Применять все автоматики {#apply-all-automations}
 
-![global cleanup automation](/img/goal-template/cleanup-global.webp)
+В меню заголовка бюджета вы увидите следующие варианты:
 
-### Global cleanup
+![Опционы на месячный уровень](/img/goal-template/goal-template-2.webp)
 
-Global cleanup automations use **To Budget** as the pool.
+- **Проверьте шаблоны** Мы проверим всю автоматизацию.
 
-**Send leftover.** These are source funds. Cleanup sweeps up the category's leftover funds and sends them to **To Budget**.
+- **Применять шаблон бюджета** Все автоматики будут работать в категориях, которые в настоящее время имеют бюджет 0,00. Это оставит любые существующие суммы бюджета нетронутыми.
 
-**Receive leftover.** These are sink funds. After overspent categories are covered, funds leftover in **To Budget** are distributed to the category by [weight](#cleanup-weights).
+- **Перезапись с шаблоном бюджета** Заполнит все бюджетные ячейки с помощью автоматики и перезапишет любые уже имеющиеся бюджетные суммы. Это рекомендуемый метод, если вы используете приоритеты больше 0.
 
-![global cleanup with weights](/img/goal-template/cleanup-global-weight.webp)
+#### Применять автоматизацию выборочно {#apply-selective-automations}
 
-### Named pools
+- **Единая категория**Используйте опцию «Записать шаблоном», показанную ниже из раскрывающегося меню бюджетного поля, чтобы применить автоматизацию только к этой категории.
 
-Named pools can be defined to target certain categories for more refined control. Create as many named pools as you need by using different pool names.
+![Применяйте шаблоны к одной категории](/img/goal-template/apply-template-category.png)
 
-**_+ Add to a pool_**
+- **Применить автоматизацию к одной категории**: Используйте опцию «Записать шаблонами», показанную ниже из выпадающего меню группы категорий, чтобы применить все автоматики к категориям в конкретной группе. Если вы просматриваете несколько месяцев, она будет применять их к самому дальнему месяцу слева в вашем бюджетном представлении. Это перезапишет любые существующие бюджеты в категориях в группе.
 
-Pick from a list of previously named pools or type in the field to get an option to create a new named pool.
+![Применяйте шаблоны к группе категорий](/img/goal-template/apply-template-group.png)
 
-![cleanup create a named pool](/img/goal-template/create-named-pool.webp)
+---
 
-**Send leftover to pool** (source). This sends surplus category funds to the named pool to be distributed.
+## Очистка конца месяца {#month-end-cleanup}
 
-**Receive leftover from pool** (sink). After overspent categories in this named pool are covered, leftover funds in the pool are distributed by weight to the categories in the pool.
+В конце месяца вы можете использовать автоматизацию очистки, чтобы увеличить профицит из категорий, которые вы перефинансировали, и автоматически покрыть любые перерасходованные категории, а затем распределить любые остатки по другим категориям, таким как сбережения, отпуск или погашение долга.
 
-![cleanup receive leftovers](/img/goal-template/named-pool-leftovers.webp)
+[Примеры](#cleanup-examples) Ниже мы покажем силу конца месяца очистки.
+
+![Глобальная автоматизация очистки](/img/goal-template/cleanup-global.webp)
+
+### Глобальная очистка {#global-cleanup}
+
+Использование глобальной автоматизации очистки **В бюджет** Как бассейн.
+
+**Отправь остатки.** Очистка подметает оставшиеся средства категории и отправляет их на **В бюджет**.
+
+**Получите остатки.** После покрытия перерасходованных категорий остающиеся средства **В бюджет** распределяются по категориям по [вес](#cleanup-weights).
+
+![Глобальная очистка с помощью весов](/img/goal-template/cleanup-global-weight.webp)
+
+### Названы бассейны {#named-pools}
+
+Названные бассейны могут быть определены для таргетирования определенных категорий для более точного управления. Создайте столько названных бассейнов, сколько вам нужно, используя различные названия бассейнов.
+
+**\_+ Добавить в Бассейн**
+
+Выберите из списка ранее названных бассейнов или тип в поле, чтобы получить возможность создать новый названный бассейн.
+
+![Уборка создает так называемый бассейн](/img/goal-template/create-named-pool.webp)
+
+**Отправить остатки в бассейн** Это направляет излишки средств категории в названный пул для распределения.
+
+**Получить остатки из бассейна** После покрытия перерасходованных категорий в этом названном бассейне остатки средств в бассейне распределяются по весу между категориями в бассейне.
+
+![Уборка получает остатки](/img/goal-template/named-pool-leftovers.webp)
 
 :::note
 
-Enable _Only enough to cover any overspending_ to restrict the category from receiving leftover pool funds.
+Включите Только достаточно, чтобы покрыть любые перерасходы, чтобы ограничить категорию от получения оставшихся средств пула.
 
 :::
 
-### Running end of month cleanup
+### Конец месяца Уборка {#running-end-of-month-cleanup}
 
-End of month cleanup is run from the main menu in the Budget Header.
+Очистка в конце месяца выполняется из главного меню в заголовке бюджета.
 
-![main menu cleanup item](/img/goal-template/cleanup-01.webp)
+![Главное меню Очистка](/img/goal-template/cleanup-01.webp)
 
-After clicking _End of month cleanup_, cleanup works sequentially as follows:
+После нажатия Конец месяца уборки , уборка работает последовательно следующим образом:
 
-1. **All named pools are run first.**
-   - Funds in pool source categories are swept up into the pool.
-   - Overspent categories in the pool are filled with pool funds, if possible, then
-   - Leftover pool funds are distributed by weight within the pool.
-   - If no categories in the pool are set to receive funds from the pool, leftover funds go to **To Budget**.<br /><br />
-2. **Global cleanup runs next.**
-   - Funds in _Send leftover_ categories are swept into **To Budget**.
-   - Overspent categories are covered with funds from **To Budget**. If there are insufficient funds to do this, cleanup covers as much as it can. Categories using _Rollover Overspending_ are ignored.
-   - Categories set to _Receive leftover_ are found and cleanup distributes the leftover **To Budget** funds by weight.
+1. **Все названные бассейны запускаются первыми.**
+   - Средства в категориях источников пула помещаются в пул.
+   - Перерасходованные категории в бассейне заполняются средствами пула, если это возможно, то
+   - Оставшиеся средства пула распределяются по весу внутри пула.
+   - Если никакие категории в пуле не настроены на получение средств из пула, оставшиеся средства идут на **В бюджет**.<br /><br />
+2. **Далее идет глобальная уборка.**
+   - Средства в категориях Send leftover размещаются на **В бюджет**.
+   - Перерасходованные категории покрываются за счет средств **В бюджет**Если для этого недостаточно средств, очистка покрывает как можно больше. Категории с использованием Rollover Overspending игнорируются.
+   - Категории, установленные для Receive leftover , найдены, а очистка распределяет остаток. **В бюджет** средств по весу.
 
 :::info
-Cleanup does not respect [_Balance cap_](#balance-cap). Funds will be distributed based on weight and a category may be filled above the cap. To keep the excess, use _Retain existing funds over the cap_ or it will be removed the next time budgeting automation is run.
+Уборка не уважает [Balance cap](#balance-cap)Средства будут распределены на основе веса, и категория может быть заполнена выше предела. Чтобы сохранить избыток, используйте Сохранить существующие средства по пределу или он будет удален при следующем запуске автоматизации бюджетирования.
 :::
 
-### Calculating Weights {#cleanup-weights}
+### Расчет веса {#cleanup-weights}
 
-Cleanup uses the sum of the weights of the sink categories to determine how much to distribute to each sink category.
+Очистка использует сумму весов категорий раковины, чтобы определить, сколько распределить по каждой категории раковины.
 `distributed_amount = available_funds / sum_of_weights * category_weight`
 
-Suppose there are 5 categories that are identified to receive leftovers with the following weights:
+Предположим, есть 5 категорий, которые идентифицированы для получения остатков со следующими весами:
 
-- Category a: 1
-- Category b: 1
-- Category c: 2
-- Category d: 2
-- Category e: 4
+- Категория А: 1
+- Категория b: 1
+- Категория c: 2
+- Категория d: 2
+- Категория e: 4
 
-The sum of the weights is `1 + 1 + 2 + 2 + 4 = 10`
+Сумма весов составляет `1 + 1 + 2 + 2 + 4 = 10`
 
-The result will be:
+Результатом будет:
 
-- Categories a and b will receive `1 / 10` or 10% of the pool
-- Categories c and d will receive `2 / 10` or 20% of the pool
-- Category e will receive `4 / 10` or 40% of the pool
+- Категории a и b будут `1 / 10` 10% от бассейна
+- Категории c и d будут `2 / 10` 20% от общей площади бассейна
+- Категория e получит `4 / 10` 40% бассейна
 
-### Examples {#cleanup-examples}
+### Примеры {#cleanup-examples}
 
-**I leave money in my To Budget balance all month, can this help cover my overspending?** Yes!
+**Я оставляю деньги в моем бюджетном балансе весь месяц, может ли это помочь покрыть мои перерасходы?** Да!
 
-- If you don't use any cleanup automations, you can still run _End of month cleanup_ and the script will try to cover overspending using the available **To Budget** amount. This doesn't pull funds from any category and only covers overspending with **To Budget**.
+- Если вы не используете автоматизацию очистки, вы все равно можете запустить End of month cleanup , и скрипт попытается покрыть перерасход, используя доступные функции. **В бюджет** Это не выводит средства из любой категории и покрывает только перерасход средств. **В бюджет**.
 
-**I want to recover money from my Dining Out category because I always over budget and use that money to cover my overspent categories.**
+**Я хочу вернуть деньги из моей категории Dining Out, потому что я всегда переоцениваю бюджет и использую эти деньги для покрытия своих перерасходованных категорий.**
 
-- Use _Send leftover_ in the **Dining Out** category. When clicking _End of month cleanup_, the extra money will be returned to **To Budget** and be used to cover the overspent categories. If there is any leftover, it will remain in **To Budget**.
+- Используйте Send Leftover в **Ужин вне дома** Категория.При нажатии Конец месяца уборки , дополнительные деньги будут возвращены **В бюджет** и использоваться для покрытия перерасходованных категорий. **В бюджет**.
 
-**I'm behind on saving for our big Holiday celebration and would like to catch up faster. I would also like to save a little extra for vacation. Of any extra money I can find, I would like to put 1/3 in savings for the Holiday and 2/3 for vacation.**
+**Я отстаю в экономии на нашем большом празднике и хотел бы быстрее наверстать упущенное. Я также хотел бы сэкономить немного больше на отпуск. Из любых дополнительных денег, которые я могу найти, я хотел бы положить 1/3 в сбережения на праздник и 2/3 на отпуск.**
 
-- Use _Send leftover_ in the categories where you can find some extra money.
-- Use _Receive leftover_ with a weight of 1 in your **Holiday Celebration** category.
-- Use _Receive leftover_ with a weight of 2 in your **Vacation** category.
+- Используйте Send leftover в категориях, где вы можете найти дополнительные деньги.
+- Используйте Receive Leftover с весом 1 в вашем **Праздничный праздник** Категория.
+- Используйте Receive Leftover с весом 2 в вашем **Отпуск** Категория.
 
-**I want to pay down my debt as quickly as possible. I have a large Debt category with rollover overspending set. I already budget for more than the minimum payment, but I want to additionally add all extra money I can find.**
+**Я хочу погасить свой долг как можно быстрее. У меня большая категория долга с набором перерасхода на опрокидывание. У меня уже бюджет больше минимального платежа, но я хочу дополнительно добавить все лишние деньги, которые я могу найти.**
 
-- Use _Send leftover_ in the categories where you can find some extra money.
-- Use _Receive leftover_ in your debt category and in no other.
+- Используйте Send leftover в категориях, где вы можете найти дополнительные деньги.
+- Используйте Receive Leftover в своей долговой категории и ни в какой другой.
 
-All source funds will be used to cover your overspent categories first and then the remaining money will go to the **Debt** category to add extra to your payment.
+Все исходные средства будут использованы сначала для покрытия ваших перерасходованных категорий, а затем оставшиеся деньги пойдут в фонд. **Долг** Категория, чтобы добавить дополнительно к оплате.
 
-**I have a buffer category specifically meant to cover overspending for the month. Can I use this tool with that category?** YES!
+**У меня есть буферная категория, специально предназначенная для покрытия перерасхода за месяц. Могу ли я использовать этот инструмент с этой категорией?** Да!
 
-- Use both _Send leftover_ and _Receive leftover_ in your buffer category.
+- Используйте Send Leftover и Receive Leftover в своей категории буфера.
 
-Cleanup will remove all of your buffer funds, cover your overspending, and put your buffer funds back into the buffer for next time. You can also add a [_Refill to cap_](#refill) automation to this category so you can fill it back up next month!
+Очистка удалит все ваши буферные средства, покроет ваши перерасходы и вернет ваши буферные средства в буфер в следующий раз. [Refill to cap](#refill) Автоматизация в этой категории, чтобы вы могли заполнить ее в следующем месяце!
 
-**My utility bills fluctuate from month to month, but are always less than $500. Can I shift that $500 around in just the utility categories?** Yes!
+**Мои счета за коммунальные услуги колеблются от месяца к месяцу, но всегда меньше 500 долларов. Могу ли я переложить эти 500 долларов только на категории коммунальных услуг?** Да!
 
-**Method 1:**
+**Метод 1:**
 
-One way to do this is to have a Utilities Holding category with $500 budgeted.
+Один из способов сделать это - иметь категорию Utilities Holding с бюджетом в 500 долларов.
 
-- Use _+ Add to a pool_ and create a named pool for this category.
-- Enable both _Send leftover to pool_ and _Receive leftover from pool_, weight 1.
+- Использовать _Добавить в пул и создать названный пул для этой категории.
+- Позволяет как отправлять остатки в бассейн, так и получать остатки из бассейна, вес 1.
 
-Have separate categories for your various utilities, but don’t budget for them (power, gas, water, etc).
+Есть отдельные категории для различных коммунальных услуг, но не бюджет для них (энергия, газ, вода и т. Д.).
 
-- For each, use _+ Add to a pool_.
-- Choose the same named pool you added to the Utilities Holding category.
-- Use _Receive leftover from pool_ and check the box _Only enough to cover any overspending_.
+- Для каждого используйте _Добавить в Бассейн .
+- Выберите тот же самый бассейн, который вы добавили в категорию Utilities Holding.
+- Выберите получение остатка из общего пула и включите параметр покрытия только суммы перерасхода.
 
-Cleanup will cover the overspending from the Utilities Holding category and return any remaining funds back to the holding category.
+Очистка покроет перерасход средств из категории Utilities Holding и вернет оставшиеся средства обратно в категорию холдинга.
 
-**Method 2:**
+**Метод 2:**
 
-Another way to accomplish this is to budget what you think you will spend for each of the utilities in each category. For example:
+Еще один способ добиться этого - бюджетировать то, что, по вашему мнению, вы потратите на каждую из коммунальных услуг в каждой категории.
 
-- Power - $200
-- Water - $100
-- Gas - $150
-- Trash - $50
+- Мощность - $200
+- Вода - $100
+- Газ - $150
+- Мусор - $50
 
-In the first category, create a named pool and use both _Send leftover to pool_ and _Receive leftover from pool_, weight 1. <br />
-In the rest of the categories, choose the same named pool and again use both _Send leftover to pool_ and _Receive leftover from pool_, weight 1.
+В первой категории создайте именованный бассейн и используйте как Send leftover to pool , так и Receive leftover from pool , weight 1. <br />
+В остальных категориях выберите тот же самый названный бассейн и снова используйте оба Отправить остатки в бассейн и Получить остатки из бассейна , вес 1.
 
-When cleanup runs:
+Когда уборка проходит:
 
-- Any remaining funds from each utility category will be pooled.
-- The pool will be used to fund any overspent utility categories.
-- Leftover pool funds will be evenly distributed to carry over to the next month.
+- Все оставшиеся средства из каждой категории коммунальных услуг будут объединены.
+- Бассейн будет использоваться для финансирования любых перерасходованных категорий коммунальных услуг.
+- Оставшиеся средства пула будут равномерно распределены для переноса на следующий месяц.
 
-Use different leftover weights if you would like! To match the above budget, you might use 20, 10, 15 and 5.
+Используйте разные остатки веса, если хотите! Чтобы соответствовать вышеуказанному бюджету, вы можете использовать 20, 10, 15 и 5.
 
-If you want all of the leftover to go to **To Budget**, enable _Only enough to cover any overspending_ in all of the pool categories!
+Если вы хотите, чтобы все остатки пошли на **В бюджет**, включите только достаточно, чтобы покрыть любые перерасходы во всех категориях пула!

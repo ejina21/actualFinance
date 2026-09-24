@@ -1,9 +1,9 @@
-# Transaction Rules
+# Правила операций
 
-Actual's robust rules system will help you automate many transaction management tasks.
+Правила Actual помогают автоматически обрабатывать операции.
 
-Rules dictate how transactions are handled. When transactions are imported or synced, they follow rules that apply specific actions. For instance, a rule might process a transaction with the payee "PAYPAL \*LOWES.COM 8448964938 NC", recognize the keyword "lowes," and automatically set the payee to "Lowe's" and the category to "Home Improvement". Rules enable you to automate any workflow you choose.
+При импорте или синхронизации к операции применяются подходящие правила. Например, правило может найти в названии получателя `PAYPAL *LOWES.COM 8448964938 NC` слово `lowes`, заменить получателя на `Lowe's` и назначить категорию _«Ремонт дома»_. Так можно автоматизировать повторяющиеся действия с операциями.
 
-For detailed information, please see [Rules](../budgeting/rules/index.md).
+Подробности есть в разделе [«Правила»](../budgeting/rules/index.md).
 
-![Rules overview](/img/a-tour-of-actual/tour-rules-overview.webp)
+![Общий вид правил](/img/a-tour-of-actual/tour-rules-overview.webp)

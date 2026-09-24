@@ -1,28 +1,28 @@
-# Enable Banking Setup
+# Настройка Enable Banking {#enable-banking-setup}
 
 <ExperimentalFeatureWarning issueId="7799" />
 
 :::warning
-All functionality described here may not be available in the latest stable release. See [Experimental Features](../../experimental/index.md) for instructions to enable experimental features. Use the `nightly` images for the latest implementation.
+Все функциональные возможности, описанные здесь, могут быть недоступны в последнем стабильном выпуске. [Экспериментальные особенности](../../experimental/index.md) для инструкций по включению экспериментальных функций. `nightly` Изображения для последней реализации.
 :::
 
-To set up Enable Banking, start by creating and signing in to your account: https://enablebanking.com/sign-in/
+Чтобы настроить Enable Banking, начните с создания и входа на свой счет: https://enablebanking.com/sign-in/
 
-1. Create a new application: https://enablebanking.com/cp/applications.
+1. Создайте новое приложение: https://enablebanking.com/cp/applications.
 
-- Select **Production**
-- Make sure the redirect URL uses `https`, your domain and `/enablebanking/auth_callback` as the URL path
+- Выбрать **Производство**
+- Убедитесь, что URL перенаправления использует `https`Ваш домен и `/enablebanking/auth_callback` Путь URL
 
 ```text
   Application Name: Actualbudget
   Allowed redirect URLs: https://actualbudget.example.com/enablebanking/auth_callback
 ```
 
-- Press **Register**
+- Пресса **регистрировать**
 
-2. Link the accounts you want in the Enable Banking interface. If you don't you won't see a list of banks or list of accounts in Actual Budget later on.
-3. Copy the Application ID (`12345678-1234-1234-1234-123456789012`) before going back to Actual Budget.
+2. Свяжите нужные счета в интерфейсе Enable Banking. Если нет, вы не увидите список банков или список счетов в Actual Budget позже.
+3. Копировать ID приложения (`12345678-1234-1234-1234-123456789012`) перед возвращением к фактическому бюджету.
 
-Go to **More → Bank Sync**, choose **Set up Enable Banking**, paste the App ID, and upload the credential file.
+Пойти **Подробнее о Банк Синхронизация**Выберите **Установить Enable Banking**, вставить идентификатор приложения и загрузить файл учетных данных.
 
-Now go to an Actual Budget account and select **Link account → Enable Banking**. Select your country and bank, then follow the prompts to link your account.
+Перейдите на реальный бюджетный счет и выберите **Ссылочный счет Enable Banking**Выберите свою страну и банк, а затем следуйте подсказкам, чтобы связать свой счет.

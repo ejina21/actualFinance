@@ -323,7 +323,10 @@ export function SaveReport({
                     value={saveDashboardId}
                     onChange={v => setSaveDashboardId(v)}
                     defaultLabel={t('None')}
-                    options={dashboardPages.map(d => [d.id, d.name])}
+                    options={dashboardPages.map(d => [
+                      d.id,
+                      d.name === 'Main' ? t('Main') : d.name,
+                    ])}
                     style={{ marginTop: 10, width: 300 }}
                   />
                 </FormField>

@@ -1,11 +1,11 @@
 ---
-title: API Reference
+title: Справочник API
 ---
 
 import { types, objects, PrimitiveTypeList, PrimitiveType, StructType, Method, MethodBox } from './types';
 import APIList from './APIList';
 
-<APIList title="Budgets" sections={[
+<APIList title="Бюджеты" sections={[
 "getBudgetMonths",
 "getBudgetMonth",
 "setBudgetAmount",
@@ -14,7 +14,7 @@ import APIList from './APIList';
 "resetBudgetHold"
 ]} />
 
-<APIList title="Transactions" sections={[
+<APIList title="Операции" sections={[
 "Transaction",
 "addTransactions",
 "importTransactions",
@@ -24,7 +24,7 @@ import APIList from './APIList';
 "mergeTransactions"
 ]} />
 
-<APIList title="Accounts" sections={[
+<APIList title="Счета" sections={[
 "Account",
 "getAccounts",
 "createAccount",
@@ -35,7 +35,7 @@ import APIList from './APIList';
 "getAccountBalance"
 ]} />
 
-<APIList title="Categories" sections={[
+<APIList title="Категории" sections={[
 "Category",
 "getCategories",
 "createCategory",
@@ -43,7 +43,7 @@ import APIList from './APIList';
 "deleteCategory"
 ]} />
 
-<APIList title="Category Groups" sections={[
+<APIList title="Группы категорий" sections={[
 "Category group",
 "getCategoryGroups",
 "createCategoryGroup",
@@ -51,7 +51,7 @@ import APIList from './APIList';
 "deleteCategoryGroup"
 ]} />
 
-<APIList title="Payees" sections={[
+<APIList title="Получатели платежей" sections={[
 "Payee",
 "getPayees",
 "createPayee",
@@ -60,7 +60,7 @@ import APIList from './APIList';
 "mergePayees"
 ]} />
 
-<APIList title="Tags" sections={[
+<APIList title="Метки" sections={[
 "Tag",
 "getTags",
 "createTag",
@@ -68,7 +68,7 @@ import APIList from './APIList';
 "deleteTag"
 ]} />
 
-<APIList title="Rules" sections={[
+<APIList title="Правила" sections={[
 "ConditionOrAction",
 "Rule",
 "getRules",
@@ -78,7 +78,7 @@ import APIList from './APIList';
 "deleteRule"
 ]} />
 
-<APIList title="Schedules" sections={[
+<APIList title="Расписание" sections={[
 "Schedule",
 "RecurConfig",
 "getSchedules",
@@ -87,12 +87,12 @@ import APIList from './APIList';
 "deleteSchedule"
 ]} />
 
-<APIList title="Notes" sections={[
+<APIList title="Заметки" sections={[
 "getNote",
 "updateNote"
 ]} />
 
-<APIList title="Misc" sections={[
+<APIList title="Прочее" sections={[
 "BudgetFile",
 "initConfig",
 "init",
@@ -112,74 +112,74 @@ import APIList from './APIList';
 "setPreference"
 ]} />
 
-## Types of Methods
+## Виды методов {#types-of-methods}
 
-API methods are categorized into one of four types:
+Методы API подразделяются на один из четырех типов:
 
 - `get`
 - `create`
 - `update`
 - `delete`
 
-Objects may have fields specific for a type of method. For example, the `payee` field of a `transaction` is only available in a `create` method. This field doesn't exist in objects returned from a `get` method (`payee_id` is used instead).
+Объекты могут иметь поля, специфичные для типа способа. `payee` поле а `transaction` Доступен только в a `create` Это поле не существует в объектах, возвращенных из `get` метод`payee_id` Вместо этого используется.
 
-Fields specific to a type of request are marked as such in the notes.
+Поля, специфичные для типа запроса, помечаются как таковые в примечаниях.
 
-`id` is a special field. All objects have an `id` field. However, you don't need to specify an `id` in a `create` method; all `create` methods will return the created `id` back to you.
+`id` Это особое поле. Все объекты имеют `id` Тем не менее, вам не нужно указывать `id` в `create` метод; все `create` Способы возврата созданного `id` Вернемся к вам.
 
-All `update` and `delete` methods take an `id` to specify the desired object. `update` takes the fields to update as a second argument — it does not take a full object. That means even if a field is required, you don't have to pass it to `update`. For example, a `category` requires the `group_id` field, however `updateCategory(id, { name: "Food" })` is a valid call. Required means that an `update` can't set the field to `null` and a `create` must always contain the field.
+Все `update` и `delete` Методы принимают `id` указать желаемый объект. `update` принимает поля для обновления в качестве второго аргумента — он не принимает полный объект. Это означает, что даже если поле требуется, вам не нужно передавать его `update`Например, a `category` требует `group_id` поле, однако `updateCategory(id, { name: "Food" })` является действительным вызовом. Требуемый означает, что `update` не может установить поле для `null` и `create` Всегда должна содержать поле.
 
-**Note:** `updateRule` is an exception — it requires the full [`Rule`](#rule) object including `id`, and returns `Promise<Rule>`.
+**Примечание:** `updateRule` Это исключение — оно требует полного [`Rule`](#rule) объект включая `id`и возвращается `Promise<Rule>`.
 
-## Primitives
+## Первобытные {#primitives}
 
-These are types.
+Это такие типы.
 
 <PrimitiveTypeList />
 
-## Budgets
+## Бюджеты {#budgets}
 
-#### `getBudgetMonths`
+#### `getBudgetMonths` {#getbudgetmonths}
 
 <Method name="getBudgetMonths" args={[]}  returns="Promise<month[]>" />
 
-#### `getBudgetMonth`
+#### `getBudgetMonth` {#getbudgetmonth}
 
 <Method name="getBudgetMonth" args={[{ name: 'month', type: 'month' }]} returns="Promise<Budget>" />
 
-#### `setBudgetAmount`
+#### `setBudgetAmount` {#setbudgetamount}
 
 <Method name="setBudgetAmount" args={[{ name: 'month', type: 'month' }, { name: 'categoryId', type: 'id' }, { name: 'value', type: 'amount' }]} returns="Promise<null>" />
 
-#### `setBudgetCarryover`
+#### `setBudgetCarryover` {#setbudgetcarryover}
 
 <Method name="setBudgetCarryover" args={[{ name: 'month', type: 'month' }, { name: 'categoryId', type: 'id' }, { name: 'flag', type: 'bool' }]} returns="Promise<null>" />
 
-#### `holdBudgetForNextMonth`
+#### `holdBudgetForNextMonth` {#holdbudgetfornextmonth}
 
 <Method name="holdBudgetForNextMonth" args={[{ name: 'month', type: 'month' }, { name: 'value', type: 'amount' }]} returns="Promise<null>" />
 
-#### `resetBudgetHold`
+#### `resetBudgetHold` {#resetbudgethold}
 
 <Method name="resetBudgetHold" args={[{ name: 'month', type: 'month' }]} returns="Promise<null>" />
 
-## Transactions
+## Сделки {#transactions}
 
-#### Transaction
+#### сделка {#transaction}
 
 <StructType fields={objects.transaction} />
 
-#### Split Transactions
+#### Раздельные транзакции {#split-transactions}
 
-A split transaction has several sub-transactions that split the total
-amount across them. You can create a split transaction by specifying
-an array of sub-transactions in the `subtransactions` field. This field is primarily used during creation and retrieval.
+Разделенная транзакция имеет несколько субтранзакций, которые разделяют общую сумму.
+Вы можете создать разделенную транзакцию, указав
+множество субтранзакций в `subtransactions` Это поле в основном используется во время создания и поиска.
 
-In practice, updating subtransactions individually may not work reliably. To modify split transactions, update the parent transaction and provide the full `subtransactions` array.
+На практике обновление субтранзакций по отдельности может не работать надежно. Для изменения разделенных транзакций, обновления родительской транзакции и обеспечения полной `subtransactions` массив.
 
-Subtransactions are treated as full transaction records and are validated similarly to regular transactions.
+Субтранзакции рассматриваются как полные записи транзакций и проверяются аналогично обычным транзакциям.
 
-In practice, API creation commonly requires at least the fields below.
+На практике для создания API обычно требуются, по крайней мере, поля ниже.
 
 - `amount`
 - `account`
@@ -187,32 +187,32 @@ In practice, API creation commonly requires at least the fields below.
 - `parent_id`
 - `is_child: true`
 
-Additionally, child transactions should explicitly set:
+Кроме того, операции с детьми должны четко устанавливать:
 
-- `is_parent`: false
+- `is_parent`ложный
 
-Optional fields include:
+Факультативные поля включают:
 
 - `category`
 - `notes`
 
-If the amounts of the sub-transactions do not equal the total amount
-of the transaction, currently the API call will succeed but an error
-will be displayed within the app.
+Если сумма субтранзакций не равна общей сумме
+В настоящее время вызов API будет успешным, но с ошибкой.
+Они будут отображаться в приложении.
 
-#### Parent Transaction Requirements
+#### Требования к родительским сделкам {#parent-transaction-requirements}
 
-A transaction must be marked with `is_parent: true` before subtransactions can be added.
+Сделка должна быть отмечена `is_parent: true` До того, как могут быть добавлены субтранзакции.
 
-If `is_parent` is not set to `true` on the parent transaction, any provided `subtransactions` will be ignored and the transaction will be treated as a standard (non-split) transaction. No split will be created.
+Если `is_parent` не устанавливается `true` по родительской сделке, любой предоставленной `subtransactions` будет проигнорирована и сделка будет рассматриваться как стандартная (нераздельная) сделка.
 
-Subtransactions are only processed when the parent transaction has `is_parent: true`.
+Субтранзакции обрабатываются только тогда, когда родительская транзакция имеет `is_parent: true`.
 
-If subtransactions are provided but are invalid (e.g. missing required fields such as `account` or `date`), the API will return a validation error (HTTP 400) indicating that required transaction fields are missing.
+Если субтранзакции предоставляются, но недействительны (например, отсутствуют необходимые поля, такие как: `account` или `date`API вернет ошибку проверки (HTTP 400), указывающую на отсутствие необходимых полей транзакций.
 
-A working example of API fields:
+Рабочий пример полей API:
 
-**Note:** When creating a new split transaction, you typically don't need to provide an `id` for the parent; the system will generate one. The parent transaction's `amount` should equal the sum of all subtransaction amounts.
+**Примечание:** При создании новой сплит-транзакции вам обычно не нужно предоставлять `id` для родителя; система будет генерировать один. `amount` должна равняться сумме всех сумм субтранзакций.
 
 ```js
 {
@@ -241,49 +241,49 @@ A working example of API fields:
 }
 ```
 
-#### Transfers
+#### Переводы {#transfers}
 
-Existing transfers will have the `transfer_id` field which points to the transaction on the other side. **You should not change this** or you will cause unexpected behavior. (You are allowed to set this when importing, however.)
+Существующие переводы будут иметь `transfer_id` поле, которое указывает на сделку с другой стороны. **Вы не должны менять это** или вы будете вызывать неожиданное поведение. (Вы можете установить это при импорте, однако).
 
-If you want to create a transfer, use the transfer payee for the account you wish to transfer to/from. Load the payees, use the [`transfer_acct`](#payee) field of the payee to find the account you want to transfer to/from, and assign that payee to the transaction. A transfer with a transaction in both accounts will be created. (See [transfer payees](#transfers-1).)
+Если вы хотите создать перевод, используйте получателя перевода для учетной записи, которую вы хотите перевести в / из. [`transfer_acct`](#payee) поле получателя платежа, чтобы найти учетную запись, которую вы хотите перевести в / из, и назначить этого получателя для транзакции. [получатели трансфертов](#transfers-1).)
 
-#### Methods
+#### Методы {#methods}
 
-#### `addTransactions`
+#### `addTransactions` {#addtransactions}
 
 <Method name="addTransactions" args={[{ name: 'accountId', type: 'id'}, { name: 'transactions', type: 'Transaction[]'}, { name: 'runTransfers = false', type: 'bool?'}, { name: 'learnCategories = false', type: 'bool?'}]} returns="Promise<id[]>" />
 
-Adds multiple transactions at once. Does not reconcile (see `importTransactions`). Returns an array of ids of the newly created transactions.
+Добавляет сразу несколько операций. Не согласовывает (см. `importTransactions`Возвращает множество идентификаторов вновь созданных транзакций.
 
-This method does **not** avoid duplicates. Use `importTransactions` if you want the full reconcile behavior.
+Этот метод делает **не** Избегай дубликатов. `importTransactions` Если вы хотите полного примирения.
 
-This method has the following optional flags:
+Этот метод имеет следующие факультативные флаги:
 
-- `runTransfers`: create transfers for transactions where transfer payee is given (defaults to false)
-- `learnCategories`: update Rules based on the category field in the transactions (defaults to false)
+- `runTransfers`Создавать переводы для транзакций, в которых дается получатель перевода (недостатки к ложным)
+- `learnCategories`Обновление Правил, основанных на поле категории в транзакциях (дефолты ложные)
 
-This method is mainly for custom importers that want to skip all the automatic stuff because it wants to create raw data. You probably want to use `importTransactions`.
+Этот метод в основном для импортеров, которые хотят пропустить все автоматические вещи, потому что они хотят создавать необработанные данные. `importTransactions`.
 
-#### `importTransactions`
+#### `importTransactions` {#importtransactions}
 
 <Method name="importTransactions" args={[{ name: 'accountId', type: 'id'}, { name: 'transactions', type: 'Transaction[]'}, { name: 'opts = {}', type: 'object?'}]} returns="Promise<{ errors, added, updated }>" />
 
-Adds multiple transactions at once, while going through the same process as importing a file or downloading transactions from a bank.
-In particular, all rules are run on the specified transactions before adding them.
-Use `addTransactions` instead for adding raw transactions without post-processing.
+Добавляет несколько транзакций одновременно, проходя тот же процесс, что и импорт файла или загрузка транзакций из банка.
+В частности, все правила выполняются по указанным сделкам перед их добавлением.
+Использовать `addTransactions` Вместо этого для добавления необработанных транзакций без последующей обработки.
 
-The import will "reconcile" transactions to avoid adding duplicates. Transactions with the same `imported_id` will never be added more than once. Otherwise, the system will match transactions with the same amount and with similar dates and payees and try to avoid duplicates. If not using `imported_id` you should check the results after importing.
+Импорт будет "примирять" сделки, чтобы избежать добавления дубликатов. `imported_id` В противном случае система будет сопоставлять транзакции с одинаковой суммой и с аналогичными датами и получателями и стараться избегать дубликатов. `imported_id` Вы должны проверить результаты после импорта.
 
-It will also create transfers if a transfer payee is specified. See [transfers](#transfers).
+Он также будет создавать переводы, если получатель трансфера указан. [переводы](#transfers).
 
-This method has the following optional flags (passed as the `opts` object):
+Этот метод имеет следующие факультативные флаги (проходят в качестве `opts` объект:
 
-- `defaultCleared`: whether imported transactions should be marked as cleared (defaults to `true`)
-- `dryRun`: if `true`, returns what would be added/updated without actually modifying the database (defaults to `false`)
-- `reimportDeleted`: if `true`, transactions that were previously imported and then deleted will be reimported; if `false`, they will be skipped (defaults to `true` for backward compatibility — note that the [file import UI](../transactions/importing.md#avoiding-duplicate-transactions) defaults to `false`)
-- `payeeNameNormalization`: how `payee_name` is processed when creating a payee — `'title-case'` re-capitalizes each word, `'original'` keeps the name as given, apart from trimming surrounding whitespace (defaults to `'title-case'`)
+- `defaultCleared`• должны ли импортируемые операции быть помечены как очищенные (неисправности в отношении `true`)
+- `dryRun`Если: `true`возвращает то, что было бы добавлено/обновлено без фактического изменения базы данных (по умолчанию). `false`)
+- `reimportDeleted`Если: `true`транзакции, которые были ранее импортированы, а затем удалены, будут реимпортированы; `false`Они будут пропущены (по умолчанию). `true` Для обратной совместимости — обратите внимание, что [Импорт файлов UI](../transactions/importing.md#avoiding-duplicate-transactions) по умолчанию для `false`)
+- `payeeNameNormalization`как `payee_name` Обрабатывается при создании плательщика — `'title-case'` рекапитализирует каждое слово, `'original'` сохраняет название как данное, кроме обрезки окружающего белого пространства (по умолчанию). `'title-case'`)
 
-Example using opts:
+Пример использования opts:
 
 ```js
 await api.importTransactions(accountId, transactions, {
@@ -292,46 +292,46 @@ await api.importTransactions(accountId, transactions, {
 });
 ```
 
-This method returns an object with the following fields:
+Этот метод возвращает объект со следующими полями:
 
-- `added`: an array of ids of transactions that were added
-- `updated`: an array of ids of transactions that were updated (such as being cleared)
-- `errors`: any errors that occurred during the process (most likely a single error with no changes to transactions)
+- `added`: множество идентификаторов транзакций, которые были добавлены
+- `updated`массив идентификаторов транзакций, которые были обновлены (например, очищены)
+- `errors`любые ошибки, которые произошли во время процесса (скорее всего, одна ошибка без изменений в транзакциях);
 
-#### `getTransactions`
+#### `getTransactions` {#gettransactions}
 
 <Method name="getTransactions" args={[{ name: 'accountId', type: 'id'}, { name: 'startDate', type: 'date' }, { name: 'endDate', type: 'date' }]} returns="Promise<Transaction[]>" />
 
-Get all the transactions in `accountId` between the specified dates (inclusive). Returns an array of [`Transaction`](#transaction) objects.
+Получить все транзакции в `accountId` между указанными датами (включительно). Возвращает массив [`Transaction`](#transaction) объекты.
 
-#### `updateTransaction`
+#### `updateTransaction` {#updatetransaction}
 
 <Method name="updateTransaction" args={[{ name: 'id', type: 'id'}, { name: 'fields', type: 'object'} ]} />
 
-Update fields of a transaction. `fields` can specify any field described in [`Transaction`](#transaction).
+Обновление полей транзакции. `fields` может указывать любое поле, описанное в [`Transaction`](#transaction).
 
-#### `deleteTransaction`
+#### `deleteTransaction` {#deletetransaction}
 
 <Method name="deleteTransaction" args={[{ name: 'id', type: 'id'}]} />
 
-Delete a transaction.
+Исключить транзакцию.
 
-#### `mergeTransactions`
+#### `mergeTransactions` {#mergetransactions}
 
 <Method name="mergeTransactions" args={[{ name: 'ids', type: 'id[]' }]} returns="Promise<id>" />
 
-Merge exactly two distinct transactions from the same account into one. Returns the id of the surviving transaction; the other one is deleted.
+Объединяют ровно две разные транзакции с одного счета в одну. Возвращает идентификатор выжившей транзакции; другая удаляется.
 
-The order of the ids does not decide which transaction survives:
+Порядок ids не определяет, какая транзакция выживает:
 
-- an imported transaction is kept over a manually entered one
-- otherwise, the transaction with the earlier date is kept
+- Ввозимая транзакция хранится над введенной вручную
+- В противном случае сделка с более ранней датой сохраняется.
 
-The surviving transaction keeps its own field values and fills in any empty ones from the deleted transaction. It is marked cleared if either transaction was.
+Сохранившаяся транзакция сохраняет свои собственные значения поля и заполняет любые пустые значения из удаленной транзакции.
 
-The merge fails if you pass the same id twice, or if the two transactions are in different accounts, have different amounts, or are transfers to different accounts.
+Слияние терпит неудачу, если вы дважды передаете один и тот же идентификатор, или если две транзакции находятся на разных счетах, имеют разные суммы или переводы на разные счета.
 
-#### Examples
+#### Примеры {#examples}
 
 ```js
 // Create a transaction of $12.00. A payee of "Kroger" will be
@@ -363,69 +363,69 @@ let foodCategory = category.find(cat => cat.name === 'Food');
 await updateTransaction(id, { category: foodCategory.id });
 ```
 
-## Accounts
+## Счета {#accounts}
 
-#### Account
+#### Счет {#account}
 
 <StructType fields={objects.account} />
 
-#### Closing Accounts
+#### Закрытие счетов {#closing-accounts}
 
-Avoid setting the `closed` property directly to close an account; instead use the `closeAccount` method. If the account still has money in it you will be required to specify another account to transfer the current balance to. This will help track your money correctly.
+Избегайте установки `closed` имущество непосредственно для закрытия счета; вместо этого используйте `closeAccount` Если на счете все еще есть деньги, вам нужно будет указать другой счет для перевода текущего баланса. Это поможет правильно отслеживать ваши деньги.
 
-If you want to fully delete an account and remove it entirely from the system, use [`deleteAccount`](#deleteaccount). Note that if it's an on budget account, any money coming from that account will disappear.
+Если вы хотите полностью удалить учетную запись и полностью удалить ее из системы, используйте [`deleteAccount`](#deleteaccount)Обратите внимание, что если это на бюджетном счете, любые деньги, поступающие с этого счета, исчезнут.
 
-#### Methods
+#### Методы {#methods-1}
 
-#### `getAccounts`
+#### `getAccounts` {#getaccounts}
 
 <Method name="getAccounts" args={[]} returns="Promise<Account[]>" />
 
-Get all accounts. Returns an array of [`Account`](#account) objects.
+Получить все счета. Вернуть массив [`Account`](#account) объекты.
 
-#### `createAccount`
+#### `createAccount` {#createaccount}
 
 <Method name="createAccount" args={[{ name: 'account', type: 'Account' }, { name: 'initialBalance = 0', type: 'amount?' }]} returns="Promise<id>" />
 
-Create an account with an initial balance of `initialBalance` (defaults to 0). Remember that [`amount`](#primitives) has no decimal places. Returns the `id` of the new account.
+Создать аккаунт с первоначальным балансом `initialBalance` (недостатки 0). Помните, что [`amount`](#primitives) У него нет десятичных знаков. `id` нового счета.
 
-#### `updateAccount`
+#### `updateAccount` {#updateaccount}
 
 <Method name="updateAccount" args={[{ name: 'id', type: 'id' }, { name: 'fields', type: 'object' }]} />
 
-Update fields of an account. `fields` can specify any field described in [`Account`](#account).
+Обновление полей учетной записи. `fields` может указывать любое поле, описанное в [`Account`](#account).
 
-#### `closeAccount`
+#### `closeAccount` {#closeaccount}
 
 <Method name="closeAccount" args={[{ name: 'id', type: 'id' }, { name: 'transferAccountId', type: 'id?' }, { name: 'transferCategoryId', type: 'id?' }]} />
 
-Close an account. `transferAccountId` and `transferCategoryId` are optional if the balance of the account is 0, otherwise see next paragraph.
+Закройте счет. `transferAccountId` и `transferCategoryId` являются необязательными, если баланс счета равен 0, в противном случае см. следующий абзац.
 
-If the account has a non-zero balance, you need to specify an account with `transferAccountId` to transfer the money into. If you are transferring from an on budget account to an off budget account, you can optionally specify a category with `transferCategoryId` to categorize the transfer transaction.
+Если счет имеет ненулевой баланс, необходимо указать счет с `transferAccountId` Если вы переводите деньги с бюджетного счета на внебюджетный счет, вы можете дополнительно указать категорию с `transferCategoryId` Категоризация трансферной транзакции.
 
-Transferring money to an off budget account needs a category because money is taken out of the budget, so it needs to come from somewhere.
+Перевод денег на внебюджетный счет нуждается в категории, потому что деньги выводятся из бюджета, поэтому они должны откуда-то поступать.
 
-If you want to simply delete an account, see [`deleteAccount`](#deleteaccount).
+Если вы хотите просто удалить учетную запись, посмотрите [`deleteAccount`](#deleteaccount).
 
-#### `reopenAccount`
+#### `reopenAccount` {#reopenaccount}
 
 <Method name="reopenAccount" args={[{ name: 'id', type: 'id' }]} />
 
-Reopen a closed account.
+Открыть закрытый счет.
 
-#### `deleteAccount`
+#### `deleteAccount` {#deleteaccount}
 
 <Method name="deleteAccount" args={[{ name: 'id', type: 'id' }]} />
 
-Delete an account.
+Удалите аккаунт.
 
-#### `getAccountBalance`
+#### `getAccountBalance` {#getaccountbalance}
 
 <Method name="getAccountBalance" args={[{ name: 'id', type: 'id' }, { name: 'cutoff', type: 'Date?'}]} returns="Promise<number>" />
 
-Gets the balance for an account. If a cutoff is given, it gives the account balance as of that date. If no cutoff is given, it uses the current date as the cutoff.
+Если отсечение дано, оно дает остаток счета на эту дату. Если отсечение не дано, оно использует текущую дату в качестве отсечения.
 
-#### Examples
+#### Примеры {#examples-1}
 
 ```js
 // Create a savings account
@@ -440,41 +440,41 @@ createAccount({
 let accounts = await getAccounts();
 ```
 
-## Account Groups
+## Счетные группы {#account-groups}
 
-### Account Group
+### Счетная группа {#account-group}
 
 <StructType fields={objects.accountGroup} />
 
-Account groups let you organize accounts into named groups, for example "Savings" or "Credit Cards". An account can belong to at most one group, set through the `account_group_id` field on [`Account`](#account).
+Группы учетных записей позволяют организовывать учетные записи в названные группы, например «Сбережения» или «Кредитные карты».Учетная запись может принадлежать как минимум одной группе, установленной через `account_group_id` на поле [`Account`](#account).
 
-#### Methods
+#### Методы {#methods-2}
 
-#### `getAccountGroups`
+#### `getAccountGroups` {#getaccountgroups}
 
 <Method name="getAccountGroups" args={[]} returns="Promise<AccountGroup[]>" />
 
-Get all account groups. Returns an array of [`Account Group`](#account-group) objects.
+Получите все группы аккаунтов. Возвращает массив [`Account Group`](#account-group) объекты.
 
-#### `createAccountGroup`
+#### `createAccountGroup` {#createaccountgroup}
 
 <Method name="createAccountGroup" args={[{ name: 'group', type: 'AccountGroup' }]} returns="Promise<id>" />
 
-Create an account group. Returns the `id` of the new group.
+Создайте группу учетных записей. `id` новой группы.
 
-#### `updateAccountGroup`
+#### `updateAccountGroup` {#updateaccountgroup}
 
 <Method name="updateAccountGroup" args={[{ name: 'id', type: 'id' }, { name: 'fields', type: 'object' }]} />
 
-Update fields of an account group. `fields` can specify the `name` field described in [`Account Group`](#account-group).
+Обновление полей группы аккаунтов. `fields` может указывать на `name` поле, описанное в [`Account Group`](#account-group).
 
-#### `deleteAccountGroup`
+#### `deleteAccountGroup` {#deleteaccountgroup}
 
 <Method name="deleteAccountGroup" args={[{ name: 'id', type: 'id' }]} />
 
-Delete an account group. Any accounts in the group are left ungrouped.
+Удалите группу учетных записей. Все учетные записи в группе остаются негруппированными.
 
-#### Examples
+#### Примеры {#examples-2}
 
 ```js
 // Group two accounts under "Savings"
@@ -484,43 +484,43 @@ await updateAccount(allySavingsId, { account_group_id: groupId });
 await updateAccount(marcusSavingsId, { account_group_id: groupId });
 ```
 
-## Categories
+## Категории {#categories}
 
-#### Category
+#### Категория {#category}
 
 <StructType fields={objects.category} />
 
-#### Methods
+#### Методы {#methods-3}
 
-#### `getCategories`
+#### `getCategories` {#getcategories}
 
 <Method name="getCategories" args={[{ name: 'options = {}', type: 'object?' }]} returns="Promise<Category[]>" />
 
-Get categories. By default, returns every category.
+По умолчанию возвращает все категории.
 
-The `options` object supports:
+The `options` Объект поддерживает:
 
-- `hidden`: filter by hidden status. Pass `false` to return only visible categories, or `true` to return only hidden ones. Omit to return both.
+- `hidden`: фильтр со скрытым статусом. `false` возвращать только видимые категории, или `true` Возвращать только спрятанные.
 
-#### `createCategory`
+#### `createCategory` {#createcategory}
 
 <Method name="createCategory" args={[{ name: 'category', type: 'Category' }]} returns="Promise<id>" />
 
-Create a category. Returns the `id` of the new category.
+Создать категорию. Возвращает `id` новой категории.
 
-#### `updateCategory`
+#### `updateCategory` {#updatecategory}
 
 <Method name="updateCategory" args={[{ name: 'id', type: 'id' }, { name: 'fields', type: 'object' }]} returns="Promise<null>" />
 
-Update fields of a category. `fields` can specify any field described in [`Category`](#category).
+Обновление полей категории. `fields` может указывать любое поле, описанное в [`Category`](#category).
 
-#### `deleteCategory`
+#### `deleteCategory` {#deletecategory}
 
 <Method name="deleteCategory" args={[{ name: 'id', type: 'id' }]} returns="Promise<null>" />
 
-Delete a category.
+Исключить категорию.
 
-### Examples
+### Примеры {#examples-3}
 
 ```js
 {
@@ -529,13 +529,13 @@ Delete a category.
 }
 ```
 
-#### Income Categories
+#### Категории доходов {#income-categories}
 
-Set `is_income` to `true` to create an income category. The `group_id` of the category should point to the existing income group category (currently only one ever exists, see [category group](#category-group)).
+Настройка `is_income` то `true` Чтобы создать категорию дохода. `group_id` категория должна указывать на существующую категорию группы доходов (в настоящее время существует только одна, см. [категория](#category-group)).
 
-## Category Groups
+## Группы категорий {#category-groups}
 
-#### Category Group
+#### Категория Группа {#category-group}
 
 <StructType fields={objects.categoryGroup} />
 
@@ -545,43 +545,43 @@ Set `is_income` to `true` to create an income category. The `group_id` of the ca
 }
 ```
 
-#### Income Category Groups
+#### Группы категорий доходов {#income-category-groups}
 
-There should only ever be one income category group,
+Должна быть только одна категория дохода,
 
-#### Methods
+#### Методы {#methods-4}
 
-#### `getCategoryGroups`
+#### `getCategoryGroups` {#getcategorygroups}
 
 <Method name="getCategoryGroups" args={[{ name: 'options = {}', type: 'object?' }]} returns="Promise<CategoryGroup[]>" />
 
-Get category groups. By default, returns every group with all of its categories nested under it.
+По умолчанию возвращает каждую группу со всеми ее категориями, вложенными под нее.
 
-The `options` object supports:
+The `options` Объект поддерживает:
 
-- `hidden`: filter by hidden status, applied to both groups and their nested categories. Pass `false` to return only visible groups and categories, or `true` to return only hidden ones. Omit to return both.
+- `hidden`фильтр по скрытому статусу, применяемый как к группам, так и к их вложенным категориям. `false` возвращать только видимые группы и категории; `true` Возвращать только спрятанные.
 
-#### `createCategoryGroup`
+#### `createCategoryGroup` {#createcategorygroup}
 
 <Method name="createCategoryGroup" args={[{ name: 'group', type: 'CategoryGroup' }]} returns="Promise<id>" />
 
-Create a category group. Returns the `id` of the new group.
+Создайте группу категорий. `id` новой группы.
 
-#### `updateCategoryGroup`
+#### `updateCategoryGroup` {#updatecategorygroup}
 
 <Method name="updateCategoryGroup" args={[{ name: 'id', type: 'id' }, { name: 'fields', type: 'object' }]} returns="Promise<id>" />
 
-Update fields of a category group. `fields` can specify any field described in [`CategoryGroup`](#category-group).
+Обновление полей группы категорий. `fields` может указывать любое поле, описанное в [`CategoryGroup`](#category-group).
 
-#### `deleteCategoryGroup`
+#### `deleteCategoryGroup` {#deletecategorygroup}
 
 <Method name="deleteCategoryGroup" args={[{ name: 'id', type: 'id' }]} returns="Promise<null>" />
 
-Delete a category group.
+Исключить группу категорий.
 
-## Payees
+## Платежи {#payees}
 
-#### Payee
+#### плательщик {#payee}
 
 <StructType fields={objects.payee} />
 
@@ -592,83 +592,83 @@ Delete a category group.
 }
 ```
 
-#### Transfers
+#### Переводы {#transfers-1}
 
-Transfers use payees to indicate which accounts to transfer money to/from. This lets the system use the same payee matching logic to manage transfers as well.
+Переводы используют получателей, чтобы указать, на какие счета переводить деньги в / из. Это позволяет системе использовать ту же логику соответствия получателей для управления переводами.
 
-Each account has a corresponding "transfer payee" already created in the system. If a payee is a transfer payee, it will have the `transfer_acct` field set to an account id. Use this to create transfer transactions with [`importTransactions`](#importtransactions).
+Каждый счет имеет соответствующего "получателя перевода", уже созданного в системе. Если получатель платежа является получателем перевода, он будет иметь `transfer_acct` поле, настроенное на идентификатор учетной записи. Используйте это для создания переводных транзакций с [`importTransactions`](#importtransactions).
 
-#### Methods
+#### Методы {#methods-5}
 
-#### `getPayees`
+#### `getPayees` {#getpayees}
 
 <Method name="getPayees" args={[]} returns="Promise<Payee[]>" />
 
-Get all payees.
+Получите все выплаты.
 
-#### `getCommonPayees`
+#### `getCommonPayees` {#getcommonpayees}
 
 <Method name="getCommonPayees" args={[]} returns="Promise<Payee[]>" />
 
-Get common payees that appear frequently in transactions.
+Получите обычных получателей, которые часто появляются в транзакциях.
 
-#### `createPayee`
+#### `createPayee` {#createpayee}
 
 <Method name="createPayee" args={[{ name: 'payee', type: 'Payee' }]} returns="Promise<id>" />
 
-Create a payee. Returns the `id` of the new payee.
+Создайте плательщика. `id` нового плательщика.
 
-#### `updatePayee`
+#### `updatePayee` {#updatepayee}
 
 <Method name="updatePayee" args={[{ name: 'id', type: 'id' }, { name: 'fields', type: 'object' }]} returns="Promise<id>" />
 
-Update fields of a payee. `fields` can specify any field described in [`Payee`](#payee).
+Обновление полей плательщика. `fields` может указывать любое поле, описанное в [`Payee`](#payee).
 
-#### `deletePayee`
+#### `deletePayee` {#deletepayee}
 
 <Method name="deletePayee" args={[{ name: 'id', type: 'id' }]} returns="Promise<null>" />
 
-Delete a payee.
+Удалить получателя.
 
-#### `mergePayees`
+#### `mergePayees` {#mergepayees}
 
 <Method name="mergePayees" args={[{ name: 'targetId', type: 'id' }, { name: 'mergeIds', type: 'id[]' }]} returns="Promise<null>" />
 
-Merge one or more payees into the target payee, retaining the name of the target.
+Объединение одного или нескольких получателей в целевой получатель, сохраняя имя цели.
 
-## Tags
+## Тэги {#tags}
 
-#### Tag
+#### Тег {#tag}
 
 <StructType fields={objects.tag} />
 
-#### Methods
+#### Методы {#methods-6}
 
-#### `getTags`
+#### `getTags` {#gettags}
 
 <Method name="getTags" args={[]} returns="Promise<Tag[]>" />
 
-Get all tags.
+Возьми все бирки.
 
-#### `createTag`
+#### `createTag` {#createtag}
 
 <Method name="createTag" args={[{ name: 'tag', type: 'Tag' }]} returns="Promise<id>" />
 
-Create a tag. Returns the `id` of the new tag.
+Создайте тег. Возвращает `id` новой меткой.
 
-#### `updateTag`
+#### `updateTag` {#updatetag}
 
 <Method name="updateTag" args={[{ name: 'id', type: 'id' }, { name: 'fields', type: 'object' }]} returns="Promise<null>" />
 
-Update fields of a tag. `fields` can specify any field described in [`Tag`](#tag).
+Обновление полей тега. `fields` может указывать любое поле, описанное в [`Tag`](#tag).
 
-#### `deleteTag`
+#### `deleteTag` {#deletetag}
 
 <Method name="deleteTag" args={[{ name: 'id', type: 'id' }]} returns="Promise<null>" />
 
-Delete a tag.
+Удалите тег.
 
-#### Examples
+#### Примеры {#examples-4}
 
 ```js
 // Create a tag
@@ -689,49 +689,49 @@ let tags = await getTags();
 await updateTag(id, { color: '#00ff00' });
 ```
 
-## Rules
+## Правила {#rules}
 
-#### ConditionOrAction
+#### состояние {#conditionoraction}
 
 <StructType fields={objects.condition} />
 
-#### Rule
+#### Правило {#rule}
 
 <StructType fields={objects.rule} />
 
-#### Methods
+#### Методы {#methods-7}
 
-#### `getRules`
+#### `getRules` {#getrules}
 
 <Method name="getRules" args={[]} returns="Promise<Rule[]>" />
 
-Get all rules.
+Соблюдай все правила.
 
-#### `getPayeeRules`
+#### `getPayeeRules` {#getpayeerules}
 
 <Method name="getPayeeRules" args={[{ name: 'payeeId', type: "id" }]} returns="Promise<Rule[]>" />
 
-Get all rules associated with `payeeId`. These are ordinary `Rule` objects, in the same shape `getRules` returns. A rule is associated with a payee when one of its conditions or actions has a `payee` field referencing that id, so the returned rules have no `payee_id` property.
+Соблюдать все правила, связанные с `payeeId`Это обычные `Rule` предметы в одинаковой форме `getRules` Правило связано с получателем, когда одно из его условий или действий имеет `payee` поле ссылается на этот идентификатор, поэтому возвращенные правила не имеют `payee_id` собственность.
 
-#### `createRule`
+#### `createRule` {#createrule}
 
 <Method name="createRule" args={[{ name: 'rule', type: 'Rule' }]} returns="Promise<Rule>" />
 
-Create a rule. Returns the new rule, including the `id`.
+Создает правило. Возвращает новое правило, включая `id`.
 
-#### `updateRule`
+#### `updateRule` {#updaterule}
 
 <Method name="updateRule" args={[{ name: 'rule', type: 'Rule' }]} returns="Promise<Rule>" />
 
-Update a rule. Unlike other update methods, this requires the full rule object including `id`. Returns the updated rule.
+В отличие от других методов обновления, для этого требуется полный объект правил, включая `id`Возвращает обновленное правило.
 
-#### `deleteRule`
+#### `deleteRule` {#deleterule}
 
 <Method name="deleteRule" args={[{ name: 'id', type: 'id' }]} returns="Promise<null>" />
 
-Delete a rule.
+Исключить правило.
 
-#### Examples
+#### Примеры {#examples-5}
 
 ```js
 {
@@ -754,160 +754,160 @@ Delete a rule.
 }
 ```
 
-## Schedule
+## Расписание {#schedule}
 
-#### Schedule
+#### Расписание {#schedule-1}
 
 <StructType fields={objects.schedule} />
 
-#### RecurConfig
+#### RecurConfig {#recurconfig}
 
 <StructType fields={objects.recurConfig} />
 
-#### Methods
+#### Методы {#methods-8}
 
-#### `getSchedules`
+#### `getSchedules` {#getschedules}
 
 <Method name="getSchedules" args={[]} returns="Promise<Schedule[]>" />
 
-Get all schedules. Returns an array of [`Schedule`](#schedule) objects.
+Получите все расписания. Возвращает массив [`Schedule`](#schedule) объекты.
 
-#### `createSchedule`
+#### `createSchedule` {#createschedule}
 
 <Method name="createSchedule" args={[{ name: 'schedule', type: 'Schedule' }]} returns="Promise<id>" />
 
-Create schedule based on information filled in the schedule object. Please refer to notes of schedule object for details each field.
+Создать расписание на основе информации, заполненной объектом расписания. Просьба обращаться к примечаниям объекта расписания для получения подробной информации по каждому полю.
 
-#### `updateSchedule`
+#### `updateSchedule` {#updateschedule}
 
 <Method name="updateSchedule" args={[{ name: 'id', type: 'id' }, { name: 'fields', type: 'object' }]} returns="Promise<schedule>" />
 
-Update fields of a rule. `fields` can specify any field described in [`Schedule`](#schedule). Returns the updated rule.
+Обновление полей правила. `fields` может указывать любое поле, описанное в [`Schedule`](#schedule)Возвращает обновленное правило.
 
-#### `deleteSchedule`
+#### `deleteSchedule` {#deleteschedule}
 
 <Method name="deleteSchedule" args={[{ name: 'id', type: 'id' }]} returns="Promise<null>" />
 
-## Notes
+## Заметки {#notes}
 
-Notes can be attached to any entity (categories, budget months, etc.) by ID. They are also used to define budget templates and savings goals (e.g. `#template 250`, `#goal 1000`).
+Примечания могут быть прикреплены к любому объекту (категории, бюджетные месяцы и т. д.) по идентификатору. Они также используются для определения шаблонов бюджета и целей экономии (например. `#template 250`, `#goal 1000`).
 
-#### `getNote`
+#### `getNote` {#getnote}
 
 <Method name="getNote" args={[{ name: 'id', type: 'id' }]} returns="Promise<Note | null>" />
 
-Returns the note for the given entity ID, or `null` if no note has been set.
+возвращает примечание для данного идентификатора сущности, или `null` Если нота не была установлена.
 
-#### `updateNote`
+#### `updateNote` {#updatenote}
 
 <Method name="updateNote" args={[{ name: 'id', type: 'id' }, { name: 'note', type: 'string' }]} returns="Promise<void>" />
 
-Sets the note on the entity with the given ID. Pass an empty string to clear the note.
+Устанавливает заметку на объекте с заданным идентификатором. Передайте пустую строку, чтобы очистить заметку.
 
-## Misc
+## Миск {#misc}
 
-#### BudgetFile
+#### Бюджетный файл {#budgetfile}
 
 <StructType fields={objects.budgetFile} />
 
-#### InitConfig
+#### InitConfig {#initconfig}
 
 <StructType fields={objects.initConfig} />
 
-#### Methods
+#### Методы {#methods-9}
 
-#### `init`
+#### `init` {#init}
 
 <Method name="init" args={[{ name: 'config', type: 'InitConfig?' }]} returns="Promise<void>" />
 
-Initializes the API by connecting to an Actual Budget server. The config parameter is optional and defaults to `{}` (local-only mode).
+Инициализирует API, подключившись к серверу Actual Budget. Параметр конфигураций необязателен и по умолчанию `{}` (только локальный режим).
 
-#### `shutdown`
+#### `shutdown` {#shutdown}
 
 <Method name="shutdown" args={[]} returns="Promise<void>" />
 
-Shuts down the API. This will close any open budget and clean up any resources.
+Это закроет любой открытый бюджет и очистит любые ресурсы.
 
-#### `sync`
+#### `sync` {#sync}
 
 <Method name="sync" args={[]} returns="Promise<void>" />
 
-Synchronizes the locally cached budget files with the server's copy.
+Синхронизирует локально кэшированные бюджетные файлы с копией сервера.
 
-#### `runBankSync`
+#### `runBankSync` {#runbanksync}
 
 <Method name="runBankSync" args={[{ properties: [{ name: 'accountId', type: 'string' }] }]} returns="Promise<void>" />
 
-Run the 3rd party (GoCardless, SimpleFIN) bank sync operation. This will download the transactions and insert them into the ledger.
+Запустите синхронизацию банка 3-й стороны (GoCardless, SimpleFIN). Это загрузит транзакции и вставит их в реестр.
 
-#### `runImport`
+#### `runImport` {#runimport}
 
 <Method name="runImport" args={[{ name: 'budgetName', type: 'string' }, { name: 'func', type: 'func' }]} returns="Promise<void>" />
 
-Creates a new budget file with the given name, and then runs the custom importer function to populate it with data.
+Создает новый бюджетный файл с заданным именем, а затем запускает пользовательскую функцию импортера для заполнения его данными.
 
-#### `getBudgets`
+#### `getBudgets` {#getbudgets}
 
 <Method name="getBudgets" args={[]} returns="Promise<BudgetFile[]>" />
 
-Returns a list of all budget files either locally cached or on the remote server. Remote files have a `state` field and local files have an `id` field.
+Возвращает список всех бюджетных файлов либо локально кэшированных, либо на удаленном сервере. `state` поле и локальные файлы имеют `id` поле.
 
-#### `loadBudget`
+#### `loadBudget` {#loadbudget}
 
 <Method name="loadBudget" args={[{ properties: [{ name: 'syncId', type: 'string' }] }]} returns="Promise<void>" />
 
-Load a locally cached budget file.
+Загрузите локально кэшированный бюджетный файл.
 
-#### `downloadBudget`
+#### `downloadBudget` {#downloadbudget}
 
 <Method name="downloadBudget" args={[{ properties: [{ name: 'syncId', type: 'string' }, { name: 'password', type: 'string?' }] }]} returns="Promise<void>" />
 
-Load a budget file. If the file exists locally, it will load from there. Otherwise, it will download the file from the server.
+Загрузите бюджетный файл. Если файл существует локально, он будет загружаться оттуда. В противном случае он будет загружать файл с сервера.
 
-#### `importBudget`
+#### `importBudget` {#importbudget}
 
 <Method name="importBudget" args={[{ name: 'input', type: 'string | ArrayBuffer | Uint8Array' }, { name: 'options', type: "{ type?: 'actual' | 'ynab4' | 'ynab5', filename?: string }?" }]} returns="Promise<{ id: string }>" />
 
-Import a budget from an exported file and load it. `input` is either a path to the file or the raw file contents. By default the file is treated as an Actual export (a `.zip` file containing `db.sqlite` and `metadata.json`); pass `type: 'ynab4'` or `type: 'ynab5'` to import a YNAB export instead. When passing raw contents, you can supply the original file name with `filename` — some import types use it to derive the budget name. Returns the id of the imported budget, which is now the loaded budget.
+Импортировать бюджет из экспортируемого файла и загружать его. `input` является либо путем к файлу, либо исходным содержимым файла. По умолчанию файл рассматривается как фактический экспорт (a) `.zip` файл, содержащий `db.sqlite` и `metadata.json`); проход `type: 'ynab4'` или `type: 'ynab5'` для импорта экспорта YNAB. При передаче исходного содержимого вы можете предоставить исходное имя файла `filename` - некоторые виды импорта используют его для получения бюджетного названия. Возвращает идентификатор импортного бюджета, который сейчас является загруженным бюджетом.
 
-#### `exportBudget`
+#### `exportBudget` {#exportbudget}
 
 <Method name="exportBudget" args={[]} returns="Promise<Uint8Array>" />
 
-Export the currently loaded budget as raw bytes in the zip format. You can save the bytes to a `.zip` file, or pass them back to `importBudget` to restore the budget later.
+Экспортировать загруженный в настоящее время бюджет в виде необработанных байтов в формате zip. `.zip` файл или передать его обратно `importBudget` Восстановить бюджет позже.
 
-#### `batchBudgetUpdates`
+#### `batchBudgetUpdates` {#batchbudgetupdates}
 
 <Method name="batchBudgetUpdates" args={[{ name: 'func', type: 'func' }]} returns="Promise<void>" />
 
-Performs a batch of budget updates. This is useful for making multiple changes to the budget in a single call to the server.
+Выполняет партию бюджетных обновлений. Это полезно для внесения множественных изменений в бюджет за один звонок на сервер.
 
-#### `runQuery`
+#### `runQuery` {#runquery}
 
 <Method name="runQuery" args={[{ properties: [{ name: 'query', type: 'ActualQL' }] }]} returns="Promise<unknown>" />
 
-Allows running any arbitrary ActualQL query on the open budget.
+Позволяет запускать любой произвольный запрос ActualQL в открытом бюджете.
 
-#### `getIDByName`
+#### `getIDByName` {#getidbyname}
 
 <Method name="getIDByName" args={[{ properties: [{ name: 'type', type: 'string' }, { name: 'string', type: 'string'}] }]} returns="Promise<string>" />
 
-get the ID for any Account, Payee, Category or Schedule by providing the corresponding name. Allowed types are 'accounts', 'schedules', 'categories', 'payees'.
+Получить идентификатор для любой учетной записи, получателя, категории или расписания, предоставив соответствующее имя. Разрешенными типами являются «счета», «графики», «категории», «получатели».
 
-#### `getServerVersion`
+#### `getServerVersion` {#getserverversion}
 
 <Method name="getServerVersion" args={[]} returns="Promise<{error?: string;} | {version: string;}>" />
 
-return error or the current server versions.
+Возвращает ошибку или текущую версию сервера.
 
-#### `getPreferences`
+#### `getPreferences` {#getpreferences}
 
 <Method name="getPreferences" args={[]} returns="Promise<SyncedPrefs>" />
 
-Returns the budget's synced preferences — settings that sync across devices, such as the number format (`numberFormat`, `hideFraction`), currency (`defaultCurrencyCode`, `currencySymbolPosition`, `currencySpaceBetweenAmountAndSymbol`), date format (`dateFormat`), and first day of the week (`firstDayOfWeekIdx`). All values are strings (or `undefined` if the preference has never been set). The `SyncedPrefs` type is exported from `@actual-app/api/models`.
+Возвращает синхронизированные предпочтения бюджета — настройки, которые синхронизируются между устройствами, такими как формат номера (см.`numberFormat`, `hideFraction`), валюта (`defaultCurrencyCode`, `currencySymbolPosition`, `currencySpaceBetweenAmountAndSymbol`), формат даты (`dateFormat`), и первый день недели (`firstDayOfWeekIdx`Все значения являются строками (или `undefined` Если предпочтение никогда не было установлено. `SyncedPrefs` Тип экспортируется из `@actual-app/api/models`.
 
-#### `setPreference`
+#### `setPreference` {#setpreference}
 
 <Method name="setPreference" args={[{ name: 'id', type: 'keyof SyncedPrefs' }, { name: 'value', type: 'string | undefined' }]} returns="Promise<void>" />
 
-Sets a single synced preference. The `id` must be a valid SyncedPrefs key.
+Устанавливает одно синхронизированное предпочтение. `id` Должен быть действительный ключ SyncedPrefs.

@@ -1,108 +1,108 @@
-# Rule Action Templating
+# Шаблоны в действиях правил {#rule-action-templating}
 
-:::danger Deprecated
-Rule action templating is **deprecated** and will be removed in a future release. New rules should use [Rule formulae](./formulas.md#rule-formulas) instead, which cover the same use cases with a more powerful Excel-style syntax. If you have existing rules that use templating, please migrate them to formulae.
+:::danger обесцененный
+Темплирование действия правила является **обесцененный** и будет удален в будущем выпуске. Новые правила должны использоваться [Формулы правил](./formulas.md#rule-formulas) Вместо этого, которые охватывают те же варианты использования с более мощным синтаксисом в стиле Excel. Если у вас есть существующие правила, которые используют шаблонирование, пожалуйста, перенесите их в формулы.
 :::
 
 <ExperimentalFeatureWarning issueId="3606" />
 
 :::warning
-All functionality described here may not be available in the latest stable release. See [Experimental Features](./index.md) for instructions to enable experimental features. Use the `nightly` images for the latest implementation.
+Все функциональные возможности, описанные здесь, могут быть недоступны в последнем стабильном выпуске. [Экспериментальные особенности](./index.md) для инструкций по включению экспериментальных функций. `nightly` Изображения для последней реализации.
 :::
 
-Rule action templating allows rules to dynamically set fields based on transaction data via meta programming inside the rule.
+Темплирование действия правил позволяет динамически задавать поля на основе данных транзакций через метапрограммирование внутри правила.
 
-Setting the following fields with a rule template is currently supported:
+В настоящее время поддерживается установка следующих полей с шаблоном правил:
 
-- notes
-- date
-- amount
-- payee (name)
-- cleared (although no boolean helper functions are currently supported)
+- примечания
+- дата
+- сумма
+- плательщик (имя)
+- очищенные (хотя в настоящее время не поддерживаются функции булевого помощника)
 
-Actual uses [handlebars](https://handlebarsjs.com/) under the hood to process the rule templates. You can find more in depth information about how this works in [their guide](https://handlebarsjs.com/guide).
+Фактическое использование [руль](https://handlebarsjs.com/) под капотом для обработки шаблонов правил. Вы можете найти более подробную информацию о том, как это работает [Их путеводитель](https://handlebarsjs.com/guide).
 
-## Using rule action templating
+## Использование шаблона действия правил {#using-rule-action-templating}
 
-You can toggle between the normal and template input modes by clicking the icon to the right of the action input box.
+Вы можете переключаться между обычным и шаблонным режимами ввода, нажав на значок справа от поля ввода действия.
 
-![How to enable rule action templating](/img/experimental/rule-templating/enable-rule-templating.webp)
+![Как включить шаблон действия правила](/img/experimental/rule-templating/enable-rule-templating.webp)
 
-When the template input mode is active you can type your template into the input box as below. This example removes the string " 12345" from an imported payee and sets the payee to this new value.
+Когда режим ввода шаблона активен, вы можете ввести свой шаблон в поле ввода, как указано ниже. Этот пример удаляет строку «12345» от импортированного получателя платежа и устанавливает получателя платежа на это новое значение.
 
-![How to enable rule action templating 2](/img/experimental/rule-templating/enable-rule-templating-2.webp)
+![Как включить шаблон действия правила 2](/img/experimental/rule-templating/enable-rule-templating-2.webp)
 
-## Variables
+## Переменные {#variables}
 
-| Variable              | Type    | Notes                                                                                                             |
-| --------------------- | ------- | ----------------------------------------------------------------------------------------------------------------- |
-| today                 | date    | Today's date                                                                                                      |
-| account               | id      |                                                                                                                   |
-| balance               | number  | Balance of account as of the date of the transaction, excluding the transaction amount, stored without decimal    |
-| date                  | date    |                                                                                                                   |
-| payee                 | id      |                                                                                                                   |
-| payee_name            | string  |                                                                                                                   |
-| imported_payee        | string  |                                                                                                                   |
-| notes                 | string  |                                                                                                                   |
-| amount                | number  | This is stored without the decimal place. ie. 152 will be 15200. `{{div amount 100}}` can be used to convert back |
-| cleared               | boolean |                                                                                                                   |
-| reconciled            | boolean |                                                                                                                   |
-| imported_id           | id      | ID of the transaction provided from an import source (eg. bank sync/QFX)                                          |
-| is_child              | boolean | Flag for children in a split transaction                                                                          |
-| is_parent             | boolean | Flag for the parent of a split transaction                                                                        |
-| parent_id             | id      | Set if is_child = true                                                                                            |
-| schedule              | id      |                                                                                                                   |
-| starting_balance_flag | boolean | Set if the transaction is a starting balance transaction                                                          |
-| transfer_id           | id      |                                                                                                                   |
+| переменный             | Тип     | Заметки                                                                                                                    |
+| ---------------------- | ------- | -------------------------------------------------------------------------------------------------------------------------- |
+| сегодня                | дата    | Сегодняшняя дата                                                                                                           |
+| счет                   | id      |                                                                                                                            |
+| баланс                 | номер   | Баланс счета на дату совершения сделки, за исключением суммы сделки, хранящейся без десятичной                             |
+| дата                   | дата    |                                                                                                                            |
+| плательщик             | id      |                                                                                                                            |
+| payee name             | струна  |                                                                                                                            |
+| Импорт платеж          | струна  |                                                                                                                            |
+| примечания             | струна  |                                                                                                                            |
+| сумма                  | номер   | Это хранится без десятичного знака, т.е. 152 будет 15200. `{{div amount 100}}` Можно использовать для обратной конвертации |
+| очищенный              | булевый |                                                                                                                            |
+| примиренный            | булевый |                                                                                                                            |
+| Импортный id           | id      | Идентификатор транзакции, предоставленный из источника импорта (например, синхронизация банка / QFX)                       |
+| Ребенок                | булевый | Флаг для детей в раздельной сделке                                                                                         |
+| родитель               | булевый | Флаг для родителя разделенной транзакции                                                                                   |
+| родительский           | id      | Установка if child = true                                                                                                  |
+| расписание             | id      |                                                                                                                            |
+| Источник: Balance Flag | булевый | Устанавливается, если транзакция является операцией начального баланса                                                     |
+| transfer id            | id      |                                                                                                                            |
 
-## Functions
+## Функции {#functions}
 
-### Mathematical
+### математический {#mathematical}
 
-| Function | Arguments           | Notes |
-| -------- | ------------------- | ----- |
-| add      | number1, number2... |       |
-| sub      | number1, number2... |       |
-| div      | number1, number2... |       |
-| mul      | number1, number2... |       |
-| mod      | number1, number2... |       |
-| floor    | number              |       |
-| ceil     | number              |       |
-| round    | number              |       |
-| abs      | number              |       |
-| min      | number1, number2... |       |
-| max      | number1, number2... |       |
-| fixed    | number1, number2... |       |
+| Функция       | аргументы           | Заметки |
+| ------------- | ------------------- | ------- |
+| добавлять     | Номер 1, номер 2... |         |
+| субподряд     | Номер 1, номер 2... |         |
+| диван         | Номер 1, номер 2... |         |
+| муль          | Номер 1, номер 2... |         |
+| мод           | Номер 1, номер 2... |         |
+| этаж          | номер               |         |
+| потолок       | номер               |         |
+| круглый       | номер               |         |
+| абс           | номер               |         |
+| мин.          | Номер 1, номер 2... |         |
+| макс          | Номер 1, номер 2... |         |
+| фиксированный | Номер 1, номер 2... |         |
 
-### Text
+### Текст {#text}
 
-| Function   | Arguments                   | Notes                                                                                                        |
-| ---------- | --------------------------- | ------------------------------------------------------------------------------------------------------------ |
-| regex      | value, regex, replacement   |                                                                                                              |
-| replace    | value, pattern, replacement | Mimics js replace. When pattern is not as /regex/flags it just uses raw value as opposed to `{{regex ...`    |
-| replaceAll | value, pattern, replacement | Mimics js replaceAll. When pattern is not as /regex/flags it just uses raw value as opposed to `{{regex ...` |
-| concat     | values...                   | Joins all arguments together                                                                                 |
+| Функция      | аргументы                 | Заметки                                                                                          |
+| ------------ | ------------------------- | ------------------------------------------------------------------------------------------------ |
+| регекс       | Значение, регекс, замена  |                                                                                                  |
+| заменить     | стоимость, модель, замена | Когда шаблон не такой, как /regex/flags, он просто использует сырое значение, а не `{{regex ...` |
+| Заменить все | стоимость, модель, замена | Когда шаблон не такой, как /regex/flags, он просто использует сырое значение, а не `{{regex ...` |
+| конек        | Ценности...               | Присоединяйтесь ко всем аргументам вместе                                                        |
 
-### Date
+### Дата {#date}
 
-| Function  | Arguments    | Notes                                                                     |
-| --------- | ------------ | ------------------------------------------------------------------------- |
-| addDays   | date, number |                                                                           |
-| subDays   | date, number | Subtract days from date                                                   |
-| addWeeks  | date, number |                                                                           |
-| subWeeks  | date, number | Subtract weeks from date                                                  |
-| addMonths | date, number |                                                                           |
-| subMonths | date, number | Subtract months from date                                                 |
-| addYears  | date, number |                                                                           |
-| subYears  | date, number | Subtract years from date                                                  |
-| setDay    | date, day    | Overflows are handled, 0 will set to last day of month before             |
-| day       | date         | Extract the day from a date                                               |
-| month     | date         | Extract the month from a date                                             |
-| year      | date         | Extract the year from a date                                              |
-| format    | date, format | See [date-fns docs](https://date-fns.org/v4.1.0/docs/format) for patterns |
+| Функция            | аргументы    | Заметки                                                                      |
+| ------------------ | ------------ | ---------------------------------------------------------------------------- |
+| Добавить дней      | дата, номер  |                                                                              |
+| субдни             | дата, номер  | Вычтите дни с даты                                                           |
+| Добавить недели    | дата, номер  |                                                                              |
+| субнедельник       | дата, номер  | Вычтите недели с даты                                                        |
+| Добавить месяцев   | дата, номер  |                                                                              |
+| субмесяцы          | дата, номер  | Вычтите месяцы с даты                                                        |
+| Добавить годы      | дата, номер  |                                                                              |
+| суб-годы           | дата, номер  | Вычтите годы с даты                                                          |
+| день установленный | дата, день   | Обрабатываются переполнения, 0 устанавливается на последний день месяца до   |
+| день               | дата         | Извлеките день из даты                                                       |
+| месяц              | дата         | Извлеките месяц из даты                                                      |
+| год                | дата         | Извлеките год из даты                                                        |
+| формат             | дата, формат | Видишь? [Date-Fns Docs](https://date-fns.org/v4.1.0/docs/format) для моделей |
 
-### Other
+### другой {#other}
 
-| Function | Arguments | Notes                                                   |
-| -------- | --------- | ------------------------------------------------------- |
-| debug    | any       | Prints the arguments to the browser development console |
+| Функция | аргументы | Заметки                                            |
+| ------- | --------- | -------------------------------------------------- |
+| отладка | любой     | Печатает аргументы для консоли разработки браузера |

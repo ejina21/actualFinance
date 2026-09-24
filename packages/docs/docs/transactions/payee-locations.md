@@ -1,57 +1,57 @@
-# Payee Locations
+# Местоположения получателей платежей {#payee-locations}
 
-Payee Locations let Actual remember where you shop. Once you save a location for a payee, Actual can suggest nearby payees in the payee autocomplete the next time you record a transaction at that spot. It can also fill in the nearest payee with a single tap. This is handy for places you visit often, such as a local grocery store or coffee shop.
+После того, как вы сохраните местоположение для получателя, Actual может предложить соседним получателям в автозаполнении получателя в следующий раз, когда вы запишете транзакцию в этом месте. Он также может заполнить ближайшего получателя одним нажатием. Это удобно для мест, которые вы часто посещаете, таких как местный продуктовый магазин или кафе.
 
-Payee Locations is only available on the mobile transaction screen, not the table-based ledger used on larger screens and desktops.
+Места оплаты доступны только на экране мобильных транзакций, а не в настольной книге, используемой на больших экранах и настольных компьютерах.
 
-## Requesting Location Access
+## Запросить доступ к местоположению {#requesting-location-access}
 
-Before you can use any of the payee location functionality, you need to give your browser access to your location. Begin entering a new transaction and tap the **Request Location** button in the payee field. Your browser will then prompt you to allow access.
+Прежде чем вы сможете использовать какую-либо из функций определения местоположения получателя, вам необходимо предоставить браузеру доступ к вашему местоположению. Начните вводить новую транзакцию и нажмите кнопку **Запросить местоположение** Кнопка в поле получателя. Ваш браузер предложит вам разрешить доступ.
 
 :::caution
 
-If you decline the geolocation permission prompt, Actual cannot ask again. You will need to update the location permission for the site manually in your browser settings; the exact location of this setting varies from browser to browser.
+Если вы откажетесь от запроса разрешения на геолокацию, Actual не сможет запросить снова. Вам нужно будет обновить разрешение на местоположение сайта вручную в настройках вашего браузера; точное местоположение этого параметра варьируется от браузера к браузеру.
 
 :::
 
-![The Request Location button in the payee field on a new transaction](/img/payees/payee-locations/payee-locations-request.png)
+![Кнопка Местоположение Запроса в поле получателя платежа по новой транзакции](/img/payees/payee-locations/payee-locations-request.png)
 
-## Saving a Payee Location
+## Сохранение местоположения Payee {#saving-a-payee-location}
 
-1. Begin entering a new transaction.
-2. Enter or select a payee.
-3. Tap the **Save** geolocation button that appears in the payee field.
-4. Continue entering the rest of the transaction details.
-5. Save the transaction.
+1. Начните вводить новую сделку.
+2. Введите или выберите плательщика.
+3. Нажмите **Спасти** Кнопка геолокации, которая появляется в поле получателя.
+4. Продолжайте вводить остальные детали транзакции.
+5. Сохраните сделку.
 
-The **Save** button only appears when no existing location for this payee is within 500 meters, so if you do not see it, a nearby location may already be saved. You can save more than one location for the same payee, which is useful for a business with several branches, such as a coffee shop chain you visit in different parts of town.
+The **Спасти** Кнопка появляется только тогда, когда ни одно существующее местоположение для этого получателя не находится в пределах 500 метров, поэтому, если вы его не видите, соседнее местоположение уже может быть сохранено.Вы можете сохранить более одного местоположения для одного и того же получателя, что полезно для бизнеса с несколькими филиалами, такими как сеть кафе, которую вы посещаете в разных частях города.
 
-Your location is only captured when you tap **Save**. It is stored in your budget like any other data, so it syncs across your own devices if you use a sync server, and it is never sent to any third party.
+Ваше местоположение захватывается только тогда, когда вы нажимаете **Спасти**Он хранится в вашем бюджете, как и любые другие данные, поэтому он синхронизируется на ваших собственных устройствах, если вы используете сервер синхронизации, и он никогда не отправляется какой-либо третьей стороне.
 
-![The Save geolocation button in the payee field on the mobile transaction screen](/img/payees/payee-locations/payee-locations-save.png)
+![Кнопка геолокации Save в поле payee на экране мобильной транзакции](/img/payees/payee-locations/payee-locations-save.png)
 
-## Using the Nearest Payee
+## Использование ближайшего плательщика {#using-the-nearest-payee}
 
-Once you have saved one or more payee locations, Actual can suggest the nearest one as you enter a transaction, or set it for you with a single tap.
+После того, как вы сохранили одно или несколько мест получателя, Actual может предложить ближайшее, когда вы вводите транзакцию, или установить его для вас одним нажатием.
 
-1. Begin entering a new transaction.
-2. If any saved payees are within 500 meters of your current location, a **Nearby Payees** section appears in the payee autocomplete, and a **Nearby** geolocation button appears in the payee field.
-3. Either select a payee from the **Nearby Payees** section of the autocomplete, or tap the **Nearby** button to set the closest matching payee automatically.
-4. Continue entering the rest of the transaction details.
-5. Save the transaction.
+1. Начните вводить новую сделку.
+2. Если какие-либо сохраненные получатели находятся в пределах 500 метров от вашего текущего местоположения, **Ближайшие зарплаты** раздел отображается в автозаполнении получателя, а **Рядом** Кнопка геолокации появляется в поле payee.
+3. Выберите плательщика из **Ближайшие зарплаты** раздел автозаполнения или коснитесь **Рядом** Кнопка для автоматической установки ближайшего совпадающего получателя.
+4. Продолжайте вводить остальные детали транзакции.
+5. Сохраните сделку.
 
-![The Nearby geolocation button in the payee field](/img/payees/payee-locations/payee-locations-nearby-button.png)
+![Кнопка геолокации Nearby в поле payee](/img/payees/payee-locations/payee-locations-nearby-button.png)
 
-![The Nearby Payees section in the payee autocomplete, with a Forget button beside each payee](/img/payees/payee-locations/payee-locations-nearby-autocomplete.png)
+![Раздел Nearby Payees в автозаполнении получателя с кнопкой Забудь рядом с каждым получателем](/img/payees/payee-locations/payee-locations-nearby-autocomplete.png)
 
-## Forgetting a Payee Location
+## Забыли место выплаты {#forgetting-a-payee-location}
 
-There is no dedicated screen for managing all of your saved payee locations. Instead, you can remove a location while you are at or near it:
+Нет выделенного экрана для управления всеми сохраненными местоположениями получателей. Вместо этого вы можете удалить местоположение, пока вы находитесь на нем или рядом с ним:
 
-1. Begin entering a new transaction at or near the payee location you want to remove.
-2. Tap the payee field to open the payee autocomplete.
-3. Tap the **Forget** option next to the payee entry (shown in the autocomplete screenshot above).
+1. Начните вводить новую транзакцию в месте или рядом с местом получателя, которое вы хотите удалить.
+2. Нажмите на поле получателя, чтобы открыть автозаполнение получателя.
+3. Нажмите **Забудь** опция рядом с входом получателя (показано на скриншоте автозаполнения выше).
 
-## Troubleshooting Location Permissions
+## Устранение неполадок Разрешение на размещение {#troubleshooting-location-permissions}
 
-If the location prompt never appears, your browser may not consider the connection secure. Browsers only allow access to sensitive APIs like geolocation in [secure contexts](https://developer.mozilla.org/en-US/docs/Web/Security/Secure_Contexts). When you reach your server over an IP address such as `http://192.168.x.x`, the connection is plain HTTP rather than HTTPS, so the browser silently refuses to even prompt for location permission. Serving Actual over HTTPS resolves this.
+Если подсказка о местоположении никогда не появится, ваш браузер может не считать соединение безопасным. Браузеры разрешают доступ только к чувствительным API, таким как геолокация. [безопасные контексты](https://developer.mozilla.org/en-US/docs/Web/Security/Secure_Contexts)Когда вы достигаете своего сервера по IP-адресу, такому как `http://192.168.x.x`, соединение является простым HTTP, а не HTTPS, поэтому браузер молча отказывается даже запросить разрешение на местоположение.

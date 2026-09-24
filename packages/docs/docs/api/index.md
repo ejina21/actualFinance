@@ -1,24 +1,24 @@
-# Using the API
+# Использование API {#using-the-api}
 
 import { Method, MethodBox } from './types';
 
 :::warning
 
-Many people mistake the term "API" for a HTTP and/or REST-full API. Actual **does not** expose HTTP endpoints that can be called. We do, however, offer a NPM package - API - that allows interacting with the product programmatically.
+Многие люди ошибочно принимают термин «API» за HTTP и / или REST-полный API. **не** Однако мы предлагаем пакет NPM - API - который позволяет взаимодействовать с продуктом программно.
 
 :::
 
-The API gives you full programmatic access to your data. It allows to run the UI in _headless_ mode thus interacting with it as-if it was a user clicking around in it. If you are a developer, you can use this to import transactions from a custom source, export data to another app like Excel, or write anything you want on top of Actual.
+API предоставляет вам полный программный доступ к вашим данным. Он позволяет запускать пользовательский интерфейс в режиме headless , таким образом взаимодействуя с ним, если это был пользователь, щелкающий по нему. Если вы являетесь разработчиком, вы можете использовать его для импорта транзакций из пользовательского источника, экспорта данных в другое приложение, такое как Excel, или писать все, что вы хотите, поверх Actual.
 
-One thing to keep in mind: Actual is not like most other apps. While your data is stored on a server, the server does not have the functionality for analyzing details of or modifying your budget. As a result, the API client contains all the code necessary to query your data and will work on a local copy. Right now, the primary use case is custom importers and exporters.
+Единственное, что нужно иметь в виду: Actual не похож на большинство других приложений. В то время как ваши данные хранятся на сервере, сервер не имеет функции для анализа деталей или изменения вашего бюджета. В результате клиент API содержит весь код, необходимый для запроса ваших данных, и будет работать с локальной копией. В настоящее время основным вариантом использования являются импортеры и экспортеры.
 
-## Getting Started
+## Начало работы {#getting-started}
 
-We provide an official Node.js client in the `@actual-app/api` package. Other languages are not supported at this point.
+Мы предоставляем официальный клиент Node.js `@actual-app/api` Другие языки на данный момент не поддерживаются.
 
-The client is [open-source on GitHub](https://github.com/actualbudget/actual/tree/master/packages/api) along with the rest of Actual if you want to see the code.
+Клиент является [Открытый исходный код на GitHub](https://github.com/actualbudget/actual/tree/master/packages/api) Вместе с остальными действительными, если вы хотите увидеть код.
 
-Install it with either `npm` or `yarn`:
+Установите его либо `npm` или `yarn`:
 
 ```
 npm install --save @actual-app/api
@@ -28,9 +28,9 @@ npm install --save @actual-app/api
 yarn add @actual-app/api
 ```
 
-### TypeScript
+### TypeScript {#typescript}
 
-`@actual-app/api` ships TypeScript declarations. To consume them, your `tsconfig.json` must use a modern `moduleResolution`:
+`@actual-app/api` Для того, чтобы потреблять их, ваши `tsconfig.json` Необходимо использовать современную `moduleResolution`:
 
 ```json
 {
@@ -40,11 +40,11 @@ yarn add @actual-app/api
 }
 ```
 
-Legacy `"node"` / `"node10"` / `"classic"` resolution is not supported in strict TypeScript mode. The published declarations rely on package.json `exports` conditions, which older resolvers don't honor.
+Наследие `"node"` / `"node10"` / `"classic"` Резолюция не поддерживается в строгом режиме TypeScript. Опубликованные декларации опираются на package.json `exports` условия, которые старые решатели не соблюдают.
 
-### Connecting to a Remote Server
+### Подключение к удаленному серверу {#connecting-to-a-remote-server}
 
-Next, you'll need connect to your running server version of Actual to access your budget files.
+Затем вам нужно будет подключиться к запущенной серверной версии Actual для доступа к вашим бюджетным файлам.
 
 ```js
 let api = require('@actual-app/api');
@@ -72,23 +72,23 @@ let api = require('@actual-app/api');
 })();
 ```
 
-Heads up! You probably don't want to hard-code the passwords like that, especially if you'll be using Git to track your code. You can use environment variables to store the passwords instead, or read them in from a file, or request them interactively when running the script instead.
+Вы, вероятно, не хотите жестко кодировать такие пароли, особенно если вы будете использовать Git для отслеживания своего кода. Вы можете использовать переменные среды для хранения паролей вместо этого, или читать их из файла, или запрашивать их интерактивно при запуске сценария вместо этого.
 
-### Self-Signed Https Certificates
+### Самоподписанные сертификаты Https {#self-signed-https-certificates}
 
-If the serverURL is using [self-signed or custom CA certificates](../config/https.md), additional Node.js configuration will be needed for the connections to succeed.
+Если сервер использует [самоподписанные или заказные сертификаты CA](../config/https.md)Для успешного подключения потребуется дополнительная конфигурация Node.js.
 
-The API communicates with the server using Node's built-in `fetch`. There are a few ways to get Node.js to trust the self-signed certificate.
+API взаимодействует с сервером, используя встроенный узел `fetch`Есть несколько способов заставить Node.js доверять самоподписанному сертификату.
 
-- Option 1: Point environment variable [NODE_EXTRA_CA_CERTS](https://nodejs.org/api/cli.html#node_extra_ca_certsfile) to the path of a file containing the public certificate.
-- Option 2: Set environment variable [NODE_TLS_REJECT_UNAUTHORIZED](https://nodejs.org/api/cli.html#node_tls_reject_unauthorizedvalue) to `0`. Not recommended if your program reaches out to any other endpoints other than the Actual server.
-- Options 3: Use OpenSSL CA certificates configuration for Node and add your certificate to the OpenSSL SSL_CERT_DIR. What this requires depends on your build of Node.js, and the configuration details are beyond the scope of this documentation. See the [Node.js OpenSSL Strategy](https://github.com/nodejs/TSC/blob/main/OpenSSL-Strategy.md) page for a starting point.
+- Вариант 1: Точечная переменная среды [NODE EXTRA CA CERTS](https://nodejs.org/api/cli.html#node_extra_ca_certsfile) путь к файлу, содержащему публичный сертификат.
+- Вариант 2: Установить переменную среды [NODE TLS REJECT UNAUTHORIZED](https://nodejs.org/api/cli.html#node_tls_reject_unauthorizedvalue) то `0`Не рекомендуется, если ваша программа обращается к любым другим конечным точкам, кроме фактического сервера.
+- Варианты 3: Используйте конфигурацию сертификатов OpenSSL CA для узла и добавьте свой сертификат в OpenSSL SSL CERT DIR. Что это требует, зависит от вашей сборки Node.js, и детали конфигурации выходят за рамки этой документации. [Стратегия OpenSSL Node.js](https://github.com/nodejs/TSC/blob/main/OpenSSL-Strategy.md) Страница для отправной точки.
 
-## Using the API in a Browser
+## Использование API в браузере {#using-the-api-in-a-browser}
 
 <ExperimentalFeatureWarning />
 
-The package also ships a browser build. When you bundle your web app with a modern bundler (for example Vite), the package's `browser` entry is picked up automatically and you use the same methods as in Node.js:
+Пакет также отправляет сборку браузера.Когда вы объединяете свое веб-приложение с современным пульвером (например, Vite), пакет `browser` Запись подбирается автоматически, и вы используете те же методы, что и в Node.js:
 
 ```js
 import * as api from '@actual-app/api';
@@ -103,19 +103,19 @@ console.log(await api.getAccounts());
 await api.shutdown();
 ```
 
-Behind the scenes, `init` starts a Web Worker running the same budget engine the Actual web app uses, backed by SQLite compiled to WebAssembly. Your budget data is stored in the browser's IndexedDB and stays on the device.
+За кулисами, `init` Запускает веб-работник, работающий на том же бюджетном движке, который использует фактическое веб-приложение, поддерживаемое SQLite, скомпилированным в WebAssembly. Ваши бюджетные данные хранятся в IndexedDB браузера и остаются на устройстве.
 
-In the browser, `dataDir` is a path inside the worker's virtual file system rather than a folder on disk. It is optional: it defaults to `/documents`, and if you pass a custom path it is created automatically and persisted to IndexedDB just the same.
+В браузере, `dataDir` Это путь внутри виртуальной файловой системы рабочего, а не папка на диске. Это необязательно: по умолчанию `/documents`И если вы проходите пользовательский путь, он автоматически создается и сохраняется в IndexedDB.
 
-The browser build is fully self-contained: the Web Worker and its WebAssembly and data files are inlined into the package. There are no extra files to copy or serve, and no bundler configuration is required (no `optimizeDeps` tweaks, no worker or asset plugins). Importing the package and calling `init()` is all that's needed.
+Сборка браузера полностью автономна: Web Worker и его WebAssembly и файлы данных встроены в пакет. Дополнительных файлов для копирования или обслуживания нет, и конфигурация пакета не требуется (нет). `optimizeDeps` Настройки, никаких плагинов для рабочих или активов. Импорт пакета и вызов `init()` Это все, что нужно.
 
-:::caution Cross-origin isolation is required
-The engine uses `SharedArrayBuffer`, so the page that runs the API must be served **cross-origin isolated**: over HTTPS, with `Cross-Origin-Opener-Policy: same-origin` and `Cross-Origin-Embedder-Policy: require-corp`. This is a hosting/server requirement (it cannot be bundled away). See [Enabling SharedArrayBuffer Access](../troubleshooting/shared-array-buffer.md). In local development, set the same headers on your dev server (for example via a small Vite middleware plugin).
+:::caution Требуется перекрестная изоляция
+Двигатель использует `SharedArrayBuffer`Таким образом, страница, которая запускает API, должна обслуживаться. **изолированное перекрестное происхождение**- через HTTPS, с `Cross-Origin-Opener-Policy: same-origin` и `Cross-Origin-Embedder-Policy: require-corp`Это требование хостинга / сервера (его нельзя связать). [Доступ к SharedArrayBuffer](../troubleshooting/shared-array-buffer.md)В локальной разработке установите те же заголовки на своем сервере разработчиков (например, через небольшой плагин промежуточного программного обеспечения Vite).
 :::
 
-## Handling Errors
+## Устранение ошибок {#handling-errors}
 
-When an API method fails, the rejected error usually carries a human-readable `message` in English. For the most common connection and download failures, the error also carries a stable, machine-readable `code`. Use `code` when your app needs to react to a specific kind of failure (for example, to show its own translated message) — matching on the text of `message` is fragile because the wording can change between releases.
+Когда метод API терпит неудачу, отклоненная ошибка обычно несет в себе читаемую человеком информацию. `message` Для наиболее распространенных сбоев подключения и загрузки ошибка также несет стабильный, машиночитаемый `code`Используй. `code` когда вашему приложению необходимо реагировать на определенный вид сбоя (например, показывать свое собственное переведенное сообщение) — сопоставление по тексту `message` Это хрупко, потому что формулировка может меняться между выпусками.
 
 ```js
 try {
@@ -144,34 +144,34 @@ try {
 }
 ```
 
-These are the codes for the common failures:
+Это коды для распространенных сбоев:
 
-| Code                     | Meaning                                                                                              |
-| ------------------------ | ---------------------------------------------------------------------------------------------------- |
-| `network-failure`        | The server could not be reached — the `serverURL` is wrong, or the server is offline or unreachable. |
-| `network`                | Same as `network-failure`, reported by the download and encryption-key checks.                       |
-| `invalid-password`       | The server password given to `init` is wrong.                                                        |
-| `token-expired`          | The session token given to `init` is invalid or has expired.                                         |
-| `unauthorized`           | The client is not logged in to the server.                                                           |
-| `budget-not-found`       | No budget file matches the given sync ID.                                                            |
-| `missing-key`            | The budget file is end-to-end encrypted, and no encryption password was given.                       |
-| `decrypt-failure`        | The budget file could not be decrypted — the encryption password is wrong.                           |
-| `old-key-style`          | The budget file uses an old, unsupported encryption key style.                                       |
-| `out-of-sync-migrations` | The budget file is damaged or from a version too old to open. Files from a newer Actual open fine.   |
+| Код                      | значение                                                                                       |
+| ------------------------ | ---------------------------------------------------------------------------------------------- |
+| `network-failure`        | Сервер не может быть найден — `serverURL` Это неправильно, или сервер отключен или недоступен. |
+| `network`                | То же самое `network-failure`, сообщается скачиванием и проверками ключа шифрования.           |
+| `invalid-password`       | Пароль сервера, предоставленный `init` Это неправильно.                                        |
+| `token-expired`          | Токен сессии, предоставленный `init` является недействительным или истек.                      |
+| `unauthorized`           | Клиент не входит на сервер.                                                                    |
+| `budget-not-found`       | Ни один бюджетный файл не соответствует данному идентификатору синхронизации.                  |
+| `missing-key`            | Бюджетный файл полностью зашифрован, и пароль шифрования не был предоставлен.                  |
+| `decrypt-failure`        | Бюджетный файл расшифровать не удалось — пароль шифрования неправильный.                       |
+| `old-key-style`          | Бюджетный файл использует старый, неподдерживаемый стиль шифрования.                           |
+| `out-of-sync-migrations` | Бюджетный файл поврежден или из слишком старой версии для открытия.                            |
 
 :::note
-`code` is present for the common connection and download failures listed above. Other errors may only carry a `message`, so always keep a fallback.
+`code` присутствует для общего соединения и сбоев загрузки, перечисленных выше. Другие ошибки могут нести только `message`Так что всегда держите запасной вариант.
 :::
 
-## Writing Data Importers
+## Написание импортеров данных {#writing-data-importers}
 
-If you are using another app, like YNAB or Mint, you might want to migrate your data into Actual. Right now, Actual officially supports [importing YNAB4 data](../migration/ynab4.md) and [importing nYNAB data](../migration/nynab.md) (and it works very well). But if you want to import all of your data into Actual, you can write a custom importer.
+Если вы используете другое приложение, такое как YNAB или Mint, вы можете перенести свои данные в Actual. [Импорт данных YNAB4](../migration/ynab4.md) и [импорт данных nYNAB](../migration/nynab.md) Но если вы хотите импортировать все свои данные в Actual, вы можете написать пользовательский импортер.
 
-Note that this is not about importing transactions. If all you want to do is add transactions from a custom source (like your bank's API), use [`importTransactions`](./reference.md#importtransactions). In this context, a custom importer is something that takes _all_ of your data (budgets, transactions, payees, etc) and dumps them all into a new file in Actual.
+Если все, что вы хотите сделать, это добавить транзакции из пользовательского источника (например, API вашего банка), используйте [`importTransactions`](./reference.md#importtransactions)В этом контексте пользовательский импортер - это то, что берет все ваши данные (бюджеты, транзакции, получатели платежей и т. Д.) и сбрасывает их все в новый файл в режиме реального времени.
 
-The API has a special mode for bulk importing data. In this mode, a new file is always created (you can't bulk import into an existing file), and it will run much faster than if you did it normally.
+В этом режиме всегда создается новый файл (вы не можете массово импортировать в существующий файл), и он будет работать намного быстрее, чем если бы вы делали это обычно.
 
-To write a custom importer, use `runImport`. It takes the _name_ of the file you want to create and runs a function. Here is an example importer:
+Чтобы написать заказ импортера, использовать `runImport`Он берет имя файла, который вы хотите создать, и запускает функцию. Вот пример импортера:
 
 ```js
 let api = require('@actual-app/api');
@@ -192,42 +192,42 @@ async function run() {
 api.runImport('My-Budget', run);
 ```
 
-This is very simple, but it takes some data in `my-data.json` and creates all the accounts and transactions from it. Functions used to convert items (like `convertAccount`) are not included here. Use the [reference docs](./reference.md) to learn the shape of objects that Actual expects.
+Это очень просто, но требует некоторых данных. `my-data.json` и создает все счета и транзакции из него. Функции, используемые для конвертации предметов (например, `convertAccount`) сюда не включены. [справочные документы](./reference.md) Узнать форму объектов, которые реально ожидают.
 
-**Note:** it's important that [`addTransactions`](./reference.md#addtransactions) is used here. You want to use it instead of [`importTransactions`](./reference.md#importtransactions) when dumping raw data into Actual. The former will not run the reconciliation process (which deduplicates transactions), and won't create the other side of transfer transactions, and more. If you use `importTransactions` it may adjust your data in ways that don't match the data you're importing.
+**Примечание:** Важно, чтобы [`addTransactions`](./reference.md#addtransactions) Вы хотите использовать его вместо [`importTransactions`](./reference.md#importtransactions) Первый не будет запускать процесс сверки (который дублирует транзакции) и не будет создавать другую сторону транзакций передачи и многое другое. `importTransactions` Он может корректировать ваши данные таким образом, чтобы они не соответствовали данным, которые вы импортируете.
 
-Check out the [YNAB4](https://github.com/actualbudget/actual/blob/master/packages/loot-core/src/server/importers/ynab4.ts) and [YNAB5](https://github.com/actualbudget/actual/blob/master/packages/loot-core/src/server/importers/ynab5.ts) importers to see how a real importer works.
+Проверь. [YNAB4](https://github.com/actualbudget/actual/blob/master/packages/loot-core/src/server/importers/ynab4.ts) и [NAB5](https://github.com/actualbudget/actual/blob/master/packages/loot-core/src/server/importers/ynab5.ts) Импортеры видят, как работает настоящий импортер.
 
-## Methods
+## Методы {#methods}
 
-These are the public methods that you can use. The API also exports low-level functions like `init`, `send`, `disconnect`, and `loadBudget` if you want to manually manage the connection. You can [read the source](https://github.com/actualbudget/actual/blob/master/packages/loot-core/src/server/main.ts) to learn about those methods (search for `export const lib`).
+Это общедоступные методы, которые вы можете использовать. API также экспортирует низкоуровневые функции, такие как: `init`, `send`, `disconnect`и `loadBudget` Если вы хотите вручную управлять соединением. [Читать источник](https://github.com/actualbudget/actual/blob/master/packages/loot-core/src/server/main.ts) Чтобы узнать об этих методах (поищите их) `export const lib`).
 
-#### `init`
+#### `init` {#init}
 
 <Method name="init" argsObject={true} args={[{ properties: [{ name: 'dataDir', type: 'string' }, { name: 'serverURL', type: 'string' }, { name: 'password', type: 'string' }, { name: 'verbose', type: 'boolean' }]}]} returns="Promise<void>" />
 
-Call this before attempting to use any of the API methods. This will connect to the server using the provided password and load the budget data.
+Позвоните, прежде чем пытаться использовать какой-либо из методов API. Это подключится к серверу с помощью предоставленного пароля и загрузит бюджетные данные.
 
-`dataDir` defaults to the current working directory in Node.js, and to `/documents` in the [browser build](#using-the-api-in-a-browser).
+`dataDir` по умолчанию для текущего рабочего каталога в Node.js и `/documents` в [Браузерная сборка](#using-the-api-in-a-browser).
 
-If no `serverURL` is provided, no network connections will be made, and you'll only be able to access budget files already downloaded locally.
+Если нет `serverURL` Предоставляется, нет сетевых подключений, и вы сможете получить доступ только к бюджетным файлам, уже загруженным локально.
 
-You can find your budget id in the "Advanced" section of the settings page.
+Вы можете найти свой идентификатор бюджета в разделе «Передовые» страницы настроек.
 
-#### `shutdown`
+#### `shutdown` {#shutdown}
 
 <Method name="shutdown" args={[]} returns="Promise<void>" />
 
-Close the current budget file, and stop any other ongoing processes. It's recommended to call this before exiting your script.
+Закройте текущий бюджетный файл и прекратите любые другие текущие процессы. Рекомендуется позвонить по нему, прежде чем выходить из сценария.
 
-#### `utils.amountToInteger`
+#### `utils.amountToInteger` {#utilsamounttointeger}
 
 <Method name="utils.amountToInteger" args={[{ name: 'amount', type: 'number' }]} returns="number" />
 
-Convert a currency amount (such as `123.45`) represented as a floating point number to the integer format Actual uses internally (i.e. `12345`).
+конвертировать сумму валюты (например, `123.45`) представлен в виде числа с плавающей запятой для целого формата Actual, используемого внутри (т.е. `12345`).
 
-#### `utils.integerToAmount`
+#### `utils.integerToAmount` {#utilsintegertoamount}
 
 <Method name="utils.integerToAmount" args={[{ name: 'amount', type: 'number' }]} returns="number" />
 
-Convert an integer amount as used internally by Actual (such as `12345`) to the traditional floating point (i.e. `123.45`).
+Конвертировать целое число, используемое внутри компании Actual (например, `12345`) к традиционной плавающей точке (т.е. `123.45`).

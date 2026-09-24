@@ -27,14 +27,14 @@ const sidebars = {
     'index',
     {
       type: 'category',
-      label: 'Getting Started',
+      label: 'Начало работы',
       collapsed: false,
       className: 'no-indent section-header',
       items: [
         'getting-started/roadmap-for-new-users',
         {
           type: 'category',
-          label: 'Installing Actual',
+          label: 'Установка Actual',
           collapsed: true,
           link: {
             type: 'doc',
@@ -43,7 +43,7 @@ const sidebars = {
           items: [
             {
               type: 'category',
-              label: 'On Your Own Machine',
+              label: 'На своём устройстве',
               collapsible: false,
               className: 'no-indent',
               items: [
@@ -55,7 +55,7 @@ const sidebars = {
             },
             {
               type: 'category',
-              label: 'In the Cloud',
+              label: 'В облаке',
               collapsible: false,
               className: 'no-indent',
               items: ['install/pikapods', 'install/fly'],
@@ -67,7 +67,7 @@ const sidebars = {
         'getting-started/tracking-budget',
         {
           type: 'category',
-          label: 'Switching from Another App',
+          label: 'Переход из другого приложения',
           link: {
             type: 'doc',
             id: 'migration/index',
@@ -80,13 +80,13 @@ const sidebars = {
 
     {
       type: 'category',
-      label: 'Using Actual',
+      label: 'Работа с Actual',
       collapsed: true,
       className: 'no-indent section-header',
       items: [
         {
           type: 'category',
-          label: 'Budgeting',
+          label: 'Бюджет',
           collapsed: true,
           link: {
             type: 'doc',
@@ -97,7 +97,7 @@ const sidebars = {
             'budgeting/returns-and-reimbursements',
             {
               type: 'category',
-              label: 'Managing Credit Cards',
+              label: 'Кредитные карты',
               collapsible: true,
               link: {
                 type: 'doc',
@@ -120,7 +120,7 @@ const sidebars = {
 
         {
           type: 'category',
-          label: 'Accounts & Transactions',
+          label: 'Счета и операции',
           collapsed: true,
           link: {
             type: 'doc',
@@ -130,14 +130,14 @@ const sidebars = {
             'accounts/reconciliation',
             {
               type: 'category',
-              label: 'Importing Transactions',
+              label: 'Импорт операций',
               collapsible: false,
               className: 'no-indent',
               items: [
                 'transactions/importing',
                 {
                   type: 'category',
-                  label: 'Connecting Your Bank',
+                  label: 'Подключение банка',
                   link: {
                     type: 'doc',
                     id: 'advanced/bank-sync',
@@ -155,7 +155,7 @@ const sidebars = {
             },
             {
               type: 'category',
-              label: 'Working with Transactions',
+              label: 'Работа с операциями',
               collapsible: false,
               className: 'no-indent',
               items: [
@@ -169,14 +169,14 @@ const sidebars = {
             },
             {
               type: 'category',
-              label: 'Payees',
+              label: 'Получатели платежей',
               collapsible: false,
               className: 'no-indent',
               items: ['transactions/payees', 'transactions/payee-locations'],
             },
             {
               type: 'category',
-              label: 'Rules',
+              label: 'Правила',
               collapsed: true,
               link: {
                 type: 'doc',
@@ -188,7 +188,7 @@ const sidebars = {
         },
         {
           type: 'category',
-          label: 'Reports',
+          label: 'Отчёты',
           collapsed: true,
           link: {
             type: 'doc',
@@ -201,7 +201,7 @@ const sidebars = {
         'notifications',
         {
           type: 'category',
-          label: 'Experimental Features',
+          label: 'Экспериментальные функции',
           collapsed: true,
           link: {
             type: 'doc',
@@ -224,7 +224,7 @@ const sidebars = {
 
     {
       type: 'category',
-      label: 'Sync & Data Safety',
+      label: 'Синхронизация и защита данных',
       collapsed: true,
       className: 'no-indent section-header',
       items: [
@@ -232,7 +232,7 @@ const sidebars = {
         'getting-started/manage-files',
         {
           type: 'category',
-          label: 'Backup & Restore',
+          label: 'Резервное копирование и восстановление',
           collapsed: true,
           items: ['backup-restore/backup', 'backup-restore/restore'],
         },
@@ -241,13 +241,13 @@ const sidebars = {
 
     {
       type: 'category',
-      label: 'Self-Hosting Your Server',
+      label: 'Собственный сервер',
       collapsed: true,
       className: 'no-indent section-header',
       items: [
         {
           type: 'category',
-          label: 'Server Configuration',
+          label: 'Настройка сервера',
           collapsed: true,
           link: {
             type: 'doc',
@@ -266,7 +266,7 @@ const sidebars = {
 
     {
       type: 'category',
-      label: 'For Developers',
+      label: 'Разработчикам',
       collapsed: true,
       className: 'no-indent section-header',
       items: [
@@ -294,14 +294,14 @@ const sidebars = {
 
     {
       type: 'category',
-      label: 'Help & Support',
+      label: 'Помощь и поддержка',
       collapsed: true,
       className: 'no-indent section-header',
       items: [
         'faq',
         {
           type: 'category',
-          label: 'Troubleshooting',
+          label: 'Решение проблем',
           collapsed: true,
           items: [
             'troubleshooting/server',
@@ -319,18 +319,8 @@ const sidebars = {
     'vision',
     'community-repos',
     {
-      type: 'link',
-      label: 'Open Bug Reports',
-      href: 'https://github.com/actualbudget/actual/issues',
-    },
-    {
-      type: 'link',
-      label: 'Feature Requests',
-      href: 'https://github.com/actualbudget/actual/issues?q=label%3A%22needs+votes%22+sort%3Areactions-%2B1-desc+',
-    },
-    {
       type: 'category',
-      label: 'Contributing',
+      label: 'Участие в проекте',
       link: {
         type: 'doc',
         id: 'contributing/index',
@@ -339,7 +329,7 @@ const sidebars = {
       items: [
         {
           type: 'category',
-          label: 'The Actual Project Structure',
+          label: 'Структура проекта Actual',
           link: {
             type: 'doc',
             id: 'contributing/project-details/index',
@@ -364,14 +354,14 @@ const sidebars = {
         'contributing/windows',
         {
           type: 'category',
-          label: 'Documentation',
+          label: 'Документация',
           collapsible: false,
           className: 'no-indent',
           items: ['contributing/writing-docs'],
         },
         {
           type: 'category',
-          label: 'Project Leadership',
+          label: 'Управление проектом',
           collapsible: false,
           className: 'no-indent',
           items: [
@@ -387,11 +377,6 @@ const sidebars = {
     },
     'releases',
     'upcoming-release-notes',
-    {
-      type: 'link',
-      label: 'Chat with us on Discord',
-      href: 'https://discord.gg/8JfAXSgfRf',
-    },
   ],
 };
 module.exports = sidebars;

@@ -1,0 +1,22 @@
+{
+  "title": {
+    "message": "Actual Budget",
+    "description": "The title in the navbar"
+  },
+  "logo.alt": {
+    "message": "Actual Budget",
+    "description": "The alt text of navbar logo"
+  },
+  "item.label.Возможности": {
+    "message": "Возможности",
+    "description": "Navbar item with label Возможности"
+  },
+  "item.label.Обзор": {
+    "message": "Обзор",
+    "description": "Navbar item with label Обзор"
+  },
+  "item.label.Документация": {
+    "message": "Документация",
+    "description": "Navbar item with label Документация"
+  }
+}

@@ -1,38 +1,38 @@
-# Custom Themes
+# Пользовательские темы {#custom-themes}
 
-Custom themes allow you to personalize the appearance of Actual by installing custom color schemes. You can choose from a catalog of community-created themes or create your own by defining CSS variables that override the default theme colors.
+Пользовательские темы позволяют персонализировать внешний вид Actual путем установки пользовательских цветовых схем.Вы можете выбрать из каталога тем, созданных сообществом, или создать свои собственные, определив переменные CSS, которые перекрывают цвета тем по умолчанию.
 
-## Using Custom Themes
+## Использование пользовательских тем {#using-custom-themes}
 
-### Installing a Theme from the Catalog
+### Установка темы из каталога {#installing-a-theme-from-the-catalog}
 
-The easiest way to install a custom theme is to choose one from the catalog:
+Самый простой способ установить пользовательскую тему - выбрать одну из каталога:
 
-1. Go to **Settings** → **Themes**
-2. Select **Custom theme** from the theme dropdown
-3. The theme installer will open showing available themes from the catalog
-4. Click on any theme to install it immediately
+1. Пойти **Настройки** → **Темы**
+2. Выбрать **Пользовательская тема** От темы скачать
+3. Установщик темы откроет показ доступных тем из каталога
+4. Нажмите на любую тему, чтобы установить ее немедленно
 
-Themes in the catalog are hosted on GitHub and are automatically fetched when you select them. Each theme shows a color palette preview (6 colors in a 3x2 grid) and includes a link to its source repository.
+Темы в каталоге размещаются на GitHub и автоматически извлекаются при их выборе.Каждая тема показывает предварительный просмотр цветовой палитры (6 цветов в сетке 3х2) и включает ссылку на ее исходный репозиторий.
 
-### Installing a Theme by Pasting CSS
+### Установка темы путем вставки CSS {#installing-a-theme-by-pasting-css}
 
-You can also install a custom theme by pasting CSS directly:
+Вы также можете установить пользовательскую тему, вставив CSS напрямую:
 
-1. Go to **Settings** → **Themes** → **Custom theme**
-2. Scroll down to the "or paste CSS directly" section
-3. Paste your theme CSS into the text area
-4. Click **Apply**
+1. Пойти **Настройки** → **Темы** → **Пользовательская тема**
+2. Прокрутите вниз до раздела «или вставьте CSS напрямую».
+3. Вставьте свою тему CSS в текстовую область
+4. щелкнуть **Применять**
 
-The CSS will be validated before installation. If there are any errors, they will be displayed below the text area.
+CSS будет проверяться перед установкой. Если есть какие-либо ошибки, они будут отображаться ниже текстовой области.
 
-## Publishing Custom Themes
+## Издательство Custom Themes {#publishing-custom-themes}
 
-If you want to create your own custom theme and publish it for the community to use, you'll need to understand how Actual's theming system works.
+Если вы хотите создать свою собственную тему и опубликовать ее для использования сообществом, вам нужно понять, как работает тематическая система Actual.
 
-### Theme Format
+### Тематический формат {#theme-format}
 
-Custom themes must be written as CSS using the `:root` selector with CSS custom properties (variables). The format is:
+Пользовательские темы должны быть написаны как CSS с использованием `:root` селектор с пользовательскими свойствами CSS (вариабельными). Формат:
 
 ```css
 :root {
@@ -43,15 +43,15 @@ Custom themes must be written as CSS using the `:root` selector with CSS custom 
 }
 ```
 
-**Important requirements:**
+**Важные требования:**
 
-- The CSS must contain **exactly** `:root { ... }` and nothing else
-- Only custom properties starting with `--` are allowed; Actual uses `--color-*` variables for theming
-- **Values** may use `var(--custom-property-name)` to reference other variables (e.g. to reuse existing theme variables). Only this form is allowed; fallbacks like `var(--name, value)` are not supported.
-- No other selectors, at-rules (@import, @media, etc.), or nested blocks are allowed
-- Comments are allowed and will be stripped during validation
+- CSS должен содержать **точно** `:root { ... }` И ничего больше
+- Только свойства, начинающиеся с `--` Допускается; фактическое использование `--color-*` переменные для тематики
+- **ценности** может использовать `var(--custom-property-name)` для ссылки на другие переменные (например, для повторного использования существующих переменных тем). Разрешается использовать только эту форму; `var(--name, value)` Они не поддерживаются.
+- Никакие другие селекторы, правила (@import, @media и т. д.) или вложенные блоки не допускаются.
+- Комментарии разрешены и будут удалены во время проверки.
 
-Example using variables:
+Пример использования переменных:
 
 ```css
 :root {
@@ -62,47 +62,47 @@ Example using variables:
 }
 ```
 
-### Available CSS Variables
+### Доступные переменные CSS {#available-css-variables}
 
-Custom themes can override any of the CSS variables defined in Actual's base themes. These variables correspond to the theme color keys found in the theme files:
+Пользовательские темы могут переопределять любую из переменных CSS, определенных в базовых темах Actual. Эти переменные соответствуют цветовым клавишам темы, найденным в файлах темы:
 
 - `packages/desktop-client/src/style/themes/light.ts`
 - `packages/desktop-client/src/style/themes/dark.ts`
 - `packages/desktop-client/src/style/themes/midnight.ts`
 
-Common variables include:
+Общие переменные включают:
 
-**Page Colors:**
+**Цвета страниц:**
 
-- `--color-pageBackground` - Main page background
-- `--color-pageText` - Primary text color
-- `--color-pageTextSubdued` - Secondary/subdued text
-- `--color-pageTextPositive` - Positive/action text color
-- `--color-pageTextLink` - Link text color
+- `--color-pageBackground` Основной фон страницы
+- `--color-pageText` Основной цвет текста
+- `--color-pageTextSubdued` - Вторичный/подчиненный текст
+- `--color-pageTextPositive` - Позитивный/активный цвет текста
+- `--color-pageTextLink` Цвет текста ссылки
 
-**Table Colors:**
+**Цвета стола:**
 
-- `--color-tableBackground` - Table background
-- `--color-tableText` - Table text
-- `--color-tableBorder` - Table borders
-- `--color-tableRowBackgroundHover` - Row hover background
+- `--color-tableBackground` - Справочная информация
+- `--color-tableText` - Табличный текст
+- `--color-tableBorder` - Границы стола
+- `--color-tableRowBackgroundHover` - Рядовой фон
 
-**Button Colors:**
+**Цвета кнопок:**
 
-- `--color-buttonPrimaryBackground` - Primary button background
-- `--color-buttonPrimaryText` - Primary button text
-- `--color-buttonNormalBackground` - Normal button background
-- `--color-buttonNormalText` - Normal button text
+- `--color-buttonPrimaryBackground` Основной фон кнопки
+- `--color-buttonPrimaryText` Основной текст кнопки
+- `--color-buttonNormalBackground` Обычный фон кнопки
+- `--color-buttonNormalText` Обычный текст кнопки
 
-**Sidebar Colors:**
+**Цвета боковой панели:**
 
-- `--color-sidebarBackground` - Sidebar background
-- `--color-sidebarItemText` - Sidebar item text
-- `--color-sidebarItemTextSelected` - Selected sidebar item text
+- `--color-sidebarBackground` На заднем плане
+- `--color-sidebarItemText` Текст на боковой панели
+- `--color-sidebarItemTextSelected` - Выбранный текст элемента боковой панели
 
-**Graph Colors:**
+**Графические цвета:**
 
-These color palette impact custom report series colors in all variations - bar, line, donut, etc...
+Эти цветовые палитры влияют на пользовательские цвета серий отчетов во всех вариациях - бар, линия, пончик и т. Д.
 
 - `--color-chartQual1`
 - `--color-chartQual2`
@@ -114,37 +114,37 @@ These color palette impact custom report series colors in all variations - bar, 
 - `--color-chartQual8`
 - `--color-chartQual9`
 
-And many more! To see all available variables, check the theme files in the source code or look at an existing theme.
+Чтобы увидеть все доступные переменные, проверьте файлы темы в исходном коде или посмотрите на существующую тему.
 
-### Validation Rules
+### Правила проверки {#validation-rules}
 
-When you paste CSS or install from a catalog, the theme is validated to ensure it meets the requirements:
+При вставке CSS или установке из каталога тема проверяется на соответствие требованиям:
 
-1. Must contain exactly `:root { ... }`
-2. Only custom properties starting with `--` are allowed; Actual uses `--color-*` variables for theming
-3. Values may be literals (colors, lengths, etc.) or `var(--name)` references (no fallbacks)
-4. No at-rules (@import, @media, @keyframes, etc.)
-5. No nested selectors or blocks
-6. No content outside the `:root` block
+1. должен содержать точно `:root { ... }`
+2. Только свойства, начинающиеся с `--` Допускается; фактическое использование `--color-*` переменные для тематики
+3. Значения могут быть буквальными (цвета, длины и т.д.) или `var(--name)` Ссылки (без откатов)
+4. Никаких правил (@import, @media, @keyframes и т.д.)
+5. Нет вложенных селекторов или блоков
+6. Нет контента за пределами `:root` блокировать
 
-If validation fails, you'll see an error message explaining what's wrong.
+Если проверка не удалась, вы увидите сообщение об ошибке, объясняющее, что не так.
 
-### Creating a GitHub-Hosted Theme
+### Создание темы, размещенной на GitHub {#creating-a-github-hosted-theme}
 
-To share your theme with others or add it to the catalog, you can host it on GitHub:
+Чтобы поделиться своей темой с другими или добавить ее в каталог, вы можете разместить ее на GitHub:
 
-1. Create a new GitHub repository
-2. Create a file named `actual.css` in the root directory (on the `main` branch)
-3. Add your theme CSS to this file
+1. Создать новый репозиторий GitHub
+2. Создайте файл с именем `actual.css` в корневой директории (на `main` отделение
+3. Добавьте свою тему CSS в этот файл
 
-**Example repository structure:**
+**Пример структуры хранилища:**
 
 ```text
 your-theme-repo/
 └── actual.css          # Your theme CSS
 ```
 
-**Example `actual.css`:**
+**Пример `actual.css`:**
 
 ```css
 :root {
@@ -157,40 +157,40 @@ your-theme-repo/
 }
 ```
 
-The theme can then be referenced in the catalog using the format `owner/repo` (e.g., `actualbudget/demo-theme`).
+Затем на тему можно ссылаться в каталоге, используя формат. `owner/repo` (e.g., `actualbudget/demo-theme`).
 
-When your theme is added to the catalog, it will display a color palette preview. The palette is defined in the catalog JSON file and should include 6 representative colors from your theme (typically background colors, accent colors, and text colors).
+Когда ваша тема будет добавлена в каталог, она будет отображать предварительный просмотр цветовой палитры.Палитра определяется в файле каталога JSON и должна включать 6 репрезентативных цветов из вашей темы (обычно цвета фона, цвета акцента и цвета текста).
 
-### Example Theme
+### Пример темы {#example-theme}
 
-For a complete example of a custom theme, check out the [demo theme repository](https://github.com/actualbudget/demo-theme). This repository contains multiple theme variations and demonstrates the proper structure and format.
+Для полного примера пользовательской темы, проверьте [Демо репозиторий тем](https://github.com/actualbudget/demo-theme)Это хранилище содержит несколько вариаций тем и демонстрирует правильную структуру и формат.
 
-The demo theme includes examples of:
+Демо-тема включает в себя примеры:
 
-- Proper CSS variable naming
-- Complete theme definitions
+- Правильное название переменной CSS
+- Полные определения тем
 
-You can use this as a template for creating your own themes.
+Вы можете использовать это как шаблон для создания собственных тем.
 
-### Tips for Theme Development
+### Советы по развитию темы {#tips-for-theme-development}
 
-1. **Start with a base theme**: Copy the CSS variables from one of Actual's built-in themes (light, dark, or midnight) and modify the colors you want to change
-2. **Test incrementally**: Make small changes and test them in the app to see the results
-3. **Use the paste CSS feature**: During development, use the paste CSS feature to quickly test your theme without needing to host it on GitHub
-4. **Check variable names**: Make sure variable names match exactly (case-sensitive) - they should start with `--color-` followed by the theme key name
-5. **Consider accessibility**: Ensure sufficient contrast between text and background colors for readability
+1. **Начните с базовой темы**Скопируйте переменные CSS из одной из встроенных тем Actual (свет, темнота или полночь) и измените цвета, которые вы хотите изменить.
+2. **Тест постепенно**Внесите небольшие изменения и протестируйте их в приложении, чтобы увидеть результаты
+3. **Используйте функцию Paste CSS**Во время разработки используйте функцию пасты CSS, чтобы быстро протестировать свою тему без необходимости размещать ее на GitHub.
+4. **Проверьте переменные имена**Убедитесь, что имена переменных совпадают (чувствительные к делу) - они должны начинаться с `--color-` Далее следует ключевое название темы
+5. **Учитывать доступность**Обеспечить достаточный контраст между цветами текста и фона для читаемости
 
-### Getting Your Theme in the Catalog
+### Получить свою тему в каталоге {#getting-your-theme-in-the-catalog}
 
-To have your theme added to the official catalog, you'll need to:
+Чтобы ваша тема была добавлена в официальный каталог, вам нужно:
 
-1. Host your theme on GitHub following the structure above
-2. Open an issue or pull request on the Actual repository requesting your theme be added to the catalog
-3. Provide the repository name in `owner/repo` format
-4. Include 6 representative colors for the color palette preview (as an array of hex color values)
+1. Разместите свою тему на GitHub, следуя структуре выше
+2. Откройте вопрос или откройте запрос в Реальном хранилище с просьбой добавить вашу тему в каталог
+3. Укажите имя репозитория в `owner/repo` формат
+4. Включите 6 репрезентативных цветов для предварительного просмотра цветовой палитры (в виде массива значений шести цветов)
 
-The catalog is maintained in `packages/desktop-client/src/data/customThemeCatalog.json`. Each theme entry includes:
+Каталог хранится в `packages/desktop-client/src/data/customThemeCatalog.json`Каждая тема включает в себя:
 
-- `name`: The theme name
-- `repo`: The GitHub repository in `owner/repo` format
-- `colors`: An array of 6 hex color values for the palette preview (e.g., `["#1a1a2e", "#16213e", "#0f3460", "#e94560", "#533483", "#f1f1f1"]`)
+- `name`Название темы
+- `repo`Репозиторий GitHub в `owner/repo` формат
+- `colors`: Массив из 6 цветовых значений для предварительного просмотра палитры (например, `["#1a1a2e", "#16213e", "#0f3460", "#e94560", "#533483", "#f1f1f1"]`)

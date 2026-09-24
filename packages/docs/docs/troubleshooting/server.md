@@ -1,7 +1,7 @@
-# Troubleshooting Server Configuration Issues
+# Проблемы с конфигурацией сервера {#troubleshooting-server-configuration-issues}
 
-Actual uses the standard Node.js `debug` module to optionally log helpful debugging information to the console.
+Использует стандартный Node.js `debug` модуль для опционального входа полезной отладки информации на консоль.
 
-If your configuration options (set either in the config file or as environment variables) are not being applied, you can enable debug logging by adding an environment variable named `DEBUG` with the value `actual:config`. If you're seeing issues with your HTTPS configuration, you can instead set the value to `actual:config,actual-sensitive:config` to log the actual values of the HTTPS secrets (which are obscured by default so they don't get leaked unintentionally).
+Если ваши параметры конфигурации (установленные либо в файле конфигурации, либо в качестве переменных среды) не применяются, вы можете включить отладку регистрации, добавив переменную среды, названную `DEBUG` с ценностью `actual:config`Если вы видите проблемы с конфигурацией HTTPS, вы можете вместо этого установить значение для `actual:config,actual-sensitive:config` регистрировать фактические значения секретов HTTPS (которые по умолчанию скрыты, чтобы они не просочились непреднамеренно).
 
-It may be useful to compare your configuration file with the configuration schema. The schema can be found at [/packages/sync-server/src/load-config.js](https://github.com/actualbudget/actual/blob/45530638feaacf74c28fddb846ae91170a99d94e/packages/sync-server/src/load-config.js#L43)
+Может быть полезно сравнить ваш файл конфигурации со схемой конфигурации. [/packages/sync-server/src/load-config.js](https://github.com/actualbudget/actual/blob/45530638feaacf74c28fddb846ae91170a99d94e/packages/sync-server/src/load-config.js#L43)

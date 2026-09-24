@@ -1,71 +1,64 @@
-# Accounts Overview
+# Счета в Actual {#accounts-overview}
 
-You can add as many accounts as you like. Adding all of your accounts (including things like mortgages) is a nice way to get an overview of all your finances.
+В Actual можно добавить сколько угодно счетов. Если внести все счета, включая кредиты и ипотеку, будет проще видеть общую картину финансов.
 
-## Off budget accounts
+## Счета в бюджете и вне бюджета {#off-budget-accounts}
 
-Actual makes a distinction between accounts being **on** budget or **off** budget.
+Счёт может быть **в бюджете** или **вне бюджета**.
 
-**Off budget** accounts don't affect the budget and are meant to track stuff like investments and mortgages. Transactions in off budget accounts can't be categorized; they simply track balances over time.
+**Счета вне бюджета** нужны, например, для учёта инвестиций и ипотеки. Их остатки можно отслеживать, но операции по ним нельзя распределять по категориям бюджета.
 
-**On budget** accounts affect the budget, and transactions can be categorized. These are accounts where you want to track cash flow and use the budget, like checking accounts and credit cards.
+**Счета в бюджете** влияют на доступные деньги. Операции по ним можно распределять по категориям. Обычно к ним относятся повседневные счета и кредитные карты.
 
-Depending on your usage, savings accounts can be on or off the budget. If you're not sure, we recommend keeping them on budget at the start.
+Сберегательный счёт можно вести любым из этих способов. Если пока сомневаетесь, начните со счёта в бюджете.
 
-## Adding a new account
+## Как добавить счёт {#adding-a-new-account}
 
-You can add an account to your budget at any time, however when you first install Actual you can use the `Add Account` button in the middle of the screen.
+При первом запуске нажмите кнопку добавления счёта в центре экрана. Позднее счёт можно добавить через кнопку **+** в боковом меню.
 
 ![](/img/add-account/AddAccount.webp)
 
-You can also add an account using the `+ Add account` button in the sidebar.
+При создании счёта укажите:
 
-Two successive screens will appear with boxes asking you to fill in a few options
-
-- Create a Local Account or Link to a supported bank syncing provider (See [Connecting Your Bank](https://actualbudget.org/docs/advanced/bank-sync))
-- Give your account a name
-- Is the account on budget or off budget
-- The current account balance
+- будет ли это локальный счёт или счёт с подключением к банку — подробнее в разделе [«Подключение банка»](../advanced/bank-sync.md);
+- название счёта;
+- входит ли счёт в бюджет;
+- текущий остаток.
 
 :::note
-Off budget means that the balance is not reflected when you assign money to categories in your budget register
+Остаток счёта вне бюджета не учитывается, когда вы распределяете деньги по категориям.
 :::
 
 ![](/img/add-account/CreateAccount1.webp)
 
 ![](/img/add-account/CreateAccount@2x.webp)
 
-Here you can see how that looks when the options are completed.
+После заполнения настроек новый счёт появится в боковом меню.
 
 :::note
-If you select the Off budget checkbox then change the account type, the Off budget checkbox will reset and will need to be re-selected each time the account type is changed.
+Если вы отметили счёт как внебюджетный, а затем изменили его тип, проверьте этот параметр ещё раз: при смене типа он сбрасывается.
 :::
 
 ![](/img/add-account/NewBudget.webp)
 
-You can now see the account in the sidebar of Actual
+## Как закрыть или удалить счёт {#closing-or-deleting-an-account}
 
-## Closing or deleting an account
+1. Откройте счёт в боковом меню.
+2. Нажмите **⋮** справа над списком операций.
+3. Выберите **Закрыть счёт**.
+4. Укажите другой счёт, на который нужно перенести оставшийся баланс.
+5. Подтвердите закрытие.
 
-1. Navigate to the account by clicking on it in the sidebar
-2. Click on the 3 dots (top right of the transactions list) to show the actions menu
-3. Select **Close Account**
-4. You need to select another account to transfer the existing balance to. Choose the account that you have moved funds to.
-5. Press **Close Account**
+Закрытый счёт останется в разделе **Закрытые счета**. Его можно открыть снова через то же меню действий.
 
-You can still access this account under **Closed Accounts** in the sidebar, and even reopen it from the same actions menu.
+Если счёт нужно удалить, в окне закрытия выберите принудительное закрытие внизу. Проверьте связанные остатки перед удалением.
 
-**If you want to delete an account** even if it has existing balances, in the popup after selecting **Close Account**, click the **force close** at the bottom.
+## Как переименовать счёт {#renaming-an-existing-account}
 
-## Renaming an existing account
-
-Click the account name in the sidebar of Actual
+Откройте счёт через боковое меню.
 
 ![](/img/add-account/SidebarAccountList@2x.webp)
 
-Hovering your cursor close to the account name at the top will reveal two icons.
-The page icon allows you to write a note about this account, and the pencil icon allows you to rename the account.
-
-After editing a note for the account or its name, hit 'Enter' to save your changes.
+Наведите указатель на название счёта в верхней части страницы. Значок документа открывает заметку о счёте, а значок карандаша позволяет изменить название. Нажмите **Enter**, чтобы сохранить изменения.
 
 ![](/img/add-account/AccountNameEdit.webp)

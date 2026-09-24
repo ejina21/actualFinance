@@ -1,116 +1,116 @@
 ---
-title: Configuring the Server
+title: Настройка сервера
 ---
 
-When it starts up, Actual looks for an optional `config.json` file in the same directory as the sync-server's `package.json`. If you are [building from source](../install/build-from-source.md) this will be in `packages/sync-server/`. If present, any keys you define there will override the default values. All values can also be specified as environment variables, which will override the values in the `config.json` file.
+При запуске Actual ищет необязательный файл `config.json` в каталоге, где находится `package.json` сервера синхронизации. Если вы [собрали проект из исходного кода](../install/build-from-source.md), это каталог `packages/sync-server/`. Значения из `config.json` переопределяют настройки по умолчанию. Те же параметры можно задать переменными окружения; они имеют приоритет над файлом.
 
 :::caution
-Observe that the environmental variables do not map 1:1 to keys in the config.json file. In case of doubt, check the source schema at [/packages/sync-server/src/load-config.js](https://github.com/actualbudget/actual/blob/45530638feaacf74c28fddb846ae91170a99d94e/packages/sync-server/src/load-config.js#L43)
+Имена переменных окружения не всегда соответствуют ключам `config.json` один к одному. Если сомневаетесь, сверьтесь со [схемой конфигурации](https://github.com/actualbudget/actual/blob/45530638feaacf74c28fddb846ae91170a99d94e/packages/sync-server/src/load-config.js#L43).
 :::
 
 :::info
 
-Running into issues with your configuration not being interpreted correctly? Check out our documentation for [troubleshooting the server](../troubleshooting/server.md) for information on how to enable debug logging to track down the issue.
+Если настройки не применяются, откройте [раздел решения проблем сервера](../troubleshooting/server.md). Там описано, как включить отладочные журналы.
 
 :::
 
 :::tip
-Secrets can be read from a file rather than passed in the environment, which works with Docker secrets and Kubernetes secret volumes. Set `ACTUAL_OPENID_CLIENT_SECRET_FILE` or `ACTUAL_GITHUB_TOKEN_FILE` to the path of a file holding the value. `_FILE`-suffixed environment variables take priority over regular ones. The [CLI](../api/cli.md#environment-variables) supports the same suffix for its own secrets.
+Секреты можно читать из файла, а не передавать в среде, которая работает с секретами Docker и секретными томами Kubernetes. `ACTUAL_OPENID_CLIENT_SECRET_FILE` или `ACTUAL_GITHUB_TOKEN_FILE` Путь файла, удерживающего значение. `_FILE`- суффиксированные переменные среды имеют приоритет над обычными. [КЛИ](../api/cli.md#environment-variables) Поддерживает тот же суффикс для собственных секретов.
 :::
 
-## `ACTUAL_DATA_DIR` (config.json: `dataDir`)
+## `ACTUAL_DATA_DIR` (config.json): `dataDir`) {#actualdatadir-configjson-datadir}
 
-This is where the server stores the budget data files (and configurations unless `ACTUAL_CONFIG_PATH` is set).
+Это место, где сервер хранит бюджетные файлы данных (и конфигурации, если это не так). `ACTUAL_CONFIG_PATH` установлена).
 
-By default, the server will use the `/data` directory if it exists, or the current directory (`/`) if not.
+По умолчанию сервер будет использовать `/data` каталог, если он существует, или текущий каталог`/`Если нет.
 
-See also sections on `userFiles` and `serverFiles`.
+Смотрите также разделы на `userFiles` и `serverFiles`.
 
-## `ACTUAL_CONFIG_PATH`
+## `ACTUAL_CONFIG_PATH` {#actualconfigpath}
 
-This is the path to the config file. If not specified, the server will look for a `config.json` file in the
-`/data` folder if it is present or in the sync-server's root directory if `/data` is absent.
+Это путь к файлу конфигурации. Если не указано, сервер будет искать `config.json` файл в файле
+`/data` папка, если она присутствует или в корневой директории синхронизатора, если `/data` отсутствует.
 
-See the `ACTUAL_DATA_DIR` section above to override the data folder location.
+Видишь? `ACTUAL_DATA_DIR` Раздел выше, чтобы переопределить местоположение папки данных.
 
-You can't specify this option in `config.json` since it needs to be used to find the `config.json` in the first place.
+Вы не можете указать эту опцию в `config.json` Поскольку его необходимо использовать для `config.json` В первую очередь.
 
-## `ACTUAL_UPLOAD_FILE_SYNC_SIZE_LIMIT_MB`
+## `ACTUAL_UPLOAD_FILE_SYNC_SIZE_LIMIT_MB` {#actualuploadfilesyncsizelimitmb}
 
-Defines the maximum allowed size for sync files (in MB).
+Определяет максимально допустимый размер для синхронизации файлов (в MB).
 
-The default value is `20`.
+Значение по умолчанию является `20`.
 
-## `ACTUAL_UPLOAD_SYNC_ENCRYPTED_FILE_SYNC_SIZE_LIMIT_MB`
+## `ACTUAL_UPLOAD_SYNC_ENCRYPTED_FILE_SYNC_SIZE_LIMIT_MB` {#actualuploadsyncencryptedfilesyncsizelimitmb}
 
-Defines the maximum allowed size for encrypted sync files (in MB).
+Определяет максимально допустимый размер для зашифрованных синхронизирующих файлов (в MB).
 
-The default value is `50`.
+Значение по умолчанию является `50`.
 
-## `ACTUAL_UPLOAD_FILE_SIZE_LIMIT_MB`
+## `ACTUAL_UPLOAD_FILE_SIZE_LIMIT_MB` {#actualuploadfilesizelimitmb}
 
-Defines the general maximum file size limit (in MB) for uploads.
+Определяет общий максимальный размер файла (в MB) для загрузок.
 
-The default value is `20`.
+Значение по умолчанию является `20`.
 
-## `https`
+## `https` {#https}
 
-If you want Actual to serve over HTTPS, you can set this key to an object with the following keys:
+Если вы хотите, чтобы Actual служил через HTTPS, вы можете установить этот ключ на объект следующими ключами:
 
-- `key`: The path to the private key file. (environment variable: `ACTUAL_HTTPS_KEY`)
-- `cert`: The path to the certificate file. (environment variable: `ACTUAL_HTTPS_CERT`)
-- any other options from Node's [`tls.createServer()`](https://nodejs.org/api/tls.html#tlscreateserveroptions-secureconnectionlistener), [`tls.createSecureContext()`](https://nodejs.org/api/tls.html#tlscreatesecurecontextoptions), or [`http.createServer()`](https://nodejs.org/api/http.html#httpcreateserveroptions-requestlistener) functions (optional, most people won't need to set any of these).
+- `key`Путь к файлу приватного ключа (переменная окружения): `ACTUAL_HTTPS_KEY`)
+- `cert`Путь к файлу сертификата (переменная среда): `ACTUAL_HTTPS_CERT`)
+- Другие варианты от Node [`tls.createServer()`](https://nodejs.org/api/tls.html#tlscreateserveroptions-secureconnectionlistener), [`tls.createSecureContext()`](https://nodejs.org/api/tls.html#tlscreatesecurecontextoptions)или [`http.createServer()`](https://nodejs.org/api/http.html#httpcreateserveroptions-requestlistener) Функции (необязательно, большинству людей не нужно устанавливать ни одну из них).
 
-See [Activating HTTPS](./https.md) for more information on how to get HTTPS working.
+Видишь? [Активация HTTPS](./https.md) Для получения дополнительной информации о том, как заставить HTTPS работать.
 
 <!-- ## `mode`
 
-The `mode` key is not currently used by anything, as far as I can tell. It's exposed on the `/mode` route, but that route does not appear to be called by the frontend. -->
+The `mode` key is not currently used by anything. It is exposed on the `/mode` route, but this route does not appear to be called by the frontend. -->
 
-## `port`
+## `port` {#port}
 
-The `port` key is used to specify the port that the server should listen on. If not specified, the server will listen on port 5006. (environment variable: `ACTUAL_PORT`)
+The `port` Ключ используется для указания порта, на котором сервер должен слушать. Если не указано, сервер будет слушать на порту 5006. `ACTUAL_PORT`)
 
-## `hostname`
+## `hostname` {#hostname}
 
-The `hostname` key is used to specify the hostname that the server should listen on. If not specified, the server will listen on `::` (which, on most operating systems, will include both IPv4 and IPv6). (environment variable: `ACTUAL_HOSTNAME`)
+The `hostname` Ключ используется для указания имени хоста, который должен слушать сервер. Если не указано, сервер будет слушать на `::` (которые в большинстве операционных систем будут включать как IPv4, так и IPv6). `ACTUAL_HOSTNAME`)
 
-## `serverFiles`
+## `serverFiles` {#serverfiles}
 
-The server will put an `account.sqlite` file in this directory, which will contain the (hashed) server password, a list of all the budget files the server knows about, and the active session token (along with anything else the server may want to store in the future). If not specified, the server will use either `/data/server-files` (if `/data` exists) or the `server-files` directory in the same directory as the `package.json`. (environment variable: `ACTUAL_SERVER_FILES`)
+Сервер будет устанавливать `account.sqlite` файл в этом каталоге, который будет содержать (хэшированный) пароль сервера, список всех бюджетных файлов, о которых знает сервер, и токен активной сессии (наряду с чем-либо еще, что сервер может захотеть сохранить в будущем). `/data/server-files` (если) `/data` существует) или `server-files` Каталог в том же каталоге, что и `package.json`(переменная среда: `ACTUAL_SERVER_FILES`)
 
-See the `ACTUAL_DATA_DIR` section above to override the data folder location.
+Видишь? `ACTUAL_DATA_DIR` Раздел выше, чтобы переопределить местоположение папки данных.
 
-## `userFiles`
+## `userFiles` {#userfiles}
 
-The server will put all the budget files in this directory as binary blobs. If not specified, the server will use either `/data/user-files` (if `/data` exists) or the `user-files` directory in the same directory as the `package.json`. (environment variable: `ACTUAL_USER_FILES`)
+Сервер поместит все бюджетные файлы в этот каталог в виде двоичных сгустков. Если не указано, сервер будет использовать либо `/data/user-files` (если) `/data` существует) или `user-files` Каталог в том же каталоге, что и `package.json`(переменная среда: `ACTUAL_USER_FILES`)
 
-See the `ACTUAL_DATA_DIR` section above to override the data folder location.
+Видишь? `ACTUAL_DATA_DIR` Раздел выше, чтобы переопределить местоположение папки данных.
 
-## `webRoot`
+## `webRoot` {#webroot}
 
-(Advanced, most people will not need to configure this.) The server will serve the frontend from this directory. If not specified, the server will use the files in the `@actual-app/web` package that it has installed. (environment variable: `ACTUAL_WEB_ROOT`)
+(Продвинутый, большинству людей не нужно будет настраивать это.) Сервер будет обслуживать интерфейс из этого каталога. Если не указано, сервер будет использовать файлы в каталоге. `@actual-app/web` упаковка, которую он установил. (переменная среда: `ACTUAL_WEB_ROOT`)
 
-If you're providing a custom frontend, make sure you provide an `index.html` in the top level of the `webRoot` directory, which will be served from the `/` route.
+Если вы предоставляете пользовательский интерфейс, убедитесь, что вы предоставляете `index.html` на верхнем уровне верхнего `webRoot` каталог, который будет обслуживаться от `/` маршрут.
 
-## `loginMethod`
+## `loginMethod` {#loginmethod}
 
-Change the default authentication method for Actual (environment variable: `ACTUAL_LOGIN_METHOD`). The valid values are:
+Изменение метода аутентификации по умолчанию для Actual (переменная окружения): `ACTUAL_LOGIN_METHOD`Действительными значениями являются:
 
-- `"password"` (default) - This is standard password authentication
-- `"header"` - Use the HTTP header `x-actual-password` to automatically login. This is for advanced use and if not done correctly could have security implications.
-- `"openid"` - OpenId auth (in preview)
+- `"password"` (по умолчанию) - это стандартная аутентификация пароля
+- `"header"` Используйте HTTP-заголовок `x-actual-password` Это для расширенного использования, и если это не сделано правильно, это может иметь последствия для безопасности.
+- `"openid"` - OpenId auth (в предварительном просмотре)
 
-## `allowedLoginMethods`
+## `allowedLoginMethods` {#allowedloginmethods}
 
-The list of login methods that are permitted for auth. This defaults to `['password','header','openid']` (environment variable: `ACTUAL_ALLOWED_LOGIN_METHODS`, comma separated string).
+Список методов входа, которые разрешены для auth. `['password','header','openid']` (переменная среда: `ACTUAL_ALLOWED_LOGIN_METHODS`, струна, отделенная запятой.
 
-If you wish to restrict the server from accepting certain login methods, you should update this setting.
+Если вы хотите ограничить сервер от принятия определенных методов входа в систему, вы должны обновить эту настройку.
 
-## `trustedProxies`
+## `trustedProxies` {#trustedproxies}
 
-Updates the servers request forwarding trust to remove known proxy IPs from the client IP list. This helps identify the client IP for things like rate limiting. This defaults to known internal IP ranges: `[10.0.0.0/8, 172.16.0.0/12, 192.168.0.0/16, fc00::/7, ::1/128]` (environment variable: `ACTUAL_TRUSTED_PROXIES`, comma separated string).
+Обновляет серверы запроса переадресации доверия для удаления известных прокси IP из списка IP клиента. Это помогает идентифицировать IP клиента для таких вещей, как ограничение скорости. Это по умолчанию для известных внутренних диапазонов IP: `[10.0.0.0/8, 172.16.0.0/12, 192.168.0.0/16, fc00::/7, ::1/128]` (переменная среда: `ACTUAL_TRUSTED_PROXIES`, струна, отделенная запятой.
 
-## `trustedAuthProxies`
+## `trustedAuthProxies` {#trustedauthproxies}
 
-Configure the clients that are allowed to authenticate with HTTP headers. This defaults to what is set in `trustedProxies`, but can be overridden independently. (environment variable: `ACTUAL_TRUSTED_AUTH_PROXIES`, comma separated string).
+Настройка клиентов, которым разрешено аутентифицировать с помощью HTTP-заголовков. `trustedProxies`но может быть преодолена независимо. (переменная среда: `ACTUAL_TRUSTED_AUTH_PROXIES`, струна, отделенная запятой.

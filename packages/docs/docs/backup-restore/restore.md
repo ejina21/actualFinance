@@ -1,79 +1,79 @@
-# Restoring Backups
+# Восстановление резервных копий {#restoring-backups}
 
-## Restoring a Manual Backup
+## Восстановление ручной резервной копии {#restoring-a-manual-backup}
 
-If you previously followed the [steps](./backup.md) to back up your data and have an Actual
-zip export, you can restore this backup by importing it using the Import File button in the Switch File page.
+Если ранее вы следовали [шаг](./backup.md) для резервного копирования ваших данных и фактического
+zip-экспорт, вы можете восстановить эту резервную копию, импортируя ее с помощью кнопки Import File на странице Switch File.
 
-### Steps to Restore a Backup:
+### Шаги для восстановления резервной копии: {#steps-to-restore-a-backup}
 
-1. Close your current budget by clicking on the budget name in the top left
-   corner of the screen and choosing the option to _Switch file_.
+1. Закройте текущий бюджет, нажав на название бюджета в верхнем левом углу.
+   угол экрана и выбор опции Switch file .
 
-![Close the current budget file](/img/backup-restore/restore-close-budget.webp)
+![Закройте текущий бюджетный файл](/img/backup-restore/restore-close-budget.webp)
 
-2. In the _Budget Selection Screen_, or File Screen that appears, click on _Import file_.
+2. В появившемся экране выбора Budget или экране файла нажмите на Import file .
 
-   ![Click on the import file link](/img/backup-restore/restore-import-file.webp)
+   ![Нажмите на ссылку файла импорта](/img/backup-restore/restore-import-file.webp)
 
-3. Choose the _Actual_ option.
+3. Выберите опцию Actual .
 
-   ![Click on the import file link](/img/backup-restore/restore-import-file-dialog.webp)
+   ![Нажмите на ссылку файла импорта](/img/backup-restore/restore-import-file-dialog.webp)
 
-4. Then click on the _Select file..._ button.
+4. Нажмите на файл Select..._ Кнопка.
 
-   ![Click on the import file link](/img/backup-restore/restore-import-file-select-file.webp)
+   ![Нажмите на ссылку файла импорта](/img/backup-restore/restore-import-file-select-file.webp)
 
-5. Navigate to the location of where you stored your backup file, select it and click
-   on the _upload button_.
+5. Перейдите к месту, где вы хранили резервный файл, выберите его и нажмите
+   Нажмите кнопку upload .
 
-   ![Click on the import file link](/img/backup-restore/restore-import-file-choose-file.webp)
+   ![Нажмите на ссылку файла импорта](/img/backup-restore/restore-import-file-choose-file.webp)
 
-That is it. The backup is now restored. If the imported budget is a copy
-of your current budget, you may want to rename the import by clicking on its name
-and rename it. Once you verify the new imported budget is correct, you can
-navigate back to the budget selection screen by closing the current budget
-and deleting the old copy.
+То есть резервная копия восстановлена, если импортный бюджет - копия.
+из вашего текущего бюджета, вы можете переименовать импорт, нажав на его имя
+После проверки правильности нового импортного бюджета, вы можете
+вернуться на экран выбора бюджета, закрыв текущий бюджет
+Удаление старой копии.
 
-![Click on the import file link](/img/backup-restore/restore-import-imported-budget.webp)
+![Нажмите на ссылку файла импорта](/img/backup-restore/restore-import-imported-budget.webp)
 
-## Errors When Restoring Database From Backup
+## Ошибки при восстановлении базы данных из резервного копирования {#errors-when-restoring-database-from-backup}
 
-You may encounter an error during restoration that says:
+Вы можете столкнуться с ошибкой во время восстановления, которая гласит:
 
 `This budget cannot be loaded with this version of the app. Make sure the app is up-to-date.`
 
-This should only happen when you upgrade from a Docker image with the `nightly` tag to a stable release, such as `latest`. It should not happen in other instances. If you see this bug, please submit a bug report.
+Это должно произойти только тогда, когда вы обновляете изображение Docker. `nightly` стабильный выпуск, такой как `latest`Это не должно происходить в других случаях. Если вы видите эту ошибку, пожалуйста, отправьте сообщение об ошибке.
 
-**IMPORTANT NOTE**: You _MUST_ download a backup of each of your budgets using the process outlined above **before** continuing. It's always good practice to backup your data before upgrading to a new version.
+**ВАЖНОЕ ПРИМЕЧАНИЕ**Вы загружаете резервную копию каждого из ваших бюджетов с помощью процесса, описанного выше **перед** Всегда полезно создавать резервные копии данных перед обновлением до новой версии.
 
-The fix for this is to migrate your SQLite database in the steps outlined below manually:
+Исправлением для этого является миграция базы данных SQLite в шагах, описанных ниже вручную:
 
-1. Download and install [SQLite Browser](https://sqlitebrowser.org/)
-1. Unzip the backup budget `.zip` file. The filename should look like: `yyyy-mm-dd-My-Finances-abcd1234.zip`
-1. Open SQLite Browser. Click on the "Open Database" button and navigate to the file you just unzipped. You're looking for a file named `db.sqlite`.
-1. Load the file and click on the `Browse Data` tab. Select the `__migrations__` table from the table dropdown menu.
-1. You should see a list of integers under the' id' column. Cross-reference the entries in this table with the list of [database migrations](https://github.com/actualbudget/actual/tree/master/packages/loot-core/migrations) in the main Actual repository.
-1. For every integer that's missing, click on the `.sql` file associated with it and copy the raw data.
-1. Run the SQL query in the Execute tab of SQLite Browser. Be sure to check the output that the command was successful.
-1. If the SQL query that you copied is successful, you'll want to insert the migration command's id into the `__migrations__` table by executing `insert into __migrations__ values(id_of_missing_migration_command);`.
-1. Once your `__migrations__` table matches the database migrations folder, commit and close the database.
-1. Rezip your modified `db.sqlite` and `metadata.json` files into a zip file.
-1. Retry the restore process outlined above.
+1. Скачать и установить [SQLite Браузер](https://sqlitebrowser.org/)
+1. Unzip резервный бюджет `.zip` Имя файла должно выглядеть так: `yyyy-mm-dd-My-Finances-abcd1234.zip`
+1. Нажмите на кнопку «Открытая база данных» и перейдите к файлу, который вы только что отстегнули. `db.sqlite`.
+1. Загрузите файл и нажмите на `Browse Data` Вкладка. Выберите `__migrations__` Таблица из выпадающего меню стола.
+1. Вы должны увидеть список целых чисел под столбцом "id". Перекрестная ссылка на записи в этой таблице со списком [Миграция баз данных](https://github.com/actualbudget/actual/tree/master/packages/loot-core/migrations) в основном фактическом хранилище.
+1. Для каждого целого числа, которое отсутствует, нажмите на `.sql` Файл, связанный с ним, и копировать необработанные данные.
+1. Запустите SQL-запрос во вкладке Execute SQLite Browser. Обязательно проверьте вывод, что команда была успешной.
+1. Если SQL-запрос, который вы скопировали, увенчался успехом, вам нужно будет вставить идентификатор команды миграции в `__migrations__` Таблица в исполнении `insert into __migrations__ values(id_of_missing_migration_command);`.
+1. Когда-то ты `__migrations__` Таблица соответствует папке миграции базы данных, фиксирует и закрывает базу данных.
+1. Измените свой измененный `db.sqlite` и `metadata.json` Файлы в ZIP файл.
+1. Повторите процесс восстановления, описанный выше.
 
-## Automatic Backups
+## Автоматическое резервное копирование {#automatic-backups}
 
 :::caution
-Automatic backups are currently only available in the desktop app.
+Автоматические резервные копии в настоящее время доступны только в настольном приложении.
 :::
 
-Actual keeps backups of your data locally. If something disastrous happens, you can always load a recent backup to regain your data.
+Actual сохраняет резервные копии ваших данных локально. Если произойдет что-то катастрофическое, вы всегда можете загрузить недавнюю резервную копию, чтобы восстановить свои данные.
 
-Currently, it keeps up to 10 backups, one for each you used the app, and multiple backups of the current day. The result is you will have data backed up **up to the last 15 minutes**, in addition to the previous 10 days you used the app.
+В настоящее время он сохраняет до 10 резервных копий, по одному для каждого используемого вами приложения и несколько резервных копий текущего дня. **до последних 15 минут**В дополнение к предыдущим 10 дням вы использовали приложение.
 
-### Loading an Automatic Backup
+### Загрузка автоматического резервного копирования {#loading-an-automatic-backup}
 
-- Select the **File > Load Backup…** menu item
-- Choose the backup you want to load and select it
+- Выберите **File > Загрузить резервную копию...** пункт меню
+- Выберите резервную копию, которую вы хотите загрузить, и выберите ее
 
-The app will reload with the data from that backup. If you want to keep using that backup, you don't have to do anything else; keep using the app. If you wish to return to the previous data, reopen the backup menu and select **Revert to original version**. This option will be available until another backup is made.
+Приложение будет перезагружаться с данными из этой резервной копии. Если вы хотите продолжать использовать эту резервную копию, вам не нужно ничего делать; продолжайте использовать приложение. Если вы хотите вернуться к предыдущим данным, снова откройте меню резервной копии и выберите **Возврат к оригинальной версии**Эта опция будет доступна до тех пор, пока не будет сделана другая резервная копия.

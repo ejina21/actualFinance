@@ -1,91 +1,91 @@
-# How to Cut a Release
+# Как подготовить выпуск {#how-to-cut-a-release}
 
-## General information
+## Общая информация {#general-information}
 
-In the open-source version of Actual, there are 5 NPM packages:
+В версии Actual с открытым исходным кодом есть 5 пакетов NPM:
 
-- [@actual-app/core](https://www.npmjs.com/package/@actual-app/core): The shared core library (loot-core) used by the other packages. Platform-agnostic business logic, database operations, and calculations.
-- [@actual-app/api](https://www.npmjs.com/package/@actual-app/api): The API for the underlying functionality. This includes the entire backend of Actual, meant to be used with Node.
-- [@actual-app/web](https://www.npmjs.com/package/@actual-app/web): A web build that will serve the app with a web frontend. This includes both the frontend and backend of Actual. It includes the backend as well because it's built to be used as a Web Worker.
-- [@actual-app/sync-server](https://www.npmjs.com/package/@actual-app/sync-server): The entire sync-server and underlying web client in one package. This includes the Server CLI, meant to be used with Node.
-- [@actual-app/cli](https://www.npmjs.com/package/@actual-app/cli): A companion CLI used as a terminal-based client for Actual.
+- [@actual-app/core](https://www.npmjs.com/package/@actual-app/core)Общая базовая библиотека (loot-core), используемая другими пакетами. Платформа-агностическая бизнес-логика, операции с базами данных и расчеты.
+- [@actual-app/api](https://www.npmjs.com/package/@actual-app/api)API для базовой функциональности включает в себя весь бэкэнд Actual, предназначенный для использования с Node.
+- [@actual-app/web](https://www.npmjs.com/package/@actual-app/web): веб-сборка, которая будет обслуживать приложение с веб-интерфейсом. Это включает в себя как интерфейс, так и бэкэнд Actual. Он также включает бэкэнд, потому что он построен для использования в качестве веб-работника.
+- [@actual-app/sync-сервер](https://www.npmjs.com/package/@actual-app/sync-server)Весь синхронизатор и базовый веб-клиент в одном пакете. Это включает в себя CLI сервера, предназначенный для использования с Node.
+- [@actual-app/cli](https://www.npmjs.com/package/@actual-app/cli)CLI используется в качестве терминального клиента для Actual.
 
-All packages and the main Actual release are versioned together. That makes it clear which version of the package should be used with the version of Actual.
+Все пакеты и основной выпуск Actual редактируются вместе, что дает понять, какую версию пакета следует использовать с версией Actual.
 
-### Versioning Strategy
+### Стратегия Версии {#versioning-strategy}
 
-We used to version according to the date when the release was made. For example: if a release was cut on 02-10-2022, then the release number was `22.10.2`. This posed some challenges if critical bugs were spotted after the release. It meant we had to wait for the next day to cut a new release.
+Мы привыкли к версии по дате, когда был сделан релиз. Например: если релиз был вырезан на 02-10-2022, то номер релиза был `22.10.2`Это создавало некоторые проблемы, если критические ошибки были замечены после релиза. Это означало, что нам пришлось ждать следующего дня, чтобы сократить новый релиз.
 
-Starting from `v23.3.x` we changed how we version Actual while keeping the core philosophy the same. The new versioning strategy is: include the year and month of the release in the version number. But for minor version numbers: start at `0` and increment by +1 for each subsequent bug-fix release.
+Начиная с `v23.3.x` Мы изменили то, как мы выпускаем Actual, сохраняя при этом основную философию. Новая стратегия версий заключается в том, чтобы включить год и месяц выпуска в номер версии. Но для незначительных номеров версий: начните с `0` и увеличение на +1 для каждого последующего выпуска исправления ошибок.
 
-For example:
+Например:
 
-- `v23.3.0` - first release launched on 15th of March, 2023;
-- `v23.3.1` - critical bugfix launched on the same date;
-- `v23.3.2` - another bugfix launched later in the month of March;
-- `v23.4.0` - first release launched on 9th of April, 2023;
+- `v23.3.0` - первый релиз, запущенный 15 марта 2023 года;
+- `v23.3.1` - критический багфикс, запущенный в ту же дату;
+- `v23.3.2` - очередной багфикс, запущенный позднее в марте;
+- `v23.4.0` - первый релиз, запущенный 9 апреля 2023 года;
 
-### Release branches
+### Отделение {#release-branches}
 
-There are two branches involved in every release:
+В каждом выпуске участвуют две ветви:
 
-- `release`: the single long-lived branch where release tags live. This is the branch we actually base the release on. Commits are added by opening pull requests against `release` that cherry-pick the commits we want included.
-- `release-notes/X.Y.Z`: the branch that is used for the release PR. It holds the generated docs pages. It is deleted once a version ships.
+- `release`: единственная долгоживущая ветвь, где живут теги выпуска. Это ветвь, на которой мы фактически основываем выпуск. Коммиты добавляются, открывая запросы на вытягивание против `release` Это вишнёвый набор обязательств, которые мы хотим включить.
+- `release-notes/X.Y.Z`: ветвь, которая используется для релиза PR. Она содержит сгенерированные страницы документов. Она удаляется, как только версия поставляется.
 
-Splitting them avoids merge conflicts between the cherry-pick PRs merged into the release branch and the version-bump/docs commits that need to be merged back to `master`.
+Разделение их позволяет избежать слияний конфликтов между вишневыми пиарами, объединенными в ветвь выпуска, и версиями-бамп/доками, которые должны быть объединены обратно. `master`.
 
-Monthly cuts run automatically at 17:00 UTC on the 25th of each month. To cut a release manually (monthly or patch), run the [Cut release workflow](https://github.com/actualbudget/actual/actions/workflows/cut-release-branch.yml).
+Ежемесячные сокращения выполняются автоматически в 17:00 UTC 25-го числа каждого месяца. Чтобы сократить выпуск вручную (ежемесячный или патч), запустите [Сокращение рабочего процесса высвобождения](https://github.com/actualbudget/actual/actions/workflows/cut-release-branch.yml).
 
-Changes that need to be included in the release after the cut has been made should be added by opening a pull request against `release` that cherry-picks the commit. Each merged PR triggers regeneration of the release notes on `release-notes/X.Y.Z`. Human edits to frontmatter (release highlights, author, etc.) on `release-notes/X.Y.Z` are preserved across regenerations as long as they are above the autogen marker.
+Изменения, которые должны быть включены в выпуск после того, как сокращение было сделано, должны быть добавлены путем открытия запроса на вытягивание. `release` Каждый объединенный PR вызывает регенерацию заметок о выпуске `release-notes/X.Y.Z`.Human edits to frontmatter (выпуск основных моментов, автор и т. Д.) `release-notes/X.Y.Z` Они сохраняются при регенерации до тех пор, пока они находятся выше маркера аутогена.
 
-## Release process
+## Процесс освобождения {#release-process}
 
-### Stabilize the release
+### Стабилизировать освобождение {#stabilize-the-release}
 
-- [ ] Fix spelling and add highlights in the generated release notes as needed (edit `release-notes/X.Y.Z` directly). The highlights in the release blog post (everything above the Docker tag line) are also what users see in the app's Notifications page - the post is marked `in_app_notification: true` and `packages/desktop-client/src/data/news.json` is regenerated automatically - so keep them self-contained and written for end users. If you edit the highlights by hand, CI regenerates the feed on your push.
-- [ ] Share the release PR in the release channel on Discord.
-- [ ] Wait until at least 2 other maintainers have approved the release.
+- [ ] Исправьте орфографию и добавьте основные моменты в сгенерированные примечания к выпуску по мере необходимости (редактировать) `release-notes/X.Y.Z` Основные моменты в сообщении в блоге релиза (все выше строки тега Docker) также являются тем, что пользователи видят на странице уведомлений приложения - сообщение помечено. `in_app_notification: true` и `packages/desktop-client/src/data/news.json` Регенерируется автоматически - так что держите их автономными и написанными для конечных пользователей. Если вы редактируете подсветки вручную, CI регенерирует подачу на ваш толчок.
+- [ ] Поделитесь релизом PR в канале релиза на Discord.
+- [ ] Подождите, пока по крайней мере 2 других исполнителя не одобрят релиз.
 
-### Merge and tag the release
+### Объединить и пометить релиз {#merge-and-tag-the-release}
 
-- [ ] Merge the `release-notes/X.Y.Z` PR to master.
-- [ ] Create the tag on the **`release` branch** and push it. When the tag is pushed, it triggers the Docker stable image, all NPM packages and the Desktop app to be built and published.
+- [ ] Слияние `release-notes/X.Y.Z` PR для мастера.
+- [ ] Создайте тег на **`release` филиал** Когда тег нажат, он запускает стабильное изображение Docker, все пакеты NPM и приложение Desktop, которое будет построено и опубликовано.
   ```bash
   git checkout release
   git tag vX.Y.Z
   git push {remote} vX.Y.Z
   ```
 
-All NPM packages should be automatically released and pushed to the NPM registry; confirm [on NPM](https://www.npmjs.com/package/@actual-app/sync-server).
+Все пакеты NPM должны быть автоматически выпущены и перенесены в реестр NPM. [в NPM](https://www.npmjs.com/package/@actual-app/sync-server).
 
-Docker images should be automatically released and pushed to Docker Hub; confirm [on the Docker tags page](https://hub.docker.com/r/actualbudget/actual-server/tags).
+Изображения Docker должны быть автоматически выпущены и перенесены в Docker Hub. [На странице Docker Tags](https://hub.docker.com/r/actualbudget/actual-server/tags).
 
-For the Windows Store desktop app, a submission will be automatically uploaded and submitted for certification. The certification process can take up to 3 business days; once complete the app will be in the Store. You can check the update status [on the partner dashboard](https://partner.microsoft.com/en-us/dashboard) if you have permission. Note that the Store UI will not correctly reflect the submission status for about 30 minutes after submission.
+Для настольного приложения Windows Store будет автоматически загружена и подана заявка на сертификацию. Процесс сертификации может занять до 3 рабочих дней; после завершения приложения будет в Магазине. Можно проверить статус обновления [На панели инструментов партнера](https://partner.microsoft.com/en-us/dashboard) Обратите внимание, что пользовательский интерфейс Магазина не будет правильно отражать статус представления в течение примерно 30 минут после подачи.
 
-Finally, a draft GitHub release should be automatically created; confirm [on the releases page](https://github.com/actualbudget/actual/releases).
+Наконец, проект релиза GitHub должен быть создан автоматически; [на странице релизов](https://github.com/actualbudget/actual/releases).
 
-### Verify the release
+### Проверить релиз {#verify-the-release}
 
-- [ ] Deploy the new server Docker image and do a quick smoke test to verify things still work as expected.
-- [ ] Perform the same smoke test on the desktop app corresponding to your platform (attached to the draft release).
+- [ ] Разверните изображение Docker на новом сервере и проведите быстрый тест на дым, чтобы убедиться, что все работает так, как ожидалось.
+- [ ] Выполните тот же тест дыма на настольном приложении, соответствующем вашей платформе (прилагается к проекту выпуска).
 
-### Finalize the release
+### Окончательное освобождение {#finalize-the-release}
 
-- [ ] Un-draft the GitHub release which will send announcement notifications to all apps and create a PR to the [Actual Flathub Repository](https://github.com/flathub/com.actualbudget.actual/pulls).
-- [ ] Send an announcement on Discord and Twitter.
-- [ ] Approve and merge the [Flathub Release PR](https://github.com/flathub/com.actualbudget.actual/pulls) to master. After merge, it can take anywhere from hours to a few days before the app will be available in the Flathub Store.
+- [ ] Отредактируйте релиз GitHub, который отправит уведомления о объявлениях во все приложения и создаст PR для всех приложений. [Репозиторий Flathub](https://github.com/flathub/com.actualbudget.actual/pulls).
+- [ ] Отправьте объявление в Discord и Twitter.
+- [ ] Утвердить и объединить [Flathub выпустили PR](https://github.com/flathub/com.actualbudget.actual/pulls) После слияния это может занять от нескольких часов до нескольких дней, прежде чем приложение будет доступно в магазине Flathub.
 
-## Cutting a patch release
+## Скачать патч Release {#cutting-a-patch-release}
 
-Patch releases (e.g. `26.6.1`) ship a small, targeted set of fixes on top of the latest release. Because `release` is a single long-lived branch, a patch is just a version bump and a few cherry-pick PRs on top of the previous release, with no new branch to create.
+Патч выпускает (например). `26.6.1`) отправить небольшой, целенаправленный набор исправлений поверх последнего выпуска. `release` Это одна долгоживущая ветвь, патч - это просто бум версии и несколько PR-файлов с вишневым пиком поверх предыдущего выпуска, без новой ветви для создания.
 
-### Cut the patch
+### Отрежьте патч {#cut-the-patch}
 
-Run the [Cut release workflow](https://github.com/actualbudget/actual/actions/workflows/cut-release-branch.yml) manually with:
+Беги. [Сокращение рабочего процесса высвобождения](https://github.com/actualbudget/actual/actions/workflows/cut-release-branch.yml) вручную с:
 
-- `version`: the patch version (e.g. `26.6.1`).
-- `release-date`: when the patch is expected to ship (optional).
+- `version`: версия патча (например). `26.6.1`).
+- `release-date`когда ожидается отправка патча (факультативно).
 
-This creates `release-notes/26.6.1`. It's worth noting that the release branch after a prior releases have no `upcoming-release-notes/*.md` files in them, so the initial release-notes run generates an empty blog, content will fill in once cherry-pick PRs are merged into the `release` branch.
+Это создает `release-notes/26.6.1`Стоит отметить, что ветвь выпуска после предыдущих выпусков не имеет `upcoming-release-notes/*.md` Файлы в них, поэтому начальный запуск примечаний к выпуску генерирует пустой блог, контент будет заполняться, как только PR-адреса вишневого пика будут объединены в `release` филиал.
 
-The rest of the release process remains the same as a major release. Open pull requests against the `release` branch that cherry-pick the appropriate changes. Follow the steps to get the `release-notes/X.Y.Z` branch ready, then follow the merging and tagging steps outlined above.
+Остальная часть процесса релиза остается такой же, как и основной релиз. `release` Ветвь, которая вишнево выбирает соответствующие изменения. `release-notes/X.Y.Z` Ветвь готова, затем следуйте шагам слияния и метки, описанным выше.

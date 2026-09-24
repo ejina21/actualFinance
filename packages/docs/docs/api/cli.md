@@ -1,82 +1,82 @@
 ---
-title: 'CLI'
+title: 'Командная строка (CLI)'
 ---
 
-# CLI Tool
+# Командная строка (CLI) {#cli-tool}
 
-The `@actual-app/cli` package provides a command-line interface for interacting with your Actual Budget data. It connects to your sync server and lets you query and modify budgets, accounts, transactions, categories, payees, rules, schedules, and more — all from the terminal.
+Пакет `@actual-app/cli` позволяет работать с данными Actual Budget из терминала. Он подключается к серверу синхронизации и даёт команды для просмотра и изменения бюджетов, счетов, операций, категорий, получателей платежей, правил и расписаний.
 
 :::note
-This is different from the [Server CLI](../install/cli-tool.md) (`@actual-app/sync-server`), which is used to host and manage the Actual server itself.
+Это отдельный инструмент. [Командная строка сервера](../install/cli-tool.md) (`@actual-app/sync-server`) нужна для запуска и управления сервером.
 :::
 
-## Installation
+## установка {#installation}
 
-Node.js v22 or higher is required.
+Требуется Node.js v22 или выше.
 
 ```bash
 npm install --save @actual-app/cli
 ```
 
-Or install globally:
+Или установить глобально:
 
 ```bash
 npm install --location=global @actual-app/cli
 ```
 
-## Configuration
+## конфигурация {#configuration}
 
-The CLI requires a connection to a running Actual sync server. Configuration can be provided via environment variables, CLI flags, or a config file.
+CLI требует подключения к работающему фактическому синхронизирующему серверу.Конфигурация может быть обеспечена через переменные среды, флаги CLI или файл конфигурации.
 
-### Environment Variables
+### Переменные среды {#environment-variables}
 
-| Variable                     | Description                                           |
-| ---------------------------- | ----------------------------------------------------- |
-| `ACTUAL_SERVER_URL`          | URL of the Actual sync server (required)              |
-| `ACTUAL_SYNC_ID`             | Budget Sync ID (required for most commands)           |
-| `ACTUAL_PASSWORD`            | Server password (one of password or token required)   |
-| `ACTUAL_SESSION_TOKEN`       | Session token (alternative to password)               |
-| `ACTUAL_DATA_DIR`            | Local directory for cached budget data                |
-| `ACTUAL_CACHE_TTL`           | Cache TTL in seconds (default: 60)                    |
-| `ACTUAL_LOCK_TIMEOUT`        | Budget-dir lock wait timeout in seconds (default: 10) |
-| `ACTUAL_NO_LOCK`             | Set to `1` to disable budget-dir locking              |
-| `ACTUAL_ENCRYPTION_PASSWORD` | Password for end-to-end encrypted budget files        |
+| переменный                   | Описание                                                 |
+| ---------------------------- | -------------------------------------------------------- |
+| `ACTUAL_SERVER_URL`          | URL фактического синхронизирующего сервера (обязательно) |
+| `ACTUAL_SYNC_ID`             | Budget Sync ID (требуется для большинства команд)        |
+| `ACTUAL_PASSWORD`            | Пароль сервера (требуется один из паролей или токенов)   |
+| `ACTUAL_SESSION_TOKEN`       | Session Token (альтернатива паролю)                      |
+| `ACTUAL_DATA_DIR`            | Локальный каталог кэшированных бюджетных данных          |
+| `ACTUAL_CACHE_TTL`           | Кэш TTL в секундах (по умолчанию: 60)                    |
+| `ACTUAL_LOCK_TIMEOUT`        | Время ожидания в считанные секунды (по умолчанию: 10)    |
+| `ACTUAL_NO_LOCK`             | Настроить `1` Отключить блокировку budget-dir            |
+| `ACTUAL_ENCRYPTION_PASSWORD` | Пароль для сквозных зашифрованных бюджетных файлов       |
 
-The three secrets — `ACTUAL_PASSWORD`, `ACTUAL_SESSION_TOKEN` and `ACTUAL_ENCRYPTION_PASSWORD` — can be read from a file instead, by adding `_FILE` to the variable name (for example `ACTUAL_PASSWORD_FILE=/run/secrets/actual-password`). `_FILE`-suffixed environment variables take priority over regular ones.
+Три секрета — `ACTUAL_PASSWORD`, `ACTUAL_SESSION_TOKEN` и `ACTUAL_ENCRYPTION_PASSWORD` - можно прочитать из файла, добавив `_FILE` имя переменной (например, `ACTUAL_PASSWORD_FILE=/run/secrets/actual-password`). `_FILE`Суффиксированные переменные среды имеют приоритет над обычными.
 
-### CLI Flags
+### Флаги CLI {#cli-flags}
 
-Global flags override environment variables:
+Глобальные флаги перекрывают переменные среды:
 
-| Flag                      | Description                                     |
-| ------------------------- | ----------------------------------------------- |
-| `--server-url <url>`      | Server URL                                      |
-| `--password <pw>`         | Server password                                 |
-| `--session-token <token>` | Session token                                   |
-| `--sync-id <id>`          | Budget Sync ID                                  |
-| `--data-dir <path>`       | Local data directory for cached budget data     |
-| `--format <format>`       | Output format: `json` (default), `table`, `csv` |
-| `--verbose`               | Show informational messages on stderr           |
+| Флаг                      | Описание                                                   |
+| ------------------------- | ---------------------------------------------------------- |
+| `--server-url <url>`      | URL сервера                                                |
+| `--password <pw>`         | Пароль сервера                                             |
+| `--session-token <token>` | Сеансовый токен                                            |
+| `--sync-id <id>`          | Бюджетный Sync ID                                          |
+| `--data-dir <path>`       | Локальный каталог данных для кэшированных бюджетных данных |
+| `--format <format>`       | Формат выпуска: `json` (неисправность), `table`, `csv`     |
+| `--verbose`               | Показать информационные сообщения на stderr                |
 
-### Config File
+### Конфигурировать файл {#config-file}
 
-The CLI uses [cosmiconfig](https://github.com/cosmiconfig/cosmiconfig) for configuration. The config file can be anywhere between the current working directory and your home directory.
+CLI использует [космофизика](https://github.com/cosmiconfig/cosmiconfig) Конфигурационный файл может находиться в любом месте между текущим рабочим каталогом и домашним каталогом.
 
-You can create a config file in any of these formats:
+Вы можете создать файл конфигурации в любом из этих форматов:
 
-- `.actualrc` (JSON or YAML)
+- `.actualrc` (Джон или Ямл)
 - `.actualrc.json`, `.actualrc.yaml`, `.actualrc.yml`
 - `actual.config.json`, `actual.config.yaml`, `actual.config.yml`
-- An `"actual"` key in your `package.json`
+- Ан `"actual"` Ключ в вашем `package.json`
 
-You can instead store your configuration in the `actual` subdirectory of the global configuration directory (e.g. `~/.config/actual/` on Linux) in any of these formats:
+Вместо этого вы можете хранить конфигурацию в `actual` подкаталог глобального каталога конфигурации (например, `~/.config/actual/` Linux) в любом из этих форматов:
 
-- `config` (JSON or YAML)
+- `config` (Джон или Ямл)
 - `config.json`
 - `config.yaml`
 - `config.yml`
 
-Example `.actualrc.json`:
+Пример `.actualrc.json`:
 
 ```json
 {
@@ -89,19 +89,19 @@ Example `.actualrc.json`:
 }
 ```
 
-:::caution Security
-Avoid storing plaintext passwords in config files (including the `password` key above). If these files do contain passwords, set restrictive permissions (e.g. 600 on Linux), and, if they are in a git repo, add them to `.gitignore`. Prefer environment variables such as `ACTUAL_PASSWORD` or `ACTUAL_SESSION_TOKEN`, or use a session token in config instead of a password. Better still, use your runtime's built-in support for secrets (e.g. Docker secrets) and point `ACTUAL_PASSWORD_FILE` or `ACTUAL_SESSION_TOKEN_FILE` at the resulting file. See [Environment Variables](#environment-variables) for details.
+:::caution Безопасность
+Избегайте хранения паролей в конфигурационных файлах (включая `password` Если эти файлы содержат пароли, установите ограничительные разрешения (например, 600 на Linux) и, если они находятся в git-репо, добавьте их в `.gitignore`Предпочитает переменные среды, такие как `ACTUAL_PASSWORD` или `ACTUAL_SESSION_TOKEN`, или использовать токен сеанса в конфигурации вместо пароля. еще лучше использовать встроенную поддержку вашего времени выполнения для секретов (например, секреты Docker) и указать `ACTUAL_PASSWORD_FILE` или `ACTUAL_SESSION_TOKEN_FILE` в итоговом файле. [Переменные среды](#environment-variables) Для деталей.
 :::
 
-## Usage
+## использование {#usage}
 
 ```bash
 actual <command> <subcommand> [options]
 ```
 
-## Commands
+## командование {#commands}
 
-### Accounts
+### Счета {#accounts}
 
 ```bash
 # List all accounts (excludes closed by default)
@@ -126,7 +126,7 @@ actual accounts delete <id>
 actual accounts balance <id> [--cutoff 2026-01-31]
 ```
 
-### Budgets
+### Бюджеты {#budgets}
 
 ```bash
 # List available budgets on the server
@@ -157,7 +157,7 @@ actual budgets hold-next-month --month 2026-03 --amount 10000
 actual budgets reset-hold --month 2026-03
 ```
 
-### Categories
+### Категории {#categories}
 
 ```bash
 # List all categories
@@ -173,7 +173,7 @@ actual categories update <id> [--name "Food"] [--hidden true]
 actual categories delete <id> [--transfer-to <id>]
 ```
 
-### Category Groups
+### Группы категорий {#category-groups}
 
 ```bash
 # List all category groups
@@ -189,7 +189,7 @@ actual category-groups update <id> [--name "New Name"] [--hidden true]
 actual category-groups delete <id> [--transfer-to <id>]
 ```
 
-### Transactions
+### Сделки {#transactions}
 
 ```bash
 # List transactions for an account within a date range
@@ -211,7 +211,7 @@ actual transactions update <id> --data '{"notes":"Updated note"}'
 actual transactions delete <id>
 ```
 
-### Payees
+### Платежи {#payees}
 
 ```bash
 # List all payees
@@ -233,7 +233,7 @@ actual payees delete <id>
 actual payees merge --target <id> --ids id1,id2,id3
 ```
 
-### Tags
+### Тэги {#tags}
 
 ```bash
 # List all tags
@@ -249,7 +249,7 @@ actual tags update <id> [--tag "trip"] [--color "#00ff00"]
 actual tags delete <id>
 ```
 
-### Rules
+### Правила {#rules}
 
 ```bash
 # List all rules
@@ -271,7 +271,7 @@ actual rules update --data '{"id":"...","stage":"pre",...}'
 actual rules delete <id>
 ```
 
-### Schedules
+### Расписание {#schedules}
 
 ```bash
 # List all schedules
@@ -287,35 +287,35 @@ actual schedules update <id> --data '{"name":"Updated Rent"}' [--reset-next-date
 actual schedules delete <id>
 ```
 
-### Query (ActualQL)
+### Запрос (ActualQL) {#query-actualql}
 
-Run queries using [ActualQL](./actual-ql/index.md).
+Запускать запросы используя [Актуальный QL](./actual-ql/index.md).
 
-#### Subcommands
+#### Подкоманды {#subcommands}
 
-| Subcommand             | Description                       |
-| ---------------------- | --------------------------------- |
-| `query run`            | Execute an AQL query              |
-| `query tables`         | List available tables             |
-| `query fields <table>` | List fields and types for a table |
+| Подкомандующий         | Описание                         |
+| ---------------------- | -------------------------------- |
+| `query run`            | Выполнить запрос AQL             |
+| `query tables`         | Перечень имеющихся таблиц        |
+| `query fields <table>` | Список полей и типов для таблицы |
 
-#### `query run` Options
+#### `query run` Варианты {#query-run-options}
 
-| Option                | Description                                                                                 |
-| --------------------- | ------------------------------------------------------------------------------------------- |
-| `--table <table>`     | Table to query (use `actual query tables` to list)                                          |
-| `--select <fields>`   | Comma-separated fields to select                                                            |
-| `--filter <json>`     | Filter as JSON (e.g. `'{"amount":{"$lt":0}}'`)                                              |
-| `--where <json>`      | Alias for `--filter` (cannot be used together)                                              |
-| `--order-by <fields>` | Fields with optional direction: `field1:desc,field2` (default: asc)                         |
-| `--limit <n>`         | Limit number of results                                                                     |
-| `--offset <n>`        | Skip first N results (for pagination)                                                       |
-| `--last <n>`          | Show last N transactions (shortcut: implies `--table transactions`, `--order-by date:desc`) |
-| `--count`             | Count matching rows instead of returning them                                               |
-| `--group-by <fields>` | Comma-separated fields to group by                                                          |
-| `--file <path>`       | Read query from JSON file (use `-` for stdin)                                               |
+| Вариант               | Описание                                                                                                 |
+| --------------------- | -------------------------------------------------------------------------------------------------------- |
+| `--table <table>`     | Таблица для запроса (использование) `actual query tables` В список                                       |
+| `--select <fields>`   | Разделенные поля для выбора                                                                              |
+| `--filter <json>`     | Фильтр JSON (например). `'{"amount":{"$lt":0}}'`)                                                        |
+| `--where <json>`      | Алиса для `--filter` (не могут быть использованы вместе)                                                 |
+| `--order-by <fields>` | Поля с необязательным направлением: `field1:desc,field2` (перенаправлено с «Asc»)                        |
+| `--limit <n>`         | Ограниченное количество результатов                                                                      |
+| `--offset <n>`        | Пропустить первые N результатов (для пагинации)                                                          |
+| `--last <n>`          | Показать последние N транзакций (коротко: подразумевает) `--table transactions`, `--order-by date:desc`) |
+| `--count`             | Подсчитайте соответствующие строки вместо того, чтобы возвращать их                                      |
+| `--group-by <fields>` | Поля, разделенные запятой, группируются по                                                               |
+| `--file <path>`       | Прочитайте запрос из файла JSON (использовать) `-` для Стин                                              |
 
-#### Examples
+#### Примеры {#examples}
 
 ```bash
 # Show last 5 transactions (convenience shortcut)
@@ -361,9 +361,9 @@ actual query tables
 actual query fields transactions
 ```
 
-See [ActualQL](./actual-ql/index.md) for full filter/function reference including `$transform`, `$month`, `$year`, and aggregate functions.
+Видишь? [Актуальный QL](./actual-ql/index.md) для полного фильтра/функции, включая `$transform`, `$month`, `$year`и агрегированные функции.
 
-### Server
+### сервер {#server}
 
 ```bash
 # Get the server version
@@ -377,39 +377,39 @@ actual server get-id --type categories --name "Groceries"
 actual server bank-sync [--account <id>]
 ```
 
-## Amount Convention
+## Суммарная конвенция {#amount-convention}
 
-All monetary amounts are represented as **integer cents**:
+Все денежные суммы представлены как **целые центы**:
 
-| CLI Value | Dollar Amount |
-| --------- | ------------- |
-| `5000`    | $50.00        |
-| `-12350`  | -$123.50      |
-| `100`     | $1.00         |
+| Значение CLI | Сумма в долларах |
+| ------------ | ---------------- |
+| `5000`       | $50.00           |
+| `-12350`     | -$123.50         |
+| `100`        | $1.00            |
 
-When providing amounts, always use integer cents. For example, to budget $50, pass `5000`.
+При предоставлении сумм всегда используйте целочисленные центы. Например, чтобы бюджет 50 долларов, пройдите `5000`.
 
-**Output formatting:** Table (`--format table`) and CSV (`--format csv`) output automatically converts cent values to decimal (e.g. `1665.00` instead of `166500`). JSON output always returns raw cents for programmatic use.
+**Формат выхода:** Таблица`--format table`) и CSV (`--format csv`) выход автоматически преобразует значения центов в десятичные (например. `1665.00` вместо того, чтобы `166500`Выход JSON всегда возвращает необработанные центы для программного использования.
 
-## Output Formats
+## Форматы выхода {#output-formats}
 
-The `--format` flag controls how results are displayed:
+The `--format` Флаг контролирует, как отображаются результаты:
 
-- **`json`** (default) — Machine-readable JSON output, ideal for scripting. Query results are returned as a bare array of records.
-- **`table`** — Human-readable table format. Amount fields are auto-formatted as decimals.
-- **`csv`** — Comma-separated values for spreadsheet import. Amount fields are auto-formatted as decimals.
+- **`json`** (по умолчанию) — Машиночитаемый вывод JSON, идеально подходящий для сценариев. Результаты запросов возвращаются в виде голого массива записей.
+- **`table`** - Формат таблицы для чтения человеком. Количество полей автоматически формируется в виде десятичных знаков.
+- **`csv`** - Сепарированные по запятой значения для импорта электронных таблиц.
 
-Use `--verbose` to enable informational messages on stderr for debugging or visibility into what the CLI is doing.
+Использовать `--verbose` включение информационных сообщений на stderr для отладки или видимости того, что делает CLI.
 
-## Common Workflows
+## Общие рабочие процессы {#common-workflows}
 
-**View your budget for the current month:**
+**Смотрите бюджет на текущий месяц:**
 
 ```bash
 actual budgets month 2026-03 --format table
 ```
 
-**Check an account balance:**
+**Проверьте баланс счета:**
 
 ```bash
 # Find the account ID
@@ -418,48 +418,48 @@ actual server get-id --type accounts --name "Checking"
 actual accounts balance <id>
 ```
 
-**Export transactions to CSV:**
+**Экспортные операции в CSV:**
 
 ```bash
 actual transactions list --account <id> --start 2026-01-01 --end 2026-12-31 --format csv > transactions.csv
 ```
 
-**Add a transaction:**
+**Добавить транзакцию:**
 
 ```bash
 actual transactions add --account <id> --data '[{"date":"2026-03-14","amount":-2500,"payee_name":"Coffee Shop"}]'
 ```
 
-## Tips & Common Pitfalls
+## Советы и общие подводные камни {#tips-common-pitfalls}
 
-- **Split transactions:** When summing or counting transactions, filter `"is_parent": false` to avoid double-counting. A split parent holds the total amount, and its children hold the individual parts — including both counts the total twice.
-- **Avoid rapid sequential requests:** Each CLI invocation opens a new server connection. Running queries in a tight loop (e.g. one per month) may trigger rate limiting or authentication failures. Instead, fetch all data in a single query with a date range filter and process locally.
-- **Uncategorized transactions:** `category.name` is `null` for transactions without a category. Account for this when filtering or grouping by category.
-- **No date sub-fields in AQL:** `date.month`, `date.year`, etc. are not supported as query fields. To group by month, fetch raw transactions with a date range filter and aggregate locally in a script.
+- **Раздельные сделки:** При суммировании или подсчете транзакций фильтр `"is_parent": false` Разделенный родитель держит общую сумму, а его дети держат отдельные части, в том числе оба подсчитывают общую сумму дважды.
+- **Избегайте быстрых последовательных запросов:** Каждый вызов CLI открывает новое соединение с сервером. Запуск запросов в узком цикле (например, один в месяц) может вызвать ограничение скорости или сбои аутентификации. Вместо этого, возьмите все данные в одном запросе с фильтром диапазона дат и обработайте локально.
+- **Некатегоризированные транзакции:** `category.name` это `null` Для операций без категории. Учитывайте это при фильтрации или группировании по категориям.
+- **Никаких подполей даты в AQL:** `date.month`, `date.year`, и т.д. не поддерживаются в виде полей запросов. Для группирования по месяцам, извлекайте необработанные транзакции с фильтром диапазона дат и агрегируйте локально в скрипте.
 
-## Self-Signed SSL Certificates
+## Самоподписанные SSL сертификаты {#self-signed-ssl-certificates}
 
-If your Actual sync server uses a self-signed SSL certificate, the CLI will reject the connection by default. You can address this by adding your CA certificate to the system's trusted certificates, though the details are beyond the scope of this document.
+Если ваш фактический сервер синхронизации использует самоподписанный SSL-сертификат, CLI отклонит соединение по умолчанию. Вы можете решить эту проблему, добавив свой сертификат CA в доверенные сертификаты системы, хотя детали выходят за рамки этого документа.
 
-Alternatively, you can allow connections to a server that uses a self-signed certificate by setting the `NODE_TLS_REJECT_UNAUTHORIZED` environment variable:
+Кроме того, вы можете разрешить подключение к серверу, который использует самоподписанный сертификат, установив `NODE_TLS_REJECT_UNAUTHORIZED` переменная среда:
 
 ```bash
 NODE_TLS_REJECT_UNAUTHORIZED=0 actual budgets list
 ```
 
-Or export it for the entire session:
+Или экспортировать его на весь сеанс:
 
 ```bash
 export NODE_TLS_REJECT_UNAUTHORIZED=0
 actual budgets list
 ```
 
-:::caution Security
-Setting `NODE_TLS_REJECT_UNAUTHORIZED=0` disables all TLS certificate verification, which makes the connection vulnerable to man-in-the-middle attacks. Only use this in trusted network environments where you control the server and understand the risks.
+:::caution Безопасность
+настройка `NODE_TLS_REJECT_UNAUTHORIZED=0` Отключает верификацию всех сертификатов TLS, что делает соединение уязвимым для атак «человек посередине». Используйте это только в доверенных сетевых средах, где вы контролируете сервер и понимаете риски.
 :::
 
-## Error Handling
+## Обработка ошибок {#error-handling}
 
-- Non-zero exit codes indicate an error
-- Errors are written as plain text to stderr (e.g., `Error: message`)
-- Use `--verbose` to enable informational stderr messages for debugging
+- Ненулевые коды выхода указывают на ошибку
+- Ошибки пишутся в виде простого текста на stderr (например, `Error: message`)
+- Использовать `--verbose` включение информационных сообщений stderr для отладки

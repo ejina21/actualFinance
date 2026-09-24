@@ -1,18 +1,18 @@
-# Authenticating with an OpenID Provider
+# Вход через OpenID Connect {#authenticating-with-an-openid-provider}
 
-## Setup
+## Настройка {#setup}
 
 :::info
-This feature requires use of [Actual Server](./index.md)
+Эта особенность требует использования [Сервер Actual](./index.md)
 :::
 
-If you require a more robust authentication method than a server password, it is recommended to use an OpenID provider. Most OpenID providers support multi-factor authentication, enhancing your application's security. Additionally, if you need support for multiple users, you must enable this feature.
+Если вам нужен более надежный метод аутентификации, чем пароль сервера, рекомендуется использовать провайдера OpenID. Большинство провайдеров OpenID поддерживают многофакторную аутентификацию, повышая безопасность вашего приложения. Кроме того, если вам нужна поддержка нескольких пользователей, вы должны включить эту функцию.
 
-To enable this feature, you can use a [configuration file](./index.md) `config.json` on the Actual server, or use the UI.
+Чтобы включить эту функцию, вы можете использовать [конфигурационный файл](./index.md) `config.json` на реальном сервере или использовать UI.
 
-### Configuration Using a Configuration File
+### Конфигурация с использованием файла конфигурации {#configuration-using-a-configuration-file}
 
-If your OpenID provider supports discovery, use the following configuration example:
+Если ваш провайдер OpenID поддерживает обнаружение, используйте следующий пример конфигурации:
 
 ```json title="config.json"
 "openId": {
@@ -24,7 +24,7 @@ If your OpenID provider supports discovery, use the following configuration exam
     }
 ```
 
-If your OpenID provider does not supports discovery, you have to configure each endpoint manually:
+Если ваш провайдер OpenID не поддерживает обнаружение, вы должны настроить каждую конечную точку вручную:
 
 ```json title="config.json"
 "openId": {
@@ -42,153 +42,153 @@ If your OpenID provider does not supports discovery, you have to configure each 
 ```
 
 :::tip
-To use GitHub as an identity provider can only be achieved with configuration files using `"authMethod": "oauth2"`.
+Использовать GitHub в качестве поставщика идентификационных данных можно только с помощью конфигурационных файлов. `"authMethod": "oauth2"`.
 :::
 
-### Configuration Using Environment Variables
+### Конфигурация с использованием переменных среды {#configuration-using-environment-variables}
 
-If your OpenID provider supports discovery, use the following variables:
+Если ваш провайдер OpenID поддерживает обнаружение, используйте следующие переменные:
 
-- `ACTUAL_OPENID_DISCOVERY_URL`: URL for the OpenID Provider
-- `ACTUAL_OPENID_CLIENT_ID`: client_id given by the provider
-- `ACTUAL_OPENID_CLIENT_SECRET`: client_secret given by the provider
-- `ACTUAL_OPENID_SERVER_HOSTNAME`: Your Actual Server URL (so the provider redirects you to this)
+- `ACTUAL_OPENID_DISCOVERY_URL`URL для провайдера OpenID
+- `ACTUAL_OPENID_CLIENT_ID`Клиент id предоставлен провайдером
+- `ACTUAL_OPENID_CLIENT_SECRET`Клиент секрет, предоставленный поставщиком
+- `ACTUAL_OPENID_SERVER_HOSTNAME`Ваш фактический URL-адрес сервера (поэтому провайдер перенаправляет вас на это)
 
-If your OpenId provider does not supports discovery, use the following variables:
+Если ваш провайдер OpenId не поддерживает обнаружение, используйте следующие переменные:
 
-- `ACTUAL_OPENID_AUTHORIZATION_ENDPOINT`: Provider's authorize endpoint
-- `ACTUAL_OPENID_TOKEN_ENDPOINT`: Provider's access token endpoint
-- `ACTUAL_OPENID_USERINFO_ENDPOINT`: Provider's user info endpoint
-- `ACTUAL_OPENID_CLIENT_ID`: client_id given by the provider
-- `ACTUAL_OPENID_CLIENT_SECRET`: client_secret given by the provider
-- `ACTUAL_OPENID_SERVER_HOSTNAME`: Your Actual Server URL (so the provider redirects you to this)
+- `ACTUAL_OPENID_AUTHORIZATION_ENDPOINT`Конечная точка авторизации провайдера
+- `ACTUAL_OPENID_TOKEN_ENDPOINT`: конечная точка доступа провайдера к токену
+- `ACTUAL_OPENID_USERINFO_ENDPOINT`: конечная точка пользовательской информации провайдера
+- `ACTUAL_OPENID_CLIENT_ID`Клиент id предоставлен провайдером
+- `ACTUAL_OPENID_CLIENT_SECRET`Клиент секрет, предоставленный поставщиком
+- `ACTUAL_OPENID_SERVER_HOSTNAME`Ваш фактический URL-адрес сервера (поэтому провайдер перенаправляет вас на это)
 
 :::tip
-To keep the client secret out of your environment, set `ACTUAL_OPENID_CLIENT_SECRET_FILE` to the path of a file containing it instead. See [Configuring the Server](index.md).
+Чтобы держать клиента в секрете от окружающей среды, установите `ACTUAL_OPENID_CLIENT_SECRET_FILE` на пути к файлу, содержащему его. [Конфигурирование сервера](index.md).
 :::
 
-### Configuring OpenID Using the UI
+### Конфигурация OpenID с помощью UI {#configuring-openid-using-the-ui}
 
-Navigate into any Budget file, then in the Settings, click on _Start using OpenID_
+Перейдите в любой бюджетный файл, затем в настройках нажмите на Start с помощью OpenID
 
 ![](/img/oauth/start-using-options.webp)
 
-Once you click _Start using OpenID_ a modal will be presented.
+Как только вы нажмете Start с помощью OpenID , будет представлен модаль.
 
-##### Instructions
+##### Инструкции {#instructions}
 
-Fill all the required field for the selected provider.
+Заполните все необходимое поле для выбранного поставщика.
 
-![Configuration from options](/img/oauth/modal.webp)
+![Конфигурация из вариантов](/img/oauth/modal.webp)
 
-Some providers does not require all fields to be filled out.
+Некоторые провайдеры не требуют заполнения всех полей.
 
-As an example, the provider _passwordless.id_ does not need `client_secret`.
+Например, провайдеру passwordless.id не требуется `client_secret`.
 
-When all settings are correctly filled out, click the 'OK' button, and you will be redirected to the login page.
+Когда все настройки будут правильно заполнены, нажмите кнопку «ОК», и вы будете перенаправлены на страницу входа.
 
 :::warning
-There are some basic configuration checks when clicking 'OK', but if you somehow type the wrong information and the data is saved, when you login for the first time using OpenID, you will have a chance to review the settings.
+Есть некоторые основные проверки конфигурации при нажатии «ОК», но если вы каким-то образом вводите неправильную информацию и данные сохраняются, при первом входе в систему с помощью OpenID у вас будет возможность просмотреть настройки.
 :::
 
 :::tip
-When configuring your OpenID provider, be sure to register the following **redirect URI** with the provider: `https://<actual.myserver.com>/openid/callback`
+При настройке вашего провайдера OpenID обязательно зарегистрируйте следующее: **перенаправить URI** с поставщиком: `https://<actual.myserver.com>/openid/callback`
 :::
 
-#### Tested Providers
+#### Проверенные поставщики {#tested-providers}
 
-- Auth0
-- Authentik
+- Ауто
+- Аутентик
 - GitHub
-- Google Accounts
-- Keycloak
+- Аккаунты Google
+- Кейлоак
 - Microsoft Entra
 - Passwordless.id
-- Pocket ID
+- Карманный ID
 
 :::tip
-Each provider has different requirements. For example, for Auth0, the URL will be generated by default, but you have to change it with your own details:
+Например, для Auth0 URL будет генерироваться по умолчанию, но вы должны изменить его своими собственными данными:
 
 ![](/img/oauth/provider-requirement.webp)
 :::
 
-#### After Setup
+#### После настройки {#after-setup}
 
-When setup is done, you will be redirected to the _login_ page:
+После завершения настройки вы будете перенаправлены на страницу login :
 
 ![](/img/oauth/first-login.webp)
 
 :::warning
-The first user to log in with OpenID/OAuth2 will be granted admin permissions and become the server owner. The server owner cannot be changed from the UI once set.
+Первый пользователь, который войдет в систему с OpenID/OAuth2, получит разрешение администратора и станет владельцем сервера. Владелец сервера не может быть изменен из пользовательского интерфейса после установки.
 :::
 
-### Environment Variables
+### Переменные среды {#environment-variables}
 
-#### `ACTUAL_OPENID_DISCOVERY_URL`
+#### `ACTUAL_OPENID_DISCOVERY_URL` {#actualopeniddiscoveryurl}
 
-- **Purpose:** If your OpenID provider supports discovery, this is the URL where discovery metadata can be found.
-  **Example Value:** `https://<openid-provider.com>/.well-known/openid-configuration`
+- **Цель:** Если ваш провайдер OpenID поддерживает обнаружение, это URL-адрес, по которому можно найти метаданные обнаружения.
+  **Примерное значение:** `https://<openid-provider.com>/.well-known/openid-configuration`
 
-#### `ACTUAL_OPENID_CLIENT_ID`
+#### `ACTUAL_OPENID_CLIENT_ID` {#actualopenidclientid}
 
-- **Purpose:** The client ID issued by your OpenID provider.
-  **Example Value:** `my-actual-app`
+- **Цель:** Клиентский идентификатор, выданный вашим провайдером OpenID.
+  **Примерное значение:** `my-actual-app`
 
-#### `ACTUAL_OPENID_CLIENT_SECRET`
+#### `ACTUAL_OPENID_CLIENT_SECRET` {#actualopenidclientsecret}
 
-- **Purpose:** The client secret issued by your OpenID provider.
-  **Example Value:** `super-secret-value`
+- **Цель:** Секрет клиента, выданный вашим провайдером OpenID.
+  **Примерное значение:** `super-secret-value`
 
-#### `ACTUAL_OPENID_SERVER_HOSTNAME`
+#### `ACTUAL_OPENID_SERVER_HOSTNAME` {#actualopenidserverhostname}
 
-- **Purpose:** The public URL of your Actual Server, which the provider redirects to after authentication.
-  **Example Value:** `https://<actual.myserver.com>`
+- **Цель:** Публичный URL вашего фактического сервера, на который провайдер перенаправляет после аутентификации.
+  **Примерное значение:** `https://<actual.myserver.com>`
 
-#### `ACTUAL_OPENID_AUTHORIZATION_ENDPOINT`
+#### `ACTUAL_OPENID_AUTHORIZATION_ENDPOINT` {#actualopenidauthorizationendpoint}
 
-- **Purpose:** Provider's authorization endpoint (for providers that don't support discovery).
-  **Example Value:** `https://<openid-provider.com>/oauth2/authorize`
+- **Цель:** Конечная точка авторизации провайдера (для провайдеров, которые не поддерживают открытие).
+  **Примерное значение:** `https://<openid-provider.com>/oauth2/authorize`
 
-#### `ACTUAL_OPENID_TOKEN_ENDPOINT`
+#### `ACTUAL_OPENID_TOKEN_ENDPOINT` {#actualopenidtokenendpoint}
 
-- **Purpose:** Provider's token endpoint (for providers that don't support discovery).
-  **Example Value:** `https://<openid-provider.com>/oauth2/token`
+- **Цель:** конечная точка маркера провайдера (для провайдеров, которые не поддерживают открытие).
+  **Примерное значение:** `https://<openid-provider.com>/oauth2/token`
 
-#### `ACTUAL_OPENID_USERINFO_ENDPOINT`
+#### `ACTUAL_OPENID_USERINFO_ENDPOINT` {#actualopeniduserinfoendpoint}
 
-- **Purpose:** Provider's user-info endpoint (for providers that don't support discovery).
-  **Example Value:** `https://<openid-provider.com>/oauth2/userinfo`
+- **Цель:** Конечная точка пользовательской информации провайдера (для провайдеров, которые не поддерживают обнаружение).
+  **Примерное значение:** `https://<openid-provider.com>/oauth2/userinfo`
 
-#### `ACTUAL_OPENID_AUTH_METHOD`
+#### `ACTUAL_OPENID_AUTH_METHOD` {#actualopenidauthmethod}
 
-- **Purpose:** Tells the server whether it should use the OpenID (OIDC) or a more general OAuth2 flow.
-  **Possible Values:**
-  - `openid` (default)
+- **Цель:** Сообщает серверу, следует ли использовать OpenID (OIDC) или более общий поток OAuth2.
+  **Возможные ценности:**
+  - `openid` (по умолчанию)
   - `oauth2`
 
 :::tip
-Use `oauth2` for providers like GitHub that don't fully support OpenID discovery.
+Использовать `oauth2` Для таких провайдеров, как GitHub, которые не полностью поддерживают OpenID.
 :::
 
-#### `ACTUAL_OPENID_ENFORCE`
+#### `ACTUAL_OPENID_ENFORCE` {#actualopenidenforce}
 
-- **Purpose:** Forces OpenID/OAuth2 authentication as the only allowed login method when set to `true`.
-  **Example Value:** `true` or `false` (default is `false`)
+- **Цель:** Силы аутентификации OpenID/OAuth2 как единственный разрешенный метод входа в систему `true`.
+  **Примерное значение:** `true` или `false` (по умолчанию) `false`)
 
-#### `ACTUAL_TOKEN_EXPIRATION`
+#### `ACTUAL_TOKEN_EXPIRATION` {#actualtokenexpiration}
 
-- **Purpose:** Controls how access tokens expire.
-  **Possible Values:**
-  - `"never"` (tokens never expire - **current default**)
-  - `"openid-provider"` (tokens follow the expiration time from the OpenID provider)
-  - A numeric value in seconds (e.g., `3600` for 1 hour)
+- **Цель:** Контролирует, как истекают токены доступа.
+  **Возможные ценности:**
+  - `"never"` (Токены никогда не истекают) **Текущий дефолт**)
+  - `"openid-provider"` (Токены следуют за временем истечения срока действия от поставщика OpenID)
+  - Цифровое значение в секундах (например, `3600` в течение 1 часа
 
-#### `ACTUAL_USER_CREATION_MODE`
+#### `ACTUAL_USER_CREATION_MODE` {#actualusercreationmode}
 
-- **Purpose:** In `manual` (default) users must be created manually with matching usernames in Actual before they are able to authenticate with OpenID/OAuth2. When set to `login`, users authenticating with OpenID/OAuth2 for the first time will be created in Actual automatically.
+- **Цель:** в `manual` Пользователи должны быть созданы вручную с соответствующими именами пользователей в Actual, прежде чем они смогут аутентифицироваться с OpenID / OAuth2. `login`Аутентификация пользователей с помощью OpenID/OAuth2 впервые будет производиться автоматически.
 
-  **Possible Values:** `manual` or `login` (default is `manual`)
+  **Возможные ценности:** `manual` или `login` (по умолчанию) `manual`)
 
 :::tip
-Configuring the OpenID provider from options supports discovery; otherwise, use [file configuration](./oauth-auth.md#configuration-using-a-configuration-file)
+Настройка провайдера OpenID из опций поддерживает обнаружение; в противном случае используйте [Конфигурация файлов](./oauth-auth.md#configuration-using-a-configuration-file)
 :::

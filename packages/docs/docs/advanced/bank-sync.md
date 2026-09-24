@@ -1,38 +1,38 @@
-# Connecting Your Bank
+# Подключение банка {#connecting-your-bank}
 
-We are excited to offer optional bank integration in Actual.
-Here are a couple of considerations to know about before making the decision to use bank sync in your installation of Actual Budget.
+Мы рады предложить опциональную банковскую интеграцию.
+Вот несколько соображений, о которых нужно знать, прежде чем принимать решение об использовании синхронизации банка при установке Actual Budget.
 
-- This integration relies on you providing your own API credentials that you will need to get by signing up with the service provider and Generate Keys and Secrets that will be used in Actual.
+- Эта интеграция основана на том, что вы предоставляете свои собственные учетные данные API, которые вам нужно будет получить, зарегистрировавшись у поставщика услуг и создав ключи и секреты, которые будут использоваться в Actual.
 
-- The integration only works if you are using actual-server.
+- Интеграция работает только при использовании реального сервера.
 
-- The API secrets and keys for bank sync are stored on the server and are **not** covered by [end-to-end encryption](../getting-started/sync.md#end-to-end-encryption). End-to-end encryption only protects your budget data. Server administrators or hosting providers with direct access to the server's database can read bank sync tokens. If this is a concern, consider self-hosting your server.
+- Секреты и ключи API для синхронизации с банком хранятся на сервере. **не** покрытый [сквозное шифрование](../getting-started/sync.md#end-to-end-encryption)Сквозное шифрование защищает только ваши бюджетные данные. Администраторы серверов или хостинг-провайдеры с прямым доступом к базе данных сервера могут считывать банковские синхронизирующие токены. Если это вызывает беспокойство, рассмотрите возможность самостоятельного размещения вашего сервера.
 
-- You will need to add a config file to your installation.
+- Вам нужно будет добавить файл конфигурации в вашу установку.
 
-## Supported Providers
+## Поддерживаемые поставщики {#supported-providers}
 
-- [Akahu](./bank-sync/akahu.md) (New Zealand Banks)
-- [Enable Banking](./bank-sync/enable-banking.md) (European Banks)
-- GoCardless [BankAccountData](./bank-sync/gocardless.md) (European Banks, **not accepting new accounts**)
-- [SimpleFIN Bridge](./bank-sync/simplefin.md) (North American Banks)
-- [Pluggy.ai](./bank-sync/pluggyai.md) (Brazilian Banks)
+- [Акаху](./bank-sync/akahu.md) (Новая Зеландия Банки)
+- [Включить банкинг](./bank-sync/enable-banking.md) (Европейские банки)
+- GoCardless [BankAccountData](./bank-sync/gocardless.md) (Европейские банки, **Не принимать новые счета**)
+- [Мост SimpleFIN](./bank-sync/simplefin.md) (Североамериканские банки)
+- [Pluggy.ai](./bank-sync/pluggyai.md) (Бразильские банки)
 
-### Retrieve Transactions
+### Восстановить транзакции {#retrieve-transactions}
 
-Actual does **not** sync bank data automatically. To fetch new transactions manually:
+Actual действия **не** Автоматическая синхронизация банковских данных для получения новых транзакций вручную:
 
-#### On Desktop
+#### На рабочем столе {#on-desktop}
 
-- To sync all accounts: click **All Accounts** in the sidebar, then click **Bank Sync**.
-- To sync a single account: open the account and click the Bank Sync button.
+- Для синхронизации всех учетных записей: нажмите **Все счета** в боковой панели, затем щелкните **Банковский синхрон**.
+- Для синхронизации одной учетной записи: откройте учетную запись и нажмите кнопку «Синхронизация банка».
 
   ![](/img/connecting-your-bank/connecting-your-bank-simplefin-10.webp)
 
-#### On Mobile
+#### На мобильном {#on-mobile}
 
-- To sync all linked accounts: open **Accounts**, scroll to the top of the account list, then pull down and release to refresh.
-- To sync a single account: open the account, scroll to the top of its transaction list, then pull down and release to refresh.
+- Чтобы синхронизировать все связанные учетные записи: откройте **Счета**, прокрутите до верхней части списка учетных записей, а затем снимите и отпустите, чтобы обновить.
+- Чтобы синхронизировать одну учетную запись: откройте учетную запись, прокрутите в верхней части списка транзакций, а затем выключите и отпустите, чтобы обновить.
 
-Pulling down to refresh on the **Budget** screen syncs your budget with the server, but does **not** fetch new bank transactions.
+Снизить, чтобы освежиться на **Бюджет** Экран синхронизирует ваш бюджет с сервером, но делает это. **не** Получить новые банковские транзакции.

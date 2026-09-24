@@ -1,44 +1,44 @@
-# Resetting Actual Login Password
+# Сброс пароля {#resetting-actual-login-password}
 
-If you have forgotten your actual-server login password - not all is lost, as the password can be reset without losing any of your files / data.
+Если вы забыли свой пароль для входа в систему - не все потеряно, так как пароль может быть сброшен без потери каких-либо ваших файлов / данных.
 
-A password reset feature is available from version 23.4.2.
+Функция сброса пароля доступна из версии 23.4.2.
 
-## If `actual-server` is installed on the host
+## Если `actual-server` устанавливается на хосте {#if-actual-server-is-installed-on-the-host}
 
-The deployed server environment may not have Yarn available, so the existing npm script
-is still the simplest reset path there:
+Развёрнутая серверная среда может не иметь Yarn, поэтому существующий скрипт npm
+Это самый простой путь перезагрузки:
 
 ```sh
 npm run reset-password
 ```
 
-The newer `actual-server` CLI command does the same reset with a friendlier prompt:
+Новый `actual-server` Команда CLI делает тот же сброс с более дружелюбной подсказкой:
 
 ```sh
 actual-server --reset-password
 ```
 
-If you are running the sync server from a source checkout instead of the deployed server,
-run the workspace script from the repository root:
+Если вы запускаете синхронизирующий сервер из проверки источника вместо развернутого сервера,
+Запустите скрипт рабочего пространства из корня хранилища:
 
 ```sh
 yarn workspace @actual-app/sync-server reset-password
 ```
 
-## From a Docker Container
+## Из контейнера Docker {#from-a-docker-container}
 
 ```sh
 docker exec -it <actual_container> /bin/sh
 node /app/src/scripts/reset-password.js
 ```
 
-## From a Kubernetes Instance
+## Из кубернецкого положения {#from-a-kubernetes-instance}
 
 ```sh
 kubectl exec --stdin --tty <actual_pod_name> -- /bin/sh
 node /app/src/scripts/reset-password.js
 ```
 
-Both commands will prompt for a new password and ask you to confirm it. Once the reset
-completes, you can sign in with the new password.
+Обе команды подскажут новый пароль и попросят вас подтвердить его.
+Заполнив, вы можете войти с новым паролем.

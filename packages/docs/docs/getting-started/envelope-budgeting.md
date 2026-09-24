@@ -1,406 +1,404 @@
-# Envelope Budgeting
+# Бюджетирование конвертов {#envelope-budgeting}
 
-## Introduction
+## Введение {#introduction}
 
-Envelope budgeting is a time-tested method of managing money. Traditionally, people would divide their physical cash
-into different physical envelopes, each representing a specific expense category like groceries, entertainment, or savings.
-When all the cash in an envelope was spent, no more money could be used for that category until the next budgeting
-period. This method helped people control their spending by making them aware of their financial limits.
+Бюджетирование конвертов - это проверенный временем метод управления деньгами. Традиционно люди делят свои физические деньги.
+в различные физические конверты, каждый из которых представляет определенную категорию расходов, таких как продукты питания, развлечения или сбережения.
+Когда все наличные деньги в конверте были потрачены, больше деньги не могли быть использованы для этой категории до следующего бюджетирования.
+Этот метод помог людям контролировать свои расходы, информируя их об их финансовых ограничениях.
 
-In Actual Budget, we bring this traditional system into the digital age. Instead of physical envelopes,
-Actual Budget uses categories that serve the same purpose. Each category is like a virtual envelope where you
-allocate a portion of your income. This modern approach not only maintains the benefits of the envelope system
-but also addresses some of its limitations.
+В реальном бюджете мы вводим эту традиционную систему в цифровую эпоху.
+Actual Budget использует категории, которые служат одной и той же цели. Каждая категория похожа на виртуальный конверт, где вы
+Этот современный подход не только сохраняет преимущества системы конвертов
+Кроме того, они учитывают некоторые его ограничения.
 
-One key difference is that traditional envelope budgeting often overlooks fixed expenses like rent, mortgage,
-utility bills, and other regular payments. These fixed costs are crucial and must be accounted for to have a
-complete picture of your finances. Actual Budget ensures that every fixed or variable expense is
-considered. This comprehensive approach makes AB much more effective than the traditional cash-stuffing method.
+Одно ключевое отличие заключается в том, что традиционное бюджетирование конвертов часто игнорирует фиксированные расходы, такие как аренда, ипотека и т.д.
+Эти фиксированные расходы имеют решающее значение и должны учитываться для того, чтобы иметь
+Actual Budget гарантирует, что каждый фиксированный или переменный расход
+Этот комплексный подход делает AB гораздо более эффективным, чем традиционный метод наличных денег.
 
-A significant advantage of using Actual Budget is increased awareness of expenses.
-Knowing where every penny of your money is spent is a decisive step towards financial control and stability.
+Существенным преимуществом использования Actual Budget является повышение осведомленности о расходах.
+Знание того, куда тратится каждая копейка ваших денег, является решающим шагом на пути к финансовому контролю и стабильности.
 
-## Zero-Sum Budgeting
+## Бюджетирование нулевой суммы {#zero-sum-budgeting}
 
-Zero-Sum budgeting[^1] is a key principle in electronic envelope budgeting systems like Actual Budget.
-This approach means that all income is assigned to a specific category, leaving no money unallocated.
-This gives every unit of currency a purpose, ensuring that income is used efficiently and intentionally.
-A popular saying is all your money should have a "job".
+Бюджетирование с нулевой суммой[^1] Это ключевой принцип в системах электронного бюджета конвертов, таких как Actual Budget.
+Такой подход означает, что все доходы относятся к определенной категории, не оставляя никаких денег нераспределенными.
+Это дает каждой единице валюты цель, гарантируя, что доход используется эффективно и преднамеренно.
+Популярная поговорка гласит, что все ваши деньги должны иметь «работу».
 
-One dollar (or whatever your currency is) may be used for Netflix while the next dollar may be for savings.
-Giving every dollar a job forces you to be honest about where your money is going because each dollar can
-only have one job.
+Один доллар (или любая другая валюта) может быть использован для Netflix, в то время как следующий доллар может быть для сбережений.
+Предоставление каждому доллару работы заставляет вас быть честным в отношении того, куда идут ваши деньги, потому что каждый доллар может помочь вам найти работу.
+Есть только одна работа.
 
-Here's what Zero-Sum Budgeting involves:
+Вот что такое бюджетирование с нулевой суммой:
 
-- **Total Allocation**: All your income is allocated to specific categories, resulting in a
-  zero balance.
-- **Goal-Oriented Planning**: It encourages you to assign funds with specific goals, such as saving for
-  emergencies, paying off debts, or investing. This aligns your spending with your overall financial objectives.
-- **Flexibility**: This method allows flexibility as your priorities change. It requires regular evaluation
-  and adjustment, making it suitable for those with dynamic financial situations.
+- **Общее распределение**Все ваши доходы распределяются по определенным категориям, что приводит к
+  нулевой баланс.
+- **Целенаправленное планирование**Это побуждает вас назначать средства с конкретными целями, такими как экономия на
+  Чрезвычайные ситуации, погашение долгов или инвестирование. Это согласует ваши расходы с вашими общими финансовыми целями.
+- **Гибкость**Этот метод обеспечивает гибкость при изменении ваших приоритетов.
+  Корректировка, что делает его подходящим для людей с динамичным финансовым положением.
 
-By following Zero-Sum Budgeting, you can maintain control over your finances and ensure that every income
-is working towards your financial goals.
+Следуя бюджетированию с нулевой суммой, вы можете контролировать свои финансы и обеспечивать каждый доход.
+Мы работаем над вашими финансовыми целями.
 
-## Zero-Sum Budgeting Strategies you can use
+## Стратегии бюджетирования с нулевой суммой, которые вы можете использовать {#zero-sum-budgeting-strategies-you-can-use}
 
-Every one has a different situation so there isn't a one size fits all way to assign your available funds.
-Detailed below are a few strategies you can use.
+У каждого своя ситуация, поэтому нет единого размера, подходящего для назначения ваших доступных средств.
+Ниже приведены несколько стратегий, которые вы можете использовать.
 
-### The Basics of Zero-Sum Budgeting
+### Основы бюджетирования с нулевой суммой {#the-basics-of-zero-sum-budgeting}
 
-A basic idea with zero-sum budgeting is that you can only budget what you have, and all you have should be
-budgeted. If you budget more than you have one month, the over budgeted amount will be deducted from what
-you have available the next month. So to start, decide what your most important categories are. Those
-important categories might be rent, food, and utilities. Assign what you need for those categories, then
-repeat the process for the next most important categories until your _To Budget_ amount for the month reaches
-zero. When you get a paycheck, or other income, continue filling in where the funds are needed.
+Основная идея с бюджетированием с нулевой суммой заключается в том, что вы можете бюджетировать только то, что у вас есть.
+Если бюджет больше, чем у вас есть один месяц, сверхбюджетная сумма будет вычтена из того, что
+Итак, для начала, решите, какие ваши самые важные категории.
+важными категориями могут быть аренда, питание и коммунальные услуги.
+Повторите процесс для следующих наиболее важных категорий, пока не достигнете суммы To Budget за месяц.
+Когда вы получаете зарплату или другой доход, продолжайте заполнять там, где нужны средства.
 
-As you go along you will start to get a good view of where your money is going. If you don't like how things
-are going, make changes. If you're happy, great! Keep budgeting to keep track of your progress on your goals.
+Когда вы пойдете дальше, вы начнете получать хорошее представление о том, куда идут ваши деньги.
+Если вы счастливы, отлично, продолжайте составлять бюджет, чтобы отслеживать прогресс в достижении ваших целей.
 
-A more detailed breakdown of how budgeting in Actual works is provided in the [budgeting page](../budgeting/index.md).
+Более подробная разбивка того, как бюджетирование в реальных работах обеспечивается в соответствии с [Бюджетная страница](../budgeting/index.md).
 
-### The Month Ahead Strategy
+### Стратегия на месяц вперед {#the-month-ahead-strategy}
 
-It can be hard to know where to budget your funds when you get paid in the middle of the month, or get multiple
-paychecks per month. One way to handle this is called the _month ahead_ method. This consists of holding everything
-you make this month and only budgeting it next month. The goal is to not need any of this month's income for this
-month's bills, but pay all of this month's bills with last month's income. Actual makes this easy by allowing you
-to hold your available funds for the next month by clicking the _To Budget_ amount at the top of the budgeting screen
-and selecting the _Hold for next month_ option. You can read more about this on [the budgeting page](../budgeting/index.md).
+Может быть трудно понять, где бюджетировать свои средства, когда вам платят в середине месяца.
+Один из способов справиться с этим называется методом month ahead .
+Вы зарабатываете в этом месяце и только бюджетируете его в следующем месяце. Цель состоит в том, чтобы не нуждаться ни в каком доходе этого месяца для этого.
+ежемесячные счета, но оплачивайте все счета этого месяца с прошлогодними доходами.
+Для хранения имеющихся средств в течение следующего месяца, нажав на сумму To Budget в верхней части экрана бюджетирования
+и выбрав опцию Hold for next month , вы можете прочитать больше об этом [Страница бюджетирования](../budgeting/index.md).
 
-For example, if you make $ 3,000 this month, instead of spending it on this month's bills, you save it and use it to
-cover next month's expenses. Most people cannot achieve this in one month, so the way forward is to build up a
-buffer. Instead of aiming to save the full $ 3,000 in one go, begin by setting aside a smaller amount each month.
-For example, if you can set aside $ 200 each month, gradually build your buffer over several months. As you save
-more, you'll start to pay some of next month's bills with this reserve.
+Например, если вы зарабатываете 3 000 долларов в этом месяце, вместо того, чтобы тратить их на счета этого месяца, вы сохраняете их и используете для оплаты своих счетов.
+Большинство людей не могут достичь этого за один месяц, так что путь вперед - это наращивать расходы в следующем месяце.
+Вместо того, чтобы стремиться сэкономить целых 3000 долларов за один раз, начните с выделения меньшей суммы каждый месяц.
+Например, если вы можете выделить 200 долларов в месяц, постепенно создайте буфер в течение нескольких месяцев.
+Более того, вы начнете оплачивать некоторые счета в следующем месяце с помощью этого резерва.
 
-You can also read about this strategy in [one of our blog posts](../../blog/2023-12-15-automate-your-budget-with-goal-templates).
+### Стратегия Pay-Yourself-First {#pay-yourself-first-strategy}
 
-### Pay-Yourself-First Strategy
+Стратегия Pay-Yourself-First фокусируется на экономии части вашего дохода, прежде чем тратить на что-либо еще.
+Делая сбережения главным приоритетом, этот подход помогает людям построить финансовую стабильность и подготовиться к неожиданностям.
+Автоматизация сбережений, например, установка автоматических переводов, обеспечивает последовательность и уменьшает соблазн.
+Стратегия также поощряет сбалансированный подход, учитывающий как насущные потребности, так и долгосрочные потребности.
+Финансовая безопасность. Фактическая функциональность [Расписание](../schedules.md)
+и [Шаблоны бюджетных целей](../experimental/goal-templates.md#goal-directive) Это может помочь вам с этой стратегией.
 
-The Pay-Yourself-First strategy focuses on saving a portion of your income before spending on anything else.
-By making savings the top priority, this approach helps individuals build financial stability and prepare for unexpected
-events. Automating savings, such as setting up automatic transfers, ensures consistency and reduces the temptation
-to overspend. The strategy also encourages a balanced approach, addressing both immediate needs and long-term
-financial security. Actual has functionality for [Schedules](../schedules.md)
-and [Budget Goal Templates](../experimental/goal-templates.md#goal-directive) that can help you with this strategy.
+Например, если вы зарабатываете 3000 долларов в месяц, вы можете сэкономить 20% или 600 долларов, как только получите свою зарплату.
+Вы настроили автоматический перевод, чтобы перевести эту сумму на сберегательный счет, гарантируя, что она будет отложена перед вами.
+оплачивать любые счета или совершать покупки. Оставшиеся 2400 долларов затем доступны для покрытия ваших расходов на проживание, таких как аренда,
+Этот метод гарантирует, что ваша цель экономии последовательно выполняется без
+Нужно полагаться на то, что осталось в конце месяца.
 
-For example, if you earn $ 3,000 a month, you might decide to save 20%, or $ 600, as soon as you receive your paycheck.
-You set up an automatic transfer to move this amount into a savings account, ensuring it is set aside before you
-pay any bills or make purchases. The remaining $ 2,400 is then available to cover your living expenses, such as rent,
-utilities, groceries, and entertainment. This method guarantees that your savings goal is consistently met without
-having to rely on what's left at the end of the month.
+### Кредитные карты {#credit-cards}
 
-### Credit Cards
+Если вы в настоящее время несете задолженность по кредитной карте на бюджетном счете, вам нужно будет захватить эту задолженность в категории.
+Руководство о том, как справиться с этим, можно найти в [Руководство по кредитной карте](../budgeting/credit-cards/index.md).
 
-If you currently are carrying credit card debt in an on budget account you will need to capture that debt in a category.
-A guide on how to handle that can be found in [the credit card guide](../budgeting/credit-cards/index.md).
+### Общие счета {#shared-accounts}
 
-### Shared accounts
+У нас есть руководство о том, что делать, когда дело доходит до [Стратегии ведения совместных счетов](../budgeting/joint-accounts.md).
 
-We have a guide on what to do when it comes to [strategies for handling joint accounts](../budgeting/joint-accounts.md).
+### Возврат и возмещение {#returns-and-reimbursements}
 
-### Returns and Reimbursements
+Вы можете прочитать больше об этом в [Руководство по возврату и возмещению](../budgeting/returns-and-reimbursements.md).
 
-You can read more about these in the [returns and reimbursements guides](../budgeting/returns-and-reimbursements.md).
+## Как настроить и использовать систему конвертов с реальным бюджетом {#how-to-set-up-and-use-an-envelope-system-with-actual-budget}
 
-## How to set up and use an envelope system with Actual Budget
+Научиться бюджету с использованием реального бюджета очень просто.
+Если вы впервые составляете бюджет, начните со следующих шагов:
 
-Learning to budget using Actual Budget is straightforward, even
-if you're new to budgeting. Here's a checklist for getting started:
+### 1. Установить бюджетные категории {#1-establish-budget-categories}
 
-### 1. Establish budget categories
+Первый шаг – определить, какие расходы и доходы  [Категории для включения в ваш бюджет](../budgeting/categories.md).
+Настройте каждую категорию в соответствии с вашим конкретным бюджетом и расходными привычками, давая вам возможность настраивать
+Система соответствует вашим потребностям для наиболее точного отслеживания.
 
-The first step is deciding which expense and income  [categories to include in your budget](../budgeting/categories.md).
-Tailor each category to fit your specific budget and spending habits, giving you the power to customize
-the system to your needs for the most accurate tracking.
+Общие категории могут включать общие области, такие как продукты питания, газ, одежда, развлечения и сбережения.
+Кроме того, вы можете использовать Actual Budget для управления выплатами по долгам и долгосрочными целями экономии.
+Обеспечение всестороннего охвата всех аспектов вашей финансовой жизни.
 
-Common categories might include general areas such as groceries, gas, clothing, entertainment, and savings.
-Additionally, you can use Actual Budget for managing debt payments and long-term savings goals,
-ensuring all aspects of your financial life are comprehensively covered.
+Просмотрите последние три месяца банковских выписок, чтобы определить категории.
+Расходы и источники дохода, чтобы определить, какие категории необходимы. Это даст вам четкое представление о том, что вам нужно.
+Представьте, куда уходят ваши деньги, и помогите создать бюджет, который отражает ваши схемы расходов и финансовые цели.
 
-Review the last three months of your bank statements to identify your categories. Look for recurring
-expenses and income sources to determine which categories are necessary. This will give you a clear
-picture of where your money goes and help you create a budget that reflects your spending patterns and financial goals.
+### 2. Распределение сумм по каждой категории {#2-allocate-amounts-to-each-category}
 
-### 2. Allocate amounts to each category
+После того, как вы определили категории ваших расходов и доходов, следующим шагом будет:
+чтобы решить, сколько денег выделить каждой категории. Это распределение гарантирует, что
+Каждая часть вашей финансовой жизни учитывается и помогает вам эффективно управлять своими деньгами.
 
-Once you have identified the categories for your expenses and incomes, the next step is
-to decide how much money to allocate to each category. This allocation ensures that
-every part of your financial life is accounted for and helps you manage your money effectively.
+Практическим способом определения этих сумм является использование среднего значения, по крайней мере, последнего.
+Банковские выписки за три месяца, но лучше использовать предыдущие шесть месяцев.
+Это среднее значение обеспечивает реалистичную оценку ваших расходов и моделей доходов, позволяя
+Вы устанавливаете начальные бюджетные значения, которые отражают ваши финансовые привычки.
 
-A practical way to determine these amounts is to use the average of at least the last
-three months' bank statements. Better yet, it is using the previous six months.
-This average provides a realistic estimate of your spending and income patterns, allowing
-you to set initial budget values that reflect your financial habits.
+Например, если у вас есть 1200 долларов на месяц, ваш бюджет может выглядеть так:
 
-For example, if you have $ 1,200 to allocate for the month, your budget might look like this:
+| Категории     | Выделенные (бюджетные) средства | Объяснение                                                                |
+| ------------- | ------------------------------- | ------------------------------------------------------------------------- |
+| Продукция     | $ 300                           | Это покрывает ваши ежемесячные продукты питания и бытовые принадлежности. |
+| Газ           | $ 100                           | Выделяется на топливо и транспортные расходы.                             |
+| Ужин вне дома | $ 150                           | Деньги выделяются на питание в ресторанах или кафе.                       |
+| одежда        | $ 100                           | Средства на приобретение новой одежды или аксессуаров.                    |
+| Развлечения   | $ 150                           | Бюджет на фильмы, хобби или другие виды досуга.                           |
+| Подарки       | $ 50                            | Экономия на дни рождения, праздники или особые случаи.                    |
+| Личная забота | $ 150                           | Выделяется для здоровья и красоты продуктов или услуг, таких как стрижки. |
+| Экономия      | $ 200                           | Деньги выделяются на будущие нужды или чрезвычайные ситуации.             |
+| **полностью** | **$ 1,200**                     |                                                                           |
 
-| Categories    | Allocated (budgeted) funds | Explanation                                                         |
-| ------------- | -------------------------- | ------------------------------------------------------------------- |
-| Groceries     | $ 300                      | This covers your monthly food and household supplies.               |
-| Gas           | $ 100                      | Allocated for fuel and transportation costs.                        |
-| Dining Out    | $ 150                      | Money set aside for eating out at restaurants or cafes.             |
-| Clothing      | $ 100                      | Funds for purchasing new clothes or accessories.                    |
-| Entertainment | $ 150                      | Budget for movies, hobbies, or other leisure activities.            |
-| Gifts         | $ 50                       | Savings for birthdays, holidays, or special occasions.              |
-| Personal Care | $ 150                      | Allocated for health and beauty products or services like haircuts. |
-| Savings       | $ 200                      | Money set aside for future needs or emergencies.                    |
-| **TOTAL**     | **$ 1,200**                |                                                                     |
+Тщательно распределяя суммы по каждой категории, вы создаете четкий и реалистичный бюджет.
+более эффективно использовать свои финансы и достигать своих финансовых целей.
 
-By carefully allocating amounts to each category, you create a clear and realistic budget to help you manage
-your finances more effectively and achieve your financial goals.
+Помните, что эти начальные значения не высечены в камне. Когда вы начинаете отслеживать свои расходы, вы можете
+Некоторые категории нуждаются в большем или меньшем количестве денег. Эта гибкость позволяет вам корректировать свои действия.
+бюджет по мере необходимости, контролируя свое финансовое положение.
 
-Remember, these initial values are not set in stone. As you start tracking your expenses, you might
-find that some categories need more or less money. This flexibility empowers you to adjust your
-budget as needed, putting you in control of your financial situation.
+### 3 Отслеживайте свои расходы по каждой категории {#3-track-your-spending-for-each-category}
 
-### 3. Track your spending for each category
+С вашим бюджетом, выделенным сейчас, следующим шагом является тщательное отслеживание ваших расходов.
+Это необходимо для того, чтобы система конвертов работала эффективно.
 
-With your budget now allocated, the next step is to track your spending diligently.
-This is essential for making the envelope system work effectively.
+Каждый раз, когда вы делаете покупку, добавляйте расходы в Actual Budget.
+Как и много работы на начальном этапе, это значительно повысит вашу осведомленность о ваших расходах.
+Это позволяет вам принимать обоснованные решения о том, что и сколько тратить.
 
-Each time you make a purchase, add the spending to Actual Budget. While this might seem
-like a lot of work initially, it will significantly increase your awareness of your spending habits,
-enabling you to make informed decisions about what and how much to spend.
+По мере того, как вы привыкаете к этому методу бюджетирования, вы можете обновлять Actual Budget реже.
+Такая гибкость позволяет адаптировать систему к вашему образу жизни.
+Если ваш банк поддерживается, настройте автоматическую синхронизацию операций.
 
-As you become more accustomed to this budgeting method, you can update Actual Budget less frequently,
-such as once a week. This flexibility allows you to adapt the system to your lifestyle. Additionally,
-if supported, you can set up automatic syncing with your bank to streamline the process.
+Вот как это сделать:
 
-Here's how to do it:
+1. **Запись каждой транзакции**Каждый раз, когда вы тратите деньги, будь то покупка продуктов или оплата газа,
+   Немедленно введите сумму в Actual Budget под соответствующую категорию. Это гарантирует, что ваш бюджет
+   Она всегда актуальна.
+2. **Анализ привычек расходования**Потратьте время каждую неделю, чтобы пересмотреть свои расходы. Это поможет вам определить шаблоны и сделать
+   Этот проактивный подход может предотвратить перерасход и помочь вам оставаться в курсе ваших финансовых целей.
 
-1. **Record every transaction**: Every time you spend money, whether it's buying groceries or paying for gas,
-   immediately enter the amount into Actual Budget under the appropriate category. This ensures that your budget
-   is always up to date.
-2. **Analyze spending habits**: Take time each week to review your spending. This will help you identify patterns and make
-   adjustments as needed. This proactive approach can prevent overspending and help you stay on track with your financial goals.
+> **Совет**Вы не должны тратить каждую категорию до нуля каждый месяц. Если у вас есть деньги, это
+> Это означает, что вы потратили меньше, чем планировали. Используйте оставшиеся средства, чтобы погасить долг или добавить в свой чрезвычайный фонд.
+> Предоставление каких-либо дополнительных денег является ключом к тому, чтобы деньги не пошли впустую.
 
-> **Tip**: You don't have to spend each category down to zero each month. If you have money left over, it
-> means you spent less than planned. Use any leftover funds to pay down debt or add to your emergency fund.
-> Giving any extra money a purpose is key to ensuring the money doesn't go to waste.
+Постоянно отслеживая свои расходы и корректируя свой бюджет по мере необходимости, вы будете лучше контролировать свои расходы.
+Ваши финансы и работайте более эффективно для достижения ваших финансовых целей.
 
-By consistently tracking your spending and adjusting your budget as necessary, you'll maintain better control over
-your finances and work more effectively towards your financial goals.
+### 4. Скорректировать и адаптировать {#4-adjust-and-adapt}
 
-### 4. Adjust and adapt
+Жизнь полна неожиданных поворотов; ваш бюджет должен быть таким же гибким.
+Бюджетная категория на месяц, важно адаптироваться и адаптироваться, а не чувствовать себя побежденным.
+В реальной жизни вы можете сделать то же самое с вашим бюджетом.
 
-Life is full of unexpected twists and turns; your budget should be just as flexible. When you overspend in a
-budget category for the month, it's crucial to adjust and adapt rather than feel defeated. As you adapt your plans
-in real life, you can do the same with your budget.
+Может, произошло неожиданное событие, или вы недооценили свои расходы. Ключ в том, чтобы оставаться гибкими и делать
+необходимые корректировки.
 
-Maybe an unexpected event arose, or you underestimated your expenses. The key is to remain flexible and make
-necessary adjustments.
+**Как скорректировать свой бюджет**
 
-**How to Adjust Your Budget**
+1. **Проанализируйте свои расходы**Во-первых, определите, где вы перерасходовали. Посмотрите на свои бюджетные категории, чтобы увидеть, где необходимы корректировки.
+2. **Перераспределять средства**Переместить деньги из категорий с профицитными средствами для покрытия перерасхода. Например, если вы запланировали 100 долларов США
+   за Eating Out , но затраченные 140 долларов, найдите другую категорию с дополнительными средствами, такими как Clothing или Entertainment,_ и поменять некоторые
+   На эти деньги покрыть разницу.
+3. **Оставайтесь спокойными и гибкими**Помните, что цель бюджетирования - эффективно управлять своими финансами, а не быть идеальным.
+   Гибкость - это ключ. Коррекция бюджета - нормальная часть процесса.
 
-1. **Review your spending**: First, identify where you overspent. Look at your budget categories to see where adjustments are needed.
-2. **Reallocate funds**: Move money from categories with surplus funds to cover the overspending. For example, if you budgeted $ 100
-   for _Eating Out_ but spent $ 140, find another category with extra funds, like _Clothing_ or _Entertainment,_ and shift some
-   of that money to cover the difference.
-3. **Stay calm and flexible**: Remember, the goal of budgeting is to manage your finances effectively, not to be perfect.
-   Flexibility is key. Adjusting your budget is a normal part of the process.
+Вы также можете создать бюджет для
+[автоматически вычитать перерасход](../budgeting/index.md#rollover-negative-category-balances) из фондов на следующий месяц.
+Даже если вы можете что-то сделать, это не значит, что вы должны это сделать.
 
-You can also set up Actual Budget to
-[automatically deduct the overspending](../budgeting/index.md#rollover-negative-category-balances) from next month's funds. Be aware that
-even if you _can_ do something, it does not mean that you _should_ do it.
+Вы сохраняете контроль над своим бюджетом, перераспределяя средства и избегая ненужного стресса.
+Вы понимаете, что бюджеты — это не жесткие ограничения, а гибкие инструменты, которые могут адаптироваться к вашим меняющимся потребностям.
 
-You maintain control over your budget by reallocating funds and avoiding unnecessary stress. This process helps
-you understand that budgets are not rigid constraints but flexible tools that can adapt to your changing needs.
+### 5.Приготовьтесь к неожиданностям {#5-prepare-for-the-unexpected}
 
-### 5. Prepare for the unexpected
+Нет такого понятия, как "нормальный" месяц, когда речь идет о расходах.
+Конвертное бюджетирование помогает вам подготовиться к этим нерегулярным расходам, добавляя средства в бюджет.
+Ваши категории.
 
-There's no such thing as a "normal" month when it comes to expenses. Your costs fluctuate throughout the year,
-often unpredictably. Envelope budgeting helps you prepare for these irregular expenses by adding funds to
-your categories.
+Многие люди сталкиваются с финансовым стрессом из-за больших, нечастых расходов, которые застают их врасплох.
 
-Many people face financial stress because of large, infrequent expenses that catch them off guard. These might include:
+- Ежегодные страховые премии
+- Подарки и праздники
+- Ремонт и техническое обслуживание автомобилей
+- Медицинские расходы
+- Домой Ремонт
 
-- Annual insurance premiums
-- Gifts and celebrations
-- Car repairs and maintenance
-- Medical expenses
-- Home repairs
+Без планирования эти расходы могут привести к финансовым кризисам, заставляя вас погружаться в сбережения или долги.
+Бюджетирование конвертов поощряет активную экономию, поэтому вы никогда не будете застигнуты врасплох.
 
-Without planning, these expenses can lead to financial crises, forcing you to dip into savings or debt.
-Envelope budgeting encourages proactive saving, so you're never caught off guard.
+Некоторые регулярные расходы, о которых вы уже знаете. Вы можете планировать их и откладывать меньшую сумму денег каждый.
+месяц, чтобы покрыть эти расходы, а не вкладывать большую сумму, когда счет приходит.
 
-Some regular expenses you already know about. You can plan for those and set aside a smaller amount of money each
-month to cover these rather than having to put up the larger amount when the bill comes.
+**Как планировать нерегулярные расходы**
 
-**How to plan for irregular expenses**
+1. **Выявление нерегулярных расходов**Составьте список всех больших, нечастых расходов, которые вы ожидаете в течение года.
+   Это может быть что угодно, от страховых взносов до праздничных подарков.
+2. **Разбить годовые затраты**Расчет общей годовой стоимости для каждого расхода.
+3. **Разделить на ежемесячные сбережения**Разделите годовую стоимость на 12, чтобы определить, сколько вам нужно экономить каждый месяц.
+4. **Создание конкретных категорий**Для каждого нерегулярного расхода устанавливайте конкретные категории в Actual Budget.
+   Нанесите на них ярлыки, такие как «Страхование автомобиля», «Подарки на праздник» или «Ремонт дома».
+5. **Ежемесячно выделять средства**Выделите рассчитанную сумму для этих категорий каждый месяц.
+   Это фиксированные расходы, чтобы вы последовательно экономили на этих будущих расходах.
 
-1. **Identify Irregular Expenses**: Make a list of all large, infrequent expenses you expect throughout the year.
-   These could be anything from insurance premiums to holiday gifts.
-2. **Break Down Annual Costs**: Calculate the total annual cost for each expense.
-3. **Divide into Monthly Savings**: Divide the annual cost by 12 to determine how much you need to save each month.
-4. **Create Specific Categories**: For each irregular expense, set up specific categories in Actual Budget.
-   Label them clearly, such as "Car Insurance," "Holiday Gifts," or "Home Repairs."
-5. **Allocate Funds Monthly**: Allocate the calculated amount to these categories each month. Treat this allocation
-   as a fixed expense to ensure you consistently save for these future costs.
+**Пример:** Допустим, ваши ежегодные страховые расходы составляют 2400 долларов. Вместо того, чтобы искать эту сумму, когда счет
+Прибыв, вы можете отложить 200 долларов каждый месяц. К тому времени, когда счет будет оплачен, вы будете иметь общую сумму сэкономленной и готовой.
+избежать необходимости окунуться в сбережения или понести долг.
 
-**Example:** Let's say your annual insurance costs are $ 2,400. Instead of scrambling to find this amount when the bill
-arrives, you can set aside $ 200 each month. By the time the bill is due, you'll have the total amount saved and ready,
-avoiding the need to dip into savings or incur debt.
+## Использование Actual Budget с дебетовыми картами лучше, чем использование наличных денег. {#using-actual-budget-with-debit-cards-is-better-than-using-cash}
 
-## Using Actual Budget with debit cards is better than using cash
+В то время как традиционная система конвертов полагается на наличные деньги, используя Actual Budget с дебетом и кредитом.
+Вот почему использование карт может быть более эффективным:
 
-While the traditional envelope system relies on cash, using Actual Budget with debit and credit
-cards offers significant advantages. Here's why using cards can be more effective:
+**Простота отслеживания**Когда вы используете дебетовые или кредитные карты, все ваши транзакции автоматически регистрируются.
+Банковские выписки и выписки по кредитным картам предоставляют подробную историю вашего банковского счета.
+транзакции, включая дату, сумму и продавца. Это значительно облегчает отслеживание ваших расходов без
+Для этого необходимо вручную вводить каждую транзакцию, когда вы совершаете покупку или получаете доход.
+Большинство финансовых учреждений позволяют экспортировать ваши транзакции в виде файлов CSV.
+который может быть [импортируется в Actual Budget](../transactions/importing.md)Использование карт сэкономит вам время и снизит риск ошибок.
 
-**Ease of tracking**: When you use debit or credit cards, all your transactions are automatically recorded
-in your bank statement. Bank and credit card statements provide a detailed history of your
-transactions, including the date, amount, and merchant. This makes it much easier to track your spending without
-having (to remember) to manually enter each transaction whenever you make a purchase or get income.
-Most financial institutions will let you export your transactions as CSV files,
-which can be [imported into Actual Budget](../transactions/importing.md). Using cards will save you time and reduce the risk of errors.
+**Автоматический импорт**Actual Budget может [Синхронизация непосредственно с вашими банковскими счетами](../advanced/bank-sync.md).
+Каждый раз, когда вы используете свою дебетовую или кредитную карту, данные транзакции автоматически импортируются в систему.
+Вам больше не нужно хранить физические квитанции или вручную регистрировать каждый расход.
 
-**Automatic import**: Actual Budget can [sync directly with your bank accounts](../advanced/bank-sync.md).
-Every time you use your debit or credit card, the transaction details are automatically imported into
-your budget categories. You no longer need to keep physical receipts or manually log each expense.
+Читать далее → [Управление кредитными картами](../budgeting/credit-cards/index.md) с реальным бюджетом.
 
-Read more about [managing credit cards](../budgeting/credit-cards/index.md) with Actual Budget.
+## Подробный пример того, как сделать бюджетирование с нулевой суммой {#a-detailed-example-of-how-to-do-zero-sum-budgeting}
 
-## A detailed example of how to do Zero-Sum budgeting
+Допустим, ваш общий ежемесячный доход в январе составляет 1200 долларов. Вы получаете свои деньги 1-го. Используя бюджетирование с нулевой базой,
+Вы будете распределять каждую единицу этого дохода по разным категориям, гарантируя, что ничего не останется без назначения.
+Полное распределение.
 
-Let's say your total monthly income in January is $ 1,200. You get your money on the 1st. Using Zero-Based Budgeting,
-you will allocate every unit of this income to different categories, ensuring that nothing is left unassigned. This is known as
-the _Total Allocation_.
+Вот пример того, как можно разделить 1200 долларов:
 
-Here's an example of how you could split the $ 1,200:
+| Категории     | Доход       | Объяснение                                                                |
+| ------------- | ----------- | ------------------------------------------------------------------------- |
+| Продукция     | $ 300       | Это покрывает ваши ежемесячные продукты питания и бытовые принадлежности. |
+| Газ           | $ 100       | Выделяется на топливо и транспортные расходы.                             |
+| Ужин вне дома | $ 150       | Деньги выделяются на питание в ресторанах или кафе.                       |
+| одежда        | $ 100       | Средства на приобретение новой одежды или аксессуаров.                    |
+| Развлечения   | $ 150       | Бюджет на фильмы, хобби или другие виды досуга.                           |
+| Подарки       | $ 50        | Экономия на дни рождения, праздники или особые случаи.                    |
+| Личная забота | $ 150       | Выделяется для здоровья и красоты продуктов или услуг, таких как стрижки. |
+| Экономия      | $ 200       | Деньги выделяются на будущие нужды или чрезвычайные ситуации.             |
+| **полностью** | **$ 1,200** |                                                                           |
 
-| Categories    | Income      | Explanation                                                         |
-| ------------- | ----------- | ------------------------------------------------------------------- |
-| Groceries     | $ 300       | This covers your monthly food and household supplies.               |
-| Gas           | $ 100       | Allocated for fuel and transportation costs.                        |
-| Dining Out    | $ 150       | Money set aside for eating out at restaurants or cafes.             |
-| Clothing      | $ 100       | Funds for purchasing new clothes or accessories.                    |
-| Entertainment | $ 150       | Budget for movies, hobbies, or other leisure activities.            |
-| Gifts         | $ 50        | Savings for birthdays, holidays, or special occasions.              |
-| Personal Care | $ 150       | Allocated for health and beauty products or services like haircuts. |
-| Savings       | $ 200       | Money set aside for future needs or emergencies.                    |
-| **TOTAL**     | **$ 1,200** |                                                                     |
+Теперь мы видим, что все 1200 долларов относятся к определенным категориям, гарантируя, что каждая единица вашего дохода имеет цель.
 
-We now see that all $ 1,200 are assigned to specific categories, ensuring that every unit of your income has a purpose.
+### Неделя 1 Бюджетное отслеживание {#week-1-budget-tracking}
 
-### Week 1 budget tracking
+Давайте отследим расходы на неделе 1 и рассчитаем доступные суммы на неделе 2.
 
-Let's track the expenses in Week 1 and calculate the available amounts for Week 2.
+| Категории     | Бюджетная неделя 1 | Провести неделю 1 | Доступно для недели 2 |
+| ------------- | ------------------ | ----------------- | --------------------- |
+| Продукция     | $ 300              | $ 123             | $ 177                 |
+| Газ           | $ 100              | $ 40              | $ 60                  |
+| Ужин вне дома | $ 150              | $ 10              | $ 140                 |
+| одежда        | $ 100              | $ 34              | $ 66                  |
+| Развлечения   | $ 150              | $ 30              | $ 120                 |
+| Подарки       | $ 50               | $ 45              | $ 5                   |
+| Личная забота | $ 150              | $ 75              | $ 75                  |
 
-| Categories    | Budget Week 1 | Spending Week 1 | Available for Week 2 |
-| ------------- | ------------- | --------------- | -------------------- |
-| Groceries     | $ 300         | $ 123           | $ 177                |
-| Gas           | $ 100         | $ 40            | $ 60                 |
-| Dining Out    | $ 150         | $ 10            | $ 140                |
-| Clothing      | $ 100         | $ 34            | $ 66                 |
-| Entertainment | $ 150         | $ 30            | $ 120                |
-| Gifts         | $ 50          | $ 45            | $ 5                  |
-| Personal Care | $ 150         | $ 75            | $ 75                 |
+В этой таблице в графе «Доступно на неделе 2» показан оставшийся бюджет после вычитания недели 1
+Это поможет вам увидеть, сколько вам осталось потратить в каждой категории на
+на следующей неделе.
 
-In this table, the "Available in Week 2" column shows the remaining budget after subtracting the Week 1
-spending from the initial budget. This helps you see how much you have left to spend in each category for
-the next week.
+### Неделя 2 Бюджетное отслеживание {#week-2-budget-tracking}
 
-### Week 2 budget tracking
+На 2-й неделе вас приглашают на вечеринку по случаю новоселья, и вы хотите принести подарок.
+Видели, что вам осталось потратить всего 5 долларов. Это далеко не так - но вы нашли подарок стоимостью всего 10 долларов.
 
-In week 2 you, are invited to a housewarming party, and you want to bring a gift. In the _Available in Week 2_ we
-saw that you only had $ 5 to spend. This does not go a long way - but you found a gift costing only $ 10.
+Давайте отследим расходы на 2 неделе и рассчитаем доступные суммы на 3 неделе.
 
-Let's track the expenses in Week 2 and calculate the available amounts for Week 3.
+| Категории     | Доступная неделя 2 | Провести неделю 2 | Доступно на 3 неделе |
+| ------------- | ------------------ | ----------------- | -------------------- |
+| Продукция     | $ 177              | $ 98              | $ 79                 |
+| Газ           | $ 60               | $ 34              | $ 26                 |
+| Ужин вне дома | $ 140              | $ 30              | $ 110                |
+| одежда        | $ 66               | $ 34              | $ 32                 |
+| Развлечения   | $ 120              | $ 30              | $ 90                 |
+| Подарки       | $ 5                | $ 10              | $ -5                 |
+| Личная забота | $ 75               | $ 40              | $ 35                 |
 
-| Categories    | Available Week 2 | Spending Week 2 | Available in Week 3 |
-| ------------- | ---------------- | --------------- | ------------------- |
-| Groceries     | $ 177            | $ 98            | $ 79                |
-| Gas           | $ 60             | $ 34            | $ 26                |
-| Dining Out    | $ 140            | $ 30            | $ 110               |
-| Clothing      | $ 66             | $ 34            | $ 32                |
-| Entertainment | $ 120            | $ 30            | $ 90                |
-| Gifts         | $ 5              | $ 10            | $ -5                |
-| Personal Care | $ 75             | $ 40            | $ 35                |
+Теперь у вас дефицит в категории Gift .
 
-Now you are in deficit in the _Gift_ category.
+У вас не должно быть дефицита в вашем бюджете, поэтому вы должны использовать его. **Гибкость** Принцип сокращения денег
+Вы не хотите использовать свои сбережения, так как это **Цель**Обсуждение Dining Out
+Необязательно, чтобы вы перевели 5 из Available Week 2 в Gifts . Эти дополнительные 5 долларов будут добавлены к существующим 5 долларам.
+Это сделает общую сумму доступной равной расходам в размере 10 долларов.
 
-You should not really have a deficit in your budget, so you exercise the **Flexibility** principle by reducing money
-from one of the other categories. You do not want to use your savings - as this is a **Goal**. _Dining out_ is
-not essential so you move 5 from _Available Week 2_ into _Gifts_. These additional $ 5 will be added to the existing $ 5.
-This will make the total available equal to the $ 10 spending.
+### Обновленная неделя 3 Доступность {#updated-week-3-availability}
 
-### Updated week 3 availability
+После корректировки бюджета для устранения дефицита в категории подарков путем перераспределения средств из Dining Out,
+Вот новый бюджет на 3-й неделе:
 
-After adjusting the budget to address the deficit in the Gifts category by reallocating funds from Dining Out,
-here is the new available budget in Week 3:
+| Категории     | Доступная неделя 2 | Провести неделю 2 | Доступно на 3 неделе |
+| ------------- | ------------------ | ----------------- | -------------------- |
+| Ужин вне дома | $ 135              | $ 30              | $ 105                |
+| Подарки       | $ 10               | $ 10              | $ 0                  |
 
-| Categories | Available Week 2 | Spending Week 2 | Available in Week 3 |
-| ---------- | ---------------- | --------------- | ------------------- |
-| Dining Out | $ 135            | $ 30            | $ 105               |
-| Gifts      | $ 10             | $ 10            | $ 0                 |
+Эта обновленная таблица отражает перераспределение 5 долларов США из категории Dining Out для покрытия дефицита в категории Gifts .
+Категория, гарантирующая, что все бюджеты останутся положительными на 3-й неделе.
 
-This updated table reflects the reallocation of $ 5 from the _Dining Out_ category to cover the deficit in the _Gifts_
-category, ensuring that all budgets remain positive in Week 3.
+### Неделя 3 Бюджетное отслеживание {#week-3-budget-tracking}
 
-### Week 3 budget tracking
+Давайте отследим расходы на 3 неделе и рассчитаем доступные суммы на 4 неделе.
 
-Let's track the expenses in Week 3 and calculate the available amounts for Week 4.
+| Категории     | Доступная неделя 3 | Провести неделю 3 | Доступно в неделю 4 |
+| ------------- | ------------------ | ----------------- | ------------------- |
+| Продукция     | $ 79               | $ 63              | $ 16                |
+| Газ           | $ 26               | $ 12              | $ 14                |
+| Ужин вне дома | $ 105              | $ 20              | $ 85                |
+| одежда        | $ 32               | $ 0               | $ 32                |
+| Развлечения   | $ 90               | $ 35              | $ 55                |
+| Подарки       | $ 0                | $ 0               | $ 0                 |
+| Личная забота | $ 35               | $ 38              | $ -3                |
 
-| Categories    | Available Week 3 | Spending Week 3 | Available in Week 4 |
-| ------------- | ---------------- | --------------- | ------------------- |
-| Groceries     | $ 79             | $ 63            | $ 16                |
-| Gas           | $ 26             | $ 12            | $ 14                |
-| Dining Out    | $ 105            | $ 20            | $ 85                |
-| Clothing      | $ 32             | $ 0             | $ 32                |
-| Entertainment | $ 90             | $ 35            | $ 55                |
-| Gifts         | $ 0              | $ 0             | $ 0                 |
-| Personal Care | $ 35             | $ 38            | $ -3                |
+Обратите внимание, что Личная помощь находится в дефиците, поэтому вы должны перераспределить средства из другой категории, чтобы покрыть этот дефицит.
 
-Note that Personal Care is in deficit, so you must reallocate funds from another category to cover this deficit.
+К счастью, на этой неделе мы выиграли 37 долларов в лотерею. Мы выделим все эти 37 долларов мудро. Самое главное - взять
+Теперь мы применяем принципы Flexibility и Total Allocation .
 
-Luckily, this week, we won $ 37 at the lottery. We will allocate all of these $ 37 wisely. The most important thing is to take
-care of the deficit. We now exercise both the _Flexibility_ and the _Total Allocation_ principles.
+Что нам делать с остальными деньгами, которые мы выиграли? Мы можем добавить их в категорию Сбережений.
+Вероятно, они потратят более 16 долларов на продукты, и на следующей неделе больше не будет вечеринок, требующих подарков.
+Мы решили разделить оставшиеся деньги между продуктами и сбережениями.
 
-What do we do with the rest of the money we won? We can add them to the Savings category. We see that we are
-probably going to spend more than 16 on Groceries - and there are no more parties which requires Gifts in the coming week.
-We decide to split the rest of the money between Groceries and Savings.
+| Категории     | Доступная неделя 3 | Провести неделю 3 | Корректировки | Доступно в неделю 4 |
+| ------------- | ------------------ | ----------------- | ------------- | ------------------- |
+| Продукция     | $ 79               | $ 63              | $ +24         | $ 40                |
+| Газ           | $ 26               | $ 12              |               | $ 14                |
+| Ужин вне дома | $ 105              | $ 20              |               | $ 85                |
+| одежда        | $ 32               | $ 0               |               | $ 32                |
+| Развлечения   | $ 90               | $ 35              |               | $ 55                |
+| Подарки       | $ 0                | $ 0               |               | $ 0                 |
+| Личная забота | $ 35               | $ 38              | $ +3          | $ 0                 |
+| Экономия      | $ 200              | $ 0               | $ +10         | $ 210               |
 
-| Categories    | Available Week 3 | Spending Week 3 | Adjustments | Available in Week 4 |
-| ------------- | ---------------- | --------------- | ----------- | ------------------- |
-| Groceries     | $ 79             | $ 63            | $ +24       | $ 40                |
-| Gas           | $ 26             | $ 12            |             | $ 14                |
-| Dining Out    | $ 105            | $ 20            |             | $ 85                |
-| Clothing      | $ 32             | $ 0             |             | $ 32                |
-| Entertainment | $ 90             | $ 35            |             | $ 55                |
-| Gifts         | $ 0              | $ 0             |             | $ 0                 |
-| Personal Care | $ 35             | $ 38            | $ +3        | $ 0                 |
-| Savings       | $ 200            | $ 0             | $ +10       | $ 210               |
+В этой пересмотренной таблице был рассмотрен дефицит средств по уходу за собой, а оставшиеся деньги были выделены.
+Сбережения и продукты, чтобы лучше подготовиться к предстоящей неделе.
 
-In this revised table, the deficit in Personal Care has been addressed, and the remaining lottery money has been allocated
-to Groceries and Savings to better prepare for the coming week.
+### Неделя 4 Бюджетное отслеживание {#week-4-budget-tracking}
 
-### Week 4 budget tracking
+Давайте отследим расходы на 4-й неделе и рассчитаем доступные суммы на следующий месяц.
 
-Let's track the expenses in Week 4 and calculate the available amounts for next month
+| Категории     | Доступная неделя 4 | Провести неделю 4 | Доступно на 5 неделе (февраль) |
+| ------------- | ------------------ | ----------------- | ------------------------------ |
+| Продукция     | $ 40               | $ 38              | $ 2                            |
+| Газ           | $ 14               | $ 0               | $ 14                           |
+| Ужин вне дома | $ 85               | $ 45              | $ 40                           |
+| одежда        | $ 32               | $ 16              | $ 16                           |
+| Развлечения   | $ 55               | $ 17              | $ 38                           |
+| Подарки       | $ 0                | $ 0               | $ 0                            |
+| Личная забота | $ 0                | $ 0               | $ 0                            |
 
-| Categories    | Available Week 4 | Spending Week 4 | Available in Week 5 (February) |
-| ------------- | ---------------- | --------------- | ------------------------------ |
-| Groceries     | $ 40             | $ 38            | $ 2                            |
-| Gas           | $ 14             | $ 0             | $ 14                           |
-| Dining Out    | $ 85             | $ 45            | $ 40                           |
-| Clothing      | $ 32             | $ 16            | $ 16                           |
-| Entertainment | $ 55             | $ 17            | $ 38                           |
-| Gifts         | $ 0              | $ 0             | $ 0                            |
-| Personal Care | $ 0              | $ 0             | $ 0                            |
+### Подготовка к февралю: информация о наших привычках в январе {#preparing-for-february-learnings-about-our-spending-habits-in-january}
 
-### Preparing for February: Learnings About Our Spending Habits in January
+- Нам пришлось скорректировать бюджет Groceries, когда мы выиграли в лотерею. Без этого у нас был бы дефицит в этой категории.
+  Поэтому нам нужно увеличить бюджет на продукты в следующем месяце.
+- Мы потратили больше денег, чем было выделено на подарки, поэтому мы должны увеличить бюджет на эту категорию в следующем месяце.
+- Мы потратили на Dining Out гораздо меньше, чем выделили, поэтому можем сократить этот бюджет на февраль.
+- Мы также увеличим бюджет на газ на 10 долларов, потому что, если бы нам пришлось заправлять газ на 4 неделе, мы бы столкнулись с проблемой, - сказал он.
+  дефицита и должны покрывать его из других категорий.
 
-- We had to adjust the Groceries budget when we won the lottery. Without this, we would have had a deficit in this category.
-  Therefore, we need to increase next month's budget for Groceries.
-- We used more money than was allocated for gifts, so we should increase the budget for this category next month.
-- We spent much less on Dining Out than we allocated, so we can reduce this budget for February.
-- We will also increase the Gas budget by $ 10 because if we had to fill gas in week 4, we would have faced a
-  deficit and need to cover it from other categories.
+Все остальное мы относим к категории сбережений.
 
-The rest we put into our Savings category.
-
-[^1]: Another name for this type of budgeting is Zero-Based Budgeting.
+[^1]Другое название для этого типа бюджетирования - это бюджетирование с нулевой базой.

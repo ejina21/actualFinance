@@ -1,24 +1,24 @@
-# Authenticating with HTTP Headers
+# Аутентификация с помощью HTTP-заголовков {#authenticating-with-http-headers}
 
 :::note
-Client Version 24.6.0 and
-Server Version 24.6.0 or higher are required for this feature.
+Клиентская версия 24.6.0
+Для этой функции требуется серверная версия 24.6.0 или выше.
 :::
 
-This feature will allow Actual to use an HTTP header to automatically authenticate and log in without prompting for a password. This is useful for individuals who run SSO services like [Authentik](https://goauthentik.io/), [Authelia](https://www.authelia.com/), and more.
+Эта функция позволит Actual использовать HTTP-заголовок для автоматической аутентификации и входа в систему без запроса пароля. Это полезно для людей, которые запускают службы SSO, такие как: [Аутентик](https://goauthentik.io/), [Ауфелия](https://www.authelia.com/)И даже больше.
 
-## Setup
+## Настройка {#setup}
 
-This feature needs to be enabled on the server, it is not configured to work out of the box. In the Actual config, set the value `loginMethod` or env `ACTUAL_LOGIN_METHOD` to `"header"`. This will enable header authentication, but the normal password authentication will still work as a fallback.
+Эта функция должна быть включена на сервере, она не настроена на работу из коробки. В фактической конфигурации установите значение `loginMethod` или эв `ACTUAL_LOGIN_METHOD` то `"header"`Это позволит аутентифицировать заголовок, но обычная аутентификация пароля по-прежнему будет работать как запасной вариант.
 
 :::warning
-Be careful! A misconfiguration on this next step could make your instance available to the whole internet.
+Остерегайтесь! Неправильная конфигурация на следующем шаге может сделать ваш экземпляр доступным для всего Интернета.
 :::
 
-The SSO provider then needs to be configured to pass an extra HTTP header to Actual. The details on how to do this are unique to the SSO provider, but the header `x-actual-password` needs to be set to your actual password.
+Затем провайдер SSO должен быть настроен на передачу дополнительного заголовка HTTP в Actual. Подробности о том, как это сделать, уникальны для провайдера SSO, но заголовок `x-actual-password` Необходимо установить свой фактический пароль.
 
-If your setup needs it, it is possible to configure trusted proxies for authentication. See [`trustedAuthProxies` configuration](../config/index.md#trustedauthproxies) for details.
+Если ваша настройка нуждается в этом, можно настроить доверенные прокси для аутентификации. [`trustedAuthProxies` конфигурация](../config/index.md#trustedauthproxies) Для деталей.
 
 :::note
-This feature is not an HTTP basic auth, but a different form of using a password. For HTTP basic auth or user accounts see [this issue](https://github.com/actualbudget/actual/issues/524)
+Эта функция не является HTTP Basic auth, а другой формой использования пароля. [Этот вопрос](https://github.com/actualbudget/actual/issues/524)
 :::

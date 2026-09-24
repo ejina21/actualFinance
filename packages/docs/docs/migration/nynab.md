@@ -1,254 +1,254 @@
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-# Migrating from nYNAB
+# Перенос из нового YNAB {#migrating-from-nynab}
 
-To export your budget from YNAB, choose one of the methods below. The third-party web tool is the easiest when it works, but it may be unavailable if YNAB restricts access to it. The alternative methods use your own YNAB API token and do not depend on the web tool.
+Чтобы экспортировать свой бюджет из YNAB, выберите один из методов ниже. Сторонний веб-инструмент является самым простым, когда он работает, но он может быть недоступен, если YNAB ограничивает доступ к нему. Альтернативные методы используют собственный токен YNAB API и не зависят от веб-инструмента.
 
-## Third-Party Web Tool
+## Сторонний веб-инструмент {#third-party-web-tool}
 
-Visit [https://json-exporter-for-ynab.netlify.app](https://json-exporter-for-ynab.netlify.app), which guides you through authorizing your YNAB account and downloading your budget as a JSON file.
+Визит [https://json-exporter-for-ynab.netlify.app](https://json-exporter-for-ynab.netlify.app), который направляет вас через авторизацию вашей учетной записи YNAB и загрузку вашего бюджета в виде файла JSON.
 
 :::note
-This tool is maintained by the community, not the Actual Budget team. It may occasionally be unavailable or show an authorization restriction from YNAB. If that happens, use one of the alternative export methods below.
+Этот инструмент поддерживается сообществом, а не командой по фактическому бюджету. Иногда он может быть недоступен или показывать ограничение разрешения от YNAB. Если это произойдет, используйте один из альтернативных методов экспорта ниже.
 :::
 
-Once you have the JSON file, skip ahead to [Import the JSON File](#import-the-json-file).
+После того, как у вас есть файл JSON, перейдите к [Импорт файла JSON](#import-the-json-file).
 
-If the json-exporter tool above does not work for any reason, use one of the following options.
+Если инструмент json-exporter выше не работает по какой-либо причине, используйте один из следующих вариантов:
 
-## Alternative Export Methods
+## Альтернативные методы экспорта {#alternative-export-methods}
 
-### Getting Your YNAB API Token
+### Получение токена YNAB API {#getting-your-ynab-api-token}
 
-The alternative options all require a YNAB Personal Access Token. Follow these steps once, then use the token in whichever option you choose.
+Все альтернативные варианты требуют токена личного доступа YNAB. Последуйте этим шагам один раз, а затем используйте токен, в котором вы выберете.
 
-1. Go to [YNAB Developer Settings](https://app.ynab.com/settings/developer), sign in if needed.
-2. Under "Personal Access Tokens", click **New Token**.
-3. Enter your password and click **Generate**.
-4. Copy the full token shown at the top of the page. Do not copy the shorter, partially hidden version shown in the table below it.
+1. Пойти [Настройки разработчиков YNAB](https://app.ynab.com/settings/developer)Войдите, если это необходимо.
+2. В разделе «Токены личного доступа» нажмите **Новый токен**.
+3. Введите свой пароль и нажмите **генерировать**.
+4. Копируйте полный токен, показанный в верхней части страницы. Не копируйте более короткую, частично скрытую версию, показанную в таблице ниже.
 
-![Generating a new YNAB Personal Access Token](/img/migrating/nynab-api-ui-pat-token.png)
+![Создание нового токена личного доступа YNAB](/img/migrating/nynab-api-ui-pat-token.png)
 
 :::caution
-The token is only displayed once. Copy it to a safe place before closing the page. More information about the YNAB API can be found at [api.ynab.com](https://api.ynab.com/).
+Токен отображается только один раз. Копируйте его в безопасное место перед закрытием страницы. Более подробную информацию об API YNAB можно найти на сайте WEB [api.ynab.com](https://api.ynab.com/).
 :::
 
-### Options
+### Варианты {#options}
 
 <Tabs>
   <TabItem value="api-ui" label="API Documentation UI" default>
 
-This method uses YNAB's official API documentation website, which has a built-in interface for making API requests directly from your browser. No additional tools are required.
+Этот метод использует официальный веб-сайт документации API от YNAB, который имеет встроенный интерфейс для выполнения запросов API непосредственно из вашего браузера.
 
-Before you start, [get your YNAB API token](#getting-your-ynab-api-token) if you have not already.
+Прежде чем начать, [Получите токен YNAB API](#getting-your-ynab-api-token) Если вы еще этого не сделали.
 
-#### Step 1: Get Your Plan ID
+#### Шаг 1: Получите идентификатор вашего плана {#step-1-get-your-plan-id}
 
-1. Open the [Get All Plans endpoint](https://api.ynab.com/v1#tag/plans/GET/plans) in your browser
-2. Click **Try it out**, then click **Execute** (or "Test Request")
+1. Открой. [Получите конечную точку всех планов](https://api.ynab.com/v1#tag/plans/GET/plans) В вашем браузере
+2. щелкнуть **Попробуйте**Затем щелкните **казнить** (перенаправлено с «Test Request»)
 
-![The YNAB API documentation showing the Get All Plans endpoint](/img/migrating/nynab-api-ui-all-plans.webp)
+![Документация API YNAB, показывающая конечную точку Get All Plans](/img/migrating/nynab-api-ui-all-plans.webp)
 
-3. In the **Authorization** field that appears, paste your API token into the **Bearer Token** box and click **Send**
+3. В этом **разрешение** поле, которое появляется, вставьте свой токен API в **Токен-носитель** бокс и клик **Отправить**
 
-![Pasting the bearer token and sending the request](/img/migrating/nynab-api-ui-bearer-token.webp)
+![Вставить маркер на предъявителя и отправить запрос](/img/migrating/nynab-api-ui-bearer-token.webp)
 
-4. In the response body, find the entry for your plan and copy its `id` value (for example, `8800b4e7-937f-4cdb-a7e7-fc35b794f85b`)
+4. В ответном органе найдите запись для своего плана и скопируйте ее. `id` значение (например, `8800b4e7-937f-4cdb-a7e7-fc35b794f85b`)
 
-#### Step 2: Download Your Plan
+#### Шаг 2: Загрузите свой план {#step-2-download-your-plan}
 
-1. Open the [Get a Plan endpoint](https://api.ynab.com/v1#tag/plans/GET/plans/{plan_id}) in your browser
-2. Click **Try it out**
+1. Открой. [Получить конечную точку плана](https://api.ynab.com/v1#tag/plans/GET/plans/{plan_id}) В вашем браузере
+2. щелкнуть **Попробуйте**
 
-![The Get Plan by ID endpoint in the YNAB API documentation](/img/migrating/nynab-api-ui-get-plan.webp)
+![План получения по ID в документации API YNAB](/img/migrating/nynab-api-ui-get-plan.webp)
 
-3. Paste your plan ID into the `plan_id` field and click **Send**
-4. Once the response appears in the Body panel on the right, click **Download** to save the JSON file
+3. Вставьте ID вашего плана в `plan_id` поле и клик **Отправить**
+4. Как только ответ появится в панели тела справа, нажмите **скачать** Сохранить файл JSON
 
-![Clicking Download to save the YNAB plan JSON file](/img/migrating/nynab-api-ui-download.webp)
+![Нажмите Скачать, чтобы сохранить файл YNAB Plan JSON](/img/migrating/nynab-api-ui-download.webp)
 
 :::note
-If the import later fails with a **not-ynab5** error, you are likely on an older version of Actual. Either update Actual, or open the downloaded file in a plain text editor and change the leading `"plan"` to `"budget"` before importing.
+Если впоследствии импорт не увенчается успехом с **не-ynab5** ошибка, вы, скорее всего, на более старой версии Actual. либо обновить Actual, либо открыть загруженный файл в текстовом редакторе и изменить ведущий `"plan"` то `"budget"` перед импортом.
 :::
 
   </TabItem>
   <TabItem value="cli" label="CLI Tool">
 
-The [ynab-export](https://github.com/StephenBrown2/ynab-export) tool is a terminal app that walks you through the export process step by step. It works on Windows, macOS, and Linux, and requires no installation beyond downloading a single file.
+The [инаб-экспорт](https://github.com/StephenBrown2/ynab-export) Инструмент - это терминальное приложение, которое шаг за шагом проводит вас через процесс экспорта. Он работает на Windows, macOS и Linux и не требует установки, кроме загрузки одного файла.
 
-Before you start, [get your YNAB API token](#getting-your-ynab-api-token) if you have not already.
+Прежде чем начать, [Получите токен YNAB API](#getting-your-ynab-api-token) Если вы еще этого не сделали.
 
-#### Step 1: Download the Tool
+#### Шаг 1: Скачать инструмент {#step-1-download-the-tool}
 
-Go to the [Releases page](https://github.com/StephenBrown2/ynab-export/releases/latest) and download the file for your operating system:
+Иди к нему. [Страница релизов](https://github.com/StephenBrown2/ynab-export/releases/latest) Загрузите файл для вашей операционной системы:
 
-| Operating System                   | File to download                  |
+| Операционная система               | Файл для загрузки                 |
 | ---------------------------------- | --------------------------------- |
 | Windows                            | `ynab-export_*_windows_amd64.exe` |
 | macOS (Apple Silicon / M1, M2, M3) | `ynab-export_*_darwin_arm64`      |
 | macOS (Intel)                      | `ynab-export_*_darwin_amd64`      |
-| Linux (64-bit)                     | `ynab-export_*_linux_amd64`       |
+| Linux (64-битный)                  | `ynab-export_*_linux_amd64`       |
 
-The downloaded file is ready to run. No installation or extraction is needed. You may want to rename it to `ynab-export.exe` (Windows) or `ynab-export` (macOS/Linux) for simpler usage.
+Загруженный файл готов к работе. Установка или извлечение не требуется. Возможно, вы захотите переименовать его в `ynab-export.exe` (Windows) или `ynab-export` (macOS/Linux) для более простого использования.
 
-#### Step 2: Run the Tool
+#### Шаг 2: Запустите инструмент {#step-2-run-the-tool}
 
-**On Windows:**
+**В Windows:**
 
-Open Command Prompt, PowerShell, or Windows Terminal. Navigate to the folder where you saved the file and run:
+Откройте командную строку, PowerShell или Windows Terminal. Перейдите в папку, где вы сохранили файл и запустите:
 
 ```cmd
 ynab-export.exe
 ```
 
 :::tip
-Do not double-click the `.exe` file. It must be run from a terminal window to work correctly.
+Не нажимайте дважды `.exe` Он должен быть запущен из окна терминала, чтобы работать правильно.
 
-For the best experience, install [Windows Terminal](https://aka.ms/terminal) from the Microsoft Store (search "Windows Terminal" and click **Get**). Once installed, right-click in your Downloads folder and select **Open in Terminal**.
+Для лучшего опыта, установите [Windows Terminal](https://aka.ms/terminal) из Магазина Майкрософт (поищите «Windows Terminal» и нажмите **Давай!**После установки щелкните правой кнопкой мыши в папке Downloads и выберите **Открыт в терминале**.
 :::
 
-**On macOS or Linux:**
+**На macOS или Linux:**
 
-Open a terminal, navigate to the folder where you downloaded the file, and run:
+Откройте терминал, перейдите в папку, где вы загрузили файл, и запустите:
 
 ```bash
 chmod +x ynab-export
 ./ynab-export
 ```
 
-If macOS shows a security warning, right-click the file, select **Open**, and click **Open** in the dialog. Alternatively, run the following command first:
+Если macOS показывает предупреждение о безопасности, щелкните правой кнопкой мыши файл, выберите **Открыть**и щелкнуть **Открыть** В качестве альтернативы сначала запустите следующую команду:
 
 ```bash
 xattr -d com.apple.quarantine ynab-export
 ```
 
-#### Step 3: Follow the Prompts
+#### Шаг 3: Следуйте инструкциям {#step-3-follow-the-prompts}
 
-The tool guides you through three steps:
+Инструмент проведет вас через три шага:
 
-1. **Enter your API token** when prompted. The tool saves it automatically so you will not need to enter it again on future runs.
-2. **Select your budget** from the list of budgets in your YNAB account.
-3. **Wait for the export** to finish.
+1. **Введите свой API Token** Инструмент сохраняет его автоматически, поэтому вам не нужно будет вводить его снова на будущих запусках.
+2. **Выберите свой бюджет** Из списка бюджетов на вашем счете YNAB.
+3. **Дождитесь экспорта** до конца.
 
-When done, your budget file is saved to your Downloads folder with a name like `ynab-export-budget-name-YYYYMMDD-HHMMSS.json`.
+Когда это сделано, ваш бюджетный файл сохраняется в папку Downloads с таким именем, как: `ynab-export-budget-name-YYYYMMDD-HHMMSS.json`.
 
   </TabItem>
   <TabItem value="curl" label="cURL">
 
-If you are comfortable with the command line, you can download your plan directly using `curl`.
+Если вам удобна командная строка, вы можете загрузить свой план напрямую с помощью `curl`.
 
-Before you start, [get your YNAB API token](#getting-your-ynab-api-token) if you have not already.
+Прежде чем начать, [Получите токен YNAB API](#getting-your-ynab-api-token) Если вы еще этого не сделали.
 
-#### Step 1: Get Your Plan ID
+#### Шаг 1: Получите идентификатор вашего плана {#step-1-get-your-plan-id-1}
 
-Open a terminal window and run the following, replacing `<ACCESS_TOKEN>` with the token you copied:
+Откройте окно терминала и запустите следующее, заменив `<ACCESS_TOKEN>` Токен, который вы скопировали:
 
 ```
 curl -H "Authorization: Bearer <ACCESS_TOKEN>" https://api.ynab.com/v1/plans
 ```
 
-This returns a list of your plans. Find the `id` for the plan you want to export.
+Это возвращает список ваших планов. `id` План, который вы хотите экспортировать.
 
 :::note
-To format the output more readably, pipe it to `jq` (install with `brew install jq` on macOS):
+Чтобы форматировать выход более читаемо, подведите его к `jq` (установить с `brew install jq` на macOS:
 
 ```
 curl -sH "Authorization: Bearer <ACCESS_TOKEN>" https://api.ynab.com/v1/plans | jq -r '.data.plans | sort_by(.last_modified_on) | reverse | .[] | "\(.name): \(.id)"'
 ```
 
-If you see the error `Invoke-WebRequest : Cannot bind parameter 'Headers'` on Windows, use `curl.exe` instead of `curl`.
+Если вы видите ошибку `Invoke-WebRequest : Cannot bind parameter 'Headers'` в Windows, использовать `curl.exe` вместо того, чтобы `curl`.
 :::
 
-#### Step 2: Download Your Plan
+#### Шаг 2: Загрузите свой план {#step-2-download-your-plan-1}
 
 ```
 curl -H "Authorization: Bearer <ACCESS_TOKEN>" https://api.ynab.com/v1/plans/<PLAN ID> --output plan.json
 ```
 
-Replace `<ACCESS_TOKEN>` and `<PLAN ID>` with your values.
+Заменить `<ACCESS_TOKEN>` и `<PLAN ID>` со своими ценностями.
 
   </TabItem>
 </Tabs>
 
-Once you have the JSON file, proceed to [Import the JSON File](#import-the-json-file).
+Если у вас есть файл JSON, перейдите к [Импорт файла JSON](#import-the-json-file).
 
-## Import the JSON File
+## Импорт файла JSON {#import-the-json-file}
 
-1. Open Actual
-2. Select the drop-down menu and **Close File**
-3. Select **Import file**
+1. Открытый фактический
+2. Выберите выпадающее меню и **Закрыть файл**
+3. Выбрать **Импортный файл**
 
    ![](/img/migrating/actual-import-1.webp)
 
-4. Select **nYnab**
+4. Выбрать **Нинаб**
 
    ![](/img/migrating/actual-import-2.webp)
 
-5. Choose the exported JSON file
+5. Выберите экспортированный файл JSON
 
-## Cleanup
+## Уборка {#cleanup}
 
-### Fix Overspending
+### Исправить перерасход {#fix-overspending}
 
-#### Credit Cards
+#### Кредитные карты {#credit-cards}
 
-If you import credit cards with previous debt, you must handle these differently. Otherwise, your budget months will show overspending. Actual does not handle carrying over debt the same way, but offers a more manual approach.
+Если вы импортируете кредитные карты с предыдущим долгом, вы должны обрабатывать их по-другому. В противном случае ваши бюджетные месяцы покажут перерасход. Actual не обрабатывает перенос долга таким же образом, но предлагает более ручной подход.
 
-1. From the Budget screen, create a category named `Credit Card` (perhaps under a Category Group of `Debt`).
-2. Change all overspent transactions to have their category be this `Credit Card` category.
-3. On the first month of overspending for this category, click on the Balance (it should show red) and select `Rollover overspending`.
-4. Next, you must assign money each historical month to cover any payments of the `Credit Card` category. Open YNAB and look through each month to find the "extra" amount assigned to the card. (To find the "extra," open YNAB and look through each month. Find the amount assigned to the card in excess of any additional monthly spending, which is how much was used to pay the debt on the credit card.) Put this amount in your `Credit Card` category in Actual.
-5. If your budget isn't zeroing out yet, follow the instructions below in _Hold For Next Month_.
+1. С экрана бюджета создайте категорию `Credit Card` (Возможно, в группе категорий) `Debt`).
+2. Измените все перерасходованные транзакции, чтобы их категория была такой `Credit Card` Категория.
+3. В первый месяц перерасхода средств для этой категории нажмите на баланс (он должен быть красным) и выберите `Rollover overspending`.
+4. Далее, вы должны назначать деньги каждый исторический месяц, чтобы покрыть любые платежи. `Credit Card` Откройте YNAB и просмотрите каждый месяц, чтобы найти «лишнюю» сумму, назначенную карте. (Чтобы найти «лишнюю», откройте YNAB и просмотрите каждый месяц. Найдите сумму, назначенную карте, превышающую любые дополнительные ежемесячные расходы, которая является тем, сколько было использовано для оплаты долга по кредитной карте.) `Credit Card` Категория в действии.
+5. Если ваш бюджет еще не обнулился, следуйте инструкциям ниже в Hold For Next Month .
 
-A full description of how to carry over debt can be found in [our Carrying Debt article.](https://actualbudget.org/docs/budgeting/credit-cards/carrying-debt)
+Полное описание того, как взять долг, можно найти в [Наша долговая статья.](https://actualbudget.org/docs/budgeting/credit-cards/carrying-debt)
 
-### Fix Money Leftover in To Budget
+### Исправьте оставшиеся деньги в бюджет {#fix-money-leftover-in-to-budget}
 
-There are two common reasons for leftover money in `To Budget` after a nYNAB import. Check both below.
+Есть две основные причины, по которым деньги остаются в `To Budget` После импорта NYNAB проверьте оба ниже.
 
-#### Credit Cards
+#### Кредитные карты {#credit-cards-1}
 
-nYNAB tracks credit card spending by pulling money for each purchase into a dedicated `Credit Card Payment` category for each card, so it's ready to cover the payment later. Actual does not do this: spending stays in the category you assigned it to, and a credit card payment is a plain transfer between accounts with no category of its own. See [Credit Cards and Actual Budget](../budgeting/credit-cards/index.md) for the full explanation of how Actual handles credit cards.
+NYNAB отслеживает расходы по кредитным картам, втягивая деньги для каждой покупки в выделенную сумму. `Credit Card Payment` Категория для каждой карты, поэтому она готова покрыть платеж позже. Actual не делает этого: расходы остаются в категории, которую вы назначили, а платеж по кредитной карте - это простой перевод между счетами без собственной категории. [Кредитные карты и Actual Budget](../budgeting/credit-cards/index.md) Полное объяснение того, как фактически обрабатываются кредитные карты.
 
-This matters if Actual shows money available to budget while YNAB shows `$0`, even though every category assignment and available amount already matches between the two, and every account balance matches too. In that case, YNAB's `Credit Card Payment` reserves likely fell out of sync with the real card balances at some point. Since Actual doesn't carry those payment categories, that leftover money has nowhere to go but `To Budget`.
+Это имеет значение, если Actual показывает деньги, доступные для бюджета, в то время как YNAB показывает, что деньги могут быть потрачены. `$0`, даже несмотря на то, что каждое назначение категории и доступная сумма уже совпадают между ними, и каждый баланс счета также соответствует. `Credit Card Payment` В какой-то момент резервы, вероятно, не синхронизировались с реальными остатками на карте. Так как Actual не несет этих категорий платежей, этим оставшимся деньгам некуда идти, но `To Budget`.
 
-There is nothing to fix here. The money is available to budget, Actual is just showing it to you directly instead of hiding it in a per-card reserve. Budget it like any other `To Budget` balance, or use _Hold for Next Month_ to carry it forward instead.
+Деньги доступны для бюджета, Actual просто показывает их вам напрямую, а не скрывает их в резерве на карту. `To Budget` Вместо этого используйте Hold для следующего месяца.
 
-#### Hold for Next Month
+#### Подождите следующий месяц {#hold-for-next-month}
 
-nYNAB calculates its `Ready to Assign` value differently than Actual's `To Budget` value.
-There is no need to worry, we can make them match exactly with a simple change.
-This is purely a visual change and doesn't affect the budget itself.
+NYNAB вычисляет `Ready to Assign` Ценность отличается от реальной `To Budget` ценность.
+Не нужно беспокоиться, мы можем сделать так, чтобы они соответствовали простым изменениям.
+Это чисто визуальное изменение и не влияет на сам бюджет.
 
-You will likely see money leftover in each of the imported months in your `To Budget`.
-This extra comes from nYNAB including funds budgeted in future months when calculating its `Ready to Assign` value.
-Actual does not include those funds by default, but offers a way to manually reserve funds for use in future months.
-This is effectively the same thing nYNAB does, but in a manual form.
-To `hold` the leftover funds for the next month follow these steps:
+Вы, вероятно, увидите деньги, оставшиеся в каждом из импортных месяцев в вашем доме. `To Budget`.
+Эта дополнительная сумма поступает из NYNAB, включая средства, заложенные в бюджет в будущих месяцах при расчете ее стоимости. `Ready to Assign` ценность.
+Actual не включает эти средства по умолчанию, но предлагает способ вручную резервировать средства для использования в последующие месяцы.
+Это фактически то же самое, что делает NYNAB, но в ручной форме.
+To `hold` Оставшиеся средства на следующий месяц следуют следующим шагам:
 
-1. Click on your `To Budget` value for the month.
-2. Select `Hold for next month`.
-3. Fill in how much you would like to reserve for the future. By default the current `To Budget` value is filled in. Using this value will bring your `To Budget` to zero.
-4. Click `Hold`.
-5. Repeat for all desired months.
+1. Нажмите на свой `To Budget` Стоимость за месяц.
+2. Выбрать `Hold for next month`.
+3. Заполните, сколько вы хотели бы зарезервировать на будущее. `To Budget` Используя эту ценность, вы получите `To Budget` до нуля.
+4. щелкнуть `Hold`.
+5. Повторить на все желаемые месяцы.
 
-A full description of how funds rollover and the `hold` feature can be found in [this article.](../budgeting/index.md#how-money-rolls-over)
+Полное описание того, как перемещаются средства и `hold` Особенность можно найти в [Эта статья.](../budgeting/index.md#how-money-rolls-over)
 
-### Duplicate Categories or Groups
+### Дублирующие категории или группы {#duplicate-categories-or-groups}
 
-Actual does not allow duplicate category groups, or duplicate categories within a group.
-This happens sometimes in YNAB especially if you have an old hidden category or group that has been forgotten about.
-Actual automatically renames these duplicates by appending a `-1` to the end of the name (potentially higher numbers if you have multiple duplicates).
-Make sure to show hidden categories to see if you have any of these duplicates.
-To see your hidden categories select the "Toggle Hidden Categories" option in the kebab menu next to the "Categories" header.
+Actual не допускается дублирование групп категорий или дублирование категорий внутри группы.
+Иногда это происходит в YNAB, особенно если у вас есть старая скрытая категория или группа, о которой забыли.
+Actual автоматически переименовывает эти дубликаты, добавляя `-1` до конца имени (потенциально более высокие числа, если у вас есть несколько дубликатов).
+Обязательно покажите скрытые категории, чтобы узнать, есть ли у вас какие-либо из этих дубликатов.
+Чтобы увидеть ваши скрытые категории, выберите опцию «Скрытые категории» в меню kebab рядом с заголовком «Категории».
 
-#### To fix duplicate groups:
+#### Для исправления дублирующих групп: {#to-fix-duplicate-groups}
 
-1. Move any categories inside the duplicate group to a different group.
-2. Delete the duplicate group by selecting "Delete" in the menu next to the group name.
+1. Переместить любые категории внутри дублирующей группы в другую группу.
+2. Удалите дубликат группы, выбрав «Удалить» в меню рядом с названием группы.
 
-#### To fix duplicate categories:
+#### Для исправления дублирующих категорий: {#to-fix-duplicate-categories}
 
-1. Find the duplicate category and select "Delete" in the menu next to the category name.
-2. Choose what category to move any transactions to that are part of this duplicate category.
+1. Найдите дубликат категории и выберите «Удалить» в меню рядом с названием категории.
+2. Выберите, в какую категорию перевести любые транзакции, которые являются частью этой дублирующей категории.

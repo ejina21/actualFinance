@@ -1,62 +1,62 @@
-# The Actual Project Structure
+# Структура проекта Actual {#the-actual-project-structure}
 
-Actual is made up of lots of different _packages_ organized as a monorepo using Yarn workspaces. This article covers how they all fit together to form the project you know as Actual.
+Actual состоит из множества различных пакетов, организованных как монорепо с использованием рабочих пространств Yarn. В этой статье рассматривается, как все они подходят друг к другу, чтобы сформировать проект, который вы знаете как Actual.
 
-All of our repositories can be found in the [Actual Budget](https://github.com/actualbudget) organization on GitHub, within that organization you will then find the repository containing the code for [Actual, Actual Server and the Docs](https://github.com/actualbudget/actual).
+Все наши репозитории можно найти в [Actual Budget](https://github.com/actualbudget) организации на GitHub, в этой организации вы найдете хранилище, содержащее код для [Оригинальное название: Actual Server and the Docs](https://github.com/actualbudget/actual).
 
-The Actual monorepo contains the following main packages:
+Actual монорепо содержит следующие основные пакеты:
 
-### 1. loot-core (`packages/loot-core/`)
+### 1. loot-core`packages/loot-core/`) {#1-loot-core-packagesloot-core}
 
-The core application logic that runs on any platform.
+Основная логика приложения, которая работает на любой платформе.
 
-- **Purpose**: Business logic, database operations, and calculations
-- **Platform**: Platform-agnostic code that works in both browser and Node.js environments
-- **Exports**: Provides conditional exports for browser and node environments
-- **Key Directories**:
-  - `src/client/` - Client-side core logic
-  - `src/server/` - Server-side core logic
-  - `src/shared/` - Shared utilities
-  - `src/types/` - Type definitions
-  - `migrations/` - Database migration files
+- **Цель**Бизнес-логика, операции с базами данных и расчеты
+- **Платформа**Платформа-агностический код, который работает как в браузере, так и в среде Node.js
+- **Экспорт**Предоставляет условный экспорт для браузера и среды узлов
+- **Ключевые директории**:
+  - `src/client/` - Базовая логика на стороне клиента
+  - `src/server/` - Базовая логика на стороне сервера
+  - `src/shared/` - Общие коммунальные услуги
+  - `src/types/` - Определения типов
+  - `migrations/` Файлы миграции баз данных
 
-### 2. desktop-client (`packages/desktop-client/` - aliased as `@actual-app/web`)
+### 2. десктопный клиент (`packages/desktop-client/` - псевдоним `@actual-app/web`) {#2-desktop-client-packagesdesktop-client---aliased-as-actual-appweb}
 
-The React-based UI for web and desktop.
+UI на основе React для веб- и настольных компьютеров.
 
-- **Purpose**: Forms the front-end code for the Actual web app - the code you see when you load Actual in your browser
-- **Note**: Despite the name "desktop-client", this package is actually the web UI used by both browser and desktop apps
-- **Technology**: React components using functional programming patterns, Vite for bundling
-- **Key Directories**:
-  - `src/components/` - React components
-  - `src/hooks/` - Custom React hooks
-  - `e2e/` - End-to-end tests
+- **Цель**Формирует интерфейсный код для фактического веб-приложения - код, который вы видите при загрузке фактического в вашем браузере
+- **Примечание**Несмотря на название «настольный клиент», этот пакет на самом деле является веб-интерфейсом, используемым как браузером, так и настольными приложениями.
+- **Технология**React компоненты с использованием функциональных шаблонов программирования, Vite для объединения
+- **Ключевые директории**:
+  - `src/components/` - Реакционные компоненты
+  - `src/hooks/` - Крючки Custom React
+  - `e2e/` - Сквозные испытания
 
-### 3. desktop-electron (`packages/desktop-electron/`)
+### 3. настольный электрон (`packages/desktop-electron/`) {#3-desktop-electron-packagesdesktop-electron}
 
-Electron wrapper for the desktop application.
+Электронная обертка для настольного приложения.
 
-- **Purpose**: Provides the desktop application wrapper that allows stable use of the Actual Web App locally with or without internet or a sync-server
-- **Technology**: Electron for window management and native OS integration
-- **Note**: It is unlikely you will need to make changes here unless working on Electron-specific features
+- **Цель**Предоставляет обертку для настольных приложений, которая позволяет стабильно использовать фактическое веб-приложение локально с или без Интернета или синхронизатора
+- **Технология**Электрон для управления окнами и встроенной интеграции ОС
+- **Примечание**Маловероятно, что вам придется вносить изменения, если вы не работаете над функциями, специфичными для электронов.
 
-### 4. api (`packages/api/` - aliased as `@actual-app/api`)
+### 4. api`packages/api/` - псевдоним `@actual-app/api`) {#4-api-packagesapi---aliased-as-actual-appapi}
 
-Public API for programmatic access to Actual.
+Публичный API для программного доступа к Actual.
 
-- **Purpose**: Node.js API package designed for integrations and automation
-- **Use Cases**: Custom importers, data exporters, automation scripts
+- **Цель**API-пакет Node.js предназначен для интеграции и автоматизации
+- **Случаи использования**Пользовательские импортеры, экспортеры данных, скрипты автоматизации
 
-### 5. sync-server (`packages/sync-server/` - aliased as `@actual-app/sync-server`)
+### 5. синхронизатор (`packages/sync-server/` - псевдоним `@actual-app/sync-server`) {#5-sync-server-packagessync-server---aliased-as-actual-appsync-server}
 
-Synchronization server for multi-device support.
+Сервер синхронизации для поддержки нескольких устройств.
 
-- **Purpose**: Handles synchronization of budget data across multiple devices
-- **Technology**: Express-based server, currently transitioning to TypeScript (mostly JavaScript)
-- **Dependency**: Has a dependency on `@actual-app/web` (the desktop-client package)
-- **Deployment**: When you deploy Actual Server and run `yarn build:server` and `yarn install`, the Actual client is installed as a dependency
+- **Цель**Обработка синхронизации бюджетных данных на нескольких устройствах
+- **Технология**Экспресс-сервер, в настоящее время переходит на TypeScript (в основном JavaScript)
+- **зависимость**Имеет зависимость от `@actual-app/web` (пакет настольного клиента)
+- **Развертывание**Когда вы используете Actual Server и работаете `yarn build:server` и `yarn install`Actual клиент устанавливается как зависимость.
 
-You can see this in the [package.json](https://github.com/actualbudget/actual/blob/master/packages/sync-server/package.json) file:
+Вы можете увидеть это в [package.json](https://github.com/actualbudget/actual/blob/master/packages/sync-server/package.json) файл:
 
 ```json
 "dependencies": {
@@ -65,58 +65,58 @@ You can see this in the [package.json](https://github.com/actualbudget/actual/bl
   },
 ```
 
-The workspace reference ensures that changes to `@actual-app/web` are reflected in your server deployment. If you see any discrepancies, run `yarn build:server` to compile the latest.
+Ссылка на рабочее пространство гарантирует, что изменения `@actual-app/web` Если вы видите какие-либо расхождения, запускайте `yarn build:server` Составить последнюю.
 
-### 6. component-library (`packages/component-library/` - aliased as `@actual-app/components`)
+### 6. библиотека компонентов (`packages/component-library/` - псевдоним `@actual-app/components`) {#6-component-library-packagescomponent-library---aliased-as-actual-appcomponents}
 
-Reusable React UI components.
+Многоразовые компоненты React UI.
 
-- **Purpose**: Shared components like Button, Input, Menu, etc.
-- **Features**: Theme system, design tokens, and icon components
-- **Icons**: Contains 375+ icons in SVG/TSX format (auto-generated, don't edit manually)
-- **Key Directories**:
-  - `src/` - Component source files
-  - `src/icons/` - Icon components (auto-generated)
+- **Цель**Общие компоненты, такие как кнопка, вход, меню и т. Д.
+- **Особенности**: Тематическая система, дизайнерские токены и компоненты значков
+- **Иконы**Содержит 375+ значков в формате SVG/TSX (автогенерируется, не редактируется вручную)
+- **Ключевые директории**:
+  - `src/` - Файлы источника компонентов
+  - `src/icons/` - компоненты иконки (автогенерируемые)
 
-### 7. crdt (`packages/crdt/` - aliased as `@actual-app/crdt`)
+### 7.`packages/crdt/` - псевдоним `@actual-app/crdt`) {#7-crdt-packagescrdt---aliased-as-actual-appcrdt}
 
-CRDT (Conflict-free Replicated Data Type) implementation for data synchronization.
+Реализация CRDT (Conflict-free Replicated Data Type) для синхронизации данных.
 
-- **Purpose**: Core sync logic for handling concurrent edits across devices
-- **Technology**: Protocol buffers for serialization
-- **Use**: Used by the sync-server for conflict-free data synchronization
+- **Цель**Основная логика синхронизации для обработки одновременных правок на разных устройствах
+- **Технология**Протокольные буферы для сериализации
+- **Использовать**Используется синхронизатором для бесконфликтной синхронизации данных
 
-### 8. plugins-service (`packages/plugins-service/`)
+### 8. plugins-сервис (`packages/plugins-service/`) {#8-plugins-service-packagesplugins-service}
 
-Service for handling plugins/extensions.
+Сервис для обработки плагинов/расширений.
 
-- **Purpose**: Manages plugin functionality and extensions
+- **Цель**Управляет функциональностью плагинов и расширениями
 
-### 9. eslint-plugin-actual (`packages/eslint-plugin-actual/`)
+### 9. eslint-plugin-actual`packages/eslint-plugin-actual/`) {#9-eslint-plugin-actual-packageseslint-plugin-actual}
 
-Custom ESLint rules specific to Actual.
+Пользовательские правила ESLint специфичны для Actual.
 
-- **Purpose**: Enforces Actual-specific coding standards
-- **Rules**:
-  - `no-untranslated-strings` - Enforces i18n usage
-  - `prefer-trans-over-t` - Prefers Trans component over t() function
-  - `prefer-logger-over-console` - Enforces using logger instead of console
-  - `typography` - Typography rules
-  - `prefer-if-statement` - Prefers explicit if statements
+- **Цель**: Применяет стандарты кодирования для конкретных действий
+- **Правила**:
+  - `no-untranslated-strings` Использование i18n
+  - `prefer-trans-over-t` Предпочитает транс-компонент функции t()
+  - `prefer-logger-over-console` Использование logger вместо консоли
+  - `typography` - Правила типографии
+  - `prefer-if-statement` Предпочитает явные, если заявления
 
-### 10. docs (`packages/docs/`)
+### 10. docs.`packages/docs/`) {#10-docs-packagesdocs}
 
-Documentation website built with Docusaurus.
+Сайт, созданный с помощью Docusaurus.
 
-- **Purpose**: The Actual documentation website
-- **Technology**: Docusaurus 3 for static site generation
+- **Цель**: Сайт фактической документации
+- **Технология**Docusaurus 3 для генерации статических сайтов
 
-## Working with Packages
+## Работа с пакетами {#working-with-packages}
 
-To run commands for a specific package, use:
+Для запуска команд для конкретного пакета используйте:
 
 ```bash
 yarn workspace <workspace-name> run <command>
 ```
 
-For more information about development workflows, see the [Development Setup Guide](../development-setup.md).
+Для получения дополнительной информации о рабочих процессах разработки см. [Руководство по разработке](../development-setup.md).

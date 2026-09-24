@@ -1,37 +1,37 @@
-# Budget Analysis Report
+# Отчет об анализе бюджета {#budget-analysis-report}
 
 <ExperimentalFeatureWarning issueId="6742" />
 
-## What it is
+## Что это такое {#what-it-is}
 
-The Budget Analysis is a financial planning tool, that tracks the balance of your budget over time.
-It tracks four separate series: **Budgeted**, **Spent**, **Overspending Adjustment**, and the cumulative **Balance**.
+Бюджетный анализ - это инструмент финансового планирования, который отслеживает баланс вашего бюджета с течением времени.
+Он состоит из четырех отдельных серий: **бюджетный**, **потраченный**, **Перерасход корректировки**и кумулятивный **Баланс**.
 
-![Example image of Budget Analysis Report](/img/experimental/budget-analysis/budget-analysis-image.webp)
+![Пример изображения отчета об анализе бюджета](/img/experimental/budget-analysis/budget-analysis-image.webp)
 
-## Important information
+## Важная информация {#important-information}
 
-- The report pulls the numbers directly from the Budget page, so it only includes budget categories (no transfers or off‑budget accounts).
-- The report's numbers reflect your filtered view, so if you exclude categories or change date ranges, the report updates accordingly.
-- Category rollover rules affect negative balances:
-  - If **Rollover overspending** is enabled for a category, negative balances carry forward.
-  - If **Rollover overspending** is disabled, negative balances for that category are zeroed and recorded as an **Overspending Adjustment** (aggregated and shown as its own series).
+- В отчете приведены цифры непосредственно со страницы «Бюджет», поэтому он включает только бюджетные категории (без трансфертов или внебюджетных счетов).
+- Цифры отчета отражают ваш отфильтрованный вид, поэтому, если вы исключите категории или измените диапазоны дат, отчет соответствующим образом обновляется.
+- Правила переноса категорий влияют на отрицательные балансы:
+  - Если **Перерасходы на опрокидывание** Включен для категории, отрицательные балансы идут вперед.
+  - Если **Перерасходы на опрокидывание** отключен, отрицательные балансы для этой категории обнуляются и регистрируются как **Перерасход корректировки** (составлено и представлено в виде собственных серий).
 
-## Display options
+## Варианты отображения {#display-options}
 
-- **Live / Static**: toggle a rolling window (auto-updates) or a fixed date range.
-- **Start / End**: pick start and end months.
-- **Quick ranges**: 1, 3, 6 months, 1 year, Year-to-date, Previous year-to-date, All time.
-- **Filters**: use the Filter button → choose _Category_ to include/exclude categories; active filters appear as editable chips.
-- **Graph type**: toggle Line ↔ Bar via the header icon.
-- **Show/Hide balance**: toggle the running balance series.
+- **Живой / Статический**Переключите катящееся окно (автообновления) или фиксированный диапазон дат.
+- **Начало/конец**Выберите начало и конец месяца.
+- **Быстрые диапазоны**1, 3, 6 месяцев, 1 год, от года к году, от года к году, все время.
+- **Фильтры**: используйте кнопку фильтра → выберите Category , чтобы включить/исключить категории; активные фильтры отображаются в виде редактируемых чипов.
+- **Тип графа**: toggle Line ≤ Bar через значок заголовка.
+- **Показать / Скрыть баланс**Переключите серию балансов.
 
-## Quick troubleshooting
+## Быстрое устранение неполадок {#quick-troubleshooting}
 
-- **No data**: check that budgets and transactions exist in the selected months and that filters aren’t excluding everything.
-- **Balance looks wrong**: verify category rollover settings and transaction categorization.
+- **Нет данных**Убедитесь, что бюджеты и транзакции существуют в выбранные месяцы, и что фильтры не исключают все.
+- **Баланс выглядит неправильно**: проверить настройки опрокидывания категорий и категоризацию транзакций.
 
-## Related
+## связанный {#related}
 
-- [Budget page](../tour/budget.md) — configure budgets and rollover settings.
-- [Reports index](../reports/index.md) — other report types and tips.
+- [Страница бюджета](../tour/budget.md) — конфигурировать бюджеты и настройки опрокидывания.
+- [Индекс отчетов](../reports/index.md) - другие типы отчетов и советы.

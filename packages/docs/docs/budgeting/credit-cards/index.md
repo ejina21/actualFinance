@@ -1,54 +1,54 @@
-# Credit Cards and Actual Budget
+# Кредитные карты в Actual {#credit-cards-and-actual-budget}
 
-Using a credit card in any budgeting software can be confusing, and Actual is no different. Of all the questions that are asked about budgeting, credit card usage is near the top of the list so don't feel bad if you're a little confused.
+Использование кредитной карты в любом программном обеспечении для бюджетирования может быть запутанным, и Actual ничем не отличается. Из всех вопросов, которые задаются о бюджетировании, использование кредитной карты находится в верхней части списка, поэтому не расстраивайтесь, если вы немного запутались.
 
 :::note
-Any Revolving Credit Account that has both purchases and payments in any month should be treated as a credit card, not as a loan. Use [Carrying Debt](./carrying-debt.md) if the balance is not paid off every month.
+Любой возобновляемый кредитный счет, который имеет как покупки, так и платежи в любой месяц, должен рассматриваться как кредитная карта, а не как кредит. [нести долг](./carrying-debt.md) Если баланс не выплачивается каждый месяц.
 :::
 
 :::warning
-We recommend that you place all your credit card accounts **On Budget**. You can [close](../../accounts/index.md#closing-or-deleting-an-account) an On Budget account when you are through with it (and reopen, if necessary) but you **cannot** change an Off Budget account to On Budget! _Only_ set a credit card account to Off Budget and treat it as a loan if there will be _no_ new purchases and the account will be closed once it's paid off.
+Мы рекомендуем вам разместить все свои счета кредитной карты. **О бюджете**Ты можешь [близко](../../accounts/index.md#closing-or-deleting-an-account) Счет в бюджете, когда вы закончите с ним (и снова откроете, если это необходимо), но вы **не может** Измените учетную запись Off Budget на On Budget! Only установите учетную запись кредитной карты на Off Budget и рассматривайте ее как кредит, если будут новые покупки и счет будет закрыт после его погашения.
 :::
 
-If you pay off your credit card statement every month, then you will want to use the [Paying in Full](./paying-in-full.md) page to understand how Actual helps you work with your credit card to stay _Within the Budget_.
+Если вы оплачиваете выписку по кредитной карте каждый месяц, то вы захотите использовать [Оплата полностью](./paying-in-full.md) Страница, чтобы понять, как Actual помогает вам работать с вашей кредитной картой, чтобы оставаться в рамках бюджета.
 
-If you are unable to budget for and pay your credit card outstanding balance **in any month**, then we also have you covered, see the [Carrying Debt](./carrying-debt.md) page for a step-by-step guide on how to set up Actual and track this debt in a safe and sustainable manner.
+Если вы не можете спланировать и оплатить остаток по кредитной карте **в любой месяц**Тогда мы также покроем вас, посмотрите [нести долг](./carrying-debt.md) Страница для пошагового руководства о том, как настроить Actual и отслеживать этот долг безопасным и устойчивым образом.
 
-**tl;dr. If you don't budget funds you don't have and don't spend money that is not covered in your budget, you will not incur any new debt and always have enough funds to pay for your new credit card purchases whenever you want!**
+**Если у вас нет бюджетных средств, которых у вас нет, и вы не тратите деньги, которые не покрываются вашим бюджетом, вы не понесете никаких новых долгов и всегда будете иметь достаточно средств для оплаты покупок по новой кредитной карте, когда захотите!**
 
-Actual treats credit card accounts like any bank account, but with a negative value. These negative account balances are subtracted from your positive deposit account balances to give your available "On Budget" funds. As you make purchases with your credit card, the credit card account balance goes further into the negative, thus reducing your available "On Budget" balance. The same thing happens when you pay a utility bill or make a purchase from a checking account - the available "On Budget" balance decreases. When you categorize these expenditures from a budget category with a positive balance, you determine from what envelope the money comes. Since you only put real money in the envelopes at the start of the month, you know you have enough to cover the expenditures regardless of what account they came from.
+Actual относятся к счетам кредитных карт, как к любому банковскому счету, но с отрицательным значением. Эти отрицательные остатки на счете вычитаются из ваших положительных остатков на депозитном счете, чтобы предоставить вам доступные средства «В бюджете». Когда вы совершаете покупки с помощью своей кредитной карты, баланс счета кредитной карты идет дальше в минус, тем самым уменьшая доступный баланс «О бюджете». То же самое происходит при оплате счета за коммунальные услуги или совершении покупки с расчетного счета — уменьшается имеющийся баланс «О бюджете». Когда вы классифицируете эти расходы из бюджетной категории с положительным балансом, вы определяете, из какого конверта приходят деньги. Поскольку вы вкладываете реальные деньги в конверты только в начале месяца, вы знаете, что у вас достаточно денег, чтобы покрыть расходы, независимо от того, с какого счета они пришли.
 
-When you transfer money from On Budget to On Budget accounts, the On Budget balance stays the same, it doesn't matter what type of account it is. When you make a credit card payment (transfer), you bring the credit card account balance closer to $0.00 and your checking account closer to $0.00 by the exact same amount, but in opposite directions! You will move the same amount of money out of your checking account just as if you made those purchases with your checking debit card, you'll just do it a bit later, when the credit card statement comes. Remember, the purchases are deducted from the budget when you assign them a category.
+Когда вы переводите деньги с «О бюджете» на «О бюджетных счетах», баланс «О бюджете» остается неизменным, не имеет значения, какой это тип счета. При оплате кредитной картой (переводе) баланс счета кредитной карты приближается к $0,00, а расчетный счет – к $0,00 на ту же сумму, но в противоположных направлениях! Вы выведете ту же сумму денег с вашего расчетного счета, как если бы вы сделали эти покупки с помощью вашей чековой дебетовой карты, вы просто сделаете это немного позже, когда придет отчет о кредитной карте. Помните, что покупки вычитаются из бюджета, когда вы присваиваете им категорию.
 
-:::note[Here's an example that may help:]
+:::note[Пример]
 
-Imagine you have a checking account with $1,000, and Savings with $4,000, so you have a total of $5,000 in the budget.
+Представьте, что у вас есть чековый счет с 1000 долларов и сбережения с 4000 долларов, так что у вас есть в общей сложности 5000 долларов в бюджете.
 
-You spend $50 on a new jacket using your checking debit card, from your funded Clothing category. The money leaves the budget, the checking account balance drops to $950. The total On Budget balance is now $4,950.
+Вы тратите 50 долларов на новую куртку, используя свою чековую дебетовую карту, из своей финансируемой категории Одежда. Деньги покидают бюджет, баланс на расчетном счете падает до 950 долларов. Общий баланс бюджета сейчас составляет 4950 долларов.
 
-If you want to top up the checking back to $1,000 you just make a transfer of $50 from Savings to Checking. You don't need a category, since the On Budget balance doesn't change. You could transfer any amount over, and it wouldn't matter.
+Если вы хотите пополнить чек обратно до 1000 долларов, вы просто делаете перевод 50 долларов из сбережений в чекинг. Вам не нужна категория, так как баланс бюджета не меняется. Вы можете перечислить любую сумму, и это не имеет значения.
 
-Now imagine the same scenario, but the Checking balance starts at $0, and Savings is $5,000. You still have the same On Budget balance of $5,000.
+Теперь представьте себе тот же сценарий, но баланс Проверки начинается с $0, а Сбережения - $5,000. У вас все еще есть тот же баланс Бюджета - $5,000.
 
-After the transaction, Checking is -$50, but the On Budget balance is the same $4,950 as above. And just like before, you can transfer any amount over without affecting that total balance, so the transfer doesn't need a category. You could move as much as you want, but it only takes $50 to get the account back to zero.
+После транзакции Checking составляет -50 долларов, но баланс On Budget такой же, как и выше. И так же, как и раньше, вы можете перечислить любую сумму, не затрагивая этот общий баланс, поэтому переводу не нужна категория. Вы можете переместить столько, сколько хотите, но для возврата счета к нулю требуется всего 50 долларов.
 
-As far as Actual is concerned a credit card account is the same as any other account, you just choose to let the balance go negative.
+Что касается фактического счета кредитной карты, то он такой же, как и любой другой счет, и вы просто хотите, чтобы баланс был отрицательным.
 :::
 
-We highly recommend you follow the _Within the Budget_ strategy for credit card use. _Every_ time you make a credit card purchase, enter the transaction and select a category with money set aside in the Budgeted column and a positive Budget Balance.
+Мы настоятельно рекомендуем вам следовать стратегии Within the Budget для использования кредитной карты. Каждый раз, когда вы совершаете покупку кредитной карты, введите транзакцию и выберите категорию с деньгами, выделенными в колонке Бюджет и положительным балансом бюджета.
 
-### Credit card "rules" to stay _Within the Budget_:
+### Кредитная карта «Правила» пребывания в пределах бюджета: {#credit-card-rules-to-stay-within-the-budget}
 
-- Never Over Budget. Only budget funds you actually have!
-- Check your category balance _before_ spending.
-- Enter your new purchase transactions quickly.
-- Cover all overspending.
-- Reconcile your accounts at least monthly.
-- Pay _at least_ your statement New Balance before the due date.
-- A "Credit Limit" is _not_ an invitation to spend it!
+- Только бюджетные средства, которые у вас есть!
+- Проверяйте баланс категорий до расходов.
+- Введите свои новые транзакции быстро.
+- Покрыть все перерасходы.
+- Сопоставьте свои учетные записи как минимум ежемесячно.
+- Оплатите по крайней мере ваше заявление Новый баланс до даты.
+- «Кредитный лимит» — это не приглашение его потратить.
 
 :::note
 
-If you have recently moved to Actual from nYNAB or some other budgeting apps, you may notice that Actual doesn't use specific "credit card" accounts. Read through how Actual treats credit cards above and follow the examples in [Paying in Full](./paying-in-full.md) and in [Carrying Debt](./carrying-debt.md) to learn how Actual handles credit cards.
+Если вы недавно перешли на Actual из nYNAB или некоторых других бюджетных приложений, вы можете заметить, что Actual не использует конкретные учетные записи «кредитной карты». [Оплата полностью](./paying-in-full.md) и в [нести долг](./carrying-debt.md) Узнайте, как фактически обрабатываются кредитные карты.
 
 :::

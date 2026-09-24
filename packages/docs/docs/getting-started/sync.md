@@ -1,102 +1,102 @@
-# Syncing Across Devices
+# Синхронизация между устройствами {#syncing-across-devices}
 
-Actual is a different kind of app. It stores all of your data on your installed Actual server by default AND it stores all of your data on your local device. That means it works regardless of your network connection, and you always have direct access to your data. Your data never goes to any external servers that you don't choose. It's your data, and you're in control.
+Actual это другой вид приложения. Он хранит все ваши данные на вашем установленном фактическом сервере по умолчанию, и он хранит все ваши данные на вашем локальном устройстве. Это означает, что он работает независимо от вашего сетевого соединения, и у вас всегда есть прямой доступ к вашим данным. Ваши данные никогда не передаются на внешние серверы, которые вы не выбираете. Это ваши данные, и вы контролируете ситуацию.
 
-We don't want to throw away the internet though. It's too useful. You can set up your server to access it through a VPN or through the wider internet. The choice is yours. You can access it from any device easily, and you never have to worry about losing your data in case you drop your laptop or phone into a lake.
+Мы не хотим выбрасывать интернет. Это слишком полезно. Вы можете настроить свой сервер, чтобы получить к нему доступ через VPN или через более широкий интернет. Выбор за вами. Вы можете легко получить к нему доступ с любого устройства, и вам никогда не придется беспокоиться о потере ваших данных на случай, если вы бросите свой ноутбук или телефон в озеро.
 
-That's why we automatically sync all of your data to your selected server in the background. You get the best of both worlds: all data is local by default, but if internet is available, your data is seamlessly backed up and synced to all other devices. This is the opposite of most apps which heavily rely on the internet to be available.
+Вот почему мы автоматически синхронизируем все ваши данные с выбранным вами сервером в фоновом режиме. Вы получаете лучшее из обоих миров: все данные локальны по умолчанию, но если доступен Интернет, ваши данные легко резервируются и синхронизируются со всеми другими устройствами. Это противоположно большинству приложений, которые в значительной степени полагаются на доступ в Интернет.
 
-For the super privacy-focused, it even allows for your data to be end-to-end encrypted so that all your server is doing is passing around changes that you make to your budget.
+Для супер-ориентированной на конфиденциальность, она даже позволяет зашифровать ваши данные, чтобы весь ваш сервер передавал изменения, которые вы вносите в свой бюджет.
 
-## Getting Started
+## Начало работы {#getting-started}
 
-Once you are logged in, if you have not created a file yet it will automatically create one for you. Go ahead and poke around the app and start setting up your budget.
+После того, как вы вошли в систему, если вы еще не создали файл, он автоматически создаст его для вас.
 
-If you have already created files, after logging in Actual will show you all the available budget files. Select one and it will download that budget and start syncing seamlessly. That's it.
+Если вы уже создали файлы, после входа в систему Actual покажет вам все доступные бюджетные файлы. Выберите один, и он загрузит этот бюджет и начнет синхронизироваться. Вот и все.
 
-## End-to-End Encryption
+## End-to-End шифрование {#end-to-end-encryption}
 
-In addition to the requirement to enter your password before the Actual server will allow you to access your budget, you can optionally enable end-to-end encryption. This will require you to enter a second password to access the budget, and that the server will no longer be able to access your budget information. On the one hand, this improves security if you're worried that someone else will have access to the server's file or if you don't trust the server to check the password correctly (that said, we have done our best to make the server secure). On the other hand, you **will not be able to recover your data if you forget your encryption password**. If you forget the encryption password and you still have a copy of your data locally, you can reset your key which will do a [sync reset](#what-does-resetting-sync-mean) and generate a new key.
+В дополнение к требованию ввести пароль до того, как фактический сервер позволит вам получить доступ к вашему бюджету, вы можете дополнительно включить сквозное шифрование. Это потребует от вас ввести второй пароль для доступа к бюджету, и сервер больше не сможет получить доступ к вашей бюджетной информации. С одной стороны, это повышает безопасность, если вы беспокоитесь о том, что кто-то другой будет иметь доступ к файлу сервера, или если вы не доверяете серверу правильно проверять пароль. С другой стороны, вы **Вы не сможете восстановить свои данные, если забудете пароль шифрования**Если вы забудете пароль шифрования и у вас все еще есть копия ваших данных локально, вы можете сбросить свой ключ, который будет выполнять функцию шифрования. [синхронизация](#what-does-resetting-sync-mean) Создайте новый ключ.
 
-End-to-end encryption offers the ability for you to generate a key based on a password and encrypt it so that hosted services can't read your budget data. Before your data leaves your device, it is encrypted using keys only you have.
+Сквозное шифрование дает вам возможность генерировать ключ на основе пароля и шифровать его, чтобы размещенные службы не могли читать ваши бюджетные данные. Прежде чем ваши данные покинут ваше устройство, оно зашифровано с использованием только ваших ключей.
 
-This guarantees that only you will ever have access to your budget data. This is optional and using it requires you to enter a password whenever downloading [cloud files](#this-file-is-not-a-cloud-file) (this only needs to be done once per device). The password you enter should be different from the main server password.
+Это гарантирует, что только вы когда-либо будете иметь доступ к вашим бюджетным данным. Это необязательно и использование его требует ввода пароля при загрузке. [облачные файлы](#this-file-is-not-a-cloud-file) Пароль, который вы вводите, должен отличаться от пароля основного сервера.
 
 :::note
-End-to-end encryption applies only to your budget data. If you use [bank sync](../advanced/bank-sync.md), the bank sync tokens (e.g. SimpleFIN, GoCardless, or Pluggy credentials) are stored separately on the server and are **not** covered by end-to-end encryption. Server administrators or hosting providers with direct access to the server's database can read these tokens. If this is a concern, consider self-hosting your server.
+Сквозное шифрование применяется только к вашим бюджетным данным. [банковская синхронизация](../advanced/bank-sync.md), токены синхронизации банка (например, SimpleFIN, GoCardless или Pluggy) хранятся отдельно на сервере и являются **не** Администраторы серверов или хостинг-провайдеры с прямым доступом к базе данных сервера могут читать эти токены. Если это вызывает беспокойство, рассмотрите возможность самостоятельного размещения вашего сервера.
 :::
 
-Data on your local device is still unencrypted. We recommend full disk encryption if you are interested in local encryption.
+Данные на вашем локальном устройстве все еще не зашифрованы. Мы рекомендуем полное шифрование диска, если вы заинтересованы в локальном шифровании.
 
-There are some things to consider with end-to-end encryption:
+Есть несколько вещей, которые следует учитывать при сквозном шифровании:
 
-- **Pro:** Your budget data is fully secure and nobody except you can read it
-- **Pro:** If you don't want to sync across devices, this still allows you keep a fully encrypted backup of your data
-- **Pro:** If you want to share the server with someone else, you can use different passwords to encrypt separate budget files, and you won't be able to access each other's budgets.
-- **Con:** If you lose your local data copy and forget your password, you can never recover your data
-- **Con:** It is not possible to turn off encryption. This is a one way process. If you would like to move back to an unencrypted file after enabling encryption, you can use the steps in the [Backup](../backup-restore/backup.md) and [Restore](../backup-restore/restore.md) sections.
-- **Con:** There is a minor performance hit because of encoding & decoding your data whenever syncing
+- **Про:** Ваши бюджетные данные полностью безопасны, и никто, кроме вас, не может их прочитать.
+- **Про:** Если вы не хотите синхронизироваться между устройствами, это все равно позволяет хранить полностью зашифрованную резервную копию ваших данных.
+- **Про:** Если вы хотите поделиться сервером с кем-то еще, вы можете использовать разные пароли для шифрования отдельных бюджетных файлов, и вы не сможете получить доступ к бюджетам друг друга.
+- **Кон:** Если вы потеряете локальную копию данных и забудете свой пароль, вы никогда не сможете восстановить свои данные.
+- **Кон:** Невозможно отключить шифрование. Это процесс в одну сторону. Если вы хотите вернуться к незашифрованному файлу после включения шифрования, вы можете использовать шаги в шифровании. [Резервное копирование](../backup-restore/backup.md) и [Восстановить](../backup-restore/restore.md) Секции.
+- **Кон:** Существует незначительный хит производительности из-за кодирования и декодирования ваших данных при синхронизации.
 
-Note: even if you don't have the password, you can still remove an encrypted file from the server.
+Примечание: даже если у вас нет пароля, вы все равно можете удалить зашифрованный файл с сервера.
 
-### Setting up End-to-End Encryption
+### Настройка End-to-End шифрования {#setting-up-end-to-end-encryption}
 
-You can enable end-to-end encryption by opening a budget file, going into settings, and clicking "enable encryption" in the Encryption section. You will be asked to enter a password, and a key will be generated from it that will encrypt all your data from then on.
+Вы можете включить сквозное шифрование, открыв бюджетный файл, войдя в настройки и нажав «включить шифрование» в разделе Шифрование. Вам будет предложено ввести пароль, и из него будет генерироваться ключ, который будет шифровать все ваши данные с этого момента.
 
-When downloading data on other devices, you will need to enter the same password to generate the key to be able to decrypt your data.
+При загрузке данных на другие устройства вам нужно будет ввести тот же пароль, чтобы сгенерировать ключ, чтобы иметь возможность расшифровать ваши данные.
 
-**Do not lose this password**. You will not be able to recover your data if you forget it. If you forget it and you still have a copy of your data locally, you can reset your key which will do a [sync reset](#what-does-resetting-sync-mean) and generate a new key.
+**Не теряйте этот пароль**Вы не сможете восстановить свои данные, если забудете их. Если вы забудете их, и у вас все еще есть копия ваших данных локально, вы можете сбросить свой ключ, который выполнит ошибку. [синхронизация](#what-does-resetting-sync-mean) Создайте новый ключ.
 
-## What Does "Resetting Sync" Mean?
+## Что означает «перезагрузка»? {#what-does-resetting-sync-mean}
 
-There are many reasons why you might want to "start fresh" with syncing. This doesn't mean you lose any of your local data, but it means for one reason or another you want to forget about all synced data and start as if the current version of your file is the "true" version of it.
+Есть много причин, по которым вы можете захотеть «начать заново» с синхронизацией. Это не означает, что вы потеряете какие-либо свои локальные данные, но это означает, что по той или иной причине вы хотите забыть обо всех синхронизированных данных и начать, как если бы текущая версия вашего файла была «истинной» версией его.
 
-Since your data is local to each device and they all might not be up-to-date, **choose the right device** from which to reset sync. This usually won't matter, but it's important to realize that when you reset sync from one device, all un-synced changes from other devices will be reverted. Usually file sync happens often enough that this isn't a problem. But if you happen to have a lot of changes that haven't been synced from one device (maybe it wasn't connected to the internet), make sure to do the sync reset from that device so it becomes the "true" version of your data.
+Поскольку ваши данные локальны для каждого устройства, и все они могут быть не обновлены. **Выберите правильное устройство** Из чего синхронизировать. Обычно это не имеет значения, но важно понимать, что при сбросе синхронизации с одного устройства все несинхронизированные изменения с других устройств будут возвращены. Обычно синхронизация файлов происходит достаточно часто, чтобы это не было проблемой. Но если у вас есть много изменений, которые не были синхронизированы с одного устройства (возможно, оно не было подключено к Интернету), обязательно сделайте сброс синхронизации с этого устройства, чтобы оно стало «истинной» версией ваших данных.
 
-A few scenarios where you want a sync reset:
+Несколько сценариев, где вы хотите синхронизировать сброс:
 
-- You restore from a backup. You wouldn't want to restore from a backup, only to find that it synced back up to where you were before! You want syncing to start fresh from the backup.
-- You turn on end-to-end encryption. If you do this, the server needs to forget about any unencrypted data it already knows about. This requires starting fresh.
-- In the worst case scenario, you have data that is out of sync. This should never happen, but just in case it ever does, you can manually reset sync from the file that you want to treat as the "true" version.
+- Вы восстанавливаете из резервной копии. Вы не хотели бы восстанавливать из резервной копии, только чтобы обнаружить, что она синхронизировалась туда, где вы были раньше! Вы хотите, чтобы синхронизация начиналась заново из резервной копии.
+- Если вы включите сквозное шифрование, сервер должен забыть о любых незашифрованных данных, о которых он уже знает.
+- В худшем случае у вас есть данные, которые не синхронизированы. Это никогда не должно произойти, но на случай, если это когда-либо произойдет, вы можете вручную сбросить синхронизацию из файла, который вы хотите рассматривать как «истинную» версию.
 
-Resetting sync will clear all syncing data from the server, upload your existing data as the "true" version, and provide your device with a new "sync id". All devices syncing data must have the same sync id.
+Сброс синхронизации очистит все синхронизирующие данные с сервера, загрузит существующие данные в качестве «истинной» версии и предоставит вашему устройству новый «синхронизирующий идентификатор». Все устройства синхронизирующие данные должны иметь один и тот же синхронизирующий идентификатор.
 
-**Note:** Resetting sync will also significantly reduce your budget file size. This is because Actual stores all mutations in the budget file by default, causing it to grow over time. When you reset sync, all those historical changes are compressed into a single file.
+**Примечание:** Синхронизация сброса также значительно уменьшит размер вашего бюджетного файла. Это потому, что Actual хранит все мутации в бюджетном файле по умолчанию, заставляя его расти с течением времени. Когда вы сбрасываете синхронизацию, все эти исторические изменения сжимаются в один файл.
 
-After resetting, all other devices are now out-of-date. What happens when you try to run them? Actual will detect that syncing has been reset and tell you that they need to be reverted. Reverting a file will delete the local data, download the latest version of it, and assign the latest sync id generated by the reset. It will happily sync from then on.
+После сброса все другие устройства в настоящее время устарели. Что происходит, когда вы пытаетесь управлять ими? Actual вы обнаружите, что синхронизация была сброшена, и скажете, что их нужно вернуть. Восстановление файла удалит локальные данные, загрузит последнюю версию и назначит последний идентификатор синхронизации, сгенерированный сбросом. С этого момента он будет синхронизирован.
 
-**Actual will always guide you through this**. It tracks the status of all your files and will notify you if something is wrong and give you steps to fix the problem. If you want to manually reset sync, you can do that in settings.
+**Реальное всегда будет направлять вас через это.**Он отслеживает состояние всех ваших файлов и уведомит вас, если что-то не так, и даст вам шаги для устранения проблемы. Если вы хотите вручную синхронизировать сброс, вы можете сделать это в настройках.
 
-## Debugging Sync Issues
+## Проблемы отладки синхронизации {#debugging-sync-issues}
 
-When Actual detects a problem during syncing, you will see a notification with details and actions to solve the problem. Below are all the notifications you might see, with some greater detail about them.
+Когда Actual обнаруживает проблему во время синхронизации, вы увидите уведомление с деталями и действиями для решения проблемы. Ниже приведены все уведомления, которые вы можете увидеть, с некоторыми более подробными сведениями о них.
 
-**You will rarely see these messages**, and if you do Actual will guide you through how to fix the problem. If you are still having problems, please [reach out to us](../community/index.md).
+**Вы редко увидите эти сообщения.**И если вы это сделаете, Actual поможет вам решить проблему. Если у вас все еще есть проблемы, пожалуйста. [Протянуться к нам](../community/index.md).
 
-### This File is not a Cloud File
+### Этот файл не является облачным. {#this-file-is-not-a-cloud-file}
 
-A "cloud file" is a file that has been registered with your server and is currently syncing data. Sometimes a file hasn't been registered yet so it can't send any data to sync.
+"Облачный файл" - это файл, который был зарегистрирован на вашем сервере и в настоящее время синхронизирует данные. Иногда файл еще не зарегистрирован, поэтому он не может отправлять какие-либо данные для синхронизации.
 
-Usually this happens when a new file is created with no internet connection available. In that case, it creates a local file but the server doesn't know anything about it. When you are online you need to register it.
+Обычно это происходит, когда новый файл создается без подключения к Интернету. В этом случае он создает локальный файл, но сервер ничего о нем не знает. Когда вы находитесь в сети, вам нужно зарегистрировать его.
 
-### Syncing Has Been Reset on This Cloud File
+### Синхронизация была сброшена в этом облачном файле {#syncing-has-been-reset-on-this-cloud-file}
 
-If you reset sync on a device, all other devices will see this message when they try to sync. When you reset sync, it deletes all syncing data from our server (but not any local data) and treats your local file as the "true" version. Because all the syncing data has been reset, other devices cannot sync anymore.
+Если вы сбрасываете синхронизацию на устройстве, все другие устройства увидят это сообщение, когда они попытаются синхронизировать. Когда вы сбрасываете синхронизацию, он удаляет все синхронизирующие данные с нашего сервера (но не любые локальные данные) и рассматривает ваш локальный файл как «истинную» версию.
 
-When this happens, on other devices you will see an option to revert to the latest version. Simply reverting will get you syncing again. See [What Does "Resetting Sync" Mean?](#what-does-resetting-sync-mean)
+Когда это произойдет, на других устройствах вы увидите возможность вернуться к последней версии. Простое возвращение заставит вас снова синхронизироваться. [Что означает «перезагрузка»?](#what-does-resetting-sync-mean)
 
-### File Needs Upload
+### Файл нуждается в загрузке {#file-needs-upload}
 
-Something must have gone wrong when doing a sync reset. This shouldn't ever really happen, but in the off chance that you see this message, click "Upload" to upload your data to fix it.
+Должно быть, что-то пошло не так при сбросе синхронизации. Это никогда не должно произойти, но если вы видите это сообщение, нажмите «Загрузить», чтобы загрузить свои данные, чтобы исправить его.
 
-### Your Data is Out of Sync
+### Ваши данные не синхронизированы {#your-data-is-out-of-sync}
 
-Unfortunately, Actual detected an inconsistency in your synced data. This only happens if there is a bug in the syncing process, and you should never see this. If it ever does happen, doing a [sync reset](#what-does-resetting-sync-mean) will fix it.
+К сожалению, Actual обнаружил несоответствие в ваших синхронизированных данных. Это происходит только в том случае, если в процессе синхронизации есть ошибка, и вы никогда не должны этого видеть. Если это когда-либо произойдет, выполняя [синхронизация](#what-does-resetting-sync-mean) Это исправит.
 
-### Update Required
+### Требуется обновление {#update-required}
 
-While syncing, your device received data that it couldn't apply because your version of Actual is out-of-date. You need to update Actual and it will then sync successfully.
+При синхронизации ваше устройство получало данные, которые оно не могло применить, потому что ваша версия Actual устарела. Вам нужно обновить Actual, и он будет успешно синхронизироваться.
 
-## Multi-user Support
+## Многопользовательская поддержка {#multi-user-support}
 
-The same budget file may be opened and edited simultaneously from two separate browsers, even by two different people on different client computers. This should work unless the edits conflict. To be safe, avoid simultaneous usage of the same budget file.
+Один и тот же бюджетный файл может открываться и редактироваться одновременно из двух отдельных браузеров, даже двумя разными людьми на разных клиентских компьютерах. Это должно работать, если редактирование не противоречит. Чтобы быть безопасным, избегайте одновременного использования одного и того же бюджетного файла.

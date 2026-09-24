@@ -1,5 +1,5 @@
-# Important Advice
+# Важные советы {#important-advice}
 
-- Any changes made to the `global.Actual` object must happen inside the respective electron and browser preload scripts. Whilst re-assigning items will work in the browser it is not supported in electron.
+- Любые изменения, внесенные в `global.Actual` объект должен происходить внутри соответствующих скриптов предварительной загрузки электрона и браузера.В то время как переназначение элементов будет работать в браузере, оно не поддерживается в электроне.
 
-- Similarly, and changes made to `global.Actual` should be manually tested on the electron builds as well as the browser.
+- Аналогичным образом и изменения, внесенные в `global.Actual` Он должен быть вручную протестирован на электронных сборках, а также в браузере.

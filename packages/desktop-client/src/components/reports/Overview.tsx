@@ -486,7 +486,8 @@ export function Overview({ dashboard }: OverviewProps) {
                     whiteSpace: 'nowrap',
                   }}
                 >
-                  <Trans>Reports</Trans>: {dashboard.name}
+                  <Trans>Reports</Trans>:{' '}
+                  {dashboard.name === 'Main' ? t('Main') : dashboard.name}
                 </View>
               }
             />

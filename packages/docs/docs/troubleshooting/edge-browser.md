@@ -1,20 +1,20 @@
-# Microsoft Edge Browser
+# Проблемы в Microsoft Edge {#microsoft-edge-browser}
 
-## Common Problems
+## Общие проблемы {#common-problems}
 
-### A problem loading the app in this browser version
+### Проблема загрузки приложения в этой версии браузера {#a-problem-loading-the-app-in-this-browser-version}
 
-Check the browser console. If it has an error reading
+Проверьте консоль браузера, если у нее есть ошибка чтения
 
 ```bash
 Error: no native wasm support detected
 ```
 
-Edge (assuming you have a recent version) may be disabling WASM for your Actual domain. This
-seems to be standard behavior for their security features.
+Edge (если у вас есть недавняя версия) может отключить WASM для вашего фактического домена.
+Это стандартное поведение для их функций безопасности.
 
-To mitigate this, we will add an exception.
+Чтобы смягчить это, добавим исключение.
 
-1. Open Edge's settings and navigate to the section labeled "Enhance your security on the web".
-2. Select the arrow adjacent to "Exceptions".
-3. Click the "Add a site" button and enter the domain where your Actual instance is hosted.
+1. Откройте настройки Edge и перейдите в раздел с пометкой «Повысить безопасность в Интернете».
+2. Выберите стрелку, прилегающую к «Исключениям».
+3. Нажмите кнопку «Добавить сайт» и введите домен, где размещен ваш фактический экземпляр.

@@ -1,58 +1,58 @@
 ---
-title: AI Usage Policy
+title: Правила использования ИИ
 ---
 
-Actual Budget welcomes contributions from everyone, including contributions that are created with the help of AI tools such as GitHub Copilot, Cursor, Claude, ChatGPT, and similar assistants. This page describes what we expect from contributors who use these tools.
+Actual Budget приветствует взносы от всех, включая взносы, которые создаются с помощью инструментов ИИ, таких как GitHub Copilot, Cursor, Claude, ChatGPT и подобных помощников. На этой странице описывается, что мы ожидаем от вкладчиков, которые используют эти инструменты.
 
-## Using AI for code
+## Использование AI для кода {#using-ai-for-code}
 
-It is OK to use AI to generate code, draft tests, fix bugs, or help you navigate the codebase. AI is a tool, and when it helps you ship a good change, we are happy to have it.
+Хорошо использовать ИИ для создания кода, разработки тестов, исправления ошибок или для навигации по кодовой базе. ИИ — это инструмент, и когда он помогает вам вносить хорошие изменения, мы рады его получить.
 
-If you use an AI-powered editor like Cursor, see the [Cursor IDE guide](./leadership/cursor-ide.md) for setup tips.
+Если вы используете редактор с искусственным интеллектом, такой как Cursor, посмотрите [Руководство Cursor IDE](./leadership/cursor-ide.md) Для подсказок.
 
-Regardless of whether the code is written by you or by an AI, it still has to meet the project's standards:
+Независимо от того, написан ли код вами или ИИ, он все равно должен соответствовать стандартам проекта:
 
-- It must pass `yarn typecheck` and `yarn lint:fix`.
-- Relevant tests should pass — see the [Testing Guide](./testing.md).
-- It must follow the project's [Code Style and Conventions](./code-style.md).
-- User-facing strings must be translated.
+- Он должен пройти `yarn typecheck` и `yarn lint:fix`.
+- Соответствующие тесты должны пройти — см. [Руководство по испытаниям](./testing.md).
+- Он должен следовать за проектом [Стиль кода и конвенции](./code-style.md).
+- Пользовательские строки должны быть переведены.
 
-## Interacting with maintainers should be human
+## Взаимодействие с хранителями должно быть человеческим. {#interacting-with-maintainers-should-be-human}
 
-When it comes to interacting with the project — PR descriptions, code review replies, issue comments, and discussion threads — we expect to interact with real humans, not with AI-generated replies.
+Когда дело доходит до взаимодействия с проектом — PR-описания, ответы на обзор кода, комментарии и темы обсуждения — мы ожидаем взаимодействия с реальными людьми, а не с ответами, созданными ИИ.
 
-Please do not:
+Пожалуйста, не:
 
-- Paste a reviewer's comment back into an AI and post the raw output as your reply.
-- Generate issue or PR descriptions wholesale from AI without reading and editing them yourself.
-- Use AI to argue with maintainers on your behalf.
+- Вставьте комментарий рецензента обратно в ИИ и опубликуйте исходный результат в качестве ответа.
+- Создавайте описания проблем или PR оптом из ИИ, не читая и не редактируя их самостоятельно.
+- Используйте ИИ, чтобы спорить с хранителями от вашего имени.
 
-Maintainer bandwidth is limited, and the conversation around a change is where most of the value of code review lives. If that conversation is between an AI on one side and a human on the other, it stops being useful.
+Пропускная способность носителя ограничена, и разговор вокруг изменения — это то, где живет большая часть ценности обзора кода. Если этот разговор происходит между ИИ с одной стороны и человеком с другой, он перестает быть полезным.
 
-## Disclose when AI was used
+## Раскрыть, когда использовался ИИ {#disclose-when-ai-was-used}
 
-If AI was used to generate a significant portion of an issue, PR, or the code it contains, please say so in the submission. A short note in the PR description is enough — for example, "The initial implementation was drafted with Claude and then reviewed and edited by me."
+Если ИИ использовался для генерации значительной части проблемы, PR или кода, который он содержит, пожалуйста, скажите об этом в представлении. Достаточно короткой заметки в описании PR — например, «Первоначальная реализация была составлена с Клодом, а затем рассмотрена и отредактирована мной».
 
-Issues and pull requests that appear to be AI-generated but do not disclose it may be closed without review. Contributors who repeatedly submit undisclosed AI content, or who ignore this policy, may be blocked from contributing.
+Проблемы и запросы, которые, по-видимому, генерируются ИИ, но не раскрывают его, могут быть закрыты без рассмотрения. Участники, которые неоднократно представляют нераскрытый контент ИИ или игнорируют эту политику, могут быть заблокированы от участия.
 
-## Quality Over Quantity
+## Качество превыше количества {#quality-over-quantity}
 
-Modern AI tools make it easy to generate a large number of changes very quickly. Please resist the temptation to open many pull requests at once — for example, by pointing an AI tool at the codebase and submitting whatever it produces.
+Современные инструменты ИИ позволяют очень быстро генерировать большое количество изменений. Пожалуйста, не поддавайтесь искушению открыть сразу много запросов на вытягивание — например, указывая инструмент ИИ на кодовую базу и отправляя все, что он производит.
 
-A stack of simultaneous, similar pull requests from one author takes much longer for us to review than a single, well-tested change, and it is often a sign that the work has not been read or tested by a human. We would much rather receive one change that you understand and have verified than ten that you have not.
+Стек одновременных, похожих запросов от одного автора занимает гораздо больше времени для нас, чтобы рассмотреть, чем одно, хорошо проверенное изменение, и это часто признак того, что работа не была прочитана или проверена человеком.
 
-A good rhythm is to open one pull request, work with us to get it reviewed and merged, and only then open the next one. Pull requests that are low-effort, untested, or undisclosed AI output may be closed without a detailed review, and authors who repeatedly submit them may be blocked from contributing.
+Хороший ритм заключается в том, чтобы открыть один запрос на вытягивание, работать с нами, чтобы получить его обзор и слияние, и только затем открыть следующий. Запросы на вытягивание, которые являются малоэффективными, непроверенными или нераскрытыми, могут быть закрыты без подробного обзора, и авторы, которые неоднократно отправляют их, могут быть заблокированы от участия.
 
-## You are responsible for what you submit
+## Вы несете ответственность за то, что вы представляете {#you-are-responsible-for-what-you-submit}
 
-Before you open an issue or a PR, you should:
+Прежде чем вы откроете вопрос или PR, вы должны:
 
-- **Understand the code.** Read what the AI produced. Be able to explain what each change does and why it is needed.
-- **Verify it works.** Run it locally, run the tests, and confirm the behavior you are claiming.
-- **Edit the prose.** AI-generated descriptions are often long, repetitive, or inaccurate. Trim them and make sure they match what the code actually does.
+- **Понять код.** Прочтите, что создал ИИ. Сможете объяснить, что делает каждое изменение и зачем оно нужно.
+- **Проверьте, работает ли он.** Запустите его локально, запустите тесты и подтвердите поведение, о котором вы заявляете.
+- **Редактировать прозу.** Описания, созданные ИИ, часто длинные, повторяющиеся или неточные. Устраните их и убедитесь, что они соответствуют тому, что на самом деле делает код.
 
-You are the author of the contribution. The AI is not.
+Вы автор вклада, а ИИ нет.
 
-## A note on automated AI agents
+## Записка об автоматизированных агентах ИИ {#a-note-on-automated-ai-agents}
 
-This page is for human contributors who are using AI as an assistant. Autonomous AI agents operating directly on this repository (for example, via Claude Code or Cursor Agents) follow a separate set of rules — they must prefix commits and PR titles with `[AI]` and apply the `AI generated` label. Those rules live in [`AGENTS.md`](https://github.com/actualbudget/actual/blob/master/AGENTS.md) and [`.github/agents/pr-and-commit-rules.md`](https://github.com/actualbudget/actual/blob/master/.github/agents/pr-and-commit-rules.md).
+Автономные агенты ИИ, работающие непосредственно в этом репозитории (например, через Claude Code или Cursor Agents), следуют отдельному набору правил — они должны префиксировать коммиты и PR-заголовки. `[AI]` и применять `AI generated` Эти правила живут в [`AGENTS.md`](https://github.com/actualbudget/actual/blob/master/AGENTS.md) и [`.github/agents/pr-and-commit-rules.md`](https://github.com/actualbudget/actual/blob/master/.github/agents/pr-and-commit-rules.md).

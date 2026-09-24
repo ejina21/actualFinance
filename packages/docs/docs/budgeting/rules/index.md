@@ -1,129 +1,129 @@
-# Rules
+# Правила {#rules}
 
-Rules determine how a transaction is processed. When importing or syncing transactions, they are run through a list of rules that can apply actions to the transaction. For example, a rule could process a transaction with the payee `AMAZON.COM*5C7QC7MH0 AM 10/26 PURCHASE AMZN.COM/BILL`, and because it contains the word "amazon", it could set the payee to "Amazon" and the category to "my fun stuff". Rules allow you to automate any workflow you want.
+Правила определяют, как обрабатывается транзакция. При импорте или синхронизации транзакций они проходят через список правил, которые могут применять действия к транзакции. Например, правило может обрабатывать транзакцию с получателем платежа. `AMAZON.COM*5C7QC7MH0 AM 10/26 PURCHASE AMZN.COM/BILL`, и поскольку он содержит слово "amazon", он может установить получатель на "Amazon" и категорию на "мои забавные вещи". Правила позволяют автоматизировать любой рабочий процесс, который вы хотите.
 
-Cleaning up payees is a common use case of rules since they are ugly much of the time. But rules can do anything: they can set the "notes" field, create a transfer, and more. If you want to be super detailed, you can create all kinds of rules to automate your process away.
+Очистка получателей платежей - это обычное дело правил, так как они уродливы большую часть времени. Но правила могут сделать все: они могут установить поле "ноты", создать трансфер и многое другое. Если вы хотите быть супер детализированным, вы можете создать все виды правил, чтобы автоматизировать свой процесс.
 
-Here's the best part: you might never need to touch rules. Actual will **automatically create rules for you** based on your behavior. As you rename payees or categorize transactions, it will use rules as a mechanism for writing down what you've done so it will automatically happen later. For example, if you categorize the payee "Kroger" as "Food" a couple times, it will create a rule to automatically apply that category on import. As you use Actual more, your data will automatically get cleaned up for you based on your previous behavior.
+Вот лучшая часть: вам, возможно, никогда не придется прикасаться к правилам. **автоматически создавать для вас правила** Основываясь на вашем поведении. Когда вы переименуете получателей или классифицируете транзакции, он будет использовать правила в качестве механизма для записи того, что вы сделали, поэтому это автоматически произойдет позже. Например, если несколько раз классифицировать получатель «Крогер» как «Пища», это создаст правило для автоматического применения этой категории при импорте. По мере того, как вы будете использовать Actual more, ваши данные будут автоматически очищаться в зависимости от вашего предыдущего поведения.
 
-Eventually, you can just import transactions and quickly see your spending without having to do a lot of repetitive work to get up-to-date.
+В конце концов, вы можете просто импортировать транзакции и быстро увидеть свои расходы, не делая много повторяющейся работы, чтобы обновиться.
 
-The second best part is because you ultimately own the rules, you are free to go in and change the rules that Actual made for you. We'll show you how this works in more detail below.
+Вторая лучшая часть заключается в том, что вы в конечном итоге владеете правилами, вы можете войти и изменить правила, которые Actual сделали для вас.
 
-## How the Rules Work
+## Как работают правила {#how-the-rules-work}
 
-You can view all the rules by going to **More** and then **Rules** in the Sidebar.
+Вы можете ознакомиться со всеми правилами, перейдя **Больше** А потом **Правила** На боковой панели.
 
-When a transaction is imported, it runs against all of the rules **in the order that you see them**. If all of the conditions of a rule matches (the left side), then all of the actions are run (the right side). The transaction is changed, and then it continues running the rest of the rules. Each rule is always only run once. At the end, the transaction will be updated with changes from all matching rules.
+Когда транзакция импортируется, она противоречит всем правилам. **в том порядке, в котором вы их видите**Если все условия правила совпадают (левая сторона), то все действия выполняются (правая сторона). Транзакция изменяется, а затем она продолжает выполнять остальные правила. Каждое правило всегда выполняется только один раз. В конце транзакция будет обновляться с изменениями всех правил соответствия.
 
-If there is a conflict, for example if two rules set the category, the rule that runs last will always win out.
+Если есть конфликт, например, если два правила устанавливают категорию, правило, которое работает последним, всегда побеждает.
 
-Rules are **automatically ranked** from least to most specific. If the conditions of one rule apply broadly, while the conditions of another are more specific, the latter will always run _after_ the former so its changes always win out. This means you can make a broad rule like "if a transaction's payee _contains_ 'cat' set the category to 'pets'", and then fix a mismatched transaction with another rule that says "if the payee _is_ 'catan' set the category to 'games'". An "is" condition always ranks higher than "contains". Generally, you don't need to worry about this and it should work like you expect.
+Правила есть **автоматический рейтинг** По крайней мере, до самых конкретных. Если условия одного правила применяются широко, в то время как условия другого более специфичны, последнее всегда будет работать после первого, поэтому его изменения всегда побеждают. Это означает, что вы можете сделать широкое правило, например, «если получатель платежа транзакции содержит «кошку», установите категорию «домашние животные», а затем исправить несоответствующую транзакцию с другим правилом, которое гласит «если получатель платежа is «катан »установите категорию на «игры».» Условие «есть» всегда занимает более высокое место, чем «содержит». Как правило, вам не нужно беспокоиться об этом, и это должно работать так, как вы ожидаете.
 
-While ranking works for the most part, you might want to say "this rule _always_ should run last no matter what". Actual allows this with **stages**. Rules are actually run in 3 stages: `pre`, `default`, and `post`. By tagging a rule as `pre` or `post`, you force it to always run before or after rules in the other stages. Within a stage, rules are still automatically ranked.
+В то время как ранжирование работает по большей части, вы можете сказать, что «это правило всегда должно работать последним, несмотря ни на что». **этапы**Правила фактически выполняются в 3 этапа: `pre`, `default`и `post`Помечая правило как `pre` или `post`Вы заставляете его всегда работать до или после правил на других этапах.
 
-### Condition Types
+### Типы условий {#condition-types}
 
-- `is`/`is not` matches exactly
-- `contains`/`does not contain` matches a substring
-- `matches` is a [regular expressions](https://regextutorial.org/)
-- `one of`/`not one of` is a multi-select
+- `is`/`is not` точно совпадает
+- `contains`/`does not contain` совпадает с подстрочкой
+- `matches` является [регулярные выражения](https://regextutorial.org/)
+- `one of`/`not one of` является мультивыборным
 
-### Fields
+### Поля {#fields}
 
-Conditions can use the following fields:
+Условия могут использовать следующие поля:
 
-- imported payee
-- payee
-- account
-- category
-- date
-- notes
-- amount
-- amount (inflow)
-- amount (outflow)
-- cleared
+- импортный плательщик
+- плательщик
+- счет
+- категория
+- дата
+- примечания
+- сумма
+- Количество (приток)
+- Количество (отток)
+- очищенный
 
-`imported payee` is different from `payee` in that it is _always_ the original text of the payee or description field when the transaction was imported. `payee` references a payee in Actual. This matters because it allows you to rename a payee before it is created in Actual. You can have several rules that all check `imported payee` and set the payee to something without worrying about them stepping on each other. (Conditions can't reliably check `payee` if previous rules changed it)
+`imported payee` отличается от `payee` в том, что он всегда является исходным текстом поля платежеполучателя или описания, когда транзакция была импортирована. `payee` Это важно, потому что это позволяет переименовать получателя до того, как он будет создан в действии. У вас может быть несколько правил, которые все проверяют `imported payee` и установить получателя на что-то, не беспокоясь о том, что они наступают друг на друга. (Условия не могут надежно проверить `payee` Если предыдущие правила изменили его
 
-The `inflow` and `outflow` versions of `amount` make it easier to work with amounts. If you only want to match expenses between 5 and 10 dollars, use `amount (outflow)` because that money is leaving the account. If you use `amount`, you'd have to use negative numbers and it's simply less convenient.
+The `inflow` и `outflow` версии `amount` Если вы хотите сопоставить расходы между 5 и 10 долларами, используйте `amount (outflow)` Потому что эти деньги уходят со счета. `amount`Вы должны использовать отрицательные числа, и это просто менее удобно.
 
-The `cleared` field matches whether a transaction is marked as cleared. For transactions coming from bank sync, this lets a rule treat pending and booked transactions differently.
+The `cleared` Для операций, происходящих от синхронизации с банком, это позволяет по-разному относиться к ожидающим и забронированным транзакциям.
 
-All strings are matched case-insensitive. An `imported payee` of "PuBlix" will match a condition that is "contains 'publix'".
+Все струны соответствуют нечувствительным к случаю. `imported payee` «PuBlix» будет соответствовать условию, которое «содержит «publix»».
 
-Actions can set the following fields:
+Действия могут устанавливать следующие поля:
 
-- category
-- payee
-- notes
-- cleared
-- account
-- date
-- amount
+- категория
+- плательщик
+- примечания
+- очищенный
+- счет
+- дата
+- сумма
 
-Actions can also prepend or append text to the `notes` field.
+Действия также могут подготовить или добавить текст к тексту. `notes` поле.
 
-## Experimental: rule formulas
+## Экспериментальные: формулы правил {#experimental-rule-formulas}
 
-Actual also has an experimental “Excel formula mode” that lets some **Set** actions compute their value from a formula (toggle with the **ƒ** button in the rule editor). See [Excel Formula Mode](../../experimental/formulas.md).
+Также есть экспериментальный «режим формулы Excel», который позволяет **Настройка** действия вычисляют их значение по формуле (переключаются с **ƒ** кнопка в редакторе правил". [Режим Excel Formula](../../experimental/formulas.md).
 
-## Automatic Rules
+## Автоматические правила {#automatic-rules}
 
-Right now, there are two types of rules that Actual will automatically create or update for you: renaming payees and categorizing transactions.
+В настоящее время существует два типа правил, которые Actual автоматически создаст или обновит для вас: переименование получателей и категоризация транзакций.
 
-When you change the payee of a transaction and the previous one is no longer used anywhere, Actual will ask you if you want to automatically apply that rename in the future. This creates a nice flow for cleaning up transactions: you can import transactions with ugly payees like `AMAZON.COM*5C7QC7MH0 AM 10/26 PURCHASE AMZN.COM/BILL`, and then change the payee in the transactions list. Actual will ask you if you want to do that in the future, and if you click yes, that payee will automatically be cleaned up in the future.
+Когда вы меняете получателя транзакции, а предыдущий больше нигде не используется, Actual спросит вас, хотите ли вы автоматически применить это переименование в будущем. Это создает хороший поток для очистки транзакций: вы можете импортировать транзакции с уродливыми получателями, такими как: `AMAZON.COM*5C7QC7MH0 AM 10/26 PURCHASE AMZN.COM/BILL`Actual спросит вас, хотите ли вы сделать это в будущем, и если вы нажмете «да», этот получатель будет автоматически очищен в будущем.
 
-You can also select the "edit" option to the right of the rule. Actual will take you to the rule that it created for the rename, and you can change it however you like. For the above payee, you probably want to change the condition to "contains 'amazon'" so all amazon payees are cleaned up.
+Вы также можете выбрать опцию «редактировать» справа от правила. Actual вы перейдете к правилу, которое он создал для переименования, и вы можете изменить его, как вам нравится. Для вышеупомянутого получателя платежа вы, вероятно, захотите изменить условие, чтобы «содержать «амазон»», чтобы все получатели Amazon были очищены.
 
-Payee renaming rules that Actual creates are always in the `pre` stage, so they always run first.
+Правила переименования Payee, которые создает Actual, всегда находятся в `pre` Они всегда бегают первыми.
 
-Actual also creates/updates rules for categorizing transactions. When you categorize a transaction, it will determine the best category for a transaction (basically the most common one) and create a rule that sets the category for the payee. If a rule already exists for the payee, it updates the category to set.
+Actual также создают/обновляют правила для категоризации транзакций. Когда вы категоризируете транзакцию, она определит лучшую категорию для транзакции (в основном наиболее распространенную) и создаст правило, которое устанавливает категорию для получателя. Если правило уже существует для получателя, он обновляет категорию для установки.
 
-Over time, most categories should automatically get set for you which reduces a lot of tedious work.
+Со временем большинство категорий должны автоматически устанавливаться для вас, что уменьшает количество утомительной работы.
 
-Categorizing rules are always created in the default stage. Since payee renaming rules are `pre`, they always run before categorizing no matter what. In this case, we don't want them automatically ranked because we always want the payee to be set before running the category rules.
+Правила классификации всегда создаются на стадии дефолта. `pre`В этом случае мы не хотим, чтобы они автоматически оценивались, потому что мы всегда хотим, чтобы получатель был установлен перед запуском правил категории.
 
-Of course, you are free to edit the rules as you like. Change the category set for a payee, or tweak the renaming rules. Actual is there to help, but ultimately you are in control.
+Конечно, вы можете свободно редактировать правила, как вам нравится. Измените категорию, установленную для получателя, или настройте правила переименования. Actual это поможет, но в конечном итоге вы контролируете.
 
-If Actual is doing something that you simply don't like, create a `post` rule to force it to run after everything else. You could even turn off auto-categorizing altogether by create a `post` rule that matches a `date` of today or later (so all transactions would match) and sets the category to `null`.
+Если Actual делает что-то, что вам просто не нравится, создайте `post` Вы даже можете полностью отключить автокатегоризацию, создав `post` Правило, которое соответствует a `date` Сегодня или позже (так что все транзакции будут совпадать) `null`.
 
-## Managing Rules
+## Правила управления {#managing-rules}
 
-### Creating a Rule
+### Создание правила {#creating-a-rule}
 
-To create a rule, go to More > Rules… to view all the rules and click "Create new rule" in the bottom-right. You will now be editing a new rule.
+Чтобы создать правило, перейдите в More > Rules..., чтобы просмотреть все правила и нажмите «Создать новое правило» в правом нижнем углу.
 
-### Editing a Rule
+### Редактировать правило {#editing-a-rule}
 
-When viewing a list of rules, click the "edit" button on the right to edit a rule. The "edit rule" screen lists all the conditions and actions in an editable format. You can add/remove actions and conditions, change operators or values, and more.
+При просмотре списка правил нажмите кнопку «редактировать» на праве редактирования правила. На экране «правило редактирования» перечислены все условия и действия в редактируемом формате. Можно добавлять/удалять действия и условия, изменять операторы или значения и многое другое.
 
-This screen also lists all the transactions that currently match the conditions. This gives you great feedback to see if your conditions are working the way you expect.
+На этом экране также перечислены все транзакции, которые в настоящее время соответствуют условиям. Это дает вам отличную обратную связь, чтобы увидеть, работают ли ваши условия так, как вы ожидаете.
 
-You can even manually apply all the actions to the transactions. You need to select the transactions from the list that you want to change (clicking in the header will select all of them) and click "Apply actions". This helps if you want the rule to apply to some existing transactions as well.
+Вы даже можете вручную применить все действия к транзакциям. Вам нужно выбрать транзакции из списка, который вы хотите изменить (нажав в заголовке выберут все из них) и нажать «Применить действия». Это помогает, если вы хотите, чтобы правило применялось и к некоторым существующим транзакциям.
 
-### Deleting a Rule
+### Удаление правила {#deleting-a-rule}
 
-To delete a rule (or rules), select the ones you want to delete. Then go down to the bottom right of the window and click the "Delete # rules" button.
+Чтобы удалить правило (или правила), выберите те, которые вы хотите удалить. Затем перейдите в нижнюю правую часть окна и нажмите кнопку «Удалить правила #».
 
-### Viewing Rules for a Payee
+### Правила просмотра для Payee {#viewing-rules-for-a-payee}
 
-To view the list of rules that apply to a specific payee, go to More > Payees… to view the list of payees. This table shows you which payees have rules associated with them, and you can click "# associated rules" to view the rules just for that payee.
+Чтобы просмотреть список правил, которые применяются к конкретному получателю, перейдите в More > Payees ... чтобы просмотреть список получателей. Эта таблица показывает, какие получатели имеют правила, связанные с ними, и вы можете нажать «# связанные правила», чтобы просмотреть правила только для этого получателя.
 
-### Disabling Payee(s) Automatic Rule Creation
+### Отключение Payee(s) автоматического создания правил {#disabling-payees-automatic-rule-creation}
 
-To disable automatic rule creation for a payee, go to More > Payees… right-click on the payee you would like to disable automatic rule creation for and click "Disable learning". You will see a red icon indicating learning is disabled for the payee.
+Чтобы отключить автоматическое создание правил для получателя, перейдите в More > Payees ... щелкните правой кнопкой мыши по получателю, для которого вы хотели бы отключить автоматическое создание правил, и нажмите «Отключить обучение». Вы увидите красный значок, указывающий, что обучение отключено для получателя.
 
-To disable automatic rule creation for multiple payees, go to More > Payees… and select the payees by placing a checkmark on the left of each payee. At the top of the screen click the "N payee" button indicating the total payees selected and click "Category learning".
+Чтобы отключить автоматическое создание правил для нескольких получателей, перейдите в More > Payees ... и выберите получателей, поместив галочку слева от каждого получателя. В верхней части экрана нажмите кнопку «N payee» с указанием общего количества выбранных получателей и нажмите «Обучение категории».
 
-### Disabling All Automatic Rule Creation
+### Отключение автоматического создания правил {#disabling-all-automatic-rule-creation}
 
-To disable automatic rule creation for all payees, disable category learning by going to More > Payees > "Category learning settings"… at the bottom of the screen. Disabling category learning will not delete any existing rules but will prevent new rules from being created automatically on a global level.
+Чтобы отключить автоматическое создание правил для всех получателей, отключите обучение по категориям, перейдя в More > Payees > «Настройки обучения по категориям» ... в нижней части экрана. Отключение обучения по категориям не удалит никакие существующие правила, но предотвратит автоматическое создание новых правил на глобальном уровне.
 
-## Using the Rule Editor for Sophisticated Batch Editing
+## Использование редактора правил для сложного пакетного редактирования {#using-the-rule-editor-for-sophisticated-batch-editing}
 
-This deserves its own section because this turned out to be a surprising use case. Because the rule editor shows you a list of transactions that match the conditions, and allows you to manually apply actions to some or all of them, it turns out to be a great "batch editor".
+Это заслуживает своего собственного раздела, потому что это оказалось неожиданным вариантом использования. Поскольку редактор правил показывает вам список транзакций, которые соответствуют условиям, и позволяет вручную применять действия к некоторым или ко всем из них, он оказывается отличным «пакетным редактором».
 
-That means if you need to do a lot of work across many transactions at once, you should try the rule editor. While you can select individual transactions in the account screen and quickly change any one field, that is more targeted to changing one field across a small number of transactions. In the rule editor, you can apply any number of actions at once and get a clear view of what transactions are changing.
+Это означает, что если вам нужно выполнить много работы сразу по многим транзакциям, вы должны попробовать редактор правил. В то время как вы можете выбрать отдельные транзакции на экране учетной записи и быстро изменить любое одно поле, это более ориентировано на изменение одного поля в небольшом количестве транзакций. В редакторе правил можно сразу применить любое количество действий и получить четкое представление о том, какие транзакции меняются.
 
-To do this go to More > Rules… and click "Create new rule". You won't be actually creating a new rule, but you'll have the rule editor at your disposal for quick bulk editing.
+Чтобы сделать это, перейдите в Больше > Правила ... и нажмите «Создать новое правило». Вы не будете фактически создавать новое правило, но у вас будет редактор правил в вашем распоряжении для быстрого массового редактирования.

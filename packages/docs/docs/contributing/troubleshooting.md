@@ -1,160 +1,160 @@
 ---
-title: Troubleshooting
+title: Решение проблем при разработке
 ---
 
-This guide helps you resolve common issues when developing for Actual.
+Это руководство поможет вам решить общие проблемы при разработке для Actual.
 
-## Type Errors
+## Тип ошибки {#type-errors}
 
-### Issue: TypeScript compilation errors
+### Проблема: ошибки компиляции TypeScript {#issue-typescript-compilation-errors}
 
-**Solution:**
+**Решение:**
 
-1. Run `yarn typecheck` to see all type errors
-2. Check if types are imported correctly
-3. Look for existing type definitions in `packages/loot-core/src/types/`
-4. Use `satisfies` instead of `as` for type narrowing
+1. Беги. `yarn typecheck` Увидеть все типы ошибок
+2. Проверьте, правильно ли импортируются типы
+3. Ищите существующие определения типов в `packages/loot-core/src/types/`
+4. Использовать `satisfies` вместо того, чтобы `as` для сужения типа
 
-### Issue: Cannot find module or type definitions
+### Вопрос: Невозможно найти определение модуля или типа {#issue-cannot-find-module-or-type-definitions}
 
-**Solution:**
+**Решение:**
 
-1. Check `tsconfig.json` for path mappings
-2. Ensure you're using the correct import path for the package
-3. Run `yarn install` to ensure all dependencies are installed
+1. Проверить `tsconfig.json` для картографирования путей
+2. Убедитесь, что вы используете правильный путь импорта для упаковки.
+3. Беги. `yarn install` Для обеспечения всех зависимостей
 
-## Linter Errors
+## Ошибки Linter {#linter-errors}
 
-### Issue: ESLint or Prettier errors
+### Ошибки ESLint или Prettier {#issue-eslint-or-prettier-errors}
 
-**Solution:**
+**Решение:**
 
-1. Run `yarn lint:fix` to auto-fix many issues
-2. Check ESLint output for specific rule violations and fix them
+1. Беги. `yarn lint:fix` Автоматизация многих проблем
+2. Проверьте выход ESLint на конкретные нарушения правил и исправьте их
 
-## Test Failures
+## Тестовые сбои {#test-failures}
 
-### Issue: Tests fail unexpectedly
+### Проблема: тесты неожиданно провалились {#issue-tests-fail-unexpectedly}
 
-**Solution:**
+**Решение:**
 
-1. Check if test is running in correct environment (node vs web)
-2. **Lage cache issues**: Clear cache with `rm -rf .lage` if tests behave unexpectedly
+1. Проверьте, работает ли тест в правильной среде (узел против Интернета)
+2. **Проблемы с кэш-памятью**Чистый тайник с `rm -rf .lage` Если тесты ведут себя неожиданно
 
-### Issue: E2E tests fail
+### Тесты E2E провалились {#issue-e2e-tests-fail}
 
-**Solution:**
+**Решение:**
 
-1. Ensure Playwright browsers are installed: `yarn workspace @actual-app/web run playwright install`
-2. Run tests with headed browser for debugging: `yarn workspace @actual-app/web run playwright test --headed --debug`
+1. Убедитесь, что браузеры Playwright установлены: `yarn workspace @actual-app/web run playwright install`
+2. Запустите тесты с головным браузером для отладки: `yarn workspace @actual-app/web run playwright test --headed --debug`
 
-## Import Resolution Issues
+## Вопросы разрешения импорта {#import-resolution-issues}
 
-### Issue: Platform-specific import errors
+### Проблема: ошибки импорта, характерные для платформы {#issue-platform-specific-import-errors}
 
-**Solution:**
+**Решение:**
 
-- Don't directly reference platform-specific imports (`.api`, `.web`, `.electron`)
-- Use conditional exports in `loot-core` for platform-specific code
+- Не указывайте напрямую на специфический импорт платформы.`.api`, `.web`, `.electron`)
+- Условный экспорт в `loot-core` Для платформенного кода
 
-## Build Failures
+## Построить неудачи {#build-failures}
 
-### Issue: Build fails with errors
+### Оригинальное название: Build fails with errors {#issue-build-fails-with-errors}
 
-**Solution:**
+**Решение:**
 
-1. Clean build artifacts:
+1. Чистые артефакты сборки:
    ```bash
    rm -rf packages/*/dist packages/*/lib-dist packages/*/build
    ```
-2. Reinstall dependencies:
+2. Установить зависимости:
    ```bash
    yarn install
    ```
-3. Check Node.js version (requires >=22):
+3. Проверьте версию Node.js (требуется >=22):
    ```bash
    node --version
    ```
-4. Check Yarn version (requires ^4.9.1):
+4. Проверить версию Yarn (требуется ^4.9.1):
    ```bash
    yarn --version
    ```
 
-### Issue: Native module build failures (better-sqlite3)
+### Проблема: Неисправности сборки родных модулей (better-sqlite3) {#issue-native-module-build-failures-better-sqlite3}
 
-**Solution:**
+**Решение:**
 
-1. On Windows: Ensure you selected "Automatically install the necessary tools" during Node.js installation
-2. Run `yarn rebuild-electron` for Electron builds
-3. Run `yarn workspace @actual-app/core rebuild` for Node.js builds
-4. Ensure you have the necessary build tools installed (Python, Visual Studio Build Tools on Windows)
+1. В Windows: убедитесь, что вы выбрали «Автоматически установить необходимые инструменты» во время установки Node.js
+2. Беги. `yarn rebuild-electron` Электронные сборки Electron builds
+3. Беги. `yarn workspace @actual-app/core rebuild` Разработчик: Node.js builds
+4. Убедитесь, что у вас есть необходимые инструменты сборки (Python, Visual Studio Build Tools на Windows)
 
-## Development Server Issues
+## Проблемы сервера разработки {#development-server-issues}
 
-### Issue: Development server won't start
+### Сервер разработки не запускается {#issue-development-server-wont-start}
 
-**Solution:**
+**Решение:**
 
-1. Check if port is already in use
-2. Ensure all dependencies are installed: `yarn install`
-3. Try clearing node_modules and reinstalling:
+1. Проверьте, используется ли порт
+2. Убедитесь, что все зависимости установлены: `yarn install`
+3. Попробуйте очистить модуль node modules и переустановить:
    ```bash
    rm -rf node_modules packages/**/node_modules
    yarn install
    ```
-4. Check for error messages in the console
+4. Проверьте сообщения об ошибках в консоли
 
-### Issue: Hot reload not working
+### Оригинальное название: Hot Reload Not Working {#issue-hot-reload-not-working}
 
-**Solution:**
+**Решение:**
 
-1. Ensure you're running the correct development command
-2. Check if file watchers are working (may be limited on some systems)
-3. Try restarting the development server
-4. Check for file system permission issues
+1. Убедитесь, что вы используете правильную команду разработки
+2. Проверьте, работают ли наблюдатели файлов (может быть ограничено в некоторых системах).
+3. Попробуйте перезагрузить сервер разработки
+4. Проверьте проблемы с разрешениями файловой системы
 
-## Workspace Command Issues
+## Проблемы командования рабочим пространством {#workspace-command-issues}
 
-### Issue: Workspace command not found
+### Оригинальное название: Workspace Command Not Found {#issue-workspace-command-not-found}
 
-**Solution:**
+**Решение:**
 
-1. Ensure you're running commands from the root directory
-2. Verify workspace name is correct: `yarn workspaces list`
-3. Check package.json for available scripts
-4. Use correct workspace alias (e.g., `@actual-app/web` instead of `desktop-client`)
+1. Убедитесь, что вы выполняете команды из корневого каталога
+2. Проверьте правильность названия рабочего пространства: `yarn workspaces list`
+3. Проверьте package.json на наличие скриптов
+4. Используйте правильный псевдоним рабочего пространства (например, `@actual-app/web` вместо того, чтобы `desktop-client`)
 
-## Git Issues
+## Проблемы с Git {#git-issues}
 
-### Issue: Pre-commit hooks failing
+### Оригинальное название: Pre-commit hooks failing {#issue-pre-commit-hooks-failing}
 
-**Solution:**
+**Решение:**
 
-1. Ensure Husky is set up: `yarn prepare`
-2. Run linting manually: `yarn lint:fix`
-3. Run type checking: `yarn typecheck`
-4. Fix any errors before committing
+1. Убедитесь, что Хаски установлен: `yarn prepare`
+2. Запуск подкладки вручную: `yarn lint:fix`
+3. Проверка типа бега: `yarn typecheck`
+4. Исправьте любые ошибки перед совершением
 
-## Environment Issues
+## Вопросы окружающей среды {#environment-issues}
 
-### Issue: Wrong Node.js or Yarn version
+### Неправильный Node.js или версия Yarn {#issue-wrong-nodejs-or-yarn-version}
 
-**Solution:**
+**Решение:**
 
-1. Check required versions in `package.json`:
+1. Проверьте необходимые версии `package.json`:
    - Node.js: >=22
-   - Yarn: ^4.9.1
-2. Use a version manager:
-   - [nvm](https://github.com/nvm-sh/nvm) for Node.js
-   - Yarn version is managed by the `packageManager` field
-3. Update your environment to match requirements
+   - Ярн: ^4.9.1
+2. Используйте менеджер версий:
+   - [нвм](https://github.com/nvm-sh/nvm) Для Node.js
+   - Версия Yarn управляется `packageManager` поле
+3. Обновите свою среду в соответствии с требованиями
 
-## Getting Help
+## Получить помощь {#getting-help}
 
-If you're still experiencing issues:
+Если вы все еще испытываете проблемы:
 
-1. Check the [Development Setup Guide](./development-setup.md) for setup instructions
-2. Review the [Testing Guide](./testing.md) for test-related issues
-3. Check the [Code Style Guide](./code-style.md) for code-related issues
-4. Ask for help in the [Discord community](https://discord.gg/pRYNYr4W5A)
-5. Search or create an issue on [GitHub](https://github.com/actualbudget/actual/issues)
+1. Проверь [Руководство по разработке](./development-setup.md) для установки инструкций
+2. Обзор [Руководство по испытаниям](./testing.md) по вопросам, связанным с испытаниями
+3. Проверь [Code Style Руководство](./code-style.md) по вопросам, связанным с кодом
+4. Попросите о помощи в [Общество раздора](https://discord.gg/pRYNYr4W5A)
+5. Поиск или создание проблемы на [GitHub](https://github.com/actualbudget/actual/issues)

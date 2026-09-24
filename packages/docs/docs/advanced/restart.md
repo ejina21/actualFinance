@@ -1,51 +1,51 @@
-# Restarting Your Budget
+# Как начать бюджет заново {#restarting-your-budget}
 
-If you've fallen behind on your budgeting and want to start fresh without starting from scratch.
+Если вы отстали от своего бюджета и хотите начать все заново, не начиная с нуля.
 
-This means that you want to reset your budget while keeping your categories, payees, rules and schedules. Below we have described two methods to restart your budget: one by deleting all transactions and another without deleting any transactions.
+Это означает, что вы хотите сбросить свой бюджет, сохраняя при этом свои категории, получатели выплат, правила и графики. Ниже мы описали два метода перезагрузки вашего бюджета: один путем удаления всех транзакций, а другой без удаления каких-либо транзакций.
 
-If you're ok with truly starting completely from scratch, [just make a new file](../getting-started/starting-fresh.md).
+Если вы в порядке с действительно начать полностью с нуля, [Просто создайте новый файл](../getting-started/starting-fresh.md).
 
 :::caution
-Remember to [back up your budget](../backup-restore/backup.md) before making any significant changes to your budget.
+Запомнить [Поддержите свой бюджет](../backup-restore/backup.md) Прежде чем вносить существенные изменения в свой бюджет.
 :::
 
-## Restarting Your Budget by Deleting Transactions
+## Перезагрузить бюджет, удалив транзакции {#restarting-your-budget-by-deleting-transactions}
 
-### Step 1: Delete All Transactions
+### Шаг 1: Удалить все транзакции {#step-1-delete-all-transactions}
 
-- Click on _All Accounts_ in the left sidebar.
-- Select all transactions by clicking the checkbox at the top of the list (or use the shortcut `Ctrl + A` on Windows or `Cmd + A` on Mac).
-- Click on the lilac dropdown menu at the top of the transaction list and select **Delete**.
+- Нажмите на All Accounts в левой боковой панели.
+- Выберите все транзакции, нажав флажок в верхней части списка (или используйте ярлык) `Ctrl + A` в Windows или `Cmd + A` на Mac.
+- Нажмите на раскрывающееся меню сирени в верхней части списка транзакций и выберите **Исключить**.
 
-![Steps for deleting all transactions](/img/accounts/account-delete-all-transactions.webp)
+![Шаги для удаления всех транзакций](/img/accounts/account-delete-all-transactions.webp)
 
-### Step 2: Set Starting Balances
+### Шаг 2: Настройка стартового баланса {#step-2-set-starting-balances}
 
-- Go to each account and set the starting balance for today's date to the current amount in that account.
+- Перейдите на каждый счет и установите начальный баланс на сегодняшнюю дату на текущую сумму на этом счете.
 
-### Step 3: Adjust Previous Months' Category Balances
+### Шаг 3: Скорректируйте баланс категорий предыдущих месяцев {#step-3-adjust-previous-months-category-balances}
 
-- Navigate to the month prior to your new start (e.g., the end of May, if the month you're restarting from is June).
-- Review each budget category:
-  - If a category has a **negative balance**, allocate additional funds to bring the balance to zero.
-  - If a category has a **positive balance**, click on the category and transfer the balance amount back to the **"To Budget"** area.
+- Перейдите к месяцу, предшествующему вашему новому старту (например, к концу мая, если месяц, с которого вы перезагружаетесь, - июнь).
+- Обзор каждой бюджетной категории:
+  - Если категория имеет **отрицательный баланс**выделить дополнительные средства для доведения баланса до нуля.
+  - Если категория имеет **Положительный баланс**, нажмите на категорию и переведите сумму баланса обратно в **«В бюджет»** район.
 
-## Restarting Your Budget Without Deleting Transactions
+## Перезагрузка бюджета без удаления транзакций {#restarting-your-budget-without-deleting-transactions}
 
-### Step 1: Address Uncategorized Transactions
+### Шаг 1: Обращение к некатегоризированным транзакциям {#step-1-address-uncategorized-transactions}
 
-- Go through any transactions that haven't been categorized.
-- If you're unsure where to assign certain transactions, create a temporary category named **"Budget Reset"**.
-- Once you've categorized all transactions, you can hide this temporary category.
+- Проходите любые транзакции, которые не были классифицированы.
+- Если вы не знаете, где назначить определенные транзакции, создайте временную категорию. **«Бюджетная перезагрузка»**.
+- После категоризации всех транзакций вы можете скрыть эту временную категорию.
 
-### Step 2: Reconcile Your Accounts
+### Шаг 2: Примирите свои счета {#step-2-reconcile-your-accounts}
 
-Using the **Reconcile** feature, bring your accounts up to date with a current balance. This ensures that your accounts reflect the actual available funds.
+Используя **примирить** Функция, обновите ваши счета с текущим балансом. Это гарантирует, что ваши счета отражают фактические доступные средства.
 
-### Step 3: Adjust Previous Months' Category Balances
+### Шаг 3: Скорректируйте баланс категорий предыдущих месяцев {#step-3-adjust-previous-months-category-balances-1}
 
-- Navigate to the month prior to your new start (e.g., the end of May, if the month you're restarting from is June).
-- Review each budget category:
-  - If a category has a **negative balance**, allocate additional funds to bring the balance to zero.
-  - If a category has a **positive balance**, click on the category and transfer the balance amount back to the **"To Budget"** area.
+- Перейдите к месяцу, предшествующему вашему новому старту (например, к концу мая, если месяц, с которого вы перезагружаетесь, - июнь).
+- Обзор каждой бюджетной категории:
+  - Если категория имеет **отрицательный баланс**выделить дополнительные средства для доведения баланса до нуля.
+  - Если категория имеет **Положительный баланс**, нажмите на категорию и переведите сумму баланса обратно в **«В бюджет»** район.

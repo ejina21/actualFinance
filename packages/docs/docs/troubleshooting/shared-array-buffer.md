@@ -1,15 +1,15 @@
-# Enabling SharedArrayBuffer Access
+# Доступ к SharedArrayBuffer {#enabling-sharedarraybuffer-access}
 
-Actual requires access to a web technology called [`SharedArrayBuffer`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/SharedArrayBuffer) in order to function. Because of security vulnerabilities in modern CPUs, this feature is disabled until certain conditions are met. Actual will not be able to run unless your server meets these conditions.
+Actual требует доступа к веб-технологии, называемой [`SharedArrayBuffer`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/SharedArrayBuffer) Из-за уязвимостей безопасности в современных процессорах эта функция отключена до тех пор, пока не будут выполнены определенные условия. Actual не сможет работать, если ваш сервер не соответствует этим условиям.
 
-## HTTPS
+## HTTPS {#https}
 
-Actual must be served over HTTPS for `SharedArrayBuffer` to be enabled. If you're using a cloud provider, this will usually be done for you. See [Activating HTTPS](../config/https.md) for more information.
+Действительный должен обслуживаться через HTTPS для `SharedArrayBuffer` Если вы используете облачный провайдер, это обычно делается для вас. [Активация HTTPS](../config/https.md) За дополнительной информацией.
 
-## HTTP Headers
+## HTTP заголовки {#http-headers}
 
-In addition to the HTTPS requirement, the `Cross-Origin-Embedder-Policy` and `Cross-Origin-Opener-Policy` headers must be set to `require-corp` and `same-origin` respectively. If you're using the default `actual-server` package as your server, you don't have to worry about this (the headers will always be enabled). If you're using a different server, you'll need to make sure these headers are set.
+В дополнение к требованиям HTTPS, `Cross-Origin-Embedder-Policy` и `Cross-Origin-Opener-Policy` Заголовки должны быть установлены `require-corp` и `same-origin` Если вы используете дефолт `actual-server` Если вы используете другой сервер, вам не нужно беспокоиться об этом (заголовки всегда будут включены). Если вы используете другой сервер, вам нужно убедиться, что эти заголовки установлены.
 
-## Supported Browser
+## Поддерживаемый браузер {#supported-browser}
 
-The browser you use to access the server must also support `SharedArrayBuffer`. Recent versions of Chrome, Firefox, Safari, and Edge all support this feature. Check out the website ["Can I Use?"](https://caniuse.com/sharedarraybuffer) for a detailed breakdown of which browser versions support the feature.
+Браузер, который вы используете для доступа к серверу, также должен поддерживать `SharedArrayBuffer`Последние версии Chrome, Firefox, Safari и Edge поддерживают эту функцию. ["Могу я использовать?"](https://caniuse.com/sharedarraybuffer) для подробной разбивки, какие версии браузера поддерживают эту функцию.

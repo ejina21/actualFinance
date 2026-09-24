@@ -1,72 +1,72 @@
-# Custom Reports
+# Настраиваемые отчёты {#custom-reports}
 
-Custom reports allow analyzing transaction data by using charts or a data table with summary statistics. The following types of reports are available:
+Индивидуальные отчеты позволяют анализировать данные о транзакциях с помощью диаграмм или таблицы данных с краткой статистикой. Доступны следующие типы отчетов:
 
-1. Table View
-2. Bar Graph
-3. Line Graph
-4. Area Graph
-5. Donut Graph
+1. Посмотреть таблицу
+2. Бар Граф
+3. График линии
+4. График области
+5. Граф пончиков
 
-![Custom Report examples](/img/reports/cr-fancy-example.webp)
+![Примеры пользовательских отчетов](/img/reports/cr-fancy-example.webp)
 
-## Left Menu
+## Левое меню {#left-menu}
 
-The **Type** menu can be used to change the display of transactions shown in the report:
+The **Тип** Меню может быть использовано для изменения отображения транзакций, показанных в отчете:
 
-1. Payment: outflows from on budget accounts
-2. Deposit: inflows to on budget accounts
-3. Net: sum of outflows and inflows across on budget accounts. Net results are the figures shown in Budget page under Spent and Received columns. This option is currently available in Data Table, Area Graph and partially available in Bar Graph and Donut Graph
+1. Выплата: отток средств с бюджетных счетов
+2. Депозит: поступления на бюджетные счета
+3. **Итог:** сумма поступлений и расходов по счетам в бюджете. Эти значения соответствуют столбцам «Получено» и «Потрачено» на странице бюджета. Показатель доступен в таблице данных и графике с областями, а также частично в столбчатой и кольцевой диаграммах.
 
-This sum can be **Split** by Category, Group, Payee, Account or Month.
-Note that Split by Account shows sum of transactions from on budget account, not periodic balance.
-Monthly breakdowns are provided by changing Mode from Total to Time.
+Эта сумма может быть **Раскол** Категория, группа, Payee, счет или месяц.
+Обратите внимание, что Сплит по счету показывает сумму транзакций с бюджетного счета, а не периодический баланс.
+Ежемесячные поломки обеспечиваются за счет изменения режима с Total на Time.
 
-![Custom report left side with display and date filters](/img/reports/cr-left-menu.webp)
+![Пользовательский отчет слева с фильтрами отображения и даты](/img/reports/cr-left-menu.webp)
 
-### Date Filters
+### Фильтры даты {#date-filters}
 
-Transactions can be filtered for a certain period of time using **Range**. **Live Date** filters show transaction data dynamically, for instance during the current month (This month). For a fixed time frame, **Static Date** filters will show transactions between two dates.
+Транзакции могут быть отфильтрованы в течение определенного периода времени. **диапазон**. **Живая дата** Фильтры динамически показывают данные транзакции, например, в течение текущего месяца (в этом месяце). **Статическая дата** Фильтры показывают транзакции между двумя датами.
 
-### Options
+### Варианты {#options}
 
-Under Options, reports behavior can be changed
+При опционах поведение отчетов может быть изменено
 
-- `Show hidden categories` will enable Categories marked as hidden in the Budget page.
-- `Show empty rows` will show items chosen in Split with 0 value.
-- `Show off budget` enables two categories:
-  - Transfers: include all transfers across on budget account. Transfers from on budget to off budget are not counted.
-  - Off budget: include all transactions in off budget accounts. Transfers from on budget to off budget are not counted.
-- `Show uncategorized` will show transactions which have not been assigned a category.
+- `Show hidden categories` Включите категории, помеченные как скрытые на странице бюджета.
+- `Show empty rows` Показать предметы, выбранные в Split с 0 значением.
+- `Show off budget` позволяет использовать две категории:
+  - Переводы: включают все переводы по бюджетному счету. Переводы из бюджета в бюджет не учитываются.
+  - Внебюджетные: включают все операции на внебюджетных счетах. Переводы из бюджета в внебюджетные не учитываются.
+- `Show uncategorized` Показать транзакции, которым не присвоена категория.
 
-Single Categories or entire Groups can be excluded from the Report by using the list on the bottom left side.
-Grayed out options in dropdown menus are not yet available for the chosen report.
+Отдельные категории или целые группы могут быть исключены из Отчета, используя список с левой стороны внизу.
+Выделенные варианты в выпадающих меню еще не доступны для выбранного отчета.
 
-## Center Menu
+## Меню центра {#center-menu}
 
-Icons in the first group of the center menu are used to select the displayed report, the second group is used to show graph legends, summary and labels. The funnel icon can be used to [filter transactions](../transactions/filters.md). Finally, the menu on the right-hand side is used to Save a Custom Report to the Reports page.
+Иконки в первой группе центрального меню используются для выбора отображаемого отчета, вторая группа используется для отображения графовых легенд, резюме и ярлыков. [фильтрация транзакций](../transactions/filters.md)Наконец, меню справа используется для сохранения пользовательского отчета на странице отчетов.
 
-![Custom reports center menu](/img/reports/cr-center-menu.webp)
+![Пользовательские отчеты центральное меню](/img/reports/cr-center-menu.webp)
 
-## Saving a Report
+## Сохранить отчет {#saving-a-report}
 
-A custom report can be saved by using the menu on the right-hand side. If a saved report is modified it is possible to either overwrite the existing report or save the changes as a new report. The same menu can be used to reset to default if you'd like to quickly return to your saved version. Otherwise if no action is taken, the changes will be automatically discarded when leaving the current report.
+Пользовательский отчет можно сохранить, используя меню с правой стороны. Если сохраненный отчет изменен, можно либо перезаписать существующий отчет, либо сохранить изменения в качестве нового отчета. Это же меню можно использовать для сброса по умолчанию, если вы хотите быстро вернуться к сохраненной версии. В противном случае, если не будет предпринято никаких действий, изменения будут автоматически отброшены при выходе из текущего отчета.
 
-![Saving custom report dialog](/img/reports/cr-save.webp)
+![Сохранение пользовательского диалога](/img/reports/cr-save.webp)
 
-Saved reports will be shown in the Report page in alphabetical order.
+Сохраненные отчеты будут показаны на странице Отчета в алфавитном порядке.
 
-![Report page with custom report](/img/reports/cr-page.webp)
+![Страница отчета с пользовательским отчетом](/img/reports/cr-page.webp)
 
-## Example
+## Пример {#example}
 
-Custom Reports are really powerful and can provide unique insights. We now highlight a complex example that uses most features. Our goal is to have a stacked bar chart broken down by group with month on X axis, in a certain time frame, excluding a certain category and payee.
+Пользовательские отчеты действительно мощны и могут дать уникальную информацию. Теперь мы выделяем сложный пример, который использует большинство функций. Наша цель состоит в том, чтобы иметь сложенную диаграмму баров, разбитую по группам с месяцем на оси X, в определенные временные рамки, исключая определенную категорию и получатель.
 
-- Select Bar Graph and set Time Mode
-- Select Split by Group
-- Use the Live Date filter and set Year to date as a Range
-- Click on the checkbox next to Savings to exclude from the sum
-- Click on the Filter icon, select Payee is not "Movies"
-- Enable the legend, summary and label.
+- Выберите Bar Graph и установите режим времени
+- Выберите раздел группы
+- Используйте фильтр Live Date и установите год в качестве диапазона.
+- Нажмите на флажок рядом с Сбережений, чтобы исключить из суммы
+- Нажмите на значок фильтра, выберите Payee не «Мотивы».
+- Включите легенду, резюме и этикетку.
 
-![Sample custom report](/img/reports/cr-example.webp)
+![Образец пользовательского отчета](/img/reports/cr-example.webp)

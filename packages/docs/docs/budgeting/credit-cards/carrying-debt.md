@@ -1,30 +1,30 @@
-# Carrying Debt
+# Долг по кредитной карте {#carrying-debt}
 
-When you have an outstanding negative balance that you are unable to pay in full you are "carrying debt". We highly recommend that you do _not_ do this for any new spending as it becomes super easy to accidentally fall deeper into debt. Instead, we recommend that you follow the [Within the Budget](./index.md) strategy for any new credit card purchases. In case you're already carrying a negative balance on a credit card, this page will outline how to safely manage the debt without having to worry about going into more debt.
+Когда у вас есть непогашенный отрицательный баланс, который вы не можете оплатить в полном объеме, вы «несете долг». Мы настоятельно рекомендуем вам не делать этого для любых новых расходов, поскольку становится очень легко случайно углубиться в долг. [В рамках бюджета](./index.md) Если у вас уже есть отрицательный баланс на кредитной карте, на этой странице будет описано, как безопасно управлять долгом, не беспокоясь о том, чтобы влезть в долги.
 
-Always prioritize that your actual expense categories are funded before allocating money to paying down the debt. This will allow you to ensure that you're paying it off in a sustainable manner without accidentally incurring more of it over time.
+Всегда уделяйте приоритетное внимание тому, что ваши фактические категории расходов финансируются, прежде чем выделять деньги на погашение долга. Это позволит вам гарантировать, что вы погашаете его устойчивым образом, не случайно неся больше его с течением времени.
 
 :::note
 
-To make it easier to follow along, the examples with screenshots are at the end.
+Чтобы было легче следовать, примеры со скриншотами находятся в конце.
 
-This step-by-step guide is based on entering transactions manually and clearing and reconciling accounts from a monthly statement. It's too easy to spend aimlessly when you sync all your purchases. Manual entry and reconciliation keeps you in touch with your spending and associated accounts. When you have paid off your debt, you can link up your card(s) and reconcile from a bank sync.
+Это пошаговое руководство основано на вводе транзакций вручную и клиринге и согласовании счетов из ежемесячного отчета. Слишком легко тратить бесцельно, когда вы синхронизируете все свои покупки. Ручная запись и сверка поддерживает связь с вашими расходами и связанными учетными записями. Когда вы погасили свой долг, вы можете связать свою карту (ы) и помириться с синхронизацией банка.
 
 :::
 
-## Let's Pay Off that Debt!
+## Давайте погасим этот долг! {#lets-pay-off-that-debt}
 
-Before we get started, check the settings for your Credit Card accounts to make it easy to see everything that's going on and we are on the same page:
+Прежде чем мы начнем, проверьте настройки ваших учетных записей кредитной карты, чтобы было легко увидеть все, что происходит, и мы на одной странице:
 
-- Using the 3-dot menu on the right of the account page, choose the following:
-  - Show running balance
-  - Show "cleared" checkboxes
-  - Show reconciled transactions
+- Используя меню из 3 точек справа от страницы учетной записи, выберите следующее:
+  - Показать баланс
+  - Показать "очищенные" чекбоксы
+  - Показать согласованные сделки
 
     <img alt="Show running balance" src="/img/credit-cards/CC-014.webp" />
 
-- Check that the _pills_ showing "Cleared total" and "Uncleared total" are showing under the account name.
-  - To show the pills, hover over the account balance under the account name and press the expand >> arrows.
+- Убедитесь, что pills , показывающие «Cleared total» и «Uncleared total», отображаются под именем учетной записи.
+  - Чтобы показать таблетки, наведите курсор на баланс счета под именем счета и нажмите на расширение >> стрелки.
 
     <img alt="Account page Balance Expand Arows" src="/img/credit-cards/CC-01.webp" />
     <br />
@@ -32,74 +32,74 @@ Before we get started, check the settings for your Credit Card accounts to make 
 
 <br />
 
-- When we use the "Uncleared total" or account "Balance" from Actual we will use the absolute value, the positive value without the (-) sign. So, if Actual shows "Uncleared total: -2553.86", then we will use 2553.86.
-- For our purposes here, we will be paying the credit card from a checking account.
-- While you are paying off your credit card(s), it is best to use a debit card or cash. If that is not possible, and you have a card with no debt, use that one to make new purchases so you can pay it in full every month using [Paying in Full - Within the Budget](./paying-in-full.md) and work to pay off another. In any case, use _**only one credit card**_ for new purchases and pay off the one with the highest interest first.
-- We recommend doing this On Budget. If you will not use the card again after it's completely paid off and you have received a statement with a $0 balance, you can [close](../../accounts/index.md#closing-or-deleting-an-account) the account.
+- Когда мы используем «Неопределённое общее» или счёт «Баланс» от Actual, мы будем использовать абсолютное значение, положительное значение без (-) знака. Итак, если Actual показывает «Неопределённое общее: -2553.86», то мы будем использовать 2553.86.
+- Для наших целей здесь мы будем платить кредитную карту с расчетного счета.
+- Пока вы погашаете свою кредитную карту, лучше всего использовать дебетовую карту или наличные деньги. Если это невозможно, и у вас есть карта без долгов, используйте ее для совершения новых покупок, чтобы вы могли оплачивать ее в полном объеме каждый месяц, используя [Оплата в полном объеме - в рамках бюджета](./paying-in-full.md) и работать, чтобы расплатиться с другим. _**только одна кредитная карта**_ Для новых покупок и окупить тот, с самым высоким процентом в первую очередь.
+- Если вы не будете использовать карту снова после того, как она полностью оплачена, и вы получили заявление с балансом $0, вы можете [близко](../../accounts/index.md#closing-or-deleting-an-account) счет.
 
-### Setting Up Actual Budget for Credit Card Debt
+### Actual Budget для задолженности по кредитным картам {#setting-up-actual-budget-for-credit-card-debt}
 
-- Create a **Credit Card Debt** Category Group
-- Create a separate **Bank Card Debt** category in the group for each card carrying debt. Set them all to _Rollover Overspending_. In our example below, we used **Citi Card Debt** and **DEMO Card Debt**.
-  - To set _Rollover Overspending_, click on the category's Balance and choose it. A little arrow will now show next to the Balance. When you are rolling over overspending, the negative Budget Balance won't be reflected in your "To Budget" amount. Negative credit card account balances are already subtracted from your "Available funds" On Budget, we don't want to subtract them twice!
-- For each credit card account, input a starting balance equal to the **total** amount owed. Include all transactions to date, as if you wanted to close the account. This starting balance goes in the "Payment" column. Change the category on this starting balance to **Bank Card Debt**.
-- Remember, categorize _any_ purchase that will not be paid for at the next statement as **Bank Card Debt** as it will add to the outstanding debt.
+- Создать **Долг по кредитной карте** Категория Группа
+- Создайте отдельную **Долг банковской карты** Категория в группе для каждой карты, несущей долг. Установите их все на Rollover Overspending . В нашем примере ниже мы использовали **Citi Card Долг** и **Карточный долг DEMO**.
+  - Чтобы установить Rollover Overspending , нажмите на баланс категории и выберите его. Теперь рядом с балансом появится небольшая стрелка. Когда вы перерасходуете, отрицательный баланс бюджета не будет отражен в сумме «В бюджет». Отрицательные остатки на счете кредитной карты уже вычитаются из ваших «Доступных средств» В бюджете мы не хотим вычитать их дважды!
+- Для каждого счета кредитной карты введите начальный баланс, равный **общая сумма** Включите все транзакции на сегодняшний день, как если бы вы хотели закрыть счет. Этот стартовый баланс идет в столбце "Оплата". Измените категорию на этом стартовом балансе на **Долг банковской карты**.
+- Помните, категоризируйте любую покупку, которая не будет оплачена в следующем заявлении. **Долг банковской карты** Это увеличит непогашенный долг.
 
 :::note
 
-If you have been paying the statement balance in full every month, but need to incur debt for an emergency purchase enter the transaction normally, but categorize it as **Bank Card Debt**. Use the note field for a note or tag as to why. You can even use a split transaction if you only need to incur debt on part of the purchase!
+Если вы платите баланс отчета в полном объеме каждый месяц, но вам нужно понести задолженность за экстренную покупку, введите транзакцию обычно, но классифицируйте ее как **Долг банковской карты**Используйте поле примечания для примечания или тега относительно того, почему. Вы даже можете использовать разделенную транзакцию, если вам нужно только понести задолженность по части покупки!
 
 :::
 
-### Monthly Workflow
+### Ежемесячный рабочий процесс {#monthly-workflow}
 
-#### All Cards with Debt
+#### Все карты с долгами {#all-cards-with-debt}
 
-- You must make Minimum Payments.
-- Credit card banks calculate the Minimum Payment by adding 1-3% of the Statement Balance to the Interest & Fees. As you can see, paying only the minimum can mean staying in debt for many years!
-- At the beginning of the month, assign the expected Minimum Payment amount to the **Budgeted** column for each **Bank Card Debt** category. One easy way to calculate the Minimum Payment is to use the one from the last statement.
-- Each month when you do your budgeting, _after_ you've accounted for all necessary expense categories, _including_ the minimum payments on each credit card in the **Credit Card Debt** Group, you can add extra to the credit card you want to pay off. Choose to pay off the card with the highest interest rate first. In the **Budgeted** column, **Add** the extra amount to the Minimum Payment you assigned earlier. For example, if your expected Minimum Payment is $113.23 and you want to pay an extra $100, change your **Budgeted** column to 213.23 for that card debt category.
+- Вы должны сделать минимальные платежи.
+- Банки кредитных карт рассчитывают минимальный платеж, добавляя 1-3% от баланса отчетности к процентам и сборам. Как вы можете видеть, оплата только минимального может означать пребывание в долге в течение многих лет!
+- В начале месяца присвоить ожидаемую минимальную сумму платежа **бюджетный** столбец для каждого **Долг банковской карты** Один простой способ вычислить минимальный платеж - использовать тот, который был в последнем отчете.
+- Каждый месяц, когда вы составляете свой бюджет, вы учитываете все необходимые категории расходов, включая минимальные платежи по каждой кредитной карте. **Долг по кредитной карте** Группа, вы можете добавить дополнительно к кредитной карте, которую вы хотите погасить. Выберите погасить карту с самой высокой процентной ставкой. **бюджетный** колонна, **Добавить** Например, если ваш ожидаемый минимальный платеж составляет $113,23, и вы хотите заплатить дополнительные $100, измените свой минимальный платеж. **бюджетный** 213.23 для этой категории долговых карт.
 
-#### Cards with Original Debt and No New Purchases {#debt-no-new}
+#### Карты с первоначальным долгом и без новых покупок {#debt-no-new}
 
-- If you are _not_ paying off the debt on this card:
-  - When your statement arrives, create the Interest & Fees transaction in the Credit Card account and categorize it to **Bank Card Debt**.
-  - [Reconcile](../../accounts/reconciliation.md) your account.
-  - Make sure the amount in the **Budgeted** column for **Bank Card Debt** is at least the statement Minimum Payment. If you need to add to it to reach the Minimum Payment, _cover_ any overspending by transferring from another category with a positive balance.
-  - Use _Make Transfer_ to transfer the amount in the **Budgeted** column from your Checking account to the Credit Card account. Send that amount to the Credit Card Bank to pay your bill.
-- If you _are_ paying off the debt:
-  - When your statement arrives, create the Interest & Fees transaction in the Credit Card account and categorize it to **Bank Card Debt**.
-  - [Reconcile](../../accounts/reconciliation.md) your account.
-  - Make sure the amount in the **Budgeted** category is higher than the statement Minimum Payment. One day your Minimum Payment will pay off the card completely! Happy Day!
-  - Use _Make Transfer_ to transfer the amount in the **Budgeted** column from your Checking account to the Credit Card account. Send that amount to the Credit Card Bank to pay your bill.
+- Если вы не погашаете задолженность по этой карте:
+  - Когда ваше заявление поступает, создайте транзакцию процентов и сборов на счете кредитной карты и отнесите ее к категории. **Долг банковской карты**.
+  - [примирить](../../accounts/reconciliation.md) Ваш счет.
+  - Убедитесь, что сумма в **бюджетный** колонка для **Долг банковской карты** Если вам нужно добавить к нему, чтобы достичь минимального платежа, cover любой перерасход средств путем перевода из другой категории с положительным балансом.
+  - Используйте Make Transfer для перевода суммы **бюджетный** столбец от вашего расчетного счета до счета кредитной карты. Отправьте эту сумму в банк кредитной карты для оплаты вашего счета.
+- Если вы погашаете долг:
+  - Когда ваше заявление поступает, создайте транзакцию процентов и сборов на счете кредитной карты и отнесите ее к категории. **Долг банковской карты**.
+  - [примирить](../../accounts/reconciliation.md) Ваш счет.
+  - Убедитесь, что сумма в **бюджетный** Категория выше, чем выписка Минимальная оплата.Однажды ваша Минимальная оплата полностью окупит карту!
+  - Используйте Make Transfer для перевода суммы **бюджетный** столбец от вашего расчетного счета до счета кредитной карты. Отправьте эту сумму в банк кредитной карты для оплаты вашего счета.
 
-#### Cards with New Purchases and Original Debt - Following the [Paying in Full - Within the Budget](./paying-in-full.md) Strategy {#debt-with-new}
+#### Карты с новыми покупками и первоначальным долгом [Оплата в полном объеме - в рамках бюджета](./paying-in-full.md) Стратегия {#debt-with-new}
 
-- During the month, enter your New Purchases and Return Credits as they occur. Categorize them to a Budget category that has a positive Balance, "Groceries", "Clothes", "Transit", etc.
-- When your statement arrives, find the following information:
-  - New Balance, Minimum Payment, Interest & Fees, Returns/Credits and New Purchases. We will use this information to reconcile and calculate your payment.
-  - In the Credit Card account, create a transaction for Interest & Fees and categorize it to **Bank Card Debt**.
-  - [Reconcile](../../accounts/reconciliation.md) the account. Clear each and every transaction with your statement, including the Interest & Fees and Return Credits. Fix any problems before you move on. We do not advocate using a Reconciliation Transaction to fix any problems, especially when you are carrying debt. Before you "complete" the reconciliation, you can add up your cleared purchases and make sure the sum matches the "New Purchases" amount from your statement. The first month will be the most difficult - it will get easier!
-- Looking at your statement, the very least amount you need to pay to not increase your debt is the Interest & Fees and your New Purchases minus the Return Credits. Remember, you accounted for and funded the interest at the beginning of the month when you budgeted for the expected Minimum Payment and you were setting aside funds to pay for New Purchases each time you categorized them! You can pay for them all without worry.
-  - If you are _not_ paying off any original debt on this card, make sure the **Budgeted** column is at least the Minimum Payment. The Minimum Payment you budgeted for at the beginning of the month should have this covered. If the Minimum Payment is more than you expected due to Interest or Fees, add an amount to the **Budgeted** column to equal the statement Minimum Payment. _Cover_ any additions to the **Budgeted** amount by transferring from another category with a positive balance.
-  - If you _are_ paying off the debt on this card, make sure the current **Budgeted** column is more than the Minimum Payment. It should be at least the sum of the Interest & Fees plus the extra amount you want to pay off, but it will probably be a bit more and that's OK!
-- Now let's calculate your payment.
-  - Your payment is the sum of the New Purchases from your statement (minus any return credits) plus the "Uncleared total" from Actual plus the amount in the **Budgeted** column of **Bank Card Debt**.
-  - This is the same as the difference between the Account Balance in Actual and the Category Balance of **Bank Card Debt**.
+- В течение месяца введите свои новые покупки и возвратные кредиты по мере их возникновения.Категоризируйте их в бюджетную категорию, которая имеет положительный баланс, «Сельскохозяйственные товары», «Одежда», «Транзит» и т. Д.
+- Когда придет ваше заявление, найдите следующую информацию:
+  - Новый баланс, минимальная оплата, проценты и сборы, возвраты / кредиты и новые покупки. мы будем использовать эту информацию для согласования и расчета вашего платежа.
+  - В учетной записи кредитной карты создайте транзакцию для процентов и сборов и отнесите ее к категории **Долг банковской карты**.
+  - [примирить](../../accounts/reconciliation.md) счет. Очистите каждую транзакцию с вашим заявлением, включая проценты и сборы и возвратные кредиты. Устраните любые проблемы, прежде чем двигаться дальше. Мы не рекомендуем использовать Сделку по примирению для решения любых проблем, особенно когда вы несете задолженность. Прежде чем «завершить» сверку, вы можете сложить свои очищенные покупки и убедиться, что сумма соответствует сумме «Новые покупки» из вашего заявления. Первый месяц будет самым сложным - станет легче!
+- Глядя на ваше заявление, наименьшая сумма, которую вы должны заплатить, чтобы не увеличить свой долг, - это проценты и сборы и ваши новые покупки за вычетом возвратных кредитов. Помните, что вы учитывали и финансировали проценты в начале месяца, когда вы планировали ожидаемый минимальный платеж, и вы откладывали средства для оплаты новых покупок каждый раз, когда вы классифицировали их! Вы можете оплатить их все, не беспокоясь.
+  - Если вы не погашаете первоначальный долг по этой карте, убедитесь, что **бюджетный** Минимальный платеж, который вы запланировали в начале месяца, должен быть покрыт этим. Если минимальный платеж больше, чем вы ожидали из-за процентов или сборов, добавьте сумму к минимальному платежу. **бюджетный** столбец, равный выписке Минимальная оплата. Cover любые дополнения к **бюджетный** перевод из другой категории с положительным балансом.
+  - Если вы погашаете долг по этой карте, убедитесь, что текущий **бюджетный** Это должна быть, по крайней мере, сумма процентов и сборов плюс дополнительная сумма, которую вы хотите погасить, но это, вероятно, будет немного больше, и это нормально!
+- Теперь рассчитаем ваш платеж.
+  - Ваш платеж - это сумма новых покупок из вашего отчета (за вычетом любых возвратных кредитов) плюс «Неочищенная общая сумма» из фактического плюс сумма в вашем отчете. **бюджетный** колонна **Долг банковской карты**.
+  - Это то же самое, что разница между фактическим балансом счета и балансом категории. **Долг банковской карты**.
 
 :::warning
 
-If the calculated payment is less than the statement Minimum Payment, you _**must**_ make the statement Minimum Payment! In this rare case, add an amount to the **Budgeted** column so your resulting payment adds up to at least the statement Minimum Payment. _Cover_ any additions to the **Budgeted** amount by transferring from another category with a positive balance.
+Если расчетный платеж меньше, чем минимальный платеж, вы _**должен**_ В этом редком случае добавьте сумму к минимальной оплате. **бюджетный** столбец, так что ваш итоговый платеж составляет, по крайней мере, заявление Минимальный платеж. **бюджетный** перевод из другой категории с положительным балансом.
 
 :::
 
-- Use _Make Transfer_ to transfer the calculated amount from your Checking account to the Credit Card account. Send that amount to the Credit Card Bank to pay your bill.
+- Используйте Make Transfer для перевода расчетной суммы с вашего расчетного счета на счет кредитной карты. Отправьте эту сумму в банк кредитной карты для оплаты вашего счета.
 
-One day you won't need to add any extra to pay the credit card bill in full! Happy Day! Keep on paying at least your statement balance every month and soon you will gain back your Grace Period and stop accruing interest on new purchases! Follow the [Paying in Full - Within the Budget](./paying-in-full.md) strategy and you will never carry debt or pay credit card interest again.
+В один прекрасный день вам не нужно будет добавлять какие-либо дополнительные средства, чтобы оплатить счет по кредитной карте в полном объеме! Счастливого дня! Продолжайте платить, по крайней мере, свой баланс отчетности каждый месяц, и вскоре вы получите обратно свой Период Благодати и прекратите начислять проценты на новые покупки! [Оплата в полном объеме - в рамках бюджета](./paying-in-full.md) Вы никогда не будете нести долг или платить проценты по кредитной карте снова.
 
-### Examples:
+### Примеры: {#examples}
 
-At he beginning of July we budget for the expected Minimum Payments as part of our necessary expenses. After all of our expenses are accounted for, we have $202.29 leftover and we decide to add $200 extra to our Citibank Credit Card. We add $200 to our $90 expected Minimum Payment. The $2.29 we Hold for next Month.
+В начале июля мы составили бюджет на ожидаемые минимальные платежи в рамках наших необходимых расходов. После того, как все наши расходы будут учтены, у нас останется 202,29 доллара, и мы решили добавить еще 200 долларов к нашей кредитной карте Citibank. Мы добавим 200 долларов к ожидаемому минимальному платежу в 90 долларов. 2,29 доллара мы удерживаем на следующий месяц.
 
 <img alt="Budget after necessary expenses" src="/img/credit-cards/CC-03.webp" />
 <br />
@@ -107,30 +107,30 @@ At he beginning of July we budget for the expected Minimum Payments as part of o
 
 <br />
 
-During July we spend using the [Paying in Full - Within the Budget](./paying-in-full.md) strategy. We use the DEMO Credit Card for some of our purchases. We are not spending using the Citibank Card.
+В июле мы используем [Оплата в полном объеме - в рамках бюджета](./paying-in-full.md) Мы используем кредитную карту DEMO для некоторых наших покупок. Мы не тратим с помощью карты Citibank.
 
-The Citibank Statement arrives. We need the following information from the summary:
+Приходит заявление Ситибанка. Нам нужна следующая информация из резюме:
 
-**Citibank Account Summary**
+**Резюме счета Ситибанка**
 
-- Previous Balance: $2,590.00
-- Payments Received: $90.00
-- New Purchases: $0.00
-- Cash Advances: $0.00
-- Fees Charged: $0.00
-- Interest Charged: $64.00
-- New Balance: $2564.00
-- Minimum Payment Due: $90.00
+- Баланс: $2590.00
+- Полученные платежи: $90.00
+- Новые покупки: $0.00
+- Денежные авансы: $0.00
+- Стоимость: $0.00
+- Проценты: $64.00
+- Новый баланс: $2564.00
+- Минимальный платеж: $90.00
 
-Following [Cards with Debt and No New Purchases](#debt-no-new) we enter a transaction into the Citibank account for the Interest & Fees and categorize it to **Citi Card Debt**. We reconcile the account, agreeing with Citibank that our New Balance is $2564.00.
+Следующий [Карты с долгами и без новых покупок](#debt-no-new) мы вводим транзакцию на счет Citibank для процентов и сборов и классифицируем ее на **Citi Card Долг**Мы согласовываем счет, соглашаясь с Citibank, что наш новый баланс составляет $2564,00.
 
 <img alt="Citibank Cleared Transactions" src="/img/credit-cards/CC-05.webp" />
 
 <br />
 
-Our **Budgeted** amount of 290.00 is larger than the Minimum Payment of $90.00, so we send Citibank $290.00 and use _Make Transfer_ to transfer that amount from the Checking account we used to pay the bill.
+Наш **бюджетный** Сумма в 290.00 больше минимального платежа в 90.00 долларов, поэтому мы отправляем Citibank 290.00 долларов и используем Make Transfer для перевода этой суммы с расчетного счета, который мы использовали для оплаты счета.
 
-You may notice that the Citibank Balance matches the **Citi Card Debt** Balance. The Interest & Fees we added to the debt were canceled by our **Budgeted** amount that included them.
+Вы можете заметить, что Citibank Balance соответствует **Citi Card Долг** Проценты и сборы, которые мы добавили к долгу, были отменены нашими **бюджетный** суммы, включающей их.
 
 <img alt="Citibank July" src="/img/credit-cards/CC-06.webp" />
 <br />
@@ -138,7 +138,7 @@ You may notice that the Citibank Balance matches the **Citi Card Debt** Balance.
 
 <br />
 
-On the 1st of August we set our budget and start with our Minimum Payments of $90 for the Citibank card and $50 for the DEMO card. After we funded all of our necessary expenses we added an extra $200 payment for the DEMO card this month.
+1 августа мы определили бюджет и начали с минимальных платежей в размере 90 долларов США за карту Citibank и 50 долларов США за карту DEMO. После того, как мы профинансировали все необходимые расходы, мы добавили дополнительный платеж в размере 200 долларов США за карту DEMO в этом месяце.
 
 <img alt="August Initial Budget" src="/img/credit-cards/CC-08.webp" />
 <br />
@@ -146,58 +146,58 @@ On the 1st of August we set our budget and start with our Minimum Payments of $9
 
 <br />
 
-In August we receive our DEMO Card statement and we need the following from the account summary:
+В августе мы получаем наше заявление по карте DEMO и нам необходимо следующее из резюме учетной записи:
 
-**DEMO Account Summary**
+**Резюме счета DEMO**
 
-- Previous Balance: $1,235.50
-- Payments Received: $50.00
-- New Purchases: $846.11
-- Cash Advances: $0.00
-- Fees Charged: $0.00
-- Interest Charged: $32.75
-- New Balance: $2,064.36
-- Minimum Payment Due: $50.00
+- Предыдущий баланс: $1,235.50
+- Полученные платежи: $50.00
+- Новые покупки: $846.11
+- Денежные авансы: $0.00
+- Стоимость: $0.00
+- Проценты: $32,75
+- Новый баланс: $2 064,36
+- Минимальный платеж: $50.00
 
-We'll follow [Cards with New Purchases and Original Debt](#debt-with-new) above to calculate our payment.
+Мы последуем [Карты с новыми покупками и первоначальным долгом](#debt-with-new) Для расчета наших платежей.
 
-First, we'll enter the Interest & Fees transaction of $32.75, categorize it to **DEMO Card Debt** and start to reconcile our account. When our cleared transactions match the statement New Balance, our DEMO account looks like this:
+Во-первых, мы введем сделку «Проценты и сборы» в размере 32,75 долларов США, классифицируя ее по категориям: **Карточный долг DEMO** Когда наши очищенные транзакции соответствуют выписке New Balance, наша учетная запись DEMO выглядит следующим образом:
 
 <img alt="DEMO Credit Card Reconcile" src="/img/credit-cards/CC-010.webp" />
 
 <br />
 
-Our cleared new purchases add up to $846.11 and match our statement, so we're good to go! Before we complete the Reconciliation, let's calculate our payment for this month.
+Наши новые покупки составляют до 846,11 долларов и соответствуют нашим заявлениям, так что мы готовы идти! Прежде чем мы закончим примирение, давайте рассчитаем нашу оплату за этот месяц.
 
-- We have added some extra to pay down our debt this month, so our **Budgeted** column of 250.00 on **DEMO Card Debt** is definitely greater than either the Minimum Payment or the Interest & Fees of $32.75.
-- So, the numbers we need are:
-  - New Purchases (statement): $846.11
-  - Return credits (statement): $0.00
-  - Uncleared total (Actual): $126.60 (Remember to use the absolute, positive, value)
-  - Budgeted column (Actual): $250.00
-- Our payment calculation is:
-  <br /> New Purchases - Return credits + Uncleared total + Budgeted column, or
+- Мы добавили немного больше, чтобы погасить наш долг в этом месяце. **бюджетный** столбец 250.00 на **Карточный долг DEMO** Это больше, чем минимальный платеж или проценты и сборы в размере 32,75 долларов США.
+- Итак, цифры, которые нам нужны:
+  - Новые покупки (заявление): $846.11
+  - Возврат кредитов (выписка): $0.00
+  - Общая сумма (фактическая): $126,60 (не забывайте использовать абсолютную, положительную, стоимость)
+  - Бюджетная колонка (фактическая): $250.00
+- Наш расчет платежей:
+  <br /> Новые покупки - Возврат кредитов + Неясная общая сумма + Бюджетная колонка, или
   <br /> 846.11 - 0.00 + 126.60 + 250.00 = 1222.71
-  <br /> OR
-  <br /> The difference between the Account Balance of -2190.96 and the Category Balance of -968.25 (2190.96 - 968.25 = 1222.71)
-- We send DEMO Bank $1,222.71 and use _Make Transfer_ to transfer that amount from the Checking account we used to pay the bill. Our DEMO Account now looks like this:
+  <br /> или
+  <br /> Разница между балансом счета -2190,96 и балансом категории -968,25 (2190,96 - 968,25 = 1222,71)
+- Мы отправляем банку DEMO $1,222.71 и используем Make Transfer для перевода этой суммы с расчетного счета, который мы использовали для оплаты счета.
 
 <img alt="DEMO Credit Card Payment" src="/img/credit-cards/CC-011.webp" />
 
 <br />
 
-We complete the Reconciliation and we are done with this account!
+Мы завершаем примирение, и мы закончили с этим счетом!
 
-For our Citibank card this month we'll pay the **Budgeted** expected Minimum Payment of $90.00.
+За нашу карту Citibank в этом месяце мы заплатим **бюджетный** Ожидаемая минимальная оплата $90.00.
 
 <img alt="Citibank August Payment" src="/img/credit-cards/CC-012.webp" />
 
 <br />
 
-We have reduced our original debt to DEMO Bank to $968.25 and Citibank to $2,247.00. You can notice that for this snapshot in time, our credit card balances match our outstanding debt in the Budget.
+Мы сократили наш первоначальный долг перед DEMO Bank до $968,25 и Citibank до $2247,00. Вы можете заметить, что для этого моментального снимка наши остатки по кредитным картам соответствуют нашему непогашенному долгу в бюджете.
 
 <img alt="August Budget Snapshot" src="/img/credit-cards/CC-013.webp" />
 
 <br />
 
-We'll continue to spend _Within the Budget_, choosing a category with a positive Balance for each expenditure.
+Мы будем продолжать тратить в рамках бюджета, выбирая категорию с положительным балансом для каждого расхода.

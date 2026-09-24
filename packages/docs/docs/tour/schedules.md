@@ -1,14 +1,14 @@
-# Scheduled Transactions
+# Запланированные операции
 
-If you already have data in your accounts, you can have Actual propose schedules based on the available data.
+Если на счетах уже есть операции, Actual может предложить расписания на основе этих данных.
 
-The system is very flexible:
+Расписания можно настроить под разные случаи:
 
-- Schedules can recur indefinitely, have an end date or only occur once.
-- The schedule can enter the transaction automatically into the account register or notify you to manually approve entry.
-- Recurring transactions can be set to one or multiple specific days of the month. For example, a single schedule can be created for a cell phone plan with multiple users and different payment cycles for each phone. If you have three cell phones that all get paid on different days of the month, each day can be defined in a single schedule.
-- Schedules have various options for the frequency of transactions, such as every month, every month on the 2nd Wednesday, every 2 months, every 2 years, etc.
+- Операция может повторяться без ограничения, до указанной даты или произойти только один раз.
+- Actual может автоматически добавлять её на счёт или сначала уведомлять вас, чтобы вы подтвердили добавление.
+- Можно указать один или несколько дней месяца. Например, платежи за три телефона с разными датами оплаты можно объединить в одно расписание.
+- Доступны разные интервалы: каждый месяц, во вторую среду каждого месяца, раз в два месяца, раз в два года и другие.
 
-For more details, see [Schedules](../schedules.md).
+Подробнее читайте в разделе [«Расписания»](../schedules.md).
 
-![Overview of the schedule screen](/img/a-tour-of-actual/tour-schedules-overview.webp)
+![Страница запланированных операций](/img/a-tour-of-actual/tour-schedules-overview.webp)

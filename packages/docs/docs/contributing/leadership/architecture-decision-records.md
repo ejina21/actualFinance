@@ -1,15 +1,15 @@
-# Architecture Decision Records
+# Архитектурные решения {#architecture-decision-records}
 
-The core maintainers sometimes make decisions that are non-obvious or controversial. We record them here so that the rationale is clear for contributors and users, and so we can refer back to them when similar questions come up.
+Основные исполнители иногда принимают решения, которые неочевидны или противоречивы. Мы записываем их здесь, чтобы обоснование было ясным для участников и пользователей, и поэтому мы можем ссылаться на них, когда возникают подобные вопросы.
 
-We are open to revisiting these decisions if someone with more experience or knowledge proposes a better approach.
+Мы готовы пересмотреть эти решения, если кто-то с большим опытом или знаниями предложит лучший подход.
 
 ---
 
-## Bank sync: credential storage
+## Синхронизация банка: хранение учетных данных {#bank-sync-credential-storage}
 
-**Decision:** Bank sync credentials are stored on the sync server in plain text. They are not encrypted on the client and are not stored in the budget file.
+**Решение:** Банковские синхронизирующие учетные данные хранятся на синхронизирующем сервере простым текстом. Они не шифруются на клиенте и не хранятся в бюджетном файле.
 
-**Rationale:** Encrypting credentials on the client (or making encryption optional) does not materially improve security. If the server is compromised, secrets still need to be decrypted during normal operation and can be obtained at that point. Keeping credentials only on the server avoids exposing them to extensions and plugins, which would increase the attack surface. Actual Budget does not provide strong isolation between untrusted users on a shared instance; users who need isolation should run separate instances.
+**Обоснование:** Шифрование учетных данных клиента (или опция шифрования) существенно не повышает безопасность. Если сервер скомпрометирован, секреты все еще должны быть расшифрованы во время нормальной работы и могут быть получены в этот момент. Сохранение учетных данных только на сервере позволяет избежать их воздействия на расширения и плагины, что увеличит поверхность атаки. Actual Budget не обеспечивает сильной изоляции между ненадежными пользователями на общем экземпляре; пользователи, которые нуждаются в изоляции, должны запускать отдельные экземпляры.
 
-**Consequences:** The design stays simpler, security guarantees are clearer, and maintenance cost is lower. Server administrators can access credentials, and a compromised server is not protected by encryption.
+**Последствия:** Конструкция остается проще, гарантии безопасности яснее, а стоимость обслуживания ниже. Администраторы сервера могут получить доступ к учетным данным, а скомпрометированный сервер не защищен шифрованием.

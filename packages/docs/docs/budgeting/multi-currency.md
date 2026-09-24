@@ -1,96 +1,94 @@
-# Multi-Currency
+# Многовалютность {#multi-currency}
 
-The Actual Budget software is currency agnostic and does not support multi-currency. People are working on implementing currency support, but it will take time.
-For the current status visit:
-https://github.com/tlesicka/actual-budget-multicurrency-todo
+Actual Budget не поддерживает полноценный учёт нескольких валют в одном бюджете. Ниже описан обходной способ с помощью шаблонов правил.
 
-## Method to Implement Multi-Currency Using Rule Templates
+## Способ реализации мультивалюты с использованием шаблонов правил {#method-to-implement-multi-currency-using-rule-templates}
 
-Until multi-currency is supported natively by Actual Budget, you can use the method described in this document to achieve similar results.
+До тех пор, пока мультивалюта не будет поддерживаться нативным бюджетом, вы можете использовать метод, описанный в этом документе, для достижения аналогичных результатов.
 
 :::warning
-This uses an _experimental feature_, so we're still working on finishing it. There may be bugs, missing functionality, or incomplete documentation, and we may decide to remove the feature in a future release. If you have any feedback, please [open an issue](https://github.com/actualbudget/actual/issues) or post a message in Discord.
+Этот способ использует экспериментальную функцию. Она может работать с ошибками, меняться или исчезнуть в будущих версиях.
 :::
 
-## Setup
+## Настройка {#setup}
 
-1. Enable Rule Action Templating
-   - In the sidebar, click on the _Settings->Show advanced settings->Experimental features_.
-   - Click _I understand the risks, show experimental features_.
-   - Click _Rule action templating_.
+1. Позволяет регулировать действия
+   - На боковой панели нажмите на Settings->Show advanced settings->Experimental features .
+   - Нажмите Я понимаю риски, показать экспериментальные особенности .
+   - Click Rule action templating .
 
-2. Create Foreign Currency Account
-   - As an optional step, you can create a new account for the foreign currency, either:
-     - Add a note to the account `#currency:XXX` where XXX is the 3-letter currency code as defined by [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) (i.e., EUR, USD, AUD, etc).
-     - Name the account with the currency code in parens (i.e., `Australian Cash (AUD)`).
+2. Создать счет в иностранной валюте
+   - В качестве дополнительного шага вы можете создать новый счет для иностранной валюты:
+     - Добавить примечание к счету `#currency:XXX` где XXX - 3-буквенный валютный код, определяемый [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) (т.е. EUR, USD, AUD и т.д.)
+     - Назовите учетную запись с кодом валюты в parens (т.е. `Australian Cash (AUD)`).
 
-     ![Account Name and Notes](/img/multi-currency/account-name-and-note.webp)
+     ![Название аккаунта и примечания](/img/multi-currency/account-name-and-note.webp)
 
-     Neither is required, but naming the account this way or creating a note will allow a smooth transition when multi-currency is enabled.
+     Также не требуется, но именование учетной записи таким образом или создание заметки позволит плавный переход при включении мультивалюты.
 
-3. Create Rules
+3. Создавать правила
 
-   You will need to create two separate rules for each foreign currency account.
+   Вам нужно будет создать два отдельных правила для каждого валютного счета.
 
-   **Rule 1:**
+   **Правило 1:**
 
-   ![Rule 1](/img/multi-currency/rule-1.webp)
-   - From the Rules page, click on the _Create new rule_ button in the bottom right.
-   - In the Rule Modal edit popup.
-   - In _Stage of rule_ select **Post**.
-   - _Conditions_ must be set to **if `All` of these conditions match**.
-     - `Account` **is**, and select the foreign currency account.
-     - `notes` **is not** set to _nothing_.
-     - `notes` **does not contain** _FX rate:_
-   - Under _Then apply these actions:_
-     - Click the Template toggle button on the left side of the action, just to the right of the -/+ symbols. The action must be of type _set notes_ or _set amount_ before the Template toggle button appears.
+   ![Правило 1](/img/multi-currency/rule-1.webp)
+   - На странице Правил нажмите кнопку Создать новое правило в правом нижнем углу.
+   - В Правиле Модаль редактировать всплывающие окна.
+   - В Stage of Rule Select **Почта**.
+   - Условия должны быть установлены **если `All` Эти условия соответствуют**.
+     - `Account` **это**Выберите валютный счет.
+     - `notes` **не является** Обсуждение nothing .
+     - `notes` **не содержит** FX ставка:_
+   - В соответствии с Then применять эти действия:_
+     - Нажмите кнопку переключения шаблона на левой стороне действия, только справа от символов -/+. Действие должно быть типа set notes или set amount до появления кнопки переключения шаблона.
 
-     ![Rule Action Template mode not available](/img/multi-currency/rule-action.webp)
+     ![Режим Rule Action Template недоступен](/img/multi-currency/rule-action.webp)
 
-     ![Rule Action Normal Mode](/img/multi-currency/rule-action-normal-instructions.webp)
+     ![Правило действия Нормальный режим](/img/multi-currency/rule-action-normal-instructions.webp)
 
-     ![Rule Action Template Mode](/img/multi-currency/rule-action-template.webp)
-     - _set notes_ with this content: **`{{ fixed (div amount 100) 2 }}` XXX (FX rate: FX_RATE) • `{{ notes }}`**, where XXX is the currency code.
-       - FX_RATE is the exchange rate (i.e., insert 0.65 for 1 AUD = 0.65 USD).
-     - Click the + symbol to add a new action line.
-     - Click the Template toggle button for this line.
-     - _set amount_ to: **`{{ fixed (mul amount FX_RATE) 0 }}`**.
-       - FX_RATE is the same as above.
+     ![Шаблонный режим Rule Action](/img/multi-currency/rule-action-template.webp)
+     - set notes с таким содержанием: **`{{ fixed (div amount 100) 2 }}` XXX (FX rate: FX RATE) `{{ notes }}`**где XXX — валютный код.
+       - FX RATE - обменный курс (т.е. вставить 0,65 за 1 AUD = 0,65 USD).
+     - Нажмите на символ +, чтобы добавить новую линию действий.
+     - Нажмите кнопку Template toggle для этой строки.
+     - set amount для: **`{{ fixed (mul amount FX_RATE) 0 }}`**.
+       - FX RATE - это то же самое, что и выше.
 
-   - Click on the _Save_ button.
+   - Нажмите на кнопку Save .
 
-   **Rule 2:**
+   **Правило 2:**
 
-   ![Rule 2](/img/multi-currency/rule-2.webp)
-   - From the Rules page, click on the _Create new rule_ button in the bottom right.
-   - In the Rule Modal edit popup.
-   - In _Stage of rule_ select **Post**.
-   - _Conditions_ must be set to **if `All` of these conditions match**.
-     - `Account` **is**, and select the foreign currency account.
-     - `notes` **is** set to _nothing_.
-   - Under _Then apply these actions:_
-     - Click the Template toggle button on the left side of the action, just to the right of the -/+ symbols.
-     - _set notes_ with this content: **`{{ fixed (div amount 100) 2 }}` XXX (FX rate: FX_RATE)**, where XXX is the same currency code from the first rule.
-       - FX_RATE is the exchange rate from the first rule.
-     - Click the + symbol to add a new action line.
-     - Click the Template toggle button for this line.
-     - _set amount_ to: **`{{ fixed (mul amount FX_RATE) 0 }}`**.
-       - FX_RATE is the same as above.
-   - Click on the _Save_ button.
+   ![Правило 2](/img/multi-currency/rule-2.webp)
+   - На странице Правил нажмите кнопку Создать новое правило в правом нижнем углу.
+   - В Правиле Модаль редактировать всплывающие окна.
+   - В Stage of Rule Select **Почта**.
+   - Условия должны быть установлены **если `All` Эти условия соответствуют**.
+     - `Account` **это**Выберите валютный счет.
+     - `notes` **это** Обсуждение nothing .
+   - В соответствии с Then применять эти действия:_
+     - Нажмите кнопку переключения шаблона на левой стороне действия, только справа от символов -/+.
+     - set notes с таким содержанием: **`{{ fixed (div amount 100) 2 }}` XXX (FX rate: FX RATE)**где XXX — тот же код валюты из первого правила.
+       - FX RATE - обменный курс по первому правилу.
+     - Нажмите на символ +, чтобы добавить новую линию действий.
+     - Нажмите кнопку Template toggle для этой строки.
+     - set amount для: **`{{ fixed (mul amount FX_RATE) 0 }}`**.
+       - FX RATE - это то же самое, что и выше.
+   - Нажмите на кнопку Save .
 
-## Usage
+## использование {#usage}
 
-1. Create a transaction in the foreign currency account using the foreign currency amount. (i.e., if the normal budget currency is USD but the account is AUD, then enter the AUD amount in the Payment or Deposit column).
+1. Создайте транзакцию на счете в иностранной валюте, используя сумму в иностранной валюте (т.е., если обычной бюджетной валютой является доллар США, но счет является AUD, то введите сумму AUD в колонке «Оплата или депозит»).
 
-   ![Pre-Conversion Transaction](/img/multi-currency/usage-preconvert.webp)
+   ![Предконверсионная транзакция](/img/multi-currency/usage-preconvert.webp)
 
-2. Go to the Rules page and select one of the two rules for that account. At the bottom will be transactions to which the rule can be applied.
-   - If you do not see the transaction(s) that you want to convert, click cancel and check the other rule for that account.
-   - Select the transaction(s) that you would like to convert and click the _Apply actions_ button.
-   - Once the actions have been applied, click cancel since you don't want to change the rule.
+2. Перейдите на страницу Правил и выберите одно из двух правил для этой учетной записи. В нижней части будут транзакции, к которым может применяться правило.
+   - Если вы не видите транзакцию (транзакции), которую вы хотите конвертировать, нажмите «Отменить» и проверьте другое правило для этой учетной записи.
+   - Выберите транзакцию (транзакции), которую вы хотите конвертировать, и нажмите кнопку Apply actions .
+   - После того, как действия были применены, нажмите «отменить», так как вы не хотите менять правило.
 
-![Apply Exchange Rate to Transaction](/img/multi-currency/usage-convert.webp)
+![Применить обменный курс к сделке](/img/multi-currency/usage-convert.webp)
 
-3. Return to the foreign currency account to verify that the transaction was converted.
+3. Возврат на валютный счет для подтверждения конвертации транзакции.
 
-   ![Post-Conversion Transaction](/img/multi-currency/usage-postconvert.webp)
+   ![Постконверсионная сделка](/img/multi-currency/usage-postconvert.webp)

@@ -1,20 +1,20 @@
-# Experimental Features
+# Экспериментальные функции {#experimental-features}
 
-It can take a long time to fully develop and test new features.
-In order to make development easier, and to allow users to give feedback, Actual has a system of `experimental features`.
-These experimental features are generally opt-in.
-If the user doesn't opt-in to enabling the feature there will be no change in user experience.
+Это может занять много времени, чтобы полностью разработать и протестировать новые функции.
+Для того, чтобы сделать разработку проще, и чтобы позволить пользователям давать обратную связь, у Actual есть система, в которой вы можете работать. `experimental features`.
+Эти экспериментальные функции, как правило, включаются.
+Если пользователь не выберет включение функции, не будет никаких изменений в пользовательском опыте.
 
-These features are still in active development and therefore it is highly recommended to have a regular backup if you enable any of these features.
+Эти функции все еще находятся в активной разработке, и поэтому настоятельно рекомендуется иметь регулярное резервное копирование, если вы включите любую из этих функций.
 
-## View and enable experimental features
+## Просмотр и включение экспериментальных функций {#view-and-enable-experimental-features}
 
-In order to view the currently available experimental features go to `Settings -> Show advanced settings -> Experimental features`.
+Для того чтобы просмотреть имеющиеся в настоящее время экспериментальные возможности, перейдите к `Settings -> Show advanced settings -> Experimental features`.
 
-![Experimental features](/img/experimental/setting.webp)
+![Экспериментальные особенности](/img/experimental/setting.webp)
 
-You will need to agree to the disclaimer, and then you will be able to see the available experimental features.
+Вам нужно будет согласиться на отказ от ответственности, а затем вы сможете увидеть доступные экспериментальные функции.
 
-![available features](/img/experimental/available.webp)
+![доступные функции](/img/experimental/available.webp)
 
-_The features listed in image above are just some examples of experimental features. The actual experimental features available will differ._
+Основы, перечисленные на изображении выше, являются лишь некоторыми примерами экспериментальных признаков._

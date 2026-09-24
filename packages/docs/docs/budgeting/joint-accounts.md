@@ -1,150 +1,150 @@
-# Strategies for Handling Joint Accounts
+# Стратегии управления совместными счетами {#strategies-for-handling-joint-accounts}
 
-## Introduction
+## Введение {#introduction}
 
-Nothing derails a relationship faster than (not) talking about money and how it's spent.
+Ничто не разрушает отношения быстрее, чем разговоры о деньгах и о том, как они расходуются.
 
-When budgeting with a partner in Actual Budget, you have several strategies to consider, each tailored to how you
-manage finances together.
+При составлении бюджета с партнером по фактическому бюджету у вас есть несколько стратегий, каждая из которых адаптирована к тому, как вы работаете.
+управлять финансами совместно.
 
-One approach is maintaining a common budget where both partners share a single budget file.
-This method promotes transparency and ensures both parties agree regarding financial goals, expenses, and income.
-A shared budget fosters collaboration but requires consistent communication to keep everything current. It will help
-you both set clear boundaries for individual and shared expenses while working together toward common financial objectives.
-See [Multi-user](../getting-started/sync.md#multi-user-support) regarding simultaneous edits.
+Один из подходов заключается в поддержании общего бюджета, в котором оба партнера имеют единый бюджетный файл.
+Этот метод способствует прозрачности и обеспечивает согласие обеих сторон в отношении финансовых целей, расходов и доходов.
+Общий бюджет способствует сотрудничеству, но требует последовательной коммуникации, чтобы держать все в актуальном состоянии.
+Вы устанавливаете четкие границы для индивидуальных и общих расходов, работая вместе для достижения общих финансовых целей.
+Видишь? [многопользовательский](../getting-started/sync.md#multi-user-support) Одновременное редактирование.
 
-Alternatively, you can track your partner's contributions within your personal Actual Budget file. This allows you to
-maintain individual control over your finances while still acknowledging and accounting for your partner's financial
-inputs. This method benefits couples who prefer to manage their finances independently but want to monitor how their
-spending aligns with joint expenses and goals.
+Кроме того, вы можете отслеживать взносы вашего партнера в личном файле Actual Budget.
+Поддерживайте индивидуальный контроль над своими финансами, признавая и отчитываясь о финансах своего партнера.
+Этот метод приносит пользу парам, которые предпочитают самостоятельно управлять своими финансами, но хотят контролировать, как они работают.
+Расходы согласуются с совместными расходами и целями.
 
-Choosing the right approach depends on your communication style, financial goals, and the level of financial
-independence or collaboration you prefer in your relationship.
+Выбор правильного подхода зависит от вашего стиля общения, финансовых целей и уровня финансов.
+Независимость или сотрудничество, которые вы предпочитаете в отношениях.
 
-## Tracking A Shared Account With A Shared Actual Budget
+## Отслеживание общего счета с общим Actual Budget {#tracking-a-shared-account-with-a-shared-actual-budget}
 
-If you and your partner are in a serious relationship and have begun reimbursing each other, you should consider the next step: creating a joint account for joint expenses.
+Если вы и ваш партнер находитесь в серьезных отношениях и начали возмещать друг другу расходы, вы должны рассмотреть следующий шаг: создание совместного счета для совместных расходов.
 
-If both agree, the natural next step is to have a joint budget. Your partner may not be
-ready for this, so be patient even if you previously have waxed lyrical about the good of budgeting, and envelope
-budgeting in particular. Not everyone is prepared for this kind of visibility and accountability into their (joint) finances.
+Если оба согласны, следующим естественным шагом будет совместный бюджет.
+Готовьтесь к этому, поэтому будьте терпеливы, даже если вы ранее лирически говорили о хорошем бюджетировании и конверте.
+Не все готовы к такой видимости и подотчетности своих (совместных) финансов.
 
-Also, stop using cash for common expenses, as this makes tracking so much more complicated.
+Кроме того, прекратите использовать наличные деньги для общих расходов, так как это значительно усложняет отслеживание.
 
-When your partner is ready to embrace your true joint expenses, use our [Starting Fresh guide](../getting-started/starting-fresh.md) to get
-started. If your partner is new to budgeting, consider skipping the part about using historical data to find
-your initial budget numbers. Another tip is to set aside time each week by going through last week's spending; avoid doing
-this late in the evening when your energies are low.
+Когда ваш партнер готов принять ваши истинные совместные расходы, используйте наш сервис. [Начало нового руководства](../getting-started/starting-fresh.md) чтобы получить
+Если ваш партнер новичок в бюджетировании, подумайте о том, чтобы пропустить часть об использовании исторических данных для поиска.
+Еще один совет - откладывать время каждую неделю, пройдя через расходы прошлой недели; избегайте делать
+Вечером, когда ваша энергия будет низкой.
 
-Another tip is to let your partner be the primary account holder for your joint spending and billing account. Make sure the partner feels safe about this approach.
+Еще один совет - позволить вашему партнеру быть основным владельцем счета для вашего совместного счета расходов и выставления счетов. Убедитесь, что партнер чувствует себя в безопасности.
 
-### Basic setup steps
+### Основные этапы установки {#basic-setup-steps}
 
-1. Talk to your bank and have a joint account set up.
-2. Get two debit cards attached to the joint account, one for you and one for your partner.
-3. Create a joint Actual Budget file on a server that is also reachable by your partner.
-4. Decide how big each partner's contribution to the joint account should be (see below).
-5. Follow the [Starting Fresh guide](../getting-started/starting-fresh.md) with your partner.
+1. Поговорите со своим банком и создайте совместный счет.
+2. Получите две дебетовые карты, прикрепленные к совместному счету, одну для вас и одну для вашего партнера.
+3. Создайте совместный файл Actual Budget на сервере, который также доступен вашему партнеру.
+4. Решите, насколько большим должен быть вклад каждого партнера в совместный счет (см. ниже).
+5. Следуй за мной. [Начало нового руководства](../getting-started/starting-fresh.md) со своим партнером.
 
-### Deciding on how big each partner's contribution should be
+### Решение о том, насколько большим должен быть вклад каждого партнера. {#deciding-on-how-big-each-partners-contribution-should-be}
 
-For many couples, this could be a very tough and emotional discussion. It might be a litmus test if your relationship
-will survive in the long run. If you cannot have a calm, two-way discussion about managing your joint finances,
-both must look hard at your approach to your relationship.
+Для многих пар это может быть очень жесткая и эмоциональная дискуссия.
+Если у вас не будет спокойной двусторонней дискуссии об управлении совместными финансами,
+Оба должны внимательно следить за вашим подходом к отношениям.
 
-There are a few ways to decide how much each partner should contribute.
+Есть несколько способов решить, сколько каждый партнер должен внести.
 
-#### Pool all income into the joint account
+#### Объединить все доходы на совместный счет {#pool-all-income-into-the-joint-account}
 
-A common way is to pool all income into the joint account and then withdraw personal spending from this account.
-As most partners have different spending habits, depending on their personal needs and wants, pooling all income may
-cause friction. The partners may refrain from spending joint money on personal projects or other needs.
+Общим способом является объединение всех доходов на совместный счет, а затем снятие личных расходов с этого счета.
+Поскольку у большинства партнеров разные привычки к расходам, в зависимости от их личных потребностей и желаний, объединение всех доходов может привести к увеличению расходов.
+Партнеры могут воздерживаться от расходования совместных средств на личные проекты или другие нужды.
 
-Even if given amounts are transferred back to each partner for _their spending_, it might still cause friction
-because of different spending habits.
+Даже если данные суммы будут возвращены каждому партнеру за их расходы, это все равно может вызвать трение.
+Из-за различных привычек.
 
-#### Pool necessary income into the joint account
+#### Пул необходимых доходов на совместный счет {#pool-necessary-income-into-the-joint-account}
 
-Envelope budgeting is about embracing true expenses, goal-oriented planning and flexibility. Over time, it will be clear
-what are your common expenses regarding groceries, utility bills, dining out, gifts, savings, etc.
+Конвертное бюджетирование - это принятие истинных расходов, целенаправленное планирование и гибкость. Со временем станет ясно
+Каковы ваши общие расходы в отношении продуктов питания, коммунальных счетов, обедов, подарков, сбережений и т. Д.
 
-Both will then contribute their share of the joint expenses. This is called _planned income_.
+Затем оба будут вносить свою долю в совместные расходы. Это называется "плановый доход".
 
-But how do you find your just share? The most just way to do this is by percentage of normal income per partner.
-If Bob makes $ 4,000 a month and Alice makes $ 6,000, the total income is $ 10,000. Out of
-this, Bob will contribute 40% to the joint expenses. To compute the percentage for Bob: 4000 (Bob's income) \* 100 / 10000
-(total income). Alice's percentage is 60%, found by subtracting Bob's percentage from 100.
+Но как найти свою справедливую долю? Самый простой способ сделать это - процент от нормального дохода на одного партнера.
+Если Боб зарабатывает 4000 долларов в месяц, а Элис — 6000, то общий доход составляет 10000 долларов.
+Это Боб будет вносить 40% в совместные расходы. Чтобы вычислить процент для Боба: 4000 (доход Боба)* 100 / 10000
+Процент Алисы составляет 60%, вычитая процент Боба из 100.
 
-### Tracking personal spending in the budget
+### Отслеживание личных расходов в бюджете {#tracking-personal-spending-in-the-budget}
 
-One of the partners might use the debit card connected to the joint account for
-personal spending by mistake. Have one budget category named _Partner Personal Spending_. For tracking purposes, this needs to be
-a rollover category.
+Один из партнеров может использовать дебетовую карту, подключенную к совместному счету.
+Иметь одну бюджетную категорию под названием Partner Personal Spending .
+Категория ролловеров.
 
-When the partner reimburses their spending, add the amount to this category.
+Когда партнер возмещает свои расходы, добавьте сумму в эту категорию.
 
 :::info
-If the reimbursements happen immediately, there is no need to enter these two transactions on the account register at all
-as they will zero each other out.
+Если возмещение происходит немедленно, нет необходимости вносить эти две операции в реестр счетов вообще.
+Так как они обнуляют друг друга.
 :::
 
-### Adding funds to the joint account
+### Добавление средств на совместный счет {#adding-funds-to-the-joint-account}
 
-To keep track of your and your partner's contributions to your join account, create one income category named
-_Partners Contributions_. This category is _only used_ to track _planned income_ from each partner. You also want
-two categories called _Partner Reimbursements_ and _Common Income_.
+Чтобы отслеживать ваши вклады и вклады вашего партнера в вашу учетную запись, создайте одну категорию дохода.
+Эта категория используется только для отслеживания запланированного дохода от каждого партнера.
+Две категории: Partner Reimbursements и Common Income .
 
-- When both partners pay their share, this is added to the _Partners Contributions_. This way makes it easy to track
-  that everyone has contributed their part. When starting with joint budgeting, you will have partial insights into your spending habits, and extra funds need to be added to the joint account, so
-  good visibility is a must.
-- When reimbursements for personal spending occur, use the _Partner Reimbursements_ income category and immediately
-  use this amount against the _Partner Personal Spending_ category.
-- _Common Income_ is all other income that is _not planned_. This could be gifts, or if you sell stuff that you own
-  together, etc.
+- Когда оба партнера платят свою долю, это добавляется к вкладам партнеров.
+  Когда вы начнете с совместного бюджетирования, у вас будет частичное понимание ваших привычек расходов, и дополнительные средства должны быть добавлены на совместный счет, поэтому
+  Хорошая видимость является обязательным.
+- Когда происходит возмещение личных расходов, используйте категорию возмещения расходов партнера и немедленно
+  Используйте эту сумму в категории Partner Personal Spending .
+- Общий доход - это все другие доходы, которые не запланированы. Это могут быть подарки или если вы продаете вещи, которые у вас есть.
+  вместе и т.д.
 
-## Tracking A Shared Account With Your Personal Actual Budget
+## Отслеживание общего счета с вашим личным Actual Budget {#tracking-a-shared-account-with-your-personal-actual-budget}
 
-Situation: I am using Actual to keep track of my budget and finances, but I share a joint account with my partner.
+Я использую Actual, чтобы отслеживать свой бюджет и финансы, но я делю совместный счет с моим партнером.
 
-### Basic setup steps
+### Основные этапы установки {#basic-setup-steps-1}
 
-1. Create an **on budget** account used to pay joint bills.
-2. Create a **category group** used to group your shared expense categories.
-3. Create the **categories** you plan to budget using your joint account.
-4. **Optional:** Create an **Income Category** called **Partner Contribution** or something similar. This will be explained further below.
+1. Создать **о бюджете** Счет использовался для оплаты совместных счетов.
+2. Создать **категория** Используется для группирования ваших общих категорий расходов.
+3. создавать **категории** Вы планируете бюджет, используя свой совместный счет.
+4. **Необязательно:** Создать **Категория дохода** называемый **Партнерский вклад** Или что-то подобное. Это будет объяснено ниже.
 
-### Adding funds to the joint account
+### Добавление средств на совместный счет {#adding-funds-to-the-joint-account-1}
 
-#### Your contribution
+#### Ваш вклад {#your-contribution}
 
-Each month you will add a transfer of your share to the joint account from one of your on budget accounts. You don't need a category for your contribution since it is just a transfer from one of your accounts to another.
+Каждый месяц вы будете добавлять перевод вашей доли на совместный счет с одного из ваших бюджетных счетов. Вам не нужна категория для вашего вклада, так как это просто перевод с одного из ваших счетов на другой.
 
-![Screenshot of joint accounts in a personal Actual Budget file](/img/joint-accounts/jointaccount-2.webp)
+![Скриншот совместных счетов в личном файле Actual Budget](/img/joint-accounts/jointaccount-2.webp)
 
-#### Partner contribution
+#### Вклад партнеров {#partner-contribution}
 
-##### Option 1
+##### Вариант 1 {#option-1}
 
-When your partner makes a contribution to the joint account, use the **Income Category** you created as the category. By having a separate category for this contribution, it will be easier to filter out when doing reports later since this isn't true income, though it is income to the budget.
+Когда ваш партнер делает взнос на совместный счет, используйте **Категория дохода** Имея отдельную категорию для этого вклада, будет легче отфильтровать при составлении отчетов позже, поскольку это не настоящий доход, хотя это доход в бюджет.
 
-![Screenshot of joint accounts in a personal Actual Budget file - option 1](/img/joint-accounts/jointaccount-3.webp)
+![Скриншот совместных счетов в личном файле Actual Budget - вариант 1](/img/joint-accounts/jointaccount-3.webp)
 
-##### Option 2
+##### Вариант 2 {#option-2}
 
-If option 1 doesn't seem right to you, the same result could be achieved by treating the new income like a return to a store. In this case, you can assign your partners deposit directly to the shared categories. The deposit should be made into the **Joint Account** ledger. As you can see, you can fund each shared category using the **split transaction** option.
+Если вариант 1 не кажется вам правильным, такой же результат может быть достигнут, рассматривая новый доход как возврат в магазин. В этом случае вы можете назначить депозит своим партнерам непосредственно по разделяемым категориям. Депозит должен быть внесён в общий фонд. **Совместный счет** Как вы можете видеть, вы можете финансировать каждую общую категорию, используя **Разделенная сделка** вариант.
 
-![Screenshot of joint accounts in a personal Actual Budget file - option 2](/img/joint-accounts/jointaccount-5.webp)
+![Скриншот совместных счетов в личном файле Actual Budget - вариант 2](/img/joint-accounts/jointaccount-5.webp)
 
-### Budgeting
+### Бюджетирование {#budgeting}
 
-#### Option 1
+#### Вариант 1 {#option-1-1}
 
-If you are entering the data for the joint account according to option 1, budget the whole amount for the bill. The total budgeted of the shared expenses category group should equal the total amount available in the joint account. The joint account and category group are loosely connected in this scenario. There is no safeguard to prevent over budgeting for that account so you will need to monitor the balance of the account and the balance of the category group to be sure they are the same.
+Если вы вводите данные для совместного счета в соответствии с вариантом 1, бюджет всю сумму по счету. Общий бюджет группы разделяемых расходов должен равняться общей сумме, имеющейся на совместном счете. Совместный счет и группа категорий слабо связаны в этом сценарии. Нет никаких гарантий, чтобы предотвратить чрезмерное составление бюджета для этого счета, поэтому вам нужно будет контролировать баланс счета и баланс группы категорий, чтобы убедиться, что они одинаковы.
 
-![Screenshot of budgeting with personal Actual Account file - option 1](/img/joint-accounts/jointaccount-1.webp)
+![Скриншот бюджетирования с личным файлом фактического счета - вариант 1](/img/joint-accounts/jointaccount-1.webp)
 
-#### Option 2
+#### Вариант 2 {#option-2-1}
 
-If you've decided to fund the categories directly with the deposit, you only need to fund the budget categories for your portion of the shared expense. As you can see, each of the budget categories is still funded to the same level but in this case there is no **income** that will show in reports. The Joint account balance and budgeted amount should still be the same.
+Если вы решили профинансировать категории напрямую с помощью депозита, вам нужно только профинансировать бюджетные категории для вашей части общих расходов. Как вы можете видеть, каждая из бюджетных категорий по-прежнему финансируется на том же уровне, но в этом случае нет **доход** Остаток средств на совместном счете и бюджетная сумма должны быть одинаковыми.
 
-![Screenshot of budgeting with personal Actual Account file - option 2](/img/joint-accounts/jointaccount-4.webp)
+![Скриншот бюджетирования с личным файлом фактического счета - вариант 2](/img/joint-accounts/jointaccount-4.webp)

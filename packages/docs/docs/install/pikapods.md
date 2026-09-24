@@ -2,136 +2,136 @@
 title: 'PikaPods'
 ---
 
-[PikaPods](https://www.pikapods.com/) offers one click "instant open source app hosting", allowing you to run Actual for about $ 1.50 per month (as of November 2025).
+[PikaPods](https://www.pikapods.com/) Он предлагает один клик «мгновенный хостинг приложений с открытым исходным кодом», позволяющий запускать Actual примерно за $1,50 в месяц (по состоянию на ноябрь 2025 года).
 
-Using PikaPods is also a simple way to support the development of Actual Budget, as PikaPods will share some of its revenues with Actual for customers using their Actual Budget Pods.
+Использование PikaPods также является простым способом поддержки разработки Actual Budget, поскольку PikaPods будет делиться некоторыми своими доходами с Actual для клиентов, использующих свои Actual Budget Pods.
 
-You get a $ 5.00 credit when you sign up, which means that you should be able to run Actual for 3 months before your credit runs out.
+Вы получаете кредит в размере 5 долларов США при регистрации, что означает, что вы должны иметь возможность работать в течение 3 месяцев, прежде чем ваш кредит закончится.
 
-For web clients, PikaPods will automatically update about a week or so after the latest monthly release is deployed. PikaPods tests each new release before deploying it. If you have the Notification setting in PikaPods checked, you will get an email notifying you that the server has been updated.
+Для веб-клиентов PikaPods будет автоматически обновляться примерно через неделю или около того после последнего ежемесячного выпуска. PikaPods тестирует каждый новый выпуск перед его развертыванием. Если у вас есть настройка уведомлений в PikaPods проверена, вы получите электронное письмо, уведомляющее вас о том, что сервер был обновлен.
 
-For desktop clients, you will need to reinstall the desktop client to update to the latest version.
-First check on the web client to see if PikaPods has updated, then reinstall the desktop client.
+Для настольных клиентов вам нужно будет переустановить настольный клиент, чтобы обновить его до последней версии.
+Сначала проверьте веб-клиент, чтобы узнать, обновился ли PikaPods, а затем переустановите настольный клиент.
 
-:::caution[Desktop App Not Recommended with PikaPods]
+:::caution[Приложение для компьютера не рекомендуется с PikaPods]
 
-Using the Actual desktop app with PikaPods is not recommended. The desktop client version can fall out of sync with the server version, causing compatibility issues.
+Использование приложения Actual для настольных компьютеров с PikaPods не рекомендуется. Версия клиента для настольных компьютеров может выпасть из синхронизации с версией сервера, вызывая проблемы с совместимостью.
 
-It is best to install Actual as a PWA (Progressive Web App) instead. See the [Using a PWA](#using-a-pwa) section below for step-by-step instructions for Chrome, Firefox, Safari, and other browsers.
+Лучше всего установить Actual как PWA (Прогрессивное веб-приложение). [Использование PWA](#using-a-pwa) Раздел ниже для пошаговых инструкций для Chrome, Firefox, Safari и других браузеров.
 
 :::
 
-## Deploying Actual on PikaPods
+## Развертывание Actual на PikaPods {#deploying-actual-on-pikapods}
 
-If you are technically inclined, just [Click here to create an account and run Actual on PikaPods](https://www.pikapods.com/pods?run=actual).
+Если вы технически склонны, просто [Нажмите здесь, чтобы создать учетную запись и запустить Actual на PikaPods](https://www.pikapods.com/pods?run=actual).
 
-You can leave the resources at their lowest setting (although you will need a non-zero amount of storage for your budget files).
+Вы можете оставить ресурсы на самом низком уровне (хотя вам понадобится ненулевой объем хранилища для ваших бюджетных файлов).
 
-_Your browser does most of Actual's computation,_ so purchasing more resources for the server won't necessarily result in a better experience.
+Ваш браузер выполняет большую часть вычислений Actual,_ Поэтому покупка большего количества ресурсов для сервера не обязательно приведет к лучшему опыту.
 
-After setting up your Pod, head over to our [Starting Fresh](../getting-started/starting-fresh.md) guide to get started with
+После установки вашего Pod, перейдите к нашему [Начинаем свежий](../getting-started/starting-fresh.md) Руководство, чтобы начать с
 Actual Budget.
 
-## A step by step guide to setting up Actual Budget with PikaPods
+## Пошаговое руководство по созданию Actual Budget с помощью PikaPods {#a-step-by-step-guide-to-setting-up-actual-budget-with-pikapods}
 
-[Click here to go to PikaPods setup for Actual](https://www.pikapods.com/pods?run=actual).
+[Нажмите здесь, чтобы перейти к установке PikaPods для Actual](https://www.pikapods.com/pods?run=actual).
 
-You will be greeted with the following screen.
+Вас встретит следующий экран.
 
-![image PikaPods register](/img/pikapods-setup/pikapods-1-register-login.webp)
+![Изображение: PikaPods Register](/img/pikapods-setup/pikapods-1-register-login.webp)
 
-Click on the **register** link inside the blue banner, which will take you to the user registration screen.
+Нажмите на **регистрировать** Ссылка внутри синего баннера, которая приведет вас к экрану регистрации пользователя.
 
-## The user registration screen
+## Экран регистрации пользователя {#the-user-registration-screen}
 
-A working email address is required, as PikaPods will send an email with a link you need to click on to complete the signup process.
+Требуется рабочий адрес электронной почты, так как PikaPods отправит электронное письмо со ссылкой, по которой вам нужно нажать, чтобы завершить процесс регистрации.
 
-![Image Pikapods email](/img/pikapods-setup/pikapods-2-register-name.webp)
+![Изображение Pikapods email](/img/pikapods-setup/pikapods-2-register-name.webp)
 
-## Verification email
+## Проверка электронной почты {#verification-email}
 
-Click the green button **Activate and Login**. You are now registered as a PikaPods customer. You will be returned to the login screen.
+Нажмите зеленую кнопку **Активировать и войти**Вы теперь зарегистрированы как клиент PikaPods. Вы будете возвращены на экран входа.
 
-![Image Pikapods email registration](/img/pikapods-setup/pikapods-4-email-activation.webp)
+![Изображение Pikapods email registration](/img/pikapods-setup/pikapods-4-email-activation.webp)
 
-## Login screen
+## Экран входа {#login-screen}
 
-Enter _your_ registration email address and password.
+Введите your регистрационный адрес электронной почты и пароль.
 
-![Image Pikapods login](/img/pikapods-setup/pikapods-5-login-screen.webp)
+![Изображение Pikapods login](/img/pikapods-setup/pikapods-5-login-screen.webp)
 
-## Naming your Pod
+## Наименование вашего стручка {#naming-your-pod}
 
-Simply put, _a Pod is a very tiny computer running in the cloud_. Typically, a Pod only runs one application - like Actual Budget Server.
+Проще говоря, a Pod - это очень маленький компьютер, работающий в облаке. Как правило, Pod запускает только одно приложение - например, Actual Budget Server.
 
 :::info
 
-Multiple budgets can reside in one Pod running Actual. You do not need to set up a new Pod for each budget you create. The number of budgets is limited only by the storage capacity you assign to your Pod.
+Несколько бюджетов могут находиться в одном Pod, работающем Actual. Вам не нужно настраивать новый Pod для каждого бюджета, который вы создаете. Количество бюджетов ограничено только емкостью хранилища, которую вы присваиваете своему Pod.
 
-If you [connect to your bank](../advanced/bank-sync.md), note that all budgets in the same Pod share a single bank sync key.
+Если ты [Подключитесь к своему банку](../advanced/bank-sync.md)Обратите внимание, что все бюджеты в одном и том же Pod имеют один синхронный ключ банка.
 
 :::
 
-In 1), you enter a name for your Pod. This name really does not matter unless you plan to run several different Pods.
+В 1 вы вводите имя для вашего Pod. Это имя действительно не имеет значения, если вы не планируете запустить несколько разных Pods.
 
-In 2), you decide which region your Pod should run - choose the most suitable region.
+В 2 вы решаете, в каком регионе должен работать ваш Под - выберите наиболее подходящий регион.
 
-![Image pikapods basic](/img/pikapods-setup/pikapods-6-add-pod-basics.webp)
+![Изображение pikapods basic](/img/pikapods-setup/pikapods-6-add-pod-basics.webp)
 
-## Assigning storage to your Pod
+## Назначение хранилища для вашего Pod {#assigning-storage-to-your-pod}
 
-The minimum storage you can assign to your Pod is 10 GB (gigabytes). We promise you that this is more than enough for your budget purposes.
+Минимальное хранилище, которое вы можете назначить своему Pod, составляет 10 ГБ (гигабайт). Мы обещаем вам, что этого более чем достаточно для ваших бюджетных целей.
 
-Example: It takes about 33 megabytes of storage for about 1,200 transactions, 18 months of budgeting, and approximately 200 rules and payees. 10 gigabytes equals 10,000 megabytes, equivalent to 303 18-month budgets.
+Пример: требуется около 33 мегабайт хранения для примерно 1200 транзакций, 18 месяцев бюджетирования и около 200 правил и получателей. 10 гигабайт равен 10 000 мегабайт, что эквивалентно 303 18-месячным бюджетам.
 
-Your Pod will be created when you click on the green **ADD POD** button. This step takes less than one minute.
+Ваш питомец будет создан, когда вы нажмете на зеленый **АДД Под** Этот шаг занимает меньше одной минуты.
 
-![Image pikapods add resources](/img/pikapods-setup/pikapods-7-add-pod-resoruces.webp)
+![Изображения пикаподов добавляют ресурсы](/img/pikapods-setup/pikapods-7-add-pod-resoruces.webp)
 
-## Your Pod is now ready to be used
+## Теперь ваш планшет готов к использованию {#your-pod-is-now-ready-to-be-used}
 
-Click on the green **OPEN POD** button to be taken to your Pod.
+Нажмите на зеленый **ОТКРЫТЫЙ ПОД** Кнопка, которую нужно взять с собой в капсулу.
 
-The address for your Actual Budget is found in the Domain field. In the screenshot example, this is `https://berserk-bullmastiff.pikapod.net/budget/`. Yours will be something completely different.
+Адрес вашего Actual Budget находится в поле Домен. В примере скриншота это `https://berserk-bullmastiff.pikapod.net/budget/`Ваше будет чем-то совершенно другим.
 
-![Image pikapod pod url](/img/pikapods-setup/pikapods-8-running-pod.webp)
+![Изображение pikapod pod url](/img/pikapods-setup/pikapods-8-running-pod.webp)
 
-## Setting a password for your Actual Budget
+## Установка пароля для вашего Actual Budget {#setting-a-password-for-your-actual-budget}
 
-Before you can start using Actual, you need to set a password for your server. This password is used the next time you log into your server - and should never be the same as your PikaPods account password.
+Прежде чем вы сможете начать использовать Actual, вам нужно установить пароль для вашего сервера. Этот пароль используется при следующем входе на ваш сервер - и никогда не должен быть таким же, как пароль вашей учетной записи PikaPods.
 
 :::warning
 
-Keep your Actual Budget password safe, as it cannot be retrieved. If you forget your server password, you will not be able to retrieve your budget.
+Сохраняйте свой пароль Actual Budget в безопасности, так как он не может быть извлечен. Если вы забудете пароль сервера, вы не сможете восстановить свой бюджет.
 
 :::
 
-![Image connecting to Actual](/img/a-tour-of-actual/server-connecting-first-time.webp)
+![Изображение подключается к Actual](/img/a-tour-of-actual/server-connecting-first-time.webp)
 <br />
 <br />
 
-## Using a PWA (Progressive Web App) {#using-a-pwa}
+## Использование PWA (прогрессивное веб-приложение) {#using-a-pwa}
 
-Modern browsers let you install a website on your device so it behaves like a standalone app. This is known as a Progressive Web App (PWA). If you access Actual Server over the internet, installing it as a PWA gives you quicker access and an app-like experience.
+Современные браузеры позволяют устанавливать веб-сайт на ваше устройство, поэтому он ведет себя как отдельное приложение. Это известно как прогрессивное веб-приложение (PWA). Если вы получаете доступ к фактическому серверу через Интернет, установка его в качестве PWA дает вам более быстрый доступ и опыт, подобный приложению.
 
-After logging in and opening Actual Budget, you can install it as a PWA directly from your browser.
+После входа в систему и открытия Actual Budget вы можете установить его как PWA прямо из своего браузера.
 
-Here's some help with a few common desktop browsers.
+Вот некоторая помощь с несколькими распространенными настольными браузерами.
 
 :::note
 
-Browser version and OS/browser combination may affect how to install a PWA. Please refer to your browsers documentation for definitive guidance.
+Версия браузера и комбинация ОС / браузера могут повлиять на то, как установить PWA. Пожалуйста, обратитесь к документации вашего браузера для окончательного руководства.
 
 :::
 
-- Chrome: There may be an "app available" icon on the right side of the URL or use the browser menu. See [Chrome's documentation](https://support.google.com/chrome/answer/9658361?hl=en&co=GENIE.Platform%3DDesktop).
+- Chrome: На правой стороне URL-адреса может быть значок «приложение доступно» или использовать меню браузера. [Документация Chrome](https://support.google.com/chrome/answer/9658361?hl=en&co=GENIE.Platform%3DDesktop).
 
-- Firefox: In supported OS, there should be an "add tab to taskbar" icon on the right side of the URL. You may need to add a PWA extension as described in [Mozilla's documentation](https://developer.mozilla.org/en-US/docs/Web/Progressive_web_apps/Guides/Installing).
+- Firefox: В поддерживаемой ОС должен быть значок «добавить вкладку в панель задач» на правой стороне URL. [Документация Mozilla](https://developer.mozilla.org/en-US/docs/Web/Progressive_web_apps/Guides/Installing).
 
-- Safari: There should be a share icon in the Safari toolbar or use the browser menu. See [Safari's documentation](https://support.apple.com/en-mide/104996).
+- Safari: На панели инструментов Safari должен быть значок общего доступа или использовать меню браузера. [Документация Safari](https://support.apple.com/en-mide/104996).
 
-For other browsers or browser/OS combinations, most search engines or the browser's documentation will describe how to install a PWA. PC Magazine had an [article in March 2025](https://www.pcmag.com/explainers/how-to-use-progessive-web-apps) with some good information.
+Для других браузеров или комбинаций браузера / ОС большинство поисковых систем или документация браузера будут описывать, как установить PWA. [Статья в марте 2025 года](https://www.pcmag.com/explainers/how-to-use-progessive-web-apps) с хорошей информацией.
 
-## Getting started with Actual Budget
+## Начнем с реального бюджета {#getting-started-with-actual-budget}
 
-Go to our [Starting Fresh](../getting-started/starting-fresh.md) guide to get started with Actual Budget.
+Иди к нам [Начинаем свежий](../getting-started/starting-fresh.md) Руководство для начала работы с реальным бюджетом.

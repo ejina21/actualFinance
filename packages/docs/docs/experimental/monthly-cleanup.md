@@ -1,117 +1,117 @@
-# End of Month Cleanup
+# Завершение месяца {#end-of-month-cleanup}
 
 <ExperimentalFeatureWarning />
 
-Create a template by adding a note to a category and adding a line that begins with `#cleanup`.
+Создайте шаблон, добавив заметку в категорию и добавив строку, которая начинается с `#cleanup`.
 
 ![](/img/monthly-cleanup/cleanup-02.webp)
 
-You are welcome to have other lines in your note including goal templates, but the #cleanup line must match the syntax.
+В вашей записке есть другие строки, включая шаблоны целей, но строка #cleanup должна соответствовать синтаксису.
 
 :::note
-Enable this feature alongside the **Goals** experimental feature by enabling **Goal templates** in the **Settings** menu.
+Включите эту функцию вместе с **Цели** Экспериментальная функция, позволяющая **Шаблоны целей** в **Настройки** меню.
 :::
 
-## How to Use the End of Month Cleanup Script
+## Как использовать сценарий очистки конца месяца {#how-to-use-the-end-of-month-cleanup-script}
 
-There are different ways to interact with the cleanup script, and a few of the examples will be given. But first, let's explore the syntax.
+Есть разные способы взаимодействия со скриптом очистки, и будут приведены несколько примеров. Но сначала давайте рассмотрим синтаксис.
 
-### Global Source and Sinks
+### Источник: Sinks {#global-source-and-sinks}
 
-Global source and sink definitions can affect the whole budget.
+Определения глобальных источников и поглотителей могут повлиять на весь бюджет.
 
-| Syntax          | Description                                                    | Application                                                                                           |
-| --------------- | -------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------- |
-| #cleanup source | This is a source of money to be reused at the end of the month | Electricity is intentionally over budgeted each month and the excess is used to pay down debt         |
-| #cleanup sink   | This is a category where extra money will be moved. Weight: 1  | This can be a vacation, debt, or other savings category where you want to accelerate the savings rate |
-| #cleanup sink 2 | This is a category where extra money will be moved. Weight: 2  | This can be a vacation, debt, or other savings category where you want to accelerate the savings rate |
+| синтаксис          | Описание                                                      | Применение                                                                                              |
+| ------------------ | ------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------- |
+| Источник очистки   | Это источник денег, который будет использован в конце месяца. | Электричество намеренно превышает бюджет каждый месяц, а избыток используется для погашения долга.      |
+| #чистить раковину  | Это категория, куда будут перемещены лишние деньги. Вес: 1    | Это может быть отпуск, долг или другая категория сбережений, где вы хотите ускорить уровень сбережений. |
+| #чистка раковины 2 | Это категория, куда будут перемещены лишние деньги. Вес: 2    | Это может быть отпуск, долг или другая категория сбережений, где вы хотите ускорить уровень сбережений. |
 
-### Local Group Source and Sinks
+### Источник: Sinks {#local-group-source-and-sinks}
 
-Local groups can be defined to target certain categories for more refined control. You can have many groups by changing the group name.
+Локальные группы могут быть определены для таргетирования определенных категорий для более точного контроля. Вы можете иметь много групп, изменив название группы.
 
-| Syntax                  | Description                                                                              | Application                                                                                  |
-| ----------------------- | ---------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- |
-| #cleanup _Group_ source | This is a source of money to be reused at the end of the month with any Group categories | A reimbursement holding category exists for making small loans to family or friends          |
-| #cleanup _Group_ sink   | This is a category where extra money will be moved into from the Group source. Weight: 1 | This can be a category specific to a person or a business where reimbursements are expected. |
-| #cleanup _Group_ sink 2 | This is a category where extra money will be moved into from the Group source. Weight: 2 | This can be a category specific to a person or a business where reimbursements are expected. |
+| синтаксис               | Описание                                                                                               | Применение                                                                                              |
+| ----------------------- | ------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------- |
+| #cleanup Group Источник | Это источник денежных средств для повторного использования в конце месяца с любыми категориями Группы. | Существует категория компенсационных холдингов для предоставления небольших кредитов семье или друзьям. |
+| #cleanup Group Watch    | Это категория, в которую из группового источника будут переведены дополнительные деньги. Вес: 1        | Это может быть категория, специфичная для человека или бизнеса, где ожидается возмещение.               |
+| #cleanup Group Watch 2  | Это категория, в которую будут переведены дополнительные деньги из источника Группы. Вес: 2            | Это может быть категория, специфичная для человека или бизнеса, где ожидается возмещение.               |
 
-The feature works sequentially in the following manner after pressing the **End of month cleanup** button .
+Функция работает последовательно следующим образом после нажатия **Конец месяца уборка** Кнопка.
 
 ![](/img/monthly-cleanup/cleanup-01.webp)
 
-1. Local groups are applied first. Overspent categories are not automatically filled at this step and the group source funds will be distributed.
-1. Any `#cleanup source` entries will be found and all extra money in those categories will be returned to **To Budget**.
-   - A source category that has a negative balance will be ignored.
-1. **Overspent** categories that do NOT use **Rollover Overspending** will be found and will attempt to cover the overspending from **To Budget**.
-1. Any `#cleanup sink` entries will be found and redistribute the remaining **To Budget** amounts based on the weight given.
+1. На этом этапе автоматически не заполняются категории перерасходованных средств и распределяются средства из групповых источников.
+1. Любой `#cleanup source` Записи будут найдены, и все дополнительные деньги в этих категориях будут возвращены. **В бюджет**.
+   - Категория источников с отрицательным балансом будет проигнорирована.
+1. **перерасходованный** Категории, которые не используются **Перерасход Ролловера** будут найдены и попытаются покрыть перерасход **В бюджет**.
+1. Любой `#cleanup sink` Записи будут найдены и перераспределят оставшиеся **В бюджет** Количество, основанное на данном весе.
 
-## Calculating the Weights of 'Sink' Categories
+## Вычисление весов категорий «потоп» {#calculating-the-weights-of-sink-categories}
 
-The sum of the weights of the `sink` categories are used to determine the amount that will be used when applying the **To Budget** amount to each.
-Suppose there are 5 categories that are identified as `sink` categories with the following syntax:
+Величина величины весов `sink` категории используются для определения суммы, которая будет использоваться при применении **В бюджет** сумма для каждого.
+Предположим, что существует 5 категорий, которые определены как `sink` Категории со следующим синтаксисом:
 
-- Category 1: `#cleanup sink`
-- Category 2: `#cleanup sink`
-- Category 3: `#cleanup sink 2`
-- Category 4: `#cleanup sink 2`
-- Category 5: `#cleanup sink 4`
+- Категория 1: `#cleanup sink`
+- Категория 2: `#cleanup sink`
+- Категория 3: `#cleanup sink 2`
+- Категория 4: `#cleanup sink 2`
+- Категория 5: `#cleanup sink 4`
 
-The sum of the weights are `1 + 1 + 2 + 2 + 4 = 10`
+Сумма весов составляет `1 + 1 + 2 + 2 + 4 = 10`
 
-The result will be:
+Результатом будет:
 
-- Categories 1 and 2 will receive `1 / 10` or 10% of the **To Budget** amount
-- Categories 3 and 4 will receive `2 / 10` or 20% of the **To Budget** amount
-- Category 5 will receive `4 / 10` or 40% of the **To Budget** amount
+- Категории 1 и 2 получат `1 / 10` 10% от общего числа **В бюджет** сумма
+- Категории 3 и 4 получат `2 / 10` или 20% от общего **В бюджет** сумма
+- Категория 5 получит `4 / 10` или 40% от общего **В бюджет** сумма
 
-## Examples
+## Примеры {#examples}
 
-**I leave money in my To Budget balance all month, can this help cover my overspending?**
+**Я оставляю деньги в моем бюджетном балансе весь месяц, может ли это помочь покрыть мои перерасходы?**
 
-- If you don't use any `#cleanup` lines, the script will still try to cover overspending using the available **To Budget** amounts. This doesn't move any money out of any category, and only covers overspending.
+- Если вы не используете `#cleanup` строк, сценарий все равно попытается покрыть перерасход с помощью доступных **В бюджет** Это не выводит деньги из любой категории и покрывает только перерасход.
 
-**I want to recover money from my utility bills because they're variable and I always over budget and use that money to cover my overspent categories.**
+**Я хочу взыскать деньги с счетов за коммунальные услуги, потому что они переменные, и я всегда переоцениваю бюджет и использую эти деньги, чтобы покрыть мои перерасходованные категории.**
 
-- Place the `#cleanup source` text in the utility bill categories. When clicking the **End of month cleanup** button, the extra money will be returned to **To Budget** to use for covering the overspent categories. The money will remain in **To Budget** until you decide where it should go.
+- Место `#cleanup source` текст в категориях счетов за коммунальные услуги. **Конец месяца уборка** Кнопка, дополнительные деньги будут возвращены **В бюджет** использовать для покрытия перерасходованных категорий. **В бюджет** Пока вы не решите, куда он должен пойти.
 
-**I'm behind on saving for our big Holiday celebration and would like to catch up faster. I would also like to save a little extra for vacation. I would like to put 1/3 in savings for the Holiday and 2/3 for vacation of any extra money I can find.**
+**Я отстаю в экономии на нашем большом празднике и хотел бы быстрее наверстать упущенное. Я также хотел бы сэкономить немного больше на отпуск. Я хотел бы вложить 1/3 в сбережения на праздник и 2/3 на отпуск любых дополнительных денег, которые я могу найти.**
 
-- Add the `#cleanup source` note in the categories where you can find some extra money.
-- Add a `#cleanup sink` line to your **Holiday Celebration** category.
-- Add a `#cleanup sink 2` line to your **Vacation** category.
+- Добавить `#cleanup source` Обратите внимание на категории, где вы можете найти дополнительные деньги.
+- Добавить `#cleanup sink` линия на ваш **Праздничный праздник** Категория.
+- Добавить `#cleanup sink 2` линия на ваш **Отпуск** Категория.
 
-The **Holiday Celebration** category has a default weight of 1 while the **Vacation** category was specified as a weight of 2. Both numbers could have been specified with weights of 34 and 66 to give a close approximation of 1/3 and 2/3 where 34 + 66 = 100% to achieve a similar result.
+The **Праздничный праздник** У категории есть вес по умолчанию 1 в то время как **Отпуск** В качестве веса 2 была указана категория. Оба числа могли быть указаны с весами 34 и 66, чтобы дать близкое приближение 1/3 и 2/3, где 34 + 66 = 100% для достижения аналогичного результата.
 
-**I want to pay down my debt as quickly as possible. I have a large debt category where I rollover my overspending so I can budget an additional payment each month.**
+**Я хочу погасить свой долг как можно быстрее. У меня есть большая категория долга, где я перерасходую, чтобы я мог бюджетировать дополнительный платеж каждый месяц.**
 
-- Add the `#cleanup source` note in the categories where you can find some extra money.
-- Add the `#cleanup sink` note to your debt category. If this is your only priority, only put the note in this category.
+- Добавить `#cleanup source` Обратите внимание на категории, где вы можете найти дополнительные деньги.
+- Добавить `#cleanup sink` Если это ваш единственный приоритет, только поместите ноту в эту категорию.
 
-All of your extra money will be used to cover your overspent categories first and all remaining money will go to the **Debt** category to budget for an extra payment.
+Все ваши дополнительные деньги будут использованы для покрытия ваших перерасходованных категорий в первую очередь, а все оставшиеся деньги пойдут на финансирование. **Долг** Категория к бюджету для дополнительной оплаты.
 
-**I have a category specifically meant to cover overspending for the month. Can I use this tool with that category?**
+**У меня есть категория, специально предназначенная для покрытия перерасхода за месяц. Могу ли я использовать этот инструмент с этой категорией?**
 
-YES!
+Да!
 
-- Add both lines, `#cleanup source` and `#cleanup sink` to your buffer category.
+- Добавить обе строки, `#cleanup source` и `#cleanup sink` Ваша буферная категория.
 
-The script will remove all of your buffer funds, cover your overspending, and put your buffer funds back into the buffer for next time. You can also add a `#template` goal to this category so you can fill it back up next month!
+Сценарий удалит все ваши буферные средства, покроет ваши перерасходы и вернет ваши буферные средства в буфер в следующий раз. `#template` Цель этой категории, чтобы вы могли заполнить ее в следующем месяце!
 
-**My utility bills fluctuate from month to month, but are always less than $500. Can I shift that $500 around in just the utility categories?**
+**Мои счета за коммунальные услуги колеблются от месяца к месяцу, но всегда меньше 500 долларов. Могу ли я переложить эти 500 долларов только на категории коммунальных услуг?**
 
-Yes.
+Да.
 
-Method 1:
+Метод 1:
 
-One way to do this is to have a Utilities holding category with $500 budgeted. Within that category, use `#cleanup utilities source` and `#cleanup utilities sink`. Within all of the remaining utilities categories (power, gas, water, etc), use `#cleanup utilities`. This adds the remaining categories to the `utilities` group. The script will fill any overspending from the holding category and return any remaining money to the holding category.
+Один из способов сделать это - иметь категорию владения коммунальными услугами с бюджетом в 500 долларов. `#cleanup utilities source` и `#cleanup utilities sink`Во всех остальных категориях коммунальных услуг (энергия, газ, вода и т. Д.), Использование `#cleanup utilities`Это добавляет остальные категории к `utilities` Сценарий заполнит любые перерасходы из категории холдинга и вернет любые оставшиеся деньги в категорию холдинга.
 
-Method 2:
+Метод 2:
 
-Another way to accomplish this is to budget what you think you will spend for each of the utilities in each category. For example:
+Еще один способ добиться этого - бюджетировать то, что, по вашему мнению, вы потратите на каждую из коммунальных услуг в каждой категории.
 
-- Power - $200
-- Water - $150
-- Gas - $150
+- Мощность - $200
+- Вода - $150
+- Газ - $150
 
-In each category use `#cleanup utilities source` and `#cleanup utilities sink`. When the script is run, all of the remaining funds from each utilities category will be used to fund your overspent categories within the group and the leftover money will be evenly distributed to the utilities to carry over for the next month. Add a weight to the end of any of the categories if you would like to fund more.
+В каждой категории использование `#cleanup utilities source` и `#cleanup utilities sink`Когда сценарий запущен, все оставшиеся средства из каждой категории коммунальных услуг будут использоваться для финансирования ваших перерасходованных категорий в группе, а оставшиеся деньги будут равномерно распределены между коммунальными службами для переноса на следующий месяц.

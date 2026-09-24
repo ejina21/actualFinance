@@ -1,110 +1,110 @@
-# GoCardless Setup
+# Настройка GoCardless {#gocardless-setup}
 
 :::note
-Client Version 23.7.0 and
-Server Version 23.7.0 or higher are required for this feature.
+Клиентская версия 23.7.0
+Для этой функции требуется серверная версия 23.7.0 или выше.
 :::
 
 :::warning
-From July 2025 onwards, GoCardless has stopped accepting new Bank Account Data accounts. The below sign up instructions are now outdated, however, if you are an existing user, your account should continue to work.
+С июля 2025 года GoCardless прекратила прием новых счетов данных банковских счетов. Приведенные ниже инструкции по регистрации теперь устарели, однако, если вы являетесь существующим пользователем, ваша учетная запись должна продолжать работать.
 :::
 
-### Create SECRET and KEY for Actual
+### Создайте секрет и ключ для реального {#create-secret-and-key-for-actual}
 
-1. Create an account with GoCardless - https://bankaccountdata.gocardless.com/overview/.
-2. Log into your account dashboard at the same URL and select **Developers->User secrets** from the left side menu.
+1. Создать аккаунт с помощью GoCardless https://bankaccountdata.gocardless.com/overview/.
+2. Войдите в панель инструментов вашей учетной записи по тому же URL и выберите **Разработчики -> Секреты пользователя** С левой стороны меню.
 
-   ![Screenshot of GoCardless developer portal](/img/connecting-your-bank/connecting-your-bank-gocardless-01.webp)
+   ![Скриншот портала разработчиков GoCardless](/img/connecting-your-bank/connecting-your-bank-gocardless-01.webp)
 
-3. Click on the '+ create new' button at the bottom left.
-   - Make sure you download your secrets file since the **key** will not be available to you again in the account dashboard
-   - These secrets will be used in Actual to make the bank sync connection
+3. Нажмите на кнопку «+ создать новый» внизу слева.
+   - Убедитесь, что вы загрузили свой секретный файл с момента **ключ** Вы больше не будете доступны в панели инструментов учетной записи
+   - Эти секреты будут использованы в Actual для синхронизации с банком.
 
-   ![Screenshot of GoCardless page for creating API secrets](/img/connecting-your-bank/connecting-your-bank-gocardless-02.webp)
+   ![Скриншот страницы GoCardless для создания секретов API](/img/connecting-your-bank/connecting-your-bank-gocardless-02.webp)
 
-4. Enter a name for your secrets and click Create.
-   _This is only for you to easily identify them in the GoCardless User secrets overview_
+4. Введите имя для ваших секретов и нажмите Создать.
+   Это только для вас, чтобы легко идентифицировать их в обзоре секретов пользователей GoCardless.
 
-   ![Screenshot of GoCardless form for creating new API secret](/img/connecting-your-bank/connecting-your-bank-gocardless-03.webp)
+   ![Скриншот формы GoCardless для создания нового секрета API](/img/connecting-your-bank/connecting-your-bank-gocardless-03.webp)
 
-5. Download this file and keep it on your computer.
+5. Загрузите этот файл и сохраните его на своем компьютере.
 
-   ![Screenshot of GoCardless API secret after successful creation](/img/connecting-your-bank/connecting-your-bank-gocardless-04.webp)
+   ![Скриншот секрета GoCardless API после успешного создания](/img/connecting-your-bank/connecting-your-bank-gocardless-04.webp)
 
-6. Back in Actual, click on "+ Add account" at the bottom of the sidebar.
+6. Назад в Actual, нажмите на «+ Добавить учетную запись» в нижней части боковой панели.
 
-   ![Actual sidebar with accounts](/img/connecting-your-bank/connecting-your-bank-02.webp)
+   ![Фактическая боковая панель со счетами](/img/connecting-your-bank/connecting-your-bank-02.webp)
 
-7. Click "Set-up GoCardless for bank-sync."
+7. Нажмите «Установить GoCardless для банковской синхронизации».
 
-   ![Add account dialog](/img/connecting-your-bank/connecting-your-bank-gocardless-05.webp)
+   ![Добавить диалог аккаунта](/img/connecting-your-bank/connecting-your-bank-gocardless-05.webp)
 
-8. You will be asked to enter your GoCardless secret ID and secret key. These values will be saved on the server, so you will only need to enter them once.
+8. Вам будет предложено ввести свой секретный идентификатор GoCardless и секретный ключ. Эти значения будут сохранены на сервере, поэтому вам нужно будет ввести их только один раз.
 
-   ![Set-up GoCardless dialoag](/img/connecting-your-bank/connecting-your-bank-gocardless-06.webp)
+   ![Диалог GoCardless](/img/connecting-your-bank/connecting-your-bank-gocardless-06.webp)
 
-### Link Accounts with GoCardless
+### Ссылки на аккаунты GoCardless {#link-accounts-with-gocardless}
 
-1. Add the link to your accounts in actual (Existing or New).
-   - **_For an existing account, click on that account, select the ... (kebab menu) in the top right, and choose Link Account_**
+1. Добавьте ссылку на ваши учетные записи в реальном (существующем или новом).
+   - **Для существующей учетной записи нажмите на эту учетную запись, выберите ... (кебаб-меню) в правом верхнем углу и выберите учетную запись Link**
 
-     ![Linking an existing account to GoCardless](/img/connecting-your-bank/connecting-your-bank-01.webp)
+     ![Связь существующей учетной записи с GoCardless](/img/connecting-your-bank/connecting-your-bank-01.webp)
 
-   - **_To create a new account with bank syncing click on the '+ Add account' link in the left menu at the bottom_**
+   - **Для создания новой учетной записи с синхронизацией банка нажмите на ссылку «+ Добавить учетную запись» в левом меню внизу**
 
-     ![Actual sidebar with accounts](/img/connecting-your-bank/connecting-your-bank-02.webp)
+     ![Фактическая боковая панель со счетами](/img/connecting-your-bank/connecting-your-bank-02.webp)
 
-2. Select the Link your bank account button.
+2. Выберите кнопку «Связать свой банковский счет».
 
-   ![Add account dialog](/img/connecting-your-bank/connecting-your-bank-03.webp)
+   ![Добавить диалог аккаунта](/img/connecting-your-bank/connecting-your-bank-03.webp)
 
-3. Select your country and bank from the list and click the Link bank in browser button.
+3. Выберите страну и банк из списка и нажмите кнопку «Ссылка» в браузере.
 
-   ![Link your bank dialog](/img/connecting-your-bank/connecting-your-bank-04.webp)
+   ![Свяжите свой банковский диалог](/img/connecting-your-bank/connecting-your-bank-04.webp)
 
-4. Clicking Link bank in browser will redirect you to a new tab to grant access to your bank for GoCardless.
+4. Нажатие на банк ссылок в браузере перенаправит вас на новую вкладку, чтобы предоставить доступ к вашему банку для GoCardless.
 
-   ![Link you bank feedback](/img/connecting-your-bank/connecting-your-bank-05.webp)
+   ![Ссылка на обратную связь банка](/img/connecting-your-bank/connecting-your-bank-05.webp)
 
-5. Select **I agree** to continue with setting up the connection.
+5. Выбрать **Согласен.** Продолжать настраивать соединение.
 
-   ![Dialog to approve that GoCardless will be accessing your payment account information](/img/connecting-your-bank/connecting-your-bank-gocardless-07.webp)
+   ![Dialog одобрит, что GoCardless будет получать доступ к информации вашего платежного счета](/img/connecting-your-bank/connecting-your-bank-gocardless-07.webp)
 
-6. If your connection was a success, you will be able to click on the continue button which allows GoCardless to connect.
+6. Если ваше соединение было успешным, вы сможете нажать кнопку продолжения, которая позволяет GoCardless подключаться.
 
-   ![Feedback for successful linking to your bank](/img/connecting-your-bank/connecting-your-bank-07.webp)
+   ![Обратная связь для успешной связи с вашим банком](/img/connecting-your-bank/connecting-your-bank-07.webp)
 
-7. A progress indicator will display while GoCardless connects to your bank to get a list of your accounts.
+7. Индикатор прогресса будет отображаться, пока GoCardless подключается к вашему банку, чтобы получить список ваших счетов.
 
-   ![Dialog saying please wait while we finish linking your account(s).](/img/connecting-your-bank/connecting-your-bank-08.webp)
+   ![Диалог: Пожалуйста, подождите, пока мы завершим связывание вашей учетной записи (аккаунтов).](/img/connecting-your-bank/connecting-your-bank-08.webp)
 
-8. Once the connection has been made, there will be a list of your accounts that you can choose from.
+8. Как только соединение будет сделано, будет список ваших учетных записей, из которых вы можете выбрать.
 
-   ![Select bank account you want to link](/img/connecting-your-bank/connecting-your-bank-09.webp)
+   ![Выберите банковский счет, который вы хотите связать](/img/connecting-your-bank/connecting-your-bank-09.webp)
 
-9. The final step is to select the account you want to sync and click Link account.
+9. Последний шаг - выбрать учетную запись, которую вы хотите синхронизировать, и нажать на учетную запись Link.
 
-   ![Dialog for linking accounts you want to sync](/img/connecting-your-bank/connecting-your-bank-10.webp)
+   ![Диалог для связывания учетных записей, которые вы хотите синхронизировать](/img/connecting-your-bank/connecting-your-bank-10.webp)
 
-### Frequently Asked Questions
+### Часто задаваемые вопросы {#frequently-asked-questions}
 
-**Does Actual sync automatically with your Bank?**
+**Автоматическая синхронизация с вашим банком?**
 
-At this moment, it is not yet possible for Actual to automatically sync with your bank. You need to do this manually by going to "All Accounts" and pressing "Sync".
+На данный момент Actual пока не может автоматически синхронизироваться с вашим банком. Нужно сделать это вручную, зайдя во «Все счета» и нажав «Синхронизация».
 
-![Image showing where in the GUI you can sync your bank accounts](/img/connecting-your-bank/syncing-with-your-bank.webp)
+![Изображение показывает, где в графическом интерфейсе вы можете синхронизировать свои банковские счета](/img/connecting-your-bank/syncing-with-your-bank.webp)
 
-**The best way to start from scratch in Actual with GoCardless?**
+**Лучший способ начать с нуля в Actual с GoCardless**
 
-If you are setting up Actual for the first time, it is much easier not to try to pull in historic data. This has caused some users a lot of headaches with subsequent reconciliation. The following process may be more helpful:
+Если вы впервые настраиваете Actual, гораздо проще не пытаться втянуть исторические данные. Это вызвало у некоторых пользователей много головных болей с последующим согласованием. Более полезным может быть следующий процесс:
 
-1. Set up your account in Actual specifying a correct opening account balance at a recent date.
-2. Link the account to GoCardless as above
-3. Sync the account with GoCardless. You should find that only transactions subsequent to the opening account balance entry are imported, making reconciliation easy.
+1. Настройте свою учетную запись, указав правильный баланс счета открытия на недавнюю дату.
+2. Связать учетную запись с GoCardless, как указано выше
+3. Синхронизация счета с GoCardless.Вы должны обнаружить, что импортируются только транзакции, следующие за входом в баланс счета открытия, что облегчает сверку.
 
-**How many times can I sync with GoCardless?**
+**Сколько раз можно синхронизировать с GoCardless?**
 
-In the free tier, you can connect up to 50 banks per month. If one of your banks include more than one account inside (like credit and debit cards), it will still be counted as one connection.
-Every day you can sync each bank up to 4 times and there is no monthly limit though, just the daily one.
-For more information, see the [Bank Account Data API Usage](https://bankaccountdata.zendesk.com/hc/en-gb/articles/11528933493916-Bank-Account-Data-API-Usage-how-is-your-usage-number-calculated)
-topic in the GoCardless FAQ.
+Если один из ваших банков включает более одного счета внутри (например, кредитные и дебетовые карты), он все равно будет считаться одним соединением.
+Каждый день вы можете синхронизировать каждый банк до 4 раз, и нет месячного лимита.
+Для получения дополнительной информации см. [Использование API данных банковского счета](https://bankaccountdata.zendesk.com/hc/en-gb/articles/11528933493916-Bank-Account-Data-API-Usage-how-is-your-usage-number-calculated)
+Об этом сообщает GoCardless FAQ.

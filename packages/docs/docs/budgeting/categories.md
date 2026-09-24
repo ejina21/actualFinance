@@ -1,94 +1,94 @@
-# Categories
+# Категории {#categories}
 
-You can manage your categories in the budget page. Actual supports both expense and income categories.
+Вы можете управлять своими категориями на бюджетной странице. Actual поддерживает как расходы, так и категории доходов.
 
-Get some background information and recommendations on budget categories in our
-[starting fresh](../getting-started/starting-fresh.md#3-setting-up-your-budget-categories) guide.
+Получить некоторую справочную информацию и рекомендации по бюджетным категориям в нашем разделе
+[Свежий старт](../getting-started/starting-fresh.md#3-setting-up-your-budget-categories) Гид.
 
-## Add a Category
+## Добавить категорию {#add-a-category}
 
-1. Hover over the category group and press the down arrow
+1. Наведите курсор на группу категорий и нажмите стрелку вниз
 
 ![](/img/categories/CategoryGroupRename.webp)
 
-2. Select **Add category**
+2. Выбрать **Добавить категорию**
 
 ![](/img/categories/CategoryGroupAddCategory.webp)
 
-## Adding a Category Group
+## Добавление группы категорий {#adding-a-category-group}
 
-Scroll to the bottom of the budget sheet and select add group
+Прокрутите внизу бюджетного листа и выберите добавить группу
 
 ![](/img/categories/AddCategoryGroup.webp)
 
-Only one income group can ever exist and it cannot be deleted.
+Только одна группа доходов может существовать и не может быть удалена.
 
-## Renaming or Deleting a Category
+## Переименование или удаление категории {#renaming-or-deleting-a-category}
 
-1. Hover over the category and press the down arrow
+1. Наведите курсор на категорию и нажмите стрелку вниз
 
 ![](/img/categories/RenameCategoryDropDown.webp)
 
-2. Select **Rename** or **Delete** from the menu
+2. Выбрать **переименование** или **Исключить** Из меню
 
 ![](/img/categories/RenameCategoryOptions.webp)
 
-Categories are organized into groups and the same actions as above can be performed on groups.
+Категории организованы в группы и те же действия, что и выше, могут быть выполнены в группах.
 
-## Merging Categories
+## Слияние категорий {#merging-categories}
 
-Let's say you have two categories that are the same but you want to delete one.
+Допустим, у вас есть две одинаковые категории, но вы хотите удалить одну.
 
 ![](/img/categories/DuplicatedCategories.webp)
 
-Hover over the category and select the drop down that appears and select `Delete`
+Наведите курсор на категорию и выберите выпадающее, которое появляется, и выберите `Delete`
 
 ![](/img/categories/RenameCategoryOptions.webp)
 
-If the category you're deleting has a positive balance **OR** has been used for existing transactions you will be presented with a box to select which category the balance and/or transactions should be moved to.
+Если категория, которую вы удаляете, имеет положительный баланс **или** Для существующих транзакций вам будет предоставлено поле для выбора категории, в которую должен быть перемещен баланс и / или транзакции.
 
 ![](/img/categories/CategoryDeleteConfirmation.webp)
 
-In our example, we want to use `Food` which will take over from `Foods` once you are happy with your selection, click `Delete`
+В нашем примере мы хотим использовать `Food` Который возьмет верх над `Foods` Если вы довольны своим выбором, нажмите `Delete`
 
 ![](/img/categories/CategoryDeleteConfirmationNewCat.webp)
 
-You can see in the budget that our categories have now been successfully merged and the positive balance moved to the new category.
+В бюджете видно, что наши категории успешно слились и положительный баланс переместился в новую категорию.
 
 ![](/img/categories/CategoriesMerged.webp)
 
-## Managing Categories
+## Управление категориями {#managing-categories}
 
-Category groups can be _expanded or collapsed_ by clicking on the arrow to the left of the Category group name. All category groups can be expanded or collapsed at once by using the three-dot menu at the top of the category list.
+Группы категорий могут быть расширены или разрушены , нажав на стрелку слева от названия группы категорий.Все группы категорий могут быть расширены или разрушены сразу, используя меню из трех точек в верхней части списка категорий.
 
-Categories that are not currently needed can be _hidden_ by using the down arrow by each category name. An example is budgeting savings for a large cost (e.g. washing machine). After the purchase is made, the category can be hidden. Hidden categories still impact your budget. When needed, hidden categories can be viewed by clicking on the three dots at the top of the category list.
+Категории, которые в настоящее время не нужны, могут быть скрыты, используя стрелку вниз по каждому названию категории. Примером может служить экономия бюджетных средств на крупные расходы (например. стиральная машина. После совершения покупки категория может быть скрыта. Скрытые категории влияют на ваш бюджет. При необходимости скрытые категории можно просматривать, нажав на три точки в верхней части списка категорий.
 
 ![](/img/categories/CategoryToggleHidden.webp)
 
-Hidden categories, when shown, are displayed in a lower-contrast color. If you find that you now require a category that you have previously hidden, you can unhide it by using the down arrow next to the category name.
+Скрытые категории, когда они показаны, отображаются в низкоконтрастном цвете.Если вы обнаружите, что теперь вам нужна категория, которую вы ранее скрывали, вы можете скрыть ее, используя стрелку вниз рядом с названием категории.
 
 ![](/img/categories/CategoriesHidden.webp)
 
-## Category Notes
+## Категория Примечания {#category-notes}
 
-It is possible to add notes to Categories. To do this, hover over the category that you would like to add a note to. A paper icon will appear.
+Можно добавлять заметки к Категориям. Для этого зависать над категорией, в которую хотелось бы добавить заметку. Появится бумажный значок.
 
 ![](/img/categories/CategoryGroupRename.webp)
 
-Click the paper icon and type in your note.
+Нажмите значок бумаги и введите в своей записке.
 
 ![](/img/categories/CategoryAddNote.webp)
 
-Notes support Markdown syntax for formatted notes.
+Заметки поддерживают синтаксис Markdown для отформатированных заметок.
 
-## Viewing Category Notes
+## Просмотр заметок категории {#viewing-category-notes}
 
-Once a Category has been given a note it is possible to view it in one of two ways.
+После того, как Категория получила заметку, ее можно рассмотреть одним из двух способов.
 
-1. Hover over the paper icon on the category and the note contents will appear for you to view.
+1. Наведите курсор на значок бумаги в категории, и содержимое заметки появится для просмотра.
 
 ![](/img/categories/CategoryViewNoteHover.webp)
 
-2. Click the paper icon. This will open the edit box where you can see the note content and also edit the note, should you wish.
+2. Нажмите на значок бумаги. Это откроет окно редактирования, где вы можете увидеть содержимое заметки, а также отредактировать заметку, если хотите.
 
 ![](/img/categories/CategoryEditNote.webp)

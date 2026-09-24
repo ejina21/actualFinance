@@ -1,20 +1,20 @@
-# Switching from Another App
+# Переключение из другого приложения {#switching-from-another-app}
 
-Keeping your existing transaction history is important. If you already use a different app, you probably want to migrate it over into Actual.
+Важно сохранить существующую историю транзакций.Если вы уже используете другое приложение, вы, вероятно, хотите перенести его в Actual.
 
-Right now, only YNAB4 is officially supported. However, the [API](../api/index.md) allows anyone to write a custom
-importer. We will work with the community to help write other importers soon.
+На данный момент официально поддерживается только YNAB4. [API](../api/index.md) Позволяет любому написать обычай
+Мы будем работать с сообществом, чтобы помочь написать другим импортерам в ближайшее время.
 
-## Migration from YNAB
+## Миграция из ЯНАБа {#migration-from-ynab}
 
-- [Migration from YNAB4](./ynab4.md)
-- [Migration from nYNAB](./nynab.md)
+- [Миграция из YNAB4](./ynab4.md)
+- [Миграция из NYNAB](./nynab.md)
 
-## Migration from the old Actual Budget Desktop App
+## Миграция из старого приложения Actual Budget Desktop {#migration-from-the-old-actual-budget-desktop-app}
 
-Are you coming from the original, managed Actual subscription service? That used an older desktop app version,
-which doesn't have the export button. You can also create an equivalent zip archive of your budget folder.
-The folder is at `~/Documents/Actual/My-Budget-abc123` by default on macOS and Linux. The the resulting zip file
-can be imported into Actual via the Web app.
+Вы пришли из оригинальной, управляемой службы подписки, которая использовала старую версию настольного приложения,
+Вы также можете создать эквивалентный Zip архив вашей бюджетной папки.
+Папка находится в `~/Documents/Actual/My-Budget-abc123` по умолчанию на macOS и Linux. Полученный файл zip
+Его можно импортировать в Actual через веб-приложение.
 
-See [Restoring](../backup-restore/restore.md) how to restore that data in the new open source version.
+Видишь? [Восстановление](../backup-restore/restore.md) Как восстановить эти данные в новой версии с открытым исходным кодом.

@@ -1,57 +1,57 @@
-# Returns and Reimbursements
+# Возврат и возмещение {#returns-and-reimbursements}
 
-## Returns
+## Возвращение {#returns}
 
-We have all been there. We purchased something that looked great at the time, but unfortunately it was the wrong size, didn't fit the purpose just as we had imagined, or we just decided that we didn't really need it and now we have to return it. But how do we do that with our budget? The thing to remember is that even though the money from this return will be flowing **in** to your budget, it isn't income. You used a budget category when you bought the item, so the most appropriate method to return that money to the budget is to allow the return amount to flow directly back to the category that was used to purchase it.
+Мы все были там. Мы купили что-то, что выглядело великолепно в то время, но, к сожалению, это был неправильный размер, не соответствовал цели, как мы себе представляли, или мы просто решили, что нам это действительно не нужно, и теперь мы должны вернуть его. Но как это сделать с нашим бюджетом? Важно помнить, что даже если деньги от этого возврата будут течь **в** Вы использовали бюджетную категорию, когда покупали товар, поэтому наиболее подходящим способом вернуть эти деньги в бюджет является позволить сумме возврата течь непосредственно обратно в категорию, которая была использована для его покупки.
 
-You can see from this view, I've bought a pair of sandals from Amazon that I was really excited about...Until they didn't fit.
+С этой точки зрения, я купил пару сандалий от Amazon, и я был очень взволнован, пока они не подошли.
 
 ![](/img/returns-reimbursements/returns-2.webp)
 
-From the Budget screen, you can see I've spent every last dollar of my **clothing** category for the month.
+С экрана "Бюджет" видно, что я потратил каждый последний доллар **одежда** Категория за месяц.
 
 ![](/img/returns-reimbursements/returns-1.webp)
 
-I didn't like those sandals as much as I thought I did. They made my feet look big. So I decided to return them a few days later. To enter the return, I fill out a nearly identical transaction in the account that will be credited. In my case, I had Amazon put the money back on my Debit card. Instead of putting the return amount in the **payment** column, I've entered the amount in the **Deposit** column. I also made sure that I chose **Clothing** as my category.
+Мне не так нравились эти сандалии, как я думал. Они заставили мои ноги выглядеть большими. Поэтому я решил вернуть их через несколько дней. Чтобы войти в возврат, я заполнил почти идентичную транзакцию на счете, который будет зачислен. В моем случае Amazon вернул деньги на мою дебетовую карту. Вместо того, чтобы поместить сумму возврата в дебетовую карту. **платеж** Колонка, я ввел сумму в **депозит** Я также убедился, что выбрал **одежда** Как моя категория.
 
 ![](/img/returns-reimbursements/returns-3.webp)
 
-Now when I check my budget, I have 32 dollars available to spend on clothing for the month.
+Теперь, когда я проверяю свой бюджет, у меня есть 32 доллара, которые можно потратить на одежду за месяц.
 
 ![](/img/returns-reimbursements/returns-4.webp)
 
-## Reimbursements
+## Возмещения {#reimbursements}
 
-Handling reimbursements can be confusing. There are several ways to handle them in your budget and you may use each way at different times depending on the circumstances. When it comes to reimbursements, it is assumed you will be covering some purchases that you would not normally make in your normal monthly budget. Having a special category in your budget that captures these purchases is not uncommon. There are two fundamental ways to manage reimbursements. The first is by carrying debt and the second is to pre-fund the category. Ideally, carrying debt is a last resort. But if the reimbursable expense is large compared to your current on budget account balances, there may be no other reasonable way.
+Обработка возмещения может быть запутанной. Есть несколько способов справиться с ними в вашем бюджете, и вы можете использовать каждый способ в разное время в зависимости от обстоятельств. Когда дело доходит до возмещения, предполагается, что вы будете покрывать некоторые покупки, которые вы обычно не делаете в своем обычном ежемесячном бюджете. Наличие специальной категории в вашем бюджете, которая фиксирует эти покупки, не редкость. Существует два основных способа управления возмещением. Первый заключается в переносе долга, а второй - в предварительном финансировании категории. В идеале, ношение долга является последним средством. Но если возмещаемые расходы велики по сравнению с текущими остатками на бюджетном счете, другого разумного способа быть не может.
 
-In this scenario, all of your reimbursable expenses would go to a credit card. Credit cards have negative balances in the account view until they are paid in full, because after all, they are a debt product. You will also want a category that is meant for these reimbursable expenses. Maybe a **Business** category or **Shared Expenses** category will fill that role. Whatever category name you choose, you need to make a decision. Will you be pre-funding this category and allowing it to draw down towards 0 until you're reimbursed or will you let the category be overdrawn and carry a negative balance and then refill the category when you are reimbursed.
+В этом случае все ваши возмещаемые расходы пойдут на кредитную карту. Кредитные карты имеют отрицательные остатки на счете, пока они не будут оплачены в полном объеме, потому что, в конце концов, они являются долговым продуктом. Вам также понадобится категория, которая предназначена для этих возмещаемых расходов. **Бизнес** категория или **Общие расходы** Какую бы категорию вы ни выбрали, вы должны принять решение. Будете ли вы предварительно финансировать эту категорию и позволять ей снижаться до 0, пока вы не будете возмещены, или вы позволите категории быть перегруженными и нести отрицательный баланс, а затем пополните категорию, когда вам будет возмещено.
 
-### Pros of pre-funding
+### Плюсы предварительного финансирования {#pros-of-pre-funding}
 
-This is the true zero-budget way. Pre-funding is just budgeting. You know you're going to spend some money, so you allocate money to spend. The end.
+Предфинансирование - это просто бюджетирование. Вы знаете, что собираетесь потратить немного денег, поэтому вы выделяете деньги, чтобы потратить. Конец.
 
-### Cons of pre-funding
+### Минусы предварительного финансирования {#cons-of-pre-funding}
 
-It ties up available cash and you may not be able to fund other categories as fully as you would like.
+Он связывает доступные деньги, и вы не сможете финансировать другие категории так полно, как вам хотелось бы.
 
-### Pros of not pre-funding
+### Плюсы без предварительного финансирования {#pros-of-not-pre-funding}
 
-Your regular categories can be funded at normal levels.
+Регулярные категории могут финансироваться на нормальном уровне.
 
-### Cons of not pre-funding
+### Минусы без предварительного финансирования {#cons-of-not-pre-funding}
 
-You don't have a zero based budget. This is essentially debt spending since you aren't allocating money to cover the expenses. If you spend too much on debt, you could run into a situation where you overdraft or start carrying a balance on a credit card.
+У вас нет нулевого бюджета. Это, по сути, расходы по долгам, поскольку вы не выделяете деньги на покрытие расходов. Если вы тратите слишком много на долги, вы можете столкнуться с ситуацией, когда вы овердрафтуете или начинаете нести баланс на кредитной карте.
 
-### Cover the spending by end-of-month or rollover
+### Покрыть расходы к концу месяца или опрокидывание {#cover-the-spending-by-end-of-month-or-rollover}
 
-Ultimately this is a personal decision. If you are capable, there is less short term risk if the category is pre-funded. If you choose to let the category remain negative and fill it up when you are reimbursed, don't forget to toggle the "Rollover Spending" option on the category just in case you aren't reimbursed in the same month. If you already carry a credit card balance month-to-month, cover the reimbursable overspending by the credit card category so when you pay the credit card bill it's a little easier to manage.
+В конечном счете, это личное решение. Если вы способны, существует меньше краткосрочных рисков, если категория предварительно финансируется. Если вы решите оставить категорию отрицательной и заполнить ее при возмещении, не забудьте переключить опцию «Расходы на оборачиваемость» на категорию на случай, если вы не будете возмещены в том же месяце. Если у вас уже есть баланс кредитной карты из месяца в месяц, покройте возмещаемую перерасход по категории кредитной карты, поэтому при оплате счета по кредитной карте немного легче управлять.
 
 ![](/img/returns-reimbursements/reimbursement-1.webp)
 
-Once enabled, a little arrow will be shown next to each row's 'Balance' sum in the Budget view. It signals that over spending will be carried over from month to month. Check out the [overspending](./index.md#overspending) section in "How Budgeting Works" for an explanation of this feature.
+После включения маленькая стрелка будет показана рядом с суммой «баланса» каждого ряда в бюджете. Это сигнализирует о том, что расходы будут переноситься из месяца в месяц. [перерасход](./index.md#overspending) Раздел «Как работает бюджетирование» для объяснения этой особенности.
 
 ![](/img/returns-reimbursements/reimbursement-2.webp)
 
-### Adding the reimbursement transaction
+### Добавление сделки по возмещению {#adding-the-reimbursement-transaction}
 
-When you are reimbursed, you can use the same technique from the Returns section. Add a new transaction to the account the reimbursement is being deposited into and choose the category you used to track your spending.
+Когда вам возмещают, вы можете использовать ту же технику из раздела Возвраты. Добавить новую транзакцию на счет, на который вносится возмещение, и выбрать категорию, которую вы использовали для отслеживания своих расходов.

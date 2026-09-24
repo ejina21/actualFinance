@@ -1,82 +1,79 @@
-# Community Projects
+# Проекты сообщества {#community-projects}
 
-The following community projects are not maintained by the Actual Budget project but integrate with it.
-They are for special use cases or for developing features that have not yet been integrated into Actual.
+Следующие проекты сообщества не поддерживаются проектом «Актуальный бюджет», а интегрируются с ним.
+Они предназначены для специальных случаев использования или для разработки функций, которые еще не были интегрированы в Actual.
 
-These and other projects can be discussed in the #community-projects channel on the Actual Discord server.
+Перед использованием сторонней интеграции прочитайте её описание и проверьте, подходит ли она для вашей версии Actual.
 
-If you want your project listed here, notify people in the #documentation Discord channel. Before you can ask
-for it to be added, your project must have a proper README file.
+## Банковский экспорт и импорт {#bank-export-and-importers}
 
-## Bank Export and Importers
+Ниже приведены реализации синхронизации банков с использованием Actual API или конвертеров, которые превращают банковский экспорт в файлы для диалога импорта Actual.
 
-The following are implementations of bank syncing using the Actual API, or converters that turn bank exports into files for Actual's import dialog. For instructions on using them, see the respective repositories.
+- **Akahu и Up синхронизируются с реальным бюджетом** - https://github.com/tim-smart/actualbudget-sync
+- **Enable Actual: импортные операции из европейских банков с использованием Enable Banking** - https://github.com/2manyvcos/enable-actual
+- **ICS Cards Holland CVS экспортер** - https://github.com/IeuanK/ICS-Exporter/
+- **Поток обеда: импортные транзакции от GoCardless, MX, Finicity, Finverse и других** - https://github.com/lunchflow/actual-flow
+- **MoneyMan - импортер израильских банков** - https://github.com/daniel-hauser/moneyman
+- **Обычная банковская синхронизация** - https://github.com/youngcw/actualplaid
+- **Конвертер банковских выписок США (BofA, Chase, Citi, Amex CSV и Chase PDF)** - https://github.com/Ildana-ai/bank2actual
+- **Банковский конвертер PDF to OFX** - [PDF-OFX](https://github.com/spydisec/PDFtoOFX/)
+- **Немецкий DKB и Comdirect Banks** - https://github.com/FridoE/actual-bank-importer
 
-- **Akahu and Up bank sync to Actual Budget** - https://github.com/tim-smart/actualbudget-sync
-- **Enable Actual: Import transactions from European banks using Enable Banking** - https://github.com/2manyvcos/enable-actual
-- **ICS Cards Holland CVS exporter** - https://github.com/IeuanK/ICS-Exporter/
-- **Lunch Flow: Import transactions from GoCardless, MX, Finicity, Finverse, and more** - https://github.com/lunchflow/actual-flow
-- **MoneyMan an israel banks importer** - https://github.com/daniel-hauser/moneyman
-- **Plaid bank sync** - https://github.com/youngcw/actualplaid
-- **US bank statement converter (BofA, Chase, Citi, Amex CSV and Chase PDF) to Actual-ready CSV** - https://github.com/Ildana-ai/bank2actual
-- **ANZ Plus bank PDF to OFX converter** - [PDFtoOFX](https://github.com/spydisec/PDFtoOFX/)
-- **German DKB and Comdirect banks importer** - https://github.com/FridoE/actual-bank-importer
+## Другие импортеры {#other-importers}
 
-## Other Importers
+Фактический используется некоторыми людьми для отслеживания денег, не обязательно найденных на банковских счетах.
+отслеживание, окупаемость карт лояльности, предоплаченные карты и т. Д.
 
-Actual is used by some people to track money not necessarily found in bank accounts. This can be crypto currency
-tracking, loyalty card paybacks, prepaid cards, etc.
+- **Португальские блюда от My Edenred и Coverflex** - https://github.com/rodriguestiago0/actual-mealcards
+  - Этот сценарий будет отслеживать португальские предоплаченные карты питания от поставщиков My Edenred и Coverflex.
 
-- **Portuguese meal cards from My Edenred and Coverflex** - https://github.com/rodriguestiago0/actual-mealcards
-  - _This script will track Portuguese prepaid meal cards from My Edenred and Coverflex providers_
+## Бюджетная миграция {#budget-migration}
 
-## Budget Migration
+В настоящее время существует официальная поддержка бюджетов на миграцию из YNAB4 и nYNAB.
 
-Actual currently has official support for migrating budgets from YNAB4 and nYNAB. The following are available for migrating from YNAB or other budget apps.
+- **Экспорт NAB** - https://github.com/StephenBrown2/ynab-export
+  - Терминальный инструмент, который экспортирует бюджетные данные nYNAB в качестве JSON для импорта в Actual._
+- **Деньги Деньги** - https://github.com/NikxDa/actual-moneymoney
+- **Quicken для Mac** - https://github.com/slimslickner/quicken-mac-to-actual-budget
 
-- **YNAB Export** - https://github.com/StephenBrown2/ynab-export
-  - _A terminal tool that exports nYNAB budget data as JSON for import into Actual._
-- **MoneyMoney** - https://github.com/NikxDa/actual-moneymoney
-- **Quicken on Mac** - https://github.com/slimslickner/quicken-mac-to-actual-budget
+## Различные утилиты для улучшения функциональности Actual {#various-utilities-to-enhance-actuals-functionality}
 
-## Various utilities to enhance Actual's functionality
+- **Исполнитель** - https://github.com/MattFaz/actualtap
+  - Предоставляет простой API для интеграции транзакций «кран к оплате» на мобильных устройствах с Actual Budget._
+- **Исполнитель: Tap-Py** - https://github.com/bobokun/actualtap-py
+  - Python форк ActualTap с дополнительными функциями, включая поддержку офлайн/retry и добавление нескольких транзакций в одном запросе._
+- **Реальный AI** - https://github.com/sakowicz/actual-ai
+  - Категоризация транзакций с использованием ИИ._
+- **Фактические помощники** - https://github.com/psybers/actual-helpers
+  - Сбор справочных скриптов для отслеживания цен на жилье и стоимости автомобиля, добавления кредитных процентных сделок, отслеживания инвестиционных счетов и т. Д._
+- **Актуальные задачи** - https://github.com/rodriguestiago0/actual_task
+  - Две коммунальные услуги, чтобы помочь исправить получателей и рассчитать ипотеку._
+- **Реальное резервное копирование бюджета** - https://github.com/rodriguestiago0/actualbudget-backup
+  - Инструмент, который будет поддерживать Actual Budget и загружать его в настраиваемое место назначения с помощью утилиты клона._
+- **Экспортный бюджет Prometheus** - https://github.com/sakowicz/actual-budget-prometheus-exporter
+  - Prometheus метрики экспортера и Grafana Dashboard._
+- **Оригинальное название Budget Auto Sync** - https://github.com/seriouslag/actual-auto-sync
+  - Фоновая служба, которая автоматически синхронизирует ваши Actual Budgetные счета на плановой основе._
+- **Актуальные пользовательские скрипты** - https://github.com/pogman-code/actual-userscripts
+  - Сборник JavaScript/CSS Userscripts for Actual Budget._
+- **Фактически** - https://github.com/MattFaz/actuali
+  - Приложение iOS для Actual Budget. подключается непосредственно к вашему серверу Actual и поддерживает синхронизацию (оффлайн-поддержка), транзакции, отчеты, бюджеты, ярлыки iOS и многое другое. [App Store](https://apps.apple.com/app/actuali/id6764063765)._
+- **Бюджетный виджет iOS** - https://github.com/TaylorJns/Actual-Budget-iOS-Widget
+  - Виджет iOS для отображения балансов категории Actual Budget за текущий месяц. требует, чтобы ваш Actual Server был доступен через HTTPS, и **Локальный API REST** Проект сообщества будет установлен._
+- **Реальная скамейка** - https://github.com/x-rous/actual-bench
+  - Admin и workbench-компаньон для Actual Budget. Bulk-редактировать данные, управлять, объединять и диагностировать правила, 12-месячный просмотр бюджета, проверка снимков и запросы ActualQL - все изменения инсценированы до тех пор, пока вы не сэкономите._
+- **бюджетный** - https://github.com/henfrydls/actual-budget-mcp
+  - Свяжитесь с Клодом и другими помощниками ИИ. Спросите о вашем бюджете на простом языке, получите анализ расходов и прогнозы, а также создайте, отредактируйте или удалите транзакции. Удаления ждут вашего подтверждения, а дополнительный режим только для чтения полностью скрывает инструменты записи._
 
-- **ActualTap** - https://github.com/MattFaz/actualtap
-  - _Provides a simple API to integrate tap-to-pay transactions on mobile devices with Actual Budget._
-- **ActualTap-Py** - https://github.com/bobokun/actualtap-py
-  - _Python fork of ActualTap with additional features including offline/retry support & adding multiple transactions in a single request._
-- **Actual AI** - https://github.com/sakowicz/actual-ai
-  - _Categorize transactions using AI._
-- **Actual Helpers** - https://github.com/psybers/actual-helpers
-  - _Collection of helper scripts to track home prices and car values, add loan interest transactions, track investment accounts, etc._
-- **Actual Tasks** - https://github.com/rodriguestiago0/actual_task
-  - _Two utilities to help fix payees and calculate mortgages._
-- **Actual Budget Backup** - https://github.com/rodriguestiago0/actualbudget-backup
-  - _Tool which will back up Actual Budget and upload it to the configurable destination using the clone utility._
-- **Actual Budget Prometheus Exporter** - https://github.com/sakowicz/actual-budget-prometheus-exporter
-  - _Prometheus metrics exporter and Grafana Dashboard._
-- **Actual Budget Auto Sync** - https://github.com/seriouslag/actual-auto-sync
-  - _A background service that automatically syncs your Actual Budget accounts on a scheduled basis._
-- **Actual Userscripts** - https://github.com/pogman-code/actual-userscripts
-  - _A collection of JavaScript/CSS Userscripts for Actual Budget._
-- **Actuali** - https://github.com/MattFaz/actuali
-  - _An iOS app for Actual Budget. Connects directly to your self-hosted Actual server and supports syncing (offline supported), transactions, reports, budgets, iOS Shortcuts, and more. Available on the [App Store](https://apps.apple.com/app/actuali/id6764063765)._
-- **Actual Budget iOS Widget** - https://github.com/TaylorJns/Actual-Budget-iOS-Widget
-  - _An iOS widget to display your Actual Budget category balances for the current month. Requires your Actual server to be accessible via HTTPS, and the **Local REST API** community project to be installed._
-- **Actual Bench** - https://github.com/x-rous/actual-bench
-  - _Admin and workbench companion for Actual Budget. Bulk-edit data, manage, merge and diagnose rules, 12-month budget view, snapshot inspection, and ActualQL queries - all changes staged until you save._
-- **actual-budget-mcp** - https://github.com/henfrydls/actual-budget-mcp
-  - _Connect Actual to Claude and other AI assistants. Ask about your budget in plain language, get spending analysis and projections, and create, edit, or delete transactions. Deletions wait for your confirmation, and an optional read-only mode hides the write tools entirely._
+## Другие {#others}
 
-## Others
-
-- **Amazon orders CSV exporter user script** - https://github.com/IeuanK/AmazonExporter/
-  - _Allows you to capture your Amazon orders, then store them as CSV or JSON file_
-- **Local REST API** - https://github.com/jhonderson/actual-http-api
-  - _This is a bridging API between REST and the internal Actual APIs._
-- **Actual Python API** - https://github.com/bvanelli/actualpy
-  - _API to interact with the Actual server, written in Python._
-- **Actual Budget Home Assistant Integration** - https://github.com/jlvcm/ha-actualbudget
-  - _Home Assistant Integration with an Actual Budget server_
-- **Wallos schedule importer** - https://github.com/StephenBrown2/actual-wallos-import
-  - _Script to import subscriptions from [Wallos](https://github.com/ellite/Wallos) to Actual Budget schedules_
+- **Amazon заказывает пользовательский скрипт CSV** - https://github.com/IeuanK/AmazonExporter/
+  - Позволяет захватывать ваши заказы Amazon, а затем хранить их в виде файла CSV или JSON.
+- **Локальный API REST** - https://github.com/jhonderson/actual-http-api
+  - Это связующее API между REST и внутренними фактическими API._
+- **Реальный Python API** - https://github.com/bvanelli/actualpy
+  - API для взаимодействия с фактическим сервером, написанным на Python._
+- **Бюджетная интеграция Home Assistant** - https://github.com/jlvcm/ha-actualbudget
+  - Home Assistant Интеграция с сервером Actual Budget
+- **Валлос планирует импорт** - https://github.com/StephenBrown2/actual-wallos-import
+  - Скрипт для импорта подписок из [Валло](https://github.com/ellite/Wallos) Реальные бюджетные графики.

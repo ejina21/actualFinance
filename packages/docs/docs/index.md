@@ -1,29 +1,27 @@
 ---
 slug: /
 sidebar_position: 1
-title: 'Introduction'
+title: Документация Actual
 ---
 
-Welcome to Actual's documentation!
+# Документация Actual
 
-## How to Get Around
+Здесь собраны инструкции по работе с Actual Budget. Разделы находятся в меню слева; на телефоне меню открывается кнопкой в верхней части страницы. Поиск поможет быстро найти нужную тему.
 
-The left sidebar menu lists the main pages of the documentation. On mobile, it's the collapsed navigation menu icon at the top left. Click on a chevron to view more nested pages on a subject.
+## С чего начать
 
-The right sidebar of each page lists the outline of the page for quick navigation to a specific subject. On mobile, it's at the top under "On this page".
+- Если вы впервые пользуетесь Actual, откройте [план знакомства с приложением](./getting-started/roadmap-for-new-users.md).
+- Если вы впервые ведёте бюджет, прочитайте про [метод конвертов](./getting-started/envelope-budgeting.md).
+- Чтобы быстро увидеть основные экраны, перейдите к [обзору возможностей](./tour/index.md).
 
-If you aren't sure where to look for information, an entry in the search bar will show the most useful result at the top, and all results it finds will be available.
+## Основные разделы
 
-## Where to Begin?
+- [Бюджет](./budgeting/index.md) — распределение денег и перенос остатков.
+- [Счета](./accounts/index.md) — учёт доступных средств и долгов.
+- [Операции](./transactions/importing.md) — импорт, категории и правила.
+- [Отчёты](./reports/index.md) — анализ расходов и доходов.
+- [Синхронизация](./getting-started/sync.md) — работа на нескольких устройствах.
 
-If you're new to Actual, consult the [roadmap for new users](./getting-started/roadmap-for-new-users.md).
+## Если нужна помощь
 
-If you're new to budgeting, read about [envelope budgeting](./getting-started/envelope-budgeting.md).
-
-For help and support, [reach out to the maintainers and community](community/index.md).
-
-## Want to Contribute?
-
-The Actual application is actively maintained and updated by a dedicated group of contributors and maintainers who do their best to keep these documents synchronized with the changes. If you notice anything incorrect you can [open an issue](https://github.com/actualbudget/actual/issues/new/choose) in github or note it in the [`#Documentation` channel](https://discord.com/channels/937901803608096828/1027831463103696928) in Discord.
-
-If you'd like to contribute to Actual Budget's documentation, start by reading the documentation standards, local setup, and guidelines on using images and screenshots located in the [contributing guide](./contributing/writing-docs.md) and in the documentation's [github README file](https://github.com/actualbudget/actual/tree/master/packages/docs#actual-budget-community-documentation). We use Docusaurus to build our website. You can click on _Edit this page_ at the bottom left of every page to open that page's Markdown document.
+Посмотрите [частые вопросы](./faq.md) и [раздел помощи](./community/index.md). В документации также есть инструкции по [установке сервера](./install/index.md) и [работе с API](./api/index.md).
