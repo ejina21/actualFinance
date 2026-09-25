@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useLayoutEffect, useRef, useState } from 'react';
 import type { ReactNode } from 'react';
 import { Trans, useTranslation } from 'react-i18next';
 
@@ -7,10 +7,11 @@ import { spacing } from '@actual-app/components/tokens';
 
 import type { CashFlowGroup, CashFlowRow, CashFlowSummary } from './cashFlow';
 import { monthlyAverage } from './cashFlow';
-import { compareMonthValues } from './comparison';
+import { ComparisonAmount } from './ComparisonAmount';
+import { formatSummaryMonth } from './formatSummaryMonth';
 import { paginateSummaryColumns } from './period';
 import type { ResolvedSummaryPeriod, SummaryPeriod } from './period';
-import { SummaryMoney, SummaryPercent } from './SummaryMoney';
+import { SummaryMoney } from './SummaryMoney';
 import { summaryControlStyle, summaryStickyCellStyle } from './summaryStyles';
 
 type SummaryTableProps = {
@@ -54,20 +55,29 @@ export function SummaryTable({
   compareMonths,
 }: SummaryTableProps) {
   const { t, i18n } = useTranslation();
+  const comparisonScroll = useRef<HTMLDivElement>(null);
+  const lastComparisonMonth = compareMonths.at(-1);
+  useLayoutEffect(() => {
+    if (lastComparisonMonth && comparisonScroll.current) {
+      comparisonScroll.current.scrollLeft =
+        comparisonScroll.current.scrollWidth;
+    }
+  }, [lastComparisonMonth]);
+
   const [collapsed, setCollapsed] = useState<Set<string>>(new Set());
   const [columnPage, setColumnPage] = useState(0);
   const hasComparison = compareMonths.length > 0;
   const baseNetFlow = comparison[baseMonth]?.netFlow ?? 0;
-  const isAnnual = periodKind === 'year';
-  const hasPagedColumns = periodKind === 'range' && period.columns.length > 24;
-  const { columns: visibleColumns, pageCount } = hasPagedColumns
+  const isAnnual = !hasComparison && periodKind === 'year';
+  const hasPagedColumns =
+    !hasComparison && periodKind === 'range' && period.columns.length > 24;
+  const { columns: periodColumns, pageCount } = hasPagedColumns
     ? paginateSummaryColumns(period.columns, columnPage, 12)
     : { columns: period.columns, pageCount: 1 };
-  const columnCount =
-    2 +
-    Number(isAnnual) +
-    visibleColumns.length +
-    (hasComparison ? 1 + compareMonths.length * 3 : 0);
+  const visibleColumns = hasComparison ? [] : periodColumns;
+  const columnCount = hasComparison
+    ? 2 + compareMonths.length
+    : 2 + Number(isAnnual) + visibleColumns.length;
   const moneyCellStyle = {
     minWidth: 104,
     padding: `${spacing.sm}px ${spacing.md}px`,
@@ -77,7 +87,7 @@ export function SummaryTable({
   };
   const labelCellStyle = {
     ...summaryStickyCellStyle,
-    minWidth: 225,
+    minWidth: hasComparison ? 180 : 225,
     maxWidth: 320,
     padding: `${spacing.sm}px ${spacing.md}px`,
     borderBottom: `1px solid ${theme.tableBorder}`,
@@ -131,9 +141,11 @@ export function SummaryTable({
         >
           {label}
         </th>
-        <td style={{ ...moneyCellStyle, fontWeight: 700 }}>
-          <SummaryMoney value={row.total} />
-        </td>
+        {!hasComparison && (
+          <td style={{ ...moneyCellStyle, fontWeight: 700 }}>
+            <SummaryMoney value={row.total} />
+          </td>
+        )}
         {isAnnual && (
           <td style={moneyCellStyle}>
             <SummaryMoney value={monthlyAverage(row.total)} />
@@ -156,18 +168,11 @@ export function SummaryTable({
             groupId,
             categoryId,
           );
-          const change = compareMonthValues(baseValue, currentValue);
-          return [
-            <td key={`${month}-value`} style={moneyCellStyle}>
-              <SummaryMoney value={currentValue} />
-            </td>,
-            <td key={`${month}-absolute`} style={moneyCellStyle}>
-              <SummaryMoney value={change.absolute} />
-            </td>,
-            <td key={`${month}-percent`} style={moneyCellStyle}>
-              <SummaryPercent value={change.percent} />
-            </td>,
-          ];
+          return (
+            <td key={month} style={moneyCellStyle}>
+              <ComparisonAmount base={baseValue} value={currentValue} />
+            </td>
+          );
         })}
       </tr>
     );
@@ -215,6 +220,7 @@ export function SummaryTable({
 
   return (
     <div
+      ref={comparisonScroll}
       data-testid="finance-summary-scroll"
       style={{
         overflowX: 'auto',
@@ -275,9 +281,11 @@ export function SummaryTable({
             <th scope="col" style={labelCellStyle}>
               <Trans>Category</Trans>
             </th>
-            <th scope="col" style={moneyCellStyle}>
-              <Trans>Total</Trans>
-            </th>
+            {!hasComparison && (
+              <th scope="col" style={moneyCellStyle}>
+                <Trans>Total</Trans>
+              </th>
+            )}
             {isAnnual && (
               <th scope="col" style={moneyCellStyle}>
                 <Trans>Monthly average</Trans>
@@ -290,20 +298,14 @@ export function SummaryTable({
             ))}
             {hasComparison && (
               <th scope="col" style={moneyCellStyle}>
-                {baseMonth}
+                {formatSummaryMonth(baseMonth, i18n.language)}
               </th>
             )}
-            {compareMonths.map(month => [
-              <th key={`${month}-value`} scope="col" style={moneyCellStyle}>
-                {month}
-              </th>,
-              <th key={`${month}-absolute`} scope="col" style={moneyCellStyle}>
-                {t('Change from {{month}}', { month: baseMonth })}
-              </th>,
-              <th key={`${month}-percent`} scope="col" style={moneyCellStyle}>
-                {t('Change % from {{month}}', { month: baseMonth })}
-              </th>,
-            ])}
+            {compareMonths.map(month => (
+              <th key={month} scope="col" style={moneyCellStyle}>
+                {formatSummaryMonth(month, i18n.language)}
+              </th>
+            ))}
           </tr>
         </thead>
         <tbody>
@@ -316,7 +318,13 @@ export function SummaryTable({
                 backgroundColor: theme.financeSoftAccent,
               }}
             >
-              <Trans>Income</Trans> · <SummaryMoney value={summary.income} />
+              <Trans>Income</Trans>
+              {!hasComparison && (
+                <>
+                  {' '}
+                  · <SummaryMoney value={summary.income} />
+                </>
+              )}
             </th>
           </tr>
           {summary.incomeGroups.flatMap(group => renderGroup(group, 'income'))}
@@ -336,8 +344,13 @@ export function SummaryTable({
                 backgroundColor: theme.financeSoftAccent,
               }}
             >
-              <Trans>Expenses</Trans> ·{' '}
-              <SummaryMoney value={summary.expenses} />
+              <Trans>Expenses</Trans>
+              {!hasComparison && (
+                <>
+                  {' '}
+                  · <SummaryMoney value={summary.expenses} />
+                </>
+              )}
             </th>
           </tr>
           {summary.expenseGroups.flatMap(group =>
@@ -361,9 +374,11 @@ export function SummaryTable({
             >
               <Trans>Net flow</Trans>
             </th>
-            <td style={{ ...moneyCellStyle, fontWeight: 700 }}>
-              <SummaryMoney value={summary.netFlow} />
-            </td>
+            {!hasComparison && (
+              <td style={{ ...moneyCellStyle, fontWeight: 700 }}>
+                <SummaryMoney value={summary.netFlow} />
+              </td>
+            )}
             {isAnnual && (
               <td style={moneyCellStyle}>
                 <SummaryMoney value={monthlyAverage(summary.netFlow)} />
@@ -386,18 +401,11 @@ export function SummaryTable({
             )}
             {compareMonths.map(month => {
               const currentNetFlow = comparison[month]?.netFlow ?? 0;
-              const change = compareMonthValues(baseNetFlow, currentNetFlow);
-              return [
-                <td key={`${month}-value`} style={moneyCellStyle}>
-                  <SummaryMoney value={currentNetFlow} />
-                </td>,
-                <td key={`${month}-absolute`} style={moneyCellStyle}>
-                  <SummaryMoney value={change.absolute} />
-                </td>,
-                <td key={`${month}-percent`} style={moneyCellStyle}>
-                  <SummaryPercent value={change.percent} />
-                </td>,
-              ];
+              return (
+                <td key={month} style={moneyCellStyle}>
+                  <ComparisonAmount base={baseNetFlow} value={currentNetFlow} />
+                </td>
+              );
             })}
           </tr>
         </tbody>

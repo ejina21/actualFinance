@@ -2961,5 +2961,15 @@
   "No transactions in this period.": "No transactions in this period.",
   "Transfers between your accounts are shown in account movements but excluded from income and expenses. Off-budget accounts are separate from the closing balance.": "Transfers between your accounts are shown in account movements but excluded from income and expenses. Off-budget accounts are separate from the closing balance.",
   "Previous months": "Previous months",
-  "Next months": "Next months"
+  "Next months": "Next months",
+  "Report mode": "Report mode",
+  "Period overview": "Period overview",
+  "Month comparison": "Month comparison",
+  "Compared with the base month:": "Compared with the base month:",
+  "Choose a month to compare.": "Choose a month to compare.",
+  "Difference is shown relative to the base month.": "Difference is shown relative to the base month.",
+  "Monthly comparison totals": "Monthly comparison totals",
+  "Metric": "Metric",
+  "Category comparison": "Category comparison",
+  "Expenses shows your income, spending and account balances for any period, with month-by-month comparisons.": "Expenses shows your income, spending and account balances for any period, with month-by-month comparisons."
 }

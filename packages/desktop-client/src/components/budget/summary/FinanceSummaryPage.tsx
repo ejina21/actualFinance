@@ -1,15 +1,18 @@
 import { useState } from 'react';
 import { Trans, useTranslation } from 'react-i18next';
 
-import { styles } from '@actual-app/components/styles';
+import { useResponsive } from '@actual-app/components/hooks/useResponsive';
 import { theme } from '@actual-app/components/theme';
 import { spacing } from '@actual-app/components/tokens';
 import * as monthUtils from '@actual-app/core/shared/months';
 
-import { Page } from '#components/Page';
+import { MobilePageHeader, Page, PageHeader } from '#components/Page';
 
 import { AccountBalanceTable } from './AccountBalanceTable';
 import { addComparisonMonth } from './comparison';
+import { ComparisonOverview } from './ComparisonOverview';
+import { formatSummaryMonth } from './formatSummaryMonth';
+import { resolveSummaryPeriod } from './period';
 import type { SummaryPeriod } from './period';
 import { SummaryCards } from './SummaryCards';
 import { SummaryControls } from './SummaryControls';
@@ -17,7 +20,9 @@ import { SummaryTable } from './SummaryTable';
 import { useFinanceSummary } from './useFinanceSummary';
 
 export function FinanceSummaryPage() {
-  const { i18n } = useTranslation();
+  const { t, i18n } = useTranslation();
+  const { isNarrowWidth } = useResponsive();
+  const [isComparing, setIsComparing] = useState(false);
   const [period, setPeriod] = useState<SummaryPeriod>({
     kind: 'month',
     month: monthUtils.currentMonth(),
@@ -34,32 +39,39 @@ export function FinanceSummaryPage() {
     period: resolvedPeriod,
   } = useFinanceSummary(
     period,
-    compareMonths.length ? [baseMonth, ...compareMonths] : [],
+    isComparing && compareMonths.length ? [baseMonth, ...compareMonths] : [],
   );
 
-  const locale = i18n.language.startsWith('ru') ? 'ru-RU' : 'en-US';
   const periodLabel =
     period.kind === 'month'
-      ? new Intl.DateTimeFormat(locale, {
-          month: 'long',
-          year: 'numeric',
-        }).format(
-          new Date(
-            Number(period.month.slice(0, 4)),
-            Number(period.month.slice(5, 7)) - 1,
-            1,
-          ),
-        )
+      ? formatSummaryMonth(period.month, i18n.language)
       : period.kind === 'year'
         ? String(period.year)
-        : `${period.startDate} — ${period.endDate}`;
+        : `${new Intl.DateTimeFormat(i18n.language).format(new Date(`${period.startDate}T12:00:00`))} — ${new Intl.DateTimeFormat(i18n.language).format(new Date(`${period.endDate}T12:00:00`))}`;
+
+  function changeComparing(value: boolean) {
+    if (value && compareMonths.length === 0) {
+      const month = resolveSummaryPeriod(period).startDate.slice(0, 7);
+      setBaseMonth(month);
+      setCompareMonths([monthUtils.addMonths(month, -1)]);
+    }
+    setIsComparing(value);
+  }
 
   return (
     <Page
       header={
-        <h1 style={styles.visuallyHidden}>
-          <Trans>Budget</Trans>
-        </h1>
+        isNarrowWidth ? (
+          <MobilePageHeader title={t('Expenses')} />
+        ) : (
+          <PageHeader
+            title={
+              <h1 style={{ font: 'inherit', margin: 0 }}>
+                <Trans>Expenses</Trans>
+              </h1>
+            }
+          />
+        )
       }
       padding={0}
     >
@@ -70,6 +82,8 @@ export function FinanceSummaryPage() {
           minHeight: 0,
           overflowY: 'auto',
           display: 'grid',
+          gridTemplateColumns: 'minmax(0, 1fr)',
+          gridAutoRows: 'max-content',
           alignContent: 'start',
           gap: spacing.lg,
           padding: spacing.lg,
@@ -80,6 +94,8 @@ export function FinanceSummaryPage() {
         <SummaryControls
           period={period}
           onPeriodChange={setPeriod}
+          isComparing={isComparing}
+          onComparingChange={changeComparing}
           baseMonth={baseMonth}
           onBaseMonthChange={month => {
             setBaseMonth(month);
@@ -112,47 +128,86 @@ export function FinanceSummaryPage() {
           </output>
         ) : (
           <>
-            <SummaryCards
-              income={cashFlow.income}
-              expenses={cashFlow.expenses}
-              netFlow={cashFlow.netFlow}
-              closingBalance={closingOnBudget}
-              periodLabel={periodLabel}
-            />
-            <section style={{ display: 'grid', gap: spacing.sm }}>
-              <h2 style={{ margin: 0, fontSize: 20 }}>
-                <Trans>Cash flow</Trans>
-              </h2>
-              {cashFlow.income === 0 && cashFlow.expenses === 0 && (
-                <p style={{ margin: 0, color: theme.pageTextLight }}>
-                  <Trans>No transactions in this period.</Trans>
-                </p>
-              )}
-              <SummaryTable
-                key={`${period.kind}-${resolvedPeriod.startDate}-${resolvedPeriod.endDate}`}
-                summary={cashFlow}
-                period={resolvedPeriod}
-                periodKind={period.kind}
-                comparison={comparison}
-                baseMonth={baseMonth}
-                compareMonths={compareMonths}
+            {isComparing ? (
+              compareMonths.length > 0 && (
+                <ComparisonOverview
+                  comparison={comparison}
+                  baseMonth={baseMonth}
+                  compareMonths={compareMonths}
+                />
+              )
+            ) : (
+              <SummaryCards
+                income={cashFlow.income}
+                expenses={cashFlow.expenses}
+                netFlow={cashFlow.netFlow}
+                closingBalance={closingOnBudget}
+                periodLabel={periodLabel}
               />
-            </section>
-            <section style={{ display: 'grid', gap: spacing.sm }}>
-              <h2 style={{ margin: 0, fontSize: 20 }}>
-                <Trans>Account movements</Trans>
-              </h2>
-              <AccountBalanceTable movements={accountMovements} />
-              <p
-                style={{ margin: 0, color: theme.pageTextLight, fontSize: 12 }}
-              >
-                <Trans>
-                  Transfers between your accounts are shown in account movements
-                  but excluded from income and expenses. Off-budget accounts are
-                  separate from the closing balance.
-                </Trans>
-              </p>
-            </section>
+            )}
+            {(!isComparing || compareMonths.length > 0) && (
+              <section style={{ display: 'grid', gap: spacing.sm }}>
+                <div
+                  style={{
+                    display: 'flex',
+                    alignItems: 'baseline',
+                    flexWrap: 'wrap',
+                    gap: spacing.sm,
+                    justifyContent: 'space-between',
+                  }}
+                >
+                  <h2 style={{ margin: 0, fontSize: 18 }}>
+                    {isComparing ? (
+                      <Trans>Category comparison</Trans>
+                    ) : (
+                      <Trans>Cash flow</Trans>
+                    )}
+                  </h2>
+                  {!isComparing && (
+                    <span style={{ fontSize: 13, color: theme.pageTextLight }}>
+                      {periodLabel}
+                    </span>
+                  )}
+                </div>
+                {!isComparing &&
+                  cashFlow.income === 0 &&
+                  cashFlow.expenses === 0 && (
+                    <p style={{ margin: 0, color: theme.pageTextLight }}>
+                      <Trans>No transactions in this period.</Trans>
+                    </p>
+                  )}
+                <SummaryTable
+                  key={`${isComparing}-${period.kind}-${resolvedPeriod.startDate}-${resolvedPeriod.endDate}`}
+                  summary={cashFlow}
+                  period={resolvedPeriod}
+                  periodKind={period.kind}
+                  comparison={comparison}
+                  baseMonth={baseMonth}
+                  compareMonths={isComparing ? compareMonths : []}
+                />
+              </section>
+            )}
+            {!isComparing && (
+              <section style={{ display: 'grid', gap: spacing.sm }}>
+                <h2 style={{ margin: 0, fontSize: 20 }}>
+                  <Trans>Account movements</Trans>
+                </h2>
+                <AccountBalanceTable movements={accountMovements} />
+                <p
+                  style={{
+                    margin: 0,
+                    color: theme.pageTextLight,
+                    fontSize: 12,
+                  }}
+                >
+                  <Trans>
+                    Transfers between your accounts are shown in account
+                    movements but excluded from income and expenses. Off-budget
+                    accounts are separate from the closing balance.
+                  </Trans>
+                </p>
+              </section>
+            )}
           </>
         )}
       </div>

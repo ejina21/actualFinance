@@ -5,16 +5,19 @@ import { spacing } from '@actual-app/components/tokens';
 import { css } from '@emotion/css';
 
 import { SummaryMoney } from './SummaryMoney';
-import { summaryCardStyle, summaryHeroStyle } from './summaryStyles';
 
 const gridClassName = css({
   display: 'grid',
   gridTemplateColumns: 'repeat(4, minmax(0, 1fr))',
-  gap: spacing.md,
+  gap: 0,
+  overflow: 'hidden',
+  minHeight: 'min-content',
+  background: theme.cardBackground,
+  border: `1px solid ${theme.cardBorder}`,
+  borderRadius: 12,
   '@media (max-width: 1000px)': {
     gridTemplateColumns: 'repeat(2, minmax(0, 1fr))',
   },
-  '@media (max-width: 600px)': { gridTemplateColumns: '1fr' },
 });
 
 type SummaryCardsProps = {
@@ -44,12 +47,17 @@ export function SummaryCards({
     },
   ];
   return (
-    <div className={gridClassName} data-testid="finance-summary-cards">
+    <div
+      className={gridClassName}
+      data-testid="finance-summary-cards"
+      aria-label={periodLabel}
+    >
       {cards.map(card => (
         <div
           key={card.id}
           style={{
-            ...(card.hero ? summaryHeroStyle : summaryCardStyle),
+            padding: spacing.md,
+            background: card.hero ? theme.financeHeroBackground : undefined,
             display: 'grid',
             gap: spacing.sm,
             minWidth: 0,
@@ -59,14 +67,13 @@ export function SummaryCards({
           <span style={{ fontSize: 13, opacity: 0.85 }}>{card.label}</span>
           <strong
             style={{
-              fontSize: 28,
+              fontSize: 24,
               lineHeight: 1.15,
               fontVariantNumeric: 'tabular-nums',
             }}
           >
             <SummaryMoney value={card.value} />
           </strong>
-          <span style={{ fontSize: 12, opacity: 0.8 }}>{periodLabel}</span>
         </div>
       ))}
     </div>

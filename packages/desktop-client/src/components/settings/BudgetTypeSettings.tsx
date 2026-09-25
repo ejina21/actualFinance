@@ -15,17 +15,10 @@ export function BudgetTypeSettings() {
   const [budgetType = 'envelope', setBudgetType] = useSyncedPref('budgetType');
   const [displayMode, setDisplayMode] = useLocalPref('budget.displayMode');
   const [isLoading, setIsLoading] = useState(false);
-  const selectedMode =
-    displayMode === 'spending'
-      ? 'spending'
-      : displayMode === 'planning'
-        ? budgetType
-        : 'summary';
+  const selectedMode = displayMode === 'planning' ? budgetType : 'summary';
 
-  async function selectMode(
-    mode: 'summary' | 'envelope' | 'spending' | 'tracking',
-  ) {
-    if (mode === 'summary' || mode === 'spending') {
+  async function selectMode(mode: 'summary' | 'envelope' | 'tracking') {
+    if (mode === 'summary') {
       setDisplayMode(mode);
       return;
     }
@@ -60,7 +53,6 @@ export function BudgetTypeSettings() {
             if (
               value === 'summary' ||
               value === 'envelope' ||
-              value === 'spending' ||
               value === 'tracking'
             ) {
               void selectMode(value);
@@ -75,20 +67,23 @@ export function BudgetTypeSettings() {
             color: theme.pageText,
           }}
         >
-          <option value="summary">
-            <Trans>Finance summary</Trans>
-          </option>
           <option value="envelope">
             <Trans>Envelope</Trans>
-          </option>
-          <option value="spending">
-            <Trans>Expenses only</Trans>
           </option>
           <option value="tracking">
             <Trans>Tracking</Trans>
           </option>
+          <option value="summary">
+            <Trans>Expenses</Trans>
+          </option>
         </select>
       </div>
+      <Text>
+        <Trans>
+          Expenses shows your income, spending and account balances for any
+          period, with month-by-month comparisons.
+        </Trans>
+      </Text>
       <Text>
         <Trans>
           <strong>Envelope budgeting</strong> (recommended) digitally mimics

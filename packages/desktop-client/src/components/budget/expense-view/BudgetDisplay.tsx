@@ -5,17 +5,13 @@ import { NarrowAlternate } from '#components/responsive/index';
 import { useLocalPref } from '#hooks/useLocalPref';
 import { useSyncedPref } from '#hooks/useSyncedPref';
 
-import { ExpenseView } from './ExpenseView';
-
 export function BudgetDisplay() {
   const [budgetType = 'envelope'] = useSyncedPref('budgetType');
   const [displayMode] = useLocalPref('budget.displayMode');
 
   return (
     <View style={{ flex: 1, minHeight: 0, overflow: 'hidden' }}>
-      {displayMode === 'spending' ? (
-        <ExpenseView />
-      ) : displayMode === 'planning' ? (
+      {displayMode === 'planning' ? (
         <NarrowAlternate name="Budget" key={budgetType} />
       ) : (
         <FinanceSummaryPage />

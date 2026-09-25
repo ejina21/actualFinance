@@ -976,7 +976,7 @@
   "Expected return (annual %)": "Ожидаемая доходность (% годовых)",
   "Expense category groups": "Группы категорий расходов",
   "Expense Projection Type": "Тип проекции расходов",
-  "Expenses": "Траты",
+  "Expenses": "Расходы",
   "Expenses categories": "Категории расходов",
   "Expenses:": "Траты:",
   "Exponent": "экспонент",
@@ -3071,5 +3071,15 @@
   "Next months": "Следующие месяцы",
   "Income and expenses by month": "Доходы и расходы по месяцам",
   "Could not load the income and expense chart.": "Не удалось загрузить график доходов и расходов.",
-  "{{month}}: income {{income}}, expenses {{expenses}}": "{{month}}: доходы {{income}}, расходы {{expenses}}"
+  "{{month}}: income {{income}}, expenses {{expenses}}": "{{month}}: доходы {{income}}, расходы {{expenses}}",
+  "Report mode": "Режим отчёта",
+  "Period overview": "Обзор периода",
+  "Month comparison": "Сравнение месяцев",
+  "Compared with the base month:": "Сравниваем с базовым месяцем:",
+  "Choose a month to compare.": "Выберите месяц для сравнения.",
+  "Difference is shown relative to the base month.": "Разница указана относительно базового месяца.",
+  "Monthly comparison totals": "Сводка сравнения месяцев",
+  "Metric": "Показатель",
+  "Category comparison": "Сравнение по категориям",
+  "Expenses shows your income, spending and account balances for any period, with month-by-month comparisons.": "Вид «Расходы» показывает доходы, расходы и остатки на счетах за любой период и позволяет сравнивать месяцы."
 }

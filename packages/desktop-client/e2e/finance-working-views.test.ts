@@ -60,10 +60,9 @@ test('changes budget views in settings and keeps the planning tables editable', 
   const view = page.getByRole('combobox', { name: 'Вид бюджета' });
   await expect(view).toHaveValue('summary');
   await expect(view.locator('option')).toHaveText([
-    'Итого',
     'Конверты',
-    'Расходы',
     'Отслеживание',
+    'Расходы',
   ]);
   await expect(
     page.getByTestId('budget-view-setting'),
@@ -75,10 +74,10 @@ test('changes budget views in settings and keeps the planning tables editable', 
   await expect(page).toMatchThemeScreenshots();
 
   await page.getByRole('link', { name: 'Настройки', exact: true }).click();
-  await view.selectOption('spending');
+  await view.selectOption({ label: 'Расходы' });
   await page.getByRole('link', { name: 'Бюджет', exact: true }).click();
-  await expect(page.getByTestId('expense-summary')).toBeVisible();
-  await expect(page.getByTestId('expense-summary')).toMatchThemeScreenshots();
+  await expect(page.getByTestId('finance-summary')).toBeVisible();
+  await expect(page.getByTestId('finance-summary')).toMatchThemeScreenshots();
 
   await page.getByRole('link', { name: 'Настройки', exact: true }).click();
   await view.selectOption('tracking');
