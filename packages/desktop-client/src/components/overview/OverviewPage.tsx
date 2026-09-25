@@ -355,7 +355,14 @@ export function OverviewPage() {
                   }}
                 >
                   <View style={{ minWidth: 0, gap: spacing.xxs }}>
-                    <Text style={{ fontWeight: 600 }}>
+                    <Text
+                      style={{
+                        fontWeight: 600,
+                        overflow: 'hidden',
+                        textOverflow: 'ellipsis',
+                        whiteSpace: 'nowrap',
+                      }}
+                    >
                       {activity.payeeName ?? t('No payee')}
                     </Text>
                     <Text

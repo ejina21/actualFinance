@@ -65,6 +65,23 @@ describe('buildRecentActivity', () => {
 
     expect(activity.payeeName).toBe('Grocery store');
   });
+
+  it('shows transaction notes when the payee fields are empty', () => {
+    const [activity] = buildRecentActivity(
+      [
+        {
+          id: 'noted',
+          account: 'checking',
+          date: '2026-09-25',
+          amount: -1200,
+          notes: 'Grocery delivery',
+        },
+      ],
+      [],
+    );
+
+    expect(activity.payeeName).toBe('Grocery delivery');
+  });
 });
 
 describe('getBudgetProgress', () => {

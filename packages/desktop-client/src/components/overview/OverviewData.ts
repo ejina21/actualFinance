@@ -5,7 +5,14 @@ import type {
 
 type ActivityTransaction = Pick<
   TransactionEntity,
-  'id' | 'account' | 'date' | 'amount' | 'payee' | 'imported_payee' | 'category'
+  | 'id'
+  | 'account'
+  | 'date'
+  | 'amount'
+  | 'payee'
+  | 'imported_payee'
+  | 'notes'
+  | 'category'
 >;
 
 type ActivityPayee = Pick<PayeeEntity, 'id' | 'name' | 'transfer_acct'>;
@@ -27,7 +34,8 @@ export function buildRecentActivity(
       accountId: transaction.account,
       date: transaction.date,
       amount: transaction.amount,
-      payeeName: payee?.name || transaction.imported_payee || null,
+      payeeName:
+        payee?.name || transaction.imported_payee || transaction.notes || null,
       categoryId: transaction.category ?? null,
       isTransfer,
       isExpense: transaction.amount < 0 && !isTransfer,
