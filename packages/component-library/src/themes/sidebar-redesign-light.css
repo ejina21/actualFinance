@@ -3,16 +3,16 @@
    sidebar tokens. The sidebarRedesign* values can be overridden one at a time
    from a custom theme or the CSS override, since those are declared later. */
 :root {
-  --color-sidebarRedesignBackground: var(--palette-white);
-  --color-sidebarRedesignItemText: var(--palette-navy800);
-  --color-sidebarRedesignItemBackgroundHover: var(--palette-navy100);
-  --color-sidebarRedesignItemAccentSelected: var(--palette-purple500);
-  --color-sidebarRedesignItemTextSelected: var(--palette-purple600);
-  --color-sidebarRedesignItemBackgroundSelected: var(--palette-purple100);
-  --color-sidebarRedesignItemBackgroundFailed: var(--palette-red500);
-  --color-sidebarRedesignHeaderText: var(--palette-gray700);
-  --color-sidebarRedesignTextSubdued: var(--palette-navy600);
-  --color-sidebarRedesignTextMuted: var(--palette-navy400);
+  --color-sidebarRedesignBackground: #1e3651;
+  --color-sidebarRedesignItemText: #c8dce5;
+  --color-sidebarRedesignItemBackgroundHover: #31506a;
+  --color-sidebarRedesignItemAccentSelected: #8dd9d0;
+  --color-sidebarRedesignItemTextSelected: #ffffff;
+  --color-sidebarRedesignItemBackgroundSelected: #34526d;
+  --color-sidebarRedesignItemBackgroundFailed: var(--palette-red300);
+  --color-sidebarRedesignHeaderText: var(--palette-white);
+  --color-sidebarRedesignTextSubdued: #adc4d0;
+  --color-sidebarRedesignTextMuted: var(--palette-navy500);
 }
 
 /* Derived tokens are redeclared because var() references in custom

@@ -9,9 +9,11 @@ import {
   SvgAdd,
   SvgCog,
   SvgCreditCard,
+  SvgHome,
   SvgPiggyBank,
   SvgReports,
   SvgStoreFront,
+  SvgTag,
   SvgTuning,
   SvgWallet,
 } from '@actual-app/components/icons/v1';
@@ -28,7 +30,7 @@ import { useSyncServerStatus } from '#hooks/useSyncServerStatus';
 const COLUMN_COUNT = 3;
 const PILL_HEIGHT = 15;
 const ROW_HEIGHT = 70;
-const TOTAL_HEIGHT = ROW_HEIGHT * COLUMN_COUNT;
+const TOTAL_HEIGHT = ROW_HEIGHT * 4;
 const OPEN_FULL_Y = 1;
 const OPEN_DEFAULT_Y = TOTAL_HEIGHT - ROW_HEIGHT;
 const HIDDEN_Y = TOTAL_HEIGHT;
@@ -94,6 +96,12 @@ export function MobileNavTabs() {
 
   const navTabs = [
     {
+      name: t('Overview'),
+      path: '/overview',
+      style: navTabStyle,
+      Icon: SvgHome,
+    },
+    {
       name: t('Budget'),
       path: '/budget',
       style: navTabStyle,
@@ -135,6 +143,12 @@ export function MobileNavTabs() {
       style: navTabStyle,
       Icon: SvgTuning,
     },
+    {
+      name: t('Tags'),
+      path: '/tags',
+      style: navTabStyle,
+      Icon: SvgTag,
+    },
     ...(isUsingServer
       ? [
           {
@@ -155,7 +169,8 @@ export function MobileNavTabs() {
     <NavTab key={tab.path} onClick={() => openDefault()} {...tab} />
   ));
 
-  const bufferTabsCount = COLUMN_COUNT - (navTabs.length % COLUMN_COUNT);
+  const bufferTabsCount =
+    (COLUMN_COUNT - (navTabs.length % COLUMN_COUNT)) % COLUMN_COUNT;
   const bufferTabs = Array.from({ length: bufferTabsCount }).map((_, idx) => (
     <div key={idx} style={navTabStyle} />
   ));

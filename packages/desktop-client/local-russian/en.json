@@ -2866,5 +2866,18 @@
   "Zero amount": "Zero amount",
   "Collapse {{group}}": "Collapse {{group}}",
   "Expand {{group}}": "Expand {{group}}",
-  "Redesigned sidebar": "Redesigned sidebar"
+  "Redesigned sidebar": "Redesigned sidebar",
+  "All transactions": "All transactions",
+  "Budget progress": "Budget progress",
+  "No planned amount yet": "No planned amount yet",
+  "No transactions yet": "No transactions yet",
+  "Open budget": "Open budget",
+  "Overview": "Overview",
+  "Overspent categories: {{count}}": "Overspent categories: {{count}}",
+  "Recent transactions": "Recent transactions",
+  "Spent of planned amount": "Spent of planned amount",
+  "Spent this month": "Spent this month",
+  "Transactions": "Transactions",
+  "Your money at a glance": "Your money at a glance",
+  "Hidden in private mode": "Hidden in private mode"
 }

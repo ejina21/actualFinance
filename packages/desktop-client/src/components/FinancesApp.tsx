@@ -34,6 +34,7 @@ import { MobileNavTabs } from './mobile/MobileNavTabs';
 import { TransactionEdit } from './mobile/transactions/TransactionEdit';
 import { NotificationsPage } from './news/NotificationsPage';
 import { Notifications } from './Notifications';
+import { OverviewPage } from './overview/OverviewPage';
 import { MobilePageHeaderProvider, MobilePageHeaderSlot } from './Page';
 import { Reports } from './reports';
 import { NarrowAlternate, WideComponent } from './responsive';
@@ -257,6 +258,18 @@ export function FinancesApp() {
                       element={<Navigate to="/budget" replace />}
                     />
 
+                    <Route
+                      path="/overview"
+                      element={
+                        <ErrorBoundary
+                          FallbackComponent={FeatureErrorFallback}
+                          resetKeys={[location.pathname]}
+                        >
+                          <OverviewPage />
+                        </ErrorBoundary>
+                      }
+                    />
+
                     <Route path="/reports/*" element={<Reports />} />
 
                     <Route
@@ -468,6 +481,7 @@ export function FinancesApp() {
                 </View>
 
                 <Routes>
+                  <Route path="/overview" element={<MobileNavTabs />} />
                   <Route path="/budget" element={<MobileNavTabs />} />
                   <Route path="/accounts" element={<MobileNavTabs />} />
                   <Route path="/settings" element={<MobileNavTabs />} />
@@ -479,6 +493,7 @@ export function FinancesApp() {
                   />
                   <Route path="/bank-sync" element={<MobileNavTabs />} />
                   <Route path="/rules" element={<MobileNavTabs />} />
+                  <Route path="/tags" element={<MobileNavTabs />} />
                   <Route path="/payees" element={<MobileNavTabs />} />
                   <Route path="/schedules" element={<MobileNavTabs />} />
                   <Route path="*" element={null} />
