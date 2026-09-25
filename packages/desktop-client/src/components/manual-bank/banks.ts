@@ -9,6 +9,8 @@ export const MANUAL_BANKS = [
 export type ManualBankId = (typeof MANUAL_BANKS)[number]['id'];
 export type ManualBank = (typeof MANUAL_BANKS)[number];
 
-export function getManualBank(id: string | null | undefined): ManualBank | null {
+export function getManualBank(
+  id: string | null | undefined,
+): ManualBank | null {
   return MANUAL_BANKS.find(bank => bank.id === id) ?? null;
 }

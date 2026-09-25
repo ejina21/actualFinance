@@ -10,6 +10,7 @@ import { View } from '@actual-app/components/view';
 
 import { BuiltInProviders } from '#components/banksync/BuiltInProviders';
 import { useBuiltInBankSyncProviders } from '#components/banksync/useBuiltInBankSyncProviders';
+import { FOREIGN_BANK_SYNC_SETUP_ENABLED } from '#components/banksync/visibility';
 import { Link } from '#components/common/Link';
 import { Modal, ModalCloseButton, ModalHeader } from '#components/common/Modal';
 import { useNavigate } from '#hooks/useNavigate';
@@ -36,7 +37,9 @@ export function CreateAccountModal({
   };
 
   const isUsingServer = syncServerStatus !== 'no-server';
-  const shouldSkipToLocalAccount = !isUsingServer && upgradingAccountId == null;
+  const shouldSkipToLocalAccount =
+    upgradingAccountId == null &&
+    (!isUsingServer || !FOREIGN_BANK_SYNC_SETUP_ENABLED);
 
   useLayoutEffect(() => {
     if (shouldSkipToLocalAccount) {

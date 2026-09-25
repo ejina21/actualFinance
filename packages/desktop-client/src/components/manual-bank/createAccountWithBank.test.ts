@@ -7,7 +7,9 @@ describe('creating an account with a manual bank', () => {
     const create = vi.fn().mockResolvedValue('new-account');
     const saveBank = vi.fn().mockRejectedValue(new Error('offline'));
 
-    await expect(createAccountWithBank(create, saveBank, 'tbank')).resolves.toEqual({
+    await expect(
+      createAccountWithBank(create, saveBank, 'tbank'),
+    ).resolves.toEqual({
       id: 'new-account',
       bankSaved: false,
     });

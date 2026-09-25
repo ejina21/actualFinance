@@ -14,6 +14,7 @@ import { Text } from '@actual-app/components/text';
 import { theme } from '@actual-app/components/theme';
 import { View } from '@actual-app/components/view';
 import { toRelaxedNumber } from '@actual-app/core/shared/util';
+import { v4 as uuidv4 } from 'uuid';
 
 import { useCreateAccountMutation } from '#accounts';
 import { Link } from '#components/common/Link';
@@ -25,6 +26,9 @@ import {
   ModalTitle,
 } from '#components/common/Modal';
 import { Checkbox } from '#components/forms';
+import { MANUAL_BANKS } from '#components/manual-bank/banks';
+import type { ManualBankId } from '#components/manual-bank/banks';
+import { createAccountWithBank } from '#components/manual-bank/createAccountWithBank';
 import { validateAccountName } from '#components/util/accountValidation';
 import { useAccounts } from '#hooks/useAccounts';
 import { useNavigate } from '#hooks/useNavigate';
@@ -33,11 +37,6 @@ import { closeModal } from '#modals/modalsSlice';
 import { addNotification } from '#notifications/notificationsSlice';
 import { saveSyncedPrefs } from '#prefs/prefsSlice';
 import { useDispatch } from '#redux';
-import { v4 as uuidv4 } from 'uuid';
-
-import { MANUAL_BANKS } from '../manual-bank/banks';
-import type { ManualBankId } from '../manual-bank/banks';
-import { createAccountWithBank } from '../manual-bank/createAccountWithBank';
 
 export function CreateLocalAccountModal() {
   const { t } = useTranslation();
@@ -175,7 +174,9 @@ export function CreateLocalAccountModal() {
                   onChange={setSelectedBank}
                   options={[
                     ['', t('Other or not listed')],
-                    ...MANUAL_BANKS.map(bank => [bank.id, t(bank.name)] as const),
+                    ...MANUAL_BANKS.map(
+                      bank => [bank.id, t(bank.name)] as const,
+                    ),
                   ]}
                   style={{ width: '100%' }}
                 />

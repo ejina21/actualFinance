@@ -12,6 +12,7 @@ import { closeModal } from '#modals/modalsSlice';
 import { useDispatch } from '#redux';
 
 import { EditSyncAccount } from './banksync/EditSyncAccount';
+import { ManualBankImportHelpModal } from './manual-bank/ManualBankImportHelpModal';
 import { AccountAutocompleteModal } from './modals/AccountAutocompleteModal';
 import { AccountGroupsModal } from './modals/AccountGroupsModal';
 import { AccountMenuModal } from './modals/AccountMenuModal';
@@ -137,6 +138,8 @@ export function Modals() {
 
         case 'add-local-account':
           return <CreateLocalAccountModal key={key} />;
+        case 'manual-bank-import-help':
+          return <ManualBankImportHelpModal key={key} {...modal.options} />;
 
         case 'account-groups':
           return <AccountGroupsModal key={key} {...modal.options} />;

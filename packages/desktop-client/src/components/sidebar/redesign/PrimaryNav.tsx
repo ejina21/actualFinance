@@ -20,6 +20,7 @@ import { radius, spacing } from '@actual-app/components/tokens';
 import { View } from '@actual-app/components/view';
 import { css } from '@emotion/css';
 
+import { FOREIGN_BANK_SYNC_SETUP_ENABLED } from '#components/banksync/visibility';
 import { useIsTestEnv } from '#hooks/useIsTestEnv';
 import { useSyncServerStatus } from '#hooks/useSyncServerStatus';
 
@@ -92,7 +93,7 @@ export function PrimaryNav() {
         <View id="sidebar-more-links">
           <NavRow title={t('Payees')} Icon={SvgUserGroup} to="/payees" />
           <NavRow title={t('Rules')} Icon={SvgTuning} to="/rules" />
-          {isUsingServer && (
+          {FOREIGN_BANK_SYNC_SETUP_ENABLED && isUsingServer && (
             <NavRow title={t('Bank Sync')} Icon={SvgLibrary} to="/bank-sync" />
           )}
           <NavRow title={t('Tags')} Icon={SvgTag} to="/tags" />

@@ -29,6 +29,8 @@ import { useAccounts } from '#hooks/useAccounts';
 import { useNotes } from '#hooks/useNotes';
 import { useSyncedPref } from '#hooks/useSyncedPref';
 import type { Modal as ModalType } from '#modals/modalsSlice';
+import { pushModal } from '#modals/modalsSlice';
+import { useDispatch } from '#redux';
 
 type AccountMenuModalProps = Extract<
   ModalType,
@@ -47,6 +49,7 @@ export function AccountMenuModal({
   onToggleReconciled,
 }: AccountMenuModalProps) {
   const { t } = useTranslation();
+  const dispatch = useDispatch();
   const account = useAccount(accountId);
   const { data: accounts = [] } = useAccounts();
   const originalNotes = useNotes(`account-${accountId}`);
@@ -183,6 +186,23 @@ export function AccountMenuModal({
                 paddingTop: 10,
               }}
             >
+              {!account.bank && !account.closed && (
+                <Button
+                  style={buttonStyle}
+                  onPress={() =>
+                    dispatch(
+                      pushModal({
+                        modal: {
+                          name: 'manual-bank-import-help',
+                          options: { accountId },
+                        },
+                      }),
+                    )
+                  }
+                >
+                  <Trans>How to import a bank statement</Trans>
+                </Button>
+              )}
               <Button style={buttonStyle} onPress={_onEditNotes}>
                 <SvgNotesPaper
                   width={20}

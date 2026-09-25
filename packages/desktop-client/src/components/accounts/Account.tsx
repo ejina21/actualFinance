@@ -49,6 +49,7 @@ import { markAccountRead } from '#accounts/accountsSlice';
 import * as reconciliation from '#accounts/reconciliation';
 import { FeatureErrorFallback } from '#components/FeatureErrorFallback';
 import type { SavedFilter } from '#components/filters/SavedFilterMenuButton';
+import { isSupportedImportFilename } from '#components/manual-bank/instructions';
 import type {
   TransactionTableColumn,
   TransactionTableColumnId,
@@ -631,6 +632,19 @@ class AccountInternal extends PureComponent<
 
       if (res) {
         if (accountId && res?.length > 0) {
+          if (!isSupportedImportFilename(res[0])) {
+            this.props.dispatch(
+              addNotification({
+                notification: {
+                  type: 'error',
+                  message: t(
+                    'Unsupported file. Choose CSV, TSV, QIF, OFX, QFX, or CAMT/XML. PDF cannot be imported directly.',
+                  ),
+                },
+              }),
+            );
+            return;
+          }
           this.props.dispatch(
             pushModal({
               modal: {
@@ -820,7 +834,8 @@ class AccountInternal extends PureComponent<
       | 'toggle-reconciled'
       | 'toggle-net-worth-chart'
       | 'manage-columns'
-      | 'account-group',
+      | 'account-group'
+      | 'manual-import-help',
   ) => {
     const accountId = this.props.accountId!;
     const account = this.props.accounts.find(
@@ -828,6 +843,16 @@ class AccountInternal extends PureComponent<
     )!;
 
     switch (item) {
+      case 'manual-import-help':
+        this.props.dispatch(
+          pushModal({
+            modal: {
+              name: 'manual-bank-import-help',
+              options: { accountId, onChooseFile: () => void this.onImport() },
+            },
+          }),
+        );
+        break;
       case 'link':
         this.props.dispatch(
           pushModal({

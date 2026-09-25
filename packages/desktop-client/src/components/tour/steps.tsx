@@ -181,16 +181,8 @@ function getBudgetTourSteps({ navigate, budgetType }: TourStepDeps): Step[] {
       title: <Trans>Add Your Accounts</Trans>,
       content: (
         <Trans>
-          Transactions live in accounts, so adding your first account is the
-          best way to get started with {{ appName: 'Actual' }}. Click here to
-          add one. You can enter transactions yourself, or{' '}
-          <Link
-            variant="external"
-            to="https://actualbudget.org/docs/advanced/bank-sync"
-          >
-            link the account to your bank
-          </Link>{' '}
-          to import them automatically.
+          Transactions live in accounts. Add your first account, then enter
+          transactions or import a supported bank statement.
         </Trans>
       ),
     },

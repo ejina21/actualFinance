@@ -16,6 +16,7 @@ import {
 import { SvgCalendar3 } from '@actual-app/components/icons/v2';
 import { View } from '@actual-app/components/view';
 
+import { FOREIGN_BANK_SYNC_SETUP_ENABLED } from '#components/banksync/visibility';
 import { useIsTestEnv } from '#hooks/useIsTestEnv';
 import { useSyncServerStatus } from '#hooks/useSyncServerStatus';
 
@@ -72,7 +73,7 @@ export function PrimaryButtons() {
             to="/rules"
             indent={15}
           />
-          {isUsingServer && (
+          {FOREIGN_BANK_SYNC_SETUP_ENABLED && isUsingServer && (
             <SecondaryItem
               title={t('Bank Sync')}
               Icon={SvgCreditCard}

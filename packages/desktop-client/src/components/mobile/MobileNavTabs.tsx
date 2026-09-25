@@ -23,6 +23,7 @@ import { theme } from '@actual-app/components/theme';
 import { View } from '@actual-app/components/view';
 import { useDrag } from '@use-gesture/react';
 
+import { FOREIGN_BANK_SYNC_SETUP_ENABLED } from '#components/banksync/visibility';
 import { useIsTestEnv } from '#hooks/useIsTestEnv';
 import { useScrollListener } from '#hooks/useScrollListener';
 import { useSyncServerStatus } from '#hooks/useSyncServerStatus';
@@ -149,7 +150,7 @@ export function MobileNavTabs() {
       style: navTabStyle,
       Icon: SvgTag,
     },
-    ...(isUsingServer
+    ...(FOREIGN_BANK_SYNC_SETUP_ENABLED && isUsingServer
       ? [
           {
             name: t('Bank Sync'),

@@ -15,6 +15,7 @@ import { css } from '@emotion/css';
 
 import { useReopenAccountMutation, useUpdateAccountMutation } from '#accounts';
 import { isAccountFailedSync } from '#accounts/syncStatus';
+import { FOREIGN_BANK_SYNC_SETUP_ENABLED } from '#components/banksync/visibility';
 import { useContextMenu } from '#hooks/useContextMenu';
 import { useUpdatedAccounts } from '#hooks/useUpdatedAccounts';
 import { openAccountCloseModal, pushModal } from '#modals/modalsSlice';
@@ -108,6 +109,8 @@ export function AccountRow({
     }
   }
   const statusLabel = useSyncDotLabel(status);
+  const showBankSyncStatus =
+    Boolean(account.bank) || FOREIGN_BANK_SYNC_SETUP_ENABLED;
 
   return (
     <TreeItem
@@ -167,7 +170,9 @@ export function AccountRow({
                   alignItems: 'center',
                 }}
               >
-                {showSyncDot && <SyncDot status={status} />}
+                {showSyncDot && showBankSyncStatus && (
+                  <SyncDot status={status} />
+                )}
               </View>
               {isEditing ? (
                 <InitialFocus>
@@ -193,7 +198,9 @@ export function AccountRow({
                   {account.name}
                 </Text>
               )}
-              <Text style={styles.visuallyHidden}>{statusLabel}</Text>
+              {showBankSyncStatus && (
+                <Text style={styles.visuallyHidden}>{statusLabel}</Text>
+              )}
               <SidebarBalance
                 binding={bindings.accountBalance(account.id)}
                 style={{

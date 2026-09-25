@@ -38,6 +38,7 @@ import { format as formatDate } from 'date-fns';
 
 import { isAccountFailedSync } from '#accounts/syncStatus';
 import { AnimatedRefresh } from '#components/AnimatedRefresh';
+import { getForeignBankSyncVisibility } from '#components/banksync/visibility';
 import { Search } from '#components/common/Search';
 import { FilterButton } from '#components/filters/FiltersMenu';
 import { FiltersStack } from '#components/filters/FiltersStack';
@@ -368,6 +369,14 @@ export function AccountHeader({
                 style={{ marginRight: 4 }}
               />{' '}
               <Trans>Import</Trans>
+            </Button>
+          )}
+          {account && !account.closed && !account.bank && (
+            <Button
+              variant="bare"
+              onPress={() => onMenuSelect('manual-import-help')}
+            >
+              <Trans>How to import</Trans>
             </Button>
           )}
 
@@ -744,7 +753,8 @@ type AccountMenuProps = {
       | 'toggle-reconciled'
       | 'toggle-net-worth-chart'
       | 'manage-columns'
-      | 'account-group',
+      | 'account-group'
+      | 'manual-import-help',
   ) => void;
 };
 
@@ -800,6 +810,14 @@ function AccountMenu({
             : t('Show reconciled transactions'),
         },
         { name: 'export', text: t('Export') },
+        ...(!account.bank && !account.closed
+          ? [
+              {
+                name: 'manual-import-help',
+                text: t('How to import a bank statement'),
+              } as const,
+            ]
+          : []),
         ...(account && !account.closed
           ? canSync
             ? [
@@ -808,7 +826,8 @@ function AccountMenu({
                   text: t('Unlink account'),
                 } as const,
               ]
-            : syncServerStatus === 'online'
+            : getForeignBankSyncVisibility(null, syncServerStatus === 'online')
+                  .canOfferSetup
               ? [
                   {
                     name: 'link',

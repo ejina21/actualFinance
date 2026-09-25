@@ -60,6 +60,10 @@ export type Modal =
       name: 'add-local-account';
     }
   | {
+      name: 'manual-bank-import-help';
+      options: { accountId: string; onChooseFile?: () => void };
+    }
+  | {
       name: 'account-groups';
       options: {
         accountId: AccountEntity['id'];
