@@ -26,8 +26,9 @@ export function NavRow({ title, Icon, to }: NavRowProps) {
           display: 'flex',
           flexDirection: 'row',
           alignItems: 'center',
-          gap: spacing.sm,
-          padding: spacing.sm,
+          gap: spacing.md,
+          minHeight: 40,
+          padding: `${spacing.sm}px ${spacing.md}px`,
           borderRadius: radius.sm,
           marginBottom: 1,
           fontSize: 13,
@@ -35,6 +36,11 @@ export function NavRow({ title, Icon, to }: NavRowProps) {
           textDecoration: 'none',
           color: theme.sidebarItemText,
           ':hover': { backgroundColor: theme.sidebarItemBackgroundHover },
+          ':focus-visible': {
+            backgroundColor: theme.sidebarItemBackgroundHover,
+            outline: `2px solid ${theme.sidebarBrand}`,
+            outlineOffset: -2,
+          },
         }}
         activeStyle={{
           backgroundColor: theme.sidebarItemBackgroundSelected,

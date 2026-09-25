@@ -23,7 +23,7 @@ export function SidebarHeader({ children }: SidebarHeaderProps) {
         flexDirection: 'row',
         alignItems: 'center',
         gap: spacing.sm,
-        padding: `${spacing.md}px ${spacing.md}px ${spacing.sm}px`,
+        padding: `${spacing.md}px ${spacing.md}px ${spacing.md}px`,
         paddingTop: hasMacOSWindowButtons()
           ? MAC_WINDOW_BUTTONS_INSET
           : spacing.md,

@@ -48,7 +48,7 @@ export function PrimaryNav() {
       data-testid="sidebar-primary-buttons"
       style={{
         flexShrink: 0,
-        padding: `${spacing.xs}px ${spacing.sm}px 0`,
+        padding: `${spacing.sm}px ${spacing.sm}px 0`,
       }}
     >
       <NavRow title={t('Overview')} Icon={SvgHome} to="/overview" />
@@ -64,10 +64,11 @@ export function PrimaryNav() {
         className={css({
           display: 'flex',
           alignItems: 'center',
-          gap: spacing.sm,
+          gap: spacing.md,
+          minHeight: 40,
           width: '100%',
           marginBottom: 1,
-          padding: spacing.sm,
+          padding: `${spacing.sm}px ${spacing.md}px`,
           border: 0,
           borderRadius: radius.sm,
           backgroundColor: 'transparent',
@@ -78,7 +79,8 @@ export function PrimaryNav() {
           cursor: 'pointer',
           ':hover': { backgroundColor: theme.sidebarItemBackgroundHover },
           ':focus-visible': {
-            outline: `2px solid ${theme.sidebarItemTextSelected}`,
+            outline: `2px solid ${theme.sidebarBrand}`,
+            outlineOffset: -2,
           },
         })}
       >

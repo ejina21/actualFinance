@@ -47,7 +47,7 @@ export function SidebarRedesign() {
         <View
           style={{
             height: 1,
-            margin: `${spacing.sm}px ${spacing.md}px`,
+            margin: `${spacing.md}px ${spacing.lg}px ${spacing.sm}px`,
             backgroundColor: theme.sidebarBorder,
             flexShrink: 0,
           }}
