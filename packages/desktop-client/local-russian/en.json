@@ -2879,5 +2879,12 @@
   "Spent this month": "Spent this month",
   "Transactions": "Transactions",
   "Your money at a glance": "Your money at a glance",
-  "Hidden in private mode": "Hidden in private mode"
+  "Hidden in private mode": "Hidden in private mode",
+  "Other or not listed": "Other or not listed",
+  "T-Bank": "T-Bank",
+  "Alfa-Bank": "Alfa-Bank",
+  "Sberbank": "Sberbank",
+  "Ozon Bank": "Ozon Bank",
+  "Yandex Bank": "Yandex Bank",
+  "Account created, but the bank could not be saved. Set the bank from the account import help.": "Account created, but the bank could not be saved. Set the bank from the account import help."
 }

@@ -2984,5 +2984,12 @@
   "Spent this month": "Потрачено за месяц",
   "Transactions": "Операции",
   "Your money at a glance": "Главное о ваших финансах",
-  "Hidden in private mode": "Скрыто в приватном режиме"
+  "Hidden in private mode": "Скрыто в приватном режиме",
+  "Other or not listed": "Другой или нет в списке",
+  "T-Bank": "Т-Банк",
+  "Alfa-Bank": "Альфа-Банк",
+  "Sberbank": "Сбербанк",
+  "Ozon Bank": "Ozon Банк",
+  "Yandex Bank": "Яндекс Банк",
+  "Account created, but the bank could not be saved. Set the bank from the account import help.": "Счёт создан, но банк не сохранился. Укажите банк через подсказку по импорту на странице счёта."
 }

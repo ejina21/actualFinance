@@ -9,6 +9,7 @@ import { FormError } from '@actual-app/components/form-error';
 import { InitialFocus } from '@actual-app/components/initial-focus';
 import { InlineField } from '@actual-app/components/inline-field';
 import { Input } from '@actual-app/components/input';
+import { Select } from '@actual-app/components/select';
 import { Text } from '@actual-app/components/text';
 import { theme } from '@actual-app/components/theme';
 import { View } from '@actual-app/components/view';
@@ -29,7 +30,14 @@ import { useAccounts } from '#hooks/useAccounts';
 import { useNavigate } from '#hooks/useNavigate';
 import { useSyncServerStatus } from '#hooks/useSyncServerStatus';
 import { closeModal } from '#modals/modalsSlice';
+import { addNotification } from '#notifications/notificationsSlice';
+import { saveSyncedPrefs } from '#prefs/prefsSlice';
 import { useDispatch } from '#redux';
+import { v4 as uuidv4 } from 'uuid';
+
+import { MANUAL_BANKS } from '../manual-bank/banks';
+import type { ManualBankId } from '../manual-bank/banks';
+import { createAccountWithBank } from '../manual-bank/createAccountWithBank';
 
 export function CreateLocalAccountModal() {
   const { t } = useTranslation();
@@ -40,6 +48,7 @@ export function CreateLocalAccountModal() {
   const [name, setName] = useState('');
   const [offbudget, setOffbudget] = useState(false);
   const [balance, setBalance] = useState('0');
+  const [selectedBank, setSelectedBank] = useState<ManualBankId | ''>('');
 
   const [nameError, setNameError] = useState(null);
   const [balanceError, setBalanceError] = useState(false);
@@ -67,19 +76,38 @@ export function CreateLocalAccountModal() {
     setBalanceError(balanceError);
 
     if (!nameError && !balanceError) {
-      createAccount.mutate(
-        {
-          name,
-          balance: toRelaxedNumber(balance),
-          offBudget: offbudget,
-        },
-        {
-          onSuccess: id => {
-            dispatch(closeModal());
-            void navigate('/accounts/' + id);
-          },
-        },
-      );
+      try {
+        const { id, bankSaved } = await createAccountWithBank(
+          () =>
+            createAccount.mutateAsync({
+              name,
+              balance: toRelaxedNumber(balance),
+              offBudget: offbudget,
+            }),
+          (id, bankId) =>
+            dispatch(
+              saveSyncedPrefs({ prefs: { [`manual-bank-${id}`]: bankId } }),
+            ).unwrap(),
+          selectedBank,
+        );
+        if (!bankSaved) {
+          dispatch(
+            addNotification({
+              notification: {
+                id: uuidv4(),
+                type: 'error',
+                message: t(
+                  'Account created, but the bank could not be saved. Set the bank from the account import help.',
+                ),
+              },
+            }),
+          );
+        }
+        dispatch(closeModal());
+        void navigate('/accounts/' + id);
+      } catch {
+        // The account creation mutation displays its own error notification.
+      }
     }
   };
   return (
@@ -140,6 +168,18 @@ export function CreateLocalAccountModal() {
                   {nameError}
                 </FormError>
               )}
+
+              <InlineField label={t('Bank')} width="100%">
+                <Select<ManualBankId | ''>
+                  value={selectedBank}
+                  onChange={setSelectedBank}
+                  options={[
+                    ['', t('Other or not listed')],
+                    ...MANUAL_BANKS.map(bank => [bank.id, t(bank.name)] as const),
+                  ]}
+                  style={{ width: '100%' }}
+                />
+              </InlineField>
 
               <View
                 style={{
