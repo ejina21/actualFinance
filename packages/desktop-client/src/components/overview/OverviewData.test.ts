@@ -48,6 +48,23 @@ describe('buildRecentActivity', () => {
       payeeName: 'Savings',
     });
   });
+
+  it('shows an imported payee when no payee entity is assigned', () => {
+    const [activity] = buildRecentActivity(
+      [
+        {
+          id: 'imported',
+          account: 'checking',
+          date: '2026-09-25',
+          amount: -1200,
+          imported_payee: 'Grocery store',
+        },
+      ],
+      [],
+    );
+
+    expect(activity.payeeName).toBe('Grocery store');
+  });
 });
 
 describe('getBudgetProgress', () => {
