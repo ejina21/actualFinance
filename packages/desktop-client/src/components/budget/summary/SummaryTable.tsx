@@ -57,6 +57,7 @@ export function SummaryTable({
   const [collapsed, setCollapsed] = useState<Set<string>>(new Set());
   const [columnPage, setColumnPage] = useState(0);
   const hasComparison = compareMonths.length > 0;
+  const baseNetFlow = comparison[baseMonth]?.netFlow ?? 0;
   const isAnnual = periodKind === 'year';
   const hasPagedColumns = periodKind === 'range' && period.columns.length > 24;
   const { columns: visibleColumns, pageCount } = hasPagedColumns
@@ -349,6 +350,56 @@ export function SummaryTable({
             null,
             <Trans>Uncategorized expenses</Trans>,
           )}
+          <tr data-testid="finance-summary-net-flow-row">
+            <th
+              scope="row"
+              style={{
+                ...labelCellStyle,
+                backgroundColor: theme.financeSoftAccent,
+                fontWeight: 700,
+              }}
+            >
+              <Trans>Net flow</Trans>
+            </th>
+            <td style={{ ...moneyCellStyle, fontWeight: 700 }}>
+              <SummaryMoney value={summary.netFlow} />
+            </td>
+            {isAnnual && (
+              <td style={moneyCellStyle}>
+                <SummaryMoney value={monthlyAverage(summary.netFlow)} />
+              </td>
+            )}
+            {visibleColumns.map(column => {
+              const totals = summary.columnTotals[column.key];
+              return (
+                <td key={column.key} style={moneyCellStyle}>
+                  <SummaryMoney
+                    value={(totals?.income ?? 0) - (totals?.expenses ?? 0)}
+                  />
+                </td>
+              );
+            })}
+            {hasComparison && (
+              <td style={moneyCellStyle}>
+                <SummaryMoney value={baseNetFlow} />
+              </td>
+            )}
+            {compareMonths.map(month => {
+              const currentNetFlow = comparison[month]?.netFlow ?? 0;
+              const change = compareMonthValues(baseNetFlow, currentNetFlow);
+              return [
+                <td key={`${month}-value`} style={moneyCellStyle}>
+                  <SummaryMoney value={currentNetFlow} />
+                </td>,
+                <td key={`${month}-absolute`} style={moneyCellStyle}>
+                  <SummaryMoney value={change.absolute} />
+                </td>,
+                <td key={`${month}-percent`} style={moneyCellStyle}>
+                  <SummaryPercent value={change.percent} />
+                </td>,
+              ];
+            })}
+          </tr>
         </tbody>
       </table>
     </div>

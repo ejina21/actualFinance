@@ -80,6 +80,21 @@ test('selects a year, custom range, and two comparison months independently', as
   await expect(
     summary.getByRole('columnheader', { name: '2016-03' }),
   ).toBeVisible();
+  const netFlowRow = summary.getByTestId('finance-summary-net-flow-row');
+  await expect(netFlowRow).toBeVisible();
+  await expect(netFlowRow.getByRole('rowheader')).toHaveText(
+    /Net flow|Разница/,
+  );
+  await expect(netFlowRow.locator('td')).toHaveCount(11);
+  await summary.getByLabel(/Base month|Базовый месяц/).fill('2099-01');
+  await expect(netFlowRow.locator('td').nth(6)).toHaveText(
+    (await netFlowRow.locator('td').nth(5).textContent()) ?? '',
+  );
+  await expect(netFlowRow.locator('td').nth(9)).toHaveText(
+    (await netFlowRow.locator('td').nth(8).textContent()) ?? '',
+  );
+  await expect(netFlowRow.locator('td').nth(7)).toHaveText('—');
+  await expect(netFlowRow.locator('td').nth(10)).toHaveText('—');
   await expect(
     summary.getByRole('button', { name: /Custom period|Произвольный период/ }),
   ).toHaveAttribute('aria-pressed', 'true');
