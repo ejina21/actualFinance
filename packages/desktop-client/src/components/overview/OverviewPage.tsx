@@ -10,6 +10,10 @@ import * as monthUtils from '@actual-app/core/shared/months';
 import { q } from '@actual-app/core/shared/query';
 import { css } from '@emotion/css';
 
+import { summarizeCashFlow } from '#components/budget/summary/cashFlow';
+import { resolveSummaryPeriod } from '#components/budget/summary/period';
+import { normalizeTransactions } from '#components/budget/summary/queryTransactions';
+import type { QueryTransaction } from '#components/budget/summary/queryTransactions';
 import { prewarmMonth } from '#components/budget/util';
 import { Link } from '#components/common/Link';
 import { FinancialText } from '#components/FinancialText';
@@ -21,6 +25,7 @@ import { useLocale } from '#hooks/useLocale';
 import { useOverspentCategories } from '#hooks/useOverspentCategories';
 import { usePayees } from '#hooks/usePayees';
 import { usePrivacyMode } from '#hooks/usePrivacyMode';
+import { useQuery } from '#hooks/useQuery';
 import { SheetNameProvider } from '#hooks/useSheetName';
 import { useSheetValue } from '#hooks/useSheetValue';
 import { useSpreadsheet } from '#hooks/useSpreadsheet';
@@ -28,19 +33,25 @@ import { useSyncedPref } from '#hooks/useSyncedPref';
 import { useTransactions } from '#hooks/useTransactions';
 import * as bindings from '#spreadsheet/bindings';
 
-import { buildRecentActivity, getBudgetProgress } from './OverviewData';
+import { FinanceTrendChart } from './FinanceTrendChart';
+import {
+  buildMonthlyTrend,
+  buildRecentActivity,
+  getBudgetProgress,
+} from './OverviewData';
 
 const cardClassName = css({
   minWidth: 0,
+  flexShrink: 0,
   padding: spacing.lg,
-  border: `1px solid ${theme.tableBorder}`,
+  border: `1px solid ${theme.cardBorder}`,
   borderRadius: 16,
   backgroundColor: theme.cardBackground,
-  boxShadow: '0 8px 24px rgba(18, 35, 55, 0.04)',
 });
 
 const cardGridClassName = css({
   display: 'grid',
+  flexShrink: 0,
   gridTemplateColumns: 'repeat(3, minmax(0, 1fr))',
   gap: spacing.md,
   '@media (max-width: 1000px)': {
@@ -81,9 +92,9 @@ function SummaryCard({
       className={cardClassName}
       style={{
         backgroundColor: accent
-          ? theme.buttonPrimaryBackground
+          ? theme.financeHeroBackground
           : theme.cardBackground,
-        color: accent ? theme.buttonPrimaryText : theme.pageText,
+        color: accent ? theme.financeHeroText : theme.pageText,
       }}
     >
       <Link
@@ -257,7 +268,43 @@ export function OverviewPage() {
   );
   const [budgetType = 'envelope'] = useSyncedPref('budgetType');
   const { data: payees = [] } = usePayees();
-  const { data: { list: categories = [] } = { list: [] } } = useCategories();
+  const { data: categoryData, isLoading: areCategoriesLoading } =
+    useCategories();
+  const categories = categoryData?.list ?? [];
+  const trendStartDate = `${monthUtils.subMonths(month, 5)}-01`;
+  const trendEndDate = monthUtils.lastDayOfMonth(month);
+  const trendPeriod = resolveSummaryPeriod({
+    kind: 'range',
+    startDate: trendStartDate,
+    endDate: trendEndDate,
+  });
+  const trendRows = useQuery<QueryTransaction>(
+    () =>
+      q('transactions')
+        .filter({
+          date: { $gte: trendStartDate, $lte: trendEndDate },
+          is_parent: false,
+        })
+        .select([
+          'id',
+          'date',
+          'amount',
+          { category: { $id: '$category.id' } },
+          { account: { $id: '$account.id' } },
+          { accountOffBudget: { $id: '$account.offbudget' } },
+          { categoryIsIncome: { $id: '$category.is_income' } },
+          { transferId: { $id: '$payee.transfer_acct.id' } },
+          'starting_balance_flag',
+        ]),
+    [trendStartDate, trendEndDate],
+  );
+  const trend = buildMonthlyTrend(
+    summarizeCashFlow(
+      normalizeTransactions(trendRows.data ?? []),
+      categoryData?.grouped ?? [],
+      trendPeriod,
+    ),
+  );
   const recentQuery = useMemo(
     () =>
       q('transactions')
@@ -291,6 +338,8 @@ export function OverviewPage() {
       <View
         style={{
           gap: spacing.lg,
+          flex: 1,
+          overflowY: 'auto',
           maxWidth: 1240,
           width: '100%',
           margin: '0 auto',
@@ -312,6 +361,14 @@ export function OverviewPage() {
         <SheetNameProvider name={monthUtils.sheetForMonth(month)}>
           <BudgetSnapshot month={month} allBalance={allBalance} />
         </SheetNameProvider>
+
+        <View className={cardClassName}>
+          <FinanceTrendChart
+            points={trend}
+            isLoading={trendRows.isLoading || areCategoriesLoading}
+            error={trendRows.error}
+          />
+        </View>
 
         <View className={cardClassName}>
           <View

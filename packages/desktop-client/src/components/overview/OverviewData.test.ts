@@ -1,6 +1,78 @@
 import { describe, expect, it } from 'vitest';
 
-import { buildRecentActivity, getBudgetProgress } from './OverviewData';
+import { summarizeCashFlow } from '#components/budget/summary/cashFlow';
+import type { SummaryTransaction } from '#components/budget/summary/cashFlow';
+import { resolveSummaryPeriod } from '#components/budget/summary/period';
+
+import {
+  buildMonthlyTrend,
+  buildRecentActivity,
+  getBudgetProgress,
+} from './OverviewData';
+
+function trendTransaction(
+  id: string,
+  date: string,
+  amount: number,
+  extra: Partial<SummaryTransaction> = {},
+): SummaryTransaction {
+  return {
+    id,
+    date,
+    amount,
+    category: null,
+    account: 'checking',
+    accountOffBudget: false,
+    categoryIsIncome: false,
+    transferId: null,
+    isParent: false,
+    startingBalanceFlag: false,
+    ...extra,
+  };
+}
+
+describe('buildMonthlyTrend', () => {
+  it('keeps zero months and signed refunds while excluding transfers', () => {
+    const summary = summarizeCashFlow(
+      [
+        trendTransaction('income', '2026-01-01', 10_000),
+        trendTransaction('expense', '2026-01-02', -2_000),
+        trendTransaction('refund', '2026-01-03', 500, { category: 'food' }),
+        trendTransaction('transfer', '2026-02-01', -5_000, {
+          transferId: 'paired',
+        }),
+        trendTransaction('march', '2026-03-01', -4_000),
+      ],
+      [
+        {
+          id: 'food-group',
+          name: 'Food',
+          categories: [{ id: 'food', name: 'Food', group: 'food-group' }],
+        },
+      ],
+      resolveSummaryPeriod({ kind: 'year', year: 2026 }),
+    );
+    expect(buildMonthlyTrend(summary).slice(0, 3)).toEqual([
+      { month: '2026-01', inflow: 10_000, outflow: 1_500 },
+      { month: '2026-02', inflow: 0, outflow: 0 },
+      { month: '2026-03', inflow: 0, outflow: 4_000 },
+    ]);
+  });
+
+  it('returns twelve zero points when there are no transactions', () => {
+    const summary = summarizeCashFlow(
+      [],
+      [],
+      resolveSummaryPeriod({ kind: 'year', year: 2026 }),
+    );
+    expect(buildMonthlyTrend(summary)).toHaveLength(12);
+    expect(
+      buildMonthlyTrend(summary).every(
+        point => point.inflow === 0 && point.outflow === 0,
+      ),
+    ).toBe(true);
+  });
+});
 
 describe('buildRecentActivity', () => {
   it('handles empty data and preserves uncategorized operations', () => {

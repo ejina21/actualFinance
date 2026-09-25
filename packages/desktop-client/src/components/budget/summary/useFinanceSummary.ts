@@ -9,30 +9,11 @@ import { useQuery } from '#hooks/useQuery';
 import { buildAccountMovement } from './accounts';
 import type { AccountAmount } from './accounts';
 import { summarizeCashFlow } from './cashFlow';
-import type { CashFlowSummary, SummaryTransaction } from './cashFlow';
+import type { CashFlowSummary } from './cashFlow';
 import { resolveSummaryPeriod } from './period';
 import type { SummaryPeriod } from './period';
-
-type QueryTransaction = Omit<
-  SummaryTransaction,
-  'accountOffBudget' | 'categoryIsIncome' | 'isParent' | 'startingBalanceFlag'
-> & {
-  accountOffBudget: boolean | null;
-  categoryIsIncome: boolean | null;
-  starting_balance_flag: boolean | null;
-};
-
-function normalizeTransactions(
-  data: readonly QueryTransaction[],
-): SummaryTransaction[] {
-  return data.map(row => ({
-    ...row,
-    accountOffBudget: Boolean(row.accountOffBudget),
-    categoryIsIncome: Boolean(row.categoryIsIncome),
-    isParent: false,
-    startingBalanceFlag: Boolean(row.starting_balance_flag),
-  }));
-}
+import { normalizeTransactions } from './queryTransactions';
+import type { QueryTransaction } from './queryTransactions';
 
 function resolveComparisonPeriods(comparisonKey: string) {
   let error: Error | undefined;

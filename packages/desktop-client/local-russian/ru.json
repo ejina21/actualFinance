@@ -3066,5 +3066,8 @@
   "No transactions in this period.": "За этот период операций нет.",
   "Transfers between your accounts are shown in account movements but excluded from income and expenses. Off-budget accounts are separate from the closing balance.": "Переводы между своими счетами видны в движении по счетам, но не входят в доходы и расходы. Счета вне бюджета не включены в итоговый остаток.",
   "Previous months": "Предыдущие месяцы",
-  "Next months": "Следующие месяцы"
+  "Next months": "Следующие месяцы",
+  "Income and expenses by month": "Доходы и расходы по месяцам",
+  "Could not load the income and expense chart.": "Не удалось загрузить график доходов и расходов.",
+  "{{month}}: income {{income}}, expenses {{expenses}}": "{{month}}: доходы {{income}}, расходы {{expenses}}"
 }
