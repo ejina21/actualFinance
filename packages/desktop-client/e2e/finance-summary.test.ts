@@ -190,3 +190,81 @@ test('pages monthly columns for a long custom period without truncating its tota
     summary.getByRole('columnheader', { name: 'Всего' }),
   ).toBeVisible();
 });
+
+test('keeps category and total columns in place while scrolling through a period', async ({
+  page,
+}) => {
+  await page.setViewportSize({ width: 900, height: 800 });
+  await page.goto('/');
+  await page.getByRole('button', { name: 'Открыть демоверсию' }).click();
+  const summary = page.getByTestId('finance-summary');
+  const scroll = summary.getByTestId('finance-summary-scroll');
+  const category = scroll.getByRole('columnheader', { name: 'Категория' });
+  const total = scroll.getByRole('columnheader', { name: 'Всего' });
+  const categoryAmount = scroll
+    .getByRole('rowheader', { name: 'Food', exact: true })
+    .locator('..')
+    .locator('td')
+    .first();
+
+  for (const period of ['month', 'year', 'range'] as const) {
+    if (period === 'year') {
+      await summary
+        .getByRole('combobox', { name: 'Период отчёта' })
+        .selectOption('year');
+    } else if (period === 'range') {
+      await summary
+        .getByRole('combobox', { name: 'Период отчёта' })
+        .selectOption('range');
+      await summary.getByLabel('От', { exact: true }).fill('2016-01-01');
+      await summary.getByLabel('До', { exact: true }).fill('2017-12-31');
+    }
+    const categoryBefore = await category.boundingBox();
+    const totalBefore = await total.boundingBox();
+    const amountBefore = await categoryAmount.boundingBox();
+    if (!categoryBefore || !totalBefore || !amountBefore) {
+      throw new Error('The fixed columns are missing');
+    }
+    await scroll.evaluate(element => {
+      element.scrollLeft = 900;
+    });
+    await expect
+      .poll(() => scroll.evaluate(element => element.scrollLeft))
+      .toBeGreaterThan(0);
+    const categoryAfter = await category.boundingBox();
+    const totalAfter = await total.boundingBox();
+    const amountAfter = await categoryAmount.boundingBox();
+    if (!categoryAfter || !totalAfter || !amountAfter) {
+      throw new Error('The fixed columns disappeared while scrolling');
+    }
+    expect(Math.abs(categoryAfter.x - categoryBefore.x)).toBeLessThan(2);
+    expect(Math.abs(totalAfter.x - totalBefore.x)).toBeLessThan(2);
+    expect(Math.abs(amountAfter.x - amountBefore.x)).toBeLessThan(2);
+    await expect(category).toBeInViewport();
+    await expect(total).toBeInViewport();
+  }
+  await expect(scroll).toMatchThemeScreenshots();
+  await page.setViewportSize({ width: 390, height: 844 });
+  await summary
+    .getByRole('combobox', { name: 'Период отчёта' })
+    .selectOption('month');
+  await expect(
+    scroll.getByRole('columnheader', { name: '1', exact: true }),
+  ).toBeInViewport({ ratio: 0.5 });
+  const mobileCategory = await category.boundingBox();
+  const mobileTotal = await total.boundingBox();
+  if (!mobileCategory || !mobileTotal) {
+    throw new Error('The mobile fixed columns are missing');
+  }
+  await scroll.evaluate(element => {
+    element.scrollLeft = 900;
+  });
+  const mobileCategoryAfter = await category.boundingBox();
+  const mobileTotalAfter = await total.boundingBox();
+  if (!mobileCategoryAfter || !mobileTotalAfter) {
+    throw new Error('The mobile fixed columns disappeared while scrolling');
+  }
+  expect(Math.abs(mobileCategoryAfter.x - mobileCategory.x)).toBeLessThan(2);
+  expect(Math.abs(mobileTotalAfter.x - mobileTotal.x)).toBeLessThan(2);
+  await expect(scroll).toMatchThemeScreenshots();
+});

@@ -196,7 +196,7 @@ Utilitarian and quick: compact paddings, instant state feedback, built for daily
 
 ### Signature Component: The Money Table
 
-The core surface of the app. White rows on 1px Navy Mist borders, Frost hover, teal-bordered selection, sticky header with Slate 13px text, amounts right-aligned in tabular figures colored by the semantic money tokens. Alternate-row striping is theme-controlled, never hardcoded.
+The core surface of the app. White rows on 1px Navy Mist borders, Frost hover, teal-bordered selection, sticky header with Slate 13px text, fixed Category and Total columns during horizontal scrolling, amounts right-aligned in tabular figures colored by the semantic money tokens. Alternate-row striping is theme-controlled, never hardcoded.
 
 ## 6. Do's and Don'ts
 

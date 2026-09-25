@@ -23,6 +23,8 @@ type SummaryTableProps = {
   compareMonths: readonly string[];
 };
 
+const LABEL_COLUMN_WIDTH = 'clamp(150px, 22vw, 225px)';
+
 function comparisonValue(
   summary: CashFlowSummary | undefined,
   section: 'income' | 'expenses',
@@ -87,11 +89,19 @@ export function SummaryTable({
   };
   const labelCellStyle = {
     ...summaryStickyCellStyle,
-    minWidth: hasComparison ? 180 : 225,
-    maxWidth: 320,
+    width: hasComparison ? undefined : LABEL_COLUMN_WIDTH,
+    minWidth: hasComparison ? 180 : LABEL_COLUMN_WIDTH,
+    maxWidth: hasComparison ? 320 : LABEL_COLUMN_WIDTH,
+    boxSizing: 'border-box' as const,
+    overflowWrap: 'anywhere' as const,
     padding: `${spacing.sm}px ${spacing.md}px`,
     borderBottom: `1px solid ${theme.tableBorder}`,
     textAlign: 'left' as const,
+  };
+  const totalCellStyle = {
+    ...moneyCellStyle,
+    ...summaryStickyCellStyle,
+    left: LABEL_COLUMN_WIDTH,
   };
 
   function monthLabel(key: string) {
@@ -142,7 +152,7 @@ export function SummaryTable({
           {label}
         </th>
         {!hasComparison && (
-          <td style={{ ...moneyCellStyle, fontWeight: 700 }}>
+          <td style={{ ...totalCellStyle, fontWeight: 700 }}>
             <SummaryMoney value={row.total} />
           </td>
         )}
@@ -267,7 +277,8 @@ export function SummaryTable({
       <table
         aria-label={t('Cash flow by category')}
         style={{
-          borderCollapse: 'collapse',
+          borderCollapse: 'separate',
+          borderSpacing: 0,
           width: 'max-content',
           minWidth: '100%',
           color: theme.pageText,
@@ -282,7 +293,7 @@ export function SummaryTable({
               <Trans>Category</Trans>
             </th>
             {!hasComparison && (
-              <th scope="col" style={moneyCellStyle}>
+              <th scope="col" style={totalCellStyle}>
                 <Trans>Total</Trans>
               </th>
             )}
@@ -375,7 +386,13 @@ export function SummaryTable({
               <Trans>Net flow</Trans>
             </th>
             {!hasComparison && (
-              <td style={{ ...moneyCellStyle, fontWeight: 700 }}>
+              <td
+                style={{
+                  ...totalCellStyle,
+                  backgroundColor: theme.financeSoftAccent,
+                  fontWeight: 700,
+                }}
+              >
                 <SummaryMoney value={summary.netFlow} />
               </td>
             )}
