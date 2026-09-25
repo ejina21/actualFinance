@@ -3,6 +3,7 @@ import { Trans, useTranslation } from 'react-i18next';
 import { useParams } from 'react-router';
 
 import { Block } from '@actual-app/components/block';
+import { theme } from '@actual-app/components/theme';
 import { View } from '@actual-app/components/view';
 
 import { useDashboardPages } from '#hooks/useDashboardPages';
@@ -45,7 +46,15 @@ export function ReportsDashboardRouter() {
             alignItems: 'center',
           }}
         >
-          <Block style={{ marginBottom: 20, fontSize: 18 }}>
+          <Block
+            style={{
+              padding: 24,
+              fontSize: 18,
+              backgroundColor: theme.cardBackground,
+              border: `1px solid ${theme.tableBorder}`,
+              borderRadius: 12,
+            }}
+          >
             <Trans>Dashboard not found</Trans>
           </Block>
         </View>
