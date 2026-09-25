@@ -262,7 +262,11 @@ export function OverviewPage() {
     () =>
       q('transactions')
         .options({ splits: 'grouped' })
-        .orderBy({ date: 'desc' })
+        .orderBy([
+          { date: 'desc' },
+          'starting_balance_flag',
+          { sort_order: 'desc' },
+        ])
         .select('*'),
     [],
   );
@@ -294,7 +298,10 @@ export function OverviewPage() {
         }}
       >
         <View style={{ gap: spacing.xs }}>
-          <Text style={{ color: theme.pageTextSubdued, fontSize: 13 }}>
+          <Text
+            data-vrt-mask="true"
+            style={{ color: theme.pageTextSubdued, fontSize: 13 }}
+          >
             {monthUtils.format(month, 'MMMM yyyy', locale)}
           </Text>
           <Text style={{ fontSize: 16, color: theme.pageTextSubdued }}>
@@ -330,7 +337,7 @@ export function OverviewPage() {
               {isPending ? t('Loading...') : t('No transactions yet')}
             </Text>
           ) : (
-            <View>
+            <View data-vrt-mask="true">
               {activities.map(activity => (
                 <Link
                   key={activity.id}
