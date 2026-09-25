@@ -64,7 +64,7 @@ export function DashboardHeader({ dashboard }: DashboardHeaderProps) {
       <View
         style={{
           fontSize: 25,
-          fontWeight: 500,
+          fontWeight: 650,
           flexGrow: 0,
           flexShrink: 0,
           flexBasis: 'auto',
@@ -81,7 +81,7 @@ export function DashboardHeader({ dashboard }: DashboardHeaderProps) {
             onEscape={() => setEditingName(false)}
             style={{
               fontSize: 25,
-              fontWeight: 500,
+              fontWeight: 650,
               marginTop: -3,
               marginBottom: -4,
               paddingTop: 2,
@@ -94,7 +94,7 @@ export function DashboardHeader({ dashboard }: DashboardHeaderProps) {
           <View
             style={{
               fontSize: 25,
-              fontWeight: 500,
+              fontWeight: 650,
               marginRight: 5,
               flexGrow: 0,
               flexShrink: 1,

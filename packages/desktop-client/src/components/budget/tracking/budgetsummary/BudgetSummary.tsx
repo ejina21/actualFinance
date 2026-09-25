@@ -68,7 +68,7 @@ export function BudgetSummary({ month }: BudgetSummaryProps) {
             ? theme.budgetCurrentMonth
             : theme.budgetOtherMonth,
         boxShadow: styles.cardShadow,
-        borderRadius: 6,
+        borderRadius: 14,
         marginLeft: 0,
         marginRight: 0,
         marginTop: 5,

@@ -24,6 +24,7 @@ import { Popover } from '@actual-app/components/popover';
 import { SpaceBetween } from '@actual-app/components/space-between';
 import { styles } from '@actual-app/components/styles';
 import { theme } from '@actual-app/components/theme';
+import { spacing } from '@actual-app/components/tokens';
 import { Tooltip } from '@actual-app/components/tooltip';
 import { View } from '@actual-app/components/view';
 import { tsToRelativeTime } from '@actual-app/core/shared/util';
@@ -272,7 +273,16 @@ export function AccountHeader({
 
   return (
     <>
-      <View style={{ ...styles.pageContent, paddingBottom: 10, flexShrink: 0 }}>
+      <View
+        style={{
+          ...styles.pageContent,
+          paddingTop: spacing.md,
+          paddingBottom: spacing.md,
+          flexShrink: 0,
+          backgroundColor: theme.cardBackground,
+          borderBottom: `1px solid ${theme.tableBorder}`,
+        }}
+      >
         <View
           style={{
             flexDirection: 'column',
@@ -643,7 +653,7 @@ function AccountNameField({
               onEscape={() => setEditingName(false)}
               style={{
                 fontSize: 25,
-                fontWeight: 500,
+                fontWeight: 650,
                 marginTop: -3,
                 marginBottom: -4,
                 marginLeft: -6,
@@ -676,7 +686,7 @@ function AccountNameField({
           <View
             style={{
               fontSize: 25,
-              fontWeight: 500,
+              fontWeight: 650,
               marginRight: 5,
               marginBottom: -1,
             }}
