@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Trans, useTranslation } from 'react-i18next';
 
+import { styles } from '@actual-app/components/styles';
 import { theme } from '@actual-app/components/theme';
 import { spacing } from '@actual-app/components/tokens';
 import * as monthUtils from '@actual-app/core/shared/months';
@@ -16,7 +17,7 @@ import { SummaryTable } from './SummaryTable';
 import { useFinanceSummary } from './useFinanceSummary';
 
 export function FinanceSummaryPage() {
-  const { t, i18n } = useTranslation();
+  const { i18n } = useTranslation();
   const [period, setPeriod] = useState<SummaryPeriod>({
     kind: 'month',
     month: monthUtils.currentMonth(),
@@ -54,7 +55,14 @@ export function FinanceSummaryPage() {
         : `${period.startDate} — ${period.endDate}`;
 
   return (
-    <Page header={t('Finance summary')} padding={0}>
+    <Page
+      header={
+        <h1 style={styles.visuallyHidden}>
+          <Trans>Budget</Trans>
+        </h1>
+      }
+      padding={0}
+    >
       <div
         data-testid="finance-summary"
         style={{

@@ -75,64 +75,67 @@ export function SummaryControls({
     }
   }
 
-  const inputStyle = {
+  const controlStyle = {
     ...summaryControlStyle,
+    minHeight: 40,
+    padding: `${spacing.xs}px ${spacing.sm}px`,
+    boxSizing: 'border-box' as const,
+  };
+  const inputStyle = {
+    ...controlStyle,
     backgroundColor: theme.cardBackground,
     color: theme.pageText,
-    minHeight: 40,
+    maxWidth: '100%',
   };
-  const buttonStyle = {
-    ...summaryControlStyle,
-    minHeight: 40,
-    cursor: 'pointer',
-  };
+  const buttonStyle = { ...controlStyle, cursor: 'pointer' };
+  const labelStyle = {
+    display: 'grid',
+    gap: spacing.xs,
+    flexShrink: 0,
+    fontSize: 13,
+  } as const;
 
   return (
-    <div style={{ display: 'grid', gap: spacing.md }}>
-      <fieldset
-        style={{
-          display: 'flex',
-          flexWrap: 'wrap',
-          gap: spacing.sm,
-          border: 0,
-          padding: 0,
-        }}
-      >
-        <legend>
-          <Trans>Summary period</Trans>
-        </legend>
-        {(['month', 'year', 'range'] as const).map(kind => (
-          <button
-            key={kind}
-            type="button"
-            aria-pressed={period.kind === kind}
-            onClick={() => selectKind(kind)}
-            style={{
-              ...buttonStyle,
-              backgroundColor:
-                period.kind === kind
-                  ? theme.financeHeroBackground
-                  : theme.cardBackground,
-              color:
-                period.kind === kind ? theme.financeHeroText : theme.pageText,
-            }}
-          >
-            {kind === 'month' ? (
-              <Trans>Month</Trans>
-            ) : kind === 'year' ? (
-              <Trans>Year</Trans>
-            ) : (
-              <Trans>Custom period</Trans>
-            )}
-          </button>
-        ))}
-      </fieldset>
+    <div
+      data-testid="finance-summary-controls"
+      style={{
+        display: 'flex',
+        flexWrap: 'wrap',
+        alignItems: 'end',
+        gap: spacing.sm,
+      }}
+    >
+      <label style={labelStyle}>
+        <Trans>Summary period</Trans>
+        <select
+          value={period.kind}
+          onChange={event => {
+            const kind = event.currentTarget.value;
+            if (kind === 'month' || kind === 'year' || kind === 'range') {
+              selectKind(kind);
+            }
+          }}
+          style={inputStyle}
+        >
+          <option value="month">
+            <Trans>Month</Trans>
+          </option>
+          <option value="year">
+            <Trans>Year</Trans>
+          </option>
+          <option value="range">
+            <Trans>Custom period</Trans>
+          </option>
+        </select>
+      </label>
       <div
+        data-testid="finance-summary-period-navigation"
         style={{
           display: 'flex',
-          flexWrap: 'wrap',
           alignItems: 'end',
           gap: spacing.sm,
+          maxWidth: '100%',
+          flexShrink: 0,
         }}
       >
         {period.kind !== 'range' && (
@@ -146,13 +149,13 @@ export function SummaryControls({
           </button>
         )}
         {period.kind === 'month' && (
-          <label style={{ display: 'grid', gap: spacing.xs }}>
+          <label style={labelStyle}>
             <Trans>Month</Trans>
             <input
               type="month"
               value={period.month}
               onChange={event => {
-                const month = event.target.value;
+                const month = event.currentTarget.value;
                 if (/^\d{4}-\d{2}$/.test(month)) {
                   onPeriodChange({ kind: 'month', month });
                 }
@@ -162,7 +165,7 @@ export function SummaryControls({
           </label>
         )}
         {period.kind === 'year' && (
-          <label style={{ display: 'grid', gap: spacing.xs }}>
+          <label style={labelStyle}>
             <Trans>Year</Trans>
             <input
               type="number"
@@ -170,48 +173,41 @@ export function SummaryControls({
               max={9999}
               value={period.year}
               onChange={event => {
-                const year = Number(event.target.value);
+                const year = Number(event.currentTarget.value);
                 if (Number.isInteger(year) && year >= 1 && year <= 9999) {
                   onPeriodChange({ kind: 'year', year });
                 }
               }}
-              style={inputStyle}
+              style={{ ...inputStyle, width: 96 }}
             />
           </label>
         )}
         {period.kind === 'range' && (
           <>
-            <label style={{ display: 'grid', gap: spacing.xs }}>
+            <label style={labelStyle}>
               <Trans>From</Trans>
               <input
                 type="date"
                 value={rangeStart}
                 onChange={event => {
-                  setRangeStart(event.target.value);
-                  selectRange(event.target.value, rangeEnd);
+                  setRangeStart(event.currentTarget.value);
+                  selectRange(event.currentTarget.value, rangeEnd);
                 }}
                 style={inputStyle}
               />
             </label>
-            <label style={{ display: 'grid', gap: spacing.xs }}>
+            <label style={labelStyle}>
               <Trans>To</Trans>
               <input
                 type="date"
                 value={rangeEnd}
                 onChange={event => {
-                  setRangeEnd(event.target.value);
-                  selectRange(rangeStart, event.target.value);
+                  setRangeEnd(event.currentTarget.value);
+                  selectRange(rangeStart, event.currentTarget.value);
                 }}
                 style={inputStyle}
               />
             </label>
-            {rangeError && (
-              <span role="alert" style={{ color: theme.numberNegative }}>
-                <Trans>
-                  Choose a valid date range with the start before the end.
-                </Trans>
-              </span>
-            )}
           </>
         )}
         {period.kind !== 'range' && (
@@ -225,63 +221,75 @@ export function SummaryControls({
           </button>
         )}
       </div>
-      <div
-        style={{
-          display: 'flex',
-          flexWrap: 'wrap',
-          alignItems: 'end',
-          gap: spacing.sm,
-        }}
-      >
-        <label style={{ display: 'grid', gap: spacing.xs }}>
-          <Trans>Base month</Trans>
-          <input
-            type="month"
-            value={baseMonth}
-            onChange={event => {
-              if (/^\d{4}-\d{2}$/.test(event.target.value)) {
-                onBaseMonthChange(event.target.value);
-              }
-            }}
-            style={inputStyle}
-          />
-        </label>
-        <label style={{ display: 'grid', gap: spacing.xs }}>
-          <Trans>Compare with month</Trans>
-          <input
-            type="month"
-            value={candidateMonth}
-            onChange={event => setCandidateMonth(event.target.value)}
-            style={inputStyle}
-          />
-        </label>
-        <button
-          type="button"
-          disabled={
-            !candidateMonth ||
-            candidateMonth === baseMonth ||
-            compareMonths.includes(candidateMonth)
-          }
-          onClick={() => {
-            onAddCompareMonth(candidateMonth);
-            setCandidateMonth('');
+      <label style={labelStyle}>
+        <Trans>Base month</Trans>
+        <input
+          type="month"
+          value={baseMonth}
+          onChange={event => {
+            if (/^\d{4}-\d{2}$/.test(event.currentTarget.value)) {
+              onBaseMonthChange(event.currentTarget.value);
+            }
           }}
-          style={buttonStyle}
+          style={inputStyle}
+        />
+      </label>
+      <label style={labelStyle}>
+        <Trans>Compare with month</Trans>
+        <input
+          type="month"
+          value={candidateMonth}
+          onChange={event => setCandidateMonth(event.currentTarget.value)}
+          style={inputStyle}
+        />
+      </label>
+      <button
+        type="button"
+        disabled={
+          !candidateMonth ||
+          candidateMonth === baseMonth ||
+          compareMonths.includes(candidateMonth)
+        }
+        onClick={() => {
+          onAddCompareMonth(candidateMonth);
+          setCandidateMonth('');
+        }}
+        style={buttonStyle}
+      >
+        <Trans>Add month</Trans>
+      </button>
+      {compareMonths.length > 0 && (
+        <div
+          style={{
+            display: 'flex',
+            flexWrap: 'wrap',
+            gap: spacing.sm,
+            flexBasis: '100%',
+          }}
         >
-          <Trans>Add month</Trans>
-        </button>
-        {compareMonths.map(month => (
-          <button
-            key={month}
-            type="button"
-            onClick={() => onRemoveCompareMonth(month)}
-            style={buttonStyle}
-            aria-label={t('Remove comparison month {{month}}', { month })}
-          >
-            {month} ×
-          </button>
-        ))}
-      </div>
+          {compareMonths.map(month => (
+            <button
+              key={month}
+              type="button"
+              onClick={() => onRemoveCompareMonth(month)}
+              style={buttonStyle}
+              aria-label={t('Remove comparison month {{month}}', { month })}
+            >
+              {month} ×
+            </button>
+          ))}
+        </div>
+      )}
+      {rangeError && (
+        <span
+          role="alert"
+          style={{ color: theme.numberNegative, flexBasis: '100%' }}
+        >
+          <Trans>
+            Choose a valid date range with the start before the end.
+          </Trans>
+        </span>
+      )}
     </div>
   );
 }

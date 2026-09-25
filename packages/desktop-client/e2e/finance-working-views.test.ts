@@ -44,17 +44,44 @@ test('keeps a long payee and negative amount usable in a narrow account register
   await expect(savedRow.getByTestId('debit')).toBeInViewport();
 });
 
-test('retains all budget modes and editable table', async ({ page }) => {
+test('changes budget views in settings and keeps the planning tables editable', async ({
+  page,
+}) => {
   await page.goto('/');
   await page.getByRole('button', { name: 'Открыть демоверсию' }).click();
   await page.getByRole('link', { name: 'Бюджет', exact: true }).click();
-  await expect(page.getByRole('button', { name: 'Итого' })).toHaveAttribute(
-    'aria-pressed',
-    'true',
-  );
-  await page.getByRole('button', { name: 'Конверты' }).click();
+  await expect(page.getByTestId('finance-summary')).toBeVisible();
+  await expect(page.getByRole('group', { name: 'Вид бюджета' })).toHaveCount(0);
+  await expect(
+    page.getByRole('main').getByText('Итого', { exact: true }),
+  ).toHaveCount(0);
+
+  await page.getByRole('link', { name: 'Настройки', exact: true }).click();
+  const view = page.getByRole('combobox', { name: 'Вид бюджета' });
+  await expect(view).toHaveValue('summary');
+  await expect(view.locator('option')).toHaveText([
+    'Итого',
+    'Конверты',
+    'Расходы',
+    'Отслеживание',
+  ]);
+  await expect(
+    page.getByTestId('budget-view-setting'),
+  ).toMatchThemeScreenshots();
+
+  await view.selectOption('envelope');
+  await page.getByRole('link', { name: 'Бюджет', exact: true }).click();
   await expect(page.getByTestId('budget-table')).toBeVisible();
   await expect(page).toMatchThemeScreenshots();
-  await page.getByRole('button', { name: 'Отслеживание' }).click();
+
+  await page.getByRole('link', { name: 'Настройки', exact: true }).click();
+  await view.selectOption('spending');
+  await page.getByRole('link', { name: 'Бюджет', exact: true }).click();
+  await expect(page.getByTestId('expense-summary')).toBeVisible();
+  await expect(page.getByTestId('expense-summary')).toMatchThemeScreenshots();
+
+  await page.getByRole('link', { name: 'Настройки', exact: true }).click();
+  await view.selectOption('tracking');
+  await page.getByRole('link', { name: 'Бюджет', exact: true }).click();
   await expect(page.getByTestId('budget-table')).toBeVisible();
 });

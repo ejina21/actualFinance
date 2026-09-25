@@ -1,44 +1,94 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { Trans } from 'react-i18next';
 
-import { ButtonWithLoading } from '@actual-app/components/button';
 import { Text } from '@actual-app/components/text';
+import { theme } from '@actual-app/components/theme';
 import { send } from '@actual-app/core/platform/client/connection';
 
 import { Link } from '#components/common/Link';
+import { useLocalPref } from '#hooks/useLocalPref';
 import { useSyncedPref } from '#hooks/useSyncedPref';
 
 import { Setting } from './UI';
 
 export function BudgetTypeSettings() {
   const [budgetType = 'envelope', setBudgetType] = useSyncedPref('budgetType');
+  const [displayMode, setDisplayMode] = useLocalPref('budget.displayMode');
   const [isLoading, setIsLoading] = useState(false);
+  const selectedMode =
+    displayMode === 'spending'
+      ? 'spending'
+      : displayMode === 'planning'
+        ? budgetType
+        : 'summary';
 
-  async function onSwitchType() {
-    setIsLoading(true);
-    try {
-      const newBudgetType = budgetType === 'envelope' ? 'tracking' : 'envelope';
-      setBudgetType(newBudgetType);
-
-      // Reset the budget cache to ensure the server-side budget system is recalculated
-      await send('reset-budget-cache');
-    } finally {
-      setIsLoading(false);
+  async function selectMode(
+    mode: 'summary' | 'envelope' | 'spending' | 'tracking',
+  ) {
+    if (mode === 'summary' || mode === 'spending') {
+      setDisplayMode(mode);
+      return;
     }
+
+    if (mode !== budgetType) {
+      setIsLoading(true);
+      try {
+        setBudgetType(mode);
+        await send('reset-budget-cache');
+      } finally {
+        setIsLoading(false);
+      }
+    }
+    setDisplayMode('planning');
   }
 
   return (
-    <Setting
-      primaryAction={
-        <ButtonWithLoading onPress={onSwitchType} isLoading={isLoading}>
-          {budgetType === 'tracking' ? (
-            <Trans>Switch to envelope budgeting</Trans>
-          ) : (
-            <Trans>Switch to tracking budgeting</Trans>
-          )}
-        </ButtonWithLoading>
-      }
-    >
+    <Setting>
+      <div
+        data-testid="budget-view-setting"
+        style={{ display: 'grid', gap: 8 }}
+      >
+        <label htmlFor="budget-view-select">
+          <Trans>Budget view</Trans>
+        </label>
+        <select
+          id="budget-view-select"
+          value={selectedMode}
+          disabled={isLoading}
+          onChange={event => {
+            const value = event.currentTarget.value;
+            if (
+              value === 'summary' ||
+              value === 'envelope' ||
+              value === 'spending' ||
+              value === 'tracking'
+            ) {
+              void selectMode(value);
+            }
+          }}
+          style={{
+            minHeight: 40,
+            padding: '8px 12px',
+            border: `1px solid ${theme.formInputBorder}`,
+            borderRadius: 8,
+            backgroundColor: theme.formInputBackground,
+            color: theme.pageText,
+          }}
+        >
+          <option value="summary">
+            <Trans>Finance summary</Trans>
+          </option>
+          <option value="envelope">
+            <Trans>Envelope</Trans>
+          </option>
+          <option value="spending">
+            <Trans>Expenses only</Trans>
+          </option>
+          <option value="tracking">
+            <Trans>Tracking</Trans>
+          </option>
+        </select>
+      </div>
       <Text>
         <Trans>
           <strong>Envelope budgeting</strong> (recommended) digitally mimics

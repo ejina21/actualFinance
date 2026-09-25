@@ -1,6 +1,6 @@
 import { expect, test } from './fixtures';
 
-test('opens Итого by default and keeps planning values when switching views', async ({
+test('opens the finance report by default without redundant page title', async ({
   page,
 }) => {
   await page.goto('/');
@@ -10,6 +10,16 @@ test('opens Итого by default and keeps planning values when switching views
 
   const summary = page.getByTestId('finance-summary');
   await expect(summary).toBeVisible();
+  await expect(
+    page.getByRole('main').getByText('Итого', { exact: true }),
+  ).toHaveCount(0);
+  await expect(
+    page.getByRole('heading', {
+      name: /Budget|Бюджет/,
+      level: 1,
+      hidden: true,
+    }),
+  ).toBeAttached();
   await expect(
     summary.getByRole('table', { name: /Cash flow|Денежный поток/ }),
   ).toBeVisible();
@@ -21,25 +31,42 @@ test('opens Итого by default and keeps planning values when switching views
     summary.getByTestId('finance-summary-cards'),
   ).toMatchThemeScreenshots();
   await expect(
+    summary.getByTestId('finance-summary-controls'),
+  ).toMatchThemeScreenshots();
+  await expect(
     summary.getByTestId('finance-summary-scroll'),
   ).toMatchThemeScreenshots();
-
-  await page.getByRole('button', { name: /Envelope|Конверты/ }).click();
-  await expect(page.getByTestId('budget-table')).toBeVisible();
-  await page.getByRole('button', { name: /Summary|Итого/ }).click();
-  await expect(summary).toBeVisible();
 });
 
 test('selects a year, custom range, and two comparison months independently', async ({
   page,
 }) => {
+  await page.setViewportSize({ width: 1440, height: 900 });
   await page.goto('/');
   await page
     .getByRole('button', { name: /Try the demo|Открыть демоверсию/ })
     .click();
   const summary = page.getByTestId('finance-summary');
+  const periodControl = summary.getByRole('combobox', {
+    name: /Summary period|Период отчёта/,
+  });
+  const addMonth = summary.getByRole('button', {
+    name: /Add month|Добавить месяц/,
+  });
+  const periodBox = await periodControl.boundingBox();
+  const addMonthBox = await addMonth.boundingBox();
+  if (!periodBox || !addMonthBox) {
+    throw new Error('Summary controls are not visible');
+  }
+  expect(
+    Math.abs(
+      periodBox.y + periodBox.height - addMonthBox.y - addMonthBox.height,
+    ),
+  ).toBeLessThan(3);
 
-  await summary.getByRole('button', { name: /Year|Год/ }).click();
+  await summary
+    .getByRole('combobox', { name: /Summary period|Период отчёта/ })
+    .selectOption('year');
   await summary.getByRole('spinbutton', { name: /Year|Год/ }).fill('2016');
   await expect(
     summary.getByRole('columnheader', { name: /average|среднем/i }),
@@ -49,8 +76,8 @@ test('selects a year, custom range, and two comparison months independently', as
   ).toBeVisible();
 
   await summary
-    .getByRole('button', { name: /Custom period|Произвольный период/ })
-    .click();
+    .getByRole('combobox', { name: /Summary period|Период отчёта/ })
+    .selectOption('range');
   await summary
     .getByRole('textbox', { name: 'От', exact: true })
     .fill('2016-01-15');
@@ -96,8 +123,8 @@ test('selects a year, custom range, and two comparison months independently', as
   await expect(netFlowRow.locator('td').nth(7)).toHaveText('—');
   await expect(netFlowRow.locator('td').nth(10)).toHaveText('—');
   await expect(
-    summary.getByRole('button', { name: /Custom period|Произвольный период/ }),
-  ).toHaveAttribute('aria-pressed', 'true');
+    summary.getByRole('combobox', { name: /Summary period|Период отчёта/ }),
+  ).toHaveValue('range');
   await page
     .getByRole('button', {
       name: /Включить приватный режим|Enable privacy mode/,
@@ -125,8 +152,23 @@ test('keeps summary controls and row labels reachable on a narrow screen', async
     .click();
   const summary = page.getByTestId('finance-summary');
   await expect(
-    summary.getByRole('button', { name: /Custom period|Произвольный период/ }),
+    summary.getByRole('combobox', { name: /Summary period|Период отчёта/ }),
   ).toBeVisible();
+  const navigation = summary.getByTestId('finance-summary-period-navigation');
+  await expect(navigation).toBeVisible();
+  const previous = await navigation
+    .getByRole('button', { name: /Previous period|Предыдущий период/ })
+    .boundingBox();
+  const next = await navigation
+    .getByRole('button', { name: /Next period|Следующий период/ })
+    .boundingBox();
+  if (!previous || !next) {
+    throw new Error('Period navigation is not visible');
+  }
+  expect(Math.abs(previous.y - next.y)).toBeLessThan(3);
+  await expect(
+    summary.getByTestId('finance-summary-controls'),
+  ).toMatchThemeScreenshots();
   await expect(
     summary.getByRole('table', { name: /Cash flow|Денежный поток/ }),
   ).toBeVisible();
@@ -144,8 +186,8 @@ test('pages monthly columns for a long custom period without truncating its tota
     .click();
   const summary = page.getByTestId('finance-summary');
   await summary
-    .getByRole('button', { name: /Custom period|Произвольный период/ })
-    .click();
+    .getByRole('combobox', { name: /Summary period|Период отчёта/ })
+    .selectOption('range');
   await summary
     .getByRole('textbox', { name: 'От', exact: true })
     .fill('2016-01-01');
