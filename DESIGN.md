@@ -15,6 +15,8 @@ colors:
   page-text: '#172b36'
   surface-white: '#ffffff'
   positive-green: '#147d64'
+  finance-hero: '#173f39'
+  finance-soft-accent: '#e1f1e9'
   negative-red: '#e12d39'
   link-blue: '#1980d4'
   warning-gold: '#b88115'
@@ -73,6 +75,10 @@ components:
 # Design System: Actual Budget
 
 ## 1. Overview
+
+**Finance summary direction:** The approved Coinest reference contributes a quiet neutral canvas, white bordered surfaces, a deep forest-green balance focal point, and a restrained pale-green selection color. Actual's account tree, dense money tables, and all established actions remain visible. The same semantic roles map to dark (#234e46 hero, #29483f soft accent) and midnight (#1b443e hero, #214039 soft accent); hero text is white in every theme. Avoid using the hero role for ordinary controls or the soft accent for warning/negative states.
+
+The read-only **Итого** Budget view gives one month, one year, custom date ranges, and selected-month comparisons a common financial table. Income and expense groups, account movements, and point-in-time balance have distinct labels so the numbers retain their meaning. All redesigned surfaces use the same surface and focus vocabulary while preserving working density.
 
 **Creative North Star: "The Family Dashboard"**
 
