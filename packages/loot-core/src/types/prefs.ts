@@ -100,7 +100,7 @@ export type LocalPrefs = Partial<{
   'budget.summaryCollapsed': boolean;
   'budget.showHiddenCategories': boolean;
   'budget.startMonth': string;
-  'budget.displayMode': 'planning' | 'spending';
+  'budget.displayMode': 'planning' | 'spending' | 'summary';
   'flags.updateNotificationShownForVersion': string;
   'tour.introSeen': boolean;
   'schedules.showCompleted': boolean;

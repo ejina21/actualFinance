@@ -1,6 +1,10 @@
 import { describe, expect, it } from 'vitest';
 
-import { resolveSummaryPeriod, SummaryPeriodError } from './period';
+import {
+  paginateSummaryColumns,
+  resolveSummaryPeriod,
+  SummaryPeriodError,
+} from './period';
 
 describe('resolveSummaryPeriod', () => {
   it('includes leap day in a February month', () => {
@@ -55,5 +59,35 @@ describe('resolveSummaryPeriod', () => {
     { kind: 'range' as const, startDate: '2026-03-04', endDate: '2026-03-03' },
   ])('rejects invalid period %#', period => {
     expect(() => resolveSummaryPeriod(period)).toThrow(SummaryPeriodError);
+  });
+});
+
+describe('paginateSummaryColumns', () => {
+  it('keeps long custom ranges navigable without losing their monthly columns', () => {
+    const columns = resolveSummaryPeriod({
+      kind: 'range',
+      startDate: '2020-01-01',
+      endDate: '2025-12-31',
+    }).columns;
+    expect(
+      paginateSummaryColumns(columns, 0, 12).columns.map(column => column.key),
+    ).toEqual([
+      '2020-01',
+      '2020-02',
+      '2020-03',
+      '2020-04',
+      '2020-05',
+      '2020-06',
+      '2020-07',
+      '2020-08',
+      '2020-09',
+      '2020-10',
+      '2020-11',
+      '2020-12',
+    ]);
+    const last = paginateSummaryColumns(columns, 5, 12);
+    expect(last.pageCount).toBe(6);
+    expect(last.columns[0]?.key).toBe('2025-01');
+    expect(last.columns[11]?.key).toBe('2025-12');
   });
 });

@@ -19,7 +19,7 @@ type QueryTransaction = Omit<
 > & {
   accountOffBudget: boolean | null;
   categoryIsIncome: boolean | null;
-  startingBalanceFlag: boolean | null;
+  starting_balance_flag: boolean | null;
 };
 
 function normalizeTransactions(
@@ -30,7 +30,7 @@ function normalizeTransactions(
     accountOffBudget: Boolean(row.accountOffBudget),
     categoryIsIncome: Boolean(row.categoryIsIncome),
     isParent: false,
-    startingBalanceFlag: Boolean(row.startingBalanceFlag),
+    startingBalanceFlag: Boolean(row.starting_balance_flag),
   }));
 }
 
@@ -83,7 +83,7 @@ export function useFinanceSummary(
               { accountOffBudget: { $id: '$account.offbudget' } },
               { categoryIsIncome: { $id: '$category.is_income' } },
               { transferId: { $id: '$payee.transfer_acct.id' } },
-              { startingBalanceFlag: '$starting_balance_flag' },
+              'starting_balance_flag',
             ])
         : null,
     [startDate, endDate],
@@ -127,7 +127,7 @@ export function useFinanceSummary(
               { accountOffBudget: { $id: '$account.offbudget' } },
               { categoryIsIncome: { $id: '$category.is_income' } },
               { transferId: { $id: '$payee.transfer_acct.id' } },
-              { startingBalanceFlag: '$starting_balance_flag' },
+              'starting_balance_flag',
             ])
         : null,
     [comparisonPeriods],

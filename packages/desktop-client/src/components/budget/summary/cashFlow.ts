@@ -35,6 +35,10 @@ export type CashFlowSummary = {
   uncategorizedExpenses: CashFlowRow;
 };
 
+export function monthlyAverage(annualTotal: number): number {
+  return Math.sign(annualTotal) * Math.round(Math.abs(annualTotal) / 12);
+}
+
 export function summarizeCashFlow(
   rows: readonly SummaryTransaction[],
   groups: readonly CategoryGroupEntity[],

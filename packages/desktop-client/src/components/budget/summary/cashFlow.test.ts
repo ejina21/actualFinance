@@ -1,7 +1,8 @@
 import type { CategoryGroupEntity } from '@actual-app/core/types/models';
 import { describe, expect, it } from 'vitest';
 
-import { summarizeCashFlow, type SummaryTransaction } from './cashFlow';
+import { monthlyAverage, summarizeCashFlow } from './cashFlow';
+import type { SummaryTransaction } from './cashFlow';
 import { resolveSummaryPeriod } from './period';
 
 const period = resolveSummaryPeriod({ kind: 'month', month: '2026-09' });
@@ -123,5 +124,13 @@ describe('summarizeCashFlow', () => {
       income: 4_000,
       expenses: 0,
     });
+  });
+});
+
+describe('monthlyAverage', () => {
+  it('divides the annual total by twelve including empty months and rounds to minor units', () => {
+    expect(monthlyAverage(41_500)).toBe(3_458);
+    expect(monthlyAverage(-41_500)).toBe(-3_458);
+    expect(monthlyAverage(0)).toBe(0);
   });
 });

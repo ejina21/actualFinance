@@ -6,13 +6,12 @@ import { spacing } from '@actual-app/components/tokens';
 import { View } from '@actual-app/components/view';
 import { send } from '@actual-app/core/platform/client/connection';
 
+import { FinanceSummaryPage } from '#components/budget/summary/FinanceSummaryPage';
 import { NarrowAlternate } from '#components/responsive/index';
 import { useLocalPref } from '#hooks/useLocalPref';
 import { useSyncedPref } from '#hooks/useSyncedPref';
 
-import { ExpenseView } from './ExpenseView';
-
-type BudgetMode = 'envelope' | 'tracking' | 'spending';
+type BudgetMode = 'envelope' | 'tracking' | 'summary';
 
 export function BudgetDisplay() {
   const { t } = useTranslation();
@@ -20,15 +19,15 @@ export function BudgetDisplay() {
   const [displayMode, setDisplayMode] = useLocalPref('budget.displayMode');
   const [isSwitching, setIsSwitching] = useState(false);
   const mode: BudgetMode =
-    displayMode === 'spending'
-      ? 'spending'
+    displayMode !== 'planning'
+      ? 'summary'
       : budgetType === 'tracking'
         ? 'tracking'
         : 'envelope';
 
   async function selectMode(nextMode: BudgetMode) {
-    if (nextMode === 'spending') {
-      setDisplayMode('spending');
+    if (nextMode === 'summary') {
+      setDisplayMode('summary');
       return;
     }
 
@@ -45,9 +44,9 @@ export function BudgetDisplay() {
   }
 
   const options: Array<{ mode: BudgetMode; label: string }> = [
+    { mode: 'summary', label: t('Finance summary') },
     { mode: 'envelope', label: t('Envelope') },
     { mode: 'tracking', label: t('Tracking') },
-    { mode: 'spending', label: t('Expenses only') },
   ];
 
   return (
@@ -91,8 +90,8 @@ export function BudgetDisplay() {
         ))}
       </View>
       <View style={{ flex: 1, minHeight: 0 }}>
-        {mode === 'spending' ? (
-          <ExpenseView />
+        {mode === 'summary' ? (
+          <FinanceSummaryPage />
         ) : (
           <NarrowAlternate name="Budget" />
         )}

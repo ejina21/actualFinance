@@ -16,6 +16,22 @@ export type ResolvedSummaryPeriod = {
   columns: SummaryColumn[];
 };
 
+export function paginateSummaryColumns(
+  columns: readonly SummaryColumn[],
+  page: number,
+  pageSize: number,
+): { columns: SummaryColumn[]; pageCount: number } {
+  const pageCount = Math.max(1, Math.ceil(columns.length / pageSize));
+  const selectedPage = Math.min(Math.max(0, Math.trunc(page)), pageCount - 1);
+  return {
+    columns: columns.slice(
+      selectedPage * pageSize,
+      (selectedPage + 1) * pageSize,
+    ),
+    pageCount,
+  };
+}
+
 export class SummaryPeriodError extends Error {
   constructor(public readonly code: 'invalid-date' | 'invalid-range') {
     super(code);
