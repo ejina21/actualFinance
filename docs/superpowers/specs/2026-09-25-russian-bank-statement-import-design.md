@@ -34,7 +34,7 @@ This is preferable to repurposing `AccountEntity.bank`, which would make local a
 - The same help is reachable from the account menu, so it is findable after the first import and when the header is crowded. If no bank is selected, the help first offers the bank selector and generic Actual import guidance.
 - On narrow/mobile screens, provide a tap target from the account page or account menu with the same export instructions. Explicitly direct the person to open the account on a wide screen for the current import preview; do not display a file-pick action that leads into the unusable fixed-width modal.
 - The help remains available after importing and when a file is rejected. The normal account `Import` action and keyboard shortcut continue to work.
-- The instruction catalog lives in one UI module keyed by the stable bank identifiers. Copy uses the app's translation mechanism. The text is short enough for the disclosure and includes an official bank help link when a relevant source exists. Do not present a business-account API or business statement export as a personal-account instruction.
+- The instruction catalog lives in one UI module keyed by the stable bank identifiers. All new user-facing labels, instructions, errors, and link text must appear in Russian in the running app. Keep source strings in the app's translation mechanism and add complete translations to `packages/desktop-client/local-russian/ru.json`, with corresponding source keys in `en.json`. The text is short enough for the disclosure and includes an official bank help link when a relevant source exists. Do not present a business-account API or business statement export as a personal-account instruction.
 
 ## Instruction content and supported files
 
@@ -62,7 +62,7 @@ This is preferable to repurposing `AccountEntity.bank`, which would make local a
 ## Verification and acceptance
 
 - Focused tests cover optional/unknown bank values, persisted selection and edits, help lookup for all five banks, unsupported PDF behavior, and visibility of setup actions versus existing linked-account controls.
-- Exercise creation and import on a wide screen, help discovery on a narrow screen, keyboard access and focus order, Russian text fit, and light/dark/midnight themes. Run root `yarn typecheck` and focused frontend tests.
+- Exercise creation and import on a wide screen, help discovery on a narrow screen, keyboard access and focus order, Russian text fit, and light/dark/midnight themes. Run the Russian catalog coverage test, root `yarn typecheck`, and focused frontend tests. No new UI text may fall back to English at runtime.
 - Acceptance requires that a new or existing local account can select a bank, rediscover bank-specific guidance later, and use the current file import path when it has a supported statement. PDF-only bank statements remain explicitly identified as unsupported until a verified conversion path exists.
 
 ## Source material for guidance
