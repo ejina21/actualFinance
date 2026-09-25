@@ -279,9 +279,13 @@ export function AccountHeader({
           ...styles.pageContent,
           paddingTop: spacing.md,
           paddingBottom: spacing.md,
+          paddingLeft: spacing.lg,
+          paddingRight: spacing.lg,
           flexShrink: 0,
           backgroundColor: theme.cardBackground,
           borderBottom: `1px solid ${theme.tableBorder}`,
+          borderTop: `1px solid ${theme.tableBorder}`,
+          borderRadius: '12px 12px 0 0',
         }}
       >
         <View

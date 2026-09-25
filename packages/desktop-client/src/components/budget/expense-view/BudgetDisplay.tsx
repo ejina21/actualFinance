@@ -60,7 +60,7 @@ export function BudgetDisplay() {
           padding: `${spacing.sm}px ${spacing.md}px`,
           overflowX: 'auto',
           borderBottom: `1px solid ${theme.tableBorder}`,
-          backgroundColor: theme.pageBackground,
+          backgroundColor: theme.cardBackground,
         }}
       >
         {options.map(option => (
@@ -77,10 +77,9 @@ export function BudgetDisplay() {
               padding: `${spacing.sm}px ${spacing.md}px`,
               backgroundColor:
                 mode === option.mode
-                  ? theme.buttonPrimaryBackground
+                  ? theme.buttonNormalBackground
                   : 'transparent',
-              color:
-                mode === option.mode ? theme.buttonPrimaryText : theme.pageText,
+              color: theme.pageText,
               fontWeight: mode === option.mode ? 700 : 500,
               cursor: 'pointer',
             }}

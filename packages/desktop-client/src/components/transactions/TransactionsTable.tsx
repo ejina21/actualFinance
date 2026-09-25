@@ -337,7 +337,7 @@ const TransactionHeader = memo(
     return (
       <Row
         style={{
-          fontWeight: 300,
+          fontWeight: 600,
           zIndex: 200,
           color: theme.tableHeaderText,
           backgroundColor: theme.tableHeaderBackground,
@@ -578,7 +578,7 @@ function HeaderCell({
     overflow: 'hidden',
     textOverflow: 'ellipsis',
     color: theme.tableHeaderText,
-    fontWeight: 300,
+    fontWeight: 600,
     marginLeft,
     marginRight,
   };
