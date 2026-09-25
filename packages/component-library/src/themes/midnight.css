@@ -19,6 +19,8 @@
   --color-financeHeroBackground: #1b443e;
   --color-financeHeroText: #ffffff;
   --color-financeSoftAccent: #214039;
+  --color-financeAccentPositive: var(--palette-green300);
+  --color-financeAccentNegative: var(--palette-red200);
   --color-cardShadow: var(--palette-gray900);
 
   --color-tableBackground: var(--palette-gray800);

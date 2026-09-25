@@ -31,6 +31,16 @@ export const summaryStickyCellStyle = {
   zIndex: 1,
 };
 
+export function signedAmountColor(value: number, onSoftAccent = false) {
+  if (value > 0) {
+    return onSoftAccent ? theme.financeAccentPositive : theme.numberPositive;
+  }
+  if (value < 0) {
+    return onSoftAccent ? theme.financeAccentNegative : theme.numberNegative;
+  }
+  return theme.pageText;
+}
+
 export const summaryControlClass = css({
   minHeight: 40,
   maxWidth: '100%',

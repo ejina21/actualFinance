@@ -20,6 +20,8 @@
   --color-financeHeroBackground: #173f39;
   --color-financeHeroText: #ffffff;
   --color-financeSoftAccent: #e1f1e9;
+  --color-financeAccentPositive: var(--palette-green800);
+  --color-financeAccentNegative: var(--palette-red700);
 
   --color-tableBackground: var(--palette-white);
   --color-tableRowBackgroundAlternate: var(--color-tableBackground);

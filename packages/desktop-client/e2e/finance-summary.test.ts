@@ -206,6 +206,9 @@ test('keeps category and total columns in place while scrolling through a period
     .locator('..')
     .locator('td')
     .first();
+  const sectionRows = scroll
+    .locator('tbody th[scope="rowgroup"]')
+    .locator('..');
 
   for (const period of ['month', 'year', 'range'] as const) {
     if (period === 'year') {
@@ -222,9 +225,16 @@ test('keeps category and total columns in place while scrolling through a period
     const categoryBefore = await category.boundingBox();
     const totalBefore = await total.boundingBox();
     const amountBefore = await categoryAmount.boundingBox();
+    await expect(sectionRows).toHaveCount(2);
+    const sectionAmountsBefore = await Promise.all(
+      [0, 1].map(index =>
+        sectionRows.nth(index).locator('td').first().boundingBox(),
+      ),
+    );
     if (!categoryBefore || !totalBefore || !amountBefore) {
       throw new Error('The fixed columns are missing');
     }
+    expect(sectionAmountsBefore.every(Boolean)).toBe(true);
     await scroll.evaluate(element => {
       element.scrollLeft = 900;
     });
@@ -234,12 +244,24 @@ test('keeps category and total columns in place while scrolling through a period
     const categoryAfter = await category.boundingBox();
     const totalAfter = await total.boundingBox();
     const amountAfter = await categoryAmount.boundingBox();
+    const sectionAmountsAfter = await Promise.all(
+      [0, 1].map(index =>
+        sectionRows.nth(index).locator('td').first().boundingBox(),
+      ),
+    );
     if (!categoryAfter || !totalAfter || !amountAfter) {
       throw new Error('The fixed columns disappeared while scrolling');
     }
     expect(Math.abs(categoryAfter.x - categoryBefore.x)).toBeLessThan(2);
     expect(Math.abs(totalAfter.x - totalBefore.x)).toBeLessThan(2);
     expect(Math.abs(amountAfter.x - amountBefore.x)).toBeLessThan(2);
+    for (const [index, amount] of sectionAmountsAfter.entries()) {
+      expect(amount).not.toBeNull();
+      expect(
+        Math.abs((amount?.x ?? 0) - (sectionAmountsBefore[index]?.x ?? 0)),
+      ).toBeLessThan(2);
+      expect(Math.abs((amount?.x ?? 0) - totalAfter.x)).toBeLessThan(2);
+    }
     await expect(category).toBeInViewport();
     await expect(total).toBeInViewport();
   }
@@ -253,6 +275,11 @@ test('keeps category and total columns in place while scrolling through a period
   ).toBeInViewport({ ratio: 0.5 });
   const mobileCategory = await category.boundingBox();
   const mobileTotal = await total.boundingBox();
+  const mobileSectionAmounts = await Promise.all(
+    [0, 1].map(index =>
+      sectionRows.nth(index).locator('td').first().boundingBox(),
+    ),
+  );
   if (!mobileCategory || !mobileTotal) {
     throw new Error('The mobile fixed columns are missing');
   }
@@ -261,10 +288,133 @@ test('keeps category and total columns in place while scrolling through a period
   });
   const mobileCategoryAfter = await category.boundingBox();
   const mobileTotalAfter = await total.boundingBox();
+  const mobileSectionAmountsAfter = await Promise.all(
+    [0, 1].map(index =>
+      sectionRows.nth(index).locator('td').first().boundingBox(),
+    ),
+  );
   if (!mobileCategoryAfter || !mobileTotalAfter) {
     throw new Error('The mobile fixed columns disappeared while scrolling');
   }
   expect(Math.abs(mobileCategoryAfter.x - mobileCategory.x)).toBeLessThan(2);
   expect(Math.abs(mobileTotalAfter.x - mobileTotal.x)).toBeLessThan(2);
-  await expect(scroll).toMatchThemeScreenshots();
+  for (const [index, amount] of mobileSectionAmountsAfter.entries()) {
+    expect(amount).not.toBeNull();
+    expect(
+      Math.abs((amount?.x ?? 0) - (mobileSectionAmounts[index]?.x ?? 0)),
+    ).toBeLessThan(2);
+  }
+});
+
+test('colors the net difference by sign across summary totals', async ({
+  page,
+}) => {
+  await page.goto('/');
+  await page.getByRole('button', { name: 'Открыть демоверсию' }).click();
+  const summary = page.getByTestId('finance-summary');
+  await summary
+    .getByRole('combobox', { name: 'Период отчёта' })
+    .selectOption('year');
+  await summary
+    .getByRole('spinbutton', { name: 'Год', exact: true })
+    .fill('2016');
+
+  const colors = await page.evaluate(() => {
+    const probe = document.createElement('span');
+    document.body.append(probe);
+    const resolve = (token: string) => {
+      probe.style.color = `var(--color-${token})`;
+      return getComputedStyle(probe).color;
+    };
+    const result = {
+      positive: resolve('numberPositive'),
+      negative: resolve('numberNegative'),
+      accentPositive: resolve('financeAccentPositive'),
+      accentNegative: resolve('financeAccentNegative'),
+      neutral: resolve('pageText'),
+    };
+    probe.remove();
+    return result;
+  });
+  const netCells = summary
+    .getByTestId('finance-summary-net-flow-row')
+    .getByRole('cell');
+  const amounts = (await netCells.allTextContents()).map(text =>
+    Number(text.trim().replaceAll(',', '').replaceAll('−', '-')),
+  );
+  expect(amounts.some(value => value > 0)).toBe(true);
+  expect(amounts.some(value => value < 0)).toBe(true);
+  for (const [index, value] of amounts.entries()) {
+    const positiveColor = index === 0 ? colors.accentPositive : colors.positive;
+    const negativeColor = index === 0 ? colors.accentNegative : colors.negative;
+    await expect(netCells.nth(index)).toHaveCSS(
+      'color',
+      value > 0 ? positiveColor : value < 0 ? negativeColor : colors.neutral,
+    );
+  }
+  const netCard = summary
+    .getByTestId('finance-summary-cards')
+    .getByText('Разница', { exact: true })
+    .locator('..')
+    .locator('strong');
+  await expect(netCard).toHaveCSS(
+    'color',
+    amounts[0] > 0
+      ? colors.positive
+      : amounts[0] < 0
+        ? colors.negative
+        : colors.neutral,
+  );
+  await expect(
+    summary.getByTestId('finance-summary-net-flow-row'),
+  ).toMatchThemeScreenshots();
+
+  const positiveIndex = amounts.findIndex(
+    (value, index) => index >= 2 && value > 0,
+  );
+  const negativeIndex = amounts.findIndex(
+    (value, index) => index >= 2 && value < 0,
+  );
+  expect(positiveIndex).toBeGreaterThanOrEqual(2);
+  expect(negativeIndex).toBeGreaterThanOrEqual(2);
+  const positiveMonth = `2016-${String(positiveIndex - 1).padStart(2, '0')}`;
+  const negativeMonth = `2016-${String(negativeIndex - 1).padStart(2, '0')}`;
+
+  await summary
+    .getByRole('combobox', { name: 'Период отчёта' })
+    .selectOption('month');
+  await summary.getByLabel('месяц', { exact: true }).fill(negativeMonth);
+  await expect(netCard).toHaveCSS('color', colors.negative);
+  await expect(
+    summary.getByTestId('finance-summary-cards'),
+  ).toMatchThemeScreenshots();
+
+  await summary
+    .getByRole('button', { name: 'Сравнение месяцев', exact: true })
+    .click();
+  await summary.getByLabel('Базовый месяц').fill(positiveMonth);
+  await summary.getByLabel('Сравнить с месяцем').fill(negativeMonth);
+  await summary
+    .getByRole('button', { name: 'Добавить месяц', exact: true })
+    .click();
+  const comparison = summary.getByTestId('finance-comparison-overview');
+  const comparisonNet = comparison.getByTestId('comparison-netFlow');
+  await expect(comparisonNet.getByRole('cell').first()).toHaveCSS(
+    'color',
+    colors.positive,
+  );
+  await expect(
+    comparisonNet.getByRole('cell').last().getByTestId('comparison-value'),
+  ).toHaveCSS('color', colors.negative);
+  await expect(
+    comparisonNet.getByRole('cell').last().getByTestId('comparison-change'),
+  ).toHaveCSS('color', colors.negative);
+  await expect(
+    summary
+      .getByTestId('finance-summary-net-flow-row')
+      .getByRole('cell')
+      .last()
+      .getByTestId('comparison-value'),
+  ).toHaveCSS('color', colors.negative);
+  await expect(comparisonNet).toMatchThemeScreenshots();
 });

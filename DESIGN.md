@@ -15,8 +15,10 @@ colors:
   page-text: '#172b36'
   surface-white: '#ffffff'
   positive-green: '#147d64'
+  finance-accent-positive: '#0c6b58'
   finance-hero: '#173f39'
   finance-soft-accent: '#e1f1e9'
+  finance-accent-negative: '#ab091e'
   negative-red: '#e12d39'
   link-blue: '#1980d4'
   warning-gold: '#b88115'
@@ -76,7 +78,7 @@ components:
 
 ## 1. Overview
 
-**Finance summary direction:** The approved Coinest reference contributes a quiet neutral canvas, white bordered surfaces, a deep forest-green balance focal point, and a restrained pale-green selection color. Actual's account tree, dense money tables, and all established actions remain visible. The same semantic roles map to dark (#234e46 hero, #29483f soft accent) and midnight (#1b443e hero, #214039 soft accent); hero text is white in every theme. Avoid using the hero role for ordinary controls or the soft accent for warning/negative states.
+**Finance summary direction:** The approved Coinest reference contributes a quiet neutral canvas, white bordered surfaces, a deep forest-green balance focal point, and a restrained pale-green selection color. Actual's account tree, dense money tables, and all established actions remain visible. The same semantic roles map to dark (#234e46 hero, #29483f soft accent) and midnight (#1b443e hero, #214039 soft accent); hero text is white in every theme. The soft accent marks aggregate rows; their signed amounts use contrast-safe semantic colors.
 
 The read-only **Расходы** Budget view gives one month, one year, custom date ranges, and selected-month comparisons a common financial table. Income and expense groups, account movements, and point-in-time balance have distinct labels so the numbers retain their meaning. The report has two explicit modes: Period overview and Month comparison. Comparison starts with the selected month and its predecessor, places total expenses, income, and net flow before category details, and shows monetary and percentage changes below each compared amount. Daily columns appear only in the period overview. All redesigned surfaces use the same surface and focus vocabulary while preserving working density.
 
@@ -117,6 +119,7 @@ All hex values in this file (frontmatter included) are the light-theme palette m
 
 - **Positive Green** (#147d64): Positive amounts and funded budgets.
 - **Negative Red** (#e12d39): Negative amounts, overspending, failures.
+- **Finance Accent Positive/Negative** (#0c6b58 / #ab091e): Signed summary amounts on the pale-green aggregate row; dark themes use lighter counterparts.
 - **Link Blue** (#1980d4): Links and informational highlights.
 - **Warning Gold** (#b88115): Underfunded templates, pending states.
 

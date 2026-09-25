@@ -22,6 +22,8 @@ export const theme = {
   financeHeroBackground: 'var(--color-financeHeroBackground)',
   financeHeroText: 'var(--color-financeHeroText)',
   financeSoftAccent: 'var(--color-financeSoftAccent)',
+  financeAccentPositive: 'var(--color-financeAccentPositive)',
+  financeAccentNegative: 'var(--color-financeAccentNegative)',
   tableBackground: 'var(--color-tableBackground)',
   tableRowBackgroundHover: 'var(--color-tableRowBackgroundHover)',
   tableText: 'var(--color-tableText)',

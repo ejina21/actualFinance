@@ -8,6 +8,7 @@ import type { CashFlowSummary } from './cashFlow';
 import { ComparisonAmount } from './ComparisonAmount';
 import { formatSummaryMonth } from './formatSummaryMonth';
 import { SummaryMoney } from './SummaryMoney';
+import { signedAmountColor } from './summaryStyles';
 
 const tableClass = css({
   width: '100%',
@@ -112,7 +113,17 @@ export function ComparisonOverview({
             {metrics.map(({ key, label }) => (
               <tr key={key} data-testid={`comparison-${key}`}>
                 <th scope="row">{label}</th>
-                <td>
+                <td
+                  style={
+                    key === 'netFlow'
+                      ? {
+                          color: signedAmountColor(
+                            comparison[baseMonth]?.[key] ?? 0,
+                          ),
+                        }
+                      : undefined
+                  }
+                >
                   <SummaryMoney value={comparison[baseMonth]?.[key] ?? 0} />
                 </td>
                 {compareMonths.map(month => (
@@ -120,6 +131,7 @@ export function ComparisonOverview({
                     <ComparisonAmount
                       base={comparison[baseMonth]?.[key] ?? 0}
                       value={comparison[month]?.[key] ?? 0}
+                      colorizeBySign={key === 'netFlow'}
                     />
                   </td>
                 ))}

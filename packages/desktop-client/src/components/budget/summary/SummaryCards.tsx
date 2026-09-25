@@ -5,6 +5,7 @@ import { spacing } from '@actual-app/components/tokens';
 import { css } from '@emotion/css';
 
 import { SummaryMoney } from './SummaryMoney';
+import { signedAmountColor } from './summaryStyles';
 
 const gridClassName = css({
   display: 'grid',
@@ -70,6 +71,8 @@ export function SummaryCards({
               fontSize: 24,
               lineHeight: 1.15,
               fontVariantNumeric: 'tabular-nums',
+              color:
+                card.id === 'net' ? signedAmountColor(card.value) : undefined,
             }}
           >
             <SummaryMoney value={card.value} />
