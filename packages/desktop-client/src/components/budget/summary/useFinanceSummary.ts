@@ -1,16 +1,17 @@
+import { useMemo } from 'react';
+
 import { q } from '@actual-app/core/shared/query';
 
 import { useAccounts } from '#hooks/useAccounts';
 import { useCategories } from '#hooks/useCategories';
 import { useQuery } from '#hooks/useQuery';
 
-import { buildAccountMovement, type AccountAmount } from './accounts';
-import {
-  summarizeCashFlow,
-  type CashFlowSummary,
-  type SummaryTransaction,
-} from './cashFlow';
-import { resolveSummaryPeriod, type SummaryPeriod } from './period';
+import { buildAccountMovement } from './accounts';
+import type { AccountAmount } from './accounts';
+import { summarizeCashFlow } from './cashFlow';
+import type { CashFlowSummary, SummaryTransaction } from './cashFlow';
+import { resolveSummaryPeriod } from './period';
+import type { SummaryPeriod } from './period';
 
 type QueryTransaction = Omit<
   SummaryTransaction,
@@ -21,9 +22,38 @@ type QueryTransaction = Omit<
   startingBalanceFlag: boolean | null;
 };
 
+function normalizeTransactions(
+  data: readonly QueryTransaction[],
+): SummaryTransaction[] {
+  return data.map(row => ({
+    ...row,
+    accountOffBudget: Boolean(row.accountOffBudget),
+    categoryIsIncome: Boolean(row.categoryIsIncome),
+    isParent: false,
+    startingBalanceFlag: Boolean(row.startingBalanceFlag),
+  }));
+}
+
+function resolveComparisonPeriods(comparisonKey: string) {
+  let error: Error | undefined;
+  const periods = comparisonKey
+    ? comparisonKey.split(',').flatMap(month => {
+        try {
+          return [
+            { month, period: resolveSummaryPeriod({ kind: 'month', month }) },
+          ];
+        } catch (caught) {
+          error = caught instanceof Error ? caught : new Error(String(caught));
+          return [];
+        }
+      })
+    : [];
+  return { periods, error };
+}
+
 export function useFinanceSummary(
   period: SummaryPeriod,
-  _comparisonMonths: readonly string[],
+  comparisonMonths: readonly string[],
 ) {
   let periodError: Error | undefined;
   let resolvedPeriod;
@@ -71,13 +101,38 @@ export function useFinanceSummary(
         : null,
     [startDate],
   );
-  const rows: SummaryTransaction[] = (transactions.data ?? []).map(row => ({
-    ...row,
-    accountOffBudget: Boolean(row.accountOffBudget),
-    categoryIsIncome: Boolean(row.categoryIsIncome),
-    isParent: false,
-    startingBalanceFlag: Boolean(row.startingBalanceFlag),
-  }));
+  const comparisonKey = [...new Set(comparisonMonths)].join(',');
+  const { periods: comparisonPeriods, error: comparisonError } = useMemo(
+    () => resolveComparisonPeriods(comparisonKey),
+    [comparisonKey],
+  );
+  const comparisonTransactions = useQuery<QueryTransaction>(
+    () =>
+      comparisonPeriods.length > 0
+        ? q('transactions')
+            .filter({
+              is_parent: false,
+              $or: comparisonPeriods.map(
+                ({ period: { startDate: start, endDate: end } }) => ({
+                  date: { $gte: start, $lte: end },
+                }),
+              ),
+            })
+            .select([
+              'id',
+              'date',
+              'amount',
+              { category: { $id: '$category.id' } },
+              { account: { $id: '$account.id' } },
+              { accountOffBudget: { $id: '$account.offbudget' } },
+              { categoryIsIncome: { $id: '$category.is_income' } },
+              { transferId: { $id: '$payee.transfer_acct.id' } },
+              { startingBalanceFlag: '$starting_balance_flag' },
+            ])
+        : null,
+    [comparisonPeriods],
+  );
+  const rows = normalizeTransactions(transactions.data ?? []);
   const cashFlow = resolvedPeriod
     ? summarizeCashFlow(rows, categories.data?.grouped ?? [], resolvedPeriod)
     : null;
@@ -90,6 +145,18 @@ export function useFinanceSummary(
     .filter(row => !row.isOffBudget)
     .reduce((total, row) => total + row.closing, 0);
   const comparison: Record<string, CashFlowSummary> = {};
+  if (comparisonPeriods.length > 0) {
+    const compareRows = normalizeTransactions(
+      comparisonTransactions.data ?? [],
+    );
+    for (const { month, period: monthPeriod } of comparisonPeriods) {
+      comparison[month] = summarizeCashFlow(
+        compareRows,
+        categories.data?.grouped ?? [],
+        monthPeriod,
+      );
+    }
+  }
 
   return {
     period: resolvedPeriod,
@@ -101,12 +168,15 @@ export function useFinanceSummary(
       accounts.isLoading ||
       categories.isLoading ||
       transactions.isLoading ||
-      beforePeriod.isLoading,
+      beforePeriod.isLoading ||
+      (comparisonPeriods.length > 0 && comparisonTransactions.isLoading),
     error:
       periodError ??
       accounts.error ??
       categories.error ??
       transactions.error ??
-      beforePeriod.error,
+      beforePeriod.error ??
+      comparisonError ??
+      (comparisonPeriods.length > 0 ? comparisonTransactions.error : undefined),
   };
 }
