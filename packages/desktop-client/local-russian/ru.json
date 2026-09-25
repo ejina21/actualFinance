@@ -3024,5 +3024,16 @@
   "Check which format is provided. A compatible machine-readable format for personal accounts is not confirmed.": "Проверьте формат выданного файла. Подходящий машиночитаемый формат для личных счетов пока не подтверждён.",
   "In Yandex Pay, open Profile → Certificates → Contract statement.": "В Яндекс Пэй откройте «Профиль» → «Справки» → «Выписка по договору».",
   "Select the product and period, then check the downloaded file format before importing.": "Выберите продукт и период, затем проверьте формат скачанного файла перед загрузкой.",
-  "Transactions live in accounts. Add your first account, then enter transactions or import a supported bank statement.": "Операции хранятся на счетах. Добавьте первый счёт, затем вносите операции вручную или загрузите выписку в поддерживаемом формате."
+  "Transactions live in accounts. Add your first account, then enter transactions or import a supported bank statement.": "Операции хранятся на счетах. Добавьте первый счёт, затем вносите операции вручную или загрузите выписку в поддерживаемом формате.",
+  "Budget view": "Вид бюджета",
+  "Envelope": "Конверты",
+  "Tracking": "Отслеживание",
+  "Expenses only": "Расходы",
+  "Expenses by category": "Расходы по категориям",
+  "Previous period": "Предыдущий период",
+  "Next period": "Следующий период",
+  "Could not load expenses. Please try again.": "Не удалось загрузить расходы. Попробуйте ещё раз.",
+  "Loading expenses…": "Загрузка расходов…",
+  "No expenses in this period.": "За этот период расходов нет.",
+  "Swipe horizontally to see dates.": "Проведите таблицу влево, чтобы увидеть даты."
 }

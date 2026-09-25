@@ -2919,5 +2919,16 @@
   "Check which format is provided. A compatible machine-readable format for personal accounts is not confirmed.": "Check which format is provided. A compatible machine-readable format for personal accounts is not confirmed.",
   "In Yandex Pay, open Profile → Certificates → Contract statement.": "In Yandex Pay, open Profile → Certificates → Contract statement.",
   "Select the product and period, then check the downloaded file format before importing.": "Select the product and period, then check the downloaded file format before importing.",
-  "Transactions live in accounts. Add your first account, then enter transactions or import a supported bank statement.": "Transactions live in accounts. Add your first account, then enter transactions or import a supported bank statement."
+  "Transactions live in accounts. Add your first account, then enter transactions or import a supported bank statement.": "Transactions live in accounts. Add your first account, then enter transactions or import a supported bank statement.",
+  "Budget view": "Budget view",
+  "Envelope": "Envelope",
+  "Tracking": "Tracking",
+  "Expenses only": "Expenses only",
+  "Expenses by category": "Expenses by category",
+  "Previous period": "Previous period",
+  "Next period": "Next period",
+  "Could not load expenses. Please try again.": "Could not load expenses. Please try again.",
+  "Loading expenses…": "Loading expenses…",
+  "No expenses in this period.": "No expenses in this period.",
+  "Swipe horizontally to see dates.": "Swipe horizontally to see dates."
 }
