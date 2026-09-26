@@ -42,6 +42,43 @@ function transaction(
 }
 
 describe('summarizeCashFlow', () => {
+  it('shows loan movements separately from income and expenses', () => {
+    const result = summarizeCashFlow(
+      [
+        transaction('salary', 10_000, 'salary'),
+        transaction('food', -2_000, 'groceries'),
+        transaction('borrowed', 35_000, 'borrowed'),
+        transaction('repaid', -5_000, 'repaid'),
+      ],
+      [
+        ...groups,
+        {
+          id: 'loans',
+          name: 'ЗАЙМЫ',
+          categories: [
+            { id: 'borrowed', name: 'Я взял в долг', group: 'loans' },
+            { id: 'repaid', name: 'Я вернул долг', group: 'loans' },
+          ],
+        },
+      ],
+      period,
+    );
+
+    expect(result.income).toBe(10_000);
+    expect(result.expenses).toBe(2_000);
+    expect(result.netFlow).toBe(8_000);
+    expect(result.loanMovement).toBe(30_000);
+    expect(result.loanTransactionCount).toBe(2);
+    expect(result.loanGroups[0]?.total).toBe(30_000);
+    expect(result.loanGroups[0]?.categories.map(row => row.total)).toEqual([
+      35_000, -5_000,
+    ]);
+    expect(result.loanColumnTotals['2026-09-01']).toBe(30_000);
+    expect(result.expenseGroups.map(group => group.name)).not.toContain(
+      'ЗАЙМЫ',
+    );
+  });
+
   it('accounts for signed category amounts, refunds and income reversals', () => {
     const result = summarizeCashFlow(
       [

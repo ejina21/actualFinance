@@ -1,3 +1,4 @@
+import type { ReactNode } from 'react';
 import { Trans } from 'react-i18next';
 
 import { theme } from '@actual-app/components/theme';
@@ -9,7 +10,7 @@ import { signedAmountColor } from './summaryStyles';
 
 const gridClassName = css({
   display: 'grid',
-  gridTemplateColumns: 'repeat(4, minmax(0, 1fr))',
+  gridTemplateColumns: 'repeat(auto-fit, minmax(160px, 1fr))',
   gap: 0,
   overflow: 'hidden',
   minHeight: 'min-content',
@@ -25,6 +26,7 @@ type SummaryCardsProps = {
   income: number;
   expenses: number;
   netFlow: number;
+  loanMovement?: number;
   closingBalance: number;
   periodLabel: string;
 };
@@ -33,13 +35,30 @@ export function SummaryCards({
   income,
   expenses,
   netFlow,
+  loanMovement,
   closingBalance,
   periodLabel,
 }: SummaryCardsProps) {
-  const cards = [
+  const cards: {
+    id: string;
+    label: ReactNode;
+    value: number;
+    detail?: ReactNode;
+    hero?: boolean;
+  }[] = [
     { id: 'income', label: <Trans>Income</Trans>, value: income },
     { id: 'expenses', label: <Trans>Expenses</Trans>, value: expenses },
     { id: 'net', label: <Trans>Net flow</Trans>, value: netFlow },
+    ...(loanMovement === undefined
+      ? []
+      : [
+          {
+            id: 'loans',
+            label: <Trans>Loan activity</Trans>,
+            value: loanMovement,
+            detail: <Trans>Outside income and expenses</Trans>,
+          },
+        ]),
     {
       id: 'balance',
       label: <Trans>Closing balance</Trans>,
@@ -77,6 +96,9 @@ export function SummaryCards({
           >
             <SummaryMoney value={card.value} />
           </strong>
+          {card.detail && (
+            <span style={{ fontSize: 12, opacity: 0.8 }}>{card.detail}</span>
+          )}
         </div>
       ))}
     </div>

@@ -141,6 +141,11 @@ export function FinanceSummaryPage() {
                 income={cashFlow.income}
                 expenses={cashFlow.expenses}
                 netFlow={cashFlow.netFlow}
+                loanMovement={
+                  cashFlow.loanGroups.length > 0
+                    ? cashFlow.loanMovement
+                    : undefined
+                }
                 closingBalance={closingOnBudget}
                 periodLabel={periodLabel}
               />
@@ -171,7 +176,8 @@ export function FinanceSummaryPage() {
                 </div>
                 {!isComparing &&
                   cashFlow.income === 0 &&
-                  cashFlow.expenses === 0 && (
+                  cashFlow.expenses === 0 &&
+                  cashFlow.loanTransactionCount === 0 && (
                     <p style={{ margin: 0, color: theme.pageTextLight }}>
                       <Trans>No transactions in this period.</Trans>
                     </p>
@@ -205,6 +211,15 @@ export function FinanceSummaryPage() {
                     movements but excluded from income and expenses. Off-budget
                     accounts are separate from the closing balance.
                   </Trans>
+                  {cashFlow.loanGroups.length > 0 && (
+                    <>
+                      {' '}
+                      <Trans>
+                        Loan activity changes account balances but not income or
+                        expenses.
+                      </Trans>
+                    </>
+                  )}
                 </p>
               </section>
             )}

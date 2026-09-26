@@ -43,6 +43,90 @@ test('opens the finance report by default without redundant page title', async (
   ).toMatchThemeScreenshots();
 });
 
+test('shows loans separately without changing income or expenses', async ({
+  page,
+}) => {
+  await page.goto('/');
+  await page.getByRole('button', { name: 'Открыть демоверсию' }).click();
+  const summary = page.getByTestId('finance-summary');
+  await summary.getByLabel('месяц', { exact: true }).fill('2016-07');
+  const cards = summary.getByTestId('finance-summary-cards');
+  const incomeBefore = await cards
+    .getByText('Доход', { exact: true })
+    .locator('..')
+    .locator('strong')
+    .textContent();
+  const expensesBefore = await cards
+    .getByText('Расходы', { exact: true })
+    .locator('..')
+    .locator('strong')
+    .textContent();
+
+  await page.evaluate(async () => {
+    const send = (
+      window as unknown as {
+        $send: (type: string, args?: unknown) => Promise<unknown>;
+      }
+    ).$send;
+    const accounts = (await send('accounts-get')) as {
+      id: string;
+      offbudget: boolean;
+    }[];
+    const account = accounts.find(row => !row.offbudget);
+    if (!account) {
+      throw new Error('Demo budget has no on-budget account');
+    }
+    const groupId = (await send('category-group-create', {
+      name: 'ЗАЙМЫ',
+    })) as string;
+    const borrowedId = (await send('category-create', {
+      name: 'Я взял в долг',
+      groupId,
+    })) as string;
+    const repaidId = (await send('category-create', {
+      name: 'Я вернул долг',
+      groupId,
+    })) as string;
+    await send('transaction-add', {
+      id: crypto.randomUUID(),
+      account: account.id,
+      category: borrowedId,
+      date: '2016-07-18',
+      amount: 35_000_00,
+    });
+    await send('transaction-add', {
+      id: crypto.randomUUID(),
+      account: account.id,
+      category: repaidId,
+      date: '2016-07-20',
+      amount: -5_000_00,
+    });
+    await (
+      window as unknown as {
+        __TANSTACK_QUERY_CLIENT__: {
+          invalidateQueries: () => Promise<void>;
+        };
+      }
+    ).__TANSTACK_QUERY_CLIENT__.invalidateQueries();
+  });
+
+  const loanCard = cards.getByText('Движение займов').locator('..');
+  await expect(loanCard).toContainText('30,000');
+  await expect(
+    cards.getByText('Доход', { exact: true }).locator('..').locator('strong'),
+  ).toHaveText(incomeBefore ?? '');
+  await expect(
+    cards.getByText('Расходы', { exact: true }).locator('..').locator('strong'),
+  ).toHaveText(expensesBefore ?? '');
+  await expect(summary.getByTestId('finance-summary-loans')).toBeVisible();
+  await expect(summary.getByText('Я взял в долг')).toBeVisible();
+  await expect(summary.getByText('Я вернул долг')).toBeVisible();
+  await expect(loanCard).toMatchThemeScreenshots();
+  await expect(
+    summary.getByTestId('finance-summary-loans'),
+  ).toMatchThemeScreenshots();
+});
+
 test('shows comparison immediately and preserves the selected report period', async ({
   page,
 }) => {

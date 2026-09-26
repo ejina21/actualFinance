@@ -28,10 +28,11 @@ type SummaryTableProps = {
 };
 
 const LABEL_COLUMN_WIDTH = 'clamp(150px, 22vw, 225px)';
+type SummarySection = 'income' | 'expenses' | 'loans';
 
 function comparisonValue(
   summary: CashFlowSummary | undefined,
-  section: 'income' | 'expenses',
+  section: SummarySection,
   groupId: string | null,
   categoryId: string | null,
 ): number {
@@ -41,10 +42,16 @@ function comparisonValue(
   if (groupId === null) {
     return section === 'income'
       ? summary.uncategorizedIncome.total
-      : summary.uncategorizedExpenses.total;
+      : section === 'expenses'
+        ? summary.uncategorizedExpenses.total
+        : 0;
   }
   const groups =
-    section === 'income' ? summary.incomeGroups : summary.expenseGroups;
+    section === 'income'
+      ? summary.incomeGroups
+      : section === 'expenses'
+        ? summary.expenseGroups
+        : summary.loanGroups;
   const group = groups.find(row => row.id === groupId);
   if (categoryId === null) {
     return group?.total ?? 0;
@@ -133,7 +140,7 @@ export function SummaryTable({
 
   function renderRow(
     row: CashFlowRow,
-    section: 'income' | 'expenses',
+    section: SummarySection,
     groupId: string | null,
     categoryId: string | null,
     label: ReactNode,
@@ -194,7 +201,7 @@ export function SummaryTable({
     );
   }
 
-  function renderGroup(group: CashFlowGroup, section: 'income' | 'expenses') {
+  function renderGroup(group: CashFlowGroup, section: SummarySection) {
     const isCollapsed = collapsed.has(`${section}-${group.id}`);
     return [
       renderRow(
@@ -236,33 +243,44 @@ export function SummaryTable({
 
   function sectionTotal(
     source: CashFlowSummary | undefined,
-    section: 'income' | 'expenses',
+    section: SummarySection,
   ) {
-    return source?.[section] ?? 0;
+    return section === 'loans'
+      ? (source?.loanMovement ?? 0)
+      : (source?.[section] ?? 0);
   }
 
-  function renderSectionRow(section: 'income' | 'expenses') {
+  function renderSectionRow(section: SummarySection) {
     const total = sectionTotal(summary, section);
+    const backgroundColor =
+      section === 'loans'
+        ? theme.tableHeaderBackground
+        : theme.financeSoftAccent;
     return (
-      <tr key={section}>
+      <tr
+        key={section}
+        data-testid={section === 'loans' ? 'finance-summary-loans' : undefined}
+      >
         <th
           scope="rowgroup"
           style={{
             ...labelCellStyle,
-            backgroundColor: theme.financeSoftAccent,
+            backgroundColor,
           }}
         >
           {section === 'income' ? (
             <Trans>Income</Trans>
-          ) : (
+          ) : section === 'expenses' ? (
             <Trans>Expenses</Trans>
+          ) : (
+            <Trans>Outside income and expenses</Trans>
           )}
         </th>
         {!hasComparison && (
           <td
             style={{
               ...totalCellStyle,
-              backgroundColor: theme.financeSoftAccent,
+              backgroundColor,
               fontWeight: 700,
             }}
           >
@@ -270,26 +288,30 @@ export function SummaryTable({
           </td>
         )}
         {isAnnual && (
-          <td style={sectionCellStyle}>
+          <td style={{ ...sectionCellStyle, backgroundColor }}>
             <SummaryMoney value={monthlyAverage(total)} />
           </td>
         )}
         {visibleColumns.map(column => (
-          <td key={column.key} style={sectionCellStyle}>
+          <td key={column.key} style={{ ...sectionCellStyle, backgroundColor }}>
             <SummaryMoney
-              value={summary.columnTotals[column.key]?.[section] ?? 0}
+              value={
+                section === 'loans'
+                  ? (summary.loanColumnTotals[column.key] ?? 0)
+                  : (summary.columnTotals[column.key]?.[section] ?? 0)
+              }
             />
           </td>
         ))}
         {hasComparison && (
-          <td style={sectionCellStyle}>
+          <td style={{ ...sectionCellStyle, backgroundColor }}>
             <SummaryMoney
               value={sectionTotal(comparison[baseMonth], section)}
             />
           </td>
         )}
         {compareMonths.map(month => (
-          <td key={month} style={sectionCellStyle}>
+          <td key={month} style={{ ...sectionCellStyle, backgroundColor }}>
             <SummaryMoney value={sectionTotal(comparison[month], section)} />
           </td>
         ))}
@@ -483,6 +505,12 @@ export function SummaryTable({
               );
             })}
           </tr>
+          {summary.loanGroups.length > 0 && (
+            <>
+              {renderSectionRow('loans')}
+              {summary.loanGroups.flatMap(group => renderGroup(group, 'loans'))}
+            </>
+          )}
         </tbody>
       </table>
     </div>

@@ -28,9 +28,13 @@ export type CashFlowSummary = {
   income: number;
   expenses: number;
   netFlow: number;
+  loanMovement: number;
+  loanTransactionCount: number;
   columnTotals: Record<string, { income: number; expenses: number }>;
+  loanColumnTotals: Record<string, number>;
   incomeGroups: CashFlowGroup[];
   expenseGroups: CashFlowGroup[];
+  loanGroups: CashFlowGroup[];
   uncategorizedIncome: CashFlowRow;
   uncategorizedExpenses: CashFlowRow;
 };
@@ -54,9 +58,14 @@ export function summarizeCashFlow(
 
   const incomeGroups: CashFlowGroup[] = [];
   const expenseGroups: CashFlowGroup[] = [];
+  const loanGroups: CashFlowGroup[] = [];
   const categoryLookup = new Map<
     string,
-    { group: CashFlowGroup; category: CashFlowRow; kind: 'income' | 'expenses' }
+    {
+      group: CashFlowGroup;
+      category: CashFlowRow;
+      kind: 'income' | 'expenses' | 'loans';
+    }
   >();
   for (const sourceGroup of groups) {
     if (sourceGroup.tombstone) {
@@ -66,7 +75,12 @@ export function summarizeCashFlow(
       ...row(sourceGroup.id, sourceGroup.name),
       categories: [],
     };
-    const kind = sourceGroup.is_income ? 'income' : 'expenses';
+    const kind =
+      sourceGroup.name.trim().toLocaleUpperCase('ru-RU') === 'ЗАЙМЫ'
+        ? 'loans'
+        : sourceGroup.is_income
+          ? 'income'
+          : 'expenses';
     for (const sourceCategory of sourceGroup.categories ?? []) {
       if (sourceCategory.tombstone) {
         continue;
@@ -75,7 +89,9 @@ export function summarizeCashFlow(
       group.categories.push(category);
       categoryLookup.set(category.id, { group, category, kind });
     }
-    if (kind === 'income') {
+    if (kind === 'loans') {
+      loanGroups.push(group);
+    } else if (kind === 'income') {
       incomeGroups.push(group);
     } else {
       expenseGroups.push(group);
@@ -87,9 +103,12 @@ export function summarizeCashFlow(
   const columnTotals = Object.fromEntries(
     period.columns.map(column => [column.key, { income: 0, expenses: 0 }]),
   ) satisfies CashFlowSummary['columnTotals'];
+  const loanColumnTotals = values();
   const hasDailyColumns = period.columns[0]?.key.length === 10;
   let income = 0;
   let expenses = 0;
+  let loanMovement = 0;
+  let loanTransactionCount = 0;
 
   for (const transaction of rows) {
     if (
@@ -118,7 +137,10 @@ export function summarizeCashFlow(
       (transaction.categoryIsIncome || transaction.amount >= 0
         ? 'income'
         : 'expenses');
-    const value = kind === 'income' ? transaction.amount : -transaction.amount;
+    const value =
+      kind === 'loans' || kind === 'income'
+        ? transaction.amount
+        : -transaction.amount;
     const target =
       found?.category ??
       (kind === 'income' ? uncategorizedIncome : uncategorizedExpenses);
@@ -128,11 +150,16 @@ export function summarizeCashFlow(
       found.group.total += value;
       found.group.values[key] += value;
     }
-    column[kind] += value;
-    if (kind === 'income') {
+    if (kind === 'loans') {
+      loanMovement += value;
+      loanTransactionCount += 1;
+      loanColumnTotals[key] += value;
+    } else if (kind === 'income') {
       income += value;
+      column.income += value;
     } else {
       expenses += value;
+      column.expenses += value;
     }
   }
 
@@ -140,9 +167,13 @@ export function summarizeCashFlow(
     income,
     expenses,
     netFlow: income - expenses,
+    loanMovement,
+    loanTransactionCount,
     columnTotals,
+    loanColumnTotals,
     incomeGroups,
     expenseGroups,
+    loanGroups,
     uncategorizedIncome,
     uncategorizedExpenses,
   };
