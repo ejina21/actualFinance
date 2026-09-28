@@ -41,10 +41,19 @@ import { useCategories } from '#hooks/useCategories';
 import { useDateFormat } from '#hooks/useDateFormat';
 import { useSyncedPrefs } from '#hooks/useSyncedPrefs';
 import { payeeQueries } from '#payees';
+import { saveSyncedPrefs } from '#prefs/prefsSlice';
+import { useDispatch } from '#redux';
 
 import { AccountRouting } from './AccountRouting';
+import { findImportCategory, readCategoryRules } from './categoryRules';
 import { DateFormatSelect } from './DateFormatSelect';
 import { FieldMappings } from './FieldMappings';
+import {
+  areCsvMappingsCompatible,
+  getCsvImportProfile,
+  getCsvImportProfileKey,
+} from './importSettings';
+import type { CsvImportProfile } from './importSettings';
 import { InOutOption } from './InOutOption';
 import { MultiplierOption } from './MultiplierOption';
 import { Transaction } from './Transaction';
@@ -231,11 +240,23 @@ export function ImportTransactionsModal({
   const dateFormat = useDateFormat() || ('MM/dd/yyyy' as const);
   const [prefs, savePrefs] = useSyncedPrefs();
   const initialPrefs = useRef(prefs).current;
+  const initialProfile = useRef(
+    getCsvImportProfile(initialPrefs, accountId),
+  ).current;
+  const dispatch = useDispatch();
   const { data: allAccounts = [] } = useAccounts();
   const availableAccounts = allAccounts.filter(account => !account.closed);
-  const { data: { list: categories } = { list: [] } } = useCategories();
+  const {
+    data: { list: categories, grouped: categoryGroups } = {
+      list: [],
+      grouped: [],
+    },
+  } = useCategories();
+  const categoryRules = readCategoryRules(prefs);
 
-  const [multiplierAmount, setMultiplierAmount] = useState('');
+  const [multiplierAmount, setMultiplierAmount] = useState(
+    initialProfile?.multiplierAmount ?? '',
+  );
   const [loadingState, setLoadingState] = useState<
     null | 'parsing' | 'importing'
   >('parsing');
@@ -251,11 +272,22 @@ export function ImportTransactionsModal({
   const [filetype, setFileType] = useState('unknown');
   const [fieldMappings, setFieldMappings] = useState<FieldMapping | null>(null);
   const [splitMode, setSplitMode] = useState(false);
-  const [flipAmount, setFlipAmount] = useState(false);
-  const [multiplierEnabled, setMultiplierEnabled] = useState(false);
-  const [reconcile, setReconcile] = useState(true);
-  const [importNotes, setImportNotes] = useState(true);
-  const [autoExcludePairs, setAutoExcludePairs] = useState(true);
+  const [flipAmount, setFlipAmount] = useState(
+    initialProfile?.flipAmount ?? false,
+  );
+  const [multiplierEnabled, setMultiplierEnabled] = useState(
+    !!initialProfile?.multiplierAmount,
+  );
+  const [reconcile, setReconcile] = useState(initialProfile?.reconcile ?? true);
+  const [importNotes, setImportNotes] = useState(
+    initialProfile?.importNotes ?? true,
+  );
+  const [autoExcludePairs, setAutoExcludePairs] = useState(
+    initialProfile?.autoExcludePairs ?? true,
+  );
+  const [profileSaveState, setProfileSaveState] = useState<
+    'idle' | 'saving' | 'saved' | 'error'
+  >('idle');
   const [accountRoutes, setAccountRoutes] = useState<Record<string, string>>(
     {},
   );
@@ -277,26 +309,31 @@ export function ImportTransactionsModal({
   // parsed different files without closing the modal, it wouldn't
   // re-read this.
   const [delimiter, setDelimiter] = useState(
-    prefs[`csv-delimiter-${accountId}`] ||
+    initialProfile?.delimiter ||
+      prefs[`csv-delimiter-${accountId}`] ||
       (filename.endsWith('.tsv') ? '\t' : 'auto'),
   );
   const [csvEncoding, setCsvEncoding] = useState(
-    prefs[`csv-encoding-${accountId}`] || 'auto',
+    initialProfile?.encoding || prefs[`csv-encoding-${accountId}`] || 'auto',
   );
   const [skipStartLines, setSkipStartLines] = useState(
-    parseInt(prefs[`csv-skip-start-lines-${accountId}`], 10) || 0,
+    initialProfile?.skipStartLines ??
+      (parseInt(prefs[`csv-skip-start-lines-${accountId}`], 10) || 0),
   );
   const [skipEndLines, setSkipEndLines] = useState(
-    parseInt(prefs[`csv-skip-end-lines-${accountId}`], 10) || 0,
+    initialProfile?.skipEndLines ??
+      (parseInt(prefs[`csv-skip-end-lines-${accountId}`], 10) || 0),
   );
   const [inOutMode, setInOutMode] = useState(
-    String(prefs[`csv-in-out-mode-${accountId}`]) === 'true',
+    initialProfile?.inOutMode ??
+      String(prefs[`csv-in-out-mode-${accountId}`]) === 'true',
   );
   const [outValue, setOutValue] = useState(
-    prefs[`csv-out-value-${accountId}`] ?? '',
+    initialProfile?.outValue ?? prefs[`csv-out-value-${accountId}`] ?? '',
   );
   const [hasHeaderRow, setHasHeaderRow] = useState(
-    String(prefs[`csv-has-header-${accountId}`]) !== 'false',
+    initialProfile?.hasHeaderRow ??
+      String(prefs[`csv-has-header-${accountId}`]) !== 'false',
   );
   const [fallbackMissingPayeeToMemo, setFallbackMissingPayeeToMemo] = useState(
     String(prefs[`ofx-fallback-missing-payee-${accountId}`]) !== 'false',
@@ -311,14 +348,18 @@ export function ImportTransactionsModal({
     String(prefs[`camt-swap-payee-memo-${accountId}`]) === 'true',
   );
   const [reimportDeleted, setReimportDeleted] = useState(
-    String(prefs[`import-reimport-deleted-${accountId}`] || 'true') === 'true',
+    initialProfile?.reimportDeleted ??
+      String(prefs[`import-reimport-deleted-${accountId}`] || 'true') ===
+        'true',
   );
 
   const [parseDateFormat, setParseDateFormat] = useState<DateFormat | null>(
     null,
   );
 
-  const [clearOnImport, setClearOnImport] = useState(true);
+  const [clearOnImport, setClearOnImport] = useState(
+    initialProfile?.clearOnImport ?? true,
+  );
   const [startDate, setStartDate] = useState('');
   const lastParseRef = useRef<LastParse | null>(null);
 
@@ -450,7 +491,16 @@ export function ImportTransactionsModal({
           break;
         }
 
-        const category_id = parseCategoryFields(trans, categories);
+        const category_id =
+          parseCategoryFields(trans, categories) ??
+          (filetype === 'csv'
+            ? findImportCategory(
+                trans.payee_name ?? '',
+                categoryRules,
+                categories,
+                categoryGroups,
+              )
+            : null);
         trans.category = category_id;
 
         const {
@@ -469,12 +519,13 @@ export function ImportTransactionsModal({
           date,
           amount: amountToInteger(amount),
           cleared: clearOnImport,
+          notes: importNotes ? finalTransaction.notes : null,
         });
       }
 
       return previewTransactions;
     },
-    [categories, clearOnImport],
+    [categories, categoryGroups, categoryRules, clearOnImport, importNotes],
   );
 
   const parse = useCallback(
@@ -530,29 +581,45 @@ export function ImportTransactionsModal({
           (filetype === 'csv' || filetype === 'qif')
         ) {
           const flipAmount =
+            initialProfile?.flipAmount ??
             String(initialPrefs[`flip-amount-${accountId}-${filetype}`]) ===
-            'true';
+              'true';
           setFlipAmount(flipAmount);
         }
 
         if (filetype === 'csv') {
           if (!preserveImportSettings) {
-            let mappings = initialPrefs[`csv-mappings-${accountId}`];
-            mappings = mappings
-              ? JSON.parse(mappings)
+            const savedMappings = initialPrefs[`csv-mappings-${accountId}`];
+            const candidateMappings = initialProfile?.mappings
+              ? initialProfile.mappings
+              : savedMappings
+                ? JSON.parse(savedMappings)
+                : getInitialMappings(transactions);
+            const columns = transactions[0]
+              ? Object.keys(
+                  stripCsvImportTransaction(
+                    transactions[0] as ImportTransaction,
+                  ),
+                )
+              : [];
+            const mappings = areCsvMappingsCompatible(
+              candidateMappings,
+              columns,
+            )
+              ? candidateMappings
               : getInitialMappings(transactions);
 
-            // @ts-expect-error - mappings might not have outflow/inflow properties
             setFieldMappings(mappings);
 
             // Set initial split mode based on any saved mapping
-            // @ts-expect-error - mappings might not have outflow/inflow properties
             const splitMode = !!(mappings.outflow || mappings.inflow);
             setSplitMode(splitMode);
 
             const parseDateFormat =
-              initialPrefs[`parse-date-${accountId}-${filetype}`] ||
-              getInitialDateFormat(transactions, mappings);
+              (mappings === candidateMappings
+                ? initialProfile?.dateFormat ||
+                  initialPrefs[`parse-date-${accountId}-${filetype}`]
+                : null) || getInitialDateFormat(transactions, mappings);
             setParseDateFormat(
               isDateFormat(parseDateFormat) ? parseDateFormat : null,
             );
@@ -577,7 +644,7 @@ export function ImportTransactionsModal({
       setLoadingState(null);
     },
     // We use some state variables from the component, but do not want to re-parse when they change
-    [accountId, initialPrefs],
+    [accountId, initialPrefs, initialProfile],
   );
 
   function onMultiplierChange(e) {
@@ -750,6 +817,79 @@ export function ImportTransactionsModal({
 
   const importTransactions = useImportTransactionsMutation();
 
+  async function saveCsvProfile() {
+    if (!fieldMappings || !parseDateFormat || parsedTransactions.length === 0) {
+      return;
+    }
+
+    const profile: CsvImportProfile = {
+      columns: Object.keys(stripCsvImportTransaction(parsedTransactions[0])),
+      mappings: fieldMappings,
+      dateFormat: parseDateFormat,
+      delimiter,
+      encoding: csvEncoding,
+      hasHeaderRow,
+      skipStartLines,
+      skipEndLines,
+      inOutMode,
+      outValue,
+      flipAmount,
+      multiplierAmount,
+      importNotes,
+      autoExcludePairs,
+      clearOnImport,
+      reconcile,
+      reimportDeleted,
+    };
+    let savedRoutes: Record<string, string> = {};
+    try {
+      savedRoutes = JSON.parse(prefs['csv-account-routes'] ?? '{}');
+    } catch {
+      savedRoutes = {};
+    }
+
+    setProfileSaveState('saving');
+    try {
+      await dispatch(
+        saveSyncedPrefs({
+          prefs: {
+            [getCsvImportProfileKey(accountId)]: JSON.stringify(profile),
+            'csv-account-routes': JSON.stringify({
+              ...savedRoutes,
+              ...accountRoutes,
+            }),
+          },
+        }),
+      ).unwrap();
+      setProfileSaveState('saved');
+    } catch (saveError) {
+      setProfileSaveState('error');
+      throw saveError;
+    }
+  }
+
+  useEffect(() => {
+    setProfileSaveState('idle');
+  }, [
+    fieldMappings,
+    parseDateFormat,
+    delimiter,
+    csvEncoding,
+    hasHeaderRow,
+    skipStartLines,
+    skipEndLines,
+    inOutMode,
+    outValue,
+    flipAmount,
+    multiplierAmount,
+    importNotes,
+    autoExcludePairs,
+    clearOnImport,
+    reconcile,
+    reimportDeleted,
+    accountRoutes,
+  ]);
+
   async function onImport(close) {
     if (hasUnresolvedRoutes) {
       return;
@@ -811,7 +951,16 @@ export function ImportTransactionsModal({
         break;
       }
 
-      const category_id = parseCategoryFields(trans, categories);
+      const category_id =
+        parseCategoryFields(trans, categories) ??
+        (filetype === 'csv'
+          ? findImportCategory(
+              trans.payee_name ?? '',
+              categoryRules,
+              categories,
+              categoryGroups,
+            )
+          : null);
       trans.category = category_id;
 
       const {
@@ -908,6 +1057,9 @@ export function ImportTransactionsModal({
     });
 
     try {
+      if (filetype === 'csv') {
+        await saveCsvProfile();
+      }
       for (const [
         destinationAccountId,
         accountTransactions,
@@ -923,20 +1075,6 @@ export function ImportTransactionsModal({
         });
         completedAccountsRef.current.add(destinationAccountId);
         importDidChangeRef.current = importDidChangeRef.current || changed;
-      }
-      if (routingRequired) {
-        let savedRoutes: Record<string, string> = {};
-        try {
-          savedRoutes = JSON.parse(initialPrefs['csv-account-routes'] ?? '{}');
-        } catch {
-          savedRoutes = {};
-        }
-        savePrefs({
-          'csv-account-routes': JSON.stringify({
-            ...savedRoutes,
-            ...accountRoutes,
-          }),
-        });
       }
       if (importDidChangeRef.current) {
         void queryClient.invalidateQueries(payeeQueries.list());
@@ -1244,6 +1382,9 @@ export function ImportTransactionsModal({
                       flipAmount={flipAmount}
                       multiplierAmount={multiplierAmount}
                       categories={categories}
+                      categoryGroups={categoryGroups}
+                      categoryRules={categoryRules}
+                      importNotes={importNotes}
                       onCheckTransaction={onCheckTransaction}
                       reconcile={effectiveReconcile}
                       canSelect={
@@ -1659,6 +1800,39 @@ export function ImportTransactionsModal({
           )}
 
           <View style={{ flexDirection: 'row', marginTop: 5 }}>
+            {filetype === 'csv' && (
+              <View
+                style={{
+                  display: 'flex',
+                  flexDirection: 'row',
+                  alignItems: 'center',
+                  gap: 10,
+                  flexWrap: 'wrap',
+                }}
+              >
+                <ButtonWithLoading
+                  isDisabled={!fieldMappings || !parseDateFormat}
+                  isLoading={profileSaveState === 'saving'}
+                  onPress={() => {
+                    void saveCsvProfile().catch(() => {
+                      setProfileSaveState('error');
+                    });
+                  }}
+                >
+                  {t('Сохранить настройки импорта')}
+                </ButtonWithLoading>
+                {profileSaveState === 'saved' && (
+                  <Text style={{ color: theme.pageTextPositive }}>
+                    {t('Настройки сохранены для следующих загрузок')}
+                  </Text>
+                )}
+                {profileSaveState === 'error' && (
+                  <Text style={{ color: theme.errorText }}>
+                    {t('Не удалось сохранить настройки')}
+                  </Text>
+                )}
+              </View>
+            )}
             {/*Submit Button */}
             <View
               style={{

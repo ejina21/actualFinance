@@ -34,6 +34,8 @@ import { EncryptionSettings } from './Encryption';
 import { ExperimentalFeatures } from './Experimental';
 import { ExportBudget } from './Export';
 import { FormatSettings } from './Format';
+import { ImportCategoryRules } from './ImportCategoryRules';
+import { ImportSettings } from './ImportSettings';
 import { LanguageSettings } from './LanguageSettings';
 import { RepairTransactions } from './RepairTransactions';
 import { ResetCache, ResetSync } from './Reset';
@@ -264,6 +266,8 @@ export function Settings() {
         <AuthSettings />
         <EncryptionSettings />
         <BudgetTypeSettings />
+        <ImportSettings />
+        <ImportCategoryRules />
         {isElectron() && <Backups />}
         <ExportBudget />
         <AdvancedToggle>

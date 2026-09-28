@@ -9,11 +9,16 @@ import { theme } from '@actual-app/components/theme';
 import { Tooltip } from '@actual-app/components/tooltip';
 import { View } from '@actual-app/components/view';
 import { amountToCurrency } from '@actual-app/core/shared/util';
-import type { CategoryEntity } from '@actual-app/core/types/models';
+import type {
+  CategoryEntity,
+  CategoryGroupEntity,
+} from '@actual-app/core/types/models';
 
 import { Checkbox } from '#components/forms';
 import { Field, Row } from '#components/table';
 
+import { findImportCategory } from './categoryRules';
+import type { ImportCategoryRule } from './categoryRules';
 import { ParsedDate } from './ParsedDate';
 import { applyFieldMappings, formatDate, parseAmountFields } from './utils';
 import type { FieldMapping, ImportTransaction } from './utils';
@@ -30,6 +35,9 @@ type TransactionProps = {
   flipAmount: boolean;
   multiplierAmount: string;
   categories: CategoryEntity[];
+  categoryGroups: CategoryGroupEntity[];
+  categoryRules: ImportCategoryRule[];
+  importNotes: boolean;
   onCheckTransaction: (transactionId: string) => void;
   reconcile: boolean;
   canSelect?: boolean;
@@ -48,6 +56,9 @@ export function Transaction({
   flipAmount,
   multiplierAmount,
   categories,
+  categoryGroups,
+  categoryRules,
+  importNotes,
   onCheckTransaction,
   reconcile,
   canSelect = true,
@@ -63,6 +74,20 @@ export function Transaction({
         : rawTransaction,
     [rawTransaction, fieldMappings],
   );
+  const hasMappedCategory =
+    !!transaction.category && categoryList.includes(transaction.category);
+  const suggestedCategoryId =
+    showParsed && !hasMappedCategory
+      ? findImportCategory(
+          transaction.payee_name ?? '',
+          categoryRules,
+          categories,
+          categoryGroups,
+        )
+      : null;
+  const categoryLabel = hasMappedCategory
+    ? transaction.category
+    : categories.find(category => category.id === suggestedCategoryId)?.name;
 
   const { amount, outflow, inflow } = useMemo(() => {
     if (rawTransaction.isMatchedTransaction) {
@@ -216,20 +241,11 @@ export function Transaction({
       >
         {transaction.payee_name}
       </Field>
-      <Field width="flex" title={transaction.notes}>
-        {transaction.notes}
+      <Field width="flex" title={importNotes ? transaction.notes : undefined}>
+        {importNotes ? transaction.notes : null}
       </Field>
-      <Field
-        width="flex"
-        title={
-          transaction.category && categoryList.includes(transaction.category)
-            ? transaction.category
-            : undefined
-        }
-      >
-        {transaction.category &&
-          categoryList.includes(transaction.category) &&
-          transaction.category}
+      <Field width="flex" title={categoryLabel}>
+        {categoryLabel}
       </Field>
       {inOutMode && (
         <Field

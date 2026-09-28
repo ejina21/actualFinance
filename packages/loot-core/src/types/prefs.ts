@@ -47,9 +47,12 @@ export type SyncedPrefs = Partial<
     | `parse-date-${string}-${'csv' | 'qif'}`
     | `import-reimport-deleted-${string}`
     | `csv-mappings-${string}`
+    | `csv-import-profile-${string}`
+    | 'csv-category-rules'
     | 'csv-account-routes'
     | `manual-bank-${string}`
     | `csv-delimiter-${string}`
+    | `csv-encoding-${string}`
     | `csv-skip-start-lines-${string}`
     | `csv-skip-end-lines-${string}`
     | `csv-in-out-mode-${string}`
@@ -66,6 +69,7 @@ export type SyncedPrefs = Partial<
     | `qif-swap-payee-memo-${string}`
     | `camt-swap-payee-memo-${string}`
     | `flip-amount-${string}-${'csv' | 'qif'}`
+    | `import-notes-${string}-${'csv' | 'qif'}`
     | `flags.${FeatureFlag}`
     | `learn-categories`
     | `show-hidden-tags`,

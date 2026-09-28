@@ -166,3 +166,68 @@ test('import draft remains open when the user changes the app section', async ({
   await expect(modal.locator('#start-date-filter')).toHaveValue('2016-06-01');
   await expect(firstTransaction).not.toBeChecked();
 });
+
+test('saved CSV settings are editable and applied to the next upload', async ({
+  page,
+}) => {
+  await page.goto('/');
+  await page.getByRole('button', { name: 'Открыть демоверсию' }).click();
+  await page.getByRole('button', { name: 'Добавить счёт' }).click();
+  await page.getByLabel('Название').fill('Счёт для шаблона');
+  await page.getByRole('button', { name: 'Создать', exact: true }).click();
+  await page.getByRole('link', { name: 'Все счета' }).first().click();
+
+  async function uploadStatement() {
+    const chooserPromise = page.waitForEvent('filechooser');
+    await page.getByRole('button', { name: 'Импорт', exact: true }).click();
+    const chooser = await chooserPromise;
+    await chooser.setFiles({
+      name: 'statement.csv',
+      mimeType: 'text/csv',
+      buffer: Buffer.from(
+        'Имя счёта;Дата операции;Сумма в валюте счёта;Описание;Сообщение;Метка\n' +
+          'Счёт для шаблона;28.09.2026;-10,00;Покупка;заказ;метка',
+      ),
+    });
+    return page.getByTestId('import-transactions-modal');
+  }
+
+  const modal = await uploadStatement();
+  await modal.getByText('Поля заметки: 1').click();
+  await modal.getByLabel('Метка').check();
+  await modal
+    .getByRole('button', { name: 'Сохранить настройки импорта' })
+    .click();
+  await expect(modal).toContainText('Настройки сохранены');
+  await modal.getByRole('button', { name: 'Закрыть' }).click();
+
+  await page.goto('/settings');
+  const settings = page.getByTestId('settings');
+  await expect(settings).toContainText('Настройки импорта выписок');
+  await expect(settings).toContainText('Поля заметки: 2');
+  await settings.locator('#saved-import-pairs-all').uncheck();
+  await settings.getByRole('button', { name: 'Сохранить шаблон' }).click();
+  await expect(settings).toContainText('Сохранено');
+  await settings
+    .locator('#import-category-rules')
+    .fill('| Покупка | СЕМЬЯ | Расходы | Food |');
+  await expect(settings).toContainText('категории найдены: 1');
+  await settings.getByRole('button', { name: 'Сохранить справочник' }).click();
+  await expect(settings).toContainText('Сохранено');
+  await expect(
+    settings.getByTestId('import-category-settings'),
+  ).toMatchThemeScreenshots();
+
+  await page.getByRole('link', { name: 'Все счета' }).first().click();
+  const nextModal = await uploadStatement();
+  await expect(nextModal).toContainText('Поля заметки: 2');
+  await expect(nextModal.locator('#auto-exclude-pairs')).not.toBeChecked();
+  await expect(
+    nextModal.getByTestId('row').filter({ hasText: 'Покупка' }),
+  ).toContainText('Food');
+  await nextModal.getByRole('button', { name: /Импортировать 1/ }).click();
+  await expect(nextModal).toHaveCount(0);
+  await expect(
+    page.getByTestId('row').filter({ hasText: 'Покупка' }),
+  ).toContainText('Food');
+});
