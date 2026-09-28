@@ -96,11 +96,6 @@ test('a combined CSV can be assigned to accounts from All accounts', async ({
 }) => {
   await page.goto('/');
   await page.getByRole('button', { name: 'Открыть демоверсию' }).click();
-  for (const accountName of ['Счёт А', 'Счёт Б']) {
-    await page.getByRole('button', { name: 'Добавить счёт' }).click();
-    await page.getByLabel('Название').fill(accountName);
-    await page.getByRole('button', { name: 'Создать', exact: true }).click();
-  }
   await page.getByRole('link', { name: 'Все счета' }).first().click();
 
   const fileChooserPromise = page.waitForEvent('filechooser');
@@ -112,20 +107,27 @@ test('a combined CSV can be assigned to accounts from All accounts', async ({
     buffer: Buffer.from(
       [
         'Имя счёта;Дата операции;Сумма в валюте счёта;Описание;Сообщение;Метка',
-        'Счёт А;28.09.2026 10:00:00;-1,00;Тестовая оплата;покупка;карта',
-        'Счёт А;28.09.2026 10:01:00;1,00;Тестовая оплата;возврат;карта',
-        'Счёт Б;28.09.2026 12:00:00;-11,00;Другая оплата;заказ;контекст',
+        'Bank of America;28.09.2026 10:00:00;-1,00;Тестовая оплата;покупка;карта',
+        'Bank of America;28.09.2026 10:01:00;1,00;Тестовая оплата;возврат;карта',
+        'Ally Savings;28.09.2026 12:00:00;-11,00;Другая оплата;заказ;контекст',
       ].join('\n'),
     ),
   });
 
   const modal = page.getByTestId('import-transactions-modal');
   await expect(modal).toBeVisible();
-  await expect(modal).toContainText('Сопоставление счетов');
-  await expect(modal).toContainText('Счёт А');
-  await expect(modal).toContainText('Счёт Б');
+  await expect(modal.getByTestId('account-routing')).toHaveCount(0);
+  await expect(
+    modal.getByRole('button', { name: 'Настроить импорт' }),
+  ).toBeVisible();
   await expect(modal).toContainText('Исключено встречных операций: 2');
-  await expect(modal.getByTestId('account-routing')).toMatchThemeScreenshots();
+  await expect(modal.locator('#auto-exclude-pairs')).toHaveCount(0);
+  await expect(
+    modal.getByTestId('csv-import-fields'),
+  ).toMatchThemeScreenshots();
+  await expect(
+    modal.getByTestId('csv-import-settings-hint'),
+  ).toMatchThemeScreenshots();
   await modal.getByText('Поля заметки: 1').click();
   await modal.getByLabel('Метка').check();
   await expect(modal).toContainText('заказ / контекст');
@@ -135,6 +137,57 @@ test('a combined CSV can be assigned to accounts from All accounts', async ({
   await modal.getByRole('button', { name: /Импортировать 1/ }).click();
   await expect(modal).toHaveCount(0);
   await expect(page.getByText(/Другая оплата/i)).toBeVisible();
+});
+
+test('unmatched CSV account is configured in settings before import', async ({
+  page,
+}) => {
+  await page.goto('/');
+  await page.getByRole('button', { name: 'Открыть демоверсию' }).click();
+  await page.getByRole('button', { name: 'Добавить счёт' }).click();
+  await page.getByLabel('Название').fill('Домашний счёт');
+  await page.getByRole('button', { name: 'Создать', exact: true }).click();
+  await page.getByRole('link', { name: 'Все счета' }).first().click();
+
+  async function uploadStatement() {
+    const chooserPromise = page.waitForEvent('filechooser');
+    await page.getByRole('button', { name: 'Импорт', exact: true }).click();
+    const chooser = await chooserPromise;
+    await chooser.setFiles({
+      name: 'statement.csv',
+      mimeType: 'text/csv',
+      buffer: Buffer.from(
+        'Имя счёта;Дата операции;Сумма в валюте счёта;Описание\n' +
+          'Счёт из банка;28.09.2026;-10,00;Покупка',
+      ),
+    });
+    return page.getByTestId('import-transactions-modal');
+  }
+
+  const modal = await uploadStatement();
+  await expect(modal).toContainText('Не настроены счета: Счёт из банка');
+  await expect(
+    modal.getByRole('button', { name: /Импортировать/ }),
+  ).toBeDisabled();
+  await modal.getByRole('button', { name: 'Настроить импорт' }).click();
+
+  const settings = page.getByTestId('settings');
+  await expect(settings).toContainText('Счета в файле');
+  await settings.getByRole('button', { name: 'Счёт из банка' }).click();
+  await page
+    .getByRole('button', { name: 'Домашний счёт', exact: true })
+    .click();
+  await settings.getByRole('button', { name: 'Сохранить шаблон' }).click();
+  await expect(settings).toContainText('Сохранено');
+
+  await page.getByRole('link', { name: 'Все счета' }).first().click();
+  const nextModal = await uploadStatement();
+  await expect(
+    nextModal.getByRole('button', { name: /Импортировать 1/ }),
+  ).toBeEnabled();
+  await nextModal.getByRole('button', { name: /Импортировать 1/ }).click();
+  await expect(nextModal).toHaveCount(0);
+  await expect(page.getByText('Покупка')).toBeVisible();
 });
 
 test('import draft remains open when the user changes the app section', async ({
@@ -195,13 +248,11 @@ test('saved CSV settings are editable and applied to the next upload', async ({
   const modal = await uploadStatement();
   await modal.getByText('Поля заметки: 1').click();
   await modal.getByLabel('Метка').check();
-  await modal
-    .getByRole('button', { name: 'Сохранить настройки импорта' })
-    .click();
-  await expect(modal).toContainText('Настройки сохранены');
-  await modal.getByRole('button', { name: 'Закрыть' }).click();
-
-  await page.goto('/settings');
+  await expect(modal.locator('#csv-delimiter-select')).toHaveCount(0);
+  await expect(modal.locator('#form_flip')).toHaveCount(0);
+  await modal.getByRole('button', { name: 'Настроить импорт' }).click();
+  await expect(modal).toHaveCount(0);
+  await expect(page).toHaveURL(/\/settings\?importAccount=all/);
   const settings = page.getByTestId('settings');
   await expect(settings).toContainText('Настройки импорта выписок');
   await expect(settings).toContainText('Поля заметки: 2');
@@ -221,7 +272,7 @@ test('saved CSV settings are editable and applied to the next upload', async ({
   await page.getByRole('link', { name: 'Все счета' }).first().click();
   const nextModal = await uploadStatement();
   await expect(nextModal).toContainText('Поля заметки: 2');
-  await expect(nextModal.locator('#auto-exclude-pairs')).not.toBeChecked();
+  await expect(nextModal.locator('#auto-exclude-pairs')).toHaveCount(0);
   await expect(
     nextModal.getByTestId('row').filter({ hasText: 'Покупка' }),
   ).toContainText('Food');

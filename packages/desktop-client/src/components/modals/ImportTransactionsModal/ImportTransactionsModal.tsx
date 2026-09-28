@@ -16,7 +16,6 @@ import { Trans, useTranslation } from 'react-i18next';
 
 import { Button, ButtonWithLoading } from '@actual-app/components/button';
 import { Input } from '@actual-app/components/input';
-import { Select } from '@actual-app/components/select';
 import { SpaceBetween } from '@actual-app/components/space-between';
 import { styles } from '@actual-app/components/styles';
 import { Text } from '@actual-app/components/text';
@@ -39,12 +38,12 @@ import { TableHeader, TableWithNavigator } from '#components/table';
 import { useAccounts } from '#hooks/useAccounts';
 import { useCategories } from '#hooks/useCategories';
 import { useDateFormat } from '#hooks/useDateFormat';
+import { useNavigate } from '#hooks/useNavigate';
 import { useSyncedPrefs } from '#hooks/useSyncedPrefs';
 import { payeeQueries } from '#payees';
 import { saveSyncedPrefs } from '#prefs/prefsSlice';
 import { useDispatch } from '#redux';
 
-import { AccountRouting } from './AccountRouting';
 import { findImportCategory, readCategoryRules } from './categoryRules';
 import { DateFormatSelect } from './DateFormatSelect';
 import { FieldMappings } from './FieldMappings';
@@ -54,7 +53,6 @@ import {
   getCsvImportProfileKey,
 } from './importSettings';
 import type { CsvImportProfile } from './importSettings';
-import { InOutOption } from './InOutOption';
 import { MultiplierOption } from './MultiplierOption';
 import { Transaction } from './Transaction';
 import type { DateFormat, FieldMapping, ImportTransaction } from './utils';
@@ -101,7 +99,7 @@ function getFileType(filepath: string): string {
   return rawType;
 }
 
-function getInitialDateFormat(transactions, mappings) {
+function getInitialDateFormat(transactions, mappings): DateFormat {
   if (transactions.length === 0 || mappings.date == null) {
     return 'yyyy mm dd';
   }
@@ -236,6 +234,7 @@ export function ImportTransactionsModal({
   onImported?: (didChange: boolean) => void;
 }) {
   const { t } = useTranslation();
+  const navigate = useNavigate();
   const queryClient = useQueryClient();
   const dateFormat = useDateFormat() || ('MM/dd/yyyy' as const);
   const [prefs, savePrefs] = useSyncedPrefs();
@@ -245,7 +244,6 @@ export function ImportTransactionsModal({
   ).current;
   const dispatch = useDispatch();
   const { data: allAccounts = [] } = useAccounts();
-  const availableAccounts = allAccounts.filter(account => !account.closed);
   const {
     data: { list: categories, grouped: categoryGroups } = {
       list: [],
@@ -282,12 +280,7 @@ export function ImportTransactionsModal({
   const [importNotes, setImportNotes] = useState(
     initialProfile?.importNotes ?? true,
   );
-  const [autoExcludePairs, setAutoExcludePairs] = useState(
-    initialProfile?.autoExcludePairs ?? true,
-  );
-  const [profileSaveState, setProfileSaveState] = useState<
-    'idle' | 'saving' | 'saved' | 'error'
-  >('idle');
+  const [autoExcludePairs] = useState(initialProfile?.autoExcludePairs ?? true);
   const [accountRoutes, setAccountRoutes] = useState<Record<string, string>>(
     {},
   );
@@ -308,30 +301,30 @@ export function ImportTransactionsModal({
   // options which are simple post-processing. That means if you
   // parsed different files without closing the modal, it wouldn't
   // re-read this.
-  const [delimiter, setDelimiter] = useState(
+  const [delimiter] = useState(
     initialProfile?.delimiter ||
       prefs[`csv-delimiter-${accountId}`] ||
       (filename.endsWith('.tsv') ? '\t' : 'auto'),
   );
-  const [csvEncoding, setCsvEncoding] = useState(
+  const [csvEncoding] = useState(
     initialProfile?.encoding || prefs[`csv-encoding-${accountId}`] || 'auto',
   );
-  const [skipStartLines, setSkipStartLines] = useState(
+  const [skipStartLines] = useState(
     initialProfile?.skipStartLines ??
       (parseInt(prefs[`csv-skip-start-lines-${accountId}`], 10) || 0),
   );
-  const [skipEndLines, setSkipEndLines] = useState(
+  const [skipEndLines] = useState(
     initialProfile?.skipEndLines ??
       (parseInt(prefs[`csv-skip-end-lines-${accountId}`], 10) || 0),
   );
-  const [inOutMode, setInOutMode] = useState(
+  const [inOutMode] = useState(
     initialProfile?.inOutMode ??
       String(prefs[`csv-in-out-mode-${accountId}`]) === 'true',
   );
-  const [outValue, setOutValue] = useState(
+  const [outValue] = useState(
     initialProfile?.outValue ?? prefs[`csv-out-value-${accountId}`] ?? '',
   );
-  const [hasHeaderRow, setHasHeaderRow] = useState(
+  const [hasHeaderRow] = useState(
     initialProfile?.hasHeaderRow ??
       String(prefs[`csv-has-header-${accountId}`]) !== 'false',
   );
@@ -357,9 +350,7 @@ export function ImportTransactionsModal({
     null,
   );
 
-  const [clearOnImport, setClearOnImport] = useState(
-    initialProfile?.clearOnImport ?? true,
-  );
+  const [clearOnImport] = useState(initialProfile?.clearOnImport ?? true);
   const [startDate, setStartDate] = useState('');
   const lastParseRef = useRef<LastParse | null>(null);
 
@@ -703,32 +694,6 @@ export function ImportTransactionsModal({
     parse,
   ]);
 
-  function onSplitMode() {
-    if (fieldMappings == null) {
-      return;
-    }
-
-    const isSplit = !splitMode;
-    setSplitMode(isSplit);
-
-    // Run auto-detection on the fields to try to detect the fields
-    // automatically
-    const mappings = getInitialMappings(transactions);
-
-    const newFieldMappings = isSplit
-      ? {
-          amount: null,
-          outflow: mappings.amount,
-          inflow: null,
-        }
-      : {
-          amount: mappings.amount,
-          outflow: null,
-          inflow: null,
-        };
-    setFieldMappings({ ...fieldMappings, ...newFieldMappings });
-  }
-
   async function onNewFile() {
     const res = await window.Actual.openFileDialog({
       filters: [
@@ -818,14 +783,16 @@ export function ImportTransactionsModal({
   const importTransactions = useImportTransactionsMutation();
 
   async function saveCsvProfile() {
-    if (!fieldMappings || !parseDateFormat || parsedTransactions.length === 0) {
+    if (!fieldMappings || parsedTransactions.length === 0) {
       return;
     }
 
     const profile: CsvImportProfile = {
       columns: Object.keys(stripCsvImportTransaction(parsedTransactions[0])),
       mappings: fieldMappings,
-      dateFormat: parseDateFormat,
+      dateFormat:
+        parseDateFormat ??
+        getInitialDateFormat(parsedTransactions, fieldMappings),
       delimiter,
       encoding: csvEncoding,
       hasHeaderRow,
@@ -848,47 +815,18 @@ export function ImportTransactionsModal({
       savedRoutes = {};
     }
 
-    setProfileSaveState('saving');
-    try {
-      await dispatch(
-        saveSyncedPrefs({
-          prefs: {
-            [getCsvImportProfileKey(accountId)]: JSON.stringify(profile),
-            'csv-account-routes': JSON.stringify({
-              ...savedRoutes,
-              ...accountRoutes,
-            }),
-          },
-        }),
-      ).unwrap();
-      setProfileSaveState('saved');
-    } catch (saveError) {
-      setProfileSaveState('error');
-      throw saveError;
-    }
+    await dispatch(
+      saveSyncedPrefs({
+        prefs: {
+          [getCsvImportProfileKey(accountId)]: JSON.stringify(profile),
+          'csv-account-routes': JSON.stringify({
+            ...savedRoutes,
+            ...accountRoutes,
+          }),
+        },
+      }),
+    ).unwrap();
   }
-
-  useEffect(() => {
-    setProfileSaveState('idle');
-  }, [
-    fieldMappings,
-    parseDateFormat,
-    delimiter,
-    csvEncoding,
-    hasHeaderRow,
-    skipStartLines,
-    skipEndLines,
-    inOutMode,
-    outValue,
-    flipAmount,
-    multiplierAmount,
-    importNotes,
-    autoExcludePairs,
-    clearOnImport,
-    reconcile,
-    reimportDeleted,
-    accountRoutes,
-  ]);
 
   async function onImport(close) {
     if (hasUnresolvedRoutes) {
@@ -1458,7 +1396,7 @@ export function ImportTransactionsModal({
           </View>
 
           {filetype === 'csv' && (
-            <View style={{ marginTop: 10 }}>
+            <View data-testid="csv-import-fields" style={{ marginTop: 10 }}>
               <FieldMappings
                 transactions={transactions}
                 onChange={onUpdateFields}
@@ -1470,43 +1408,32 @@ export function ImportTransactionsModal({
             </View>
           )}
 
-          {routingRequired &&
-            (sourceField && sources.length > 0 ? (
-              <AccountRouting
-                sources={sources}
-                accounts={availableAccounts}
-                routes={accountRoutes}
-                onChange={(source, destination) =>
-                  setAccountRoutes(previous => ({
-                    ...previous,
-                    [source]: destination,
-                  }))
-                }
-              />
-            ) : (
-              <Text style={{ marginTop: 12, color: theme.errorText }}>
-                {t('Для общего файла выберите поле «Счёт в файле».')}
-              </Text>
-            ))}
-
           {filetype === 'csv' && (
             <View style={{ marginTop: 12, gap: 4 }}>
-              <CheckboxToggle
-                id="auto-exclude-pairs"
-                checked={autoExcludePairs}
-                onChange={setAutoExcludePairs}
-              >
-                {t(
-                  'Исключать встречные операции с одинаковыми датой, суммой и описанием на одном счёте',
-                )}
-                {hasMissingSource && (
-                  <Text style={{ marginTop: 8, color: theme.errorText }}>
-                    {t(
-                      'В файле есть операции без названия счёта. Выберите другой столбец счёта или исправьте файл.',
-                    )}
+              {routingRequired && !sourceField && (
+                <Text style={{ color: theme.errorText }}>
+                  {t('Выберите столбец «Счёт в файле» в полях CSV.')}
+                </Text>
+              )}
+              {hasMissingSource && (
+                <Text style={{ color: theme.errorText }}>
+                  {t(
+                    'В файле есть операции без названия счёта. Проверьте столбец счёта или исправьте файл.',
+                  )}
+                </Text>
+              )}
+              {routingRequired &&
+                sourceField &&
+                sources.some(source => !accountRoutes[source.name]) && (
+                  <Text style={{ color: theme.errorText }}>
+                    {t('Не настроены счета: {{accounts}}', {
+                      accounts: sources
+                        .filter(source => !accountRoutes[source.name])
+                        .map(source => source.name)
+                        .join(', '),
+                    })}
                   </Text>
                 )}
-              </CheckboxToggle>
               {autoExcludePairs && autoExcludedIds.size > 0 && (
                 <Text style={{ color: theme.tableTextInactive }}>
                   {t('Исключено встречных операций: {{count}}', {
@@ -1586,171 +1513,22 @@ export function ImportTransactionsModal({
             </CheckboxToggle>
           )}
 
-          {/*Import Options */}
-          {(filetype === 'qif' || filetype === 'csv') && (
+          {filetype === 'qif' && (
             <View style={{ marginTop: 10 }}>
               <SpaceBetween
                 gap={5}
                 style={{ marginTop: 5, alignItems: 'flex-start' }}
               >
-                {/* Date Format */}
                 <View>
-                  {(filetype === 'qif' || filetype === 'csv') && (
-                    <DateFormatSelect
-                      transactions={transactions}
-                      fieldMappings={fieldMappings || undefined}
-                      parseDateFormat={parseDateFormat || undefined}
-                      onChange={value => {
-                        setParseDateFormat(isDateFormat(value) ? value : null);
-                      }}
-                    />
-                  )}
+                  <DateFormatSelect
+                    transactions={transactions}
+                    fieldMappings={fieldMappings || undefined}
+                    parseDateFormat={parseDateFormat || undefined}
+                    onChange={value => {
+                      setParseDateFormat(isDateFormat(value) ? value : null);
+                    }}
+                  />
                 </View>
-
-                {/* CSV Options */}
-                {filetype === 'csv' && (
-                  <View style={{ marginLeft: 10, gap: 5 }}>
-                    <SectionLabel title={t('CSV OPTIONS')} />
-                    <label
-                      htmlFor="csv-delimiter-select"
-                      style={{
-                        display: 'flex',
-                        flexDirection: 'row',
-                        gap: 5,
-                        alignItems: 'baseline',
-                      }}
-                    >
-                      <Trans>Delimiter:</Trans>
-                      <Select
-                        id="csv-delimiter-select"
-                        options={[
-                          ['auto', t('Авто')],
-                          [',', ','],
-                          [';', ';'],
-                          ['|', '|'],
-                          ['\t', 'tab'],
-                          ['~', '~'],
-                        ]}
-                        value={delimiter}
-                        onChange={value => {
-                          setDelimiter(value);
-                        }}
-                        style={{ width: 50 }}
-                      />
-                    </label>
-                    <label
-                      htmlFor="csv-encoding-select"
-                      style={{
-                        display: 'flex',
-                        flexDirection: 'row',
-                        gap: 5,
-                        alignItems: 'baseline',
-                      }}
-                    >
-                      <Trans>Encoding:</Trans>
-                      <Select
-                        id="csv-encoding-select"
-                        options={[
-                          ['auto', t('Auto (detect)')],
-                          ['utf-8', t('UTF-8')],
-                          ['utf-16le', t('UTF-16 LE')],
-                          ['utf-16be', t('UTF-16 BE')],
-                          ['windows-1252', t('Windows-1252')],
-                          ['windows-1250', t('Windows-1250')],
-                          ['iso-8859-2', t('ISO-8859-2')],
-                        ]}
-                        value={csvEncoding}
-                        onChange={value => {
-                          setCsvEncoding(value);
-                        }}
-                        style={{ width: 130 }}
-                      />
-                    </label>
-                    <label
-                      htmlFor="csv-skip-start-lines"
-                      style={{
-                        display: 'flex',
-                        flexDirection: 'row',
-                        gap: 5,
-                        alignItems: 'baseline',
-                      }}
-                    >
-                      <Trans>Skip start lines:</Trans>
-                      <Input
-                        id="csv-skip-start-lines"
-                        type="number"
-                        value={skipStartLines}
-                        min="0"
-                        step="1"
-                        onChangeValue={value => {
-                          setSkipStartLines(Math.abs(parseInt(value, 10) || 0));
-                        }}
-                        style={{ width: 50 }}
-                      />
-                    </label>
-                    <label
-                      htmlFor="csv-skip-end-lines"
-                      style={{
-                        display: 'flex',
-                        flexDirection: 'row',
-                        gap: 5,
-                        alignItems: 'baseline',
-                      }}
-                    >
-                      <Trans>Skip end lines:</Trans>
-                      <Input
-                        id="csv-skip-end-lines"
-                        type="number"
-                        value={skipEndLines}
-                        min="0"
-                        step="1"
-                        onChangeValue={value => {
-                          setSkipEndLines(Math.abs(parseInt(value, 10) || 0));
-                        }}
-                        style={{ width: 50 }}
-                      />
-                    </label>
-                    <CheckboxToggle
-                      id="form_has_header"
-                      checked={hasHeaderRow}
-                      onChange={setHasHeaderRow}
-                    >
-                      <Trans>File has header row</Trans>
-                    </CheckboxToggle>
-                    <CheckboxToggle
-                      id="clear_on_import"
-                      checked={clearOnImport}
-                      onChange={setClearOnImport}
-                    >
-                      <Trans>Clear transactions on import</Trans>
-                    </CheckboxToggle>
-                    {routingRequired ? (
-                      <Text>
-                        {t(
-                          'Для общего файла совпадающие операции объединяются автоматически.',
-                        )}
-                      </Text>
-                    ) : (
-                      <CheckboxToggle
-                        id="form_dont_reconcile"
-                        checked={reconcile}
-                        onChange={setReconcile}
-                      >
-                        <Trans>Merge with existing transactions</Trans>
-                      </CheckboxToggle>
-                    )}
-                    {effectiveReconcile && (
-                      <CheckboxToggle
-                        id="form_reimport_deleted_csv"
-                        checked={reimportDeleted}
-                        onChange={setReimportDeleted}
-                      >
-                        <Trans>Reimport deleted transactions</Trans>
-                      </CheckboxToggle>
-                    )}
-                  </View>
-                )}
-
                 <View style={{ flex: 1 }} />
 
                 <View style={{ marginRight: 10, gap: 5 }}>
@@ -1771,69 +1549,52 @@ export function ImportTransactionsModal({
                     }}
                     onChangeAmount={onMultiplierChange}
                   />
-                  {filetype === 'csv' && (
-                    <>
-                      <LabeledCheckbox
-                        id="form_split"
-                        checked={splitMode}
-                        onChange={() => {
-                          onSplitMode();
-                        }}
-                      >
-                        <Trans>
-                          Split amount into separate inflow/outflow columns
-                        </Trans>
-                      </LabeledCheckbox>
-                      <InOutOption
-                        inOutMode={inOutMode}
-                        outValue={outValue}
-                        onToggle={() => {
-                          setInOutMode(!inOutMode);
-                        }}
-                        onChangeText={setOutValue}
-                      />
-                    </>
-                  )}
                 </View>
               </SpaceBetween>
             </View>
           )}
 
-          <View style={{ flexDirection: 'row', marginTop: 5 }}>
+          <View
+            style={{
+              flexDirection: 'row',
+              marginTop: 12,
+              justifyContent: 'space-between',
+              alignItems: 'center',
+              gap: 16,
+              flexWrap: 'wrap',
+            }}
+          >
             {filetype === 'csv' && (
-              <View
-                style={{
-                  display: 'flex',
-                  flexDirection: 'row',
-                  alignItems: 'center',
-                  gap: 10,
-                  flexWrap: 'wrap',
-                }}
-              >
-                <ButtonWithLoading
-                  isDisabled={!fieldMappings || !parseDateFormat}
-                  isLoading={profileSaveState === 'saving'}
+              <View data-testid="csv-import-settings-hint" style={{ gap: 4 }}>
+                <Text style={{ color: theme.tableTextInactive }}>
+                  {t(
+                    'Формат файла, счета и правила импорта меняются в настройках.',
+                  )}
+                </Text>
+                <Button
+                  isDisabled={!fieldMappings || parsedTransactions.length === 0}
                   onPress={() => {
-                    void saveCsvProfile().catch(() => {
-                      setProfileSaveState('error');
-                    });
+                    void saveCsvProfile()
+                      .then(() => {
+                        state.close();
+                        void navigate(
+                          `/settings?importAccount=${encodeURIComponent(accountId ?? 'all')}#statement-import-settings`,
+                        );
+                      })
+                      .catch(() => {
+                        setError({
+                          parsed: false,
+                          message: t(
+                            'Не удалось открыть настройки импорта. Попробуйте ещё раз.',
+                          ),
+                        });
+                      });
                   }}
                 >
-                  {t('Сохранить настройки импорта')}
-                </ButtonWithLoading>
-                {profileSaveState === 'saved' && (
-                  <Text style={{ color: theme.pageTextPositive }}>
-                    {t('Настройки сохранены для следующих загрузок')}
-                  </Text>
-                )}
-                {profileSaveState === 'error' && (
-                  <Text style={{ color: theme.errorText }}>
-                    {t('Не удалось сохранить настройки')}
-                  </Text>
-                )}
+                  {t('Настроить импорт')}
+                </Button>
               </View>
             )}
-            {/*Submit Button */}
             <View
               style={{
                 alignSelf: 'flex-end',

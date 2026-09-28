@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
+import { useSearchParams } from 'react-router';
 
 import { ButtonWithLoading } from '@actual-app/components/button';
 import { Input } from '@actual-app/components/input';
@@ -47,10 +48,13 @@ function readRoutes(raw: string | undefined): Record<string, string> {
 
 export function ImportSettings() {
   const { t } = useTranslation();
+  const [searchParams] = useSearchParams();
   const dispatch = useDispatch();
   const [prefs] = useSyncedPrefs();
   const { data: accounts = [] } = useAccounts();
-  const [scope, setScope] = useState('all');
+  const [scope, setScope] = useState(
+    () => searchParams.get('importAccount') ?? 'all',
+  );
   const accountId = scope === 'all' ? undefined : scope;
   const savedRoutes = prefs['csv-account-routes'];
   const [draft, setDraft] = useState<CsvImportProfile | null>(null);
@@ -112,7 +116,7 @@ export function ImportSettings() {
 
   return (
     <Setting>
-      <View style={{ gap: 5 }}>
+      <View id="statement-import-settings" style={{ gap: 5 }}>
         <Text style={{ fontSize: 17, fontWeight: 650 }}>
           {t('Настройки импорта выписок')}
         </Text>
@@ -138,7 +142,7 @@ export function ImportSettings() {
       {!draft ? (
         <Text style={{ color: theme.tableTextInactive }}>
           {t(
-            'Для этого счёта пока нет шаблона. Откройте выписку, настройте поля и нажмите «Сохранить настройки импорта». После этого шаблон можно менять здесь.',
+            'Для этого счёта пока нет шаблона. Откройте выписку и выберите «Настроить импорт» — столбцы файла появятся здесь.',
           )}
         </Text>
       ) : (
