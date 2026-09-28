@@ -6,7 +6,13 @@ import * as db from '#server/db';
 import * as prefs from '#server/prefs';
 import { amountToInteger } from '#shared/util';
 
-import { parseFile } from './parse-file';
+import { detectCsvDelimiter, parseFile } from './parse-file';
+
+test('detects a semicolon-delimited bank export without counting quoted commas', () => {
+  expect(
+    detectCsvDelimiter('Имя счёта;"Описание, операции";Сумма операции'),
+  ).toBe(';');
+});
 
 beforeEach(global.emptyDatabase());
 

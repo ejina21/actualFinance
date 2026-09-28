@@ -44,7 +44,7 @@ export type Modal =
   | {
       name: 'import-transactions';
       options: {
-        accountId: string;
+        accountId?: string;
         filename: string;
         categories?: { list: CategoryEntity[]; grouped: CategoryGroupEntity[] };
         onImported: (didChange: boolean) => void;

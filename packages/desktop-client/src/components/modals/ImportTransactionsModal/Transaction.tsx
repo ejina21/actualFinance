@@ -32,6 +32,7 @@ type TransactionProps = {
   categories: CategoryEntity[];
   onCheckTransaction: (transactionId: string) => void;
   reconcile: boolean;
+  canSelect?: boolean;
   index: number;
 };
 
@@ -49,6 +50,7 @@ export function Transaction({
   categories,
   onCheckTransaction,
   reconcile,
+  canSelect = true,
   index,
 }: TransactionProps) {
   const { t } = useTranslation();
@@ -130,6 +132,7 @@ export function Transaction({
             >
               <Checkbox
                 checked={transaction.selected && !transaction.tombstone}
+                disabled={!canSelect}
                 onChange={() => onCheckTransaction(transaction.trx_id)}
                 style={
                   transaction.selected_merge

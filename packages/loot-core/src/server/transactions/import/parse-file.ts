@@ -84,6 +84,30 @@ type CsvTransaction = Record<string, string> | string[];
 
 type Transaction = StructuredTransaction | CsvTransaction;
 
+export function detectCsvDelimiter(contents: string): string {
+  const firstLine = contents.split(/\r?\n/, 1)[0] ?? '';
+  const counts = new Map(
+    [',', ';', '\t', '|'].map(delimiter => [delimiter, 0]),
+  );
+  let insideQuotes = false;
+  for (let index = 0; index < firstLine.length; index++) {
+    const character = firstLine[index];
+    if (character === '"') {
+      if (insideQuotes && firstLine[index + 1] === '"') {
+        index++;
+      } else {
+        insideQuotes = !insideQuotes;
+      }
+    } else if (!insideQuotes && counts.has(character)) {
+      counts.set(character, counts.get(character) + 1);
+    }
+  }
+  return [...counts].reduce(
+    (best, entry) => (entry[1] > best[1] ? entry : best),
+    [',', 0],
+  )[0];
+}
+
 type ParseError = { message: string; internal: string };
 export type ParseFileResult = {
   errors: ParseError[];
@@ -175,7 +199,10 @@ async function parseCSV(
     data = csv2json(contents, {
       columns: options?.hasHeaderRow,
       bom: true,
-      delimiter: options?.delimiter || ',',
+      delimiter:
+        !options?.delimiter || options.delimiter === 'auto'
+          ? detectCsvDelimiter(contents)
+          : options.delimiter,
 
       quote: '"',
       trim: true,

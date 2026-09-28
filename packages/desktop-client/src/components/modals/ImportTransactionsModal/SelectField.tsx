@@ -1,5 +1,6 @@
 import React from 'react';
 import type { CSSProperties } from 'react';
+import { useTranslation } from 'react-i18next';
 
 import { Select } from '@actual-app/components/select';
 
@@ -20,13 +21,17 @@ export function SelectField({
   hasHeaderRow,
   firstTransaction,
 }: SelectFieldProps) {
+  const { t } = useTranslation();
   const columns = options.map(
     option =>
       [
         option,
         hasHeaderRow
           ? option
-          : `Column ${parseInt(option) + 1} (${String(firstTransaction[option])})`,
+          : t('Столбец {{number}} ({{example}})', {
+              number: parseInt(option) + 1,
+              example: String(firstTransaction[option]),
+            }),
       ] as const,
   );
 
@@ -35,7 +40,7 @@ export function SelectField({
 
   return (
     <Select
-      options={[['choose-field', 'Choose field...'], ...columns]}
+      options={[['choose-field', t('Выберите поле…')], ...columns]}
       value={value === null ? 'choose-field' : value}
       onChange={onChange}
       style={style}

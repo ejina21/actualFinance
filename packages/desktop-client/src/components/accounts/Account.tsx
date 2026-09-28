@@ -620,18 +620,20 @@ class AccountInternal extends PureComponent<
     const accountId = this.props.accountId;
     const account = this.props.accounts.find(acct => acct.id === accountId);
 
-    if (account) {
+    if (!account || !account.closed) {
       const res = await window.Actual.openFileDialog({
         filters: [
           {
             name: t('Financial files'),
-            extensions: ['qif', 'ofx', 'qfx', 'csv', 'tsv', 'xml'],
+            extensions: account
+              ? ['qif', 'ofx', 'qfx', 'csv', 'tsv', 'xml']
+              : ['csv', 'tsv'],
           },
         ],
       });
 
       if (res) {
-        if (accountId && res?.length > 0) {
+        if (res?.length > 0) {
           if (!isSupportedImportFilename(res[0])) {
             this.props.dispatch(
               addNotification({
@@ -650,7 +652,7 @@ class AccountInternal extends PureComponent<
               modal: {
                 name: 'import-transactions',
                 options: {
-                  accountId,
+                  accountId: account?.id,
                   filename: res[0],
                   onImported: (didChange: boolean) => {
                     if (didChange) {

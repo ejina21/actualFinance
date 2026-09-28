@@ -25,6 +25,7 @@ import { View } from '@actual-app/components/view';
 import { send } from '@actual-app/core/platform/client/connection';
 import type { ParseFileOptions } from '@actual-app/core/server/transactions/import/parse-file';
 import { amountToInteger } from '@actual-app/core/shared/util';
+import type { TransactionEntity } from '@actual-app/core/types/models';
 import { useQueryClient } from '@tanstack/react-query';
 
 import {
@@ -35,11 +36,13 @@ import { Modal, ModalCloseButton, ModalHeader } from '#components/common/Modal';
 import { SectionLabel } from '#components/forms';
 import { LabeledCheckbox } from '#components/forms/LabeledCheckbox';
 import { TableHeader, TableWithNavigator } from '#components/table';
+import { useAccounts } from '#hooks/useAccounts';
 import { useCategories } from '#hooks/useCategories';
 import { useDateFormat } from '#hooks/useDateFormat';
 import { useSyncedPrefs } from '#hooks/useSyncedPrefs';
 import { payeeQueries } from '#payees';
 
+import { AccountRouting } from './AccountRouting';
 import { DateFormatSelect } from './DateFormatSelect';
 import { FieldMappings } from './FieldMappings';
 import { InOutOption } from './InOutOption';
@@ -50,11 +53,13 @@ import {
   applyFieldMappings,
   dateFormats,
   filterByStartDate,
+  findOpposingPairIds,
   isDateFormat,
   parseAmountFields,
   parseCategoryFields,
   parseDate,
   stripCsvImportTransaction,
+  suggestAccountRoutes,
 } from './utils';
 
 function CheckboxToggle({
@@ -115,12 +120,14 @@ function getInitialMappings(transactions) {
   }
 
   const dateField = key(
-    fields.find(([name]) => name.toLowerCase().includes('date')) ||
+    fields.find(([name]) => name === 'Дата операции') ||
+      fields.find(([name]) => name.toLowerCase().includes('date')) ||
       fields.find(([, value]) => String(value)?.match(/^\d+[-/]\d+[-/]\d+$/)),
   );
 
   const amountField = key(
-    fields.find(([name]) => name.toLowerCase().includes('amount')) ||
+    fields.find(([name]) => name === 'Сумма в валюте счёта') ||
+      fields.find(([name]) => name.toLowerCase().includes('amount')) ||
       fields.find(([, value]) => String(value)?.match(/^-?[.,\d]+$/)),
   );
 
@@ -129,7 +136,8 @@ function getInitialMappings(transactions) {
   );
 
   const payeeField = key(
-    fields.find(([name]) => name.toLowerCase().includes('payee')) ||
+    fields.find(([name]) => name === 'Описание') ||
+      fields.find(([name]) => name.toLowerCase().includes('payee')) ||
       fields.find(
         ([name]) =>
           name !== dateField && name !== amountField && name !== categoryField,
@@ -137,7 +145,8 @@ function getInitialMappings(transactions) {
   );
 
   const notesField = key(
-    fields.find(([name]) => name.toLowerCase().includes('notes')) ||
+    fields.find(([name]) => name === 'Сообщение') ||
+      fields.find(([name]) => name.toLowerCase().includes('notes')) ||
       fields.find(
         ([name]) =>
           name !== dateField &&
@@ -157,6 +166,11 @@ function getInitialMappings(transactions) {
     ),
   );
 
+  const accountField = key(
+    fields.find(([name]) => name === 'Имя счёта') ||
+      fields.find(([name]) => name.toLowerCase() === 'account'),
+  );
+
   return {
     date: dateField,
     amount: amountField,
@@ -164,6 +178,7 @@ function getInitialMappings(transactions) {
     notes: notesField,
     inOut: inOutField,
     category: categoryField,
+    account: accountField,
   };
 }
 
@@ -206,11 +221,18 @@ export function ImportTransactionsModal({
   filename: originalFileName,
   accountId,
   onImported,
+}: {
+  filename: string;
+  accountId?: string;
+  onImported?: (didChange: boolean) => void;
 }) {
   const { t } = useTranslation();
   const queryClient = useQueryClient();
   const dateFormat = useDateFormat() || ('MM/dd/yyyy' as const);
   const [prefs, savePrefs] = useSyncedPrefs();
+  const initialPrefs = useRef(prefs).current;
+  const { data: allAccounts = [] } = useAccounts();
+  const availableAccounts = allAccounts.filter(account => !account.closed);
   const { data: { list: categories } = { list: [] } } = useCategories();
 
   const [multiplierAmount, setMultiplierAmount] = useState('');
@@ -233,6 +255,21 @@ export function ImportTransactionsModal({
   const [multiplierEnabled, setMultiplierEnabled] = useState(false);
   const [reconcile, setReconcile] = useState(true);
   const [importNotes, setImportNotes] = useState(true);
+  const [autoExcludePairs, setAutoExcludePairs] = useState(true);
+  const [accountRoutes, setAccountRoutes] = useState<Record<string, string>>(
+    {},
+  );
+  const [autoExcludedIds, setAutoExcludedIds] = useState<Set<string>>(
+    new Set(),
+  );
+  const [isPreviewing, setIsPreviewing] = useState(false);
+  const selectionOverridesRef = useRef(
+    new Map<string, { selected: boolean; selected_merge: boolean }>(),
+  );
+  const previewGenerationRef = useRef(0);
+  const parseGenerationRef = useRef(0);
+  const completedAccountsRef = useRef(new Set<string>());
+  const importDidChangeRef = useRef(false);
 
   // This cannot be set after parsing the file, because changing it
   // requires re-parsing the file. This is different from the other
@@ -241,7 +278,7 @@ export function ImportTransactionsModal({
   // re-read this.
   const [delimiter, setDelimiter] = useState(
     prefs[`csv-delimiter-${accountId}`] ||
-      (filename.endsWith('.tsv') ? '\t' : ','),
+      (filename.endsWith('.tsv') ? '\t' : 'auto'),
   );
   const [csvEncoding, setCsvEncoding] = useState(
     prefs[`csv-encoding-${accountId}`] || 'auto',
@@ -284,6 +321,70 @@ export function ImportTransactionsModal({
   const [clearOnImport, setClearOnImport] = useState(true);
   const [startDate, setStartDate] = useState('');
   const lastParseRef = useRef<LastParse | null>(null);
+
+  const sourceField = fieldMappings?.account;
+  const sourceCounts = new Map<string, number>();
+  if (sourceField) {
+    for (const transaction of parsedTransactions) {
+      const sourceName = String(transaction[sourceField] ?? '').trim();
+      if (sourceName) {
+        sourceCounts.set(sourceName, (sourceCounts.get(sourceName) ?? 0) + 1);
+      }
+    }
+  }
+  const sources = Array.from(sourceCounts, ([name, count]) => ({
+    name,
+    count,
+  }));
+  const routingRequired =
+    filetype === 'csv' && (!accountId || sources.length > 1);
+  const effectiveReconcile = routingRequired || reconcile;
+  const hasMissingSource =
+    routingRequired &&
+    !!sourceField &&
+    parsedTransactions.some(
+      transaction => !String(transaction[sourceField] ?? '').trim(),
+    );
+  const hasUnresolvedRoutes =
+    routingRequired &&
+    (!sourceField ||
+      sources.length === 0 ||
+      hasMissingSource ||
+      sources.some(source => !accountRoutes[source.name]));
+
+  useEffect(() => {
+    if (!fieldMappings?.account || parsedTransactions.length === 0) {
+      return;
+    }
+    const sourceNames = Array.from(
+      new Set(
+        parsedTransactions
+          .map(transaction =>
+            String(transaction[fieldMappings.account] ?? '').trim(),
+          )
+          .filter(Boolean),
+      ),
+    );
+    let savedRoutes: Record<string, string> = {};
+    try {
+      savedRoutes = JSON.parse(initialPrefs['csv-account-routes'] ?? '{}');
+    } catch {
+      savedRoutes = {};
+    }
+    const suggestions = suggestAccountRoutes(
+      sourceNames,
+      allAccounts.filter(account => !account.closed),
+      savedRoutes,
+    );
+    setAccountRoutes(previous => {
+      const next = { ...suggestions, ...previous };
+      const keys = Object.keys(next);
+      return keys.length === Object.keys(previous).length &&
+        keys.every(key => next[key] === previous[key])
+        ? previous
+        : next;
+    });
+  }, [allAccounts, fieldMappings?.account, initialPrefs, parsedTransactions]);
 
   const getImportPreview = useCallback(
     async (
@@ -382,7 +483,12 @@ export function ImportTransactionsModal({
       options: ParseFileOptions,
       { preserveImportSettings = false } = {},
     ) => {
+      const generation = ++parseGenerationRef.current;
       setLoadingState('parsing');
+
+      if (!preserveImportSettings) {
+        selectionOverridesRef.current.clear();
+      }
 
       const filetype = getFileType(filename);
       setFilename(filename);
@@ -395,6 +501,9 @@ export function ImportTransactionsModal({
           options,
         },
       );
+      if (generation !== parseGenerationRef.current) {
+        return;
+      }
 
       let index = 0;
       const transactions = parsedTransactions.map(trans => {
@@ -421,13 +530,14 @@ export function ImportTransactionsModal({
           (filetype === 'csv' || filetype === 'qif')
         ) {
           const flipAmount =
-            String(prefs[`flip-amount-${accountId}-${filetype}`]) === 'true';
+            String(initialPrefs[`flip-amount-${accountId}-${filetype}`]) ===
+            'true';
           setFlipAmount(flipAmount);
         }
 
         if (filetype === 'csv') {
           if (!preserveImportSettings) {
-            let mappings = prefs[`csv-mappings-${accountId}`];
+            let mappings = initialPrefs[`csv-mappings-${accountId}`];
             mappings = mappings
               ? JSON.parse(mappings)
               : getInitialMappings(transactions);
@@ -441,7 +551,7 @@ export function ImportTransactionsModal({
             setSplitMode(splitMode);
 
             const parseDateFormat =
-              prefs[`parse-date-${accountId}-${filetype}`] ||
+              initialPrefs[`parse-date-${accountId}-${filetype}`] ||
               getInitialDateFormat(transactions, mappings);
             setParseDateFormat(
               isDateFormat(parseDateFormat) ? parseDateFormat : null,
@@ -450,7 +560,7 @@ export function ImportTransactionsModal({
         } else if (filetype === 'qif') {
           if (!preserveImportSettings) {
             const parseDateFormat =
-              prefs[`parse-date-${accountId}-${filetype}`] ||
+              initialPrefs[`parse-date-${accountId}-${filetype}`] ||
               getInitialDateFormat(transactions, { date: 'date' });
             setParseDateFormat(
               isDateFormat(parseDateFormat) ? parseDateFormat : null,
@@ -467,7 +577,7 @@ export function ImportTransactionsModal({
       setLoadingState(null);
     },
     // We use some state variables from the component, but do not want to re-parse when they change
-    [accountId, prefs],
+    [accountId, initialPrefs],
   );
 
   function onMultiplierChange(e) {
@@ -478,7 +588,7 @@ export function ImportTransactionsModal({
   }
 
   useEffect(() => {
-    const fileType = getFileType(originalFileName);
+    const fileType = getFileType(filename);
     const parseOptions = getParseOptions(fileType, {
       delimiter,
       encoding: csvEncoding,
@@ -497,22 +607,22 @@ export function ImportTransactionsModal({
     const lastParse = lastParseRef.current;
     const shouldPreserveImportSettings = shouldPreserveImportSettingsForParse(
       lastParse,
-      originalFileName,
+      filename,
       fileType,
       parseOptions,
     );
 
     lastParseRef.current = {
-      filename: originalFileName,
+      filename,
       fileType,
       options: parseOptions,
     };
 
-    void parse(originalFileName, parseOptions, {
+    void parse(filename, parseOptions, {
       preserveImportSettings: shouldPreserveImportSettings,
     });
   }, [
-    originalFileName,
+    filename,
     delimiter,
     csvEncoding,
     hasHeaderRow,
@@ -562,24 +672,14 @@ export function ImportTransactionsModal({
       ],
     });
 
-    const fileType = getFileType(res[0]);
-    const parseOptions = getParseOptions(fileType, {
-      delimiter,
-      encoding: csvEncoding,
-      hasHeaderRow,
-      skipStartLines,
-      skipEndLines,
-      fallbackMissingPayeeToMemo,
-      importNotes,
-      swapPayeeAndMemo: getSwapOption(
-        fileType,
-        ofxSwapPayeeAndMemo,
-        qifSwapPayeeAndMemo,
-        camtSwapPayeeAndMemo,
-      ),
-    });
-
-    void parse(res[0], parseOptions);
+    if (!res?.[0]) {
+      return;
+    }
+    selectionOverridesRef.current.clear();
+    completedAccountsRef.current.clear();
+    importDidChangeRef.current = false;
+    setAccountRoutes({});
+    setFilename(res[0]);
   }
 
   function onUpdateFields(field, name) {
@@ -591,6 +691,15 @@ export function ImportTransactionsModal({
   }
 
   function onCheckTransaction(trx_id: string) {
+    const transaction = transactions.find(trans => trans.trx_id === trx_id);
+    if (transaction && routingRequired) {
+      const source = sourceField
+        ? String(transaction[sourceField] ?? '').trim()
+        : '';
+      if (!accountRoutes[source] || accountRoutes[source] === 'skip') {
+        return;
+      }
+    }
     const newTransactions = transactions.map(trans => {
       if (trans.trx_id === trx_id) {
         if (trans.existing) {
@@ -629,25 +738,47 @@ export function ImportTransactionsModal({
       return trans;
     });
 
+    const updated = newTransactions.find(trans => trans.trx_id === trx_id);
+    if (updated) {
+      selectionOverridesRef.current.set(trx_id, {
+        selected: updated.selected,
+        selected_merge: updated.selected_merge,
+      });
+    }
     setTransactions(newTransactions);
   }
 
   const importTransactions = useImportTransactionsMutation();
 
   async function onImport(close) {
+    if (hasUnresolvedRoutes) {
+      return;
+    }
     setLoadingState('importing');
 
-    const finalTransactions = [];
+    const transactionsByAccount = new Map<string, Record<string, unknown>[]>();
     let errorMessage;
 
     for (let trans of transactions) {
       if (
         trans.isMatchedTransaction ||
-        (reconcile && !trans.selected && !trans.ignored)
+        (!trans.selected &&
+          (!effectiveReconcile ||
+            !trans.ignored ||
+            autoExcludedIds.has(trans.trx_id)))
       ) {
-        // skip transactions that are
-        // - matched transaction (existing transaction added to show update changes)
-        // - unselected transactions that are not ignored by the reconcilation algorithm (only when reconcilation is enabled)
+        // Keep ignored rows for reconciliation, but never import a deselected
+        // row in direct-add mode or an automatically excluded offsetting pair.
+        continue;
+      }
+
+      const sourceName = sourceField
+        ? String(trans[sourceField] ?? '').trim()
+        : '';
+      const destinationAccountId = routingRequired
+        ? accountRoutes[sourceName]
+        : accountId;
+      if (!destinationAccountId || destinationAccountId === 'skip') {
         continue;
       }
 
@@ -696,7 +827,7 @@ export function ImportTransactionsModal({
       } = trans;
 
       if (
-        reconcile &&
+        effectiveReconcile &&
         ((trans.ignored && trans.selected) ||
           (trans.existing && trans.selected && !trans.selected_merge))
       ) {
@@ -706,6 +837,8 @@ export function ImportTransactionsModal({
         finalTransaction.forceAddTransaction = true;
       }
 
+      const finalTransactions =
+        transactionsByAccount.get(destinationAccountId) ?? [];
       finalTransactions.push({
         ...finalTransaction,
         date,
@@ -713,6 +846,7 @@ export function ImportTransactionsModal({
         cleared: clearOnImport,
         notes: importNotes ? finalTransaction.notes : null,
       });
+      transactionsByAccount.set(destinationAccountId, finalTransactions);
     }
 
     if (errorMessage) {
@@ -773,32 +907,61 @@ export function ImportTransactionsModal({
       [`import-reimport-deleted-${accountId}`]: String(reimportDeleted),
     });
 
-    importTransactions.mutate(
-      {
-        accountId,
-        transactions: finalTransactions,
-        reconcile,
-        reimportDeleted,
-      },
-      {
-        onSuccess: async didChange => {
-          if (didChange) {
-            void queryClient.invalidateQueries(payeeQueries.list());
-          }
-
-          if (onImported) {
-            onImported(didChange);
-          }
-
-          close();
-        },
-      },
-    );
+    try {
+      for (const [
+        destinationAccountId,
+        accountTransactions,
+      ] of transactionsByAccount) {
+        if (completedAccountsRef.current.has(destinationAccountId)) {
+          continue;
+        }
+        const changed = await importTransactions.mutateAsync({
+          accountId: destinationAccountId,
+          transactions: accountTransactions as TransactionEntity[],
+          reconcile: effectiveReconcile,
+          reimportDeleted,
+        });
+        completedAccountsRef.current.add(destinationAccountId);
+        importDidChangeRef.current = importDidChangeRef.current || changed;
+      }
+      if (routingRequired) {
+        let savedRoutes: Record<string, string> = {};
+        try {
+          savedRoutes = JSON.parse(initialPrefs['csv-account-routes'] ?? '{}');
+        } catch {
+          savedRoutes = {};
+        }
+        savePrefs({
+          'csv-account-routes': JSON.stringify({
+            ...savedRoutes,
+            ...accountRoutes,
+          }),
+        });
+      }
+      if (importDidChangeRef.current) {
+        void queryClient.invalidateQueries(payeeQueries.list());
+      }
+      onImported?.(importDidChangeRef.current);
+      close();
+    } catch (importError) {
+      setError({
+        parsed: false,
+        message:
+          importError instanceof Error
+            ? importError.message
+            : t(
+                'Не удалось импортировать операции. Проверьте сопоставление счетов.',
+              ),
+      });
+      setLoadingState(null);
+    }
   }
 
   const importPreviewTransactions = useImportPreviewTransactionsMutation();
 
   const onImportPreview = useEffectEvent(async () => {
+    const generation = ++previewGenerationRef.current;
+    setIsPreviewing(true);
     // Filter by start date before preview and deduplication
     const isPreParsed = isOfxFile(filetype) || isCamtFile(filetype);
     const filteredTransactions = filterByStartDate(
@@ -822,68 +985,137 @@ export function ImportTransactionsModal({
       multiplierAmount,
     );
 
-    // Retreive the transactions that would be updated (along with the existing trx)
-    importPreviewTransactions.mutate(
-      {
-        accountId,
-        transactions: previewTransactionsToImport,
-        reimportDeleted,
-      },
-      {
-        onSuccess: previewTrx => {
-          const matchedUpdateMap = previewTrx.reduce((map, entry) => {
-            // @ts-expect-error - entry.transaction might not have trx_id property
-            map[entry.transaction.trx_id] = entry;
-            return map;
-          }, {});
-
-          const previewTransactions = filteredTransactions
-            .filter(trans => !trans.isMatchedTransaction)
-            .reduce((previous, currentTrx) => {
-              let next = previous;
-              const entry = matchedUpdateMap[currentTrx.trx_id];
-              const existingTrx = entry?.existing;
-
-              // if the transaction is matched with an existing one for update
-              currentTrx.existing = !!existingTrx;
-              // if the transaction is an update that will be ignored
-              // (reconciled transactions or no change detected)
-              currentTrx.ignored = entry?.ignored || false;
-
-              currentTrx.tombstone = entry?.tombstone || false;
-
-              currentTrx.selected = !currentTrx.ignored;
-              currentTrx.selected_merge = currentTrx.existing;
-
-              next = next.concat({ ...currentTrx });
-
-              if (existingTrx) {
-                // add the updated existing transaction in the list, with the
-                // isMatchedTransaction flag to identify it in display and not send it again
-                existingTrx.isMatchedTransaction = true;
-                existingTrx.category = categories.find(
-                  cat => cat.id === existingTrx.category,
-                )?.name;
-                // add parent transaction attribute to mimic behaviour
-                existingTrx.trx_id = currentTrx.trx_id;
-                existingTrx.existing = currentTrx.existing;
-                existingTrx.selected = currentTrx.selected;
-                existingTrx.selected_merge = currentTrx.selected_merge;
-
-                next = next.concat({ ...existingTrx });
-              }
-
-              return next;
-            }, []);
-
-          setTransactions(previewTransactions);
-        },
-      },
+    const originalById = new Map(
+      filteredTransactions.map(transaction => [
+        transaction.trx_id,
+        transaction,
+      ]),
     );
+    const destinationFor = (transaction: ImportTransaction) => {
+      if (!routingRequired) {
+        return accountId;
+      }
+      const original = originalById.get(transaction.trx_id);
+      const source = sourceField
+        ? String(original?.[sourceField] ?? '').trim()
+        : '';
+      const destination = accountRoutes[source];
+      return destination && destination !== 'skip' ? destination : null;
+    };
+
+    const pairedIds = autoExcludePairs
+      ? findOpposingPairIds(
+          previewTransactionsToImport.map(transaction => ({
+            id: transaction.trx_id,
+            accountId: destinationFor(transaction) ?? '',
+            sourceAccount: sourceField
+              ? String(
+                  originalById.get(transaction.trx_id)?.[sourceField] ?? '',
+                )
+              : '',
+            date: transaction.date,
+            amount: transaction.amount,
+            description: String(transaction.payee_name ?? ''),
+          })),
+        )
+      : new Set<string>();
+
+    const byAccount = new Map<string, ImportTransaction[]>();
+    for (const transaction of previewTransactionsToImport) {
+      const destination = destinationFor(transaction);
+      if (destination && !pairedIds.has(transaction.trx_id)) {
+        const group = byAccount.get(destination) ?? [];
+        group.push(transaction);
+        byAccount.set(destination, group);
+      }
+    }
+
+    try {
+      const previewResults = [];
+      for (const [destination, group] of byAccount) {
+        previewResults.push(
+          await importPreviewTransactions.mutateAsync({
+            accountId: destination,
+            transactions: group as unknown as TransactionEntity[],
+            reimportDeleted,
+          }),
+        );
+      }
+      if (generation !== previewGenerationRef.current) {
+        return;
+      }
+      setAutoExcludedIds(pairedIds);
+      const previewTrx = previewResults.flat();
+      const matchedUpdateMap = previewTrx.reduce((map, entry) => {
+        map[entry.transaction.trx_id] = entry;
+        return map;
+      }, {});
+
+      const previewTransactions = filteredTransactions
+        .filter(trans => !trans.isMatchedTransaction)
+        .reduce((previous, currentTrx) => {
+          let next = previous;
+          const entry = matchedUpdateMap[currentTrx.trx_id];
+          const existingTrx = entry?.existing;
+
+          // if the transaction is matched with an existing one for update
+          currentTrx.existing = !!existingTrx;
+          // if the transaction is an update that will be ignored
+          // (reconciled transactions or no change detected)
+          currentTrx.ignored = entry?.ignored || false;
+
+          currentTrx.tombstone = entry?.tombstone || false;
+
+          const selection = selectionOverridesRef.current.get(
+            currentTrx.trx_id,
+          );
+          currentTrx.selected =
+            selection?.selected ??
+            (!currentTrx.ignored &&
+              !pairedIds.has(currentTrx.trx_id) &&
+              !!destinationFor(currentTrx));
+          currentTrx.selected_merge =
+            selection?.selected_merge ?? currentTrx.existing;
+
+          next = next.concat({ ...currentTrx });
+
+          if (existingTrx) {
+            // add the updated existing transaction in the list, with the
+            // isMatchedTransaction flag to identify it in display and not send it again
+            existingTrx.isMatchedTransaction = true;
+            existingTrx.category = categories.find(
+              cat => cat.id === existingTrx.category,
+            )?.name;
+            // add parent transaction attribute to mimic behaviour
+            existingTrx.trx_id = currentTrx.trx_id;
+            existingTrx.existing = currentTrx.existing;
+            existingTrx.selected = currentTrx.selected;
+            existingTrx.selected_merge = currentTrx.selected_merge;
+
+            next = next.concat({ ...existingTrx });
+          }
+
+          return next;
+        }, []);
+
+      setTransactions(previewTransactions);
+      setIsPreviewing(false);
+    } catch (previewError) {
+      if (generation === previewGenerationRef.current) {
+        setIsPreviewing(false);
+        setError({
+          parsed: false,
+          message:
+            previewError instanceof Error
+              ? previewError.message
+              : t('Не удалось подготовить предварительный просмотр.'),
+        });
+      }
+    }
   });
 
   useEffect(() => {
-    if (parsedTransactions.length === 0 || loadingState === 'parsing') {
+    if (parsedTransactions.length === 0 || loadingState !== null) {
       return;
     }
 
@@ -895,6 +1127,14 @@ export function ImportTransactionsModal({
     fieldMappings,
     parseDateFormat,
     reimportDeleted,
+    accountRoutes,
+    autoExcludePairs,
+    flipAmount,
+    splitMode,
+    inOutMode,
+    outValue,
+    multiplierAmount,
+    clearOnImport,
   ]);
 
   const headers: ComponentProps<typeof TableHeader>['headers'] = [
@@ -904,7 +1144,7 @@ export function ImportTransactionsModal({
     { name: t('Category'), width: 'flex' },
   ];
 
-  if (reconcile) {
+  if (effectiveReconcile) {
     headers.unshift({ name: ' ', width: 31 });
   }
   if (inOutMode) {
@@ -936,6 +1176,7 @@ export function ImportTransactionsModal({
   return (
     <Modal
       name="import-transactions"
+      isDismissable={false}
       isLoading={loadingState === 'parsing'}
       containerProps={{ style: { width: 800 } }}
     >
@@ -969,7 +1210,7 @@ export function ImportTransactionsModal({
                 items={transactions.filter(
                   trans =>
                     !trans.isMatchedTransaction ||
-                    (trans.isMatchedTransaction && reconcile),
+                    (trans.isMatchedTransaction && effectiveReconcile),
                 )}
                 fields={['payee', 'category', 'amount']}
                 style={{ backgroundColor: theme.tableHeaderBackground }}
@@ -1004,7 +1245,19 @@ export function ImportTransactionsModal({
                       multiplierAmount={multiplierAmount}
                       categories={categories}
                       onCheckTransaction={onCheckTransaction}
-                      reconcile={reconcile}
+                      reconcile={effectiveReconcile}
+                      canSelect={
+                        !routingRequired ||
+                        !!(
+                          sourceField &&
+                          accountRoutes[
+                            String(item[sourceField] ?? '').trim()
+                          ] &&
+                          accountRoutes[
+                            String(item[sourceField] ?? '').trim()
+                          ] !== 'skip'
+                        )
+                      }
                     />
                   </View>
                 )}
@@ -1073,6 +1326,53 @@ export function ImportTransactionsModal({
                 inOutMode={inOutMode}
                 hasHeaderRow={hasHeaderRow}
               />
+            </View>
+          )}
+
+          {routingRequired &&
+            (sourceField && sources.length > 0 ? (
+              <AccountRouting
+                sources={sources}
+                accounts={availableAccounts}
+                routes={accountRoutes}
+                onChange={(source, destination) =>
+                  setAccountRoutes(previous => ({
+                    ...previous,
+                    [source]: destination,
+                  }))
+                }
+              />
+            ) : (
+              <Text style={{ marginTop: 12, color: theme.errorText }}>
+                {t('Для общего файла выберите поле «Счёт в файле».')}
+              </Text>
+            ))}
+
+          {filetype === 'csv' && (
+            <View style={{ marginTop: 12, gap: 4 }}>
+              <CheckboxToggle
+                id="auto-exclude-pairs"
+                checked={autoExcludePairs}
+                onChange={setAutoExcludePairs}
+              >
+                {t(
+                  'Исключать встречные операции с одинаковыми датой, суммой и описанием на одном счёте',
+                )}
+                {hasMissingSource && (
+                  <Text style={{ marginTop: 8, color: theme.errorText }}>
+                    {t(
+                      'В файле есть операции без названия счёта. Выберите другой столбец счёта или исправьте файл.',
+                    )}
+                  </Text>
+                )}
+              </CheckboxToggle>
+              {autoExcludePairs && autoExcludedIds.size > 0 && (
+                <Text style={{ color: theme.tableTextInactive }}>
+                  {t('Исключено встречных операций: {{count}}', {
+                    count: autoExcludedIds.size,
+                  })}
+                </Text>
+              )}
             </View>
           )}
 
@@ -1183,6 +1483,7 @@ export function ImportTransactionsModal({
                       <Select
                         id="csv-delimiter-select"
                         options={[
+                          ['auto', t('Авто')],
                           [',', ','],
                           [';', ';'],
                           ['|', '|'],
@@ -1282,14 +1583,22 @@ export function ImportTransactionsModal({
                     >
                       <Trans>Clear transactions on import</Trans>
                     </CheckboxToggle>
-                    <CheckboxToggle
-                      id="form_dont_reconcile"
-                      checked={reconcile}
-                      onChange={setReconcile}
-                    >
-                      <Trans>Merge with existing transactions</Trans>
-                    </CheckboxToggle>
-                    {reconcile && (
+                    {routingRequired ? (
+                      <Text>
+                        {t(
+                          'Для общего файла совпадающие операции объединяются автоматически.',
+                        )}
+                      </Text>
+                    ) : (
+                      <CheckboxToggle
+                        id="form_dont_reconcile"
+                        checked={reconcile}
+                        onChange={setReconcile}
+                      >
+                        <Trans>Merge with existing transactions</Trans>
+                      </CheckboxToggle>
+                    )}
+                    {effectiveReconcile && (
                       <CheckboxToggle
                         id="form_reimport_deleted_csv"
                         checked={reimportDeleted}
@@ -1364,14 +1673,26 @@ export function ImportTransactionsModal({
                   trans =>
                     !trans.isMatchedTransaction &&
                     trans.selected &&
-                    !trans.tombstone,
+                    !trans.tombstone &&
+                    (!routingRequired ||
+                      !!(
+                        sourceField &&
+                        accountRoutes[
+                          String(trans[sourceField] ?? '').trim()
+                        ] &&
+                        accountRoutes[
+                          String(trans[sourceField] ?? '').trim()
+                        ] !== 'skip'
+                      )),
                 ).length;
 
                 return (
                   <ButtonWithLoading
                     variant="primary"
                     autoFocus
-                    isDisabled={count === 0}
+                    isDisabled={
+                      count === 0 || hasUnresolvedRoutes || isPreviewing
+                    }
                     isLoading={loadingState === 'importing'}
                     onPress={() => {
                       void onImport(() => state.close());
