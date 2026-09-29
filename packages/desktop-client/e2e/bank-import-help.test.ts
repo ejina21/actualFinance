@@ -302,3 +302,57 @@ test('saved CSV settings are editable and applied to the next upload', async ({
     page.getByTestId('row').filter({ hasText: 'Покупка' }),
   ).toContainText('Food');
 });
+
+test('many saved category rules remain readable and scrollable', async ({
+  page,
+}) => {
+  test.setTimeout(120000);
+  await page.goto('/');
+  await page.getByRole('button', { name: 'Открыть демоверсию' }).click();
+  await page.getByRole('link', { name: 'Настройки', exact: true }).click();
+
+  const card = page.getByTestId('import-category-settings');
+  for (let index = 1; index <= 12; index++) {
+    await card.getByRole('button', { name: 'Добавить правило' }).click();
+    await card
+      .getByRole('textbox', { name: 'Значение условия 1' })
+      .fill(`Магазин ${index}`);
+    await card.getByRole('button', { name: 'Категория для правила' }).click();
+    await page.getByRole('button', { name: 'Usual Expenses · Food' }).click();
+    await card.getByRole('button', { name: 'Сохранить правило' }).click();
+    await expect(card).toContainText(`Магазин ${index}`);
+  }
+
+  const list = card.getByTestId('import-category-rule-list');
+  const rows = list.getByTestId('import-category-rule-row');
+  await expect(rows).toHaveCount(12);
+  const geometry = await list.evaluate(element => ({
+    clientHeight: element.clientHeight,
+    scrollHeight: element.scrollHeight,
+    firstRowHeight: element.firstElementChild?.getBoundingClientRect().height,
+  }));
+  expect(geometry.firstRowHeight).toBeGreaterThanOrEqual(52);
+  expect(geometry.scrollHeight).toBeGreaterThan(geometry.clientHeight);
+  await rows
+    .first()
+    .getByRole('button', { name: /Действия с правилом/ })
+    .click();
+  await page.getByRole('button', { name: 'Ниже', exact: true }).click();
+  await expect(rows.first()).toContainText('Магазин 11');
+  await rows
+    .first()
+    .getByRole('button', { name: /Изменить правило/ })
+    .click();
+  await expect(
+    card.getByRole('textbox', { name: 'Значение условия 1' }),
+  ).toHaveValue('Магазин 11');
+  await card.getByRole('button', { name: 'Отмена' }).click();
+  await rows.last().scrollIntoViewIfNeeded();
+  await expect(rows.last()).toBeVisible();
+  await list.evaluate(element => {
+    element.scrollTop = 0;
+  });
+  await expect(card).toMatchThemeScreenshots();
+  await page.setViewportSize({ width: 390, height: 844 });
+  await expect(card).toMatchThemeScreenshots();
+});

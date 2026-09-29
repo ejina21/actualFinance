@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import { Button, ButtonWithLoading } from '@actual-app/components/button';
@@ -18,6 +18,7 @@ import { useSyncedPrefs } from '#hooks/useSyncedPrefs';
 import { saveSyncedPrefs } from '#prefs/prefsSlice';
 import { useDispatch } from '#redux';
 
+import { ImportCategoryRuleRow } from './ImportCategoryRuleRow';
 import { Setting } from './UI';
 
 const emptyCondition: ImportCategoryCondition = {
@@ -62,10 +63,17 @@ export function ImportCategoryRules() {
   const [saveState, setSaveState] = useState<'idle' | 'saving' | 'error'>(
     'idle',
   );
+  const editorRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
     setRules(readCategoryRules({ 'csv-category-rules': savedRules }));
   }, [savedRules]);
+
+  useEffect(() => {
+    if (isEditorOpen) {
+      editorRef.current?.scrollIntoView({ block: 'nearest' });
+    }
+  }, [isEditorOpen, editingIndex]);
 
   const groupName = (groupId: string) =>
     groups.find(group => group.id === groupId)?.name ?? '';
@@ -99,6 +107,12 @@ export function ImportCategoryRules() {
   };
   const conditionLabel = (condition: ImportCategoryCondition) =>
     `${fieldLabels[condition.field]} ${operatorLabels[condition.op]} ${condition.value}`;
+  const ruleTitle = (rule: ImportCategoryRule) =>
+    rule.conditions.length === 1 &&
+    rule.conditions[0].field === 'payee' &&
+    rule.conditions[0].op === 'is'
+      ? rule.conditions[0].value
+      : rule.conditions.map(conditionLabel).join(` ${t('и')} `);
   const visibleRules = rules
     .map((rule, index) => ({ rule, index }))
     .filter(({ rule }) =>
@@ -207,47 +221,65 @@ export function ImportCategoryRules() {
   return (
     <View data-testid="import-category-settings" style={{ width: '100%' }}>
       <Setting>
-        <View style={{ gap: 5 }}>
-          <Text style={{ fontSize: 17, fontWeight: 650 }}>
-            {t('Автоматические категории при импорте')}
-          </Text>
+        <View style={{ width: '100%', gap: 4 }}>
+          <View
+            style={{
+              flexDirection: 'row',
+              alignItems: 'baseline',
+              flexWrap: 'wrap',
+              gap: 8,
+            }}
+          >
+            <Text style={{ fontSize: 17, fontWeight: 650, flex: '1 1 auto' }}>
+              {t('Автоматические категории при импорте')}
+            </Text>
+            <Text style={{ fontSize: 13, color: theme.tableTextInactive }}>
+              {t('Правил: {{total}}', { total: rules.length })}
+            </Text>
+          </View>
           <Text style={{ color: theme.tableTextInactive }}>
             {t(
-              'Добавьте условия по полям операции и выберите категорию. Все условия правила должны выполняться одновременно. Правила проверяются сверху вниз; категория из файла имеет приоритет.',
+              'Правила проверяются сверху вниз. Категория из файла имеет приоритет.',
             )}
           </Text>
         </View>
 
         <View
           style={{
-            display: 'flex',
+            flexDirection: 'row',
             flexWrap: 'wrap',
             alignItems: 'center',
-            justifyContent: 'space-between',
-            gap: 10,
+            gap: 8,
             width: '100%',
           }}
         >
-          <Text style={{ color: theme.tableTextInactive }}>
-            {t('Правил: {{total}}', { total: rules.length })}
-          </Text>
-          <Button variant="primary" onPress={startAdding}>
+          {rules.length > 0 && (
+            <Input
+              aria-label={t('Поиск по правилам')}
+              placeholder={t('Найти правило')}
+              value={search}
+              onChangeValue={setSearch}
+              style={{ flex: '1 1 220px', minWidth: 0 }}
+            />
+          )}
+          <Button
+            variant="primary"
+            onPress={startAdding}
+            style={{ flexShrink: 0 }}
+          >
             {t('Добавить правило')}
           </Button>
         </View>
 
         {isEditorOpen && (
           <View
+            innerRef={editorRef}
             data-testid="import-category-rule-editor"
             style={{
               width: '100%',
-              display: 'flex',
-              flexDirection: 'column',
               gap: 12,
-              padding: 14,
-              border: `1px solid ${theme.formInputBorder}`,
-              borderRadius: 8,
-              backgroundColor: theme.formInputBackground,
+              paddingTop: 14,
+              borderTop: `1px solid ${theme.tableBorder}`,
             }}
           >
             <Text style={{ fontWeight: 650 }}>
@@ -369,7 +401,7 @@ export function ImportCategoryRules() {
                 style={{ width: '100%' }}
               />
             </View>
-            <View style={{ display: 'flex', gap: 8, flexWrap: 'wrap' }}>
+            <View style={{ flexDirection: 'row', gap: 8, flexWrap: 'wrap' }}>
               <ButtonWithLoading
                 variant="primary"
                 isDisabled={!canSave}
@@ -391,89 +423,37 @@ export function ImportCategoryRules() {
           </Text>
         )}
 
-        {rules.length > 0 && (
-          <Input
-            aria-label={t('Поиск по правилам')}
-            placeholder={t('Найти правило по условию или категории')}
-            value={search}
-            onChangeValue={setSearch}
-            style={{ width: '100%' }}
-          />
-        )}
         <View
+          data-testid="import-category-rule-list"
           style={{
+            display: 'block',
             width: '100%',
+            borderTop:
+              rules.length > 0 ? `1px solid ${theme.tableBorder}` : undefined,
             ...(visibleRules.length > 8
-              ? { maxHeight: 360, overflowY: 'auto' }
+              ? { maxHeight: 360, overflowY: 'auto', overflowX: 'hidden' }
               : {}),
           }}
         >
           {visibleRules.map(({ rule, index }) => (
-            <View
+            <ImportCategoryRuleRow
               key={index}
-              style={{
-                display: 'flex',
-                flexDirection: 'column',
-                alignItems: 'stretch',
-                gap: 8,
-                padding: '10px 0',
-                borderBottom: `1px solid ${theme.formInputBorder}`,
-              }}
-            >
-              <View style={{ minWidth: 0, gap: 3 }}>
-                <Text
-                  style={{
-                    fontWeight: 600,
-                    whiteSpace: 'normal',
-                    overflowWrap: 'anywhere',
-                  }}
-                >
-                  {rule.conditions.map(conditionLabel).join(` ${t('и')} `)}
-                </Text>
-                <Text style={{ color: theme.tableTextInactive }}>
-                  → {rule.group ? `${rule.group} · ` : ''}
-                  {rule.category}
-                  {!categoryForRule(rule) && ` · ${t('Категория не найдена')}`}
-                </Text>
-              </View>
-              <View
-                style={{
-                  display: 'flex',
-                  flexDirection: 'row',
-                  justifyContent: 'flex-start',
-                  flexWrap: 'wrap',
-                  gap: 6,
-                }}
-              >
-                <Button
-                  isDisabled={index === 0 || saveState === 'saving'}
-                  onPress={() => moveRule(index, -1)}
-                >
-                  {t('Выше')}
-                </Button>
-                <Button
-                  isDisabled={
-                    index === rules.length - 1 || saveState === 'saving'
-                  }
-                  onPress={() => moveRule(index, 1)}
-                >
-                  {t('Ниже')}
-                </Button>
-                <Button onPress={() => startEditing(index)}>
-                  {t('Изменить')}
-                </Button>
-                <Button
-                  isDisabled={saveState === 'saving'}
-                  onPress={() =>
-                    void persistRules(
-                      rules.filter((_, ruleIndex) => ruleIndex !== index),
-                    )
-                  }
-                >
-                  {t('Удалить')}
-                </Button>
-              </View>
-            </View>
+              title={ruleTitle(rule)}
+              group={rule.group}
+              category={rule.category}
+              isCategoryMissing={!categoryForRule(rule)}
+              isFirst={index === 0}
+              isLast={index === rules.length - 1}
+              isSaving={saveState === 'saving'}
+              onEdit={() => startEditing(index)}
+              onMoveUp={() => moveRule(index, -1)}
+              onMoveDown={() => moveRule(index, 1)}
+              onDelete={() =>
+                void persistRules(
+                  rules.filter((_, ruleIndex) => ruleIndex !== index),
+                )
+              }
+            />
           ))}
           {rules.length > 0 && visibleRules.length === 0 && (
             <Text style={{ color: theme.tableTextInactive }}>
