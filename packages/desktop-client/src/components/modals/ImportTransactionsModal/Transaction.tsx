@@ -76,19 +76,6 @@ export function Transaction({
   );
   const hasMappedCategory =
     !!transaction.category && categoryList.includes(transaction.category);
-  const suggestedCategoryId =
-    showParsed && !hasMappedCategory
-      ? findImportCategory(
-          transaction.payee_name ?? '',
-          categoryRules,
-          categories,
-          categoryGroups,
-        )
-      : null;
-  const categoryLabel = hasMappedCategory
-    ? transaction.category
-    : categories.find(category => category.id === suggestedCategoryId)?.name;
-
   const { amount, outflow, inflow } = useMemo(() => {
     if (rawTransaction.isMatchedTransaction) {
       const amount = rawTransaction.amount;
@@ -117,6 +104,26 @@ export function Transaction({
     flipAmount,
     multiplierAmount,
   ]);
+
+  const suggestedCategoryId =
+    showParsed && !hasMappedCategory
+      ? findImportCategory(
+          {
+            payee: transaction.payee_name,
+            notes: transaction.notes,
+            account: fieldMappings?.account
+              ? String(rawTransaction[fieldMappings.account] ?? '')
+              : undefined,
+            amount,
+          },
+          categoryRules,
+          categories,
+          categoryGroups,
+        )
+      : null;
+  const categoryLabel = hasMappedCategory
+    ? transaction.category
+    : categories.find(category => category.id === suggestedCategoryId)?.name;
 
   return (
     <Row

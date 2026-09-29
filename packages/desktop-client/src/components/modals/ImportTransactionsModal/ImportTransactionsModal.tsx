@@ -451,6 +451,9 @@ export function ImportTransactionsModal({
           continue;
         }
 
+        const sourceAccount = fieldMappings?.account
+          ? String(trans[fieldMappings.account] ?? '')
+          : undefined;
         trans = fieldMappings
           ? applyFieldMappings(trans, fieldMappings)
           : trans;
@@ -486,7 +489,12 @@ export function ImportTransactionsModal({
           parseCategoryFields(trans, categories) ??
           (filetype === 'csv'
             ? findImportCategory(
-                trans.payee_name ?? '',
+                {
+                  payee: trans.payee_name,
+                  notes: trans.notes,
+                  account: sourceAccount,
+                  amount,
+                },
                 categoryRules,
                 categories,
                 categoryGroups,
@@ -893,7 +901,12 @@ export function ImportTransactionsModal({
         parseCategoryFields(trans, categories) ??
         (filetype === 'csv'
           ? findImportCategory(
-              trans.payee_name ?? '',
+              {
+                payee: trans.payee_name,
+                notes: trans.notes,
+                account: sourceName,
+                amount,
+              },
               categoryRules,
               categories,
               categoryGroups,

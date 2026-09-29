@@ -259,12 +259,32 @@ test('saved CSV settings are editable and applied to the next upload', async ({
   await settings.locator('#saved-import-pairs-all').uncheck();
   await settings.getByRole('button', { name: 'Сохранить шаблон' }).click();
   await expect(settings).toContainText('Сохранено');
+  await settings.getByRole('button', { name: 'Добавить правило' }).click();
+  await settings.getByRole('button', { name: 'Поле условия 1' }).click();
+  await page.getByRole('button', { name: 'Заметки', exact: true }).click();
+  await settings.getByRole('button', { name: 'Сравнение условия 1' }).click();
+  await page.getByRole('button', { name: 'содержит', exact: true }).click();
   await settings
-    .locator('#import-category-rules')
-    .fill('| Покупка | СЕМЬЯ | Расходы | Food |');
-  await expect(settings).toContainText('категории найдены: 1');
-  await settings.getByRole('button', { name: 'Сохранить справочник' }).click();
-  await expect(settings).toContainText('Сохранено');
+    .getByRole('textbox', { name: 'Значение условия 1' })
+    .fill('заказ');
+  await settings.getByRole('button', { name: 'Добавить условие' }).click();
+  await settings.getByRole('button', { name: 'Поле условия 2' }).click();
+  await page
+    .getByRole('button', { name: 'Счёт в выписке', exact: true })
+    .click();
+  await settings
+    .getByRole('textbox', { name: 'Значение условия 2' })
+    .fill('Счёт для шаблона');
+  await settings.getByRole('button', { name: 'Категория для правила' }).click();
+  await page.getByRole('button', { name: 'Usual Expenses · Food' }).click();
+  await expect(
+    settings.getByTestId('import-category-rule-editor'),
+  ).toMatchThemeScreenshots();
+  await settings.getByRole('button', { name: 'Сохранить правило' }).click();
+  await expect(settings).toContainText('Заметки содержит заказ');
+  await expect(settings).toContainText(
+    'Счёт в выписке совпадает Счёт для шаблона',
+  );
   await expect(
     settings.getByTestId('import-category-settings'),
   ).toMatchThemeScreenshots();
