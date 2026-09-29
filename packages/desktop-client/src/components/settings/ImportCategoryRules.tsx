@@ -8,16 +8,24 @@ import { Text } from '@actual-app/components/text';
 import { theme } from '@actual-app/components/theme';
 import { View } from '@actual-app/components/view';
 
-import { readCategoryRules } from '#components/modals/ImportTransactionsModal/categoryRules';
+import { getManualBank, MANUAL_BANKS } from '#components/manual-bank/banks';
+import type { ManualBankId } from '#components/manual-bank/banks';
+import {
+  detectCsvImportBankId,
+  readCategoryRules,
+} from '#components/modals/ImportTransactionsModal/categoryRules';
 import type {
   ImportCategoryCondition,
   ImportCategoryRule,
 } from '#components/modals/ImportTransactionsModal/categoryRules';
+import { getCsvImportProfile } from '#components/modals/ImportTransactionsModal/importSettings';
+import { useAccounts } from '#hooks/useAccounts';
 import { useCategories } from '#hooks/useCategories';
 import { useSyncedPrefs } from '#hooks/useSyncedPrefs';
 import { saveSyncedPrefs } from '#prefs/prefsSlice';
 import { useDispatch } from '#redux';
 
+import { ImportCategoryPicker } from './ImportCategoryPicker';
 import { ImportCategoryRuleRow } from './ImportCategoryRuleRow';
 import { Setting } from './UI';
 
@@ -25,6 +33,30 @@ const emptyCondition: ImportCategoryCondition = {
   field: 'payee',
   op: 'is',
   value: '',
+};
+
+const tBankCondition: ImportCategoryCondition = {
+  field: 'csv',
+  column: 'Описание',
+  op: 'contains',
+  value: '',
+};
+
+const tBankColumns = [
+  'Описание',
+  'Сообщение',
+  'MCC',
+  'Имя счёта',
+  'Категория по-умолчанию',
+  'Ваша категория',
+];
+
+const bankNames: Record<ManualBankId, string> = {
+  tbank: 'Т-Банк',
+  alfabank: 'Альфа-Банк',
+  sberbank: 'Сбербанк',
+  ozon: 'Ozon Банк',
+  yandex: 'Яндекс Банк',
 };
 
 function validCondition(condition: ImportCategoryCondition) {
@@ -50,10 +82,11 @@ export function ImportCategoryRules() {
   const {
     data: { list: categories, grouped: groups } = { list: [], grouped: [] },
   } = useCategories();
+  const { data: accounts = [] } = useAccounts();
   const savedRules = prefs['csv-category-rules'];
   const [rules, setRules] = useState<ImportCategoryRule[]>([]);
   const [search, setSearch] = useState('');
-  const [categorySearch, setCategorySearch] = useState('');
+  const [bankId, setBankId] = useState<ManualBankId | ''>('tbank');
   const [editingIndex, setEditingIndex] = useState<number | null>(null);
   const [isEditorOpen, setIsEditorOpen] = useState(false);
   const [conditions, setConditions] = useState<ImportCategoryCondition[]>([
@@ -97,6 +130,7 @@ export function ImportCategoryRules() {
     notes: t('Заметки'),
     account: t('Счёт в выписке'),
     amount: t('Сумма'),
+    csv: t('Столбец CSV'),
   };
   const operatorLabels = {
     is: t('совпадает'),
@@ -106,7 +140,11 @@ export function ImportCategoryRules() {
     greaterThan: t('больше'),
   };
   const conditionLabel = (condition: ImportCategoryCondition) =>
-    `${fieldLabels[condition.field]} ${operatorLabels[condition.op]} ${condition.value}`;
+    `${condition.field === 'csv' ? condition.column : fieldLabels[condition.field]} ${operatorLabels[condition.op]} ${condition.value}`;
+  const ruleBankName = (rule: ImportCategoryRule) => {
+    const bank = getManualBank(rule.bankId);
+    return bank ? t(bankNames[bank.id]) : t('Любой CSV');
+  };
   const ruleTitle = (rule: ImportCategoryRule) =>
     rule.conditions.length === 1 &&
     rule.conditions[0].field === 'payee' &&
@@ -116,24 +154,54 @@ export function ImportCategoryRules() {
   const visibleRules = rules
     .map((rule, index) => ({ rule, index }))
     .filter(({ rule }) =>
-      [rule.group, rule.category, ...rule.conditions.map(conditionLabel)]
+      [
+        rule.group,
+        rule.category,
+        ruleBankName(rule),
+        ...rule.conditions.map(conditionLabel),
+      ]
         .join(' ')
         .toLocaleLowerCase('ru')
         .includes(search.trim().toLocaleLowerCase('ru')),
     );
-  const categoryOptions = categories
-    .filter(category =>
-      `${groupName(category.group)} ${category.name}`
-        .toLocaleLowerCase('ru')
-        .includes(categorySearch.trim().toLocaleLowerCase('ru')),
-    )
-    .map(
-      category =>
-        [
-          category.id,
-          `${groupName(category.group)} · ${category.name}`,
-        ] as const,
-    );
+  const sourceColumns = new Set(bankId === 'tbank' ? tBankColumns : []);
+  if (bankId) {
+    const allProfile = getCsvImportProfile(prefs);
+    if (
+      allProfile &&
+      detectCsvImportBankId(
+        Object.fromEntries(allProfile.columns.map(column => [column, ''])),
+      ) === bankId
+    ) {
+      allProfile.columns.forEach(column => sourceColumns.add(column));
+    }
+    accounts.forEach(account => {
+      if (prefs[`manual-bank-${account.id}`] === bankId) {
+        getCsvImportProfile(prefs, account.id)?.columns.forEach(column =>
+          sourceColumns.add(column),
+        );
+      }
+    });
+  }
+  const fieldOptions: Array<
+    readonly [
+      'payee' | 'notes' | 'account' | 'amount' | `csv:${string}`,
+      string,
+    ]
+  > = [
+    ...(bankId === 'tbank'
+      ? []
+      : [
+          ['payee', fieldLabels.payee] as const,
+          ['notes', fieldLabels.notes] as const,
+          ['account', fieldLabels.account] as const,
+        ]),
+    ['amount', fieldLabels.amount],
+    ...Array.from(sourceColumns).map(
+      column =>
+        [`csv:${column}` as const, t('CSV: {{column}}', { column })] as const,
+    ),
+  ];
   const canSave =
     conditions.length > 0 &&
     conditions.every(validCondition) &&
@@ -141,9 +209,9 @@ export function ImportCategoryRules() {
 
   function startAdding() {
     setEditingIndex(null);
-    setConditions([{ ...emptyCondition }]);
+    setBankId('tbank');
+    setConditions([{ ...tBankCondition }]);
     setCategoryId('');
-    setCategorySearch('');
     setSaveState('idle');
     setIsEditorOpen(true);
   }
@@ -151,9 +219,9 @@ export function ImportCategoryRules() {
   function startEditing(index: number) {
     const rule = rules[index];
     setEditingIndex(index);
+    setBankId(getManualBank(rule.bankId)?.id ?? '');
     setConditions(rule.conditions.map(condition => ({ ...condition })));
     setCategoryId(categoryForRule(rule)?.id ?? '');
-    setCategorySearch('');
     setSaveState('idle');
     setIsEditorOpen(true);
   }
@@ -167,6 +235,31 @@ export function ImportCategoryRules() {
         index === currentIndex ? { ...condition, ...changes } : condition,
       ),
     );
+  }
+
+  function selectConditionField(index: number, value: string) {
+    if (value.startsWith('csv:')) {
+      changeCondition(index, {
+        field: 'csv',
+        column: value.slice(4),
+        op: 'contains',
+        value: '',
+      });
+    } else if (value === 'amount') {
+      changeCondition(index, {
+        field: 'amount',
+        column: undefined,
+        op: 'is',
+        value: '',
+      });
+    } else if (value === 'payee' || value === 'notes' || value === 'account') {
+      changeCondition(index, {
+        field: value,
+        column: undefined,
+        op: 'is',
+        value: '',
+      });
+    }
   }
 
   async function persistRules(nextRules: ImportCategoryRule[]) {
@@ -195,6 +288,7 @@ export function ImportCategoryRules() {
         ...condition,
         value: condition.value.trim(),
       })),
+      ...(bankId ? { bankId } : {}),
       group: groupName(category.group),
       category: category.name,
     };
@@ -287,6 +381,28 @@ export function ImportCategoryRules() {
                 ? t('Новое правило')
                 : t('Изменить правило')}
             </Text>
+            <View style={{ display: 'grid', gap: 4 }}>
+              <Text>{t('Банк выписки')}</Text>
+              <Select
+                aria-label={t('Банк для правила')}
+                options={[
+                  ['', t('Любой CSV')],
+                  ...MANUAL_BANKS.map(
+                    bank => [bank.id, t(bankNames[bank.id])] as const,
+                  ),
+                ]}
+                value={bankId}
+                onChange={value => {
+                  setBankId(value);
+                  setConditions([
+                    value === 'tbank'
+                      ? { ...tBankCondition }
+                      : { ...emptyCondition },
+                  ]);
+                }}
+                style={{ width: '100%' }}
+              />
+            </View>
             {conditions.map((condition, index) => (
               <View
                 key={index}
@@ -303,20 +419,13 @@ export function ImportCategoryRules() {
                     aria-label={t('Поле условия {{number}}', {
                       number: index + 1,
                     })}
-                    options={[
-                      ['payee', fieldLabels.payee],
-                      ['notes', fieldLabels.notes],
-                      ['account', fieldLabels.account],
-                      ['amount', fieldLabels.amount],
-                    ]}
-                    value={condition.field}
-                    onChange={field =>
-                      changeCondition(index, {
-                        field,
-                        op: 'is',
-                        value: '',
-                      })
+                    options={fieldOptions}
+                    value={
+                      condition.field === 'csv'
+                        ? `csv:${condition.column}`
+                        : condition.field
                     }
+                    onChange={field => selectConditionField(index, field)}
                     style={{ width: '100%' }}
                   />
                 </View>
@@ -377,7 +486,12 @@ export function ImportCategoryRules() {
             <Button
               variant="bare"
               onPress={() =>
-                setConditions(previous => [...previous, { ...emptyCondition }])
+                setConditions(previous => [
+                  ...previous,
+                  bankId === 'tbank'
+                    ? { ...tBankCondition }
+                    : { ...emptyCondition },
+                ])
               }
               style={{ alignSelf: 'flex-start' }}
             >
@@ -385,20 +499,11 @@ export function ImportCategoryRules() {
             </Button>
             <View style={{ display: 'grid', gap: 7 }}>
               <Text style={{ fontWeight: 600 }}>{t('Тогда категория')}</Text>
-              <Input
-                aria-label={t('Поиск категории')}
-                placeholder={t('Найти категорию')}
-                value={categorySearch}
-                onChangeValue={setCategorySearch}
-                style={{ width: '100%' }}
-              />
-              <Select
-                aria-label={t('Категория для правила')}
-                options={categoryOptions}
+              <ImportCategoryPicker
+                categories={categories}
+                groups={groups}
                 value={categoryId}
-                defaultLabel={t('Выберите категорию')}
-                onChange={setCategoryId}
-                style={{ width: '100%' }}
+                onSelect={setCategoryId}
               />
             </View>
             <View style={{ flexDirection: 'row', gap: 8, flexWrap: 'wrap' }}>
@@ -441,6 +546,7 @@ export function ImportCategoryRules() {
               title={ruleTitle(rule)}
               group={rule.group}
               category={rule.category}
+              bankName={ruleBankName(rule)}
               isCategoryMissing={!categoryForRule(rule)}
               isFirst={index === 0}
               isLast={index === rules.length - 1}

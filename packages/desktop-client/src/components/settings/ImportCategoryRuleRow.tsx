@@ -13,6 +13,7 @@ type ImportCategoryRuleRowProps = {
   title: string;
   group: string;
   category: string;
+  bankName: string;
   isCategoryMissing: boolean;
   isFirst: boolean;
   isLast: boolean;
@@ -27,6 +28,7 @@ export function ImportCategoryRuleRow({
   title,
   group,
   category,
+  bankName,
   isCategoryMissing,
   isFirst,
   isLast,
@@ -74,6 +76,9 @@ export function ImportCategoryRuleRow({
             }}
           >
             {title}
+          </Text>
+          <Text style={{ fontSize: 12, color: theme.tableTextInactive }}>
+            {bankName}
           </Text>
           <Text
             style={{

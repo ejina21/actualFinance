@@ -238,8 +238,8 @@ test('saved CSV settings are editable and applied to the next upload', async ({
       name: 'statement.csv',
       mimeType: 'text/csv',
       buffer: Buffer.from(
-        'Имя счёта;Дата операции;Сумма в валюте счёта;Описание;Сообщение;Метка\n' +
-          'Счёт для шаблона;28.09.2026;-10,00;Покупка;заказ;метка',
+        'Имя счёта;Дата операции;Сумма операции;Сумма в валюте счёта;Описание;Сообщение;Метка\n' +
+          'Счёт для шаблона;28.09.2026;-10,00;-10,00;Покупка;заказ;метка',
       ),
     });
     return page.getByTestId('import-transactions-modal');
@@ -260,31 +260,30 @@ test('saved CSV settings are editable and applied to the next upload', async ({
   await settings.getByRole('button', { name: 'Сохранить шаблон' }).click();
   await expect(settings).toContainText('Сохранено');
   await settings.getByRole('button', { name: 'Добавить правило' }).click();
-  await settings.getByRole('button', { name: 'Поле условия 1' }).click();
-  await page.getByRole('button', { name: 'Заметки', exact: true }).click();
-  await settings.getByRole('button', { name: 'Сравнение условия 1' }).click();
-  await page.getByRole('button', { name: 'содержит', exact: true }).click();
   await settings
     .getByRole('textbox', { name: 'Значение условия 1' })
-    .fill('заказ');
+    .fill('Покупка');
   await settings.getByRole('button', { name: 'Добавить условие' }).click();
   await settings.getByRole('button', { name: 'Поле условия 2' }).click();
-  await page
-    .getByRole('button', { name: 'Счёт в выписке', exact: true })
-    .click();
+  await page.getByRole('button', { name: 'CSV: Сообщение' }).click();
   await settings
     .getByRole('textbox', { name: 'Значение условия 2' })
-    .fill('Счёт для шаблона');
-  await settings.getByRole('button', { name: 'Категория для правила' }).click();
-  await page.getByRole('button', { name: 'Usual Expenses · Food' }).click();
+    .fill('заказ');
+  const categorySearch = settings.getByRole('textbox', {
+    name: 'Поиск категории',
+  });
+  await categorySearch.scrollIntoViewIfNeeded();
+  await categorySearch.fill('Food');
+  await settings
+    .getByTestId('import-category-results')
+    .getByRole('button', { name: 'Usual Expenses · Food' })
+    .click();
   await expect(
     settings.getByTestId('import-category-rule-editor'),
   ).toMatchThemeScreenshots();
   await settings.getByRole('button', { name: 'Сохранить правило' }).click();
-  await expect(settings).toContainText('Заметки содержит заказ');
-  await expect(settings).toContainText(
-    'Счёт в выписке совпадает Счёт для шаблона',
-  );
+  await expect(settings).toContainText('Описание содержит Покупка');
+  await expect(settings).toContainText('Сообщение содержит заказ');
   await expect(
     settings.getByTestId('import-category-settings'),
   ).toMatchThemeScreenshots();
@@ -317,8 +316,11 @@ test('many saved category rules remain readable and scrollable', async ({
     await card
       .getByRole('textbox', { name: 'Значение условия 1' })
       .fill(`Магазин ${index}`);
-    await card.getByRole('button', { name: 'Категория для правила' }).click();
-    await page.getByRole('button', { name: 'Usual Expenses · Food' }).click();
+    await card.getByRole('textbox', { name: 'Поиск категории' }).fill('Food');
+    await card
+      .getByTestId('import-category-results')
+      .getByRole('button', { name: 'Usual Expenses · Food' })
+      .click();
     await card.getByRole('button', { name: 'Сохранить правило' }).click();
     await expect(card).toContainText(`Магазин ${index}`);
   }
@@ -355,4 +357,25 @@ test('many saved category rules remain readable and scrollable', async ({
   await expect(card).toMatchThemeScreenshots();
   await page.setViewportSize({ width: 390, height: 844 });
   await expect(card).toMatchThemeScreenshots();
+});
+
+test('category rule search selects a category directly', async ({ page }) => {
+  await page.goto('/');
+  await page.getByRole('button', { name: 'Открыть демоверсию' }).click();
+  await page.getByRole('link', { name: 'Настройки', exact: true }).click();
+
+  const card = page.getByTestId('import-category-settings');
+  await card.getByRole('button', { name: 'Добавить правило' }).click();
+  await card
+    .getByRole('textbox', { name: 'Значение условия 1' })
+    .fill('Магазин');
+  await card.getByRole('textbox', { name: 'Поиск категории' }).fill('Food');
+  await card
+    .getByTestId('import-category-results')
+    .getByRole('button', { name: 'Usual Expenses · Food' })
+    .click();
+
+  await expect(
+    card.getByRole('button', { name: 'Сохранить правило' }),
+  ).toBeEnabled();
 });

@@ -451,6 +451,7 @@ export function ImportTransactionsModal({
           continue;
         }
 
+        const sourceTransaction = trans;
         const sourceAccount = fieldMappings?.account
           ? String(trans[fieldMappings.account] ?? '')
           : undefined;
@@ -494,6 +495,15 @@ export function ImportTransactionsModal({
                   notes: trans.notes,
                   account: sourceAccount,
                   amount,
+                  columns: sourceTransaction,
+                  bankId:
+                    prefs[
+                      `manual-bank-${
+                        routingRequired
+                          ? accountRoutes[sourceAccount?.trim() ?? '']
+                          : accountId
+                      }`
+                    ],
                 },
                 categoryRules,
                 categories,
@@ -524,7 +534,17 @@ export function ImportTransactionsModal({
 
       return previewTransactions;
     },
-    [categories, categoryGroups, categoryRules, clearOnImport, importNotes],
+    [
+      accountId,
+      accountRoutes,
+      categories,
+      categoryGroups,
+      categoryRules,
+      clearOnImport,
+      importNotes,
+      prefs,
+      routingRequired,
+    ],
   );
 
   const parse = useCallback(
@@ -868,6 +888,7 @@ export function ImportTransactionsModal({
         continue;
       }
 
+      const sourceTransaction = trans;
       trans = fieldMappings ? applyFieldMappings(trans, fieldMappings) : trans;
 
       const date =
@@ -906,6 +927,8 @@ export function ImportTransactionsModal({
                 notes: trans.notes,
                 account: sourceName,
                 amount,
+                columns: sourceTransaction,
+                bankId: prefs[`manual-bank-${destinationAccountId}`],
               },
               categoryRules,
               categories,
@@ -1335,6 +1358,17 @@ export function ImportTransactionsModal({
                       categories={categories}
                       categoryGroups={categoryGroups}
                       categoryRules={categoryRules}
+                      bankId={
+                        prefs[
+                          `manual-bank-${
+                            routingRequired && sourceField
+                              ? accountRoutes[
+                                  String(item[sourceField] ?? '').trim()
+                                ]
+                              : accountId
+                          }`
+                        ]
+                      }
                       importNotes={importNotes}
                       onCheckTransaction={onCheckTransaction}
                       reconcile={effectiveReconcile}

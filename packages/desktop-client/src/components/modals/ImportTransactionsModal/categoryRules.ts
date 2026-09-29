@@ -1,18 +1,22 @@
 import type { SyncedPrefs } from '@actual-app/core/types/prefs';
 
 export type ImportCategoryCondition = {
-  field: 'payee' | 'notes' | 'account' | 'amount';
+  field: 'payee' | 'notes' | 'account' | 'amount' | 'csv';
+  column?: string;
   op: 'is' | 'contains' | 'startsWith' | 'lessThan' | 'greaterThan';
   value: string;
 };
 
 export type ImportCategoryRule = {
   conditions: ImportCategoryCondition[];
+  bankId?: string;
   group: string;
   category: string;
 };
 
 export type ImportCategoryTransaction = {
+  bankId?: string | null;
+  columns?: Record<string, unknown>;
   payee?: string | number | null;
   notes?: string | number | null;
   account?: string | number | null;
@@ -22,8 +26,24 @@ export type ImportCategoryTransaction = {
 type Category = { id: string; name: string; group: string };
 type Group = { id: string; name: string };
 
-function normalize(value: string | number | null | undefined) {
-  return String(value ?? '')
+export function detectCsvImportBankId(
+  columns: Record<string, unknown>,
+  savedBankId?: string | null,
+): string | null {
+  if (
+    Object.hasOwn(columns, 'Описание') &&
+    Object.hasOwn(columns, 'Имя счёта') &&
+    Object.hasOwn(columns, 'Сумма операции')
+  ) {
+    return 'tbank';
+  }
+  return savedBankId || null;
+}
+
+function normalize(value: unknown) {
+  return (
+    typeof value === 'string' || typeof value === 'number' ? String(value) : ''
+  )
     .trim()
     .replace(/\s+/g, ' ')
     .toLocaleLowerCase('ru');
@@ -38,7 +58,7 @@ function isCondition(value: unknown): value is ImportCategoryCondition {
     return false;
   }
   const condition = value as Partial<ImportCategoryCondition>;
-  const isTextField = ['payee', 'notes', 'account'].includes(
+  const isTextField = ['payee', 'notes', 'account', 'csv'].includes(
     condition.field ?? '',
   );
   const isTextOp = ['is', 'contains', 'startsWith'].includes(
@@ -50,6 +70,9 @@ function isCondition(value: unknown): value is ImportCategoryCondition {
   return (
     typeof condition.value === 'string' &&
     normalize(condition.value).length > 0 &&
+    (condition.field !== 'csv' ||
+      (typeof condition.column === 'string' &&
+        normalize(condition.column).length > 0)) &&
     ((isTextField && isTextOp) ||
       (condition.field === 'amount' &&
         isAmountOp &&
@@ -81,6 +104,9 @@ export function readCategoryRules(prefs: SyncedPrefs): ImportCategoryRule[] {
         return [
           {
             conditions: rule.conditions,
+            ...(typeof rule.bankId === 'string' && rule.bankId
+              ? { bankId: rule.bankId }
+              : {}),
             group: rule.group,
             category: rule.category,
           },
@@ -92,6 +118,9 @@ export function readCategoryRules(prefs: SyncedPrefs): ImportCategoryRule[] {
             conditions: [
               { field: 'payee' as const, op: 'is' as const, value: rule.payee },
             ],
+            ...(typeof rule.bankId === 'string' && rule.bankId
+              ? { bankId: rule.bankId }
+              : {}),
             group: rule.group,
             category: rule.category,
           },
@@ -107,6 +136,7 @@ export function readCategoryRules(prefs: SyncedPrefs): ImportCategoryRule[] {
 function matchesCondition(
   condition: ImportCategoryCondition,
   transaction: ImportCategoryTransaction,
+  bankId: string | null,
 ) {
   if (condition.field === 'amount') {
     if (transaction.amount == null || !Number.isFinite(transaction.amount)) {
@@ -126,7 +156,15 @@ function matchesCondition(
     }
   }
 
-  const actual = normalize(transaction[condition.field]);
+  const value =
+    condition.field === 'csv'
+      ? transaction.columns?.[condition.column ?? '']
+      : condition.field === 'payee' &&
+          bankId === 'tbank' &&
+          transaction.columns?.['Описание'] != null
+        ? transaction.columns['Описание']
+        : transaction[condition.field];
+  const actual = normalize(value);
   const expected = normalize(condition.value);
   if (!actual) {
     return false;
@@ -149,10 +187,16 @@ export function findImportCategory(
   categories: readonly Category[],
   groups: readonly Group[],
 ): string | null {
+  const bankId = transaction.columns
+    ? detectCsvImportBankId(transaction.columns, transaction.bankId)
+    : transaction.bankId;
   for (const rule of rules) {
+    if (rule.bankId && rule.bankId !== bankId) {
+      continue;
+    }
     if (
       !rule.conditions.every(condition =>
-        matchesCondition(condition, transaction),
+        matchesCondition(condition, transaction, bankId ?? null),
       )
     ) {
       continue;

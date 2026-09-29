@@ -37,6 +37,7 @@ type TransactionProps = {
   categories: CategoryEntity[];
   categoryGroups: CategoryGroupEntity[];
   categoryRules: ImportCategoryRule[];
+  bankId?: string;
   importNotes: boolean;
   onCheckTransaction: (transactionId: string) => void;
   reconcile: boolean;
@@ -58,6 +59,7 @@ export function Transaction({
   categories,
   categoryGroups,
   categoryRules,
+  bankId,
   importNotes,
   onCheckTransaction,
   reconcile,
@@ -115,6 +117,8 @@ export function Transaction({
               ? String(rawTransaction[fieldMappings.account] ?? '')
               : undefined,
             amount,
+            columns: rawTransaction,
+            bankId,
           },
           categoryRules,
           categories,
