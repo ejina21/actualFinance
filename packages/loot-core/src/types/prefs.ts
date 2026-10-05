@@ -43,12 +43,19 @@ export type SyncedPrefs = Partial<
     | `transaction-table-columns-${string}`
     | `show-group-${string}`
     | 'sync-transfer-date'
+    // Number of minutes between automatic bank syncs. '0' (or unset) disables
+    // automatic syncing.
+    | 'bank-sync-interval'
     // TODO: pull from src/components/modals/ImportTransactions.js
     | `parse-date-${string}-${'csv' | 'qif'}`
     | `import-reimport-deleted-${string}`
     | `csv-mappings-${string}`
+    | `csv-import-profile-${string}`
+    | 'csv-category-rules'
+    | 'csv-account-routes'
     | `manual-bank-${string}`
     | `csv-delimiter-${string}`
+    | `csv-encoding-${string}`
     | `csv-skip-start-lines-${string}`
     | `csv-skip-end-lines-${string}`
     | `csv-in-out-mode-${string}`
@@ -65,6 +72,7 @@ export type SyncedPrefs = Partial<
     | `qif-swap-payee-memo-${string}`
     | `camt-swap-payee-memo-${string}`
     | `flip-amount-${string}-${'csv' | 'qif'}`
+    | `import-notes-${string}-${'csv' | 'qif'}`
     | `flags.${FeatureFlag}`
     | `learn-categories`
     | `show-hidden-tags`,
@@ -100,7 +108,7 @@ export type LocalPrefs = Partial<{
   'budget.summaryCollapsed': boolean;
   'budget.showHiddenCategories': boolean;
   'budget.startMonth': string;
-  'budget.displayMode': 'planning' | 'spending';
+  'budget.displayMode': 'planning' | 'spending' | 'summary';
   'flags.updateNotificationShownForVersion': string;
   'tour.introSeen': boolean;
   'schedules.showCompleted': boolean;
@@ -110,6 +118,12 @@ export type LocalPrefs = Partial<{
   sidebarWidth: number;
   'mobile.showSpentColumn': boolean;
   'mobile.bankSyncProvidersCollapsed': boolean;
+  /**
+   * Timestamp (epoch ms) of the last automatic bank sync attempted by this
+   * device. Tracked locally so a failing account can't cause repeated
+   * back-to-back sync attempts.
+   */
+  'bankSync.lastAutomaticRun': number;
 }>;
 
 export type Theme = 'light' | 'dark' | 'auto' | 'midnight' | string;

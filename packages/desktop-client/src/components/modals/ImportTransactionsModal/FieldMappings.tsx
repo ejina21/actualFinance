@@ -5,6 +5,7 @@ import { SpaceBetween } from '@actual-app/components/space-between';
 import { View } from '@actual-app/components/view';
 
 import { SectionLabel } from '#components/forms';
+import { LabeledCheckbox } from '#components/forms/LabeledCheckbox';
 
 import { SelectField } from './SelectField';
 import { SubLabel } from './SubLabel';
@@ -14,7 +15,7 @@ import type { FieldMapping, ImportTransaction } from './utils';
 type FieldMappingsProps = {
   transactions: ImportTransaction[];
   mappings?: FieldMapping;
-  onChange: (field: keyof FieldMapping, newValue: string) => void;
+  onChange: (field: keyof FieldMapping, newValue: string | string[]) => void;
   splitMode: boolean;
   inOutMode: boolean;
   hasHeaderRow: boolean;
@@ -27,6 +28,7 @@ export function FieldMappings({
     amount: null,
     payee: null,
     notes: null,
+    account: null,
     inOut: null,
     category: null,
     outflow: null,
@@ -70,14 +72,43 @@ export function FieldMappings({
           />
         </View>
         <View style={{ flex: 1 }}>
-          <SubLabel title={t('Notes')} />
-          <SelectField
-            options={options}
-            value={mappings.notes}
-            onChange={name => onChange('notes', name)}
-            hasHeaderRow={hasHeaderRow}
-            firstTransaction={transactions[0]}
-          />
+          <SubLabel title={t('Заметки')} />
+          <details>
+            <summary style={{ cursor: 'pointer', padding: '7px 0' }}>
+              {t('Поля заметки')}:{' '}
+              {Array.isArray(mappings.notes)
+                ? mappings.notes.length
+                : mappings.notes
+                  ? 1
+                  : 0}
+            </summary>
+            <View style={{ maxHeight: 180, overflowY: 'auto' }}>
+              {options.map(option => {
+                const selected = Array.isArray(mappings.notes)
+                  ? mappings.notes
+                  : mappings.notes
+                    ? [mappings.notes]
+                    : [];
+                return (
+                  <LabeledCheckbox
+                    key={option}
+                    id={`notes-field-${option}`}
+                    checked={selected.includes(option)}
+                    onChange={() =>
+                      onChange(
+                        'notes',
+                        selected.includes(option)
+                          ? selected.filter(field => field !== option)
+                          : [...selected, option],
+                      )
+                    }
+                  >
+                    {option}
+                  </LabeledCheckbox>
+                );
+              })}
+            </View>
+          </details>
         </View>
         <View style={{ flex: 1 }}>
           <SubLabel title={t('Category')} />
@@ -139,6 +170,16 @@ export function FieldMappings({
           </>
         )}
       </SpaceBetween>
+      <View style={{ marginTop: 8, maxWidth: 240 }}>
+        <SubLabel title={t('Счёт в файле')} />
+        <SelectField
+          options={options}
+          value={mappings.account ?? null}
+          onChange={name => onChange('account', name)}
+          hasHeaderRow={hasHeaderRow}
+          firstTransaction={transactions[0]}
+        />
+      </View>
     </View>
   );
 }

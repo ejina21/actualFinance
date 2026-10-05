@@ -180,7 +180,11 @@ export function TransactionList({
             selectionMode={
               selectedTransactions.size > 0 ? 'multiple' : 'single'
             }
-            style={{ flex: 1, overflow: 'auto' }}
+            style={{
+              flex: 1,
+              overflow: 'auto',
+              backgroundColor: theme.cardBackground,
+            }}
             selectedKeys={selectedTransactions}
             dependencies={[
               selectedTransactions,
@@ -201,7 +205,7 @@ export function TransactionList({
                     backgroundColor: theme.mobilePageBackground,
                   }}
                 >
-                  <Text style={{ fontSize: 15 }}>
+                  <Text size="large">
                     <Trans>No transactions</Trans>
                   </Text>
                 </View>
@@ -214,19 +218,20 @@ export function TransactionList({
                 <Header
                   style={{
                     ...styles.smallText,
-                    backgroundColor: theme.pageBackground,
+                    backgroundColor: theme.mobilePageBackground,
                     color: theme.tableHeaderText,
                     display: 'flex',
+                    fontWeight: 600,
                     justifyContent: 'center',
-                    paddingBottom: 4,
-                    paddingTop: 4,
+                    paddingBottom: 6,
+                    paddingTop: 6,
                     position: 'sticky',
                     top: '0',
                     width: '100%',
                     zIndex: 10,
                   }}
                 >
-                  {monthUtils.format(section.date, 'MMMM dd, yyyy', locale)}
+                  {monthUtils.format(section.date, 'PPP', locale)}
                 </Header>
                 <Collection
                   items={section.transactions.filter(
@@ -327,8 +332,6 @@ function SelectedTransactionsFloatingActionBar({
       .filter(t => selectedTransactions.has(t.id))
       .every(t => t.schedule);
   }, [transactions, selectedTransactions]);
-
-  const isMoreThanOne = selectedTransactions.size > 1;
 
   const { showUndoNotification } = useUndo();
   const {
@@ -456,8 +459,10 @@ function SelectedTransactionsFloatingActionBar({
             <SvgDelete width={10} height={10} />
           </Button>
           <Text style={styles.mediumText}>
-            {selectedTransactions.size}{' '}
-            {isMoreThanOne ? 'transactions' : 'transaction'} selected
+            <Trans
+              i18nKey="Selected: {{count}}"
+              values={{ count: selectedTransactions.size }}
+            />
           </Text>
         </View>
         <View

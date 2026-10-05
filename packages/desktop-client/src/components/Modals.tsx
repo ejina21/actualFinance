@@ -99,7 +99,10 @@ export function Modals() {
   const [budgetId] = useMetadataPref('id');
 
   const onCloseModal = useEffectEvent(() => {
-    if (modalStack.length > 0) {
+    if (
+      modalStack.length > 0 &&
+      modalStack[modalStack.length - 1]?.name !== 'import-transactions'
+    ) {
       dispatch(closeModal());
     }
   });

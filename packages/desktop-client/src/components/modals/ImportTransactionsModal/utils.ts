@@ -159,7 +159,8 @@ export type FieldMapping = {
   date: string | null;
   amount: string | null;
   payee: string | null;
-  notes: string | null;
+  notes: string | string[] | null;
+  account?: string | null;
   inOut: string | null;
   category: string | null;
   outflow: string | null;
@@ -172,8 +173,24 @@ export function applyFieldMappings(
 ) {
   const result: Partial<ImportTransaction> = {};
   for (const [originalField, target] of Object.entries(mappings)) {
+    if (originalField === 'account') {
+      continue;
+    }
+    if (originalField === 'notes' && Array.isArray(target)) {
+      const notes = target
+        .map(field => transaction[field])
+        .filter(
+          (value): value is string | number =>
+            typeof value === 'string' || typeof value === 'number',
+        )
+        .map(value => String(value).trim())
+        .filter(Boolean);
+      result.notes = notes.join(' / ');
+      continue;
+    }
     const field = originalField === 'payee' ? 'payee_name' : originalField;
-    result[field] = transaction[target || field];
+    const column = typeof target === 'string' ? target : field;
+    result[field] = transaction[column];
   }
   // Keep preview fields on the mapped transactions
   result.trx_id = transaction.trx_id;
@@ -183,6 +200,88 @@ export function applyFieldMappings(
   result.selected_merge = transaction.selected_merge;
   result.tombstone = transaction.tombstone;
   return result as ImportTransaction;
+}
+
+type PairCandidate = {
+  id: string;
+  accountId: string;
+  sourceAccount?: string;
+  date: string;
+  amount: number;
+  description: string;
+};
+
+export function findOpposingPairIds(
+  transactions: readonly PairCandidate[],
+): Set<string> {
+  const unmatched = new Map<
+    string,
+    { positive: string[]; negative: string[] }
+  >();
+  const paired = new Set<string>();
+
+  for (const transaction of transactions) {
+    const description = transaction.description
+      .trim()
+      .replace(/\s+/g, ' ')
+      .toLocaleLowerCase();
+    if (
+      !transaction.accountId ||
+      !transaction.date ||
+      !description ||
+      !Number.isInteger(transaction.amount) ||
+      transaction.amount === 0
+    ) {
+      continue;
+    }
+
+    const key = JSON.stringify([
+      transaction.accountId,
+      transaction.sourceAccount ?? '',
+      transaction.date,
+      Math.abs(transaction.amount),
+      description,
+    ]);
+    const pending = unmatched.get(key) ?? { positive: [], negative: [] };
+    const own = transaction.amount > 0 ? pending.positive : pending.negative;
+    const opposite =
+      transaction.amount > 0 ? pending.negative : pending.positive;
+    const match = opposite.shift();
+    if (match) {
+      paired.add(match);
+      paired.add(transaction.id);
+    } else {
+      own.push(transaction.id);
+    }
+    unmatched.set(key, pending);
+  }
+
+  return paired;
+}
+
+export function suggestAccountRoutes(
+  sourceNames: readonly string[],
+  accounts: readonly { id: string; name: string }[],
+  savedRoutes: Readonly<Record<string, string>>,
+): Record<string, string> {
+  const result: Record<string, string> = {};
+  for (const sourceName of sourceNames) {
+    const savedId = savedRoutes[sourceName];
+    if (
+      savedId === 'skip' ||
+      accounts.some(account => account.id === savedId)
+    ) {
+      result[sourceName] = savedId;
+      continue;
+    }
+    const matches = accounts.filter(
+      account =>
+        account.name.trim().toLocaleLowerCase() ===
+        sourceName.trim().toLocaleLowerCase(),
+    );
+    result[sourceName] = matches.length === 1 ? matches[0].id : '';
+  }
+  return result;
 }
 
 function parseAmount(

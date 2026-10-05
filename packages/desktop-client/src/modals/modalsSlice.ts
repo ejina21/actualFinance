@@ -44,7 +44,7 @@ export type Modal =
   | {
       name: 'import-transactions';
       options: {
-        accountId: string;
+        accountId?: string;
         filename: string;
         categories?: { list: CategoryEntity[]; grouped: CategoryGroupEntity[] };
         onImported: (didChange: boolean) => void;
@@ -320,7 +320,8 @@ export type Modal =
   | {
       name: 'payee-autocomplete';
       options: {
-        onSelect: (payeeId: string) => void;
+        onSelect: (payeeId: string | null) => void;
+        showNoneOption?: boolean;
         onClose?: () => void;
       };
     }

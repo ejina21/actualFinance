@@ -91,13 +91,7 @@ function AccountHeader<SheetFieldName extends SheetFields<'account'>>({
       ])}
     >
       <View style={{ flex: 1, alignItems: 'center', flexDirection: 'row' }}>
-        <Text
-          style={{
-            ...styles.text,
-            fontSize: 17,
-          }}
-          data-testid="name"
-        >
+        <Text size="extra-large" data-testid="name">
           {name}
         </Text>
         <Cheveron
@@ -167,10 +161,10 @@ function AccountListItem({
           style={{
             height: ROW_HEIGHT,
             width: '100%',
-            backgroundColor: theme.tableBackground,
+            backgroundColor: theme.cardBackground,
             border: 'none',
             borderRadius: 0,
-            paddingLeft: 8,
+            paddingInline: 16,
           }}
           data-testid="account-list-item"
           onPress={() => onSelect(account)}
@@ -178,6 +172,7 @@ function AccountListItem({
           <View
             style={{
               flex: 1,
+              minWidth: 0,
               alignItems: 'center',
               flexDirection: 'row',
             }}
@@ -200,7 +195,7 @@ function AccountListItem({
             <TextOneLine
               style={{
                 ...styles.text,
-                fontSize: 17,
+                fontSize: 15,
                 fontWeight: 600,
                 color: isUpdated ? theme.mobileAccountText : theme.pillText,
               }}
@@ -215,6 +210,8 @@ function AccountListItem({
                 {...props}
                 style={{
                   fontSize: 16,
+                  flexShrink: 0,
+                  fontVariantNumeric: 'tabular-nums',
                   ...makeAmountFullStyle(props.value, {
                     positiveColor: theme.numberPositive,
                     negativeColor: theme.numberNegative,

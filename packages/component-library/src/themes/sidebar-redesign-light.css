@@ -3,21 +3,23 @@
    sidebar tokens. The sidebarRedesign* values can be overridden one at a time
    from a custom theme or the CSS override, since those are declared later. */
 :root {
-  --color-sidebarRedesignBackground: #1e3651;
-  --color-sidebarRedesignItemText: #c8dce5;
-  --color-sidebarRedesignItemBackgroundHover: #31506a;
-  --color-sidebarRedesignItemAccentSelected: #8dd9d0;
+  --color-sidebarRedesignBackground: #173f39;
+  --color-sidebarRedesignItemText: #d4e7df;
+  --color-sidebarRedesignItemBackgroundHover: #28564d;
+  --color-sidebarRedesignItemAccentSelected: #b3e3ce;
   --color-sidebarRedesignItemTextSelected: #ffffff;
-  --color-sidebarRedesignItemBackgroundSelected: #34526d;
+  --color-sidebarRedesignItemBackgroundSelected: #376a5e;
   --color-sidebarRedesignItemBackgroundFailed: var(--palette-red300);
   --color-sidebarRedesignHeaderText: var(--palette-white);
-  --color-sidebarRedesignTextSubdued: #adc4d0;
-  --color-sidebarRedesignTextMuted: var(--palette-navy500);
+  --color-sidebarRedesignTextSubdued: #b6d0c4;
+  --color-sidebarRedesignTextMuted: #a1beb1;
+  --color-sidebarRedesignRightBorder: #2e5d53;
 }
 
 /* Derived tokens are redeclared because var() references in custom
    properties resolve where the property is declared. */
 .sidebar-redesign {
+  border-right: 2px solid var(--color-sidebarRedesignRightBorder);
   --color-sidebarBackground: var(--color-sidebarRedesignBackground);
   --color-sidebarItemText: var(--color-sidebarRedesignItemText);
   --color-sidebarItemBackgroundHover: var(

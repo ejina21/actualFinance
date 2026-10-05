@@ -43,8 +43,11 @@ export function ReportCard({
   onRename,
   contextMenuTriggerRef,
 }: ReportCardProps) {
-  const ref = useRef(null);
-  const isInViewport = useIsInViewport(ref);
+  // The card element is tracked as state (through a callback ref) so the
+  // viewport observer follows it when it is remounted, which happens when
+  // toggling edit mode swaps the clickable wrapper in and out.
+  const [cardElement, setCardElement] = useState<HTMLDivElement | null>(null);
+  const isInViewport = useIsInViewport(cardElement);
   const [hasRendered, setHasRendered] = useState(false);
   const navigate = useNavigate();
   const { isNarrowWidth } = useResponsive();
@@ -67,14 +70,14 @@ export function ReportCard({
 
   const content = (
     <View
-      ref={ref}
+      ref={setCardElement}
       style={{
-        backgroundColor: theme.tableBackground,
-        borderBottomLeftRadius: 2,
-        borderBottomRightRadius: 2,
+        backgroundColor: theme.cardBackground,
+        border: `1px solid ${theme.tableBorder}`,
+        borderRadius: 12,
         width: '100%',
         height: '100%',
-        boxShadow: '0 2px 6px rgba(0, 0, 0, .15)',
+        boxShadow: '0 2px 8px rgba(0, 0, 0, .07)',
         transition: 'box-shadow .25s',
         ...(isEditing
           ? {
@@ -91,7 +94,7 @@ export function ReportCard({
               },
             }),
         ':hover': {
-          ...(to ? { boxShadow: '0 4px 6px rgba(0, 0, 0, .15)' } : null),
+          ...(to ? { boxShadow: '0 6px 14px rgba(0, 0, 0, .12)' } : null),
           ...(isEditing ? { cursor: 'move', filter: 'grayscale(0)' } : null),
         },
         ...(to ? null : containerProps),

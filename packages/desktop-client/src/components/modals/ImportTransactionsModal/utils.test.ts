@@ -1,7 +1,120 @@
-import { filterByStartDate, parseCategoryFields, parseDate } from './utils';
+import {
+  applyFieldMappings,
+  filterByStartDate,
+  findOpposingPairIds,
+  parseCategoryFields,
+  parseDate,
+  suggestAccountRoutes,
+} from './utils';
 import type { ImportTransaction } from './utils';
 
 describe('Import transactions', () => {
+  describe('CSV import preparation', () => {
+    it('joins selected note columns in their selected order and ignores blanks', () => {
+      const transaction = {
+        trx_id: '1',
+        existing: false,
+        ignored: false,
+        selected: true,
+        selected_merge: false,
+        amount: -11,
+        inflow: 0,
+        outflow: 11,
+        inOut: '',
+        date: '2026-09-28',
+        Описание: 'Магазин',
+        Сообщение: '  заказ 12  ',
+        MCC: '',
+      } satisfies ImportTransaction;
+
+      expect(
+        applyFieldMappings(transaction, {
+          date: 'date',
+          amount: 'amount',
+          payee: 'Описание',
+          notes: ['Описание', 'Сообщение', 'MCC'],
+          account: null,
+          inOut: null,
+          category: null,
+          outflow: null,
+          inflow: null,
+        }).notes,
+      ).toBe('Магазин / заказ 12');
+    });
+
+    it('pairs only equal opposite amounts on the same account, day, and description', () => {
+      const pairs = findOpposingPairIds([
+        {
+          id: 'a',
+          accountId: 'one',
+          date: '2026-09-28',
+          amount: -100,
+          description: ' Оплата  А ',
+        },
+        {
+          id: 'b',
+          accountId: 'one',
+          date: '2026-09-28',
+          amount: 100,
+          description: 'оплата а',
+        },
+        {
+          id: 'c',
+          accountId: 'one',
+          date: '2026-09-28',
+          amount: -100,
+          description: 'Оплата А',
+        },
+        {
+          id: 'd',
+          accountId: 'two',
+          date: '2026-09-28',
+          amount: 100,
+          description: 'Оплата А',
+        },
+        {
+          id: 'e',
+          accountId: 'one',
+          date: '2026-09-29',
+          amount: 100,
+          description: 'Оплата А',
+        },
+        {
+          id: 'f',
+          accountId: 'one',
+          date: '2026-09-28',
+          amount: 100,
+          description: 'Другая операция',
+        },
+        {
+          id: 'g',
+          accountId: 'one',
+          date: '2026-09-28',
+          amount: 0,
+          description: 'Оплата А',
+        },
+      ]);
+
+      expect([...pairs].sort()).toEqual(['a', 'b']);
+    });
+
+    it('suggests exact account names and valid saved choices without guessing others', () => {
+      expect(
+        suggestAccountRoutes(
+          ['Основная карта', 'Общий счёт', 'Закрытый счёт'],
+          [
+            { id: 'a', name: 'Карта' },
+            { id: 'b', name: 'Общий счёт' },
+          ],
+          { 'Основная карта': 'a', 'Закрытый счёт': 'deleted-account' },
+        ),
+      ).toEqual({
+        'Основная карта': 'a',
+        'Общий счёт': 'b',
+        'Закрытый счёт': '',
+      });
+    });
+  });
   describe('date parsing', () => {
     const invalidInputs: Array<{
       str: Parameters<typeof parseDate>[0];

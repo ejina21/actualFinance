@@ -33,7 +33,7 @@ export function ClosedSection({
   }
 
   return (
-    <View style={{ marginTop: spacing.xxs }}>
+    <View style={{ marginTop: spacing.xxs, flexShrink: 0 }}>
       <Button
         variant="bare"
         aria-expanded={isOpen}

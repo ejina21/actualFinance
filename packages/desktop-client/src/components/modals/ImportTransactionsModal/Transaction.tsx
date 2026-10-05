@@ -9,11 +9,16 @@ import { theme } from '@actual-app/components/theme';
 import { Tooltip } from '@actual-app/components/tooltip';
 import { View } from '@actual-app/components/view';
 import { amountToCurrency } from '@actual-app/core/shared/util';
-import type { CategoryEntity } from '@actual-app/core/types/models';
+import type {
+  CategoryEntity,
+  CategoryGroupEntity,
+} from '@actual-app/core/types/models';
 
 import { Checkbox } from '#components/forms';
 import { Field, Row } from '#components/table';
 
+import { findImportCategory } from './categoryRules';
+import type { ImportCategoryRule } from './categoryRules';
 import { ParsedDate } from './ParsedDate';
 import { applyFieldMappings, formatDate, parseAmountFields } from './utils';
 import type { FieldMapping, ImportTransaction } from './utils';
@@ -30,8 +35,13 @@ type TransactionProps = {
   flipAmount: boolean;
   multiplierAmount: string;
   categories: CategoryEntity[];
+  categoryGroups: CategoryGroupEntity[];
+  categoryRules: ImportCategoryRule[];
+  bankId?: string;
+  importNotes: boolean;
   onCheckTransaction: (transactionId: string) => void;
   reconcile: boolean;
+  canSelect?: boolean;
   index: number;
 };
 
@@ -47,8 +57,13 @@ export function Transaction({
   flipAmount,
   multiplierAmount,
   categories,
+  categoryGroups,
+  categoryRules,
+  bankId,
+  importNotes,
   onCheckTransaction,
   reconcile,
+  canSelect = true,
   index,
 }: TransactionProps) {
   const { t } = useTranslation();
@@ -61,7 +76,8 @@ export function Transaction({
         : rawTransaction,
     [rawTransaction, fieldMappings],
   );
-
+  const hasMappedCategory =
+    !!transaction.category && categoryList.includes(transaction.category);
   const { amount, outflow, inflow } = useMemo(() => {
     if (rawTransaction.isMatchedTransaction) {
       const amount = rawTransaction.amount;
@@ -90,6 +106,28 @@ export function Transaction({
     flipAmount,
     multiplierAmount,
   ]);
+
+  const suggestedCategoryId =
+    showParsed && !hasMappedCategory
+      ? findImportCategory(
+          {
+            payee: transaction.payee_name,
+            notes: transaction.notes,
+            account: fieldMappings?.account
+              ? String(rawTransaction[fieldMappings.account] ?? '')
+              : undefined,
+            amount,
+            columns: rawTransaction,
+            bankId,
+          },
+          categoryRules,
+          categories,
+          categoryGroups,
+        )
+      : null;
+  const categoryLabel = hasMappedCategory
+    ? transaction.category
+    : categories.find(category => category.id === suggestedCategoryId)?.name;
 
   return (
     <Row
@@ -130,6 +168,7 @@ export function Transaction({
             >
               <Checkbox
                 checked={transaction.selected && !transaction.tombstone}
+                disabled={!canSelect}
                 onChange={() => onCheckTransaction(transaction.trx_id)}
                 style={
                   transaction.selected_merge
@@ -213,20 +252,11 @@ export function Transaction({
       >
         {transaction.payee_name}
       </Field>
-      <Field width="flex" title={transaction.notes}>
-        {transaction.notes}
+      <Field width="flex" title={importNotes ? transaction.notes : undefined}>
+        {importNotes ? transaction.notes : null}
       </Field>
-      <Field
-        width="flex"
-        title={
-          transaction.category && categoryList.includes(transaction.category)
-            ? transaction.category
-            : undefined
-        }
-      >
-        {transaction.category &&
-          categoryList.includes(transaction.category) &&
-          transaction.category}
+      <Field width="flex" title={categoryLabel}>
+        {categoryLabel}
       </Field>
       {inOutMode && (
         <Field

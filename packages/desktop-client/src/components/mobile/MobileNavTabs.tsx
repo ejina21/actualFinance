@@ -230,6 +230,7 @@ export function MobileNavTabs() {
   return (
     <animated.div
       role="navigation"
+      aria-label={t('Mobile navigation')}
       {...bind()}
       style={{
         y,
@@ -295,8 +296,13 @@ function NavTab({ Icon: TabIcon, name, path, style, onClick }: NavTabProps) {
         ...styles.noTapHighlight,
         alignItems: 'center',
         color: isActive ? theme.mobileNavItemSelected : theme.mobileNavItem,
+        backgroundColor: isActive ? theme.pillBackground : 'transparent',
+        borderRadius: 10,
         display: 'flex',
         flexDirection: 'column',
+        gap: 4,
+        fontSize: 12,
+        fontWeight: isActive ? 700 : 500,
         textDecoration: 'none',
         textAlign: 'center',
         textWrap: 'balance',

@@ -238,7 +238,7 @@ function ScheduleRow({
       <Field width="flex" name="account">
         <DisplayId type="accounts" id={schedule._account} />
       </Field>
-      <Field width={110} name="date">
+      <Field width={140} name="date">
         {schedule.next_date
           ? monthUtilFormat(schedule.next_date, dateFormat)
           : null}
@@ -401,7 +401,15 @@ export function SchedulesTable({
   }
 
   return (
-    <View style={{ ...styles.tableContainer, ...tableStyle }}>
+    <View
+      style={{
+        ...styles.tableContainer,
+        backgroundColor: theme.cardBackground,
+        border: `1px solid ${theme.tableBorder}`,
+        borderRadius: 12,
+        ...tableStyle,
+      }}
+    >
       <TableHeader height={ROW_HEIGHT} inset={15}>
         <Field width="flex">
           <Trans>Name</Trans>
@@ -412,7 +420,7 @@ export function SchedulesTable({
         <Field width="flex">
           <Trans>Account</Trans>
         </Field>
-        <Field width={110}>
+        <Field width={140}>
           <Trans>Next date</Trans>
         </Field>
         <Field width={120}>

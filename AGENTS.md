@@ -522,6 +522,7 @@ Before committing changes, ensure:
 
 - [ ] Commit and PR rules followed (see [PR and Commit Rules](.github/agents/pr-and-commit-rules.md))
 - [ ] Platform-specific code uses proper exports
+- [ ] Before **every** commit, review every staged path and the complete staged diff for real user or financial data. Inspect new binary files and screenshots as well as text. Do not commit actual bank statements, exports, account names, transaction details, balances, merchant mappings, contact details, addresses, identifiers, or other user-specific examples; use synthetic fixtures instead. Check that author and committer email metadata is privacy-preserving. If user data entered unpublished commits, clean that history before pushing.
 
 ## Pull Request Guidelines
 

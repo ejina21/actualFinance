@@ -137,10 +137,17 @@ export function AccountRow({
           color: theme.sidebarItemTextSelected,
           fontWeight: 'normal',
         }),
-        '&[data-hovered], &[data-focus-visible]': {
+        '&[data-hovered]': {
           backgroundColor: isActive
             ? theme.sidebarItemBackgroundSelected
             : theme.sidebarItemBackgroundHover,
+        },
+        '&[data-focus-visible]': {
+          backgroundColor: isActive
+            ? theme.sidebarItemBackgroundSelected
+            : theme.sidebarItemBackgroundHover,
+          outline: `2px solid ${theme.sidebarBrand}`,
+          outlineOffset: -2,
         },
         '&[data-dragging]': { opacity: 0.5 },
       })}
@@ -156,6 +163,7 @@ export function AccountRow({
                 flexDirection: 'row',
                 alignItems: 'center',
                 gap: spacing.xs,
+                minHeight: 36,
                 paddingBlock: spacing.xs,
                 paddingRight: spacing.sm,
                 paddingLeft: level > 1 ? spacing.xs + spacing.sm : spacing.xs,
@@ -194,7 +202,7 @@ export function AccountRow({
                   />
                 </InitialFocus>
               ) : (
-                <Text style={{ flex: 1, ...styles.ellipsisText }}>
+                <Text style={{ flex: 1, minWidth: 0, ...styles.ellipsisText }}>
                   {account.name}
                 </Text>
               )}
@@ -205,6 +213,8 @@ export function AccountRow({
                 binding={bindings.accountBalance(account.id)}
                 style={{
                   fontSize: 12,
+                  flexShrink: 0,
+                  fontVariantNumeric: 'tabular-nums',
                   color: 'inherit',
                   marginLeft: spacing.xs,
                 }}

@@ -659,7 +659,9 @@ function Banner({ type = 'info', children }) {
         height: 50,
         marginTop: 10,
         marginBottom: 10,
-        padding: 10,
+        marginInline: 12,
+        padding: 12,
+        borderRadius: 12,
         justifyContent: 'center',
         backgroundColor:
           type === 'critical'
@@ -1017,7 +1019,7 @@ function MonthSelector({
         style={{
           textAlign: 'center',
           fontSize: 16,
-          fontWeight: 500,
+          fontWeight: 650,
         }}
         onPress={() => {
           onOpenMonthMenu?.(month);
@@ -1025,7 +1027,7 @@ function MonthSelector({
         data-month={month}
       >
         <Text style={styles.underlinedText}>
-          {monthUtils.format(month, "MMMM ''yy", locale)}
+          {monthUtils.format(month, 'LLLL yyyy', locale)}
         </Text>
       </Button>
       <Button

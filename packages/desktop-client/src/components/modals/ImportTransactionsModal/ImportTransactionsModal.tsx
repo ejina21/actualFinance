@@ -16,7 +16,6 @@ import { Trans, useTranslation } from 'react-i18next';
 
 import { Button, ButtonWithLoading } from '@actual-app/components/button';
 import { Input } from '@actual-app/components/input';
-import { Select } from '@actual-app/components/select';
 import { SpaceBetween } from '@actual-app/components/space-between';
 import { styles } from '@actual-app/components/styles';
 import { Text } from '@actual-app/components/text';
@@ -25,6 +24,7 @@ import { View } from '@actual-app/components/view';
 import { send } from '@actual-app/core/platform/client/connection';
 import type { ParseFileOptions } from '@actual-app/core/server/transactions/import/parse-file';
 import { amountToInteger } from '@actual-app/core/shared/util';
+import type { TransactionEntity } from '@actual-app/core/types/models';
 import { useQueryClient } from '@tanstack/react-query';
 
 import {
@@ -35,14 +35,24 @@ import { Modal, ModalCloseButton, ModalHeader } from '#components/common/Modal';
 import { SectionLabel } from '#components/forms';
 import { LabeledCheckbox } from '#components/forms/LabeledCheckbox';
 import { TableHeader, TableWithNavigator } from '#components/table';
+import { useAccounts } from '#hooks/useAccounts';
 import { useCategories } from '#hooks/useCategories';
 import { useDateFormat } from '#hooks/useDateFormat';
+import { useNavigate } from '#hooks/useNavigate';
 import { useSyncedPrefs } from '#hooks/useSyncedPrefs';
 import { payeeQueries } from '#payees';
+import { saveSyncedPrefs } from '#prefs/prefsSlice';
+import { useDispatch } from '#redux';
 
+import { findImportCategory, readCategoryRules } from './categoryRules';
 import { DateFormatSelect } from './DateFormatSelect';
 import { FieldMappings } from './FieldMappings';
-import { InOutOption } from './InOutOption';
+import {
+  areCsvMappingsCompatible,
+  getCsvImportProfile,
+  getCsvImportProfileKey,
+} from './importSettings';
+import type { CsvImportProfile } from './importSettings';
 import { MultiplierOption } from './MultiplierOption';
 import { Transaction } from './Transaction';
 import type { DateFormat, FieldMapping, ImportTransaction } from './utils';
@@ -50,11 +60,13 @@ import {
   applyFieldMappings,
   dateFormats,
   filterByStartDate,
+  findOpposingPairIds,
   isDateFormat,
   parseAmountFields,
   parseCategoryFields,
   parseDate,
   stripCsvImportTransaction,
+  suggestAccountRoutes,
 } from './utils';
 
 function CheckboxToggle({
@@ -87,7 +99,7 @@ function getFileType(filepath: string): string {
   return rawType;
 }
 
-function getInitialDateFormat(transactions, mappings) {
+function getInitialDateFormat(transactions, mappings): DateFormat {
   if (transactions.length === 0 || mappings.date == null) {
     return 'yyyy mm dd';
   }
@@ -115,12 +127,14 @@ function getInitialMappings(transactions) {
   }
 
   const dateField = key(
-    fields.find(([name]) => name.toLowerCase().includes('date')) ||
+    fields.find(([name]) => name === 'Дата операции') ||
+      fields.find(([name]) => name.toLowerCase().includes('date')) ||
       fields.find(([, value]) => String(value)?.match(/^\d+[-/]\d+[-/]\d+$/)),
   );
 
   const amountField = key(
-    fields.find(([name]) => name.toLowerCase().includes('amount')) ||
+    fields.find(([name]) => name === 'Сумма в валюте счёта') ||
+      fields.find(([name]) => name.toLowerCase().includes('amount')) ||
       fields.find(([, value]) => String(value)?.match(/^-?[.,\d]+$/)),
   );
 
@@ -129,7 +143,8 @@ function getInitialMappings(transactions) {
   );
 
   const payeeField = key(
-    fields.find(([name]) => name.toLowerCase().includes('payee')) ||
+    fields.find(([name]) => name === 'Описание') ||
+      fields.find(([name]) => name.toLowerCase().includes('payee')) ||
       fields.find(
         ([name]) =>
           name !== dateField && name !== amountField && name !== categoryField,
@@ -137,7 +152,8 @@ function getInitialMappings(transactions) {
   );
 
   const notesField = key(
-    fields.find(([name]) => name.toLowerCase().includes('notes')) ||
+    fields.find(([name]) => name === 'Сообщение') ||
+      fields.find(([name]) => name.toLowerCase().includes('notes')) ||
       fields.find(
         ([name]) =>
           name !== dateField &&
@@ -157,6 +173,11 @@ function getInitialMappings(transactions) {
     ),
   );
 
+  const accountField = key(
+    fields.find(([name]) => name === 'Имя счёта') ||
+      fields.find(([name]) => name.toLowerCase() === 'account'),
+  );
+
   return {
     date: dateField,
     amount: amountField,
@@ -164,6 +185,7 @@ function getInitialMappings(transactions) {
     notes: notesField,
     inOut: inOutField,
     category: categoryField,
+    account: accountField,
   };
 }
 
@@ -206,14 +228,33 @@ export function ImportTransactionsModal({
   filename: originalFileName,
   accountId,
   onImported,
+}: {
+  filename: string;
+  accountId?: string;
+  onImported?: (didChange: boolean) => void;
 }) {
   const { t } = useTranslation();
+  const navigate = useNavigate();
   const queryClient = useQueryClient();
   const dateFormat = useDateFormat() || ('MM/dd/yyyy' as const);
   const [prefs, savePrefs] = useSyncedPrefs();
-  const { data: { list: categories } = { list: [] } } = useCategories();
+  const initialPrefs = useRef(prefs).current;
+  const initialProfile = useRef(
+    getCsvImportProfile(initialPrefs, accountId),
+  ).current;
+  const dispatch = useDispatch();
+  const { data: allAccounts = [] } = useAccounts();
+  const {
+    data: { list: categories, grouped: categoryGroups } = {
+      list: [],
+      grouped: [],
+    },
+  } = useCategories();
+  const categoryRules = readCategoryRules(prefs);
 
-  const [multiplierAmount, setMultiplierAmount] = useState('');
+  const [multiplierAmount, setMultiplierAmount] = useState(
+    initialProfile?.multiplierAmount ?? '',
+  );
   const [loadingState, setLoadingState] = useState<
     null | 'parsing' | 'importing'
   >('parsing');
@@ -229,37 +270,63 @@ export function ImportTransactionsModal({
   const [filetype, setFileType] = useState('unknown');
   const [fieldMappings, setFieldMappings] = useState<FieldMapping | null>(null);
   const [splitMode, setSplitMode] = useState(false);
-  const [flipAmount, setFlipAmount] = useState(false);
-  const [multiplierEnabled, setMultiplierEnabled] = useState(false);
-  const [reconcile, setReconcile] = useState(true);
-  const [importNotes, setImportNotes] = useState(true);
+  const [flipAmount, setFlipAmount] = useState(
+    initialProfile?.flipAmount ?? false,
+  );
+  const [multiplierEnabled, setMultiplierEnabled] = useState(
+    !!initialProfile?.multiplierAmount,
+  );
+  const [reconcile, setReconcile] = useState(initialProfile?.reconcile ?? true);
+  const [importNotes, setImportNotes] = useState(
+    initialProfile?.importNotes ?? true,
+  );
+  const [autoExcludePairs] = useState(initialProfile?.autoExcludePairs ?? true);
+  const [accountRoutes, setAccountRoutes] = useState<Record<string, string>>(
+    {},
+  );
+  const [autoExcludedIds, setAutoExcludedIds] = useState<Set<string>>(
+    new Set(),
+  );
+  const [isPreviewing, setIsPreviewing] = useState(false);
+  const selectionOverridesRef = useRef(
+    new Map<string, { selected: boolean; selected_merge: boolean }>(),
+  );
+  const previewGenerationRef = useRef(0);
+  const parseGenerationRef = useRef(0);
+  const completedAccountsRef = useRef(new Set<string>());
+  const importDidChangeRef = useRef(false);
 
   // This cannot be set after parsing the file, because changing it
   // requires re-parsing the file. This is different from the other
   // options which are simple post-processing. That means if you
   // parsed different files without closing the modal, it wouldn't
   // re-read this.
-  const [delimiter, setDelimiter] = useState(
-    prefs[`csv-delimiter-${accountId}`] ||
-      (filename.endsWith('.tsv') ? '\t' : ','),
+  const [delimiter] = useState(
+    initialProfile?.delimiter ||
+      prefs[`csv-delimiter-${accountId}`] ||
+      (filename.endsWith('.tsv') ? '\t' : 'auto'),
   );
-  const [csvEncoding, setCsvEncoding] = useState(
-    prefs[`csv-encoding-${accountId}`] || 'auto',
+  const [csvEncoding] = useState(
+    initialProfile?.encoding || prefs[`csv-encoding-${accountId}`] || 'auto',
   );
-  const [skipStartLines, setSkipStartLines] = useState(
-    parseInt(prefs[`csv-skip-start-lines-${accountId}`], 10) || 0,
+  const [skipStartLines] = useState(
+    initialProfile?.skipStartLines ??
+      (parseInt(prefs[`csv-skip-start-lines-${accountId}`], 10) || 0),
   );
-  const [skipEndLines, setSkipEndLines] = useState(
-    parseInt(prefs[`csv-skip-end-lines-${accountId}`], 10) || 0,
+  const [skipEndLines] = useState(
+    initialProfile?.skipEndLines ??
+      (parseInt(prefs[`csv-skip-end-lines-${accountId}`], 10) || 0),
   );
-  const [inOutMode, setInOutMode] = useState(
-    String(prefs[`csv-in-out-mode-${accountId}`]) === 'true',
+  const [inOutMode] = useState(
+    initialProfile?.inOutMode ??
+      String(prefs[`csv-in-out-mode-${accountId}`]) === 'true',
   );
-  const [outValue, setOutValue] = useState(
-    prefs[`csv-out-value-${accountId}`] ?? '',
+  const [outValue] = useState(
+    initialProfile?.outValue ?? prefs[`csv-out-value-${accountId}`] ?? '',
   );
-  const [hasHeaderRow, setHasHeaderRow] = useState(
-    String(prefs[`csv-has-header-${accountId}`]) !== 'false',
+  const [hasHeaderRow] = useState(
+    initialProfile?.hasHeaderRow ??
+      String(prefs[`csv-has-header-${accountId}`]) !== 'false',
   );
   const [fallbackMissingPayeeToMemo, setFallbackMissingPayeeToMemo] = useState(
     String(prefs[`ofx-fallback-missing-payee-${accountId}`]) !== 'false',
@@ -274,16 +341,82 @@ export function ImportTransactionsModal({
     String(prefs[`camt-swap-payee-memo-${accountId}`]) === 'true',
   );
   const [reimportDeleted, setReimportDeleted] = useState(
-    String(prefs[`import-reimport-deleted-${accountId}`] || 'true') === 'true',
+    initialProfile?.reimportDeleted ??
+      String(prefs[`import-reimport-deleted-${accountId}`] || 'true') ===
+        'true',
   );
 
   const [parseDateFormat, setParseDateFormat] = useState<DateFormat | null>(
     null,
   );
 
-  const [clearOnImport, setClearOnImport] = useState(true);
+  const [clearOnImport] = useState(initialProfile?.clearOnImport ?? true);
   const [startDate, setStartDate] = useState('');
   const lastParseRef = useRef<LastParse | null>(null);
+
+  const sourceField = fieldMappings?.account;
+  const sourceCounts = new Map<string, number>();
+  if (sourceField) {
+    for (const transaction of parsedTransactions) {
+      const sourceName = String(transaction[sourceField] ?? '').trim();
+      if (sourceName) {
+        sourceCounts.set(sourceName, (sourceCounts.get(sourceName) ?? 0) + 1);
+      }
+    }
+  }
+  const sources = Array.from(sourceCounts, ([name, count]) => ({
+    name,
+    count,
+  }));
+  const routingRequired =
+    filetype === 'csv' && (!accountId || sources.length > 1);
+  const effectiveReconcile = routingRequired || reconcile;
+  const hasMissingSource =
+    routingRequired &&
+    !!sourceField &&
+    parsedTransactions.some(
+      transaction => !String(transaction[sourceField] ?? '').trim(),
+    );
+  const hasUnresolvedRoutes =
+    routingRequired &&
+    (!sourceField ||
+      sources.length === 0 ||
+      hasMissingSource ||
+      sources.some(source => !accountRoutes[source.name]));
+
+  useEffect(() => {
+    if (!fieldMappings?.account || parsedTransactions.length === 0) {
+      return;
+    }
+    const sourceNames = Array.from(
+      new Set(
+        parsedTransactions
+          .map(transaction =>
+            String(transaction[fieldMappings.account] ?? '').trim(),
+          )
+          .filter(Boolean),
+      ),
+    );
+    let savedRoutes: Record<string, string> = {};
+    try {
+      savedRoutes = JSON.parse(initialPrefs['csv-account-routes'] ?? '{}');
+    } catch {
+      savedRoutes = {};
+    }
+    const suggestions = suggestAccountRoutes(
+      sourceNames,
+      allAccounts.filter(account => !account.closed),
+      savedRoutes,
+    );
+    setAccountRoutes(previous => {
+      const next = { ...suggestions, ...previous };
+      const keys = Object.keys(next);
+      return keys.length === Object.keys(previous).length &&
+        keys.every(key => next[key] === previous[key])
+        ? previous
+        : next;
+    });
+  }, [allAccounts, fieldMappings?.account, initialPrefs, parsedTransactions]);
 
   const getImportPreview = useCallback(
     async (
@@ -318,6 +451,10 @@ export function ImportTransactionsModal({
           continue;
         }
 
+        const sourceTransaction = trans;
+        const sourceAccount = fieldMappings?.account
+          ? String(trans[fieldMappings.account] ?? '')
+          : undefined;
         trans = fieldMappings
           ? applyFieldMappings(trans, fieldMappings)
           : trans;
@@ -349,8 +486,30 @@ export function ImportTransactionsModal({
           break;
         }
 
-        const category_id = parseCategoryFields(trans, categories);
-        trans.category = category_id;
+        const category_id =
+          parseCategoryFields(trans, categories) ??
+          (filetype === 'csv'
+            ? findImportCategory(
+                {
+                  payee: trans.payee_name,
+                  notes: trans.notes,
+                  account: sourceAccount,
+                  amount,
+                  columns: sourceTransaction,
+                  bankId:
+                    prefs[
+                      `manual-bank-${
+                        routingRequired
+                          ? accountRoutes[sourceAccount?.trim() ?? '']
+                          : accountId
+                      }`
+                    ],
+                },
+                categoryRules,
+                categories,
+                categoryGroups,
+              )
+            : null);
 
         const {
           inflow: _inflow,
@@ -365,15 +524,27 @@ export function ImportTransactionsModal({
         } = trans;
         previewTransactions.push({
           ...finalTransaction,
+          category: category_id,
           date,
           amount: amountToInteger(amount),
           cleared: clearOnImport,
+          notes: importNotes ? finalTransaction.notes : null,
         });
       }
 
       return previewTransactions;
     },
-    [categories, clearOnImport],
+    [
+      accountId,
+      accountRoutes,
+      categories,
+      categoryGroups,
+      categoryRules,
+      clearOnImport,
+      importNotes,
+      prefs,
+      routingRequired,
+    ],
   );
 
   const parse = useCallback(
@@ -382,7 +553,12 @@ export function ImportTransactionsModal({
       options: ParseFileOptions,
       { preserveImportSettings = false } = {},
     ) => {
+      const generation = ++parseGenerationRef.current;
       setLoadingState('parsing');
+
+      if (!preserveImportSettings) {
+        selectionOverridesRef.current.clear();
+      }
 
       const filetype = getFileType(filename);
       setFilename(filename);
@@ -395,6 +571,9 @@ export function ImportTransactionsModal({
           options,
         },
       );
+      if (generation !== parseGenerationRef.current) {
+        return;
+      }
 
       let index = 0;
       const transactions = parsedTransactions.map(trans => {
@@ -421,28 +600,45 @@ export function ImportTransactionsModal({
           (filetype === 'csv' || filetype === 'qif')
         ) {
           const flipAmount =
-            String(prefs[`flip-amount-${accountId}-${filetype}`]) === 'true';
+            initialProfile?.flipAmount ??
+            String(initialPrefs[`flip-amount-${accountId}-${filetype}`]) ===
+              'true';
           setFlipAmount(flipAmount);
         }
 
         if (filetype === 'csv') {
           if (!preserveImportSettings) {
-            let mappings = prefs[`csv-mappings-${accountId}`];
-            mappings = mappings
-              ? JSON.parse(mappings)
+            const savedMappings = initialPrefs[`csv-mappings-${accountId}`];
+            const candidateMappings = initialProfile?.mappings
+              ? initialProfile.mappings
+              : savedMappings
+                ? JSON.parse(savedMappings)
+                : getInitialMappings(transactions);
+            const columns = transactions[0]
+              ? Object.keys(
+                  stripCsvImportTransaction(
+                    transactions[0] as ImportTransaction,
+                  ),
+                )
+              : [];
+            const mappings = areCsvMappingsCompatible(
+              candidateMappings,
+              columns,
+            )
+              ? candidateMappings
               : getInitialMappings(transactions);
 
-            // @ts-expect-error - mappings might not have outflow/inflow properties
             setFieldMappings(mappings);
 
             // Set initial split mode based on any saved mapping
-            // @ts-expect-error - mappings might not have outflow/inflow properties
             const splitMode = !!(mappings.outflow || mappings.inflow);
             setSplitMode(splitMode);
 
             const parseDateFormat =
-              prefs[`parse-date-${accountId}-${filetype}`] ||
-              getInitialDateFormat(transactions, mappings);
+              (mappings === candidateMappings
+                ? initialProfile?.dateFormat ||
+                  initialPrefs[`parse-date-${accountId}-${filetype}`]
+                : null) || getInitialDateFormat(transactions, mappings);
             setParseDateFormat(
               isDateFormat(parseDateFormat) ? parseDateFormat : null,
             );
@@ -450,7 +646,7 @@ export function ImportTransactionsModal({
         } else if (filetype === 'qif') {
           if (!preserveImportSettings) {
             const parseDateFormat =
-              prefs[`parse-date-${accountId}-${filetype}`] ||
+              initialPrefs[`parse-date-${accountId}-${filetype}`] ||
               getInitialDateFormat(transactions, { date: 'date' });
             setParseDateFormat(
               isDateFormat(parseDateFormat) ? parseDateFormat : null,
@@ -467,7 +663,7 @@ export function ImportTransactionsModal({
       setLoadingState(null);
     },
     // We use some state variables from the component, but do not want to re-parse when they change
-    [accountId, prefs],
+    [accountId, initialPrefs, initialProfile],
   );
 
   function onMultiplierChange(e) {
@@ -478,7 +674,7 @@ export function ImportTransactionsModal({
   }
 
   useEffect(() => {
-    const fileType = getFileType(originalFileName);
+    const fileType = getFileType(filename);
     const parseOptions = getParseOptions(fileType, {
       delimiter,
       encoding: csvEncoding,
@@ -497,22 +693,22 @@ export function ImportTransactionsModal({
     const lastParse = lastParseRef.current;
     const shouldPreserveImportSettings = shouldPreserveImportSettingsForParse(
       lastParse,
-      originalFileName,
+      filename,
       fileType,
       parseOptions,
     );
 
     lastParseRef.current = {
-      filename: originalFileName,
+      filename,
       fileType,
       options: parseOptions,
     };
 
-    void parse(originalFileName, parseOptions, {
+    void parse(filename, parseOptions, {
       preserveImportSettings: shouldPreserveImportSettings,
     });
   }, [
-    originalFileName,
+    filename,
     delimiter,
     csvEncoding,
     hasHeaderRow,
@@ -526,32 +722,6 @@ export function ImportTransactionsModal({
     parse,
   ]);
 
-  function onSplitMode() {
-    if (fieldMappings == null) {
-      return;
-    }
-
-    const isSplit = !splitMode;
-    setSplitMode(isSplit);
-
-    // Run auto-detection on the fields to try to detect the fields
-    // automatically
-    const mappings = getInitialMappings(transactions);
-
-    const newFieldMappings = isSplit
-      ? {
-          amount: null,
-          outflow: mappings.amount,
-          inflow: null,
-        }
-      : {
-          amount: mappings.amount,
-          outflow: null,
-          inflow: null,
-        };
-    setFieldMappings({ ...fieldMappings, ...newFieldMappings });
-  }
-
   async function onNewFile() {
     const res = await window.Actual.openFileDialog({
       filters: [
@@ -562,24 +732,14 @@ export function ImportTransactionsModal({
       ],
     });
 
-    const fileType = getFileType(res[0]);
-    const parseOptions = getParseOptions(fileType, {
-      delimiter,
-      encoding: csvEncoding,
-      hasHeaderRow,
-      skipStartLines,
-      skipEndLines,
-      fallbackMissingPayeeToMemo,
-      importNotes,
-      swapPayeeAndMemo: getSwapOption(
-        fileType,
-        ofxSwapPayeeAndMemo,
-        qifSwapPayeeAndMemo,
-        camtSwapPayeeAndMemo,
-      ),
-    });
-
-    void parse(res[0], parseOptions);
+    if (!res?.[0]) {
+      return;
+    }
+    selectionOverridesRef.current.clear();
+    completedAccountsRef.current.clear();
+    importDidChangeRef.current = false;
+    setAccountRoutes({});
+    setFilename(res[0]);
   }
 
   function onUpdateFields(field, name) {
@@ -591,6 +751,15 @@ export function ImportTransactionsModal({
   }
 
   function onCheckTransaction(trx_id: string) {
+    const transaction = transactions.find(trans => trans.trx_id === trx_id);
+    if (transaction && routingRequired) {
+      const source = sourceField
+        ? String(transaction[sourceField] ?? '').trim()
+        : '';
+      if (!accountRoutes[source] || accountRoutes[source] === 'skip') {
+        return;
+      }
+    }
     const newTransactions = transactions.map(trans => {
       if (trans.trx_id === trx_id) {
         if (trans.existing) {
@@ -629,28 +798,97 @@ export function ImportTransactionsModal({
       return trans;
     });
 
+    const updated = newTransactions.find(trans => trans.trx_id === trx_id);
+    if (updated) {
+      selectionOverridesRef.current.set(trx_id, {
+        selected: updated.selected,
+        selected_merge: updated.selected_merge,
+      });
+    }
     setTransactions(newTransactions);
   }
 
   const importTransactions = useImportTransactionsMutation();
 
+  async function saveCsvProfile() {
+    if (!fieldMappings || parsedTransactions.length === 0) {
+      return;
+    }
+
+    const profile: CsvImportProfile = {
+      columns: Object.keys(stripCsvImportTransaction(parsedTransactions[0])),
+      mappings: fieldMappings,
+      dateFormat:
+        parseDateFormat ??
+        getInitialDateFormat(parsedTransactions, fieldMappings),
+      delimiter,
+      encoding: csvEncoding,
+      hasHeaderRow,
+      skipStartLines,
+      skipEndLines,
+      inOutMode,
+      outValue,
+      flipAmount,
+      multiplierAmount,
+      importNotes,
+      autoExcludePairs,
+      clearOnImport,
+      reconcile,
+      reimportDeleted,
+    };
+    let savedRoutes: Record<string, string> = {};
+    try {
+      savedRoutes = JSON.parse(prefs['csv-account-routes'] ?? '{}');
+    } catch {
+      savedRoutes = {};
+    }
+
+    await dispatch(
+      saveSyncedPrefs({
+        prefs: {
+          [getCsvImportProfileKey(accountId)]: JSON.stringify(profile),
+          'csv-account-routes': JSON.stringify({
+            ...savedRoutes,
+            ...accountRoutes,
+          }),
+        },
+      }),
+    ).unwrap();
+  }
+
   async function onImport(close) {
+    if (hasUnresolvedRoutes) {
+      return;
+    }
     setLoadingState('importing');
 
-    const finalTransactions = [];
+    const transactionsByAccount = new Map<string, Record<string, unknown>[]>();
     let errorMessage;
 
     for (let trans of transactions) {
       if (
         trans.isMatchedTransaction ||
-        (reconcile && !trans.selected && !trans.ignored)
+        (!trans.selected &&
+          (!effectiveReconcile ||
+            !trans.ignored ||
+            autoExcludedIds.has(trans.trx_id)))
       ) {
-        // skip transactions that are
-        // - matched transaction (existing transaction added to show update changes)
-        // - unselected transactions that are not ignored by the reconcilation algorithm (only when reconcilation is enabled)
+        // Keep ignored rows for reconciliation, but never import a deselected
+        // row in direct-add mode or an automatically excluded offsetting pair.
         continue;
       }
 
+      const sourceName = sourceField
+        ? String(trans[sourceField] ?? '').trim()
+        : '';
+      const destinationAccountId = routingRequired
+        ? accountRoutes[sourceName]
+        : accountId;
+      if (!destinationAccountId || destinationAccountId === 'skip') {
+        continue;
+      }
+
+      const sourceTransaction = trans;
       trans = fieldMappings ? applyFieldMappings(trans, fieldMappings) : trans;
 
       const date =
@@ -680,8 +918,23 @@ export function ImportTransactionsModal({
         break;
       }
 
-      const category_id = parseCategoryFields(trans, categories);
-      trans.category = category_id;
+      const category_id =
+        parseCategoryFields(trans, categories) ??
+        (filetype === 'csv'
+          ? findImportCategory(
+              {
+                payee: trans.payee_name,
+                notes: trans.notes,
+                account: sourceName,
+                amount,
+                columns: sourceTransaction,
+                bankId: prefs[`manual-bank-${destinationAccountId}`],
+              },
+              categoryRules,
+              categories,
+              categoryGroups,
+            )
+          : null);
 
       const {
         inflow: _inflow,
@@ -696,7 +949,7 @@ export function ImportTransactionsModal({
       } = trans;
 
       if (
-        reconcile &&
+        effectiveReconcile &&
         ((trans.ignored && trans.selected) ||
           (trans.existing && trans.selected && !trans.selected_merge))
       ) {
@@ -706,13 +959,17 @@ export function ImportTransactionsModal({
         finalTransaction.forceAddTransaction = true;
       }
 
+      const finalTransactions =
+        transactionsByAccount.get(destinationAccountId) ?? [];
       finalTransactions.push({
         ...finalTransaction,
+        category: category_id,
         date,
         amount: amountToInteger(amount),
         cleared: clearOnImport,
         notes: importNotes ? finalTransaction.notes : null,
       });
+      transactionsByAccount.set(destinationAccountId, finalTransactions);
     }
 
     if (errorMessage) {
@@ -773,32 +1030,50 @@ export function ImportTransactionsModal({
       [`import-reimport-deleted-${accountId}`]: String(reimportDeleted),
     });
 
-    importTransactions.mutate(
-      {
-        accountId,
-        transactions: finalTransactions,
-        reconcile,
-        reimportDeleted,
-      },
-      {
-        onSuccess: async didChange => {
-          if (didChange) {
-            void queryClient.invalidateQueries(payeeQueries.list());
-          }
-
-          if (onImported) {
-            onImported(didChange);
-          }
-
-          close();
-        },
-      },
-    );
+    try {
+      if (filetype === 'csv') {
+        await saveCsvProfile();
+      }
+      for (const [
+        destinationAccountId,
+        accountTransactions,
+      ] of transactionsByAccount) {
+        if (completedAccountsRef.current.has(destinationAccountId)) {
+          continue;
+        }
+        const changed = await importTransactions.mutateAsync({
+          accountId: destinationAccountId,
+          transactions: accountTransactions as TransactionEntity[],
+          reconcile: effectiveReconcile,
+          reimportDeleted,
+        });
+        completedAccountsRef.current.add(destinationAccountId);
+        importDidChangeRef.current = importDidChangeRef.current || changed;
+      }
+      if (importDidChangeRef.current) {
+        void queryClient.invalidateQueries(payeeQueries.list());
+      }
+      onImported?.(importDidChangeRef.current);
+      close();
+    } catch (importError) {
+      setError({
+        parsed: false,
+        message:
+          importError instanceof Error
+            ? importError.message
+            : t(
+                'Не удалось импортировать операции. Проверьте сопоставление счетов.',
+              ),
+      });
+      setLoadingState(null);
+    }
   }
 
   const importPreviewTransactions = useImportPreviewTransactionsMutation();
 
   const onImportPreview = useEffectEvent(async () => {
+    const generation = ++previewGenerationRef.current;
+    setIsPreviewing(true);
     // Filter by start date before preview and deduplication
     const isPreParsed = isOfxFile(filetype) || isCamtFile(filetype);
     const filteredTransactions = filterByStartDate(
@@ -822,68 +1097,137 @@ export function ImportTransactionsModal({
       multiplierAmount,
     );
 
-    // Retreive the transactions that would be updated (along with the existing trx)
-    importPreviewTransactions.mutate(
-      {
-        accountId,
-        transactions: previewTransactionsToImport,
-        reimportDeleted,
-      },
-      {
-        onSuccess: previewTrx => {
-          const matchedUpdateMap = previewTrx.reduce((map, entry) => {
-            // @ts-expect-error - entry.transaction might not have trx_id property
-            map[entry.transaction.trx_id] = entry;
-            return map;
-          }, {});
-
-          const previewTransactions = filteredTransactions
-            .filter(trans => !trans.isMatchedTransaction)
-            .reduce((previous, currentTrx) => {
-              let next = previous;
-              const entry = matchedUpdateMap[currentTrx.trx_id];
-              const existingTrx = entry?.existing;
-
-              // if the transaction is matched with an existing one for update
-              currentTrx.existing = !!existingTrx;
-              // if the transaction is an update that will be ignored
-              // (reconciled transactions or no change detected)
-              currentTrx.ignored = entry?.ignored || false;
-
-              currentTrx.tombstone = entry?.tombstone || false;
-
-              currentTrx.selected = !currentTrx.ignored;
-              currentTrx.selected_merge = currentTrx.existing;
-
-              next = next.concat({ ...currentTrx });
-
-              if (existingTrx) {
-                // add the updated existing transaction in the list, with the
-                // isMatchedTransaction flag to identify it in display and not send it again
-                existingTrx.isMatchedTransaction = true;
-                existingTrx.category = categories.find(
-                  cat => cat.id === existingTrx.category,
-                )?.name;
-                // add parent transaction attribute to mimic behaviour
-                existingTrx.trx_id = currentTrx.trx_id;
-                existingTrx.existing = currentTrx.existing;
-                existingTrx.selected = currentTrx.selected;
-                existingTrx.selected_merge = currentTrx.selected_merge;
-
-                next = next.concat({ ...existingTrx });
-              }
-
-              return next;
-            }, []);
-
-          setTransactions(previewTransactions);
-        },
-      },
+    const originalById = new Map(
+      filteredTransactions.map(transaction => [
+        transaction.trx_id,
+        transaction,
+      ]),
     );
+    const destinationFor = (transaction: ImportTransaction) => {
+      if (!routingRequired) {
+        return accountId;
+      }
+      const original = originalById.get(transaction.trx_id);
+      const source = sourceField
+        ? String(original?.[sourceField] ?? '').trim()
+        : '';
+      const destination = accountRoutes[source];
+      return destination && destination !== 'skip' ? destination : null;
+    };
+
+    const pairedIds = autoExcludePairs
+      ? findOpposingPairIds(
+          previewTransactionsToImport.map(transaction => ({
+            id: transaction.trx_id,
+            accountId: destinationFor(transaction) ?? '',
+            sourceAccount: sourceField
+              ? String(
+                  originalById.get(transaction.trx_id)?.[sourceField] ?? '',
+                )
+              : '',
+            date: transaction.date,
+            amount: transaction.amount,
+            description: String(transaction.payee_name ?? ''),
+          })),
+        )
+      : new Set<string>();
+
+    const byAccount = new Map<string, ImportTransaction[]>();
+    for (const transaction of previewTransactionsToImport) {
+      const destination = destinationFor(transaction);
+      if (destination && !pairedIds.has(transaction.trx_id)) {
+        const group = byAccount.get(destination) ?? [];
+        group.push(transaction);
+        byAccount.set(destination, group);
+      }
+    }
+
+    try {
+      const previewResults = [];
+      for (const [destination, group] of byAccount) {
+        previewResults.push(
+          await importPreviewTransactions.mutateAsync({
+            accountId: destination,
+            transactions: group as unknown as TransactionEntity[],
+            reimportDeleted,
+          }),
+        );
+      }
+      if (generation !== previewGenerationRef.current) {
+        return;
+      }
+      setAutoExcludedIds(pairedIds);
+      const previewTrx = previewResults.flat();
+      const matchedUpdateMap = previewTrx.reduce((map, entry) => {
+        map[entry.transaction.trx_id] = entry;
+        return map;
+      }, {});
+
+      const previewTransactions = filteredTransactions
+        .filter(trans => !trans.isMatchedTransaction)
+        .reduce((previous, currentTrx) => {
+          let next = previous;
+          const entry = matchedUpdateMap[currentTrx.trx_id];
+          const existingTrx = entry?.existing;
+
+          // if the transaction is matched with an existing one for update
+          currentTrx.existing = !!existingTrx;
+          // if the transaction is an update that will be ignored
+          // (reconciled transactions or no change detected)
+          currentTrx.ignored = entry?.ignored || false;
+
+          currentTrx.tombstone = entry?.tombstone || false;
+
+          const selection = selectionOverridesRef.current.get(
+            currentTrx.trx_id,
+          );
+          currentTrx.selected =
+            selection?.selected ??
+            (!currentTrx.ignored &&
+              !pairedIds.has(currentTrx.trx_id) &&
+              !!destinationFor(currentTrx));
+          currentTrx.selected_merge =
+            selection?.selected_merge ?? currentTrx.existing;
+
+          next = next.concat({ ...currentTrx });
+
+          if (existingTrx) {
+            // add the updated existing transaction in the list, with the
+            // isMatchedTransaction flag to identify it in display and not send it again
+            existingTrx.isMatchedTransaction = true;
+            existingTrx.category = categories.find(
+              cat => cat.id === existingTrx.category,
+            )?.name;
+            // add parent transaction attribute to mimic behaviour
+            existingTrx.trx_id = currentTrx.trx_id;
+            existingTrx.existing = currentTrx.existing;
+            existingTrx.selected = currentTrx.selected;
+            existingTrx.selected_merge = currentTrx.selected_merge;
+
+            next = next.concat({ ...existingTrx });
+          }
+
+          return next;
+        }, []);
+
+      setTransactions(previewTransactions);
+      setIsPreviewing(false);
+    } catch (previewError) {
+      if (generation === previewGenerationRef.current) {
+        setIsPreviewing(false);
+        setError({
+          parsed: false,
+          message:
+            previewError instanceof Error
+              ? previewError.message
+              : t('Не удалось подготовить предварительный просмотр.'),
+        });
+      }
+    }
   });
 
   useEffect(() => {
-    if (parsedTransactions.length === 0 || loadingState === 'parsing') {
+    if (parsedTransactions.length === 0 || loadingState !== null) {
       return;
     }
 
@@ -895,6 +1239,14 @@ export function ImportTransactionsModal({
     fieldMappings,
     parseDateFormat,
     reimportDeleted,
+    accountRoutes,
+    autoExcludePairs,
+    flipAmount,
+    splitMode,
+    inOutMode,
+    outValue,
+    multiplierAmount,
+    clearOnImport,
   ]);
 
   const headers: ComponentProps<typeof TableHeader>['headers'] = [
@@ -904,7 +1256,7 @@ export function ImportTransactionsModal({
     { name: t('Category'), width: 'flex' },
   ];
 
-  if (reconcile) {
+  if (effectiveReconcile) {
     headers.unshift({ name: ' ', width: 31 });
   }
   if (inOutMode) {
@@ -936,6 +1288,7 @@ export function ImportTransactionsModal({
   return (
     <Modal
       name="import-transactions"
+      isDismissable={false}
       isLoading={loadingState === 'parsing'}
       containerProps={{ style: { width: 800 } }}
     >
@@ -969,7 +1322,7 @@ export function ImportTransactionsModal({
                 items={transactions.filter(
                   trans =>
                     !trans.isMatchedTransaction ||
-                    (trans.isMatchedTransaction && reconcile),
+                    (trans.isMatchedTransaction && effectiveReconcile),
                 )}
                 fields={['payee', 'category', 'amount']}
                 style={{ backgroundColor: theme.tableHeaderBackground }}
@@ -1003,8 +1356,34 @@ export function ImportTransactionsModal({
                       flipAmount={flipAmount}
                       multiplierAmount={multiplierAmount}
                       categories={categories}
+                      categoryGroups={categoryGroups}
+                      categoryRules={categoryRules}
+                      bankId={
+                        prefs[
+                          `manual-bank-${
+                            routingRequired && sourceField
+                              ? accountRoutes[
+                                  String(item[sourceField] ?? '').trim()
+                                ]
+                              : accountId
+                          }`
+                        ]
+                      }
+                      importNotes={importNotes}
                       onCheckTransaction={onCheckTransaction}
-                      reconcile={reconcile}
+                      reconcile={effectiveReconcile}
+                      canSelect={
+                        !routingRequired ||
+                        !!(
+                          sourceField &&
+                          accountRoutes[
+                            String(item[sourceField] ?? '').trim()
+                          ] &&
+                          accountRoutes[
+                            String(item[sourceField] ?? '').trim()
+                          ] !== 'skip'
+                        )
+                      }
                     />
                   </View>
                 )}
@@ -1064,7 +1443,7 @@ export function ImportTransactionsModal({
           </View>
 
           {filetype === 'csv' && (
-            <View style={{ marginTop: 10 }}>
+            <View data-testid="csv-import-fields" style={{ marginTop: 10 }}>
               <FieldMappings
                 transactions={transactions}
                 onChange={onUpdateFields}
@@ -1073,6 +1452,42 @@ export function ImportTransactionsModal({
                 inOutMode={inOutMode}
                 hasHeaderRow={hasHeaderRow}
               />
+            </View>
+          )}
+
+          {filetype === 'csv' && (
+            <View style={{ marginTop: 12, gap: 4 }}>
+              {routingRequired && !sourceField && (
+                <Text style={{ color: theme.errorText }}>
+                  {t('Выберите столбец «Счёт в файле» в полях CSV.')}
+                </Text>
+              )}
+              {hasMissingSource && (
+                <Text style={{ color: theme.errorText }}>
+                  {t(
+                    'В файле есть операции без названия счёта. Проверьте столбец счёта или исправьте файл.',
+                  )}
+                </Text>
+              )}
+              {routingRequired &&
+                sourceField &&
+                sources.some(source => !accountRoutes[source.name]) && (
+                  <Text style={{ color: theme.errorText }}>
+                    {t('Не настроены счета: {{accounts}}', {
+                      accounts: sources
+                        .filter(source => !accountRoutes[source.name])
+                        .map(source => source.name)
+                        .join(', '),
+                    })}
+                  </Text>
+                )}
+              {autoExcludePairs && autoExcludedIds.size > 0 && (
+                <Text style={{ color: theme.tableTextInactive }}>
+                  {t('Исключено встречных операций: {{count}}', {
+                    count: autoExcludedIds.size,
+                  })}
+                </Text>
+              )}
             </View>
           )}
 
@@ -1145,162 +1560,22 @@ export function ImportTransactionsModal({
             </CheckboxToggle>
           )}
 
-          {/*Import Options */}
-          {(filetype === 'qif' || filetype === 'csv') && (
+          {filetype === 'qif' && (
             <View style={{ marginTop: 10 }}>
               <SpaceBetween
                 gap={5}
                 style={{ marginTop: 5, alignItems: 'flex-start' }}
               >
-                {/* Date Format */}
                 <View>
-                  {(filetype === 'qif' || filetype === 'csv') && (
-                    <DateFormatSelect
-                      transactions={transactions}
-                      fieldMappings={fieldMappings || undefined}
-                      parseDateFormat={parseDateFormat || undefined}
-                      onChange={value => {
-                        setParseDateFormat(isDateFormat(value) ? value : null);
-                      }}
-                    />
-                  )}
+                  <DateFormatSelect
+                    transactions={transactions}
+                    fieldMappings={fieldMappings || undefined}
+                    parseDateFormat={parseDateFormat || undefined}
+                    onChange={value => {
+                      setParseDateFormat(isDateFormat(value) ? value : null);
+                    }}
+                  />
                 </View>
-
-                {/* CSV Options */}
-                {filetype === 'csv' && (
-                  <View style={{ marginLeft: 10, gap: 5 }}>
-                    <SectionLabel title={t('CSV OPTIONS')} />
-                    <label
-                      htmlFor="csv-delimiter-select"
-                      style={{
-                        display: 'flex',
-                        flexDirection: 'row',
-                        gap: 5,
-                        alignItems: 'baseline',
-                      }}
-                    >
-                      <Trans>Delimiter:</Trans>
-                      <Select
-                        id="csv-delimiter-select"
-                        options={[
-                          [',', ','],
-                          [';', ';'],
-                          ['|', '|'],
-                          ['\t', 'tab'],
-                          ['~', '~'],
-                        ]}
-                        value={delimiter}
-                        onChange={value => {
-                          setDelimiter(value);
-                        }}
-                        style={{ width: 50 }}
-                      />
-                    </label>
-                    <label
-                      htmlFor="csv-encoding-select"
-                      style={{
-                        display: 'flex',
-                        flexDirection: 'row',
-                        gap: 5,
-                        alignItems: 'baseline',
-                      }}
-                    >
-                      <Trans>Encoding:</Trans>
-                      <Select
-                        id="csv-encoding-select"
-                        options={[
-                          ['auto', t('Auto (detect)')],
-                          ['utf-8', t('UTF-8')],
-                          ['utf-16le', t('UTF-16 LE')],
-                          ['utf-16be', t('UTF-16 BE')],
-                          ['windows-1252', t('Windows-1252')],
-                          ['windows-1250', t('Windows-1250')],
-                          ['iso-8859-2', t('ISO-8859-2')],
-                        ]}
-                        value={csvEncoding}
-                        onChange={value => {
-                          setCsvEncoding(value);
-                        }}
-                        style={{ width: 130 }}
-                      />
-                    </label>
-                    <label
-                      htmlFor="csv-skip-start-lines"
-                      style={{
-                        display: 'flex',
-                        flexDirection: 'row',
-                        gap: 5,
-                        alignItems: 'baseline',
-                      }}
-                    >
-                      <Trans>Skip start lines:</Trans>
-                      <Input
-                        id="csv-skip-start-lines"
-                        type="number"
-                        value={skipStartLines}
-                        min="0"
-                        step="1"
-                        onChangeValue={value => {
-                          setSkipStartLines(Math.abs(parseInt(value, 10) || 0));
-                        }}
-                        style={{ width: 50 }}
-                      />
-                    </label>
-                    <label
-                      htmlFor="csv-skip-end-lines"
-                      style={{
-                        display: 'flex',
-                        flexDirection: 'row',
-                        gap: 5,
-                        alignItems: 'baseline',
-                      }}
-                    >
-                      <Trans>Skip end lines:</Trans>
-                      <Input
-                        id="csv-skip-end-lines"
-                        type="number"
-                        value={skipEndLines}
-                        min="0"
-                        step="1"
-                        onChangeValue={value => {
-                          setSkipEndLines(Math.abs(parseInt(value, 10) || 0));
-                        }}
-                        style={{ width: 50 }}
-                      />
-                    </label>
-                    <CheckboxToggle
-                      id="form_has_header"
-                      checked={hasHeaderRow}
-                      onChange={setHasHeaderRow}
-                    >
-                      <Trans>File has header row</Trans>
-                    </CheckboxToggle>
-                    <CheckboxToggle
-                      id="clear_on_import"
-                      checked={clearOnImport}
-                      onChange={setClearOnImport}
-                    >
-                      <Trans>Clear transactions on import</Trans>
-                    </CheckboxToggle>
-                    <CheckboxToggle
-                      id="form_dont_reconcile"
-                      checked={reconcile}
-                      onChange={setReconcile}
-                    >
-                      <Trans>Merge with existing transactions</Trans>
-                    </CheckboxToggle>
-                    {reconcile && (
-                      <CheckboxToggle
-                        id="form_reimport_deleted_csv"
-                        checked={reimportDeleted}
-                        onChange={setReimportDeleted}
-                      >
-                        <Trans>Reimport deleted transactions</Trans>
-                      </CheckboxToggle>
-                    )}
-                  </View>
-                )}
-
                 <View style={{ flex: 1 }} />
 
                 <View style={{ marginRight: 10, gap: 5 }}>
@@ -1321,36 +1596,52 @@ export function ImportTransactionsModal({
                     }}
                     onChangeAmount={onMultiplierChange}
                   />
-                  {filetype === 'csv' && (
-                    <>
-                      <LabeledCheckbox
-                        id="form_split"
-                        checked={splitMode}
-                        onChange={() => {
-                          onSplitMode();
-                        }}
-                      >
-                        <Trans>
-                          Split amount into separate inflow/outflow columns
-                        </Trans>
-                      </LabeledCheckbox>
-                      <InOutOption
-                        inOutMode={inOutMode}
-                        outValue={outValue}
-                        onToggle={() => {
-                          setInOutMode(!inOutMode);
-                        }}
-                        onChangeText={setOutValue}
-                      />
-                    </>
-                  )}
                 </View>
               </SpaceBetween>
             </View>
           )}
 
-          <View style={{ flexDirection: 'row', marginTop: 5 }}>
-            {/*Submit Button */}
+          <View
+            style={{
+              flexDirection: 'row',
+              marginTop: 12,
+              justifyContent: 'space-between',
+              alignItems: 'center',
+              gap: 16,
+              flexWrap: 'wrap',
+            }}
+          >
+            {filetype === 'csv' && (
+              <View data-testid="csv-import-settings-hint" style={{ gap: 4 }}>
+                <Text style={{ color: theme.tableTextInactive }}>
+                  {t(
+                    'Формат файла, счета и правила импорта меняются в настройках.',
+                  )}
+                </Text>
+                <Button
+                  isDisabled={!fieldMappings || parsedTransactions.length === 0}
+                  onPress={() => {
+                    void saveCsvProfile()
+                      .then(() => {
+                        state.close();
+                        void navigate(
+                          `/settings?importAccount=${encodeURIComponent(accountId ?? 'all')}#statement-import-settings`,
+                        );
+                      })
+                      .catch(() => {
+                        setError({
+                          parsed: false,
+                          message: t(
+                            'Не удалось открыть настройки импорта. Попробуйте ещё раз.',
+                          ),
+                        });
+                      });
+                  }}
+                >
+                  {t('Настроить импорт')}
+                </Button>
+              </View>
+            )}
             <View
               style={{
                 alignSelf: 'flex-end',
@@ -1364,14 +1655,26 @@ export function ImportTransactionsModal({
                   trans =>
                     !trans.isMatchedTransaction &&
                     trans.selected &&
-                    !trans.tombstone,
+                    !trans.tombstone &&
+                    (!routingRequired ||
+                      !!(
+                        sourceField &&
+                        accountRoutes[
+                          String(trans[sourceField] ?? '').trim()
+                        ] &&
+                        accountRoutes[
+                          String(trans[sourceField] ?? '').trim()
+                        ] !== 'skip'
+                      )),
                 ).length;
 
                 return (
                   <ButtonWithLoading
                     variant="primary"
                     autoFocus
-                    isDisabled={count === 0}
+                    isDisabled={
+                      count === 0 || hasUnresolvedRoutes || isPreviewing
+                    }
                     isLoading={loadingState === 'importing'}
                     onPress={() => {
                       void onImport(() => state.close());

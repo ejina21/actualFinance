@@ -3,6 +3,26 @@ import type {
   TransactionEntity,
 } from '@actual-app/core/types/models';
 
+import type { CashFlowSummary } from '#components/budget/summary/cashFlow';
+
+export type MonthlyTrendPoint = {
+  month: string;
+  inflow: number;
+  outflow: number;
+};
+
+export function buildMonthlyTrend(
+  summary: CashFlowSummary,
+): MonthlyTrendPoint[] {
+  return Object.entries(summary.columnTotals)
+    .sort(([left], [right]) => left.localeCompare(right))
+    .map(([month, { income, expenses }]) => ({
+      month,
+      inflow: income,
+      outflow: expenses,
+    }));
+}
+
 type ActivityTransaction = Pick<
   TransactionEntity,
   | 'id'

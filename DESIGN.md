@@ -6,15 +6,19 @@ description: Local-first personal finance, built around envelope budgeting
 colors:
   primary-teal: '#087a74'
   primary-teal-hover: '#096a65'
-  sidebar-blue: '#1e3651'
-  sidebar-hover: '#31506a'
-  sidebar-selection: '#34526d'
+  sidebar-green: '#173f39'
+  sidebar-hover: '#28564d'
+  sidebar-selection: '#376a5e'
   navy-slate: '#607681'
   navy-mist: '#e3eaec'
   navy-frost: '#f3f6f7'
   page-text: '#172b36'
   surface-white: '#ffffff'
   positive-green: '#147d64'
+  finance-accent-positive: '#0c6b58'
+  finance-hero: '#173f39'
+  finance-soft-accent: '#e1f1e9'
+  finance-accent-negative: '#ab091e'
   negative-red: '#e12d39'
   link-blue: '#1980d4'
   warning-gold: '#b88115'
@@ -74,11 +78,15 @@ components:
 
 ## 1. Overview
 
+**Finance summary direction:** The approved Coinest reference contributes a quiet neutral canvas, white bordered surfaces, a deep forest-green balance focal point, and a restrained pale-green selection color. Actual's account tree, dense money tables, and all established actions remain visible. The same semantic roles map to dark (#234e46 hero, #29483f soft accent) and midnight (#1b443e hero, #214039 soft accent); hero text is white in every theme. The soft accent marks aggregate rows; their signed amounts use contrast-safe semantic colors.
+
+The read-only **Расходы** Budget view gives one month, one year, custom date ranges, and selected-month comparisons a common financial table. Income and expense groups, account movements, and point-in-time balance have distinct labels so the numbers retain their meaning. The report has two explicit modes: Period overview and Month comparison. Comparison starts with the selected month and its predecessor, places total expenses, income, and net flow before category details, and shows monetary and percentage changes below each compared amount. Daily columns appear only in the period overview. All redesigned surfaces use the same surface and focus vocabulary while preserving working density.
+
 **Creative North Star: "The Family Dashboard"**
 
 Actual presents the family's finances clearly at first glance, while keeping the detailed tables close at hand. The overview surfaces balances, current-month budget progress, and recent activity. The account sidebar keeps every account and its live balance visible. Working pages remain compact enough for regular budgeting and reconciliation.
 
-The system is calm and practical. It uses a dark blue navigation rail and restrained teal accents in light mode, with corresponding dark and midnight palettes. The three themes preserve the same hierarchy and financial semantics.
+The system is calm and practical. It uses a deep green navigation rail and restrained teal accents in light mode, with corresponding dark and midnight palettes. The three themes preserve the same hierarchy and financial semantics.
 
 **Key Characteristics:**
 
@@ -90,14 +98,14 @@ The system is calm and practical. It uses a dark blue navigation rail and restra
 
 ## 2. Colors
 
-A dark blue navigation rail, light neutral page, teal primary accent, and separate semantic colors for money.
+A deep green navigation rail, light neutral page, teal primary accent, and separate semantic colors for money.
 
 All hex values in this file (frontmatter included) are the light-theme palette mapping. The dark and midnight themes remap the same semantic roles to different palette values, so never use these hexes directly in components — route every color through the `theme.*` semantic tokens (see The Semantic Token Rule below).
 
 ### Primary
 
 - **Primary Teal** (#087a74): Primary buttons, dashboard highlights, and progress bars. Hover uses #096a65.
-- **Sidebar Blue** (#1e3651): Persistent navigation in the light theme. Hover uses #31506a; selection uses #34526d with white text.
+- **Sidebar Green** (#173f39): Persistent navigation in the light theme. Hover uses #28564d; selection uses #376a5e with white text.
 
 ### Neutral
 
@@ -111,6 +119,7 @@ All hex values in this file (frontmatter included) are the light-theme palette m
 
 - **Positive Green** (#147d64): Positive amounts and funded budgets.
 - **Negative Red** (#e12d39): Negative amounts, overspending, failures.
+- **Finance Accent Positive/Negative** (#0c6b58 / #ab091e): Signed summary amounts on the pale-green aggregate row; dark themes use lighter counterparts.
 - **Link Blue** (#1980d4): Links and informational highlights.
 - **Warning Gold** (#b88115): Underfunded templates, pending states.
 
@@ -118,7 +127,7 @@ All hex values in this file (frontmatter included) are the light-theme palette m
 
 **The Semantic Token Rule.** Components never use raw palette values or hex codes. Every color goes through the `theme.*` semantic layer (`--color-*` custom properties) so all three themes (light, dark, midnight) stay correct. A hardcoded hex in a component is a bug.
 
-**The One Accent Rule.** Teal marks primary actions and the highlighted summary card. Sidebar selection relies on contrast and a blue background so balance text stays legible.
+**The One Accent Rule.** Teal marks primary actions and the highlighted summary card. Sidebar selection relies on contrast and a green background so balance text stays legible.
 
 **The Never-Color-Alone Rule.** Positive/negative money state is conveyed by sign and context as well as color; green/red are reinforcement, never the only signal.
 
@@ -136,6 +145,30 @@ All hex values in this file (frontmatter included) are the light-theme palette m
 - **Title** (500, 15px): Emphasized in-table and card text.
 - **Body** (400, 16px): Default text.
 - **Label** (400, 13px): Table meta, menus, dense secondary text; 12px and 10px steps exist for the tightest spots.
+
+### Standard Component Sizes
+
+`Button`, `Text` and `Input` accept a `size` prop: `small` | `medium` | `large` | `extra-large` (the `ComponentSize` vocabulary in `packages/component-library/src/tokens.ts`). Omitting the prop renders exactly as before — fully backward compatible. Sizes are responsive: they step up one notch on mobile/narrow for readability and touch targets, and collapse to the compact desktop scale from 512px/730px up. Breakpoint groups mirror the `useResponsive` view modes: narrow <512, small 512–729, medium 730–1099, wide ≥1100.
+
+Text values (fontSize / lineHeight, px):
+
+| Size        | narrow  | small   | medium  | wide    |
+| ----------- | ------- | ------- | ------- | ------- |
+| small       | 12 / 16 | 12 / 16 | 12 / 16 | 12 / 16 |
+| medium      | 13 / 18 | 13 / 18 | 13 / 18 | 13 / 18 |
+| large       | 16 / 22 | 15 / 20 | 15 / 20 | 15 / 20 |
+| extra-large | 17 / 24 | 17 / 24 | 16 / 22 | 16 / 22 |
+
+Control values for Button/Input (paddingY / paddingX / min-height, px):
+
+| Size        | narrow       | small       | medium      | wide        |
+| ----------- | ------------ | ----------- | ----------- | ----------- |
+| small       | 3 / 8 / 24   | 3 / 8 / 24  | 3 / 8 / 24  | 3 / 8 / 24  |
+| medium      | 5 / 10 / —   | 5 / 10 / —  | 5 / 10 / —  | 5 / 10 / —  |
+| large       | 8 / 12 / 36  | 6 / 12 / 32 | 6 / 12 / 32 | 6 / 12 / 32 |
+| extra-large | 10 / 14 / 40 | 8 / 12 / 36 | 8 / 12 / 36 | 8 / 12 / 36 |
+
+`size="medium"` reproduces today's default control look exactly (5px/10px padding, 13px text, no min-height) and, on controls, inherits line-height like the default; the other sizes apply their scale line-height. `Text` always applies its size's line-height, while the omitted prop forces no line-height at all. `extra-large` narrow hits the 40px mobile touch target. The touch-target guarantee applies to touch-primary controls: at narrow, use `large` or `extra-large` for controls the user taps; `small` stays the compact 24px desktop-density choice at every breakpoint and is not meant for touch-primary controls.
 
 ### Named Rules
 
@@ -181,8 +214,8 @@ Utilitarian and quick: compact paddings, instant state feedback, built for daily
 
 ### Navigation
 
-- **Sidebar:** Dark blue background, light blue text, white selected text. The fixed account total sits above a scrolling tree with every account balance.
-- **Mobile:** Dark blue header and a bottom navigation tray with Overview, Budget, transaction entry, accounts, and every secondary destination.
+- **Sidebar:** Deep green background, pale green text, white selected text. The fixed account total sits above a scrolling tree with every account balance.
+- **Mobile:** Deep green header and a bottom navigation tray with Overview, Budget, transaction entry, accounts, and every secondary destination.
 
 ### Pills / Chips
 
@@ -190,7 +223,7 @@ Utilitarian and quick: compact paddings, instant state feedback, built for daily
 
 ### Signature Component: The Money Table
 
-The core surface of the app. White rows on 1px Navy Mist borders, Frost hover, teal-bordered selection, sticky header with Slate 13px text, amounts right-aligned in tabular figures colored by the semantic money tokens. Alternate-row striping is theme-controlled, never hardcoded.
+The core surface of the app. White rows on 1px Navy Mist borders, Frost hover, teal-bordered selection, sticky header with Slate 13px text, fixed Category and Total columns during horizontal scrolling, amounts right-aligned in tabular figures colored by the semantic money tokens. Alternate-row striping is theme-controlled, never hardcoded.
 
 ## 6. Do's and Don'ts
 

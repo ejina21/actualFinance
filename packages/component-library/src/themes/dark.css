@@ -16,6 +16,11 @@
 
   --color-cardBackground: var(--palette-gray800);
   --color-cardBorder: #3c4b54;
+  --color-financeHeroBackground: #234e46;
+  --color-financeHeroText: #ffffff;
+  --color-financeSoftAccent: #29483f;
+  --color-financeAccentPositive: var(--palette-green300);
+  --color-financeAccentNegative: var(--palette-red200);
   --color-cardShadow: var(--palette-navy700);
 
   --color-tableBackground: var(--palette-navy800);
@@ -52,20 +57,20 @@
   --color-toBudgetZero: var(--color-numberPositive);
   --color-toBudgetNegative: var(--color-budgetNumberNegative);
 
-  --color-sidebarBackground: #142434;
+  --color-sidebarBackground: #142e29;
   --color-sidebarItemBackgroundPending: var(--palette-orange200);
   --color-sidebarItemBackgroundPositive: var(--palette-green500);
   --color-sidebarItemBackgroundFailed: var(--palette-red300);
-  --color-sidebarItemAccentSelected: #8dd9d0;
-  --color-sidebarItemBackgroundHover: #2a455f;
-  --color-sidebarItemBackgroundSelected: #34526d;
-  --color-sidebarItemText: #c8dce5;
+  --color-sidebarItemAccentSelected: #b3e3ce;
+  --color-sidebarItemBackgroundHover: #25483f;
+  --color-sidebarItemBackgroundSelected: #325e50;
+  --color-sidebarItemText: #d4e7df;
   --color-sidebarItemTextUpdated: var(--color-sidebarItemText);
   --color-sidebarItemTextSelected: #ffffff;
   --color-sidebarBudgetName: var(--palette-navy300);
   --color-sidebarHeaderText: var(--palette-white);
-  --color-sidebarTextSubdued: var(--palette-navy300);
-  --color-sidebarTextMuted: var(--palette-navy500);
+  --color-sidebarTextSubdued: #b6d0c4;
+  --color-sidebarTextMuted: #a1beb1;
   --color-sidebarTextPositive: var(--color-sidebarItemBackgroundPositive);
   --color-sidebarTextFailed: var(--color-sidebarItemBackgroundFailed);
   --color-sidebarBackgroundFailedSubtle: color-mix(
@@ -95,7 +100,7 @@
 
   --color-modalBackground: var(--palette-gray800);
   --color-modalBorder: var(--palette-navy600);
-  --color-mobileHeaderBackground: #142434;
+  --color-mobileHeaderBackground: #142e29;
   --color-mobileHeaderText: var(--palette-navy150);
   --color-mobileHeaderTextSubdued: var(--palette-gray200);
   --color-mobileHeaderTextHover: rgba(200, 200, 200, 0.15);

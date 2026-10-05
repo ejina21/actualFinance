@@ -250,6 +250,9 @@ export function BudgetTable(props: BudgetTableProps) {
       data-testid="budget-table"
       style={{
         flex: 1,
+        minHeight: 0,
+        backgroundColor: theme.cardBackground,
+        borderTop: `1px solid ${theme.tableBorder}`,
         ...(styles.lightScrollbar && {
           '& ::-webkit-scrollbar': {
             backgroundColor: 'transparent',
