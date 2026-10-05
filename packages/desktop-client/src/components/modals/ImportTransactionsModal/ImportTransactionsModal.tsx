@@ -510,7 +510,6 @@ export function ImportTransactionsModal({
                 categoryGroups,
               )
             : null);
-        trans.category = category_id;
 
         const {
           inflow: _inflow,
@@ -525,6 +524,7 @@ export function ImportTransactionsModal({
         } = trans;
         previewTransactions.push({
           ...finalTransaction,
+          category: category_id,
           date,
           amount: amountToInteger(amount),
           cleared: clearOnImport,
@@ -935,7 +935,6 @@ export function ImportTransactionsModal({
               categoryGroups,
             )
           : null);
-      trans.category = category_id;
 
       const {
         inflow: _inflow,
@@ -964,6 +963,7 @@ export function ImportTransactionsModal({
         transactionsByAccount.get(destinationAccountId) ?? [];
       finalTransactions.push({
         ...finalTransaction,
+        category: category_id,
         date,
         amount: amountToInteger(amount),
         cleared: clearOnImport,

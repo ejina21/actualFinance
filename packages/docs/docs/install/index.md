@@ -60,8 +60,10 @@ Actual Budget состоит из приложения и сервера. Для
 - [Home Assistant](https://github.com/sztupy/hassio-actualbudget/blob/main/README.md)
 - [Hostim](https://hostim.dev/docs/templates/actual) — управляемый хостинг Docker.
 - [Proxmox VE Helper-Scripts](https://community-scripts.github.io/ProxmoxVE/scripts?id=actualbudget)
+- [Syncloud](https://syncloud.org/en/actual-budget)
 - Synology NAS: [инструкция Мариуса Богдана Ликсандру](https://mariushosting.com/how-to-install-actual-on-your-synology-nas/) и [инструкция Адама Миллерчипа](https://adamu.jp/blog/actual_budget_nas)
-- Пакеты Arch Linux AUR: [actual-appimage](https://aur.archlinux.org/packages/actual-appimage), [actual-bin](https://aur.archlinux.org/packages/actual-bin), [actual-server](https://aur.archlinux.org/packages/actual-server)
+- [Настройка SSL в UnRAID](https://discord.com/channels/937901803608096828/1158941114603155477) — инструкция в Discord сообщества
+- Пакеты Arch Linux AUR: [actual-appimage](https://aur.archlinux.org/packages/actual-appimage) (настольное приложение в формате AppImage), [actual-bin](https://aur.archlinux.org/packages/actual-bin) (настольное приложение с системной версией Electron), [actual-server](https://aur.archlinux.org/packages/actual-server) (сервер и веб-клиент с файлом службы systemd)
 
 [^1]: Технически достаточно самостоятельно запустить веб-клиент, но это требует примерно столько же усилий, сколько настройка сервера.
 

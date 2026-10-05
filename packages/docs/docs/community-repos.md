@@ -19,6 +19,8 @@
 - **Банковский конвертер PDF to OFX** - [PDF-OFX](https://github.com/spydisec/PDFtoOFX/)
 - **Немецкий DKB и Comdirect Banks** - https://github.com/FridoE/actual-bank-importer
 
+- **Конвертер выписок индийских банков (CSV, Excel, HTML и PDF) в CSV для Actual** — https://github.com/emilgeo/india2actual
+
 ## Другие импортеры {#other-importers}
 
 Фактический используется некоторыми людьми для отслеживания денег, не обязательно найденных на банковских счетах.
