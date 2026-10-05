@@ -23,6 +23,7 @@ import { useServerVersion } from '#components/ServerContext';
 import { useFeatureFlag } from '#hooks/useFeatureFlag';
 import { useGlobalPref } from '#hooks/useGlobalPref';
 import { useMetadataPref } from '#hooks/useMetadataPref';
+import { RUSSIAN_NEWS_FEED_ENABLED } from '#news/visibility';
 import { loadPrefs, saveSyncedPrefs } from '#prefs/prefsSlice';
 import { useDispatch, useSelector } from '#redux';
 
@@ -109,7 +110,7 @@ function About() {
           >
             <Trans>Release Notes</Trans>
           </Link>
-          {isNewsFeedEnabled && (
+          {RUSSIAN_NEWS_FEED_ENABLED && isNewsFeedEnabled && (
             <>
               {' · '}
               <Link variant="internal" to="/notifications">
@@ -132,18 +133,20 @@ function About() {
             <Trans>Display a notification when updates are available</Trans>
           </label>
         </Text>
-        <Text style={{ display: 'flex' }}>
-          <Checkbox
-            id="settings-showNewsFeed"
-            checked={showNewsFeed}
-            onChange={e => setShowNewsFeedPref(e.currentTarget.checked)}
-          />
-          <label htmlFor="settings-showNewsFeed">
-            <Trans>
-              Show in-app notifications (release notes and announcements)
-            </Trans>
-          </label>
-        </Text>
+        {RUSSIAN_NEWS_FEED_ENABLED && (
+          <Text style={{ display: 'flex' }}>
+            <Checkbox
+              id="settings-showNewsFeed"
+              checked={showNewsFeed}
+              onChange={e => setShowNewsFeedPref(e.currentTarget.checked)}
+            />
+            <label htmlFor="settings-showNewsFeed">
+              <Trans>
+                Show in-app notifications (release notes and announcements)
+              </Trans>
+            </label>
+          </Text>
+        )}
       </View>
     </Setting>
   );

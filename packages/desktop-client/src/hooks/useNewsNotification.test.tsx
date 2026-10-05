@@ -10,6 +10,8 @@ import { newsFeedFixture } from '#news/fixtures';
 
 import { useNewsNotification } from './useNewsNotification';
 
+vi.mock('#news/visibility', () => ({ RUSSIAN_NEWS_FEED_ENABLED: true }));
+
 let mockLastSeenNewsDate: string | undefined = undefined;
 const mockSetLastSeenNewsDate = vi.fn();
 

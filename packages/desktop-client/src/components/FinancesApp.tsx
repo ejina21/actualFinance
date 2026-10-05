@@ -19,6 +19,7 @@ import { useMetaThemeColor } from '#hooks/useMetaThemeColor';
 import { useNavigate } from '#hooks/useNavigate';
 import { useNewsNotification } from '#hooks/useNewsNotification';
 import { ScrollProvider } from '#hooks/useScrollListener';
+import { RUSSIAN_NEWS_FEED_ENABLED } from '#news/visibility';
 import { addNotification } from '#notifications/notificationsSlice';
 import { useDispatch, useSelector } from '#redux';
 
@@ -383,10 +384,12 @@ export function FinancesApp() {
                       }
                     />
                     <Route path="/tags" element={<ManageTagsPage />} />
-                    <Route
-                      path="/notifications"
-                      element={<NotificationsPage />}
-                    />
+                    {RUSSIAN_NEWS_FEED_ENABLED && (
+                      <Route
+                        path="/notifications"
+                        element={<NotificationsPage />}
+                      />
+                    )}
                     <Route path="/settings" element={<Settings />} />
 
                     <Route
@@ -488,7 +491,9 @@ export function FinancesApp() {
                   <Route path="/budget" element={<MobileNavTabs />} />
                   <Route path="/accounts" element={<MobileNavTabs />} />
                   <Route path="/settings" element={<MobileNavTabs />} />
-                  <Route path="/notifications" element={<MobileNavTabs />} />
+                  {RUSSIAN_NEWS_FEED_ENABLED && (
+                    <Route path="/notifications" element={<MobileNavTabs />} />
+                  )}
                   <Route path="/reports" element={<MobileNavTabs />} />
                   <Route
                     path="/reports/:dashboardId"

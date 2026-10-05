@@ -4,6 +4,7 @@ import { UNSUPPORTED_NEWS_FEED_FORMAT } from '#news/fetchNewsFeed';
 import { newsQueries } from '#news/queries';
 import type { NewsEntry } from '#news/types';
 import { getNewestDate, getUnseenEntries } from '#news/utils';
+import { RUSSIAN_NEWS_FEED_ENABLED } from '#news/visibility';
 
 import { useGlobalPref } from './useGlobalPref';
 
@@ -25,10 +26,10 @@ function getErrorKind(error: Error | null): NewsFeedErrorKind | undefined {
 }
 
 export function useNewsFeed() {
-  // The setting (on by default) lets the user opt out of the feed and of the
-  // request it makes to GitHub.
+  // The upstream feed stays off in the Russian fork until its content is
+  // translated. The user preference still applies if the feature is enabled.
   const [showNewsFeed] = useGlobalPref('showNewsFeed');
-  const isEnabled = Boolean(showNewsFeed);
+  const isEnabled = RUSSIAN_NEWS_FEED_ENABLED && Boolean(showNewsFeed);
   const [lastSeenNewsDate, setLastSeenNewsDate] =
     useGlobalPref('lastSeenNewsDate');
 
