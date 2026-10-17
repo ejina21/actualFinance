@@ -14,7 +14,7 @@ import { useCreateDashboardPageMutation } from '#reports/mutations';
 
 type DashboardSelectorProps = {
   dashboards: readonly DashboardPageEntity[];
-  currentDashboard: DashboardPageEntity;
+  currentDashboard: Pick<DashboardPageEntity, 'name'>;
 };
 
 export function DashboardSelector({
@@ -97,6 +97,8 @@ export function DashboardSelector({
               onMenuSelect={item => {
                 if (item === 'add-new') {
                   void handleAddDashboard();
+                } else if (item === 'installments') {
+                  void navigate('/reports/installments');
                 } else {
                   void navigate(`/reports/${item}`);
                 }
@@ -107,6 +109,10 @@ export function DashboardSelector({
                   name: dashboard.id,
                   text: dashboard.name === 'Main' ? t('Main') : dashboard.name,
                 })),
+                {
+                  name: 'installments',
+                  text: t('Installment dashboard'),
+                },
                 Menu.line,
                 {
                   name: 'add-new',

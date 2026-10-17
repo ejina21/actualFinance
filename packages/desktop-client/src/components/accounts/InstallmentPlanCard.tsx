@@ -16,11 +16,9 @@ import { useSyncedPref } from '#hooks/useSyncedPref';
 import {
   buildInstallmentPlan,
   isValidInstallmentPlanConfig,
+  parseInstallmentPlanConfig,
 } from './installmentPlan';
-import type {
-  InstallmentPlanConfig,
-  InstallmentTransaction,
-} from './installmentPlan';
+import type { InstallmentTransaction } from './installmentPlan';
 
 type QueryTransaction = {
   date: string;
@@ -33,32 +31,6 @@ type InstallmentPlanCardProps = {
   accountId: string;
   today?: string;
 };
-
-function readConfig(value: string | undefined): InstallmentPlanConfig | null {
-  if (!value) {
-    return null;
-  }
-  try {
-    const parsed: unknown = JSON.parse(value);
-    if (
-      typeof parsed !== 'object' ||
-      parsed === null ||
-      !('firstPaymentDate' in parsed) ||
-      !('lastPaymentDate' in parsed) ||
-      typeof parsed.firstPaymentDate !== 'string' ||
-      typeof parsed.lastPaymentDate !== 'string'
-    ) {
-      return null;
-    }
-    const config = {
-      firstPaymentDate: parsed.firstPaymentDate,
-      lastPaymentDate: parsed.lastPaymentDate,
-    };
-    return isValidInstallmentPlanConfig(config) ? config : null;
-  } catch {
-    return null;
-  }
-}
 
 function monthName(month: string): string {
   return new Intl.DateTimeFormat('ru-RU', {
@@ -83,7 +55,7 @@ export function InstallmentPlanCard({
 }: InstallmentPlanCardProps) {
   const format = useFormat();
   const [savedValue, savePlan] = useSyncedPref(`installment-plan-${accountId}`);
-  const saved = readConfig(savedValue);
+  const saved = parseInstallmentPlanConfig(savedValue);
   const [isEditing, setIsEditing] = useState(false);
   const [firstPaymentDate, setFirstPaymentDate] = useState(
     saved?.firstPaymentDate ?? '',
