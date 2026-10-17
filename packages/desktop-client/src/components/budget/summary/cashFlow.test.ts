@@ -42,6 +42,45 @@ function transaction(
 }
 
 describe('summarizeCashFlow', () => {
+  it('keeps the со счета category out of income and expenses', () => {
+    const result = summarizeCashFlow(
+      [
+        transaction('salary', 10_000, 'salary'),
+        transaction('food', -2_000, 'groceries'),
+        transaction('transfer-out', -5_000, 'from-account'),
+        transaction('transfer-in', 5_000, 'from-account', {
+          date: '2026-09-02',
+        }),
+      ],
+      [
+        ...groups,
+        {
+          id: 'transfers',
+          name: 'ПЕРЕВОДЫ',
+          categories: [
+            { id: 'from-account', name: 'со счета', group: 'transfers' },
+          ],
+        },
+      ],
+      period,
+    );
+
+    expect(result.income).toBe(10_000);
+    expect(result.expenses).toBe(2_000);
+    expect(result.netFlow).toBe(8_000);
+    expect(result.columnTotals['2026-09-01']).toEqual({
+      income: 10_000,
+      expenses: 2_000,
+    });
+    expect(result.columnTotals['2026-09-02']).toEqual({
+      income: 0,
+      expenses: 0,
+    });
+    expect(result.expenseGroups.map(group => group.name)).not.toContain(
+      'ПЕРЕВОДЫ',
+    );
+  });
+
   it('shows loan movements separately from income and expenses', () => {
     const result = summarizeCashFlow(
       [
