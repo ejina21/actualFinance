@@ -55,6 +55,7 @@ export type SyncedPrefs = Partial<
     | 'csv-account-routes'
     | `manual-bank-${string}`
     | `installment-plan-${string}`
+    | 'installment-report-account'
     | `csv-delimiter-${string}`
     | `csv-encoding-${string}`
     | `csv-skip-start-lines-${string}`

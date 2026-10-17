@@ -5,6 +5,7 @@ import { Route, Routes, useLocation } from 'react-router';
 import { FeatureErrorFallback } from '#components/FeatureErrorFallback';
 import { useFeatureFlag } from '#hooks/useFeatureFlag';
 
+import { InstallmentDashboardPage } from './InstallmentDashboardPage';
 import { AgeOfMoney } from './reports/AgeOfMoney';
 import { BalanceForecast } from './reports/BalanceForecast';
 import { BudgetAnalysis } from './reports/BudgetAnalysis';
@@ -41,6 +42,14 @@ export function ReportRouter() {
   return (
     <Routes>
       <Route path="/" element={<ReportsDashboardRouter />} />
+      <Route
+        path="/installments"
+        element={
+          <ReportBoundary>
+            <InstallmentDashboardPage />
+          </ReportBoundary>
+        }
+      />
       <Route path="/:dashboardId" element={<ReportsDashboardRouter />} />
       <Route
         path="/net-worth"

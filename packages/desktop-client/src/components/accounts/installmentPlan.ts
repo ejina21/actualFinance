@@ -24,6 +24,34 @@ export type InstallmentPlan = {
   overdueDebt: number;
 };
 
+export function parseInstallmentPlanConfig(
+  value: string | undefined,
+): InstallmentPlanConfig | null {
+  if (!value) {
+    return null;
+  }
+  try {
+    const parsed: unknown = JSON.parse(value);
+    if (
+      typeof parsed !== 'object' ||
+      parsed === null ||
+      !('firstPaymentDate' in parsed) ||
+      !('lastPaymentDate' in parsed) ||
+      typeof parsed.firstPaymentDate !== 'string' ||
+      typeof parsed.lastPaymentDate !== 'string'
+    ) {
+      return null;
+    }
+    const config = {
+      firstPaymentDate: parsed.firstPaymentDate,
+      lastPaymentDate: parsed.lastPaymentDate,
+    };
+    return isValidInstallmentPlanConfig(config) ? config : null;
+  } catch {
+    return null;
+  }
+}
+
 function validDate(date: string): boolean {
   return (
     /^\d{4}-\d{2}-\d{2}$/.test(date) &&

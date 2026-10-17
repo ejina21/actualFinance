@@ -35,6 +35,7 @@
     "#mocks": "./src/mocks.tsx",
     "#mocks/*": "./src/mocks/*.ts",
     "#components/forms": "./src/components/forms/index.tsx",
+    "#components/accounts/installmentPlan": "./src/components/accounts/installmentPlan.ts",
     "#components/banksync": "./src/components/banksync/index.tsx",
     "#components/banksync/bankSyncUtils": "./src/components/banksync/bankSyncUtils.ts",
     "#components/banksync/visibility": "./src/components/banksync/visibility.ts",
