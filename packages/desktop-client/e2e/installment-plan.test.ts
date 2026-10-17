@@ -56,6 +56,27 @@ test('shows a fixed installment dashboard in reports', async ({ page }) => {
   await expect(dashboard.getByText('73,145.50')).toBeVisible();
   await expect(dashboard).toMatchThemeScreenshots();
 
+  const deadline = dashboard.getByLabel('Последний платёж', { exact: true });
+  await deadline.fill('2017-03-10');
+  await expect(dashboard.getByText('146,291.00')).toBeVisible();
+  await dashboard.getByRole('button', { name: 'Сохранить срок' }).click();
+  await expect(
+    dashboard.getByText('Срок сохранён', { exact: true }),
+  ).toBeVisible();
+  await page.reload();
+  await expect(deadline).toHaveValue('2017-03-10', { timeout: 30000 });
+  await deadline.fill('2017-09-10');
+  await expect(dashboard.getByText('36,572.75')).toBeVisible();
+  await deadline.fill('2017-01-10');
+  await expect(
+    dashboard.getByRole('button', { name: 'Сохранить срок' }),
+  ).toBeDisabled();
+  await deadline.fill('2017-05-10');
+  await dashboard.getByRole('button', { name: 'Сохранить срок' }).click();
+  await expect(
+    dashboard.getByText('Срок сохранён', { exact: true }),
+  ).toBeVisible();
+
   await page.setViewportSize({ width: 390, height: 844 });
   await page.reload();
   await expect(

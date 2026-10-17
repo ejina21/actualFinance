@@ -1,7 +1,9 @@
+import { useState } from 'react';
 import { Trans, useTranslation } from 'react-i18next';
 
 import { Button } from '@actual-app/components/button';
 import { useResponsive } from '@actual-app/components/hooks/useResponsive';
+import { Input } from '@actual-app/components/input';
 import { Select } from '@actual-app/components/select';
 import { theme } from '@actual-app/components/theme';
 import { View } from '@actual-app/components/view';
@@ -11,6 +13,7 @@ import type { AccountEntity } from '@actual-app/core/types/models';
 
 import {
   buildInstallmentPlan,
+  isValidInstallmentPlanConfig,
   parseInstallmentPlanConfig,
 } from '#components/accounts/installmentPlan';
 import type { InstallmentTransaction } from '#components/accounts/installmentPlan';
@@ -24,7 +27,8 @@ import { useNavigate } from '#hooks/useNavigate';
 import { useQuery } from '#hooks/useQuery';
 import { useSheetValue } from '#hooks/useSheetValue';
 import { useSyncedPref } from '#hooks/useSyncedPref';
-import { useSelector } from '#redux';
+import { saveSyncedPrefs } from '#prefs/prefsSlice';
+import { useDispatch, useSelector } from '#redux';
 import * as bindings from '#spreadsheet/bindings';
 
 import { DashboardSelector } from './DashboardSelector';
@@ -92,7 +96,21 @@ function InstallmentDashboardContent({ account }: { account: AccountEntity }) {
   const navigate = useNavigate();
   const today = monthUtils.currentDay();
   const [savedValue] = useSyncedPref(`installment-plan-${account.id}`);
-  const config = parseInstallmentPlanConfig(savedValue);
+  const dispatch = useDispatch();
+  const [saveStatus, setSaveStatus] = useState<
+    'idle' | 'saving' | 'saved' | 'error'
+  >('idle');
+  const savedConfig = parseInstallmentPlanConfig(savedValue);
+  const [draftDate, setDraftDate] = useState<string | null>(null);
+  const candidate = savedConfig && {
+    ...savedConfig,
+    lastPaymentDate: draftDate ?? savedConfig.lastPaymentDate,
+  };
+  const isValidDate =
+    candidate !== null && isValidInstallmentPlanConfig(candidate);
+  const config = isValidDate ? candidate : savedConfig;
+  const hasChanges =
+    draftDate !== null && draftDate !== savedConfig?.lastPaymentDate;
   const onBudgetBalance = useSheetValue<'account', 'onbudget-accounts-balance'>(
     bindings.onBudgetAccountBalance(),
   );
@@ -135,6 +153,103 @@ function InstallmentDashboardContent({ account }: { account: AccountEntity }) {
       data-testid="installment-report-dashboard"
       style={{ gap: 16, flexShrink: 0, minHeight: 'auto' }}
     >
+      <View style={{ ...surfaceStyle, gap: 10 }}>
+        <View
+          style={{
+            flexDirection: 'row',
+            flexWrap: 'wrap',
+            alignItems: 'end',
+            gap: 12,
+          }}
+        >
+          <label
+            htmlFor="installment-report-deadline"
+            style={{ display: 'grid', gap: 6 }}
+          >
+            <Trans>Last payment</Trans>
+            <Input
+              id="installment-report-deadline"
+              type="date"
+              disabled={saveStatus === 'saving'}
+              min={config.firstPaymentDate}
+              value={draftDate ?? config.lastPaymentDate}
+              onChangeValue={value => {
+                setDraftDate(value);
+                setSaveStatus('idle');
+              }}
+              aria-invalid={!isValidDate}
+              aria-describedby="installment-deadline-hint"
+            />
+          </label>
+          <Button
+            variant="primary"
+            isDisabled={!hasChanges || !isValidDate || saveStatus === 'saving'}
+            onPress={async () => {
+              setSaveStatus('saving');
+              try {
+                await dispatch(
+                  saveSyncedPrefs({
+                    prefs: {
+                      [`installment-plan-${account.id}`]:
+                        JSON.stringify(config),
+                    },
+                  }),
+                ).unwrap();
+                setDraftDate(null);
+                setSaveStatus('saved');
+              } catch {
+                setSaveStatus('error');
+              }
+            }}
+          >
+            <Trans>Save deadline</Trans>
+          </Button>
+          {hasChanges && (
+            <Button
+              variant="bare"
+              isDisabled={saveStatus === 'saving'}
+              onPress={() => {
+                setDraftDate(null);
+                setSaveStatus('idle');
+              }}
+            >
+              <Trans>Cancel</Trans>
+            </Button>
+          )}
+        </View>
+        <View
+          id="installment-deadline-hint"
+          style={{ color: theme.pageTextLight, fontSize: 12 }}
+        >
+          <Trans>
+            Changing the deadline previews the monthly target. Save it to update
+            the account plan.
+          </Trans>
+        </View>
+        {saveStatus === 'saved' && (
+          <output>
+            <Trans>Deadline saved</Trans>
+          </output>
+        )}
+        {saveStatus === 'error' && (
+          <View role="alert">
+            <Trans>Could not save the deadline. Try again.</Trans>
+          </View>
+        )}
+        {hasChanges && isValidDate && (
+          <View style={{ color: theme.pageTextLight, fontSize: 12 }}>
+            <Trans>Preview — deadline not saved yet</Trans>
+          </View>
+        )}
+        {!isValidDate && (
+          <View role="alert" style={{ color: theme.warningText }}>
+            <Trans>
+              Choose a valid deadline on or after the first payment, within 50
+              years.
+            </Trans>
+          </View>
+        )}
+      </View>
       <View
         style={{
           ...surfaceStyle,
