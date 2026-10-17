@@ -59,6 +59,7 @@ export function summarizeCashFlow(
   const incomeGroups: CashFlowGroup[] = [];
   const expenseGroups: CashFlowGroup[] = [];
   const loanGroups: CashFlowGroup[] = [];
+  const balanceOnlyCategoryIds = new Set<string>();
   const categoryLookup = new Map<
     string,
     {
@@ -75,6 +76,8 @@ export function summarizeCashFlow(
       ...row(sourceGroup.id, sourceGroup.name),
       categories: [],
     };
+    const isTransfersGroup =
+      sourceGroup.name.trim().toLocaleLowerCase('ru-RU') === 'переводы';
     const kind =
       sourceGroup.name.trim().toLocaleUpperCase('ru-RU') === 'ЗАЙМЫ'
         ? 'loans'
@@ -85,9 +88,22 @@ export function summarizeCashFlow(
       if (sourceCategory.tombstone) {
         continue;
       }
+      if (
+        isTransfersGroup &&
+        sourceCategory.name
+          .trim()
+          .toLocaleLowerCase('ru-RU')
+          .replaceAll('ё', 'е') === 'со счета'
+      ) {
+        balanceOnlyCategoryIds.add(sourceCategory.id);
+        continue;
+      }
       const category = row(sourceCategory.id, sourceCategory.name);
       group.categories.push(category);
       categoryLookup.set(category.id, { group, category, kind });
+    }
+    if (isTransfersGroup && group.categories.length === 0) {
+      continue;
     }
     if (kind === 'loans') {
       loanGroups.push(group);
@@ -115,6 +131,8 @@ export function summarizeCashFlow(
       transaction.date < period.startDate ||
       transaction.date > period.endDate ||
       transaction.transferId ||
+      (transaction.category !== null &&
+        balanceOnlyCategoryIds.has(transaction.category)) ||
       transaction.accountOffBudget ||
       transaction.startingBalanceFlag ||
       transaction.isParent
