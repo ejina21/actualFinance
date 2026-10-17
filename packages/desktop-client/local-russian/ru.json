@@ -3247,5 +3247,11 @@
   "Next payment forecast": "Прогноз следующего платежа",
   "Payment month": "Месяц",
   "Target": "План",
-  "Paid": "Оплачено"
+  "Paid": "Оплачено",
+  "Save deadline": "Сохранить срок",
+  "Changing the deadline previews the monthly target. Save it to update the account plan.": "При изменении даты сумма в месяц пересчитывается предварительно. Сохраните срок, чтобы обновить план счёта.",
+  "Choose a valid deadline on or after the first payment, within 50 years.": "Укажите корректную дату не раньше первого платежа. Период выплат должен быть меньше 50 лет.",
+  "Deadline saved": "Срок сохранён",
+  "Could not save the deadline. Try again.": "Не удалось сохранить срок. Попробуйте ещё раз.",
+  "Preview — deadline not saved yet": "Предварительный расчёт — новый срок ещё не сохранён"
 }
