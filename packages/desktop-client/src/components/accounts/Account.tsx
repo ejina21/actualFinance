@@ -96,6 +96,7 @@ import { updateNewTransactions } from '#transactions/transactionsSlice';
 
 import { AccountEmptyMessage } from './AccountEmptyMessage';
 import { AccountHeader } from './Header';
+import { InstallmentPlanCard } from './InstallmentPlanCard';
 
 type ConditionEntity = Partial<RuleConditionEntity> | TransactionFilterEntity;
 
@@ -1944,6 +1945,10 @@ class AccountInternal extends PureComponent<
                 onMakeAsNonSplitTransactions={this.onMakeAsNonSplitTransactions}
                 onMergeTransactions={this.onMergeTransactions}
               />
+
+              {account?.offbudget === 1 && !account.closed && (
+                <InstallmentPlanCard key={account.id} accountId={account.id} />
+              )}
 
               <View
                 style={{
