@@ -3,4 +3,4 @@ category: Features
 authors: [ejina21]
 ---
 
-Show a dedicated installment dashboard with debt payments, budget balance, and a monthly savings target.
+Добавлена отдельная сводная панель рассрочки: погашенная и оставшаяся сумма долга, ближайший платёж, баланс бюджетных счетов и ежемесячная сумма, которую осталось накопить.
