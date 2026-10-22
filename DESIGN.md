@@ -1,26 +1,26 @@
 ---
 name: Actual Budget
-description: Local-first personal finance, built around envelope budgeting
+description: Local-first personal finance with Apple macOS warm neutral aesthetic
 # All color values are the light-theme palette mapping; dark and midnight
 # remap the same semantic roles via `theme.*` tokens (see The Semantic Token Rule).
 colors:
-  primary-teal: '#087a74'
-  primary-teal-hover: '#096a65'
-  sidebar-green: '#173f39'
-  sidebar-hover: '#28564d'
-  sidebar-selection: '#376a5e'
-  navy-slate: '#607681'
-  navy-mist: '#e3eaec'
-  navy-frost: '#f3f6f7'
-  page-text: '#172b36'
+  primary-warm: '#c25e3e'
+  primary-warm-hover: '#ab5034'
+  sidebar-warm: '#ede8df'
+  sidebar-hover: '#e3ddd2'
+  sidebar-selection: '#d8d1c4'
+  stone-slate: '#57534e'
+  stone-mist: '#e5dfd5'
+  linen-frost: '#f7f5f0'
+  page-text: '#1c1917'
   surface-white: '#ffffff'
-  positive-green: '#147d64'
-  finance-accent-positive: '#0c6b58'
-  finance-hero: '#173f39'
-  finance-soft-accent: '#e1f1e9'
-  finance-accent-negative: '#ab091e'
-  negative-red: '#e12d39'
-  link-blue: '#1980d4'
+  positive-green: '#15803d'
+  finance-accent-positive: '#15803d'
+  finance-hero: '#ede8df'
+  finance-soft-accent: '#fbf0eb'
+  finance-accent-negative: '#dc2626'
+  negative-red: '#dc2626'
+  link-warm: '#c25e3e'
   warning-gold: '#b88115'
 typography:
   display:
@@ -46,8 +46,10 @@ typography:
     fontSize: '13px'
     fontWeight: 400
 rounded:
-  sm: '4px'
-  md: '6px'
+  sm: '6px'
+  md: '8px'
+  lg: '12px'
+  xl: '14px'
 spacing:
   xs: '5px'
   sm: '10px'
@@ -55,79 +57,69 @@ spacing:
   lg: '20px'
 components:
   button-primary:
-    backgroundColor: '{colors.primary-teal}'
+    backgroundColor: '{colors.primary-warm}'
     textColor: '{colors.surface-white}'
-    rounded: '{rounded.sm}'
-    padding: '5px 10px'
+    rounded: '{rounded.md}'
+    padding: '6px 12px'
   button-primary-hover:
-    backgroundColor: '{colors.primary-teal-hover}'
+    backgroundColor: '{colors.primary-warm-hover}'
     textColor: '{colors.surface-white}'
   button-normal:
     backgroundColor: '{colors.surface-white}'
     textColor: '{colors.page-text}'
-    rounded: '{rounded.sm}'
-    padding: '5px 10px'
+    rounded: '{rounded.md}'
+    padding: '6px 12px'
   input:
     backgroundColor: '{colors.surface-white}'
     textColor: '{colors.page-text}'
-    rounded: '{rounded.sm}'
-    padding: '5px'
+    rounded: '{rounded.md}'
+    padding: '6px 10px'
 ---
 
 # Design System: Actual Budget
 
 ## 1. Overview
 
-**Finance summary direction:** The approved Coinest reference contributes a quiet neutral canvas, white bordered surfaces, a deep forest-green balance focal point, and a restrained pale-green selection color. Actual's account tree, dense money tables, and all established actions remain visible. The same semantic roles map to dark (#234e46 hero, #29483f soft accent) and midnight (#1b443e hero, #214039 soft accent); hero text is white in every theme. The soft accent marks aggregate rows; their signed amounts use contrast-safe semantic colors.
-
-The read-only **Расходы** Budget view gives one month, one year, custom date ranges, and selected-month comparisons a common financial table. Income and expense groups, account movements, and point-in-time balance have distinct labels so the numbers retain their meaning. The report has two explicit modes: Period overview and Month comparison. Comparison starts with the selected month and its predecessor, places total expenses, income, and net flow before category details, and shows monetary and percentage changes below each compared amount. Daily columns appear only in the period overview. All redesigned surfaces use the same surface and focus vocabulary while preserving working density.
-
-**Creative North Star: "The Family Dashboard"**
-
-Actual presents the family's finances clearly at first glance, while keeping the detailed tables close at hand. The overview surfaces balances, current-month budget progress, and recent activity. The account sidebar keeps every account and its live balance visible. Working pages remain compact enough for regular budgeting and reconciliation.
-
-The system is calm and practical. It uses a deep green navigation rail and restrained teal accents in light mode, with corresponding dark and midnight palettes. The three themes preserve the same hierarchy and financial semantics.
+**Apple macOS / Warm Neutral Direction:** A calm, tactile, warm linen canvas (`#f7f5f0`), white bordered surfaces (`#ffffff` on `#e5dfd5`), a light stone navigation rail (`#ede8df`), and a warm terracotta/copper accent (`#c25e3e`). Dense tabular numeral tables and established envelope actions remain intact with enhanced readability and softer diffusion shadows.
 
 **Key Characteristics:**
 
 - Table-first layouts with tabular numerals everywhere money appears
-- One teal accent used for primary actions and the dashboard highlight
+- Apple macOS style: gentle 8–14px rounded corners, diffusion shadows, segmented controls
+- Warm terracotta accent for primary actions and focus highlights
 - Semantic color tokens only; components never hardcode hex values
-- Utilitarian, compact components built for daily repetition
-- Bordered cards with soft ambient shadows on the overview; tables remain dense
+- Light warm stone navigation rail seamlessly integrated into macOS window chrome
 
 ## 2. Colors
 
-A deep green navigation rail, light neutral page, teal primary accent, and separate semantic colors for money.
-
-All hex values in this file (frontmatter included) are the light-theme palette mapping. The dark and midnight themes remap the same semantic roles to different palette values, so never use these hexes directly in components — route every color through the `theme.*` semantic tokens (see The Semantic Token Rule below).
+A light warm stone navigation rail, warm linen canvas, terracotta accent, and clear semantic money indicators.
 
 ### Primary
 
-- **Primary Teal** (#087a74): Primary buttons, dashboard highlights, and progress bars. Hover uses #096a65.
-- **Sidebar Green** (#173f39): Persistent navigation in the light theme. Hover uses #28564d; selection uses #376a5e with white text.
+- **Primary Terracotta** (#c25e3e): Primary buttons, highlights, and active accents. Hover uses #ab5034.
+- **Sidebar Warm Stone** (#ede8df): Persistent navigation rail in the light theme. Hover uses #e3ddd2; selection uses #d8d1c4 with #1c1917 text.
 
 ### Neutral
 
-- **Page Ink** (#172b36): Default body text on light surfaces.
-- **Navy Slate** (#607681): Secondary and subdued text.
-- **Navy Mist** (#e3eaec): Table borders and dividers.
-- **Navy Frost** (#f3f6f7): Page background and quiet surfaces.
+- **Page Text** (#1c1917): Default body text on light surfaces.
+- **Stone Slate** (#57534e): Secondary and subdued text.
+- **Stone Mist** (#e5dfd5): Table borders, card outlines, and dividers.
+- **Linen Frost** (#f7f5f0): Page background and quiet surfaces.
 - **Surface White** (#ffffff): Tables, cards, menus, modals.
 
 ### Tertiary (semantic money and status colors)
 
-- **Positive Green** (#147d64): Positive amounts and funded budgets.
-- **Negative Red** (#e12d39): Negative amounts, overspending, failures.
-- **Finance Accent Positive/Negative** (#0c6b58 / #ab091e): Signed summary amounts on the pale-green aggregate row; dark themes use lighter counterparts.
-- **Link Blue** (#1980d4): Links and informational highlights.
+- **Positive Green** (#15803d): Positive amounts and funded envelopes.
+- **Negative Red** (#dc2626): Negative amounts, overspending, failures.
+- **Finance Soft Accent** (#fbf0eb): Summary cards and warm tint backgrounds.
+- **Link Warm** (#c25e3e): Links and informational highlights.
 - **Warning Gold** (#b88115): Underfunded templates, pending states.
 
 ### Named Rules
 
 **The Semantic Token Rule.** Components never use raw palette values or hex codes. Every color goes through the `theme.*` semantic layer (`--color-*` custom properties) so all three themes (light, dark, midnight) stay correct. A hardcoded hex in a component is a bug.
 
-**The One Accent Rule.** Teal marks primary actions and the highlighted summary card. Sidebar selection relies on contrast and a green background so balance text stays legible.
+**The One Accent Rule.** Warm terracotta marks primary actions and the highlighted summary card.
 
 **The Never-Color-Alone Rule.** Positive/negative money state is conveyed by sign and context as well as color; green/red are reinforcement, never the only signal.
 

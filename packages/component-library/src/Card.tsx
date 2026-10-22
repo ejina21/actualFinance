@@ -16,16 +16,19 @@ export const Card = forwardRef<HTMLDivElement, CardProps>(
           marginTop: 15,
           marginLeft: 5,
           marginRight: 5,
-          borderRadius: 6,
+          borderRadius: 14,
           backgroundColor: theme.cardBackground,
           borderColor: theme.cardBorder,
-          boxShadow: '0 1px 2px #9594A8',
+          borderWidth: 1,
+          borderStyle: 'solid',
+          boxShadow:
+            '0 1px 3px rgba(28, 25, 23, 0.04), 0 6px 18px -2px rgba(28, 25, 23, 0.04)',
           ...props.style,
         }}
       >
         <View
           style={{
-            borderRadius: 6,
+            borderRadius: 14,
             overflow: 'hidden',
           }}
         >

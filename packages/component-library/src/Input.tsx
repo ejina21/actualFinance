@@ -25,7 +25,7 @@ export const baseInputStyle = {
   color: theme.formInputText,
   margin: 0,
   padding: 5,
-  borderRadius: 4,
+  borderRadius: 8,
   border: '1px solid ' + theme.formInputBorder,
 };
 

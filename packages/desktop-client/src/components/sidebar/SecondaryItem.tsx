@@ -61,14 +61,18 @@ export function SecondaryItem({
           ...accountNameStyle,
           color: theme.sidebarItemText,
           paddingLeft: 14 + indent,
+          paddingRight: 8,
+          paddingTop: 5,
+          paddingBottom: 5,
+          margin: '1px 8px',
+          borderRadius: 6,
           fontWeight: bold ? fontWeight : null,
           ':hover': { backgroundColor: theme.sidebarItemBackgroundHover },
         }}
         to={to}
         onClick={onClick}
         activeStyle={{
-          borderLeft: '4px solid ' + theme.sidebarItemTextSelected,
-          paddingLeft: 14 - 4 + indent,
+          backgroundColor: theme.sidebarItemBackgroundSelected,
           color: theme.sidebarItemTextSelected,
           fontWeight: bold ? fontWeight : null,
         }}
