@@ -163,6 +163,29 @@ afterEach(async () => {
 });
 
 describe('net worth transfers', () => {
+  it('excludes off-budget assets and debts from all net worth figures', async () => {
+    const report = await runReport({
+      accounts: [
+        accounts[0],
+        { ...createAccount('external-asset', 'External asset'), offbudget: 1 },
+        { ...createAccount('external-debt', 'External debt'), offbudget: 1 },
+      ],
+      accountQueryResults: [100_000, [{ date: '2026-08', amount: 500 }]],
+    });
+    expect(report.netWorth).toBe(100_500);
+    expect(report.graphData.data.map(point => point.y)).toEqual([
+      100_000, 100_500,
+    ]);
+  });
+
+  it('returns zero capital when every account is off-budget', async () => {
+    const report = await runReport({
+      accounts: [{ ...accounts[0], offbudget: 1 }],
+      accountQueryResults: [],
+    });
+    expect(report.netWorth).toBe(0);
+  });
+
   it('keeps a linked transfer neutral when its two legs cross months', async () => {
     const report = await runReport({
       accounts,
@@ -206,9 +229,9 @@ describe('net worth transfers', () => {
     ]);
   });
 
-  it('preserves a transfer out of the selected account set as a loss', async () => {
+  it('keeps transfers to off-budget accounts on the budget-side date', async () => {
     const report = await runReport({
-      accounts: [accounts[0]],
+      accounts: [accounts[0], { ...accounts[1], offbudget: 1 }],
       accountQueryResults: [100_000, [{ date: '2026-07', amount: -10_000 }]],
       linkedTransfers: [
         {

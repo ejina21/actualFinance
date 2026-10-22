@@ -31,6 +31,7 @@ it.each([
   { categoryHidden: true },
   { categoryGroupHidden: true },
   { accountOffBudget: true },
+  { accountOffBudget: true, forceLegacyOffBudget: true },
   { category: null },
 ])(
   'does not create empty combinations from excluded transactions %j',
@@ -55,7 +56,7 @@ it.each([
       conditions: [],
       conditionsOp: 'and',
       showEmpty: true,
-      showOffBudget: false,
+      showOffBudget: 'forceLegacyOffBudget' in excluded,
       showHiddenCategories: false,
       showUncategorized: false,
       trimIntervals: false,

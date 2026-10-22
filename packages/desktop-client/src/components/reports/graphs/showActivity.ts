@@ -39,7 +39,6 @@ export function showActivity({
   balanceTypeOp,
   filters,
   showHiddenCategories,
-  showOffBudget,
   type,
   startDate,
   endDate,
@@ -141,13 +140,12 @@ export function showActivity({
         value: hiddenCategories,
         type: 'id',
       },
-    offBudgetAccounts.length > 0 &&
-      !showOffBudget && {
-        field: 'account',
-        op: 'notOneOf',
-        value: offBudgetAccounts,
-        type: 'id',
-      },
+    offBudgetAccounts.length > 0 && {
+      field: 'account',
+      op: 'notOneOf',
+      value: offBudgetAccounts,
+      type: 'id',
+    },
   ].filter(f => f);
 
   void navigate(balanceTypeOp === 'totalBudgeted' ? '/budget' : '/accounts', {

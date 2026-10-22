@@ -540,7 +540,7 @@ async function fetchCategoryData(
                   { date: { $lte: monthUtils.lastDayOfMonth(end) } },
                 ],
               })
-              .filter({ category: category.id })
+              .filter({ category: category.id, 'account.offbudget': false })
               .groupBy(
                 categoryGroup.is_income
                   ? [

@@ -1079,9 +1079,13 @@ class AccountInternal extends PureComponent<
   }
 
   getBalanceQuery(id?: string) {
+    const query = this.makeRootTransactionsQuery();
     return {
       name: `balance-query-${id}`,
-      query: this.makeRootTransactionsQuery().calculate({ $sum: '$amount' }),
+      query: (id
+        ? query
+        : query.filter({ 'account.offbudget': false })
+      ).calculate({ $sum: '$amount' }),
     } as const;
   }
 
@@ -1090,8 +1094,11 @@ class AccountInternal extends PureComponent<
       return 0;
     }
 
+    const query = this.props.accountId
+      ? this.paged.query
+      : this.paged.query.filter({ 'account.offbudget': false });
     const { data: amount } = await aqlQuery(
-      this.paged.query.calculate({ $sum: '$amount' }),
+      query.calculate({ $sum: '$amount' }),
     );
     return amount;
   };

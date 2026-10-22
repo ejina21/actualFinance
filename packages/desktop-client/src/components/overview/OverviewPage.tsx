@@ -308,6 +308,7 @@ export function OverviewPage() {
   const recentQuery = useMemo(
     () =>
       q('transactions')
+        .filter({ 'account.offbudget': false })
         .options({ splits: 'grouped' })
         .orderBy([
           { date: 'desc' },

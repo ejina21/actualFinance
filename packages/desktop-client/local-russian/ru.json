@@ -3362,5 +3362,7 @@
   "{{displayMonth}} budgets have all been set to {{months}} month average.": "Для всех категорий на {{displayMonth}} установлен бюджет по среднему за {{months}} мес.",
   "{{share}}% bonds": "{{share}}% облигаций",
   "{{share}}% cash": "{{share}}% денежных средств",
-  "{{share}}% stocks": "{{share}}% акций"
+  "{{share}}% stocks": "{{share}}% акций",
+  "Net worth shows the balance of budget accounts over time. Off-budget accounts are excluded.": "Капитал показывает, как меняется остаток бюджетных счетов. Внебюджетные счета не учитываются.",
+  "Transfers between your accounts are shown in account movements but excluded from income and expenses. Off-budget accounts are excluded from reports.": "Переводы между своими счетами отображаются в движении средств, но не входят в доходы и расходы. Внебюджетные счета исключены из отчётов."
 }

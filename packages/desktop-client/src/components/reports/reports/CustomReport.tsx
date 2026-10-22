@@ -282,7 +282,7 @@ function CustomReportInner({
   const [sortBy, setSortBy] = useState(loadReport.sortBy);
 
   const [showEmpty, setShowEmpty] = useState(loadReport.showEmpty);
-  const [showOffBudget, setShowOffBudget] = useState(loadReport.showOffBudget);
+  const [showOffBudget, setShowOffBudget] = useState(false);
   const [includeCurrentInterval, setIncludeCurrentInterval] = useState(
     loadReport.includeCurrentInterval,
   );
@@ -776,7 +776,7 @@ function CustomReportInner({
     setBalanceType(input.balanceType);
     setSortBy(input.sortBy);
     setShowEmpty(input.showEmpty);
-    setShowOffBudget(input.showOffBudget);
+    setShowOffBudget(false);
     setShowHiddenCategories(input.showHiddenCategories);
     setIncludeCurrentInterval(input.includeCurrentInterval);
     setShowUncategorized(input.showUncategorized);

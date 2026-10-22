@@ -101,7 +101,6 @@ export function ReportSidebar({
   setMode,
   setIsDateStatic,
   setShowEmpty,
-  setShowOffBudget,
   setShowHiddenCategories,
   setIncludeCurrentInterval,
   setShowUncategorized,
@@ -473,12 +472,6 @@ export function ReportSidebar({
                   setShowHiddenCategories(
                     !customReportItems.showHiddenCategories,
                   );
-                } else if (type === 'show-off-budget') {
-                  setSessionReport(
-                    'showOffBudget',
-                    !customReportItems.showOffBudget,
-                  );
-                  setShowOffBudget(!customReportItems.showOffBudget);
                 } else if (type === 'show-empty-items') {
                   setSessionReport('showEmpty', !customReportItems.showEmpty);
                   setShowEmpty(!customReportItems.showEmpty);
@@ -525,12 +518,6 @@ export function ReportSidebar({
                   text: t('Show empty rows'),
                   tooltip: t('Show rows that are zero or blank'),
                   toggle: customReportItems.showEmpty,
-                },
-                {
-                  name: 'show-off-budget',
-                  text: t('Show off budget'),
-                  tooltip: t('Show off budget accounts'),
-                  toggle: customReportItems.showOffBudget,
                 },
                 {
                   name: 'show-uncategorized',

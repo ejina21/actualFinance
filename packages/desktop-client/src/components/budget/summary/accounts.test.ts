@@ -93,7 +93,7 @@ describe('buildAccountMovement', () => {
     expect(result.reduce((sum, row) => sum + row.closing, 0)).toBe(12_000);
   });
 
-  it('keeps inactive and closed accounts, and marks off-budget separately', () => {
+  it('keeps inactive and closed budget accounts but excludes off-budget accounts', () => {
     const result = buildAccountMovement(
       [account('idle'), account('closed', 0, 1), account('investment', 1)],
       [
@@ -105,7 +105,6 @@ describe('buildAccountMovement', () => {
     expect(result.map(row => [row.id, row.closing, row.isOffBudget])).toEqual([
       ['idle', 0, false],
       ['closed', 900, false],
-      ['investment', 4_000, true],
     ]);
   });
 

@@ -127,6 +127,7 @@ export function createCrossoverSpreadsheet({
       }
 
       const query = q('transactions')
+        .filter({ 'account.offbudget': false })
         .filter({
           $and: [
             { $or: expenseCategoryIds.map(id => ({ category: id })) },
@@ -150,7 +151,7 @@ export function createCrossoverSpreadsheet({
         // Get the account balance at the end of the first month (start month)
         const startingBalance = await aqlQuery(
           q('transactions')
-            .filter({ account: accountId })
+            .filter({ account: accountId, 'account.offbudget': false })
             .filter({
               date: { $lte: monthUtils.lastDayOfMonth(start) },
             })
@@ -163,6 +164,7 @@ export function createCrossoverSpreadsheet({
           q('transactions')
             .filter({
               account: accountId,
+              'account.offbudget': false,
               date: { $gte: monthUtils.firstDayOfMonth(start) },
             })
             .filter({

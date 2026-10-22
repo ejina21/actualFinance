@@ -28,7 +28,7 @@ export function buildAccountMovement(
     );
   }
   const movements = accounts
-    .filter(account => !account.tombstone)
+    .filter(account => !account.tombstone && !account.offbudget)
     .map(account => ({
       id: account.id,
       name: account.name,
