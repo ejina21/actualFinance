@@ -82,6 +82,24 @@
   --color-sidebarControlBackground: #e3ddd2;
   --color-sidebarBrand: var(--color-sidebarItemAccentSelected);
 
+  --color-settingsCardBackground: var(--color-tableBackground);
+  --color-settingsCardBorder: var(--color-tableBorder);
+  --color-settingsCardText: var(--color-tableText);
+  --color-settingsCardTextSubdued: var(--color-pageTextLight);
+  --color-settingsNavItemText: var(--color-pageText);
+  --color-settingsNavItemBackgroundHover: color-mix(
+    in srgb,
+    var(--color-settingsNavItemText) 8%,
+    transparent
+  );
+  --color-settingsNavItemAccentSelected: var(--color-sidebarItemAccentSelected);
+  --color-settingsNavItemTextSelected: var(--color-sidebarItemTextSelected);
+  --color-settingsNavItemBackgroundSelected: color-mix(
+    in srgb,
+    var(--color-settingsNavItemAccentSelected) 10%,
+    transparent
+  );
+
   --color-menuBackground: var(--palette-white);
   --color-menuItemBackground: var(--palette-navy50);
   --color-menuItemBackgroundHover: var(--palette-navy100);

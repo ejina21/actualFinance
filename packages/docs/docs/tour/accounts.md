@@ -2,7 +2,7 @@
 
 Здесь вы работаете с операциями выбранного счёта. Подробные инструкции есть в разделе [«Счета и операции»](../accounts/index.md).
 
-![Общий вид операций счёта](/img/a-tour-of-actual/tour-account-register-overview.webp)
+![Общий вид операций счёта](/img/a-tour-of-actual/tour-accounts-register@2x.webp)
 
 ## Заголовок счёта
 
@@ -16,13 +16,13 @@
 
 Меню с тремя горизонтальными точками (синяя рамка) содержит другие действия со счётом: сверку, экспорт, закрытие и [подключение банка](../advanced/bank-sync.md) для синхронизации операций. Здесь же можно показать или скрыть текущий баланс после каждой операции, ранее сверенные операции и столбец подтверждения справа.
 
-![Заголовок страницы счёта](/img/a-tour-of-actual/tour-account-register-header.webp)
+![Заголовок страницы счёта](/img/a-tour-of-actual/tour-accounts-header@2x.webp)
 
 Нажмите **«Импорт»**, чтобы [загрузить операции](../transactions/importing.md) из файлов CSV, QIF, OFX, QFX или CAMT.
 
 Чтобы внести операцию вручную, нажмите **«Добавить»**. Получателя и категорию можно выбрать из списков. Нового получателя можно создать прямо здесь, а новую категорию — только в [бюджете](./budget.md).
 
-![Добавление операции](/img/a-tour-of-actual/tour-account-register-adding-transaction.webp)
+![Добавление операции](/img/a-tour-of-actual/tour-accounts-add-transaction@2x.webp)
 
 ## Фильтрация операций
 
@@ -32,7 +32,7 @@
 
 Подробнее читайте в разделе [«Фильтрация операций»](../transactions/filters.md).
 
-![Операции с применённым фильтром](/img/a-tour-of-actual/tour-account-register-filter.webp)
+![Операции с применённым фильтром](/img/a-tour-of-actual/tour-accounts-filter@2x.webp)
 
 ## Действия с несколькими операциями
 
@@ -40,4 +40,4 @@
 
 Количество выбранных операций показано в красной рамке. Откройте это меню, чтобы применить к ним действие. Подробнее о таких возможностях рассказано в разделе [«Массовое редактирование»](../transactions/bulk-editing.md).
 
-![Выбранные операции](/img/a-tour-of-actual/tour-account-register-selected-transactions.webp)
+![Выбранные операции](/img/a-tour-of-actual/tour-accounts-selected@2x.webp)

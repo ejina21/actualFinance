@@ -179,11 +179,11 @@ curl -H "Authorization: Bearer <ACCESS_TOKEN>" https://api.ynab.com/v1/plans/<PL
 2. Выберите выпадающее меню и **Закрыть файл**
 3. Выбрать **Импортный файл**
 
-   ![](/img/migrating/actual-import-1.webp)
+   ![](/img/migrating/nynab-import-source@2x.webp)
 
 4. Выбрать **Нинаб**
 
-   ![](/img/migrating/actual-import-2.webp)
+   ![](/img/migrating/nynab-import-select-file@2x.webp)
 
 5. Выберите экспортированный файл JSON
 

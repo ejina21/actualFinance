@@ -197,16 +197,16 @@ Actual имеет изящную и полезную функцию, где вы
 2. С точки зрения бюджета, вы вводите ту же сумму в колонках Budgeted , что и в колонках Spent .
    В течение всех месяцев, которые вы ввели или импортировали свои данные.
 
-![](/img/getting-started/actual-intro-with-budget-numbers.webp)
+![Two past months in the budget with the budgeted amounts matching the spent amounts](/img/getting-started/starting-fresh-budget-history@2x.webp)
 
 У вас есть два простых способа заполнить различные бюджетные значения, когда это будет сделано.
 Вы можете применять среднее значение за последние три месяца по всем категориям бюджета:
 
-![](/img/getting-started/actual-intro-set-budget-to-3-months-average.webp)
+<img width="321" alt="The month menu with Set budgets to 3 month average highlighted" src="/img/getting-started/starting-fresh-set-3-month-average@2x.webp" />
 
 Вы также можете установить определенные категории для различных средних значений:
 
-![](/img/getting-started/actual-intro-set-budget-category-average.webp)
+<img width="860" alt="The budget menu for the Food category with the 3 month, 6 month and yearly average options highlighted" src="/img/getting-started/starting-fresh-set-category-average@2x.webp" />
 
 ### Что делать, если вы не хотите или не можете использовать исторические данные {#what-to-do-if-you-do-not-want-to-or-cant-use-historical-data}
 

@@ -11,4 +11,4 @@
 
 Подробнее читайте в разделе [«Расписания»](../schedules.md).
 
-![Страница запланированных операций](/img/a-tour-of-actual/tour-schedules-overview.webp)
+![Страница запланированных операций](/img/a-tour-of-actual/tour-schedules-overview@2x.webp)

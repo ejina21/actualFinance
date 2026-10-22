@@ -6,7 +6,7 @@
 
 **Если у вас нет бюджетных средств, которых у вас нет, и вы не тратите деньги, которые не покрываются вашим бюджетом, вы не понесете никаких новых долгов и всегда будете иметь достаточно средств для оплаты покупок по новой кредитной карте, когда захотите!**
 
-Начиная наш пример Бюджет в июле, мы покажем вам шаг за шагом, как обращаться с кредитными картами.
+Начиная наш пример Бюджет в августе, мы покажем вам шаг за шагом, как обращаться с кредитными картами.
 
 ## Пример {#example}
 
@@ -14,21 +14,21 @@
 
 Чтобы показать больше информации верхнего уровня о вашем бюджете, наведите курсор на верхний левый угол заголовка и нажмите стрелки расширения:
 
-<img width="50%" height="50%" alt="Unexpanded Budget header" src="/img/credit-cards/CC-IND-01.webp" />
+<img width="50%" height="50%" alt="Unexpanded Budget header" src="/img/budgeting/credit-cards/paying-in-full-summary-collapsed@2x.webp" />
 
-<img width="50%" height="50%" alt="Expanded Budget Header" src="/img/credit-cards/CC-IND-02.webp" />
+<img width="50%" height="50%" alt="Expanded Budget Header" src="/img/budgeting/credit-cards/paying-in-full-summary-expanded@2x.webp" />
 
 :::
 
 <br />
 
-Мы начали наш бюджет в начале июля, и мы обычно погашаем нашу выписку по кредитной карте Chase каждый месяц. У нас были некоторые новые транзакции с июня, поэтому мы ввели стартовый баланс в размере 35 долларов США.
+Мы начали наш бюджет в начале августа, и мы обычно погашаем нашу выписку по кредитной карте Chase каждый месяц. У нас были некоторые новые транзакции с июля, поэтому мы ввели стартовый баланс в размере 35 долларов США.
 
 **Уведомление** Деньги, которые мы даем, входят в колонку «Оплата».
 
-Каждый раз, когда мы используем карту, мы выбираем категорию с положительным балансом бюджета. Наш счет закрывается 7-го числа каждого месяца, и наше заявление приходит через несколько дней. Когда приходит июльское заявление, наш счет Чейза выглядит так:
+Каждый раз, когда мы используем карту, мы выбираем категорию с положительным балансом бюджета. Наш счет закрывается 7-го числа каждого месяца, и наше заявление приходит через несколько дней. Когда приходит августское заявление, наш счет Чейза выглядит так:
 
-<img width="100%" height="100%" alt="Chase Account July" src="/img/credit-cards/CC-IND-03.webp" />
+<img width="100%" height="100%" alt="Chase Account July" src="/img/budgeting/credit-cards/paying-in-full-first-statement@2x.webp" />
 
 :::note
 
@@ -36,9 +36,9 @@
 
 :::
 
-Нам понадобится следующая информация из нашего июльского заявления:
+Нам понадобится следующая информация из нашего августского заявления:
 
-**Chase Account Summary - Июль 2025**
+**Chase Account Summary - Август 2026**
 
 - Предыдущая статья: $564.23
 - Полученные платежи: $564.23
@@ -56,34 +56,34 @@
 
 <br />
 
-Когда мы [примирение](../../accounts/reconciliation.md) На нашем счете за этот первый месяц мы очистим все июньские покупки и платежи (которые должны быть частью "Стартового баланса") в одну кучу. В нашем случае их единовременная сумма составляет $35,00.
+Когда мы [примирение](../../accounts/reconciliation.md) На нашем счете за этот первый месяц мы очистим все июльские покупки и платежи (которые должны быть частью "Стартового баланса") в одну кучу. В нашем случае их единовременная сумма составляет $35,00.
 
-<img width="100%" height="100%" alt="Chase Reconcile July" src="/img/credit-cards/CC-IND-04.webp" />
+<img width="100%" height="100%" alt="Chase Reconcile July" src="/img/budgeting/credit-cards/paying-in-full-first-reconcile@2x.webp" />
 
 Мы знаем, что все эти покупки были **ни одного** наши бюджетные категории перерасходованы, а сумма «в бюджет» в заголовке бюджета **не** Мы можем оплатить наш отчет New Balance, не беспокоясь, поэтому мы отправляем Chase $93,23 от Ally Savings и Make Transfer эту сумму от Ally до Chase в качестве депозита на наш счет кредитной карты Chase.
 
 <br />
 
-Мы продолжаем тратить в июле, иногда используя нашу карту Chase и всегда классифицируя каждую транзакцию на категорию с положительным бюджетным балансом, тем самым тратя В рамках бюджета .
+Мы продолжаем тратить в августе, иногда используя нашу карту Chase и всегда классифицируя каждую транзакцию на категорию с положительным бюджетным балансом, тем самым тратя В рамках бюджета .
 
-В конце июля бюджет выглядит так:
+В конце августа бюджет выглядит так:
 
-<img width="100%" height="100%" alt="July Budget" src="/img/credit-cards/CC-IND-05.webp" />
+<img width="100%" height="100%" alt="July Budget" src="/img/budgeting/credit-cards/paying-in-full-first-month-budget@2x.webp" />
 
 <br />
 
 Счет кредитной карты Chase выглядит следующим образом:
 
-<img width="100%" height="100%" alt="Chase July Account" src="/img/credit-cards/CC-IND-06.webp" />
+<img width="100%" height="100%" alt="Chase July Account" src="/img/budgeting/credit-cards/paying-in-full-first-month-account@2x.webp" />
 
 <br />
 
-Мы создали бюджет на 1 августа, и он очень похож на бюджет на июль.
-Мы продолжаем тратить и классифицировать каждую транзакцию в рамках бюджета, и когда наше августовское заявление поступает 12-го числа, наш счет кредитной карты Chase выглядит следующим образом:
+Мы создали бюджет на 1 сентября, и он очень похож на бюджет на август.
+Мы продолжаем тратить и классифицировать каждую транзакцию в рамках бюджета, и когда наше сентябрьовское заявление поступает 12-го числа, наш счет кредитной карты Chase выглядит следующим образом:
 
-<img width="100%" height="100%" alt="Chase August Account" src="/img/credit-cards/CC-IND-07.webp" />
+<img width="100%" height="100%" alt="Chase August Account" src="/img/budgeting/credit-cards/paying-in-full-second-statement@2x.webp" />
 
-**Chase Account Summary (август 2025)**
+**Chase Account Summary (сентябрь 2026)**
 
 - Предыдущий Баланс: $93,23
 - Полученные платежи: $93,23
@@ -95,7 +95,7 @@
 
 Мы [примирение](../../accounts/reconciliation.md) Наш аккаунт Chase и сейчас выглядит так:
 
-<img width="100%" height="100%" alt="Chase August Reconcile" src="/img/credit-cards/CC-IND-08.webp" />
+<img width="100%" height="100%" alt="Chase August Reconcile" src="/img/budgeting/credit-cards/paying-in-full-second-reconciled@2x.webp" />
 
 <br />
 
@@ -111,13 +111,13 @@
 
 Наш аккаунт Chase теперь выглядит так:
 
-<img width="100%" height="100%" alt="Chase August Payment" src="/img/credit-cards/CC-IND-09.webp" />
+<img width="100%" height="100%" alt="Chase August Payment" src="/img/budgeting/credit-cards/paying-in-full-second-payment@2x.webp" />
 
 <br />
 
 18 декабря бюджет выглядит так:
 
-<img width="100%" height="100%" alt="Budget August 18" src="/img/credit-cards/CC-IND-010.webp" />
+<img width="100%" height="100%" alt="Budget August 18" src="/img/budgeting/credit-cards/paying-in-full-second-month-budget@2x.webp" />
 
 <br />
 

@@ -32,6 +32,7 @@ title: Участие в разработке Actual
 - @MatissJanis
 - @matt-fidd
 - @MikesGlitch
+- @tabedzki
 - @tim-smart
 - @youngcw
 

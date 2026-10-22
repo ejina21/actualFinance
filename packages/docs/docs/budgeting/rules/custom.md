@@ -6,19 +6,19 @@
 
 **A:** Иногда получатель платежа появляется немного иначе от транзакции к транзакции. Чтобы установить один и тот же получатель каждый раз и не создавать новый каждый раз, когда новая транзакция импортируется, используйте **Прекрасно** Правило, которое читает импортное поле получателя и находит торговое имя, используя условие «содержит».
 
-![](/img/rules-custom/custom-rules-imported-payee.webp)
+<img width="918" alt="A pre rule that sets the payee to Online store when the imported payee contains AMZN Mktp" src="/img/budgeting/rules/custom-imported-payee@2x.webp" />
 
 ### Q: Как установить учетную запись по умолчанию при добавлении транзакций? {#q-how-do-i-set-a-default-account-when-i-add-transactions}
 
 **A:** Установить **Прекрасно** Правило проверки для пустого поля учетной записи.При вводе транзакции в реестр «Все счета» или из реестра списка категорий ваша предпочтительная учетная запись по умолчанию будет автоматически заполнена.
 
-![](/img/rules-custom/custom-rules-1.webp)
+<img width="918" alt="A pre rule that sets the account to Capital One Checking when the account is empty" src="/img/budgeting/rules/custom-default-account@2x.webp" />
 
 ### Вопрос: У меня есть счета (например, наличные или Venmo), которые мгновенно «очищаются» в момент покупки. {#q-i-have-accounts-like-cash-or-venmo-that-instantly-clear-at-the-moment-of-purchase-how-can-i-automate-toggling-the-cleared-status}
 
 **A:** Установить **Почта** Правило проверки для вашей учетной записи или учетных записей, где могут быть совершены мгновенные транзакции, установите действие «очищено» и выберите флажок. Кэш или Venmo являются типичными примерами этого типа учетной записи. Каждый раз, когда транзакция добавляется к учетным записям, перечисленным в этом правиле, эти транзакции автоматически получают очищенное состояние отныне.
 
-![](/img/rules-custom/custom-rules-2.webp)
+<img width="918" alt="A post rule that marks transactions in the Cash and Venmo accounts as cleared" src="/img/budgeting/rules/custom-cleared@2x.webp" />
 
 ### В: Я использую банковскую синхронизацию. Как мне создавать переводы, а не делать дубликаты? {#q-i-use-bank-sync-how-do-i-create-transfers-and-not-make-duplicates}
 
@@ -27,7 +27,7 @@
 Чтобы создать перевод, просто установите получателя на другой счет, который вы переводите между.
 Также рекомендуется ограничить правило конкретным счетом.
 
-![](/img/rules-custom/custom-rules-transfer.webp)
+<img width="918" alt="A pre rule that turns imported transfers from Ally into transfers to the Ally Savings account" src="/img/budgeting/rules/custom-transfer@2x.webp" />
 
 Если вы используете банковскую синхронизацию на обоих счетах при переводе, вам нужно будет создать правило для обоих счетов.
 Это позволит избежать дублирования переводов.

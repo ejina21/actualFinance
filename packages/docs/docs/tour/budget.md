@@ -2,17 +2,17 @@
 
 В этом разделе вы составляете и ведёте бюджет. Подробнее о распределении денег по конвертам читайте в разделе [«Бюджетирование»](../budgeting/index.md).
 
-![Общий вид бюджета](/img/a-tour-of-actual/tour-budget-overview.webp)
+![Общий вид бюджета](/img/a-tour-of-actual/tour-budget-overview@2x.webp)
 
 Число месяцев, которые одновременно помещаются на экране, зависит от его ширины.
 
 Чтобы выбрать количество отображаемых месяцев, нажмите на соответствующее число значков календаря слева вверху.
 
-![Значки выбора количества месяцев](/img/a-tour-of-actual/tour-budget-calendar.webp)
+![Значки выбора количества месяцев](/img/a-tour-of-actual/tour-budget-month-count@2x.webp)
 
 Затем выберите, какие именно месяцы показывать:
 
-![Выбор месяцев бюджета](/img/a-tour-of-actual/tour-budget-calendar-choose.webp)
+![Выбор месяцев бюджета](/img/a-tour-of-actual/tour-budget-month-picker@2x.webp)
 
 ## Заголовок месяца
 
@@ -22,15 +22,15 @@
 - Нажмите на стрелки (жёлтая рамка), чтобы свернуть заголовок.
 - Откройте меню с тремя вертикальными точками, чтобы скопировать бюджет предыдущего месяца, обнулить суммы или заполнить их средними значениями за 3, 6 либо 12 месяцев.
 
-![Развёрнутый заголовок месяца](/img/a-tour-of-actual/tour-budget-top-expanded.webp)
+![Развёрнутый заголовок месяца](/img/a-tour-of-actual/tour-budget-header-expanded@2x.webp)
 
 После сворачивания заголовка те же действия остаются доступны.
 
-![Свёрнутый заголовок месяца](/img/a-tour-of-actual/tour-budget-top-minimized.webp)
+![Свёрнутый заголовок месяца](/img/a-tour-of-actual/tour-budget-header-minimized@2x.webp)
 
 Вот как выглядит заметка с форматированием Markdown при наведении указателя:
 
-![Заметка в заголовке месяца](/img/a-tour-of-actual/tour-budget-top-note-hover.webp)
+![Заметка в заголовке месяца](/img/a-tour-of-actual/tour-budget-header-note@2x.webp)
 
 ## Таблица бюджета
 
@@ -44,7 +44,7 @@
 
 Для отдельной категории (фиолетовая рамка) доступны скрытие, переименование, удаление и собственная заметка.
 
-![Категории в таблице бюджета](/img/a-tour-of-actual/tour-budget-details.webp)
+![Категории в таблице бюджета](/img/a-tour-of-actual/tour-budget-table@2x.webp)
 
 ### Суммы в центре
 

@@ -66,6 +66,8 @@ export function AccountPage() {
           title={
             account ? (
               <AccountHeader account={account} />
+            ) : accountIdParam === 'all' ? (
+              <AllAccountsHeader />
             ) : (
               <NameOnlyHeader name={nameFromId(accountIdParam)} />
             )
@@ -169,31 +171,6 @@ function AccountHeader({ account }: { readonly account: AccountEntity }) {
     );
   }, [account.id, dispatch, setSearchParams]);
 
-  const [showRunningBalances, setShowRunningBalances] = useSyncedPref(
-    `show-balances-${account.id}`,
-  );
-  const [hideReconciled, setHideReconciled] = useSyncedPref(
-    `hide-reconciled-${account.id}`,
-  );
-
-  const onToggleRunningBalance = useCallback(() => {
-    setShowRunningBalances(showRunningBalances === 'true' ? 'false' : 'true');
-    dispatch(
-      collapseModals({
-        rootModalName: 'account-menu',
-      }),
-    );
-  }, [showRunningBalances, setShowRunningBalances, dispatch]);
-
-  const onToggleReconciled = useCallback(() => {
-    setHideReconciled(hideReconciled === 'true' ? 'false' : 'true');
-    dispatch(
-      collapseModals({
-        rootModalName: 'account-menu',
-      }),
-    );
-  }, [hideReconciled, setHideReconciled, dispatch]);
-
   const onClick = useCallback(() => {
     dispatch(
       pushModal({
@@ -206,8 +183,6 @@ function AccountHeader({ account }: { readonly account: AccountEntity }) {
             onCloseAccount,
             onReopenAccount,
             onReconcile,
-            onToggleRunningBalance,
-            onToggleReconciled,
           },
         },
       }),
@@ -220,8 +195,6 @@ function AccountHeader({ account }: { readonly account: AccountEntity }) {
     onReconcile,
     onReopenAccount,
     onSave,
-    onToggleRunningBalance,
-    onToggleReconciled,
   ]);
 
   return (
@@ -260,6 +233,39 @@ function AccountHeader({ account }: { readonly account: AccountEntity }) {
           {account.closed
             ? t('Closed: {{accountName}}', { accountName: account.name })
             : account.name}
+        </Text>
+      </Button>
+    </View>
+  );
+}
+
+function AllAccountsHeader() {
+  const { t } = useTranslation();
+  const dispatch = useDispatch();
+
+  const onClick = useCallback(() => {
+    dispatch(
+      pushModal({
+        modal: {
+          name: 'all-accounts-menu',
+          options: {},
+        },
+      }),
+    );
+  }, [dispatch]);
+
+  return (
+    <View style={{ flexDirection: 'row' }}>
+      <Button variant="bare" onPress={onClick}>
+        <Text
+          size="extra-large"
+          style={{
+            fontWeight: 500,
+            ...styles.underlinedText,
+            ...(styles.lineClamp(2) as CSSProperties),
+          }}
+        >
+          {t('All Accounts')}
         </Text>
       </Button>
     </View>

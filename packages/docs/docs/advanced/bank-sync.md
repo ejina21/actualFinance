@@ -28,7 +28,7 @@
 - Для синхронизации всех учетных записей: нажмите **Все счета** в боковой панели, затем щелкните **Банковский синхрон**.
 - Для синхронизации одной учетной записи: откройте учетную запись и нажмите кнопку «Синхронизация банка».
 
-  ![](/img/connecting-your-bank/connecting-your-bank-simplefin-10.webp)
+  <img width="192" alt="The Bank Sync button next to Import above a linked account's transactions" src="/img/advanced/bank-sync/bank-sync-account-buttons@2x.webp" />
 
 #### На мобильном {#on-mobile}
 

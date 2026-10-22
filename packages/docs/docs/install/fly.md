@@ -133,15 +133,15 @@ fly launch --image actualbudget/actual-server:latest
 
 1. Установите пароль - помните об этом, он вам понадобится в будущем.
 
-   ![](/img/fly/actual-config-1@2x.webp)
+   ![](/img/install/server-set-password@2x.webp)
 
 2. Либо нажмите "Импортировать мой бюджет" [импортировать бюджет из YNAB или подписной версии](../migration/index.md)Или нажмите «Начать заново», чтобы создать пустой бюджетный файл.
 
-   ![](/img/fly/actual-config-2@2x.webp)
+   ![](/img/fly/fly-welcome@2x.webp)
 
 3. Если все прошло хорошо, вы должны быть переведены на свой первый бюджет.
 
-   ![](/img/fly/actual-register.webp)
+   ![](/img/fly/fly-first-budget@2x.webp)
 
 Реальный сейчас работает. Поздравляю! Подумайте о том, чтобы проверить [Наш тур](../tour/index.md) Следующий.
 
@@ -167,9 +167,9 @@ fly deploy
 
 ```toml
 [[services]]
-  auto_stop_machines = "stop"
-  auto_start_machines = true
-  min_machines_running = 0
+auto_stop_machines = "stop"
+auto_start_machines = true
+min_machines_running = 0
 ```
 
 С помощью этих настроек Fly.io автоматически остановит ваш экземпляр после нескольких минут бездействия. Когда появится новый запрос, экземпляр снова запустится, что может занять 5-15 секунд.

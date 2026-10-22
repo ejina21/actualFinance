@@ -4,7 +4,7 @@
 
 Экспериментальная боковая панель заменяет навигацию слева. Она позволяет объединять счета в группы, менять их порядок перетаскиванием, искать счета и сворачивать разделы. Дизайн основан на [победившем проекте конкурса](https://actualbudget.org/blog/sidenav-design-winner/).
 
-![Обновлённая боковая панель рядом со страницей бюджета](/img/experimental/redesigned-sidebar/redesigned-sidebar-overview@2x.png)
+![Обновлённая боковая панель рядом со страницей бюджета](/img/experimental/redesigned-sidebar/redesigned-sidebar-overview@2x.webp)
 
 ## Как включить панель
 
@@ -17,14 +17,14 @@
 
 ## Что находится на панели
 
-- **Название бюджета и состояние синхронизации.** Нажмите на название, чтобы переименовать бюджет, открыть настройки, восстановить копию или выбрать другой файл бюджета. Ниже показано состояние синхронизации.
-- **Навигация.** Ссылки на страницы приложения, включая получателей, правила и теги.
+- **Название бюджета и состояние синхронизации.** Наведите указатель на название и нажмите карандаш, чтобы переименовать бюджет. Нажмите логотип Actual, чтобы выбрать другой файл бюджета. Ниже показано состояние синхронизации.
+- **Навигация.** Ссылки на бюджет, отчёты и расписания. Получатели, правила, теги и банковская синхронизация доступны в настройках.
 - **Счета.** Список счетов, их остатки и группы.
 - **Настройки.** Ссылка внизу панели.
 
 ## Список счетов
 
-<img width="270" alt="Кнопки над списком счетов" src="/img/experimental/redesigned-sidebar/redesigned-sidebar-accounts-header@2x.png" />
+<img width="270" alt="Кнопки над списком счетов" src="/img/experimental/redesigned-sidebar/redesigned-sidebar-accounts-header@2x.webp" />
 
 Рядом с заголовком **Счета** находятся кнопки, которые сворачивают все разделы, открывают поиск и добавляют счёт. Общий остаток показывает сумму по всем открытым счетам. Нажмите на него или на заголовок, чтобы открыть операции всех счетов.
 
@@ -36,7 +36,7 @@
 
 Нажмите на стрелку рядом с разделом или группой. Даже в свёрнутом виде видны остаток и число счетов.
 
-<img width="270" alt="Свёрнутые группы счетов" src="/img/experimental/redesigned-sidebar/redesigned-sidebar-collapsed-groups@2x.png" />
+<img width="270" alt="Свёрнутые группы счетов" src="/img/experimental/redesigned-sidebar/redesigned-sidebar-collapsed-groups@2x.webp" />
 
 Состояние свёрнутых разделов сохраняется отдельно на каждом устройстве.
 
@@ -52,21 +52,21 @@
 
 1. Откройте контекстное меню счёта на боковой панели или странице счёта и выберите **Задать группу счёта**.
 
-   <img width="340" alt="Контекстное меню счёта" src="/img/experimental/redesigned-sidebar/redesigned-sidebar-account-menu@2x.png" />
+   <img width="340" alt="Контекстное меню счёта" src="/img/experimental/redesigned-sidebar/redesigned-sidebar-account-menu@2x.webp" />
 
 2. Выберите существующую группу. Чтобы создать новую, введите её название в поле поиска и выберите **Создать**.
 
-   <img width="512" alt="Создание новой группы" src="/img/experimental/redesigned-sidebar/redesigned-sidebar-create-group@2x.png" />
+   <img width="512" alt="Создание новой группы" src="/img/experimental/redesigned-sidebar/redesigned-sidebar-create-group@2x.webp" />
 
 Чтобы убрать счёт из группы, выберите **Нет** в этом же окне или перетащите счёт в начало раздела.
 
 ### Управление группами
 
-<img width="512" alt="Управление группами счетов" src="/img/experimental/redesigned-sidebar/redesigned-sidebar-account-group-dialog@2x.png" />
+<img width="512" alt="Управление группами счетов" src="/img/experimental/redesigned-sidebar/redesigned-sidebar-account-group-dialog@2x.webp" />
 
 В окне группы можно изменить название, переместить группу выше или ниже, удалить её, а также найти или создать другую группу. Переименовать и удалить группу можно и через контекстное меню на боковой панели.
 
-<img width="340" alt="Контекстное меню группы" src="/img/experimental/redesigned-sidebar/redesigned-sidebar-group-menu@2x.png" />
+<img width="340" alt="Контекстное меню группы" src="/img/experimental/redesigned-sidebar/redesigned-sidebar-group-menu@2x.webp" />
 
 Удаление группы не удаляет счета: они остаются без группы.
 
@@ -74,7 +74,7 @@
 
 Перетащите счёт над другим счётом или под ним, на название группы или между счетами внутри группы. Чтобы вынести счёт из группы, перетащите его к счетам без группы. Группы тоже можно переставлять перетаскиванием.
 
-<img width="262" alt="Перетаскивание счёта в группу" src="/img/experimental/redesigned-sidebar/redesigned-sidebar-drag-and-drop@2x.png" />
+<img width="262" alt="Перетаскивание счёта в группу" src="/img/experimental/redesigned-sidebar/redesigned-sidebar-drag-and-drop@2x.webp" />
 
 Перетаскивать счета между разделами «В бюджете», «Вне бюджета» и «Закрытые» нельзя. Пока активен поиск, перетаскивание недоступно.
 
@@ -86,7 +86,7 @@
 
 Нажмите на значок лупы рядом с заголовком **Счета** и введите часть названия счёта или группы. Во время поиска группы развёрнуты. Чтобы снова показать полный список, нажмите **×** в поле поиска.
 
-<img width="270" alt="Поиск по названию счёта" src="/img/experimental/redesigned-sidebar/redesigned-sidebar-search@2x.png" />
+<img width="270" alt="Поиск по названию счёта" src="/img/experimental/redesigned-sidebar/redesigned-sidebar-search@2x.webp" />
 
 ## Сведения при наведении
 

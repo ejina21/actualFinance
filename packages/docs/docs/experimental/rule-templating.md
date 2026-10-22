@@ -26,11 +26,11 @@
 
 Вы можете переключаться между обычным и шаблонным режимами ввода, нажав на значок справа от поля ввода действия.
 
-![Как включить шаблон действия правила](/img/experimental/rule-templating/enable-rule-templating.webp)
+![Как включить шаблон действия правила](/img/experimental/rule-templating/rule-templating-toggle@2x.webp)
 
 Когда режим ввода шаблона активен, вы можете ввести свой шаблон в поле ввода, как указано ниже. Этот пример удаляет строку «12345» от импортированного получателя платежа и устанавливает получателя платежа на это новое значение.
 
-![Как включить шаблон действия правила 2](/img/experimental/rule-templating/enable-rule-templating-2.webp)
+![Как включить шаблон действия правила 2](/img/experimental/rule-templating/rule-templating-template@2x.webp)
 
 ## Переменные {#variables}
 

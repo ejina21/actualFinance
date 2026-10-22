@@ -125,7 +125,7 @@ export function CreateAccountModal({
                   <Button
                     onPress={() => {
                       state.close();
-                      void navigate('/bank-sync');
+                      void navigate('/settings/bank-sync');
                     }}
                     style={{
                       padding: '10px 0',
