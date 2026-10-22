@@ -77,6 +77,19 @@ test('changes budget views in settings and keeps the planning tables editable', 
   await view.selectOption({ label: 'Расходы' });
   await page.getByRole('link', { name: 'Бюджет', exact: true }).click();
   await expect(page.getByTestId('finance-summary')).toBeVisible();
+  const period = page.getByRole('combobox', { name: 'Период отчёта' });
+  await expect(period.locator('option')).toHaveText([
+    'месяц',
+    'Год',
+    'Произвольный период',
+  ]);
+  await period.selectOption('year');
+  await expect(
+    page.getByRole('spinbutton', { name: 'Год', exact: true }),
+  ).toBeVisible();
+  await page.reload();
+  await expect(page.getByTestId('finance-summary')).toBeVisible();
+  await expect(period).toHaveValue('month');
   await expect(page.getByTestId('finance-summary')).toMatchThemeScreenshots();
 
   await page.getByRole('link', { name: 'Настройки', exact: true }).click();
