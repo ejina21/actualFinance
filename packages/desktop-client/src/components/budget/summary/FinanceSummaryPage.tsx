@@ -209,7 +209,7 @@ export function FinanceSummaryPage() {
                   <Trans>
                     Transfers between your accounts are shown in account
                     movements but excluded from income and expenses. Off-budget
-                    accounts are separate from the closing balance.
+                    accounts are excluded from reports.
                   </Trans>
                   {cashFlow.loanGroups.length > 0 && (
                     <>

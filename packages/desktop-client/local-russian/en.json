@@ -3251,5 +3251,7 @@
   "{{displayMonth}} budgets have all been set to {{months}} month average.": "{{displayMonth}} budgets have all been set to {{months}} month average.",
   "{{share}}% bonds": "{{share}}% bonds",
   "{{share}}% cash": "{{share}}% cash",
-  "{{share}}% stocks": "{{share}}% stocks"
+  "{{share}}% stocks": "{{share}}% stocks",
+  "Net worth shows the balance of budget accounts over time. Off-budget accounts are excluded.": "Net worth shows the balance of budget accounts over time. Off-budget accounts are excluded.",
+  "Transfers between your accounts are shown in account movements but excluded from income and expenses. Off-budget accounts are excluded from reports.": "Transfers between your accounts are shown in account movements but excluded from income and expenses. Off-budget accounts are excluded from reports."
 }

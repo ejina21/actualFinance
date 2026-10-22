@@ -394,11 +394,8 @@ function NetWorthInner({ widget }: NetWorthInnerProps) {
           </Paragraph>
           <Paragraph>
             <Trans>
-              Net worth shows the balance of all accounts over time, including
-              all of your investments. Your "net worth" is considered to be the
-              amount you'd have if you sold all your assets and paid off as much
-              debt as possible. If you hover over the graph, you can also see
-              the amount of assets and debt individually.
+              Net worth shows the balance of budget accounts over time.
+              Off-budget accounts are excluded.
             </Trans>
           </Paragraph>
         </View>

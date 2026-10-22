@@ -117,7 +117,8 @@ export function createSpreadsheet(
       }
     }
 
-    const accountIds = accounts.map(account => account.id);
+    const onBudgetAccounts = accounts.filter(account => !account.offbudget);
+    const accountIds = onBudgetAccounts.map(account => account.id);
     const transferLegsPromise =
       accountIds.length === 0
         ? Promise.resolve<TransferLeg[]>([])
@@ -135,7 +136,7 @@ export function createSpreadsheet(
           ).then(({ data }: { data: TransferLeg[] }) => data);
 
     const accountDataPromise = Promise.all(
-      accounts.map(async acct => {
+      onBudgetAccounts.map(async acct => {
         const [starting, balances]: [number, Balance[]] = await Promise.all([
           aqlQuery(
             q('transactions')

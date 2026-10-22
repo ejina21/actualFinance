@@ -46,7 +46,7 @@ export function filterHiddenItems(
 
 export function filterReportTransactions(
   data: QueryDataEntity[],
-  showOffBudget?: boolean,
+  _showOffBudget?: boolean,
   showHiddenCategories?: boolean,
   showUncategorized?: boolean,
 ) {
@@ -56,7 +56,7 @@ export function filterReportTransactions(
         showHiddenCategories ||
         (e.categoryHidden === false && e.categoryGroupHidden === false),
     )
-    .filter(e => showOffBudget || e.accountOffBudget === false)
+    .filter(e => e.accountOffBudget === false)
     .filter(
       e =>
         showUncategorized || e.category !== null || e.accountOffBudget === true,
