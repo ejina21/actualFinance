@@ -58,7 +58,8 @@ export function ImportSettings() {
   const accountId = scope === 'all' ? undefined : scope;
   const savedRoutes = prefs['csv-account-routes'];
   const [draft, setDraft] = useState<CsvImportProfile | null>(null);
-  const [routes, setRoutes] = useState<Record<string, string>>({});
+  const [routeDraft, setRoutes] = useState<Record<string, string> | null>(null);
+  const routes = routeDraft ?? readRoutes(savedRoutes);
   const [saveState, setSaveState] = useState<
     'idle' | 'saving' | 'saved' | 'error'
   >('idle');
@@ -67,10 +68,6 @@ export function ImportSettings() {
     setDraft(getCsvImportProfile(prefs, accountId));
     setSaveState('idle');
   }, [accountId, prefs]);
-
-  useEffect(() => {
-    setRoutes(readRoutes(savedRoutes));
-  }, [savedRoutes]);
 
   function changeProfile(changes: Partial<CsvImportProfile>) {
     setDraft(previous => (previous ? { ...previous, ...changes } : null));
@@ -103,6 +100,7 @@ export function ImportSettings() {
           },
         }),
       ).unwrap();
+      setRoutes(null);
       setSaveState('saved');
     } catch {
       setSaveState('error');
@@ -399,7 +397,7 @@ export function ImportSettings() {
                     ]}
                     value={destination}
                     onChange={value => {
-                      setRoutes(previous => ({ ...previous, [source]: value }));
+                      setRoutes({ ...routes, [source]: value });
                       setSaveState('idle');
                     }}
                     style={{ width: '100%' }}

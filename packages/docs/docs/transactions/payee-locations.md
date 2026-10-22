@@ -14,7 +14,7 @@
 
 :::
 
-![Кнопка Местоположение Запроса в поле получателя платежа по новой транзакции](/img/payees/payee-locations/payee-locations-request.png)
+![Кнопка Местоположение Запроса в поле получателя платежа по новой транзакции](/img/transactions/payee-locations-request@2x.webp)
 
 ## Сохранение местоположения Payee {#saving-a-payee-location}
 
@@ -28,7 +28,7 @@ The **Спасти** Кнопка появляется только тогда, 
 
 Ваше местоположение захватывается только тогда, когда вы нажимаете **Спасти**Он хранится в вашем бюджете, как и любые другие данные, поэтому он синхронизируется на ваших собственных устройствах, если вы используете сервер синхронизации, и он никогда не отправляется какой-либо третьей стороне.
 
-![Кнопка геолокации Save в поле payee на экране мобильной транзакции](/img/payees/payee-locations/payee-locations-save.png)
+![Кнопка геолокации Save в поле payee на экране мобильной транзакции](/img/transactions/payee-locations-save@2x.webp)
 
 ## Использование ближайшего плательщика {#using-the-nearest-payee}
 
@@ -40,9 +40,9 @@ The **Спасти** Кнопка появляется только тогда, 
 4. Продолжайте вводить остальные детали транзакции.
 5. Сохраните сделку.
 
-![Кнопка геолокации Nearby в поле payee](/img/payees/payee-locations/payee-locations-nearby-button.png)
+![Кнопка геолокации Nearby в поле payee](/img/transactions/payee-locations-nearby-button@2x.webp)
 
-![Раздел Nearby Payees в автозаполнении получателя с кнопкой Забудь рядом с каждым получателем](/img/payees/payee-locations/payee-locations-nearby-autocomplete.png)
+![Раздел Nearby Payees в автозаполнении получателя с кнопкой Забудь рядом с каждым получателем](/img/transactions/payee-locations-nearby-autocomplete@2x.webp)
 
 ## Забыли место выплаты {#forgetting-a-payee-location}
 

@@ -1415,8 +1415,23 @@ const Transaction = memo(function Transaction({
   // Row-level drag must not compete with inline editors (notes, amounts,
   // payee, etc.): otherwise clicks/drags inside inputs start a reorder drag
   // instead of moving the caret or selecting text (see GH #7567).
+  // The running balance is read-only, so pause the drag while the mouse is
+  // pressed on it to let the user select and copy the value (see GH #7833).
+  const [isSelectingBalance, setIsSelectingBalance] = useState(false);
+  useEffect(() => {
+    if (!isSelectingBalance) return;
+    const stopSelecting = () => setIsSelectingBalance(false);
+    // `blur` covers a mouseup the window never gets (e.g. alt-tab while pressed)
+    window.addEventListener('mouseup', stopSelecting);
+    window.addEventListener('blur', stopSelecting);
+    return () => {
+      window.removeEventListener('mouseup', stopSelecting);
+      window.removeEventListener('blur', stopSelecting);
+    };
+  }, [isSelectingBalance]);
   const allowRowDrag =
     canDrag &&
+    !isSelectingBalance &&
     !isOnlyTransactionOnDate &&
     (!editing || focusedField === 'select' || focusedField === 'cleared');
   const { dragRef, dragProps } = useDrag<TransactionEntity>({
@@ -2055,6 +2070,11 @@ const Transaction = memo(function Transaction({
             width={amountColumnWidths.balance}
             textAlign="right"
             privacyFilter
+            onMouseDown={e => {
+              // Only the primary button selects text; a right-click opens the
+              // context menu, which can swallow the mouseup
+              if (e.button === 0) setIsSelectingBalance(true);
+            }}
           />
         );
       case 'cleared':
@@ -3212,7 +3232,7 @@ export const TransactionTable = forwardRef(
 
       prevSplitsExpanded.current = splitsExpanded;
       return result;
-    }, [props.transactions, splitsExpanded]);
+    }, [prevSplitsExpanded, props.transactions, splitsExpanded]);
 
     const transactionMap = useMemo(() => {
       return new Map(
@@ -3628,14 +3648,14 @@ export const TransactionTable = forwardRef(
       }
     }
 
-    const onScheduleTemporary = useCallback(() => {
+    const onScheduleTemporary = () => {
       afterSave(() => {
         shouldSchedule.current = true;
         forceRerender({});
       });
-    }, []);
+    };
 
-    const onAddTemporary = useCallback(() => {
+    const onAddTemporary = () => {
       afterSave(() => {
         shouldAdd.current = true;
         // A little hacky - this forces a rerender which will cause the
@@ -3643,14 +3663,14 @@ export const TransactionTable = forwardRef(
         // committed (the input could still be saving a value).
         forceRerender({});
       });
-    }, []);
+    };
 
-    const onAddAndCloseTemporary = useCallback(() => {
+    const onAddAndCloseTemporary = () => {
       afterSave(() => {
         shouldAddAndClose.current = true;
         forceRerender({});
       });
-    }, []);
+    };
 
     const {
       onSave: onSaveProp,
@@ -3710,23 +3730,26 @@ export const TransactionTable = forwardRef(
           onSaveProp(groupedTransaction);
         }
       },
-      [onSaveProp, onApplyRulesProp],
+      [latestState, onSaveProp, onApplyRulesProp],
     );
 
-    const onDelete = useCallback((id: TransactionEntity['id']) => {
-      const temporary = isTemporaryId(id);
+    const onDelete = useCallback(
+      (id: TransactionEntity['id']) => {
+        const temporary = isTemporaryId(id);
 
-      if (temporary) {
-        const newTrans = latestState.current.newTransactions;
+        if (temporary) {
+          const newTrans = latestState.current.newTransactions;
 
-        if (id === newTrans[0].id) {
-          // You can never delete the parent new transaction
-          return;
+          if (id === newTrans[0].id) {
+            // You can never delete the parent new transaction
+            return;
+          }
+
+          setNewTransactions(deleteTransaction(newTrans, id).data);
         }
-
-        setNewTransactions(deleteTransaction(newTrans, id).data);
-      }
-    }, []);
+      },
+      [latestState],
+    );
 
     const onBatchDelete = useCallback(
       (ids: TransactionEntity['id'][]) => {
@@ -3819,7 +3842,7 @@ export const TransactionTable = forwardRef(
           }
         }
       };
-    }, [onSplitProp, splitsExpandedDispatch]);
+    }, [latestState, onSplitProp, splitsExpandedDispatch]);
 
     const { onAddSplit: onAddSplitProp } = props;
 
@@ -3846,7 +3869,7 @@ export const TransactionTable = forwardRef(
           );
         }
       },
-      [onAddSplitProp],
+      [latestState, onAddSplitProp],
     );
 
     const onDistributeRemainder = useCallback(
@@ -3976,7 +3999,7 @@ export const TransactionTable = forwardRef(
           }
         }
       },
-      [onSave],
+      [latestState, onSave],
     );
 
     function onCloseAddTransaction() {

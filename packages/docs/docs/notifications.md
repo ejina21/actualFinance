@@ -10,7 +10,7 @@ Actual может показывать вам новости из проекта
 
 ## Страница уведомлений {#the-notifications-page}
 
-![Изображение уведомлений](/img/using-actual/in-app-notifications.webp)
+![Изображение уведомлений](/img/notifications/notifications-page@2x.webp)
 
 Каждое уведомление отображается в виде карточки:
 

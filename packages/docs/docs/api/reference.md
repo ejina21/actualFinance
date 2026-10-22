@@ -84,7 +84,8 @@ import APIList from './APIList';
 "getSchedules",
 "createSchedule",
 "updateSchedule",
-"deleteSchedule"
+"deleteSchedule",
+"getScheduleDates"
 ]} />
 
 <APIList title="Заметки" sections={[
@@ -788,6 +789,44 @@ await updateTag(id, { color: '#00ff00' });
 
 <Method name="deleteSchedule" args={[{ name: 'id', type: 'id' }]} returns="Promise<null>" />
 
+#### `getScheduleDates`
+
+<Method name="getScheduleDates" args={[{ name: 'date', type: 'date | RecurConfig' }, { name: 'options', type: '{ start?: date, end?: date, count?: number }' }]} returns="Promise<date[]>" />
+
+Разворачивает поле `date` объекта [`Schedule`](#schedule-1) или произвольную конфигурацию [`RecurConfig`](#recurconfig) в даты по возрастанию.
+
+Учитывает `frequency`, `interval`, `patterns` (включая последний день или последний рабочий день месяца), `endMode`, а также перенос выходных на предыдущую пятницу или следующий понедельник при `skipWeekend` (`weekendSolveMode`).
+
+- `start` — первая включаемая дата; по умолчанию сегодня.
+- `end` — последняя включаемая дата.
+- `count` — максимальное число уникальных дат.
+
+Границы применяются после переноса выходных. Если несколько повторений попадают на одну дату, она возвращается один раз. Для бесконечного повторения обязательно задайте `end` или `count`.
+
+```js
+const [rent] = await api.getSchedules();
+
+// Все даты расписания в 2025 году
+await api.getScheduleDates(rent.date, {
+  start: '2025-01-01',
+  end: '2025-12-31',
+});
+
+// Следующие три даты начиная с сегодняшнего дня
+await api.getScheduleDates(rent.date, { count: 3 });
+
+// Повторение, которое ещё не сохранено
+await api.getScheduleDates(
+  {
+    frequency: 'monthly',
+    start: '2025-01-01',
+    patterns: [{ type: 'FR', value: -1 }],
+  },
+  { start: '2025-01-01', count: 2 },
+);
+// ['2025-01-31', '2025-02-28']
+```
+
 ## Заметки {#notes}
 
 Примечания могут быть прикреплены к любому объекту (категории, бюджетные месяцы и т. д.) по идентификатору. Они также используются для определения шаблонов бюджета и целей экономии (например. `#template 250`, `#goal 1000`).
@@ -836,7 +875,13 @@ await updateTag(id, { color: '#00ff00' });
 
 #### `runBankSync` {#runbanksync}
 
-<Method name="runBankSync" args={[{ properties: [{ name: 'accountId', type: 'string' }] }]} returns="Promise<void>" />
+<Method name="runBankSync" args={[{ name: 'args?', properties: [{ name: 'accountId', type: 'string' }] }]} returns="Promise<{ newTransactions: string[]; matchedTransactions: string[]; updatedAccounts: string[] }>" />
+
+Без аргумента синхронизирует все связанные счета. Если аргумент передан, укажите `accountId`.
+
+Результат содержит массивы идентификаторов `newTransactions` (новые транзакции), `matchedTransactions` (обновлённые существующие транзакции) и `updatedAccounts` (счета с добавленными транзакциями). Если изменений нет, все три массива пусты.
+
+Ошибка отклоняет promise. При синхронизации всех счетов ошибка одного счёта отклоняет весь вызов; уже импортированные транзакции других счетов сохраняются, но не возвращаются в результате. После ошибки проверьте список транзакций.
 
 Запустите синхронизацию банка 3-й стороны (GoCardless, SimpleFIN). Это загрузит транзакции и вставит их в реестр.
 
@@ -854,7 +899,9 @@ await updateTag(id, { color: '#00ff00' });
 
 #### `loadBudget` {#loadbudget}
 
-<Method name="loadBudget" args={[{ properties: [{ name: 'syncId', type: 'string' }] }]} returns="Promise<void>" />
+<Method name="loadBudget" args={[{ name: 'id', type: 'string' }]} returns="Promise<void>" />
+
+Используйте локальный `id` из `getBudgets()`. У скачанного бюджета локальный идентификатор может различаться между устройствами. Для загрузки с сервера по Sync ID используйте `downloadBudget()`.
 
 Загрузите локально кэшированный бюджетный файл.
 

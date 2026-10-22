@@ -12,11 +12,16 @@
 
 Чтобы получить доступ **Пользовательский каталог** Страница, доступ к меню с сервера:
 
-![](/img/multiuser/user-directory.webp)
+<img width="139" alt="The server menu with User Directory highlighted" src="/img/config/multi-user-user-directory-menu@2x.webp" />
 
 Пользователи могут быть добавлены, отключены, включены, удалены с этой страницы:
 
-![](/img/multiuser/user-directory-overview.webp)
+<img width="847" alt="The User Directory page with its controls labeled" src="/img/config/multi-user-user-directory@2x.webp" />
+
+- **A. Добавить пользователя.** Имя пользователя должно совпадать с именем у провайдера OpenID.
+- **B. Изменить.** Меняет отображаемое имя и роль, включает или отключает пользователя.
+- **C. Выбор.** Отметьте пользователей для удаления.
+- **D. Удалить пользователей.** Удаляет отмеченных пользователей. Кнопка появляется после выбора хотя бы одного пользователя.
 
 Есть две роли пользователя: Basic или Admin .
 
@@ -35,10 +40,14 @@
 :::info
 The **Управление доступом пользователей** Меню видно только из открытого бюджета:
 
-![](/img/multiuser/user-access.webp)
+<img width="181" alt="The server menu inside an open budget with User Access Management highlighted" src="/img/config/multi-user-access-menu@2x.webp" />
 
 :::
 
 На этом экране вы присваиваете, отдаете и отзываете доступ к бюджету и передаете право собственности:
 
-![](/img/multiuser/user-access-overview.webp)
+<img width="847" alt="The User Access page with its controls labeled" src="/img/config/multi-user-user-access@2x.webp" />
+
+- **A. Доступ.** Отметьте пользователя, чтобы предоставить доступ к бюджету, или снимите отметку, чтобы отозвать его.
+- **B. Владелец.** Показывает владельца бюджета.
+- **C. Передать владение.** Назначает другого пользователя владельцем бюджета.

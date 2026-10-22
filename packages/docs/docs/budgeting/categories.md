@@ -7,19 +7,19 @@
 
 ## Добавить категорию {#add-a-category}
 
-1. Наведите курсор на группу категорий и нажмите стрелку вниз
+1. Наведите курсор на группу категорий и нажмите **+** (**Добавить категорию**)
 
-![](/img/categories/CategoryGroupRename.webp)
+![](/img/budgeting/categories-group-hover@2x.webp)
 
-2. Выбрать **Добавить категорию**
+2. Введите название новой категории и нажмите <Key k="enter" />
 
-![](/img/categories/CategoryGroupAddCategory.webp)
+![](/img/budgeting/categories-new-category@2x.webp)
 
 ## Добавление группы категорий {#adding-a-category-group}
 
 Прокрутите внизу бюджетного листа и выберите добавить группу
 
-![](/img/categories/AddCategoryGroup.webp)
+![](/img/budgeting/categories-add-group@2x.webp)
 
 Только одна группа доходов может существовать и не может быть удалена.
 
@@ -27,11 +27,11 @@
 
 1. Наведите курсор на категорию и нажмите стрелку вниз
 
-![](/img/categories/RenameCategoryDropDown.webp)
+![](/img/budgeting/categories-category-hover@2x.webp)
 
 2. Выбрать **переименование** или **Исключить** Из меню
 
-![](/img/categories/RenameCategoryOptions.webp)
+![](/img/budgeting/categories-category-menu@2x.webp)
 
 Категории организованы в группы и те же действия, что и выше, могут быть выполнены в группах.
 
@@ -39,23 +39,23 @@
 
 Допустим, у вас есть две одинаковые категории, но вы хотите удалить одну.
 
-![](/img/categories/DuplicatedCategories.webp)
+![](/img/budgeting/categories-duplicates@2x.webp)
 
 Наведите курсор на категорию и выберите выпадающее, которое появляется, и выберите `Delete`
 
-![](/img/categories/RenameCategoryOptions.webp)
+![](/img/budgeting/categories-category-menu@2x.webp)
 
 Если категория, которую вы удаляете, имеет положительный баланс **или** Для существующих транзакций вам будет предоставлено поле для выбора категории, в которую должен быть перемещен баланс и / или транзакции.
 
-![](/img/categories/CategoryDeleteConfirmation.webp)
+![](/img/budgeting/categories-delete-modal@2x.webp)
 
 В нашем примере мы хотим использовать `Food` Который возьмет верх над `Foods` Если вы довольны своим выбором, нажмите `Delete`
 
-![](/img/categories/CategoryDeleteConfirmationNewCat.webp)
+![](/img/budgeting/categories-delete-modal-food@2x.webp)
 
 В бюджете видно, что наши категории успешно слились и положительный баланс переместился в новую категорию.
 
-![](/img/categories/CategoriesMerged.webp)
+![](/img/budgeting/categories-merged@2x.webp)
 
 ## Управление категориями {#managing-categories}
 
@@ -63,21 +63,21 @@
 
 Категории, которые в настоящее время не нужны, могут быть скрыты, используя стрелку вниз по каждому названию категории. Примером может служить экономия бюджетных средств на крупные расходы (например. стиральная машина. После совершения покупки категория может быть скрыта. Скрытые категории влияют на ваш бюджет. При необходимости скрытые категории можно просматривать, нажав на три точки в верхней части списка категорий.
 
-![](/img/categories/CategoryToggleHidden.webp)
+![](/img/budgeting/categories-toggle-hidden@2x.webp)
 
 Скрытые категории, когда они показаны, отображаются в низкоконтрастном цвете.Если вы обнаружите, что теперь вам нужна категория, которую вы ранее скрывали, вы можете скрыть ее, используя стрелку вниз рядом с названием категории.
 
-![](/img/categories/CategoriesHidden.webp)
+![](/img/budgeting/categories-hidden@2x.webp)
 
 ## Категория Примечания {#category-notes}
 
 Можно добавлять заметки к Категориям. Для этого зависать над категорией, в которую хотелось бы добавить заметку. Появится бумажный значок.
 
-![](/img/categories/CategoryGroupRename.webp)
+![](/img/budgeting/categories-group-hover@2x.webp)
 
 Нажмите значок бумаги и введите в своей записке.
 
-![](/img/categories/CategoryAddNote.webp)
+![](/img/budgeting/categories-note-add@2x.webp)
 
 Заметки поддерживают синтаксис Markdown для отформатированных заметок.
 
@@ -87,8 +87,8 @@
 
 1. Наведите курсор на значок бумаги в категории, и содержимое заметки появится для просмотра.
 
-![](/img/categories/CategoryViewNoteHover.webp)
+![](/img/budgeting/categories-note-hover@2x.webp)
 
 2. Нажмите на значок бумаги. Это откроет окно редактирования, где вы можете увидеть содержимое заметки, а также отредактировать заметку, если хотите.
 
-![](/img/categories/CategoryEditNote.webp)
+![](/img/budgeting/categories-note-edit@2x.webp)

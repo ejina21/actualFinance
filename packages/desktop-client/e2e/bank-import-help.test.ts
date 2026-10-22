@@ -7,7 +7,7 @@ test('local account remembers a bank and offers statement guidance', async ({
 }) => {
   await page.goto('/');
   await page.getByRole('button', { name: 'Открыть демоверсию' }).click();
-  await page.getByRole('button', { name: 'Дополнительно' }).click();
+  await page.getByRole('link', { name: 'Настройки', exact: true }).click();
   await expect(page.locator('a[href="/bank-sync"]')).toHaveCount(0);
   await expect(page.getByText('Не связан', { exact: true })).toHaveCount(0);
 
@@ -252,7 +252,7 @@ test('saved CSV settings are editable and applied to the next upload', async ({
   await expect(modal.locator('#form_flip')).toHaveCount(0);
   await modal.getByRole('button', { name: 'Настроить импорт' }).click();
   await expect(modal).toHaveCount(0);
-  await expect(page).toHaveURL(/\/settings\?importAccount=all/);
+  await expect(page).toHaveURL(/\/settings\/general\?importAccount=all/);
   const settings = page.getByTestId('settings');
   await expect(settings).toContainText('Настройки импорта выписок');
   await expect(settings).toContainText('Поля заметки: 2');

@@ -33,43 +33,43 @@
 
 7. Назад в Actual, нажмите на «+ Добавить учетную запись» в нижней части боковой панели.
 
-   ![](/img/connecting-your-bank/connecting-your-bank-02.webp)
+   ![](/img/advanced/bank-sync/bank-sync-add-account@2x.webp)
 
 8. Нажмите «Связать банковский счет с SimpleFIN».
 
-   ![](/img/connecting-your-bank/connecting-your-bank-simplefin-05.webp)
+   ![](/img/advanced/bank-sync/bank-sync-add-account-modal@2x.webp)
 
 9. Вам будет предложено ввести свой токен настройки SimpleFIN. Ключи от этого значения будут сохранены на сервере, поэтому вам нужно будет ввести его только один раз.
 
-   ![](/img/connecting-your-bank/connecting-your-bank-simplefin-06.webp)
+   ![](/img/advanced/bank-sync/simplefin-setup-modal@2x.webp)
 
 ### Ссылки на аккаунты с помощью SimpleFIN {#link-accounts-with-simplefin}
 
 1. Добавьте ссылку на ваши учетные записи в реальном (существующем или новом).
    - **Для существующей учетной записи нажмите на эту учетную запись, выберите ... (кебаб-меню) в правом верхнем углу и выберите учетную запись Link**
 
-     ![](/img/connecting-your-bank/connecting-your-bank-01.webp)
+     ![](/img/advanced/bank-sync/bank-sync-link-account-menu@2x.webp)
 
    - **Для создания новой учетной записи с синхронизацией банка нажмите на ссылку «+ Добавить учетную запись» в левом меню внизу**
 
-     ![](/img/connecting-your-bank/connecting-your-bank-02.webp)
+     ![](/img/advanced/bank-sync/bank-sync-add-account@2x.webp)
 
-2. Выберите банковский счет Link с помощью кнопки SimpleFIN.
+2. Нажмите **Подключить банковский счёт** на карточке SimpleFIN.
 
-   ![](/img/connecting-your-bank/connecting-your-bank-simplefin-07.webp)
+   ![](/img/advanced/bank-sync/simplefin-link-bank-account@2x.webp)
 
-3. Чтобы связать учетную запись SimpleFIN с фактической учетной записью, нажмите кнопку «Setup bank-sync» в той же строке.
+3. Чтобы связать учетную запись SimpleFIN с фактической учетной записью, нажмите кнопку **Настроить банковскую синхронизацию** в той же строке.
    - В графе «Синхронизация банковского счета» содержатся имена счетов, найденных через SimpleFIN.
    - Столбец «Аккаунт в действии» содержит название фактического счета, с которым он связан.
    - Вы также можете нажать в столбце «Учетная запись в реальном времени» вместо нажатия кнопки «Синхронизация банка».
 
-   ![](/img/connecting-your-bank/connecting-your-bank-simplefin-08.webp)
+   ![](/img/advanced/bank-sync/simplefin-link-accounts@2x.webp)
 
 4. Выберите существующую фактическую учетную запись для ссылки или создайте новую.
 
-   ![](/img/connecting-your-bank/connecting-your-bank-simplefin-09.webp)
+   ![](/img/advanced/bank-sync/simplefin-account-picker@2x.webp)
 
-5. Когда вы наметили все свои учетные записи, которые вы хотите, нажмите кнопку «Связаться с учетной записью».
+5. Когда вы наметили все свои учетные записи, которые вы хотите, нажмите кнопку **Связать счета**.
 
 ### Рассмотрение SimpleFIN {#simplefin-considerations}
 
@@ -88,3 +88,11 @@
 3. Нажмите «Reset SimpleFIN credentials».
 
 Затем вам нужно будет получить новый токен настройки от SimpleFIN и ввести его в Actual.
+
+## Настройка Провайдера В Настройках {#provider-settings}
+
+В диалоге добавления счёта выберите **Настроить банковскую синхронизацию**. Откроется страница **Банковская синхронизация** в настройках. В разделе **Провайдеры** нажмите **Настроить** на карточке SimpleFIN, введите учётные данные и нажмите **Сохранить и продолжить**.
+
+Чтобы связать счёт, нажмите **Подключить банковский счёт** на карточке SimpleFIN. Возле нужного банковского счёта выберите **Настроить банковскую синхронизацию**, укажите счёт Actual и нажмите **Связать счета**. Для существующего счёта также доступна команда **Связать счёт** в меню **…** страницы счёта.
+
+![Настройка SimpleFIN в разделе провайдеров](/img/advanced/bank-sync/simplefin-set-up@2x.webp)

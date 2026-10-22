@@ -6,4 +6,4 @@
 
 Подробности есть в разделе [«Правила»](../budgeting/rules/index.md).
 
-![Общий вид правил](/img/a-tour-of-actual/tour-rules-overview.webp)
+![Общий вид правил](/img/a-tour-of-actual/tour-rules-overview@2x.webp)

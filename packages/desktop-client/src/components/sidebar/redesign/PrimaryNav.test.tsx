@@ -1,60 +1,62 @@
 import { MemoryRouter } from 'react-router';
 
-import { fireEvent, render, screen } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 import { describe, expect, it, vi } from 'vitest';
+
+import { createTestAppStore, TestProviders } from '#mocks';
+import { mergeSyncedPrefs } from '#prefs/prefsSlice';
 
 import { PrimaryNav } from './PrimaryNav';
 
 vi.mock('#hooks/useSyncServerStatus', () => ({
-  useSyncServerStatus: () => 'no-server',
+  useSyncServerStatus: () => 'online',
 }));
-vi.mock('#hooks/useIsTestEnv', () => ({
-  useIsTestEnv: () => false,
-}));
+vi.mock('#hooks/useIsTestEnv', () => ({ useIsTestEnv: () => false }));
 
-describe('PrimaryNav', () => {
-  it('keeps every main destination reachable and adds overview and operations', () => {
-    render(
+function renderNav(showRules = false) {
+  const store = createTestAppStore();
+  if (showRules) {
+    store.dispatch(
+      mergeSyncedPrefs({
+        'sidebar-menu-items': JSON.stringify([{ id: 'rules', hidden: false }]),
+      }),
+    );
+  }
+  return render(
+    <TestProviders store={store}>
       <MemoryRouter>
         <PrimaryNav />
-      </MemoryRouter>,
-    );
+      </MemoryRouter>
+    </TestProviders>,
+  );
+}
 
-    const mainDestinations = [
+describe('PrimaryNav', () => {
+  it('preserves overview and operations alongside upstream configurable pages', () => {
+    renderNav();
+    for (const destination of [
       '/overview',
       '/budget',
       '/accounts',
       '/reports',
       '/schedules',
-    ];
-
-    for (const destination of mainDestinations) {
+    ]) {
       expect(document.querySelector(`a[href="${destination}"]`)).not.toBeNull();
     }
     expect(screen.getByRole('link', { name: 'Overview' })).toBeVisible();
     expect(screen.getByRole('link', { name: 'Transactions' })).toBeVisible();
-
-    const more = screen.getByRole('button', { name: 'More' });
-    expect(more).toHaveAttribute('aria-expanded', 'false');
-    fireEvent.click(more);
-    expect(more).toHaveAttribute('aria-expanded', 'true');
-
-    for (const destination of ['/payees', '/rules', '/tags']) {
-      expect(document.querySelector(`a[href="${destination}"]`)).not.toBeNull();
-    }
+    expect(
+      screen.queryByRole('link', { name: 'Bank Sync' }),
+    ).not.toBeInTheDocument();
+    expect(
+      screen.queryByRole('link', { name: 'Rules' }),
+    ).not.toBeInTheDocument();
   });
-
-  it('opens secondary navigation for the active route', () => {
-    render(
-      <MemoryRouter initialEntries={['/rules']}>
-        <PrimaryNav />
-      </MemoryRouter>,
+  it('shows a secondary destination when enabled in sidebar settings', () => {
+    renderNav(true);
+    expect(screen.getByRole('link', { name: 'Rules' })).toHaveAttribute(
+      'href',
+      '/rules',
     );
-
-    expect(screen.getByRole('button', { name: 'More' })).toHaveAttribute(
-      'aria-expanded',
-      'true',
-    );
-    expect(screen.getByRole('link', { name: 'Rules' })).toBeVisible();
   });
 });

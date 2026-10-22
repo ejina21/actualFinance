@@ -10,19 +10,19 @@ zip-экспорт, вы можете восстановить эту резер
 1. Закройте текущий бюджет, нажав на название бюджета в верхнем левом углу.
    угол экрана и выбор опции Switch file .
 
-![Закройте текущий бюджетный файл](/img/backup-restore/restore-close-budget.webp)
+![Закройте текущий бюджетный файл](/img/backup-restore/restore-switch-file@2x.webp)
 
 2. В появившемся экране выбора Budget или экране файла нажмите на Import file .
 
-   ![Нажмите на ссылку файла импорта](/img/backup-restore/restore-import-file.webp)
+   ![Нажмите на ссылку файла импорта](/img/backup-restore/restore-import-file@2x.webp)
 
 3. Выберите опцию Actual .
 
-   ![Нажмите на ссылку файла импорта](/img/backup-restore/restore-import-file-dialog.webp)
+   ![Нажмите на ссылку файла импорта](/img/backup-restore/restore-import-source@2x.webp)
 
 4. Нажмите на файл Select..._ Кнопка.
 
-   ![Нажмите на ссылку файла импорта](/img/backup-restore/restore-import-file-select-file.webp)
+   ![Нажмите на ссылку файла импорта](/img/backup-restore/restore-import-actual@2x.webp)
 
 5. Перейдите к месту, где вы хранили резервный файл, выберите его и нажмите
    Нажмите кнопку upload .
@@ -35,7 +35,7 @@ zip-экспорт, вы можете восстановить эту резер
 вернуться на экран выбора бюджета, закрыв текущий бюджет
 Удаление старой копии.
 
-![Нажмите на ссылку файла импорта](/img/backup-restore/restore-import-imported-budget.webp)
+![Нажмите на ссылку файла импорта](/img/backup-restore/restore-imported-budget@2x.webp)
 
 ## Ошибки при восстановлении базы данных из резервного копирования {#errors-when-restoring-database-from-backup}
 

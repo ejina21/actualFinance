@@ -6,7 +6,7 @@
 
 Чтобы увидеть получателей, которые не используются, нажмите _«Показать неиспользуемых получателей»_.
 
-![Список получателей](/img/a-tour-of-actual/tour-payees-overview.webp)
+![Список получателей](/img/a-tour-of-actual/tour-payees-overview@2x.webp)
 
 ## Удаление и объединение
 
@@ -14,4 +14,4 @@
 
 Если нужно отменить действие, нажмите <Key mod="ctrl" fixed k="Z" /> в Windows или <Key mod="cmd" fixed k="Z" /> на Mac.
 
-![Управление выбранными получателями](/img/a-tour-of-actual/tour-payees-delete-merge.webp)
+![Управление выбранными получателями](/img/a-tour-of-actual/tour-payees-delete-merge@2x.webp)

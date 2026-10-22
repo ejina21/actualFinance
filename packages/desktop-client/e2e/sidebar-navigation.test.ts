@@ -31,9 +31,13 @@ test('keeps sidebar destinations, account search and keyboard focus available', 
     await overview.focus();
     await expect(overview).toHaveCSS('outline-style', 'solid');
 
-    await sidebar.getByRole('button', { name: 'Дополнительно' }).click();
-    for (const destination of ['/payees', '/rules', '/tags']) {
-      await expect(sidebar.locator(`a[href="${destination}"]`)).toBeVisible();
+    await sidebar.getByRole('link', { name: 'Настройки', exact: true }).click();
+    for (const destination of [
+      '/settings/payees',
+      '/settings/rules',
+      '/settings/tags',
+    ]) {
+      await expect(page.locator(`a[href="${destination}"]`)).toBeVisible();
     }
 
     await sidebar.getByRole('button', { name: 'Найти счёт' }).click();

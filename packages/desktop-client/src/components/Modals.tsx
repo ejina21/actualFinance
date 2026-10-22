@@ -18,6 +18,7 @@ import { AccountGroupsModal } from './modals/AccountGroupsModal';
 import { AccountMenuModal } from './modals/AccountMenuModal';
 import { AccountReconcileModal } from './modals/AccountReconcileModal';
 import { AkahuInitialiseModal } from './modals/AkahuInitialiseModal';
+import { AllAccountsMenuModal } from './modals/AllAccountsMenuModal';
 import { BudgetAutomationsModal } from './modals/BudgetAutomationsModal';
 import { BudgetPageMenuModal } from './modals/BudgetPageMenuModal';
 import { CategoryAutocompleteModal } from './modals/CategoryAutocompleteModal';
@@ -47,7 +48,6 @@ import { EnvelopeBudgetMenuModal } from './modals/EnvelopeBudgetMenuModal';
 import { EnvelopeBudgetMonthMenuModal } from './modals/EnvelopeBudgetMonthMenuModal';
 import { EnvelopeBudgetSummaryModal } from './modals/EnvelopeBudgetSummaryModal';
 import { EnvelopeIncomeBalanceMenuModal } from './modals/EnvelopeIncomeBalanceMenuModal';
-import { EnvelopeToBudgetMenuModal } from './modals/EnvelopeToBudgetMenuModal';
 import { FixEncryptionKeyModal } from './modals/FixEncryptionKeyModal';
 import { GoalTemplateModal } from './modals/GoalTemplateModal';
 import { GoCardlessExternalMsgModal } from './modals/GoCardlessExternalMsgModal';
@@ -292,6 +292,9 @@ export function Modals() {
         case 'account-menu':
           return <AccountMenuModal key={key} {...modal.options} />;
 
+        case 'all-accounts-menu':
+          return <AllAccountsMenuModal key={key} {...modal.options} />;
+
         case 'account-reconcile':
           return <AccountReconcileModal key={key} {...modal.options} />;
 
@@ -341,16 +344,6 @@ export function Modals() {
               name={monthUtils.sheetForMonth(modal.options.month)}
             >
               <EnvelopeIncomeBalanceMenuModal {...modal.options} />
-            </SheetNameProvider>
-          );
-
-        case 'envelope-summary-to-budget-menu':
-          return (
-            <SheetNameProvider
-              key={key}
-              name={monthUtils.sheetForMonth(modal.options.month)}
-            >
-              <EnvelopeToBudgetMenuModal {...modal.options} />
             </SheetNameProvider>
           );
 

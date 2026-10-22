@@ -12,11 +12,11 @@
 
 1. Войдите в свой бюджет, нажмите «Дополнительно» > «Настройки»
 
-   ![](/img/backup-restore/sidebar-settings@2x.webp)
+   ![](/img/backup-restore/backup-sidebar-settings@2x.webp)
 
 2. Прокрутите вниз до раздела «Экспорт» и нажмите «Экспортные данные»
 
-   ![](/img/backup-restore/settings-export.webp)
+   ![](/img/settings/settings-export@2x.webp)
 
 3. Сохраните файл где-нибудь на вашем компьютере - вот и все - вы закончили.
 

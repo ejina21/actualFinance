@@ -16,7 +16,7 @@
 
 При первом запуске нажмите кнопку добавления счёта в центре экрана. Позднее счёт можно добавить через кнопку **+** в боковом меню.
 
-![](/img/add-account/AddAccount.webp)
+![](/img/accounts/accounts-add-account@2x.webp)
 
 При создании счёта укажите:
 
@@ -29,9 +29,9 @@
 Остаток счёта вне бюджета не учитывается, когда вы распределяете деньги по категориям.
 :::
 
-![](/img/add-account/CreateAccount1.webp)
+![](/img/accounts/accounts-add-account-dialog@2x.webp)
 
-![](/img/add-account/CreateAccount@2x.webp)
+![](/img/accounts/accounts-create-local-account@2x.webp)
 
 После заполнения настроек новый счёт появится в боковом меню.
 
@@ -39,7 +39,7 @@
 Если вы отметили счёт как внебюджетный, а затем изменили его тип, проверьте этот параметр ещё раз: при смене типа он сбрасывается.
 :::
 
-![](/img/add-account/NewBudget.webp)
+![](/img/accounts/accounts-new-account@2x.webp)
 
 ## Как закрыть или удалить счёт {#closing-or-deleting-an-account}
 
@@ -57,8 +57,8 @@
 
 Откройте счёт через боковое меню.
 
-![](/img/add-account/SidebarAccountList@2x.webp)
+![](/img/accounts/accounts-sidebar-list@2x.webp)
 
 Наведите указатель на название счёта в верхней части страницы. Значок документа открывает заметку о счёте, а значок карандаша позволяет изменить название. Нажмите **Enter**, чтобы сохранить изменения.
 
-![](/img/add-account/AccountNameEdit.webp)
+![](/img/accounts/accounts-name-notes@2x.webp)

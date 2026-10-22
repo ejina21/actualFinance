@@ -870,11 +870,12 @@ export function ImportTransactionsModal({
         trans.isMatchedTransaction ||
         (!trans.selected &&
           (!effectiveReconcile ||
-            !trans.ignored ||
+            (!trans.ignored && !trans.existing) ||
             autoExcludedIds.has(trans.trx_id)))
       ) {
         // Keep ignored rows for reconciliation, but never import a deselected
         // row in direct-add mode or an automatically excluded offsetting pair.
+
         continue;
       }
 
@@ -959,8 +960,13 @@ export function ImportTransactionsModal({
         finalTransaction.forceAddTransaction = true;
       }
 
+      if (effectiveReconcile && trans.existing && !trans.selected) {
+        finalTransaction.skipTransaction = true;
+      }
+
       const finalTransactions =
         transactionsByAccount.get(destinationAccountId) ?? [];
+
       finalTransactions.push({
         ...finalTransaction,
         category: category_id,
@@ -1625,7 +1631,7 @@ export function ImportTransactionsModal({
                       .then(() => {
                         state.close();
                         void navigate(
-                          `/settings?importAccount=${encodeURIComponent(accountId ?? 'all')}#statement-import-settings`,
+                          `/settings/general?importAccount=${encodeURIComponent(accountId ?? 'all')}#statement-import-settings`,
                         );
                       })
                       .catch(() => {

@@ -106,7 +106,7 @@ Actual Budget.
 
 :::
 
-![Изображение подключается к Actual](/img/a-tour-of-actual/server-connecting-first-time.webp)
+![Изображение подключается к Actual](/img/install/server-set-password@2x.webp)
 <br />
 <br />
 

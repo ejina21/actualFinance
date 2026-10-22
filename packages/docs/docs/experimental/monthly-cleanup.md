@@ -4,7 +4,7 @@
 
 Создайте шаблон, добавив заметку в категорию и добавив строку, которая начинается с `#cleanup`.
 
-![](/img/monthly-cleanup/cleanup-02.webp)
+<img width="724" alt="A category note with a #cleanup source line" src="/img/experimental/monthly-cleanup-note@2x.webp" />
 
 В вашей записке есть другие строки, включая шаблоны целей, но строка #cleanup должна соответствовать синтаксису.
 
@@ -38,7 +38,7 @@
 
 Функция работает последовательно следующим образом после нажатия **Конец месяца уборка** Кнопка.
 
-![](/img/monthly-cleanup/cleanup-01.webp)
+<img width="506" alt="The month menu with End of month cleanup highlighted" src="/img/experimental/monthly-cleanup-month-menu@2x.webp" />
 
 1. На этом этапе автоматически не заполняются категории перерасходованных средств и распределяются средства из групповых источников.
 1. Любой `#cleanup source` Записи будут найдены, и все дополнительные деньги в этих категориях будут возвращены. **В бюджет**.

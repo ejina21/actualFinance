@@ -12,6 +12,10 @@ const shadowLarge = {
   boxShadow: '0 15px 30px 0 rgba(0,0,0,0.11), 0 5px 15px 0 rgba(0,0,0,0.08)',
 };
 
+const shadowSheet = {
+  boxShadow: '0 -4px 24px rgba(0,0,0,0.2)',
+};
+
 export const styles: CSSProperties = {
   incomeHeaderHeight: 70,
   cardShadow:
@@ -91,6 +95,7 @@ export const styles: CSSProperties = {
       '0 1px 3px rgba(28, 25, 23, 0.05), 0 4px 12px -2px rgba(28, 25, 23, 0.04)',
   },
   shadowLarge,
+  shadowSheet,
   tnum: {
     // tnum: Tabular numbers
     // ss01: Open digits

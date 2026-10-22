@@ -21,14 +21,14 @@
   - Показать "очищенные" чекбоксы
   - Показать согласованные сделки
 
-    <img alt="Show running balance" src="/img/credit-cards/CC-014.webp" />
+    <img alt="Show running balance" src="/img/budgeting/credit-cards/carrying-debt-table-columns@2x.webp" />
 
 - Убедитесь, что pills , показывающие «Cleared total» и «Uncleared total», отображаются под именем учетной записи.
   - Чтобы показать таблетки, наведите курсор на баланс счета под именем счета и нажмите на расширение >> стрелки.
 
-    <img alt="Account page Balance Expand Arows" src="/img/credit-cards/CC-01.webp" />
+    <img alt="Account page Balance Expand Arows" src="/img/budgeting/credit-cards/carrying-debt-balance-arrows@2x.webp" />
     <br />
-    <img alt="Account Page Balances Expanded" src="/img/credit-cards/CC-02.webp" />
+    <img alt="Account Page Balances Expanded" src="/img/budgeting/credit-cards/carrying-debt-balance-expanded@2x.webp" />
 
 <br />
 
@@ -99,15 +99,15 @@
 
 ### Примеры: {#examples}
 
-В начале июля мы составили бюджет на ожидаемые минимальные платежи в рамках наших необходимых расходов. После того, как все наши расходы будут учтены, у нас останется 202,29 доллара, и мы решили добавить еще 200 долларов к нашей кредитной карте Citibank. Мы добавим 200 долларов к ожидаемому минимальному платежу в 90 долларов. 2,29 доллара мы удерживаем на следующий месяц.
+В начале августа мы составили бюджет на ожидаемые минимальные платежи в рамках наших необходимых расходов. После того, как все наши расходы будут учтены, у нас останется 202,29 доллара, и мы решили добавить еще 200 долларов к нашей кредитной карте Citibank. Мы добавим 200 долларов к ожидаемому минимальному платежу в 90 долларов. 2,29 доллара мы удерживаем на следующий месяц.
 
-<img alt="Budget after necessary expenses" src="/img/credit-cards/CC-03.webp" />
+<img alt="Budget after necessary expenses" src="/img/budgeting/credit-cards/carrying-debt-first-month-minimums@2x.webp" />
 <br />
-<img alt="Budget after adding extra" src="/img/credit-cards/CC-04.webp" />
+<img alt="Budget after adding extra" src="/img/budgeting/credit-cards/carrying-debt-first-month-extra@2x.webp" />
 
 <br />
 
-В июле мы используем [Оплата в полном объеме - в рамках бюджета](./paying-in-full.md) Мы используем кредитную карту DEMO для некоторых наших покупок. Мы не тратим с помощью карты Citibank.
+В августе мы используем [Оплата в полном объеме - в рамках бюджета](./paying-in-full.md) Мы используем кредитную карту DEMO для некоторых наших покупок. Мы не тратим с помощью карты Citibank.
 
 Приходит заявление Ситибанка. Нам нужна следующая информация из резюме:
 
@@ -124,7 +124,7 @@
 
 Следующий [Карты с долгами и без новых покупок](#debt-no-new) мы вводим транзакцию на счет Citibank для процентов и сборов и классифицируем ее на **Citi Card Долг**Мы согласовываем счет, соглашаясь с Citibank, что наш новый баланс составляет $2564,00.
 
-<img alt="Citibank Cleared Transactions" src="/img/credit-cards/CC-05.webp" />
+<img alt="Citibank Cleared Transactions" src="/img/budgeting/credit-cards/carrying-debt-citibank-reconcile@2x.webp" />
 
 <br />
 
@@ -132,21 +132,21 @@
 
 Вы можете заметить, что Citibank Balance соответствует **Citi Card Долг** Проценты и сборы, которые мы добавили к долгу, были отменены нашими **бюджетный** суммы, включающей их.
 
-<img alt="Citibank July" src="/img/credit-cards/CC-06.webp" />
+<img alt="Citibank July" src="/img/budgeting/credit-cards/carrying-debt-citibank-first-payment@2x.webp" />
 <br />
-<img alt="Budget July" src="/img/credit-cards/CC-07.webp" />
-
-<br />
-
-1 августа мы определили бюджет и начали с минимальных платежей в размере 90 долларов США за карту Citibank и 50 долларов США за карту DEMO. После того, как мы профинансировали все необходимые расходы, мы добавили дополнительный платеж в размере 200 долларов США за карту DEMO в этом месяце.
-
-<img alt="August Initial Budget" src="/img/credit-cards/CC-08.webp" />
-<br />
-<img alt="August Budget After Extra" src="/img/credit-cards/CC-09.webp" />
+<img alt="Budget July" src="/img/budgeting/credit-cards/carrying-debt-first-month-debt-category@2x.webp" />
 
 <br />
 
-В августе мы получаем наше заявление по карте DEMO и нам необходимо следующее из резюме учетной записи:
+1 сентября мы определили бюджет и начали с минимальных платежей в размере 90 долларов США за карту Citibank и 50 долларов США за карту DEMO. После того, как мы профинансировали все необходимые расходы, мы добавили дополнительный платеж в размере 200 долларов США за карту DEMO в этом месяце.
+
+<img alt="August Initial Budget" src="/img/budgeting/credit-cards/carrying-debt-second-month-minimums@2x.webp" />
+<br />
+<img alt="August Budget After Extra" src="/img/budgeting/credit-cards/carrying-debt-second-month-extra@2x.webp" />
+
+<br />
+
+В сентябре мы получаем наше заявление по карте DEMO и нам необходимо следующее из резюме учетной записи:
 
 **Резюме счета DEMO**
 
@@ -163,7 +163,7 @@
 
 Во-первых, мы введем сделку «Проценты и сборы» в размере 32,75 долларов США, классифицируя ее по категориям: **Карточный долг DEMO** Когда наши очищенные транзакции соответствуют выписке New Balance, наша учетная запись DEMO выглядит следующим образом:
 
-<img alt="DEMO Credit Card Reconcile" src="/img/credit-cards/CC-010.webp" />
+<img alt="DEMO Credit Card Reconcile" src="/img/budgeting/credit-cards/carrying-debt-demo-reconcile@2x.webp" />
 
 <br />
 
@@ -182,7 +182,7 @@
   <br /> Разница между балансом счета -2190,96 и балансом категории -968,25 (2190,96 - 968,25 = 1222,71)
 - Мы отправляем банку DEMO $1,222.71 и используем Make Transfer для перевода этой суммы с расчетного счета, который мы использовали для оплаты счета.
 
-<img alt="DEMO Credit Card Payment" src="/img/credit-cards/CC-011.webp" />
+<img alt="DEMO Credit Card Payment" src="/img/budgeting/credit-cards/carrying-debt-demo-payment@2x.webp" />
 
 <br />
 
@@ -190,14 +190,16 @@
 
 За нашу карту Citibank в этом месяце мы заплатим **бюджетный** Ожидаемая минимальная оплата $90.00.
 
-<img alt="Citibank August Payment" src="/img/credit-cards/CC-012.webp" />
+<img alt="Citibank August Payment" src="/img/budgeting/credit-cards/carrying-debt-citibank-second-payment@2x.webp" />
 
 <br />
 
 Мы сократили наш первоначальный долг перед DEMO Bank до $968,25 и Citibank до $2247,00. Вы можете заметить, что для этого моментального снимка наши остатки по кредитным картам соответствуют нашему непогашенному долгу в бюджете.
 
-<img alt="August Budget Snapshot" src="/img/credit-cards/CC-013.webp" />
+<img alt="August Budget Snapshot" src="/img/budgeting/credit-cards/carrying-debt-second-month-snapshot@2x.webp" />
 
 <br />
 
 Мы будем продолжать тратить в рамках бюджета, выбирая категорию с положительным балансом для каждого расхода.
+
+Чтобы включить столбцы остатка и проведения транзакций, откройте меню **… → Управление столбцами таблицы**, включите **Текущий остаток** и **Проведено** и нажмите **Сохранить**. Сверенные транзакции отображаются по умолчанию; если они скрыты, выберите **Показать сверенные транзакции** в меню **…**.
