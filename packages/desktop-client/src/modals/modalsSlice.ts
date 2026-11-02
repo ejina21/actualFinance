@@ -470,6 +470,10 @@ export type Modal =
       };
     }
   | {
+      name: 'budget-categories';
+      options?: undefined;
+    }
+  | {
       name: 'new-category-group';
       options: {
         onValidate?: (value: string) => string | null;

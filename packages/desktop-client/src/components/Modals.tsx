@@ -12,6 +12,7 @@ import { closeModal } from '#modals/modalsSlice';
 import { useDispatch } from '#redux';
 
 import { EditSyncAccount } from './banksync/EditSyncAccount';
+import { CategoryManagerModal } from './budget/summary/CategoryManagerModal';
 import { ManualBankImportHelpModal } from './manual-bank/ManualBankImportHelpModal';
 import { AccountAutocompleteModal } from './modals/AccountAutocompleteModal';
 import { AccountGroupsModal } from './modals/AccountGroupsModal';
@@ -251,6 +252,9 @@ export function Modals() {
 
         case 'payee-category-learning':
           return <CategoryLearning key={key} />;
+
+        case 'budget-categories':
+          return <CategoryManagerModal key={key} />;
 
         case 'new-category':
           return <NewCategoryModal key={key} {...modal.options} />;
