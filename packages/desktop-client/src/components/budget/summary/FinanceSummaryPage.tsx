@@ -1,12 +1,15 @@
 import { useState } from 'react';
 import { Trans, useTranslation } from 'react-i18next';
 
+import { Button } from '@actual-app/components/button';
 import { useResponsive } from '@actual-app/components/hooks/useResponsive';
 import { theme } from '@actual-app/components/theme';
 import { spacing } from '@actual-app/components/tokens';
 import * as monthUtils from '@actual-app/core/shared/months';
 
 import { MobilePageHeader, Page, PageHeader } from '#components/Page';
+import { pushModal } from '#modals/modalsSlice';
+import { useDispatch } from '#redux';
 
 import { AccountBalanceTable } from './AccountBalanceTable';
 import { addComparisonMonth } from './comparison';
@@ -21,6 +24,16 @@ import { useFinanceSummary } from './useFinanceSummary';
 
 export function FinanceSummaryPage() {
   const { t, i18n } = useTranslation();
+  const dispatch = useDispatch();
+  const manageCategories = (
+    <Button
+      onPress={() =>
+        dispatch(pushModal({ modal: { name: 'budget-categories' } }))
+      }
+    >
+      <Trans>Categories</Trans>
+    </Button>
+  );
   const { isNarrowWidth } = useResponsive();
   const [isComparing, setIsComparing] = useState(false);
   const [period, setPeriod] = useState<SummaryPeriod>({
@@ -62,13 +75,25 @@ export function FinanceSummaryPage() {
     <Page
       header={
         isNarrowWidth ? (
-          <MobilePageHeader title={t('Expenses')} />
+          <MobilePageHeader
+            title={t('Expenses')}
+            rightContent={manageCategories}
+          />
         ) : (
           <PageHeader
             title={
-              <h1 style={{ font: 'inherit', margin: 0 }}>
-                <Trans>Expenses</Trans>
-              </h1>
+              <div
+                style={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: spacing.md,
+                }}
+              >
+                <h1 style={{ font: 'inherit', margin: 0 }}>
+                  <Trans>Expenses</Trans>
+                </h1>
+                {manageCategories}
+              </div>
             }
           />
         )
